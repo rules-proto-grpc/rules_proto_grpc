@@ -1,0 +1,4 @@
+exports_files(
+    glob(["build_files/BUILD.bazel.*"]),
+    visibility = ["//visibility:public"]
+)
