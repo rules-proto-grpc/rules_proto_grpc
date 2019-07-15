@@ -3,7 +3,7 @@ local_repository(
     path = "../../../../../",
 )
 
-load("@rules_proto_grpc//github.com/grpc/grpc-web:deps.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
 
 grpc_web_deps()
 

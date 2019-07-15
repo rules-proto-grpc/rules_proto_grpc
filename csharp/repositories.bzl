@@ -1,10 +1,10 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "com_github_grpc_grpc",
     "io_bazel_rules_dotnet",
 )
 load(
-    "//protobuf:deps.bzl",
+    "//protobuf:repositories.bzl",
     "protobuf_deps",
 )
 

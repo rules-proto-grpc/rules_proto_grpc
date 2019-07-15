@@ -18,7 +18,7 @@ Generates D protobuf `.d` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//d:deps.bzl", "d_deps")
+load("@rules_proto_grpc//d:repositories.bzl", "d_deps")
 
 d_deps()
 
@@ -54,7 +54,7 @@ Generates a D protobuf library using `d_library` from `rules_d`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//d:deps.bzl", "d_deps")
+load("@rules_proto_grpc//d:repositories.bzl", "d_deps")
 
 d_deps()
 

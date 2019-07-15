@@ -17,7 +17,7 @@ Generates Objective-C protobuf `.m` & `.h` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//objc:deps.bzl", "objc_deps")
+load("@rules_proto_grpc//objc:repositories.bzl", "objc_deps")
 
 objc_deps()
 ```
@@ -49,7 +49,7 @@ Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//objc:deps.bzl", "objc_deps")
+load("@rules_proto_grpc//objc:repositories.bzl", "objc_deps")
 
 objc_deps()
 
@@ -85,7 +85,7 @@ Generates an Objective-C protobuf library using `objc_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//objc:deps.bzl", "objc_deps")
+load("@rules_proto_grpc//objc:repositories.bzl", "objc_deps")
 
 objc_deps()
 ```

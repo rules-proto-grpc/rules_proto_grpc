@@ -1,10 +1,10 @@
 package main
 
-var grpcjsWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "grpcjs_deps")
+var grpcjsWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "grpcjs_deps")
 
 grpcjs_deps()`)
 
-var grpcjsLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "grpcjs_deps")
+var grpcjsLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "grpcjs_deps")
 
 grpcjs_deps()
 

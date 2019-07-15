@@ -1,11 +1,11 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "com_github_grpc_grpc",
     "com_apt_itude_rules_pip",
     "six",
 )
 load(
-    "//protobuf:deps.bzl",
+    "//protobuf:repositories.bzl",
     "protobuf_deps",
 )
 

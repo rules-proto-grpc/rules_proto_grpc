@@ -1,5 +1,5 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "bazel_gazelle",
     "com_github_bazelbuild_buildtools",
     "grpc_ecosystem_grpc_gateway",

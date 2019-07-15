@@ -1,9 +1,9 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "com_github_grpc_grpc_web",
 )
 load(
-    "//closure:deps.bzl",
+    "//closure:repositories.bzl",
     "closure_deps",
 )
 

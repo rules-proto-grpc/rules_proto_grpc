@@ -3,7 +3,7 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//d:deps.bzl", "d_deps")
+load("@rules_proto_grpc//d:repositories.bzl", "d_deps")
 
 d_deps()
 

@@ -18,7 +18,7 @@ Generates a Scala protobuf `.jar` artifact
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:repositories.bzl", "scala_deps")
 
 scala_deps()
 
@@ -71,7 +71,7 @@ Generates Scala protobuf+gRPC `.jar` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:repositories.bzl", "scala_deps")
 
 scala_deps()
 
@@ -122,7 +122,7 @@ Generates a Scala protobuf library using `scala_library` from `rules_scala`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:repositories.bzl", "scala_deps")
 
 scala_deps()
 
@@ -175,7 +175,7 @@ Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:repositories.bzl", "scala_deps")
 
 scala_deps()
 

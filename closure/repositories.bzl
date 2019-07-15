@@ -1,9 +1,9 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "io_bazel_rules_closure"
 )
 load(
-    "//protobuf:deps.bzl",
+    "//protobuf:repositories.bzl",
     "protobuf_deps",
 )
 

@@ -3,7 +3,7 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//nodejs:deps.bzl", "nodejs_deps")
+load("@rules_proto_grpc//nodejs:repositories.bzl", "nodejs_deps")
 
 nodejs_deps()
 

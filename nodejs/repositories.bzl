@@ -1,10 +1,10 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "com_github_grpc_grpc",
     "build_bazel_rules_nodejs",
 )
 load(
-    "//protobuf:deps.bzl",
+    "//protobuf:repositories.bzl",
     "protobuf_deps",
 )
 

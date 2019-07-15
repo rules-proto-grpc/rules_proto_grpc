@@ -3,7 +3,7 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:repositories.bzl", "scala_deps")
 
 scala_deps()
 

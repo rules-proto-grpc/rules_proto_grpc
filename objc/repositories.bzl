@@ -1,9 +1,9 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "com_github_grpc_grpc",
 )
 load(
-    "//protobuf:deps.bzl",
+    "//protobuf:repositories.bzl",
     "protobuf_deps",
 )
 

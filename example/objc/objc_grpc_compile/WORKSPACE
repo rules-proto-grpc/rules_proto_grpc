@@ -3,7 +3,7 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//objc:deps.bzl", "objc_deps")
+load("@rules_proto_grpc//objc:repositories.bzl", "objc_deps")
 
 objc_deps()
 

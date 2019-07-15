@@ -1,6 +1,6 @@
 package main
 
-var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
+var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
 
@@ -12,7 +12,7 @@ go_register_toolchains()
 
 bazel_gazelle()
 
-load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "gateway_deps")
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "gateway_deps")
 
 gateway_deps()
 

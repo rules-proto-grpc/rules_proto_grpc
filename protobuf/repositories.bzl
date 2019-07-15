@@ -1,5 +1,5 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "bazel_skylib",
     "com_google_protobuf",
     "external_zlib",

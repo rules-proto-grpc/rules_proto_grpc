@@ -3,7 +3,7 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
 
 rust_deps()
 

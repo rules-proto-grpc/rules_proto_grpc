@@ -18,7 +18,7 @@ Generates Python protobuf `.py` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//python:deps.bzl", "python_deps")
+load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
 
 python_deps()
 ```
@@ -50,7 +50,7 @@ Generates Python protobuf+gRPC `.py` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//python:deps.bzl", "python_deps")
+load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
 
 python_deps()
 
@@ -86,7 +86,7 @@ Generates a Python protobuf library using `py_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//python:deps.bzl", "python_deps")
+load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
 
 python_deps()
 ```
@@ -118,7 +118,7 @@ Generates a Python protobuf+gRPC library using `py_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//python:deps.bzl", "python_deps")
+load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
 
 python_deps()
 

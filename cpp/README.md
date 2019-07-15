@@ -18,7 +18,7 @@ Generates C++ protobuf `.h` & `.cc` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
 
 cpp_deps()
 ```
@@ -50,7 +50,7 @@ Generates C++ protobuf+gRPC `.h` & `.cc` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
 
 cpp_deps()
 
@@ -86,7 +86,7 @@ Generates a C++ protobuf library using `cc_library`, with dependencies linked
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
 
 cpp_deps()
 ```
@@ -118,7 +118,7 @@ Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies link
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
 
 cpp_deps()
 

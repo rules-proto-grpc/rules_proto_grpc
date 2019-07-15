@@ -18,7 +18,7 @@ Generates Rust protobuf `.rs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
 
 rust_deps()
 
@@ -62,7 +62,7 @@ Generates Rust protobuf+gRPC `.rs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
 
 rust_deps()
 
@@ -106,7 +106,7 @@ Generates a Rust protobuf library using `rust_library` from `rules_rust`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
 
 rust_deps()
 
@@ -150,7 +150,7 @@ Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
 
 rust_deps()
 

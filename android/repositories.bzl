@@ -1,5 +1,5 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "build_bazel_rules_android",
     "com_google_protobuf_javalite",
     "com_google_guava_guava_android",
@@ -7,7 +7,7 @@ load(
     "io_grpc_grpc_java",
 )
 load(
-    "//protobuf:deps.bzl",
+    "//protobuf:repositories.bzl",
     "protobuf_deps",
 )
 

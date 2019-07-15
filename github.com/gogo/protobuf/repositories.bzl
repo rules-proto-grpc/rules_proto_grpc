@@ -1,5 +1,5 @@
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "io_bazel_rules_go",
 )
 

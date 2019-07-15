@@ -18,7 +18,7 @@ Generates Go protobuf `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//go:deps.bzl", "go_deps")
+load("@rules_proto_grpc//go:repositories.bzl", "go_deps")
 
 go_deps()
 
@@ -56,7 +56,7 @@ Generates Go protobuf+gRPC `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//go:deps.bzl", "go_deps")
+load("@rules_proto_grpc//go:repositories.bzl", "go_deps")
 
 go_deps()
 
@@ -94,7 +94,7 @@ Generates a Go protobuf library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//go:deps.bzl", "go_deps")
+load("@rules_proto_grpc//go:repositories.bzl", "go_deps")
 
 go_deps()
 
@@ -137,7 +137,7 @@ Generates a Go protobuf+gRPC library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//go:deps.bzl", "go_deps")
+load("@rules_proto_grpc//go:repositories.bzl", "go_deps")
 
 go_deps()
 

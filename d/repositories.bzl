@@ -1,11 +1,10 @@
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load(
-    "//:deps.bzl",
+    "//:repositories.bzl",
     "io_bazel_rules_d",
     "com_github_dcarp_protobuf_d",
 )
 load(
-    "//protobuf:deps.bzl",
+    "//protobuf:repositories.bzl",
     "protobuf_deps",
 )
 

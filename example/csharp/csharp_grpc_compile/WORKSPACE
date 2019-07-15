@@ -3,7 +3,7 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
 
 csharp_deps()
 

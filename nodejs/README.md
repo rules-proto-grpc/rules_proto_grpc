@@ -16,7 +16,7 @@ Generates Node.js protobuf `.js` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//nodejs:deps.bzl", "nodejs_deps")
+load("@rules_proto_grpc//nodejs:repositories.bzl", "nodejs_deps")
 
 nodejs_deps()
 ```
@@ -48,7 +48,7 @@ Generates Node.js protobuf+gRPC `.js` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//nodejs:deps.bzl", "nodejs_deps")
+load("@rules_proto_grpc//nodejs:repositories.bzl", "nodejs_deps")
 
 nodejs_deps()
 

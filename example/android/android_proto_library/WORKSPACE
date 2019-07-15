@@ -5,7 +5,7 @@ local_repository(
 
 # The set of dependencies loaded here is excessive for android proto alone
 # (but simplifies our setup)
-load("@rules_proto_grpc//android:deps.bzl", "android_deps")
+load("@rules_proto_grpc//android:repositories.bzl", "android_deps")
 
 android_deps()
 

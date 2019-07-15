@@ -17,7 +17,7 @@ Generates Closure *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:deps.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
 
 grpc_web_deps()
 
@@ -55,7 +55,7 @@ Generates CommonJS *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:deps.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
 
 grpc_web_deps()
 
@@ -93,7 +93,7 @@ Generates commonjs_dts *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:deps.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
 
 grpc_web_deps()
 
@@ -131,7 +131,7 @@ Generates CommonJS *.ts protobuf+gRPC files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:deps.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
 
 grpc_web_deps()
 
@@ -169,7 +169,7 @@ Generates protobuf closure library *.js files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:deps.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
 
 grpc_web_deps()
 

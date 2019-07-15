@@ -3,14 +3,14 @@ workspace(name = "rules_proto_grpc")
 #
 # Core
 #
-load("//protobuf:deps.bzl", "protobuf_deps")
+load("//protobuf:repositories.bzl", "protobuf_deps")
 protobuf_deps()
 
 
 #
 # Android
 #
-load("//android:deps.bzl", "android_deps")
+load("//android:repositories.bzl", "android_deps")
 android_deps()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
@@ -26,7 +26,7 @@ android_sdk_repository(name = "androidsdk")
 #
 # Android routeguide
 #
-load("//:deps.bzl", "rules_jvm_external")
+load("//:repositories.bzl", "rules_jvm_external")
 rules_jvm_external()
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
@@ -48,7 +48,7 @@ maven_install(
 #
 # Closure
 #
-load("//closure:deps.bzl", "closure_deps")
+load("//closure:repositories.bzl", "closure_deps")
 closure_deps()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
@@ -58,7 +58,7 @@ closure_repositories()
 #
 # C++
 #
-load("//cpp:deps.bzl", "cpp_deps")
+load("//cpp:repositories.bzl", "cpp_deps")
 cpp_deps()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
@@ -68,7 +68,7 @@ grpc_deps()
 #
 # C Sharp
 #
-load("//csharp:deps.bzl", "csharp_deps")
+load("//csharp:repositories.bzl", "csharp_deps")
 csharp_deps()
 
 load(
@@ -108,7 +108,7 @@ nuget_grpc_packages()
 #
 # D
 #
-load("//d:deps.bzl", "d_deps")
+load("//d:repositories.bzl", "d_deps")
 d_deps()
 
 load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
@@ -118,7 +118,7 @@ d_repositories()
 #
 # Go
 #
-load("//go:deps.bzl", "go_deps")
+load("//go:repositories.bzl", "go_deps")
 go_deps()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
@@ -129,14 +129,14 @@ go_register_toolchains()
 #
 # grpc.js
 #
-load("//github.com/stackb/grpc.js:deps.bzl", "grpcjs_deps")
+load("//github.com/stackb/grpc.js:repositories.bzl", "grpcjs_deps")
 grpcjs_deps()
 
 
 #
 # gRPC gateway
 #
-load("//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
+load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 io_bazel_rules_go()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
@@ -144,7 +144,7 @@ go_rules_dependencies()
 go_register_toolchains()
 bazel_gazelle()
 
-load("//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
+load("//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", "gateway_deps")
 gateway_deps()
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
@@ -154,14 +154,14 @@ gazelle_dependencies()
 #
 # gRPC web
 #
-load("//github.com/grpc/grpc-web:deps.bzl", "grpc_web_deps")
+load("//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
 grpc_web_deps()
 
 
 #
 # Java
 #
-load("//java:deps.bzl", "java_deps")
+load("//java:repositories.bzl", "java_deps")
 java_deps()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
@@ -171,7 +171,7 @@ grpc_java_repositories(omit_com_google_protobuf = True, omit_net_zlib = True)
 #
 # NodeJS
 #
-load("//nodejs:deps.bzl", "nodejs_deps")
+load("//nodejs:repositories.bzl", "nodejs_deps")
 nodejs_deps()
 
 load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
@@ -185,21 +185,21 @@ yarn_install(
 #
 # Objective-C
 #
-load("//objc:deps.bzl", "objc_deps")
+load("//objc:repositories.bzl", "objc_deps")
 objc_deps()
 
 
 #
 # PHP
 #
-load("//php:deps.bzl", "php_deps")
+load("//php:repositories.bzl", "php_deps")
 php_deps()
 
 
 #
 # Python
 #
-load("//python:deps.bzl", "python_deps")
+load("//python:repositories.bzl", "python_deps")
 python_deps()
 
 load("@com_apt_itude_rules_pip//rules:dependencies.bzl", "pip_rules_dependencies")
@@ -221,7 +221,7 @@ pip_repository(
 #
 # Ruby
 #
-load("//ruby:deps.bzl", "ruby_deps")
+load("//ruby:repositories.bzl", "ruby_deps")
 ruby_deps()
 
 load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
@@ -238,7 +238,7 @@ bundle_install(
 #
 # Rust
 #
-load("//rust:deps.bzl", "rust_deps")
+load("//rust:repositories.bzl", "rust_deps")
 rust_deps()
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
@@ -254,7 +254,7 @@ rust_proto_repositories()
 #
 # Scala
 #
-load("//scala:deps.bzl", "scala_deps")
+load("//scala:repositories.bzl", "scala_deps")
 scala_deps()
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
@@ -302,7 +302,7 @@ jvm_maven_import_external(
 #
 # Swift
 #
-load("//swift:deps.bzl", "swift_deps")
+load("//swift:repositories.bzl", "swift_deps")
 swift_deps()
 
 load(
@@ -321,7 +321,7 @@ apple_support_dependencies()
 #
 # Misc
 #
-load("//:deps.bzl", "bazel_gazelle", "com_github_bazelbuild_buildtools")
+load("//:repositories.bzl", "bazel_gazelle", "com_github_bazelbuild_buildtools")
 com_github_bazelbuild_buildtools()
 bazel_gazelle()
 

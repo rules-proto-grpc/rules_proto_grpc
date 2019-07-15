@@ -59,7 +59,7 @@ for this rule (from [cpp/README.md](/cpp/README.md)):
 
 ```python
 # WORKSPACE
-load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
 
 cpp_deps()
 ```
@@ -115,7 +115,7 @@ Each language `{lang}` has a top-level subdirectory that contains:
 
 1. `{lang}/README.md`: Generated documentation for the language rules.
 
-1. `{lang}/deps.bzl`: Macro functions that declare repository rule
+1. `{lang}/repositories.bzl`: Macro functions that declare repository rule
    dependencies for that language.
 
 2. `{lang}/{rule}.bzl`: Rule implementations of the form

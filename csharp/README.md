@@ -40,7 +40,7 @@ Generates C# protobuf `.cs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
 
 csharp_deps()
 ```
@@ -72,7 +72,7 @@ Generates C# protobuf+gRPC `.cs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
 
 csharp_deps()
 
@@ -110,7 +110,7 @@ Generates a C# protobuf library using `core_library` from `rules_dotnet`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
 
 csharp_deps()
 
@@ -182,7 +182,7 @@ Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
 
 csharp_deps()
 

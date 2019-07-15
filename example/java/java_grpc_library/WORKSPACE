@@ -3,7 +3,7 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
 
 java_deps()
 

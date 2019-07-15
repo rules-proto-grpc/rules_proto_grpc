@@ -3,6 +3,6 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//ruby:deps.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
 
 ruby_deps()

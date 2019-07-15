@@ -18,7 +18,7 @@ Generates a Java protobuf srcjar artifact
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
 
 java_deps()
 ```
@@ -50,7 +50,7 @@ Generates a Java protobuf+gRPC srcjar artifact
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
 
 java_deps()
 ```
@@ -82,7 +82,7 @@ Generates a Java protobuf library using `java_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
 
 java_deps()
 
@@ -118,7 +118,7 @@ Generates a Java protobuf+gRPC library using `java_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
 
 java_deps()
 

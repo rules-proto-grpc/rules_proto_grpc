@@ -18,7 +18,7 @@ Generates Ruby protobuf `.rb` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//ruby:deps.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
 
 ruby_deps()
 ```
@@ -50,7 +50,7 @@ Generates Ruby protobuf+gRPC `.rb` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//ruby:deps.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
 
 ruby_deps()
 
@@ -86,7 +86,7 @@ Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//ruby:deps.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
 
 ruby_deps()
 
@@ -130,7 +130,7 @@ Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//ruby:deps.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
 
 ruby_deps()
 

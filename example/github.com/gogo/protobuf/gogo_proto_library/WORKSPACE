@@ -3,7 +3,7 @@ local_repository(
     path = "../../../../../",
 )
 
-load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
 
 gogo_deps()
 
