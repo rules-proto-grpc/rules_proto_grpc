@@ -1,6 +1,6 @@
-# Protobuf and gRPC rules for Bazel
+# Protobuf and gRPC rules for [Bazel](https://bazel.build)
 
-Bazel rules for building Protocol Buffers +/- gRPC :rocket:
+Bazel rules for building Protocol Buffers and gRPC :rocket:
 
 [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto)
 
@@ -98,9 +98,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "build_stack_rules_proto",
-    urls = ["https://github.com/stackb/rules_proto/archive/83b6703f271c28fa789805e53f10e5aa9164ee75.tar.gz"],
-    sha256 = "d392870d1a36a5233c03f322a2cbd78f182f7feda991626bdce6883ece7a6c51",
-    strip_prefix = "rules_proto-83b6703f271c28fa789805e53f10e5aa9164ee75",
+    urls = ["https://github.com/stackb/rules_proto/archive/2fbbc43ad20d88e98316610723cf3b6f72b5fcef.tar.gz"],
+    sha256 = "4a917f15229f84757d5c59810194327ad3803bf20197240e1893d1c72e884bfd",
+    strip_prefix = "rules_proto-2fbbc43ad20d88e98316610723cf3b6f72b5fcef",
 )
 ```
 
