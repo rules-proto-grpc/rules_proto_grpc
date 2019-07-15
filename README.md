@@ -35,6 +35,7 @@ Bazel rules for building Protocol Buffers and gRPC :rocket:
     - [Rule Generation](#rule-generation)
     - [How-it-works](#how-it-works)
     - [Developing Custom Plugins](#developing-custom-plugins)
+- [License](#license)
 - [Contributing](#contributing)
 
 
