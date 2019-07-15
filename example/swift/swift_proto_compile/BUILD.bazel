@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//swift:defs.bzl", "swift_proto_compile")
+load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_compile")
 
 swift_proto_compile(
     name = "person_swift_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )

@@ -1,9 +1,9 @@
 local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "../../../",
 )
 
-load("@build_stack_rules_proto//android:deps.bzl", "android_deps")
+load("@rules_proto_grpc//android:deps.bzl", "android_deps")
 
 android_deps()
 

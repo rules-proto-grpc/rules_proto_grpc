@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//python:defs.bzl", "python_proto_library")
+load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
 
 python_proto_library(
     name = "person_python_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )

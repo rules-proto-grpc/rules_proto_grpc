@@ -1,9 +1,9 @@
 local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "../../../",
 )
 
-load("@build_stack_rules_proto//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
 
 rust_deps()
 

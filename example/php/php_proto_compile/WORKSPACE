@@ -1,8 +1,8 @@
 local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "../../../",
 )
 
-load("@build_stack_rules_proto//php:deps.bzl", "php_deps")
+load("@rules_proto_grpc//php:deps.bzl", "php_deps")
 
 php_deps()

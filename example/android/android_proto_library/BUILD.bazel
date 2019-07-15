@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//android:defs.bzl", "android_proto_library")
+load("@rules_proto_grpc//android:defs.bzl", "android_proto_library")
 
 android_proto_library(
     name = "person_android_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )

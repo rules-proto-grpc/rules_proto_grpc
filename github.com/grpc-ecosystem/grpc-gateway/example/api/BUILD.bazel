@@ -12,7 +12,7 @@ proto_library(
 
 gateway_grpc_library(
     name = "go_default_library",
-    importpath = "github.com/stackb/rules_proto/github.com/grpc-ecosystem/grpc-gateway/examples/api",
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/github.com/grpc-ecosystem/grpc-gateway/examples/api",
     visibility = ["//visibility:public"],
     deps = ["api_proto"],
 )

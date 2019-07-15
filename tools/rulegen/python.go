@@ -1,6 +1,6 @@
 package main
 
-var pythonGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@build_stack_rules_proto//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
+var pythonGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
 
 {{ .Lang.Name }}_deps()
 
@@ -17,13 +17,13 @@ load("@com_apt_itude_rules_pip//rules:repository.bzl", "pip_repository")
 pip_repository(
     name = "grpc_py2_deps",
     python_interpreter = "python2",
-    requirements = "@build_stack_rules_proto//python/requirements:grpc.txt",
+    requirements = "@rules_proto_grpc//python/requirements:grpc.txt",
 )
 
 pip_repository(
     name = "grpc_py3_deps",
     python_interpreter = "python3",
-    requirements = "@build_stack_rules_proto//python/requirements:grpc.txt",
+    requirements = "@rules_proto_grpc//python/requirements:grpc.txt",
 )`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")

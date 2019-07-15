@@ -18,7 +18,7 @@ Generates a Java protobuf srcjar artifact
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:deps.bzl", "java_deps")
 
 java_deps()
 ```
@@ -26,11 +26,11 @@ java_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//java:defs.bzl", "java_proto_compile")
+load("@rules_proto_grpc//java:defs.bzl", "java_proto_compile")
 
 java_proto_compile(
     name = "person_java_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -50,7 +50,7 @@ Generates a Java protobuf+gRPC srcjar artifact
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:deps.bzl", "java_deps")
 
 java_deps()
 ```
@@ -58,11 +58,11 @@ java_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//java:defs.bzl", "java_grpc_compile")
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_compile")
 
 java_grpc_compile(
     name = "greeter_java_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -82,7 +82,7 @@ Generates a Java protobuf library using `java_library`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:deps.bzl", "java_deps")
 
 java_deps()
 
@@ -94,11 +94,11 @@ com_google_guava()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//java:defs.bzl", "java_proto_library")
+load("@rules_proto_grpc//java:defs.bzl", "java_proto_library")
 
 java_proto_library(
     name = "person_java_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -118,7 +118,7 @@ Generates a Java protobuf+gRPC library using `java_library`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:deps.bzl", "java_deps")
 
 java_deps()
 
@@ -133,11 +133,11 @@ grpc_java_repositories(
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//java:defs.bzl", "java_grpc_library")
+load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
 
 java_grpc_library(
     name = "greeter_java_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

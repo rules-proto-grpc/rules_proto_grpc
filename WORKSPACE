@@ -1,4 +1,4 @@
-workspace(name = "build_stack_rules_proto")
+workspace(name = "rules_proto_grpc")
 
 #
 # Core

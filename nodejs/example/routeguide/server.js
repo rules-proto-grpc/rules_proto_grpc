@@ -16,9 +16,9 @@
  *
  */
 
-const featureDb = require('build_stack_rules_proto/example/proto/routeguide_features.json');
-const messages = require('build_stack_rules_proto/nodejs/example/routeguide/routeguide/example/proto/routeguide_pb.js')
-const services = require('build_stack_rules_proto/nodejs/example/routeguide/routeguide/example/proto/routeguide_grpc_pb.js')
+const featureDb = require('rules_proto_grpc/example/proto/routeguide_features.json');
+const messages = require('rules_proto_grpc/nodejs/example/routeguide/routeguide/example/proto/routeguide_pb.js')
+const services = require('rules_proto_grpc/nodejs/example/routeguide/routeguide/example/proto/routeguide_grpc_pb.js')
 
 const fs = require('fs');
 const path = require('path');

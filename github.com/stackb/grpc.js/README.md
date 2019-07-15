@@ -14,7 +14,7 @@ Generates protobuf closure grpc `.js` files
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/stackb/grpc.js:deps.bzl", "grpcjs_deps")
+load("@rules_proto_grpc//github.com/stackb/grpc.js:deps.bzl", "grpcjs_deps")
 
 grpcjs_deps()
 ```
@@ -22,11 +22,11 @@ grpcjs_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/stackb/grpc.js:defs.bzl", "grpcjs_grpc_compile")
+load("@rules_proto_grpc//github.com/stackb/grpc.js:defs.bzl", "grpcjs_grpc_compile")
 
 grpcjs_grpc_compile(
     name = "greeter_grpc.js_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -46,7 +46,7 @@ Generates protobuf closure library `.js` files
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/stackb/grpc.js:deps.bzl", "grpcjs_deps")
+load("@rules_proto_grpc//github.com/stackb/grpc.js:deps.bzl", "grpcjs_deps")
 
 grpcjs_deps()
 
@@ -58,11 +58,11 @@ closure_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/stackb/grpc.js:defs.bzl", "grpcjs_grpc_library")
+load("@rules_proto_grpc//github.com/stackb/grpc.js:defs.bzl", "grpcjs_grpc_library")
 
 grpcjs_grpc_library(
     name = "greeter_grpc.js_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

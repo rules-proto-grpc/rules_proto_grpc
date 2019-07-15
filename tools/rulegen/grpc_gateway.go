@@ -1,6 +1,6 @@
 package main
 
-var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@build_stack_rules_proto//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
+var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
 
@@ -12,7 +12,7 @@ go_register_toolchains()
 
 bazel_gazelle()
 
-load("@build_stack_rules_proto//{{ .Lang.Dir }}:deps.bzl", "gateway_deps")
+load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "gateway_deps")
 
 gateway_deps()
 
@@ -39,19 +39,19 @@ def {{ .Rule.Name }}(**kwargs):
         **{k: v for (k, v) in kwargs.items() if k != "deps"} # Forward args except deps
     )`)
 
-var grpcGatewayCompileExampleTemplate = mustTemplate(`load("@build_stack_rules_proto//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var grpcGatewayCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "api_gateway_grpc",
-    deps = ["@build_stack_rules_proto//{{ .Lang.Dir }}/example/api:api_proto"],
+    deps = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
 )`)
 
-var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@build_stack_rules_proto//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "api_gateway_library",
-    importpath = "github.com/stackb/rules_proto/github.com/grpc-ecosystem/grpc-gateway/examples/api",
-    deps = ["@build_stack_rules_proto//{{ .Lang.Dir }}/example/api:api_proto"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/github.com/grpc-ecosystem/grpc-gateway/examples/api",
+    deps = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
 )`)
 
 func makeGrpcGateway() *Language {

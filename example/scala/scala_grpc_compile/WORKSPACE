@@ -1,9 +1,9 @@
 local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "../../../",
 )
 
-load("@build_stack_rules_proto//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
 
 scala_deps()
 

@@ -1,6 +1,6 @@
 package main
 
-var csharpLibraryWorkspaceTemplateString = `load("@build_stack_rules_proto//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
+var csharpLibraryWorkspaceTemplateString = `load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
 
 {{ .Lang.Name }}_deps()
 
@@ -28,11 +28,11 @@ core_register_sdk(
 
 dotnet_repositories()
 
-load("@build_stack_rules_proto//csharp/nuget:packages.bzl", nuget_packages = "packages")
+load("@rules_proto_grpc//csharp/nuget:packages.bzl", nuget_packages = "packages")
 
 nuget_packages()
 
-load("@build_stack_rules_proto//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
 
 nuget_protobuf_packages()`
 
@@ -40,7 +40,7 @@ var csharpProtoLibraryWorkspaceTemplate = mustTemplate(csharpLibraryWorkspaceTem
 
 var csharpGrpcLibraryWorkspaceTemplate = mustTemplate(csharpLibraryWorkspaceTemplateString + `
 
-load("@build_stack_rules_proto//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
 
 nuget_grpc_packages()`)
 

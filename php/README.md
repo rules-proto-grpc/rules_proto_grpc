@@ -16,7 +16,7 @@ Generates PHP protobuf `.php` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//php:deps.bzl", "php_deps")
+load("@rules_proto_grpc//php:deps.bzl", "php_deps")
 
 php_deps()
 ```
@@ -24,11 +24,11 @@ php_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//php:defs.bzl", "php_proto_compile")
+load("@rules_proto_grpc//php:defs.bzl", "php_proto_compile")
 
 php_proto_compile(
     name = "person_php_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -48,7 +48,7 @@ Generates PHP protobuf+gRPC `.php` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//php:deps.bzl", "php_deps")
+load("@rules_proto_grpc//php:deps.bzl", "php_deps")
 
 php_deps()
 
@@ -60,11 +60,11 @@ grpc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//php:defs.bzl", "php_grpc_compile")
+load("@rules_proto_grpc//php:defs.bzl", "php_grpc_compile")
 
 php_grpc_compile(
     name = "greeter_php_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

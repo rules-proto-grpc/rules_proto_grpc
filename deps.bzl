@@ -34,7 +34,7 @@ VERSIONS = {
         "urls": ["https://zlib.net/zlib-1.2.11.tar.gz"],
         "sha256": "c3e5e9fdd5004dcb542feda5ee4f0ff0744628baf8ed2dd5d66f8ca1197cb1a1",
         "strip_prefix": "zlib-1.2.11",
-        "build_file": "@build_stack_rules_proto//internal:build_files/BUILD.bazel.zlib",
+        "build_file": "@rules_proto_grpc//internal:build_files/BUILD.bazel.zlib",
     },
 
     # Misc
@@ -106,7 +106,7 @@ VERSIONS = {
         "urls": ["https://github.com/dcarp/protobuf-d/archive/v0.5.0.tar.gz"],
         "sha256": "67a037dc29242f0d2f099746da67f40afff27c07f9ab48dda53d5847620db421",
         "strip_prefix": "protobuf-d-0.5.0",
-        "build_file": "@build_stack_rules_proto//internal:build_files/BUILD.bazel.com_github_dcarp_protobuf_d",
+        "build_file": "@rules_proto_grpc//internal:build_files/BUILD.bazel.com_github_dcarp_protobuf_d",
     },
 
     # Go
@@ -210,7 +210,7 @@ VERSIONS = {
         "urls": ["https://pypi.python.org/packages/source/s/six/six-1.12.0.tar.gz"],
         "sha256": "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73",
         "strip_prefix": "six-1.12.0",
-        "build_file": "@build_stack_rules_proto//internal:build_files/BUILD.bazel.six",
+        "build_file": "@rules_proto_grpc//internal:build_files/BUILD.bazel.six",
     },
 
     # Ruby
@@ -244,7 +244,7 @@ VERSIONS = {
         "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.8.0/scalapbc-0.8.0.zip"],
         "sha256": "bda0b44b50f0a816342a52c34e6a341b1a792f2a6d26f4f060852f8f10f5d854",
         "strip_prefix": "scalapbc-0.8.0/lib",
-        "build_file": "@build_stack_rules_proto//internal:build_files/BUILD.bazel.com_github_scalapb_scalapb",
+        "build_file": "@rules_proto_grpc//internal:build_files/BUILD.bazel.com_github_scalapb_scalapb",
     },
 
     # Swift

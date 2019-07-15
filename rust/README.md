@@ -18,7 +18,7 @@ Generates Rust protobuf `.rs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
 
 rust_deps()
 
@@ -38,11 +38,11 @@ rust_proto_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//rust:defs.bzl", "rust_proto_compile")
+load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_compile")
 
 rust_proto_compile(
     name = "person_rust_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -62,7 +62,7 @@ Generates Rust protobuf+gRPC `.rs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
 
 rust_deps()
 
@@ -82,11 +82,11 @@ rust_proto_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//rust:defs.bzl", "rust_grpc_compile")
+load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_compile")
 
 rust_grpc_compile(
     name = "greeter_rust_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -106,7 +106,7 @@ Generates a Rust protobuf library using `rust_library` from `rules_rust`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
 
 rust_deps()
 
@@ -126,11 +126,11 @@ rust_proto_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//rust:defs.bzl", "rust_proto_library")
+load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_library")
 
 rust_proto_library(
     name = "person_rust_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -150,7 +150,7 @@ Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//rust:deps.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:deps.bzl", "rust_deps")
 
 rust_deps()
 
@@ -170,11 +170,11 @@ rust_proto_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//rust:defs.bzl", "rust_grpc_library")
+load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_library")
 
 rust_grpc_library(
     name = "greeter_rust_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

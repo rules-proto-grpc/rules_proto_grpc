@@ -17,7 +17,7 @@ Generates Objective-C protobuf `.m` & `.h` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//objc:deps.bzl", "objc_deps")
+load("@rules_proto_grpc//objc:deps.bzl", "objc_deps")
 
 objc_deps()
 ```
@@ -25,11 +25,11 @@ objc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//objc:defs.bzl", "objc_proto_compile")
+load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_compile")
 
 objc_proto_compile(
     name = "person_objc_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -49,7 +49,7 @@ Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//objc:deps.bzl", "objc_deps")
+load("@rules_proto_grpc//objc:deps.bzl", "objc_deps")
 
 objc_deps()
 
@@ -61,11 +61,11 @@ grpc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//objc:defs.bzl", "objc_grpc_compile")
+load("@rules_proto_grpc//objc:defs.bzl", "objc_grpc_compile")
 
 objc_grpc_compile(
     name = "greeter_objc_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -85,7 +85,7 @@ Generates an Objective-C protobuf library using `objc_library`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//objc:deps.bzl", "objc_deps")
+load("@rules_proto_grpc//objc:deps.bzl", "objc_deps")
 
 objc_deps()
 ```
@@ -93,11 +93,11 @@ objc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//objc:defs.bzl", "objc_proto_library")
+load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_library")
 
 objc_proto_library(
     name = "person_objc_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 

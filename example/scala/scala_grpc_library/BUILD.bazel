@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//scala:defs.bzl", "scala_grpc_library")
+load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_library")
 
 scala_grpc_library(
     name = "greeter_scala_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

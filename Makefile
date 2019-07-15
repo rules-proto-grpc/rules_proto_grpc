@@ -14,7 +14,7 @@ rust_raze:
 	mv BUILD.bazel BUILD.bazel.suffix; \
 	cat BUILD.bazel.prefix BUILD.bazel.suffix > BUILD.bazel; \
 	rm BUILD.bazel.suffix; \
-	sed -i 's#":protobuf_build_script",#":protobuf_build_script","@build_stack_rules_proto//rust/raze:rustc",#' remote/protobuf-*.BUILD.bazel; \
+	sed -i 's#":protobuf_build_script",#":protobuf_build_script","@rules_proto_grpc//rust/raze:rustc",#' remote/protobuf-*.BUILD.bazel; \
 
 
 # Run yarn to upgrade the nodejs dependencies

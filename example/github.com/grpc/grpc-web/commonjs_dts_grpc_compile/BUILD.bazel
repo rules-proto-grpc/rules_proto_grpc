@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//github.com/grpc/grpc-web:defs.bzl", "commonjs_dts_grpc_compile")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:defs.bzl", "commonjs_dts_grpc_compile")
 
 commonjs_dts_grpc_compile(
     name = "greeter_grpc-web_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

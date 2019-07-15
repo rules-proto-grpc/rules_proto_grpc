@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//ruby:defs.bzl", "ruby_proto_compile")
+load("@rules_proto_grpc//ruby:defs.bzl", "ruby_proto_compile")
 
 ruby_proto_compile(
     name = "person_ruby_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )

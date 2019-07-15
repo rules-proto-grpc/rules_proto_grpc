@@ -43,7 +43,7 @@ of your choice).
 
 ```python
 # BUILD.bazel
-load("@build_stack_rules_proto//cpp:defs.bzl", "cpp_proto_compile")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
 
 cpp_proto_compile(
     name = "cpp_thing_proto",
@@ -59,7 +59,7 @@ for this rule (from [cpp/README.md](/cpp/README.md)):
 
 ```python
 # WORKSPACE
-load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
 
 cpp_deps()
 ```
@@ -83,7 +83,7 @@ rule from `cpp_proto_compile` to `cpp_proto_library`:
 
 ```python
 # BUILD.bazel
-load("@build_stack_rules_proto//cpp:defs.bzl", "cpp_proto_library")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
 cpp_proto_library(
     name = "cpp_thing_proto",
@@ -178,7 +178,7 @@ Briefly, here's how the rules work:
 Generally, follow the pattern seen in the multiple language examples in this
 repository.  The basic idea is:
 
-1. Load the plugin rule: `load("@build_stack_rules_proto//:plugin.bzl", "proto_plugin")`.
+1. Load the plugin rule: `load("@rules_proto_grpc//:plugin.bzl", "proto_plugin")`.
 2. Define the rule, giving it a `name`, `options` (not mandatory), `tool`, and
    `outputs`.
 3. `tool` is a label that refers to the binary executable for the plugin itself.
@@ -192,9 +192,9 @@ repository.  The basic idea is:
 5. Create a compilation rule and aspect using the following template:
 
 ```python
-load("@build_stack_rules_proto//:plugin.bzl", "ProtoPluginInfo")
+load("@rules_proto_grpc//:plugin.bzl", "ProtoPluginInfo")
 load(
-    "@build_stack_rules_proto//:aspect.bzl",
+    "@rules_proto_grpc//:aspect.bzl",
     "ProtoLibraryAspectNodeInfo",
     "proto_compile_aspect_attrs",
     "proto_compile_aspect_impl",
@@ -221,7 +221,7 @@ example_aspect = aspect(
             default = "example_aspect",
         )
     ),
-    toolchains = ["@build_stack_rules_proto//protobuf:toolchain_type"],
+    toolchains = ["@rules_proto_grpc//protobuf:toolchain_type"],
 )
 
 # Create compile rule to apply aspect
@@ -246,6 +246,13 @@ def example_compile(**kwargs):
     )
 
 ```
+
+
+## License
+
+This project is derived from [stackb/rules_proto](https://github.com/stackb/rules_proto)
+under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license and
+this project therefore maintains the terms of that license.
 
 
 ## Contributing

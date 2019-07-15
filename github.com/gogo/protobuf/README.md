@@ -26,7 +26,7 @@ Generates gogo protobuf `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -40,11 +40,11 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogo_proto_compile")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogo_proto_compile")
 
 gogo_proto_compile(
     name = "person_gogo_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -64,7 +64,7 @@ Generates gogo protobuf+gRPC `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -78,11 +78,11 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogo_grpc_compile")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogo_grpc_compile")
 
 gogo_grpc_compile(
     name = "greeter_gogo_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -102,7 +102,7 @@ Generates a Go gogo protobuf library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -116,7 +116,7 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogo_proto_library")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogo_proto_library")
 
 gogo_proto_library(
     name = "person_gogo_library",
@@ -124,8 +124,8 @@ gogo_proto_library(
         "@com_github_gogo_protobuf//types:go_default_library",
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/gogo/example/gogo_proto_library/person",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogo_proto_library/person",
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -146,7 +146,7 @@ Generates a Go gogo protobuf+gRPC library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -160,15 +160,15 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogo_grpc_library")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogo_grpc_library")
 
 gogo_grpc_library(
     name = "greeter_gogo_library",
     go_deps = [
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/gogo/example/gogo_grpc_library/greeter",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogo_grpc_library/greeter",
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -189,7 +189,7 @@ Generates gogofast protobuf `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -203,11 +203,11 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofast_proto_compile")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofast_proto_compile")
 
 gogofast_proto_compile(
     name = "person_gogo_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -227,7 +227,7 @@ Generates gogofast protobuf+gRPC `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -241,11 +241,11 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofast_grpc_compile")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofast_grpc_compile")
 
 gogofast_grpc_compile(
     name = "greeter_gogo_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -265,7 +265,7 @@ Generates a Go gogofast protobuf library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -279,7 +279,7 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofast_proto_library")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofast_proto_library")
 
 gogofast_proto_library(
     name = "person_gogo_library",
@@ -287,8 +287,8 @@ gogofast_proto_library(
         "@com_github_gogo_protobuf//types:go_default_library",
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/gogo/example/gogofast_proto_library/person",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogofast_proto_library/person",
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -309,7 +309,7 @@ Generates a Go gogofast protobuf+gRPC library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -323,15 +323,15 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofast_grpc_library")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofast_grpc_library")
 
 gogofast_grpc_library(
     name = "greeter_gogo_library",
     go_deps = [
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/gogo/example/gogofast_grpc_library/greeter",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogofast_grpc_library/greeter",
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -352,7 +352,7 @@ Generates gogofaster protobuf `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -366,11 +366,11 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofaster_proto_compile")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofaster_proto_compile")
 
 gogofaster_proto_compile(
     name = "person_gogo_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -390,7 +390,7 @@ Generates gogofaster protobuf+gRPC `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -404,11 +404,11 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofaster_grpc_compile")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofaster_grpc_compile")
 
 gogofaster_grpc_compile(
     name = "greeter_gogo_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -428,7 +428,7 @@ Generates a Go gogofaster protobuf library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -442,7 +442,7 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofaster_proto_library")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofaster_proto_library")
 
 gogofaster_proto_library(
     name = "person_gogo_library",
@@ -450,8 +450,8 @@ gogofaster_proto_library(
         "@com_github_gogo_protobuf//types:go_default_library",
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/gogo/example/gogofaster_proto_library/person",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogofaster_proto_library/person",
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -472,7 +472,7 @@ Generates a Go gogofaster protobuf+gRPC library using `go_library` from `rules_g
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:deps.bzl", "gogo_deps")
 
 gogo_deps()
 
@@ -486,15 +486,15 @@ go_register_toolchains()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofaster_grpc_library")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofaster_grpc_library")
 
 gogofaster_grpc_library(
     name = "greeter_gogo_library",
     go_deps = [
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/gogo/example/gogofaster_grpc_library/greeter",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogofaster_grpc_library/greeter",
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

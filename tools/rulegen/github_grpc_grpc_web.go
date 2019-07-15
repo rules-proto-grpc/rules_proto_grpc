@@ -1,6 +1,6 @@
 package main
 
-var grpcWebWorkspaceTemplate = mustTemplate(`load("@build_stack_rules_proto//{{ .Lang.Dir }}:deps.bzl", "grpc_web_deps")
+var grpcWebWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "grpc_web_deps")
 
 grpc_web_deps()
 

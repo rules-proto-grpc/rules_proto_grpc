@@ -1,9 +1,9 @@
 local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "../../../",
 )
 
-load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
 
 cpp_deps()
 

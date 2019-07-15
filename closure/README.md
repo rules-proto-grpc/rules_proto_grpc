@@ -16,7 +16,7 @@ Generates Closure protobuf `.js` files
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//closure:deps.bzl", "closure_deps")
+load("@rules_proto_grpc//closure:deps.bzl", "closure_deps")
 
 closure_deps()
 ```
@@ -24,11 +24,11 @@ closure_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//closure:defs.bzl", "closure_proto_compile")
+load("@rules_proto_grpc//closure:defs.bzl", "closure_proto_compile")
 
 closure_proto_compile(
     name = "person_closure_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -48,7 +48,7 @@ Generates a Closure library with compiled protobuf `.js` files using `closure_js
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//closure:deps.bzl", "closure_deps")
+load("@rules_proto_grpc//closure:deps.bzl", "closure_deps")
 
 closure_deps()
 
@@ -60,11 +60,11 @@ closure_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//closure:defs.bzl", "closure_proto_library")
+load("@rules_proto_grpc//closure:defs.bzl", "closure_proto_library")
 
 closure_proto_library(
     name = "person_closure_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 

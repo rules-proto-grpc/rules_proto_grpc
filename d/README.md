@@ -18,7 +18,7 @@ Generates D protobuf `.d` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//d:deps.bzl", "d_deps")
+load("@rules_proto_grpc//d:deps.bzl", "d_deps")
 
 d_deps()
 
@@ -30,11 +30,11 @@ d_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//d:defs.bzl", "d_proto_compile")
+load("@rules_proto_grpc//d:defs.bzl", "d_proto_compile")
 
 d_proto_compile(
     name = "person_d_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -54,7 +54,7 @@ Generates a D protobuf library using `d_library` from `rules_d`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//d:deps.bzl", "d_deps")
+load("@rules_proto_grpc//d:deps.bzl", "d_deps")
 
 d_deps()
 
@@ -66,11 +66,11 @@ d_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//d:defs.bzl", "d_proto_library")
+load("@rules_proto_grpc//d:defs.bzl", "d_proto_library")
 
 d_proto_library(
     name = "person_d_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 

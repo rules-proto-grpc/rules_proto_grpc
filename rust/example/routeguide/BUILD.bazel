@@ -13,8 +13,8 @@ rust_binary(
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":routeguide",
-        "@build_stack_rules_proto//rust/raze:log",
-        "@build_stack_rules_proto//rust/raze:serde_json",
+        "@rules_proto_grpc//rust/raze:log",
+        "@rules_proto_grpc//rust/raze:serde_json",
     ] + GRPC_DEPS,
 )
 
@@ -25,7 +25,7 @@ rust_binary(
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":routeguide",
-        "@build_stack_rules_proto//rust/raze:log",
-        "@build_stack_rules_proto//rust/raze:serde_json",
+        "@rules_proto_grpc//rust/raze:log",
+        "@rules_proto_grpc//rust/raze:serde_json",
     ] + GRPC_DEPS,
 )

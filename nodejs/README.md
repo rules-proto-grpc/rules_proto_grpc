@@ -16,7 +16,7 @@ Generates Node.js protobuf `.js` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//nodejs:deps.bzl", "nodejs_deps")
+load("@rules_proto_grpc//nodejs:deps.bzl", "nodejs_deps")
 
 nodejs_deps()
 ```
@@ -24,11 +24,11 @@ nodejs_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//nodejs:defs.bzl", "nodejs_proto_compile")
+load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_proto_compile")
 
 nodejs_proto_compile(
     name = "person_nodejs_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -48,7 +48,7 @@ Generates Node.js protobuf+gRPC `.js` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//nodejs:deps.bzl", "nodejs_deps")
+load("@rules_proto_grpc//nodejs:deps.bzl", "nodejs_deps")
 
 nodejs_deps()
 
@@ -60,11 +60,11 @@ grpc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//nodejs:defs.bzl", "nodejs_grpc_compile")
+load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_grpc_compile")
 
 nodejs_grpc_compile(
     name = "greeter_nodejs_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

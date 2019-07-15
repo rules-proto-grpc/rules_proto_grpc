@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//ruby:defs.bzl", "ruby_grpc_library")
+load("@rules_proto_grpc//ruby:defs.bzl", "ruby_grpc_library")
 
 ruby_grpc_library(
     name = "greeter_ruby_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

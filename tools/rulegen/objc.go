@@ -37,7 +37,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
 GRPC_DEPS = [
     "@com_google_protobuf//:protobuf_objc",
     "@com_github_grpc_grpc//:grpc++",
-    "@build_stack_rules_proto//objc:grpc_lib",
+    "@rules_proto_grpc//objc:grpc_lib",
 ]`)
 
 func makeObjc() *Language {

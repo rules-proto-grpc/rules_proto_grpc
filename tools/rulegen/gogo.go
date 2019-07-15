@@ -45,7 +45,7 @@ GRPC_DEPS = [
     "@org_golang_x_net//context:go_default_library",
 ]`)
 
-var gogoProtoLibraryExampleTemplate = mustTemplate(`load("@build_stack_rules_proto//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var gogoProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_library",
@@ -53,8 +53,8 @@ var gogoProtoLibraryExampleTemplate = mustTemplate(`load("@build_stack_rules_pro
         "@com_github_gogo_protobuf//types:go_default_library",
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/{{ .Lang.Name }}/example/{{ .Rule.Name }}/person",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/{{ .Lang.Name }}/example/{{ .Rule.Name }}/person",
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )`)
 
 func makeGogo() *Language {

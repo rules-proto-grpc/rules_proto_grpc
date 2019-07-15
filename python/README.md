@@ -18,7 +18,7 @@ Generates Python protobuf `.py` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//python:deps.bzl", "python_deps")
+load("@rules_proto_grpc//python:deps.bzl", "python_deps")
 
 python_deps()
 ```
@@ -26,11 +26,11 @@ python_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//python:defs.bzl", "python_proto_compile")
+load("@rules_proto_grpc//python:defs.bzl", "python_proto_compile")
 
 python_proto_compile(
     name = "person_python_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -50,7 +50,7 @@ Generates Python protobuf+gRPC `.py` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//python:deps.bzl", "python_deps")
+load("@rules_proto_grpc//python:deps.bzl", "python_deps")
 
 python_deps()
 
@@ -62,11 +62,11 @@ grpc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//python:defs.bzl", "python_grpc_compile")
+load("@rules_proto_grpc//python:defs.bzl", "python_grpc_compile")
 
 python_grpc_compile(
     name = "greeter_python_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -86,7 +86,7 @@ Generates a Python protobuf library using `py_library`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//python:deps.bzl", "python_deps")
+load("@rules_proto_grpc//python:deps.bzl", "python_deps")
 
 python_deps()
 ```
@@ -94,11 +94,11 @@ python_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//python:defs.bzl", "python_proto_library")
+load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
 
 python_proto_library(
     name = "person_python_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -118,7 +118,7 @@ Generates a Python protobuf+gRPC library using `py_library`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//python:deps.bzl", "python_deps")
+load("@rules_proto_grpc//python:deps.bzl", "python_deps")
 
 python_deps()
 
@@ -135,24 +135,24 @@ load("@com_apt_itude_rules_pip//rules:repository.bzl", "pip_repository")
 pip_repository(
     name = "grpc_py2_deps",
     python_interpreter = "python2",
-    requirements = "@build_stack_rules_proto//python/requirements:grpc.txt",
+    requirements = "@rules_proto_grpc//python/requirements:grpc.txt",
 )
 
 pip_repository(
     name = "grpc_py3_deps",
     python_interpreter = "python3",
-    requirements = "@build_stack_rules_proto//python/requirements:grpc.txt",
+    requirements = "@rules_proto_grpc//python/requirements:grpc.txt",
 )
 ```
 
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//python:defs.bzl", "python_grpc_library")
+load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library")
 
 python_grpc_library(
     name = "greeter_python_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

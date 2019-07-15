@@ -18,7 +18,7 @@ Generates C++ protobuf `.h` & `.cc` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
 
 cpp_deps()
 ```
@@ -26,11 +26,11 @@ cpp_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//cpp:defs.bzl", "cpp_proto_compile")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
 
 cpp_proto_compile(
     name = "person_cpp_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -50,7 +50,7 @@ Generates C++ protobuf+gRPC `.h` & `.cc` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
 
 cpp_deps()
 
@@ -62,11 +62,11 @@ grpc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//cpp:defs.bzl", "cpp_grpc_compile")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_compile")
 
 cpp_grpc_compile(
     name = "greeter_cpp_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -86,7 +86,7 @@ Generates a C++ protobuf library using `cc_library`, with dependencies linked
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
 
 cpp_deps()
 ```
@@ -94,11 +94,11 @@ cpp_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//cpp:defs.bzl", "cpp_proto_library")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
 cpp_proto_library(
     name = "person_cpp_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -118,7 +118,7 @@ Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies link
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
 
 cpp_deps()
 
@@ -130,11 +130,11 @@ grpc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//cpp:defs.bzl", "cpp_grpc_library")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_library")
 
 cpp_grpc_library(
     name = "greeter_cpp_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

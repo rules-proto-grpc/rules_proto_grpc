@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//objc:defs.bzl", "objc_proto_library")
+load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_library")
 
 objc_proto_library(
     name = "person_objc_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )

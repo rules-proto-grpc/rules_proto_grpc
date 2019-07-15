@@ -1,6 +1,6 @@
 package main
 
-var nodeGrpcCompileWorkspaceTemplate = mustTemplate(`load("@build_stack_rules_proto//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
+var nodeGrpcCompileWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
 
 {{ .Lang.Name }}_deps()
 
@@ -8,7 +8,7 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()`)
 
-var nodeProtoLibraryWorkspaceTemplate = mustTemplate(`load("@build_stack_rules_proto//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
+var nodeProtoLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
 
 {{ .Lang.Name }}_deps()
 
@@ -16,11 +16,11 @@ load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
 
 yarn_install(
     name = "nodejs_modules",
-    package_json = "@build_stack_rules_proto//nodejs:requirements/package.json",
-    yarn_lock = "@build_stack_rules_proto//nodejs:requirements/yarn.lock",
+    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
 )`)
 
-var nodeGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@build_stack_rules_proto//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
+var nodeGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:deps.bzl", "{{ .Lang.Name }}_deps")
 
 {{ .Lang.Name }}_deps()
 
@@ -32,8 +32,8 @@ load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
 
 yarn_install(
     name = "nodejs_modules",
-    package_json = "@build_stack_rules_proto//nodejs:requirements/package.json",
-    yarn_lock = "@build_stack_rules_proto//nodejs:requirements/yarn.lock",
+    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
 )`)
 
 var nodeLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")

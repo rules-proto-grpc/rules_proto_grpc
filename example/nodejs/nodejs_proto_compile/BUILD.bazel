@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//nodejs:defs.bzl", "nodejs_proto_compile")
+load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_proto_compile")
 
 nodejs_proto_compile(
     name = "person_nodejs_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )

@@ -1,10 +1,10 @@
-load("@build_stack_rules_proto//go:defs.bzl", "go_proto_library")
+load("@rules_proto_grpc//go:defs.bzl", "go_proto_library")
 
 go_proto_library(
     name = "person_go_library",
     go_deps = [
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/go/example/go_proto_library/person",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/go/example/go_proto_library/person",
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )

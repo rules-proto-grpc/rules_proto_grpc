@@ -40,7 +40,7 @@ Generates C# protobuf `.cs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
 
 csharp_deps()
 ```
@@ -48,11 +48,11 @@ csharp_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//csharp:defs.bzl", "csharp_proto_compile")
+load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_compile")
 
 csharp_proto_compile(
     name = "person_csharp_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -72,7 +72,7 @@ Generates C# protobuf+gRPC `.cs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
 
 csharp_deps()
 
@@ -84,11 +84,11 @@ grpc_deps()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//csharp:defs.bzl", "csharp_grpc_compile")
+load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_compile")
 
 csharp_grpc_compile(
     name = "greeter_csharp_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -110,7 +110,7 @@ Generates a C# protobuf library using `core_library` from `rules_dotnet`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
 
 csharp_deps()
 
@@ -138,11 +138,11 @@ core_register_sdk(
 
 dotnet_repositories()
 
-load("@build_stack_rules_proto//csharp/nuget:packages.bzl", nuget_packages = "packages")
+load("@rules_proto_grpc//csharp/nuget:packages.bzl", nuget_packages = "packages")
 
 nuget_packages()
 
-load("@build_stack_rules_proto//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
 
 nuget_protobuf_packages()
 ```
@@ -150,11 +150,11 @@ nuget_protobuf_packages()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//csharp:defs.bzl", "csharp_proto_library")
+load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_library")
 
 csharp_proto_library(
     name = "person_csharp_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -182,7 +182,7 @@ Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
 
 csharp_deps()
 
@@ -210,15 +210,15 @@ core_register_sdk(
 
 dotnet_repositories()
 
-load("@build_stack_rules_proto//csharp/nuget:packages.bzl", nuget_packages = "packages")
+load("@rules_proto_grpc//csharp/nuget:packages.bzl", nuget_packages = "packages")
 
 nuget_packages()
 
-load("@build_stack_rules_proto//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
 
 nuget_protobuf_packages()
 
-load("@build_stack_rules_proto//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
 
 nuget_grpc_packages()
 ```
@@ -226,11 +226,11 @@ nuget_grpc_packages()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//csharp:defs.bzl", "csharp_grpc_library")
+load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library")
 
 csharp_grpc_library(
     name = "greeter_csharp_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

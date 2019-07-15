@@ -18,7 +18,7 @@ Generates a Scala protobuf `.jar` artifact
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
 
 scala_deps()
 
@@ -45,11 +45,11 @@ scala_proto_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//scala:defs.bzl", "scala_proto_compile")
+load("@rules_proto_grpc//scala:defs.bzl", "scala_proto_compile")
 
 scala_proto_compile(
     name = "person_scala_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -71,7 +71,7 @@ Generates Scala protobuf+gRPC `.jar` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
 
 scala_deps()
 
@@ -98,11 +98,11 @@ scala_proto_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//scala:defs.bzl", "scala_grpc_compile")
+load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_compile")
 
 scala_grpc_compile(
     name = "greeter_scala_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -122,7 +122,7 @@ Generates a Scala protobuf library using `scala_library` from `rules_scala`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
 
 scala_deps()
 
@@ -149,11 +149,11 @@ scala_proto_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//scala:defs.bzl", "scala_proto_library")
+load("@rules_proto_grpc//scala:defs.bzl", "scala_proto_library")
 
 scala_proto_library(
     name = "person_scala_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -175,7 +175,7 @@ Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//scala:deps.bzl", "scala_deps")
+load("@rules_proto_grpc//scala:deps.bzl", "scala_deps")
 
 scala_deps()
 
@@ -202,11 +202,11 @@ scala_proto_repositories()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//scala:defs.bzl", "scala_grpc_library")
+load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_library")
 
 scala_grpc_library(
     name = "greeter_scala_library",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 

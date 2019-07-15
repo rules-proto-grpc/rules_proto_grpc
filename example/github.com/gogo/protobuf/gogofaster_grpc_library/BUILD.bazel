@@ -1,10 +1,10 @@
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofaster_grpc_library")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofaster_grpc_library")
 
 gogofaster_grpc_library(
     name = "greeter_gogo_library",
     go_deps = [
         "@com_github_golang_protobuf//ptypes/any:go_default_library",
     ],
-    importpath = "github.com/stackb/rules_proto/gogo/example/gogofaster_grpc_library/greeter",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogofaster_grpc_library/greeter",
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

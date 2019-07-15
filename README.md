@@ -72,21 +72,9 @@ Therefore, if you are solely interested in the generated source code artifacts,
 use the `{lang}_{proto|grpc}_compile` rules. Otherwise, if you want a
 ready-to-go library, use the `{lang}_{proto|grpc}_library` rules.
 
-These rules are the successor to [rules_protobuf](https://github.com/pubref/rules_protobuf) and
-are in a pre-release status. The primary goals are:
-
-1. Interoperate with the native [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
-   rules and other proto support in the Bazel ecosystem as much as possible.
-
-2. Provide a `proto_plugin` rule to support custom protoc plugins.
-
-3. Minimal dependency loading. Proto rules should not pull in more dependencies
-   than they absolutely need.
-
-> NOTE: In general, try to use the native proto library rules when possible to
-minimize external dependencies in your project. Add `rules_proto` when you have
-more complex proto requirements such as when dealing with multiple output
-languages, gRPC, unsupported (native) language support, or custom proto plugins.
+These rules are derived from the excellent [stackb/rules_proto](https://github.com/stackb/rules_proto)
+and add aspect-based compilation to all languages, allowing for all
+`proto_library` options to be expressed in user code.
 
 
 ## Installation
@@ -97,10 +85,10 @@ Add `rules_proto` your `WORKSPACE` file:
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
-    name = "build_stack_rules_proto",
-    urls = ["https://github.com/stackb/rules_proto/archive/2fbbc43ad20d88e98316610723cf3b6f72b5fcef.tar.gz"],
-    sha256 = "4a917f15229f84757d5c59810194327ad3803bf20197240e1893d1c72e884bfd",
-    strip_prefix = "rules_proto-2fbbc43ad20d88e98316610723cf3b6f72b5fcef",
+    name = "rules_proto_grpc",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/587162914bcce77abffd4146a8f2834b220abee9.tar.gz"],
+    sha256 = "395408a3dc9c3db2b5c200b8722a13a60898c861633b99e6e250186adffd1370",
+    strip_prefix = "rules_proto_grpc-587162914bcce77abffd4146a8f2834b220abee9",
 )
 ```
 
@@ -231,7 +219,7 @@ of your choice).
 
 ```python
 # BUILD.bazel
-load("@build_stack_rules_proto//cpp:defs.bzl", "cpp_proto_compile")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
 
 cpp_proto_compile(
     name = "cpp_thing_proto",
@@ -247,7 +235,7 @@ for this rule (from [cpp/README.md](/cpp/README.md)):
 
 ```python
 # WORKSPACE
-load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:deps.bzl", "cpp_deps")
 
 cpp_deps()
 ```
@@ -271,7 +259,7 @@ rule from `cpp_proto_compile` to `cpp_proto_library`:
 
 ```python
 # BUILD.bazel
-load("@build_stack_rules_proto//cpp:defs.bzl", "cpp_proto_library")
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
 cpp_proto_library(
     name = "cpp_thing_proto",
@@ -366,7 +354,7 @@ Briefly, here's how the rules work:
 Generally, follow the pattern seen in the multiple language examples in this
 repository.  The basic idea is:
 
-1. Load the plugin rule: `load("@build_stack_rules_proto//:plugin.bzl", "proto_plugin")`.
+1. Load the plugin rule: `load("@rules_proto_grpc//:plugin.bzl", "proto_plugin")`.
 2. Define the rule, giving it a `name`, `options` (not mandatory), `tool`, and
    `outputs`.
 3. `tool` is a label that refers to the binary executable for the plugin itself.
@@ -380,9 +368,9 @@ repository.  The basic idea is:
 5. Create a compilation rule and aspect using the following template:
 
 ```python
-load("@build_stack_rules_proto//:plugin.bzl", "ProtoPluginInfo")
+load("@rules_proto_grpc//:plugin.bzl", "ProtoPluginInfo")
 load(
-    "@build_stack_rules_proto//:aspect.bzl",
+    "@rules_proto_grpc//:aspect.bzl",
     "ProtoLibraryAspectNodeInfo",
     "proto_compile_aspect_attrs",
     "proto_compile_aspect_impl",
@@ -409,7 +397,7 @@ example_aspect = aspect(
             default = "example_aspect",
         )
     ),
-    toolchains = ["@build_stack_rules_proto//protobuf:toolchain_type"],
+    toolchains = ["@rules_proto_grpc//protobuf:toolchain_type"],
 )
 
 # Create compile rule to apply aspect
@@ -434,6 +422,13 @@ def example_compile(**kwargs):
     )
 
 ```
+
+
+## License
+
+This project is derived from [stackb/rules_proto](https://github.com/stackb/rules_proto)
+under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license and
+this project therefore maintains the terms of that license.
 
 
 ## Contributing

@@ -56,7 +56,7 @@ func main() {
 		&cli.StringFlag{
 			Name:  "github_url",
 			Usage: "URL for github download",
-			Value: "https://github.com/stackb/rules_proto/archive/{ref}.tar.gz",
+			Value: "https://github.com/rules-proto-grpc/rules_proto_grpc/archive/{ref}.tar.gz",
 		},
 		&cli.StringFlag{
 			Name:  "available_tests",
@@ -175,7 +175,7 @@ func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
 	relpath := strings.Repeat("../", len(depth)+2)
 
 	out.w(`local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "%s",
 )`, relpath)
 

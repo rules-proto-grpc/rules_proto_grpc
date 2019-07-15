@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//github.com/gogo/protobuf:defs.bzl", "gogofast_grpc_compile")
+load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofast_grpc_compile")
 
 gogofast_grpc_compile(
     name = "greeter_gogo_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

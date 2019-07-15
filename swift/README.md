@@ -20,7 +20,7 @@ Generates Swift protobuf `.swift` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//swift:deps.bzl", "swift_deps")
+load("@rules_proto_grpc//swift:deps.bzl", "swift_deps")
 
 swift_deps()
 
@@ -42,11 +42,11 @@ apple_support_dependencies()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//swift:defs.bzl", "swift_proto_compile")
+load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_compile")
 
 swift_proto_compile(
     name = "person_swift_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -68,7 +68,7 @@ Generates Swift protobuf+gRPC `.swift` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//swift:deps.bzl", "swift_deps")
+load("@rules_proto_grpc//swift:deps.bzl", "swift_deps")
 
 swift_deps()
 
@@ -90,11 +90,11 @@ apple_support_dependencies()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//swift:defs.bzl", "swift_grpc_compile")
+load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_compile")
 
 swift_grpc_compile(
     name = "greeter_swift_grpc",
-    deps = ["@build_stack_rules_proto//example/proto:greeter_grpc"],
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -116,7 +116,7 @@ Generates a Swift protobuf library
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//swift:deps.bzl", "swift_deps")
+load("@rules_proto_grpc//swift:deps.bzl", "swift_deps")
 
 swift_deps()
 
@@ -138,11 +138,11 @@ apple_support_dependencies()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//swift:defs.bzl", "swift_proto_library")
+load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_library")
 
 swift_proto_library(
     name = "person_swift_library",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 
@@ -164,7 +164,7 @@ Generates a Swift protobuf+gRPC library
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//swift:deps.bzl", "swift_deps")
+load("@rules_proto_grpc//swift:deps.bzl", "swift_deps")
 
 swift_deps()
 
@@ -186,12 +186,12 @@ apple_support_dependencies()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//swift:defs.bzl", "swift_grpc_library")
+load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_library")
 
 swift_grpc_library(
     name = "person_swift_library",
     flavor = "client",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
 

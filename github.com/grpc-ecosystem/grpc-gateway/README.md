@@ -15,7 +15,7 @@ Generates grpc-gateway `.go` files
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
+load("@rules_proto_grpc//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
 
@@ -27,7 +27,7 @@ go_register_toolchains()
 
 bazel_gazelle()
 
-load("@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
 
 gateway_deps()
 
@@ -39,11 +39,11 @@ gazelle_dependencies()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_compile")
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_compile")
 
 gateway_grpc_compile(
     name = "api_gateway_grpc",
-    deps = ["@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
+    deps = ["@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
 )
 ```
 
@@ -63,7 +63,7 @@ Generates grpc-gateway swagger `.json` files
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
+load("@rules_proto_grpc//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
 
@@ -75,7 +75,7 @@ go_register_toolchains()
 
 bazel_gazelle()
 
-load("@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
 
 gateway_deps()
 
@@ -87,11 +87,11 @@ gazelle_dependencies()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_swagger_compile")
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_swagger_compile")
 
 gateway_swagger_compile(
     name = "api_gateway_grpc",
-    deps = ["@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
+    deps = ["@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
 )
 ```
 
@@ -111,7 +111,7 @@ Generates grpc-gateway library files
 ### `WORKSPACE`
 
 ```python
-load("@build_stack_rules_proto//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
+load("@rules_proto_grpc//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
 
@@ -123,7 +123,7 @@ go_register_toolchains()
 
 bazel_gazelle()
 
-load("@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
 
 gateway_deps()
 
@@ -135,12 +135,12 @@ gazelle_dependencies()
 ### `BUILD.bazel`
 
 ```python
-load("@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_library")
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_library")
 
 gateway_grpc_library(
     name = "api_gateway_library",
-    importpath = "github.com/stackb/rules_proto/github.com/grpc-ecosystem/grpc-gateway/examples/api",
-    deps = ["@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/github.com/grpc-ecosystem/grpc-gateway/examples/api",
+    deps = ["@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
 )
 ```
 

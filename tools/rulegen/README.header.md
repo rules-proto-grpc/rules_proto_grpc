@@ -72,21 +72,9 @@ Therefore, if you are solely interested in the generated source code artifacts,
 use the `{lang}_{proto|grpc}_compile` rules. Otherwise, if you want a
 ready-to-go library, use the `{lang}_{proto|grpc}_library` rules.
 
-These rules are the successor to [rules_protobuf](https://github.com/pubref/rules_protobuf) and
-are in a pre-release status. The primary goals are:
-
-1. Interoperate with the native [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
-   rules and other proto support in the Bazel ecosystem as much as possible.
-
-2. Provide a `proto_plugin` rule to support custom protoc plugins.
-
-3. Minimal dependency loading. Proto rules should not pull in more dependencies
-   than they absolutely need.
-
-> NOTE: In general, try to use the native proto library rules when possible to
-minimize external dependencies in your project. Add `rules_proto` when you have
-more complex proto requirements such as when dealing with multiple output
-languages, gRPC, unsupported (native) language support, or custom proto plugins.
+These rules are derived from the excellent [stackb/rules_proto](https://github.com/stackb/rules_proto)
+and add aspect-based compilation to all languages, allowing for all
+`proto_library` options to be expressed in user code.
 
 
 ## Installation
@@ -97,10 +85,10 @@ Add `rules_proto` your `WORKSPACE` file:
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
-    name = "build_stack_rules_proto",
-    urls = ["https://github.com/stackb/rules_proto/archive/{{ .Ref }}.tar.gz"],
+    name = "rules_proto_grpc",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/{{ .Ref }}.tar.gz"],
     sha256 = "{{ .Sha256 }}",
-    strip_prefix = "rules_proto-{{ .Ref }}",
+    strip_prefix = "rules_proto_grpc-{{ .Ref }}",
 )
 ```
 

@@ -1,9 +1,9 @@
 local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "../../../",
 )
 
-load("@build_stack_rules_proto//csharp:deps.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:deps.bzl", "csharp_deps")
 
 csharp_deps()
 
@@ -31,14 +31,14 @@ core_register_sdk(
 
 dotnet_repositories()
 
-load("@build_stack_rules_proto//csharp/nuget:packages.bzl", nuget_packages = "packages")
+load("@rules_proto_grpc//csharp/nuget:packages.bzl", nuget_packages = "packages")
 
 nuget_packages()
 
-load("@build_stack_rules_proto//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
 
 nuget_protobuf_packages()
 
-load("@build_stack_rules_proto//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
 
 nuget_grpc_packages()

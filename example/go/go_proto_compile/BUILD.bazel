@@ -1,6 +1,6 @@
-load("@build_stack_rules_proto//go:defs.bzl", "go_proto_compile")
+load("@rules_proto_grpc//go:defs.bzl", "go_proto_compile")
 
 go_proto_compile(
     name = "person_go_proto",
-    deps = ["@build_stack_rules_proto//example/proto:person_proto"],
+    deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )

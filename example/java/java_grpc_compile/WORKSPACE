@@ -1,8 +1,8 @@
 local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "../../../",
 )
 
-load("@build_stack_rules_proto//java:deps.bzl", "java_deps")
+load("@rules_proto_grpc//java:deps.bzl", "java_deps")
 
 java_deps()

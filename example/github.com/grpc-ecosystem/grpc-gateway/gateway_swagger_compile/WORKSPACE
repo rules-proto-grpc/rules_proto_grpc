@@ -1,9 +1,9 @@
 local_repository(
-    name = "build_stack_rules_proto",
+    name = "rules_proto_grpc",
     path = "../../../../../",
 )
 
-load("@build_stack_rules_proto//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
+load("@rules_proto_grpc//:deps.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
 
@@ -15,7 +15,7 @@ go_register_toolchains()
 
 bazel_gazelle()
 
-load("@build_stack_rules_proto//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_deps")
 
 gateway_deps()
 
