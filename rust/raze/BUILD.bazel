@@ -35,7 +35,7 @@ alias(
 )
 alias(
     name = "log",
-    actual = "@raze__log__0_4_6//:log",
+    actual = "@raze__log__0_4_7//:log",
 )
 alias(
     name = "protobuf",

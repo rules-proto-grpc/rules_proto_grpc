@@ -116,21 +116,21 @@ def raze_fetch_remote_crates():
     )
 
     _new_http_archive(
-        name = "raze__libc__0_2_59",
-        url = "https://crates-io.s3-us-west-1.amazonaws.com/crates/libc/libc-0.2.59.crate",
+        name = "raze__libc__0_2_60",
+        url = "https://crates-io.s3-us-west-1.amazonaws.com/crates/libc/libc-0.2.60.crate",
         type = "tar.gz",
-        sha256 = "3262021842bf00fe07dbd6cf34ff25c99d7a7ebef8deea84db72be3ea3bb0aff",
-        strip_prefix = "libc-0.2.59",
-        build_file = Label("//rust/raze/remote:libc-0.2.59.BUILD.bazel")
+        sha256 = "d44e80633f007889c7eff624b709ab43c92d708caad982295768a7b13ca3b5eb",
+        strip_prefix = "libc-0.2.60",
+        build_file = Label("//rust/raze/remote:libc-0.2.60.BUILD.bazel")
     )
 
     _new_http_archive(
-        name = "raze__log__0_4_6",
-        url = "https://crates-io.s3-us-west-1.amazonaws.com/crates/log/log-0.4.6.crate",
+        name = "raze__log__0_4_7",
+        url = "https://crates-io.s3-us-west-1.amazonaws.com/crates/log/log-0.4.7.crate",
         type = "tar.gz",
-        sha256 = "c84ec4b527950aa83a329754b01dbe3f58361d1c5efacd1f6d68c494d08a17c6",
-        strip_prefix = "log-0.4.6",
-        build_file = Label("//rust/raze/remote:log-0.4.6.BUILD.bazel")
+        sha256 = "c275b6ad54070ac2d665eef9197db647b32239c9d244bfb6f041a766d00da5b3",
+        strip_prefix = "log-0.4.7",
+        build_file = Label("//rust/raze/remote:log-0.4.7.BUILD.bazel")
     )
 
     _new_http_archive(
