@@ -5,22 +5,10 @@ load(
 )
 load(
     "//protobuf:repositories.bzl",
-    "protobuf_deps",
+    "protobuf_repos",
 )
 
-def d_deps(**kwargs):
-    protobuf_deps(**kwargs)
+def d_repos(**kwargs):
+    protobuf_repos(**kwargs)
     com_github_dcarp_protobuf_d(**kwargs)
     io_bazel_rules_d(**kwargs)
-
-def d_proto_compile(**kwargs): # Kept for backwards compatibility
-    d_deps(**kwargs)
-
-def d_grpc_compile(**kwargs): # Kept for backwards compatibility
-    d_deps(**kwargs)
-
-def d_proto_library(**kwargs): # Kept for backwards compatibility
-    d_deps(**kwargs)
-
-def d_grpc_library(**kwargs): # Kept for backwards compatibility
-    d_deps(**kwargs)

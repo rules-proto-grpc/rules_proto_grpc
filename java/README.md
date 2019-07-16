@@ -18,9 +18,9 @@ Generates a Java protobuf srcjar artifact
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
-java_deps()
+rules_proto_grpc_java_repos()
 ```
 
 ### `BUILD.bazel`
@@ -50,9 +50,9 @@ Generates a Java protobuf+gRPC srcjar artifact
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
-java_deps()
+rules_proto_grpc_java_repos()
 ```
 
 ### `BUILD.bazel`
@@ -82,9 +82,9 @@ Generates a Java protobuf library using `java_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
-java_deps()
+rules_proto_grpc_java_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "com_google_guava")
 
@@ -118,9 +118,9 @@ Generates a Java protobuf+gRPC library using `java_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
-java_deps()
+rules_proto_grpc_java_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 

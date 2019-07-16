@@ -4,26 +4,14 @@ load(
 )
 load(
     "//protobuf:repositories.bzl",
-    "protobuf_deps",
+    "protobuf_repos",
 )
 load(
     "//rust/raze:crates.bzl",
     "raze_fetch_remote_crates"
 )
 
-def rust_deps(**kwargs):
-    protobuf_deps(**kwargs)
+def rust_repos(**kwargs):
+    protobuf_repos(**kwargs)
     io_bazel_rules_rust(**kwargs)
     raze_fetch_remote_crates()
-
-def rust_proto_compile(**kwargs): # Kept for backwards compatibility
-    rust_deps(**kwargs)
-
-def rust_grpc_compile(**kwargs): # Kept for backwards compatibility
-    rust_deps(**kwargs)
-
-def rust_proto_library(**kwargs): # Kept for backwards compatibility
-    rust_deps(**kwargs)
-
-def rust_grpc_library(**kwargs): # Kept for backwards compatibility
-    rust_deps(**kwargs)

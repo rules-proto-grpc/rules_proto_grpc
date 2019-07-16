@@ -18,9 +18,9 @@ Generates Ruby protobuf `.rb` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
-ruby_deps()
+rules_proto_grpc_ruby_repos()
 ```
 
 ### `BUILD.bazel`
@@ -50,9 +50,9 @@ Generates Ruby protobuf+gRPC `.rb` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
-ruby_deps()
+rules_proto_grpc_ruby_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
@@ -86,9 +86,9 @@ Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
-ruby_deps()
+rules_proto_grpc_ruby_repos()
 
 load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
 
@@ -130,9 +130,9 @@ Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//ruby:repositories.bzl", "ruby_deps")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
-ruby_deps()
+rules_proto_grpc_ruby_repos()
 
 load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
 

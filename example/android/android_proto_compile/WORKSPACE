@@ -3,6 +3,6 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//android:repositories.bzl", "android_deps")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
 
-android_deps()
+rules_proto_grpc_android_repos()

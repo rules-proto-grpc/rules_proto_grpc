@@ -3,6 +3,6 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
-cpp_deps()
+rules_proto_grpc_cpp_repos()

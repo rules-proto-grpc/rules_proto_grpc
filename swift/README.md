@@ -20,9 +20,9 @@ Generates Swift protobuf `.swift` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//swift:repositories.bzl", "swift_deps")
+load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
 
-swift_deps()
+rules_proto_grpc_swift_repos()
 
 load(
     "@build_bazel_rules_swift//swift:repositories.bzl",
@@ -68,9 +68,9 @@ Generates Swift protobuf+gRPC `.swift` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//swift:repositories.bzl", "swift_deps")
+load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
 
-swift_deps()
+rules_proto_grpc_swift_repos()
 
 load(
     "@build_bazel_rules_swift//swift:repositories.bzl",
@@ -116,9 +116,9 @@ Generates a Swift protobuf library
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//swift:repositories.bzl", "swift_deps")
+load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
 
-swift_deps()
+rules_proto_grpc_swift_repos()
 
 load(
     "@build_bazel_rules_swift//swift:repositories.bzl",
@@ -164,9 +164,9 @@ Generates a Swift protobuf+gRPC library
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//swift:repositories.bzl", "swift_deps")
+load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
 
-swift_deps()
+rules_proto_grpc_swift_repos()
 
 load(
     "@build_bazel_rules_swift//swift:repositories.bzl",

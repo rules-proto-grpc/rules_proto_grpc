@@ -12,9 +12,9 @@ go_register_toolchains()
 
 bazel_gazelle()
 
-load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "gateway_deps")
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
 
-gateway_deps()
+rules_proto_grpc_gateway_repos()
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 

@@ -6,23 +6,11 @@ load(
 )
 load(
     "//protobuf:repositories.bzl",
-    "protobuf_deps",
+    "protobuf_repos",
 )
 
-def python_deps(**kwargs):
-    protobuf_deps(**kwargs)
+def python_repos(**kwargs):
+    protobuf_repos(**kwargs)
     six(**kwargs)
     com_github_grpc_grpc(**kwargs)
     com_apt_itude_rules_pip(**kwargs)
-
-def python_proto_compile(**kwargs): # Kept for backwards compatibility
-    python_deps(**kwargs)
-
-def python_grpc_compile(**kwargs): # Kept for backwards compatibility
-    python_deps(**kwargs)
-
-def python_proto_library(**kwargs): # Kept for backwards compatibility
-    python_deps(**kwargs)
-
-def python_grpc_library(**kwargs): # Kept for backwards compatibility
-    python_deps(**kwargs)

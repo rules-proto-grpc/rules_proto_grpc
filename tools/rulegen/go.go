@@ -1,8 +1,8 @@
 package main
 
-var goWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "{{ .Lang.Name }}_deps")
+var goWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
-{{ .Lang.Name }}_deps()
+rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 

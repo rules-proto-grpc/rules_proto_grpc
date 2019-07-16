@@ -3,9 +3,9 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//java:repositories.bzl", "java_deps")
+load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
-java_deps()
+rules_proto_grpc_java_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "com_google_guava")
 

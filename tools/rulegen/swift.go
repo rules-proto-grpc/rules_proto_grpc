@@ -1,8 +1,8 @@
 package main
 
-var swiftWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "{{ .Lang.Name }}_deps")
+var swiftWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
-{{ .Lang.Name }}_deps()
+rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load(
     "@build_bazel_rules_swift//swift:repositories.bzl",

@@ -18,9 +18,9 @@ Generates an Android protobuf `.jar` artifact
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//android:repositories.bzl", "android_deps")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
 
-android_deps()
+rules_proto_grpc_android_repos()
 ```
 
 ### `BUILD.bazel`
@@ -50,9 +50,9 @@ Generates Android protobuf+gRPC `.jar` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//android:repositories.bzl", "android_deps")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
 
-android_deps()
+rules_proto_grpc_android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
@@ -91,9 +91,9 @@ Generates an Android protobuf library using `android_library` from `rules_androi
 ```python
 # The set of dependencies loaded here is excessive for android proto alone
 # (but simplifies our setup)
-load("@rules_proto_grpc//android:repositories.bzl", "android_deps")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
 
-android_deps()
+rules_proto_grpc_android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
@@ -135,9 +135,9 @@ Generates Android protobuf+gRPC library using `android_library` from `rules_andr
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//android:repositories.bzl", "android_deps")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
 
-android_deps()
+rules_proto_grpc_android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 

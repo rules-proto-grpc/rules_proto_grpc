@@ -1,12 +1,12 @@
 package main
 
-var grpcjsWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "grpcjs_deps")
+var grpcjsWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_grpcjs_repos="grpcjs_repos")
 
-grpcjs_deps()`)
+rules_proto_grpc_grpcjs_repos()`)
 
-var grpcjsLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "grpcjs_deps")
+var grpcjsLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_grpcjs_repos="grpcjs_repos")
 
-grpcjs_deps()
+rules_proto_grpc_grpcjs_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 

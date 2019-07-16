@@ -40,9 +40,9 @@ Generates C# protobuf `.cs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
-csharp_deps()
+rules_proto_grpc_csharp_repos()
 ```
 
 ### `BUILD.bazel`
@@ -72,9 +72,9 @@ Generates C# protobuf+gRPC `.cs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
-csharp_deps()
+rules_proto_grpc_csharp_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
@@ -110,9 +110,9 @@ Generates a C# protobuf library using `core_library` from `rules_dotnet`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
-csharp_deps()
+rules_proto_grpc_csharp_repos()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
@@ -182,9 +182,9 @@ Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//csharp:repositories.bzl", "csharp_deps")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
-csharp_deps()
+rules_proto_grpc_csharp_repos()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",

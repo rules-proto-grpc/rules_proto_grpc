@@ -8,24 +8,12 @@ load(
 )
 load(
     "//protobuf:repositories.bzl",
-    "protobuf_deps",
+    "protobuf_repos",
 )
 
-def android_deps(**kwargs):
-    protobuf_deps(**kwargs)
+def android_repos(**kwargs):
+    protobuf_repos(**kwargs)
     com_google_protobuf_javalite(**kwargs)
     io_grpc_grpc_java(**kwargs)
     build_bazel_rules_android(**kwargs)
     com_google_guava_guava_android(**kwargs)
-
-def android_proto_compile(**kwargs): # Kept for backwards compatibility
-    android_deps(**kwargs)
-
-def android_grpc_compile(**kwargs): # Kept for backwards compatibility
-    android_deps(**kwargs)
-
-def android_proto_library(**kwargs): # Kept for backwards compatibility
-    android_deps(**kwargs)
-
-def android_grpc_library(**kwargs): # Kept for backwards compatibility
-    android_deps(**kwargs)

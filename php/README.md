@@ -16,9 +16,9 @@ Generates PHP protobuf `.php` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//php:repositories.bzl", "php_deps")
+load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos="php_repos")
 
-php_deps()
+rules_proto_grpc_php_repos()
 ```
 
 ### `BUILD.bazel`
@@ -48,9 +48,9 @@ Generates PHP protobuf+gRPC `.php` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//php:repositories.bzl", "php_deps")
+load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos="php_repos")
 
-php_deps()
+rules_proto_grpc_php_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 

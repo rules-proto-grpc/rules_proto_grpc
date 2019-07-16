@@ -4,24 +4,9 @@ load(
 )
 load(
     "//closure:repositories.bzl",
-    "closure_deps",
+    "closure_repos",
 )
 
-def grpc_web_deps(**kwargs):
-    closure_deps(**kwargs)
+def grpc_web_repos(**kwargs):
+    closure_repos(**kwargs)
     com_github_grpc_grpc_web(**kwargs)
-
-def closure_grpc_compile(**kwargs): # Kept for backwards compatibility
-    grpc_web_deps(**kwargs)
-
-def commonjs_grpc_compile(**kwargs): # Kept for backwards compatibility
-    grpc_web_deps(**kwargs)
-
-def commonjs_dts_grpc_compile(**kwargs): # Kept for backwards compatibility
-    grpc_web_deps(**kwargs)
-
-def ts_grpc_compile(**kwargs): # Kept for backwards compatibility
-    grpc_web_deps(**kwargs)
-
-def closure_grpc_library(**kwargs): # Kept for backwards compatibility
-    grpc_web_deps(**kwargs)

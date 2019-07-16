@@ -17,9 +17,9 @@ Generates Closure *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
-grpc_web_deps()
+rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 
@@ -55,9 +55,9 @@ Generates CommonJS *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
-grpc_web_deps()
+rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 
@@ -93,9 +93,9 @@ Generates commonjs_dts *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
-grpc_web_deps()
+rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 
@@ -131,9 +131,9 @@ Generates CommonJS *.ts protobuf+gRPC files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
-grpc_web_deps()
+rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 
@@ -169,9 +169,9 @@ Generates protobuf closure library *.js files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_deps")
+load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
-grpc_web_deps()
+rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 

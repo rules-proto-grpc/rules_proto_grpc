@@ -1,8 +1,8 @@
 package main
 
-var scalaWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "{{ .Lang.Name }}_deps")
+var scalaWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
-{{ .Lang.Name }}_deps()
+rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 # rules_go used here to compile a wrapper around the protoc-gen-scala plugin
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")

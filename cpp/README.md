@@ -18,9 +18,9 @@ Generates C++ protobuf `.h` & `.cc` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
-cpp_deps()
+rules_proto_grpc_cpp_repos()
 ```
 
 ### `BUILD.bazel`
@@ -50,9 +50,9 @@ Generates C++ protobuf+gRPC `.h` & `.cc` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
-cpp_deps()
+rules_proto_grpc_cpp_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
@@ -86,9 +86,9 @@ Generates a C++ protobuf library using `cc_library`, with dependencies linked
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
-cpp_deps()
+rules_proto_grpc_cpp_repos()
 ```
 
 ### `BUILD.bazel`
@@ -118,9 +118,9 @@ Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies link
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
-cpp_deps()
+rules_proto_grpc_cpp_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 

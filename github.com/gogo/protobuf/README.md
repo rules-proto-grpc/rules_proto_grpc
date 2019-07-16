@@ -26,9 +26,9 @@ Generates gogo protobuf `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -64,9 +64,9 @@ Generates gogo protobuf+gRPC `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -102,9 +102,9 @@ Generates a Go gogo protobuf library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -146,9 +146,9 @@ Generates a Go gogo protobuf+gRPC library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -189,9 +189,9 @@ Generates gogofast protobuf `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -227,9 +227,9 @@ Generates gogofast protobuf+gRPC `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -265,9 +265,9 @@ Generates a Go gogofast protobuf library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -309,9 +309,9 @@ Generates a Go gogofast protobuf+gRPC library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -352,9 +352,9 @@ Generates gogofaster protobuf `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -390,9 +390,9 @@ Generates gogofaster protobuf+gRPC `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -428,9 +428,9 @@ Generates a Go gogofaster protobuf library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
@@ -472,9 +472,9 @@ Generates a Go gogofaster protobuf+gRPC library using `go_library` from `rules_g
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", "gogo_deps")
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
 
-gogo_deps()
+rules_proto_grpc_gogo_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 

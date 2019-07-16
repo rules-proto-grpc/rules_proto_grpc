@@ -1,8 +1,8 @@
 package main
 
-var rustWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "{{ .Lang.Name }}_deps")
+var rustWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
-{{ .Lang.Name }}_deps()
+rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 

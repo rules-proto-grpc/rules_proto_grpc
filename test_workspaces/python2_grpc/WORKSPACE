@@ -3,8 +3,8 @@ local_repository(
     path = "../../",
 )
 
-load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
-python_deps()
+load("@rules_proto_grpc//python:repositories.bzl", "python_repos")
+python_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 grpc_deps()

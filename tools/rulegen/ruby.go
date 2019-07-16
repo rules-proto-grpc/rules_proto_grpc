@@ -1,8 +1,8 @@
 package main
 
-var rubyProtoLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "{{ .Lang.Name }}_deps")
+var rubyProtoLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
-{{ .Lang.Name }}_deps()
+rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
 
@@ -16,9 +16,9 @@ bundle_install(
     gemfile_lock = "//ruby:Gemfile.lock",
 )`)
 
-var rubyGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "{{ .Lang.Name }}_deps")
+var rubyGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
-{{ .Lang.Name }}_deps()
+rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
 

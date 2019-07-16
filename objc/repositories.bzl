@@ -4,21 +4,9 @@ load(
 )
 load(
     "//protobuf:repositories.bzl",
-    "protobuf_deps",
+    "protobuf_repos",
 )
 
-def objc_deps(**kwargs):
-    protobuf_deps(**kwargs)
+def objc_repos(**kwargs):
+    protobuf_repos(**kwargs)
     com_github_grpc_grpc(**kwargs)
-
-def objc_proto_compile(**kwargs): # Kept for backwards compatibility
-    objc_deps(**kwargs)
-
-def objc_proto_library(**kwargs): # Kept for backwards compatibility
-    objc_deps(**kwargs)
-
-def objc_grpc_compile(**kwargs): # Kept for backwards compatibility
-    objc_deps(**kwargs)
-
-def objc_grpc_library(**kwargs): # Kept for backwards compatibility
-    objc_deps(**kwargs)

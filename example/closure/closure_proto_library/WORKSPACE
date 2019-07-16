@@ -3,9 +3,9 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//closure:repositories.bzl", "closure_deps")
+load("@rules_proto_grpc//closure:repositories.bzl", rules_proto_grpc_closure_repos="closure_repos")
 
-closure_deps()
+rules_proto_grpc_closure_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 

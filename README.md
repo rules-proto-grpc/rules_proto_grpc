@@ -236,9 +236,9 @@ for this rule (from [cpp/README.md](/cpp/README.md)):
 
 ```python
 # WORKSPACE
-load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_deps")
+load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_repos")
 
-cpp_deps()
+cpp_repos()
 ```
 
 We're now ready to build the rule:

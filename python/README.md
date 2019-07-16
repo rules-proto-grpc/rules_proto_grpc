@@ -18,9 +18,9 @@ Generates Python protobuf `.py` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
-python_deps()
+rules_proto_grpc_python_repos()
 ```
 
 ### `BUILD.bazel`
@@ -50,9 +50,9 @@ Generates Python protobuf+gRPC `.py` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
-python_deps()
+rules_proto_grpc_python_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
@@ -86,9 +86,9 @@ Generates a Python protobuf library using `py_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
-python_deps()
+rules_proto_grpc_python_repos()
 ```
 
 ### `BUILD.bazel`
@@ -118,9 +118,9 @@ Generates a Python protobuf+gRPC library using `py_library`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//python:repositories.bzl", "python_deps")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
-python_deps()
+rules_proto_grpc_python_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 

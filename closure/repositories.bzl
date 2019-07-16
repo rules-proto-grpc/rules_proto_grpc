@@ -4,15 +4,9 @@ load(
 )
 load(
     "//protobuf:repositories.bzl",
-    "protobuf_deps",
+    "protobuf_repos",
 )
 
-def closure_deps(**kwargs):
-    protobuf_deps(**kwargs)
+def closure_repos(**kwargs):
+    protobuf_repos(**kwargs)
     io_bazel_rules_closure(**kwargs)
-
-def closure_proto_compile(**kwargs): # Kept for backwards compatibility
-    closure_deps(**kwargs)
-
-def closure_proto_library(**kwargs): # Kept for backwards compatibility
-    closure_deps(**kwargs)

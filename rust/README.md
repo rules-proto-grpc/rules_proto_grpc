@@ -18,9 +18,9 @@ Generates Rust protobuf `.rs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
-rust_deps()
+rules_proto_grpc_rust_repos()
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
@@ -62,9 +62,9 @@ Generates Rust protobuf+gRPC `.rs` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
-rust_deps()
+rules_proto_grpc_rust_repos()
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
@@ -106,9 +106,9 @@ Generates a Rust protobuf library using `rust_library` from `rules_rust`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
-rust_deps()
+rules_proto_grpc_rust_repos()
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
@@ -150,9 +150,9 @@ Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//rust:repositories.bzl", "rust_deps")
+load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
-rust_deps()
+rules_proto_grpc_rust_repos()
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 

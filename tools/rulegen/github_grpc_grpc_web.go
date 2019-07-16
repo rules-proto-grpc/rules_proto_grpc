@@ -1,8 +1,8 @@
 package main
 
-var grpcWebWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", "grpc_web_deps")
+var grpcWebWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
-grpc_web_deps()
+rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 
