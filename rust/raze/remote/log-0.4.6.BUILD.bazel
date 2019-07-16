@@ -12,7 +12,7 @@ package(default_visibility = [
 ])
 
 licenses([
-  "restricted", # "MIT OR Apache-2.0"
+  "notice", # "MIT,Apache-2.0"
 ])
 
 load(
@@ -23,7 +23,6 @@ load(
 )
 
 
-# Unsupported target "build-script-build" with type "custom-build" omitted
 # Unsupported target "filters" with type "test" omitted
 
 rust_library(
@@ -38,7 +37,7 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.4.7",
+    version = "0.4.6",
     crate_features = [
     ],
 )
