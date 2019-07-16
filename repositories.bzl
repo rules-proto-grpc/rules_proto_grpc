@@ -308,6 +308,13 @@ def _generic_dependency(name, **kwargs):
 
 
 #
+# Toolchains
+#
+def rules_proto_grpc_toolchains():
+    native.register_toolchains(str(Label("//protobuf:protoc_toolchain")))
+
+
+#
 # Core
 #
 def external_zlib(**kwargs):

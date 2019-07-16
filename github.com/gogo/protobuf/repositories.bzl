@@ -6,4 +6,3 @@ load(
 def gogo_repos(**kwargs):
     # Same as rules_go as rules_go is already loading gogo protobuf
     io_bazel_rules_go(**kwargs)
-    native.register_toolchains(str(Label("//protobuf:protoc_toolchain")))

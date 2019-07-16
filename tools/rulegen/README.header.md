@@ -91,6 +91,9 @@ http_archive(
     sha256 = "{{ .Sha256 }}",
     strip_prefix = "rules_proto_grpc-{{ .Ref }}",
 )
+
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
+rules_proto_grpc_toolchains()
 ```
 
 **Important**: Follow instructions in the language-specific `README.md` for

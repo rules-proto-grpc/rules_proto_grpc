@@ -1,6 +1,13 @@
 workspace(name = "rules_proto_grpc")
 
 #
+# Toolchains
+#
+load("//:repositories.bzl", "rules_proto_grpc_toolchains")
+rules_proto_grpc_toolchains()
+
+
+#
 # Core
 #
 load("//protobuf:repositories.bzl", "protobuf_repos")

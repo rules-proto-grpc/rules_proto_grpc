@@ -177,7 +177,10 @@ func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
 	out.w(`local_repository(
     name = "rules_proto_grpc",
     path = "%s",
-)`, relpath)
+)
+
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
+rules_proto_grpc_toolchains()`, relpath)
 
 	out.ln()
 	out.t(rule.WorkspaceExample, &ruleData{lang, rule})

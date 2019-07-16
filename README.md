@@ -87,10 +87,13 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/587162914bcce77abffd4146a8f2834b220abee9.tar.gz"],
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/d16ed41d07d8e8243c5d7e8e6f2fbd5d5ea66255.tar.gz"],
     sha256 = "395408a3dc9c3db2b5c200b8722a13a60898c861633b99e6e250186adffd1370",
-    strip_prefix = "rules_proto_grpc-587162914bcce77abffd4146a8f2834b220abee9",
+    strip_prefix = "rules_proto_grpc-d16ed41d07d8e8243c5d7e8e6f2fbd5d5ea66255",
 )
+
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
+rules_proto_grpc_toolchains()
 ```
 
 **Important**: Follow instructions in the language-specific `README.md` for

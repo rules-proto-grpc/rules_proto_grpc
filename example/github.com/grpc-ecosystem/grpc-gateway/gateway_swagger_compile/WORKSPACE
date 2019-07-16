@@ -3,6 +3,9 @@ local_repository(
     path = "../../../../../",
 )
 
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
+rules_proto_grpc_toolchains()
+
 load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
