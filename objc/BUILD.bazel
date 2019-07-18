@@ -1,7 +1,8 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "objc",
+    name = "objc_plugin",
+    protoc_plugin_name = "objc",
     outputs = [
         "{protopath|pascal|objc}.pbobjc.h",
         "{protopath|pascal|objc}.pbobjc.m",
@@ -10,7 +11,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_objc",
+    name = "grpc_objc_plugin",
     outputs = [
         "{protopath|pascal|objc}.pbrpc.h",
         "{protopath|pascal|objc}.pbrpc.m",

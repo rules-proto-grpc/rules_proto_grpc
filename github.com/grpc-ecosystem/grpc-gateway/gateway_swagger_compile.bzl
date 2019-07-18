@@ -19,7 +19,7 @@ gateway_swagger_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/grpc-ecosystem/grpc-gateway:swagger"),
+                Label("//github.com/grpc-ecosystem/grpc-gateway:swagger_plugin"),
             ],
         ),
         _prefix = attr.string(

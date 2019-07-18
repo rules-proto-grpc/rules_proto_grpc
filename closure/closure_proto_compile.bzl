@@ -19,7 +19,7 @@ closure_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//closure:js"),
+                Label("//closure:js_plugin"),
             ],
         ),
         _prefix = attr.string(

@@ -19,7 +19,7 @@ swift_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//swift:grpc_swift"),
+                Label("//swift:grpc_swift_plugin"),
             ],
         ),
         _prefix = attr.string(

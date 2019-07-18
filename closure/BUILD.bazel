@@ -1,7 +1,8 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "js",
+    name = "js_plugin",
+    protoc_plugin_name = "js",
     outputs = ["{protopath}.js"],
     options = [
         "import_style=closure",

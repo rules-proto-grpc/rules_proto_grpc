@@ -50,17 +50,12 @@ func makeD() *Language {
 
 **NOTE**: These rules use the protoc-gen-d plugin, which only supports proto3 .proto files.`),
 		Flags: commonLangFlags,
-		Plugins: map[string]*Plugin{
-			"//d:d": &Plugin{
-				Tool: "@com_github_dcarp_protobuf_d//:protoc-gen-d",
-			},
-		},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "d_proto_compile",
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//d:d"},
+				Plugins:          []string{"//d:d_plugin"},
 				WorkspaceExample: dWorkspaceTemplate,
 				BuildExample:     dProtoCompileExampleTemplate,
 				Doc:              "Generates D protobuf `.d` artifacts",

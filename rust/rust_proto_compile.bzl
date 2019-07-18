@@ -19,7 +19,7 @@ rust_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//rust:rust"),
+                Label("//rust:rust_plugin"),
             ],
         ),
         _prefix = attr.string(

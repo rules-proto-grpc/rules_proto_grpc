@@ -1,7 +1,8 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "csharp",
+    name = "csharp_plugin",
+    protoc_plugin_name = "csharp",
     outputs = ["{basename|pascal}.cs"],
     exclusions = [
         "google/protobuf",
@@ -10,7 +11,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_csharp",
+    name = "grpc_csharp_plugin",
     outputs = ["{basename|pascal}Grpc.cs"],
     tool = "@com_github_grpc_grpc//:grpc_csharp_plugin",
     exclusions = [

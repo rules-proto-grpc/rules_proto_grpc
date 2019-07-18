@@ -1,7 +1,7 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "closure",
+    name = "closure_plugin",
     options = [
         "import_style=closure",
         "mode=grpcweb",
@@ -14,7 +14,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "commonjs",
+    name = "commonjs_plugin",
     options = [
         "import_style=commonjs",
         "mode=grpcweb",
@@ -27,7 +27,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "commonjs_dts",
+    name = "commonjs_dts_plugin",
     options = [
         "import_style=commonjs+dts",
         "mode=grpcweb",
@@ -41,7 +41,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "ts",
+    name = "ts_plugin",
     options = [
         "import_style=typescript",
         "mode=grpcweb",

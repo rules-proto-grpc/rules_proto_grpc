@@ -19,8 +19,8 @@ java_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//java:java"),
-                Label("//java:grpc_java"),
+                Label("//java:java_plugin"),
+                Label("//java:grpc_java_plugin"),
             ],
         ),
         _prefix = attr.string(

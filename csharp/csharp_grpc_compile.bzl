@@ -19,8 +19,8 @@ csharp_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//csharp:csharp"),
-                Label("//csharp:grpc_csharp"),
+                Label("//csharp:csharp_plugin"),
+                Label("//csharp:grpc_csharp_plugin"),
             ],
         ),
         _prefix = attr.string(

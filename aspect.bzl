@@ -218,6 +218,11 @@ def proto_compile_aspect_impl(target, ctx):
         # <list<opaque>> Plugin input manifests
         plugin_input_manifests = None
 
+        # Get plugin name
+        plugin_name = plugin.name
+        if plugin.protoc_plugin_name:
+            plugin_name = plugin.protoc_plugin_name
+
         # Add plugin executable if not a built-in plugin
         plugin_tool = None
         if plugin.tool_executable:
@@ -342,7 +347,7 @@ def proto_compile_aspect_impl(target, ctx):
 
         # Add plugin if not built-in
         if plugin_tool:
-            args.add("--plugin=protoc-gen-{}={}".format(plugin.name, plugin_tool.path))
+            args.add("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool.path))
 
         # Add plugin out arg
         out_arg = out_file.path if out_file else full_outdir
@@ -350,7 +355,7 @@ def proto_compile_aspect_impl(target, ctx):
             out_arg = "{}:{}".format(",".join(
                 [option.replace("{name}", ctx.label.name) for option in plugin.options]
             ), out_arg)
-        args.add("--{}_out={}".format(plugin.name, out_arg))
+        args.add("--{}_out={}".format(plugin_name, out_arg))
 
         # Add source proto files as descriptor paths
         for proto in protos:

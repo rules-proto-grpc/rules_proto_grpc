@@ -19,8 +19,8 @@ rust_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//rust:rust"),
-                Label("//rust:grpc_rust"),
+                Label("//rust:rust_plugin"),
+                Label("//rust:grpc_rust_plugin"),
             ],
         ),
         _prefix = attr.string(

@@ -1,7 +1,7 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "go",
+    name = "go_plugin",
     options = ["paths=source_relative"],
     outputs = ["{protopath}.pb.go"],
     tool = "@com_github_golang_protobuf//protoc-gen-go",
@@ -12,7 +12,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_go",
+    name = "grpc_go_plugin",
     options = [
         "paths=source_relative",
         "plugins=grpc",

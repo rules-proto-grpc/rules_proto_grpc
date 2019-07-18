@@ -19,8 +19,8 @@ objc_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//objc:objc"),
-                Label("//objc:grpc_objc"),
+                Label("//objc:objc_plugin"),
+                Label("//objc:grpc_objc_plugin"),
             ],
         ),
         _prefix = attr.string(

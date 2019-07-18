@@ -19,7 +19,7 @@ go_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//go:go"),
+                Label("//go:go_plugin"),
             ],
         ),
         _prefix = attr.string(

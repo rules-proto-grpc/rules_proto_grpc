@@ -19,7 +19,7 @@ grpcjs_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/stackb/grpc.js:grpc.js"),
+                Label("//github.com/stackb/grpc.js:grpc.js_plugin"),
             ],
         ),
         _prefix = attr.string(

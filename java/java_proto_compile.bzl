@@ -19,7 +19,7 @@ java_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//java:java"),
+                Label("//java:java_plugin"),
             ],
         ),
         _prefix = attr.string(

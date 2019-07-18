@@ -19,8 +19,8 @@ php_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//php:php"),
-                Label("//php:grpc_php"),
+                Label("//php:php_plugin"),
+                Label("//php:grpc_php_plugin"),
             ],
         ),
         _prefix = attr.string(

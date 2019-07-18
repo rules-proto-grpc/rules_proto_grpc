@@ -26,9 +26,6 @@ type Language struct {
 	// Additional nodes about the language
 	Notes *template.Template
 
-	// List of available plugins
-	Plugins map[string]*Plugin
-
 	// Bazel build flags required / suggested
 	Flags []*Flag
 

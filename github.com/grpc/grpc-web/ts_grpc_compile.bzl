@@ -19,7 +19,7 @@ ts_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/grpc/grpc-web:ts"),
+                Label("//github.com/grpc/grpc-web:ts_plugin"),
             ],
         ),
         _prefix = attr.string(

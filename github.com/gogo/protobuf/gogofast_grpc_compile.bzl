@@ -19,7 +19,7 @@ gogofast_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/gogo/protobuf:grpc_gogofast"),
+                Label("//github.com/gogo/protobuf:grpc_gogofast_plugin"),
             ],
         ),
         _prefix = attr.string(

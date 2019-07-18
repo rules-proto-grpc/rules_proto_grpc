@@ -51,7 +51,7 @@ func makeClosure() *Language {
 				Name:             "closure_proto_compile",
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//closure:js"},
+				Plugins:          []string{"//closure:js_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Closure protobuf `.js` files",

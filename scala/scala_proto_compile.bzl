@@ -19,7 +19,7 @@ scala_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//scala:scala"),
+                Label("//scala:scala_plugin"),
             ],
         ),
         _prefix = attr.string(

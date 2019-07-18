@@ -19,8 +19,8 @@ python_grpclib_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//python:python"),
-                Label("//python:grpclib_python"),
+                Label("//python:python_plugin"),
+                Label("//python:grpclib_python_plugin"),
             ],
         ),
         _prefix = attr.string(

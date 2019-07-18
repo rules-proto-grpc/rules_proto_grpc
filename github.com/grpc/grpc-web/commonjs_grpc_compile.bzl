@@ -19,7 +19,7 @@ commonjs_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/grpc/grpc-web:commonjs"),
+                Label("//github.com/grpc/grpc-web:commonjs_plugin"),
             ],
         ),
         _prefix = attr.string(

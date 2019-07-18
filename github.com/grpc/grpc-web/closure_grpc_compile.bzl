@@ -19,7 +19,7 @@ closure_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/grpc/grpc-web:closure"),
+                Label("//github.com/grpc/grpc-web:closure_plugin"),
             ],
         ),
         _prefix = attr.string(

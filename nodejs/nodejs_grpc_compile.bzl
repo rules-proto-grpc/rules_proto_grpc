@@ -19,8 +19,8 @@ nodejs_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//nodejs:js"),
-                Label("//nodejs:grpc_js"),
+                Label("//nodejs:nodejs_plugin"),
+                Label("//nodejs:grpc_nodejs_plugin"),
             ],
         ),
         _prefix = attr.string(

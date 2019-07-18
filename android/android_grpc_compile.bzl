@@ -19,8 +19,8 @@ android_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//android:java"),
-                Label("//android:grpc_javalite"),
+                Label("//android:javalite_plugin"),
+                Label("//android:grpc_javalite_plugin"),
             ],
         ),
         _prefix = attr.string(

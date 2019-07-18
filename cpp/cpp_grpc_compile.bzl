@@ -19,8 +19,8 @@ cpp_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//cpp:cpp"),
-                Label("//cpp:grpc_cpp"),
+                Label("//cpp:cpp_plugin"),
+                Label("//cpp:grpc_cpp_plugin"),
             ],
         ),
         _prefix = attr.string(

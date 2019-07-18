@@ -109,22 +109,13 @@ func makeGo() *Language {
 		DisplayName: "Go",
 		Notes: mustTemplate("Rules for generating Go protobuf and gRPC `.go` files and libraries using [golang/protobuf](https://github.com/golang/protobuf). Libraries are created with `go_library` from [rules_go](https://github.com/bazelbuild/rules_go)"),
 		Flags: commonLangFlags,
-		Plugins: map[string]*Plugin{
-			"//go:go": &Plugin{
-				Tool: "@com_github_golang_protobuf//protoc-gen-go",
-			},
-			"//go:grpc_go": &Plugin{
-				Tool:    "@com_github_golang_protobuf//protoc-gen-go",
-				Options: []string{"plugins=grpc"},
-			},
-		},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "go_proto_compile",
 				Base:             "go",
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//go:go"},
+				Plugins:          []string{"//go:go_plugin"},
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Go protobuf `.go` artifacts",
@@ -135,7 +126,7 @@ func makeGo() *Language {
 				Base:             "go",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//go:grpc_go"},
+				Plugins:          []string{"//go:grpc_go_plugin"},
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Go protobuf+gRPC `.go` artifacts",

@@ -63,7 +63,6 @@ func makeGogo() *Language {
 		Name:    "gogo",
 		DisplayName: "Go (gogoprotobuf)",
 		Notes: mustTemplate("Rules for generating Go protobuf and gRPC `.go` files and libraries using [gogo/protobuf](https://github.com/gogo/protobuf). Libraries are created with `go_library` from [rules_go](https://github.com/bazelbuild/rules_go)"),
-		Plugins: make(map[string]*Plugin),
 		Flags: commonLangFlags,
 	}
 
@@ -80,17 +79,8 @@ func makeGogo() *Language {
 }
 
 func addGogoRules(language *Language, base string) {
-	protoPlugin := "//github.com/gogo/protobuf:" + base
-	grpcPlugin := "//github.com/gogo/protobuf:grpc_" + base
-
-	language.Plugins[protoPlugin] = &Plugin{
-		Tool: "@com_github_gogo_protobuf//protoc-gen-" + base,
-	}
-
-	language.Plugins[grpcPlugin] = &Plugin{
-		Tool:    "@com_github_gogo_protobuf//protoc-gen-" + base,
-		Options: []string{"plugins=grpc"},
-	}
+	protoPlugin := "//github.com/gogo/protobuf:" + base + "_plugin"
+	grpcPlugin := "//github.com/gogo/protobuf:grpc_" + base + "_plugin"
 
 	language.Rules = append(language.Rules,
 		&Rule{

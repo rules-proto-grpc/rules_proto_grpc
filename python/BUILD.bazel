@@ -1,7 +1,8 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "python",
+    name = "python_plugin",
+    protoc_plugin_name = "python",
     outputs = ["{protopath|python}_pb2.py"],
     exclusions = [
         "google/protobuf",
@@ -10,7 +11,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_python",
+    name = "grpc_python_plugin",
     outputs = ["{protopath|python}_pb2_grpc.py"],
     tool = "@com_github_grpc_grpc//:grpc_python_plugin",
     exclusions = [
@@ -20,7 +21,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpclib_python",
+    name = "grpclib_python_plugin",
     outputs = ["{protopath}_grpc.py"],
     tool = "//python/grpclib:plugin",
     visibility = ["//visibility:public"],

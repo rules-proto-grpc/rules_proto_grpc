@@ -19,7 +19,7 @@ swift_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//swift:swift"),
+                Label("//swift:swift_plugin"),
             ],
         ),
         _prefix = attr.string(

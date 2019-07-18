@@ -19,8 +19,8 @@ ruby_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//ruby:ruby"),
-                Label("//ruby:grpc_ruby"),
+                Label("//ruby:ruby_plugin"),
+                Label("//ruby:grpc_ruby_plugin"),
             ],
         ),
         _prefix = attr.string(

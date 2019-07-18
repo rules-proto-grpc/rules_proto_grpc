@@ -19,7 +19,7 @@ php_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//php:php"),
+                Label("//php:php_plugin"),
             ],
         ),
         _prefix = attr.string(

@@ -19,7 +19,7 @@ python_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//python:python"),
+                Label("//python:python_plugin"),
             ],
         ),
         _prefix = attr.string(

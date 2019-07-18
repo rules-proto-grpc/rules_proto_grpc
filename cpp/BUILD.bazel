@@ -1,7 +1,8 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "cpp",
+    name = "cpp_plugin",
+    protoc_plugin_name = "cpp",
     outputs = [
         "{protopath}.pb.h",
         "{protopath}.pb.cc",
@@ -10,7 +11,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_cpp",
+    name = "grpc_cpp_plugin",
     options = [
         "generate_mock_code=true",
     ],

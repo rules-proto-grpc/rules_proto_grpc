@@ -19,7 +19,7 @@ objc_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//objc:objc"),
+                Label("//objc:objc_plugin"),
             ],
         ),
         _prefix = attr.string(

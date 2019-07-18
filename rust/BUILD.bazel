@@ -1,7 +1,7 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "rust",
+    name = "rust_plugin",
     # Use the proto basename and pipe the value to the rust_keyword function.
     # Ths function will append '_pb' if the basename is a rust keyword.
     outputs = ["{basename|rust_keyword}.rs"],
@@ -10,7 +10,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_rust",
+    name = "grpc_rust_plugin",
     # Use the proto basename and pipe the value to the rust_keyword function.
     # Ths function will append '_pb' if the basename is a rust keyword.
     outputs = ["{basename|rust_keyword}_grpc.rs"],

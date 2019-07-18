@@ -1,14 +1,15 @@
 load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "java",
+    name = "javalite_plugin",
+    protoc_plugin_name = "java",
     out = "{name}.jar",
     options = ["lite"],
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
-    name = "grpc_javalite",
+    name = "grpc_javalite_plugin",
     out = "{name}_grpc.jar",
     options = ["lite"],
     tool = "@io_grpc_grpc_java//compiler:grpc_java_plugin",

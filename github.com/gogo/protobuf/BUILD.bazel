@@ -9,7 +9,7 @@ wkt_mappings = {
 }
 
 [proto_plugin(
-    name = name,
+    name = name + "_plugin",
     outputs = ["{protopath}.pb.go"],
     tool = "@com_github_gogo_protobuf//protoc-gen-" + name,
     options = ["M{}={}".format(k, v) for k, v in wkt_mappings.items()],
@@ -26,7 +26,7 @@ wkt_mappings = {
 ]]
 
 [proto_plugin(
-    name = "grpc_" + name,
+    name = "grpc_" + name + "_plugin",
     options = ["plugins=grpc"],
     outputs = ["{protopath}.pb.go"],
     tool = "@com_github_gogo_protobuf//protoc-gen-" + name,

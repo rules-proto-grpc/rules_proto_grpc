@@ -81,7 +81,7 @@ func makeGrpcJs() *Language {
 				Name:             "grpcjs_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//github.com/stackb/grpc.js:grpc.js"},
+				Plugins:          []string{"//github.com/stackb/grpc.js:grpc.js_plugin"},
 				WorkspaceExample: grpcjsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates protobuf closure grpc `.js` files",

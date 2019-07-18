@@ -2,7 +2,7 @@ load("//:plugin.bzl", "proto_plugin")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_binary", "scala_library", "scala_test")
 
 proto_plugin(
-    name = "scala",
+    name = "scala_plugin",
     # Use the proto basename and pipe the value to the scala_keyword function.
     # Ths function will append '_pb' if the basename is a scala keyword.
     out = "{name}.jar",
@@ -11,7 +11,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_scala",
+    name = "grpc_scala_plugin",
     # Use the proto basename and pipe the value to the scala_keyword function.
     # Ths function will append '_pb' if the basename is a scala keyword.
     out = "{name}.jar",

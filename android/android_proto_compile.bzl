@@ -19,7 +19,7 @@ android_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//android:java"),
+                Label("//android:javalite_plugin"),
             ],
         ),
         _prefix = attr.string(

@@ -19,7 +19,7 @@ gogofaster_proto_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/gogo/protobuf:gogofaster"),
+                Label("//github.com/gogo/protobuf:gogofaster_plugin"),
             ],
         ),
         _prefix = attr.string(
