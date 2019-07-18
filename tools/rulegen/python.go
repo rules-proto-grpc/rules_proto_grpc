@@ -193,6 +193,7 @@ func makePython() *Language {
 				WorkspaceExample: pythonGrpcLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only)",
+				Attrs:            aspectProtoCompileAttrs,
 			},
 		},
 	}
