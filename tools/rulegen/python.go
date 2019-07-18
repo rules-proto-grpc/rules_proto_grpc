@@ -17,13 +17,13 @@ load("@com_apt_itude_rules_pip//rules:repository.bzl", "pip_repository")
 pip_repository(
     name = "grpc_py2_deps",
     python_interpreter = "python2",
-    requirements = "@rules_proto_grpc//python/requirements:grpc.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 pip_repository(
     name = "grpc_py3_deps",
     python_interpreter = "python3",
-    requirements = "@rules_proto_grpc//python/requirements:grpc.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
