@@ -311,28 +311,20 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
 	out := &LineWriter{}
 
-	badgeImageURL := "https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master"
-
 	out.tpl(header, data)
 	out.ln()
 
 	out.w("## Rules")
 	out.ln()
 
-	out.w("| Status | Language | Rule | Description")
-	out.w("| ---    | ---: | :--- | :--- |")
+	out.w("| Language | Rule | Description")
+	out.w("| ---: | :--- | :--- |")
 	for _, lang := range languages {
 		for _, rule := range lang.Rules {
-			var ciLink string
-			if doTestOnAnyPlaform(lang, rule) {
-				ciLink = fmt.Sprintf("[![Build Status](%s)](https://buildkite.com/bazel/rules-proto)", badgeImageURL)
-			} else {
-				ciLink = "-"
-			}
 			dirLink := fmt.Sprintf("[%s](/%s)", lang.DisplayName , lang.Dir)
 			ruleLink := fmt.Sprintf("[%s](/%s#%s)", rule.Name, lang.Dir, rule.Name)
 			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
-			out.w("| %s | %s | %s | %s (%s) |", ciLink, dirLink, ruleLink, rule.Doc, exampleLink)
+			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
 		}
 	}
 	out.ln()
