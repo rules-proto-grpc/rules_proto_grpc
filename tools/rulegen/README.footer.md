@@ -257,5 +257,5 @@ this project therefore maintains the terms of that license.
 
 ## Contributing
 
-Contributions are very welcome. Please see [CONTRIBUTING](/.github/CONTRIBUTING)
+Contributions are very welcome. Please see [CONTRIBUTING](/.github/CONTRIBUTING.md)
 for further details.

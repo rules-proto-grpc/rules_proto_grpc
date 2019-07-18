@@ -87,9 +87,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/94c40d53a8866a8b6db4303b0cb598c9bccdf077.tar.gz"],
-    sha256 = "395408a3dc9c3db2b5c200b8722a13a60898c861633b99e6e250186adffd1370",
-    strip_prefix = "rules_proto_grpc-94c40d53a8866a8b6db4303b0cb598c9bccdf077",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/4ab41f4664db1cdebc93104b46c7176470bc57dc.tar.gz"],
+    sha256 = "72ceb16321f83e2923158a11e5582231437a580ba548b0c8190af3edbf03dbc8",
+    strip_prefix = "rules_proto_grpc-4ab41f4664db1cdebc93104b46c7176470bc57dc",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
@@ -439,5 +439,5 @@ this project therefore maintains the terms of that license.
 
 ## Contributing
 
-Contributions are very welcome. Please see [CONTRIBUTING](/.github/CONTRIBUTING)
+Contributions are very welcome. Please see [CONTRIBUTING](/.github/CONTRIBUTING.md)
 for further details.
