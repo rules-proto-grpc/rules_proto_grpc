@@ -1,8 +1,11 @@
-# Protobuf and gRPC rules for [Bazel](https://bazel.build)
+<div align="center">
+    <img src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo-1024.png" width=200>
+    <h1>Protobuf and gRPC rules for <a href="https://bazel.build">Bazel</a></h1>
+</div>
 
-Bazel rules for building Protocol Buffers and gRPC :rocket:
+[Bazel](https://bazel.build) rules for building [Protocol Buffers](https://developers.google.com/protocol-buffers) ± [gRPC](https://grpc.io/) code and libraries :rocket:
 
-[![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto)
+[![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) [![License](https://img.shields.io/github/license/rules-proto-grpc/rules_proto_grpc.svg)](/LICENSE)
 
 
 ## Contents:

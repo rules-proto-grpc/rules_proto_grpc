@@ -1,8 +1,11 @@
-# Protobuf and gRPC rules for [Bazel](https://bazel.build)
+<div align="center">
+    <img src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo-1024.png" width=200>
+    <h1>Protobuf and gRPC rules for <a href="https://bazel.build">Bazel</a></h1>
+</div>
 
-Bazel rules for building Protocol Buffers and gRPC :rocket:
+[Bazel](https://bazel.build) rules for building [Protocol Buffers](https://developers.google.com/protocol-buffers) ± [gRPC](https://grpc.io/) code and libraries :rocket:
 
-[![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto)
+[![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) [![License](https://img.shields.io/github/license/rules-proto-grpc/rules_proto_grpc.svg)](/LICENSE)
 
 
 ## Contents:
@@ -87,9 +90,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/b613a94b06f0069f36f9cd454594ee9833e3530c.tar.gz"],
-    sha256 = "41c4427812cb60d491be0607dcd275313b38f57c69f9dfb943be778af49d5b55",
-    strip_prefix = "rules_proto_grpc-b613a94b06f0069f36f9cd454594ee9833e3530c",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/8c8aab86c761ba762477128f121e12974e14b497.tar.gz"],
+    sha256 = "b635306a7b80fcc7a76bf81582693fefaf5a3b4e89eab09d5d2cd25186781a18",
+    strip_prefix = "rules_proto_grpc-8c8aab86c761ba762477128f121e12974e14b497",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
