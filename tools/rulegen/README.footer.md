@@ -257,4 +257,5 @@ this project therefore maintains the terms of that license.
 
 ## Contributing
 
-Contributions welcome; please create Issues or PRs.
+Contributions are very welcome. Please see [CONTRIBUTING](/.github/CONTRIBUTING)
+for further details.
