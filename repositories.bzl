@@ -205,6 +205,13 @@ VERSIONS = {
         "ref": "ce667087818553cdc4b1a2258fc53df917c4f87c", # 2019-07-07
         "sha256": "5cabd6bfb9cef095d0d076faf5e7acd5698f7172e803059c21c4e700a07b131b",
     },
+    "subpar": {
+        "type": "github",
+        "org": "google",
+        "repo": "subpar",
+        "ref": "2.0.0",
+        "sha256": "b80297a1b8d38027a86836dbadc22f55dc3ecad56728175381aa6330705ac10f",
+    },
     "six": {
         "type": "http",
         "urls": ["https://pypi.python.org/packages/source/s/six/six-1.12.0.tar.gz"],
@@ -435,6 +442,9 @@ def build_bazel_rules_nodejs(**kwargs):
 #
 def com_apt_itude_rules_pip(**kwargs):
     _generic_dependency("com_apt_itude_rules_pip", **kwargs)
+
+def subpar(**kwargs):
+    _generic_dependency("subpar", **kwargs)
 
 def six(**kwargs):
     _generic_dependency("six", **kwargs)
