@@ -87,9 +87,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/d16ed41d07d8e8243c5d7e8e6f2fbd5d5ea66255.tar.gz"],
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/36068e46a785c2cbadc87ca229e0a439e25a0694.tar.gz"],
     sha256 = "395408a3dc9c3db2b5c200b8722a13a60898c861633b99e6e250186adffd1370",
-    strip_prefix = "rules_proto_grpc-d16ed41d07d8e8243c5d7e8e6f2fbd5d5ea66255",
+    strip_prefix = "rules_proto_grpc-36068e46a785c2cbadc87ca229e0a439e25a0694",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
@@ -137,8 +137,10 @@ additional workspace dependencies that may be required.
 | [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [PHP](/php) | [php_grpc_compile](/php#php_grpc_compile) | Generates PHP protobuf+gRPC `.php` artifacts ([example](/example/php/php_grpc_compile)) |
 | [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Python](/python) | [python_proto_compile](/python#python_proto_compile) | Generates Python protobuf `.py` artifacts ([example](/example/python/python_proto_compile)) |
 | [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Python](/python) | [python_grpc_compile](/python#python_grpc_compile) | Generates Python protobuf+gRPC `.py` artifacts ([example](/example/python/python_grpc_compile)) |
+| [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Python](/python) | [python_grpclib_compile](/python#python_grpclib_compile) | Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only) ([example](/example/python/python_grpclib_compile)) |
 | [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Python](/python) | [python_proto_library](/python#python_proto_library) | Generates a Python protobuf library using `py_library` ([example](/example/python/python_proto_library)) |
 | [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Python](/python) | [python_grpc_library](/python#python_grpc_library) | Generates a Python protobuf+gRPC library using `py_library` ([example](/example/python/python_grpc_library)) |
+| [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Python](/python) | [python_grpclib_library](/python#python_grpclib_library) | Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only) ([example](/example/python/python_grpclib_library)) |
 | [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Ruby](/ruby) | [ruby_proto_compile](/ruby#ruby_proto_compile) | Generates Ruby protobuf `.rb` artifacts ([example](/example/ruby/ruby_proto_compile)) |
 | [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Ruby](/ruby) | [ruby_grpc_compile](/ruby#ruby_grpc_compile) | Generates Ruby protobuf+gRPC `.rb` artifacts ([example](/example/ruby/ruby_grpc_compile)) |
 | [![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) | [Ruby](/ruby) | [ruby_proto_library](/ruby#ruby_proto_library) | Generates a Ruby protobuf library using `ruby_library` from `rules_ruby` ([example](/example/ruby/ruby_proto_library)) |

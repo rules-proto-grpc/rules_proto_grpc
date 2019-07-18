@@ -18,3 +18,10 @@ proto_plugin(
     ],
     visibility = ["//visibility:public"],
 )
+
+proto_plugin(
+    name = "grpclib_python",
+    outputs = ["{protopath}_grpc.py"],
+    tool = "//python/grpclib:plugin",
+    visibility = ["//visibility:public"],
+)

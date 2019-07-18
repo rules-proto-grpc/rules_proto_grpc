@@ -1,0 +1,18 @@
+load("@subpar//:subpar.bzl", "par_binary")
+
+# Create py binary for grpclib plugin
+# Use subpar to bundle plugin for external execution
+par_binary(
+    name = "plugin",
+    srcs = ["plugin.py"],
+    main = "plugin.py",
+    deps = [
+        "@com_google_protobuf//:protobuf_python",
+        "@grpc_py3_deps//grpclib",
+    ],
+    python_version = "PY3",
+    srcs_version = "PY3",
+    legacy_create_init = False,
+    zip_safe = False,
+    visibility = ["//python:__subpackages__"]
+)

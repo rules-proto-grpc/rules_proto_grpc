@@ -1,0 +1,6 @@
+load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_compile")
+
+python_grpclib_compile(
+    name = "greeter_python_grpc",
+    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+)

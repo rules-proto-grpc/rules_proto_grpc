@@ -93,12 +93,40 @@ GRPC_PYTHON3_DEPS = [
 # Alias
 py_grpc_library = python_grpc_library`)
 
+var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
+
+def python_grpclib_library(**kwargs):
+    # Compile protos
+    name_pb = kwargs.get("name") + "_pb"
+    python_grpclib_compile(
+        name = name_pb,
+        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+    )
+
+    # Create {{ .Lang.Name }} library
+    native.py_library(
+        name = kwargs.get("name"),
+        srcs = [name_pb],
+        deps = [
+            "@com_google_protobuf//:protobuf_python",
+        ] + GRPC_DEPS,
+        imports = [name_pb],
+        visibility = kwargs.get("visibility"),
+    )
+
+GRPC_DEPS = [
+    "@grpc_py3_deps//grpclib"
+]
+
+# Alias
+py_grpclib_library = python_grpclib_library`)
+
 func makePython() *Language {
 	return &Language{
 		Dir:   "python",
 		Name:  "python",
 		DisplayName: "Python",
-		Notes: mustTemplate("Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native `py_library`"),
+		Notes: mustTemplate("Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with the Bazel native `py_library`"),
 		Flags: commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
@@ -119,6 +147,16 @@ func makePython() *Language {
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf+gRPC `.py` artifacts",
+				Attrs:            aspectProtoCompileAttrs,
+			},
+			&Rule{
+				Name:             "python_grpclib_compile",
+				Kind:             "grpc",
+				Implementation:   aspectRuleTemplate,
+				Plugins:          []string{"//python:python", "//python:grpclib_python"},
+				WorkspaceExample: pythonGrpcLibraryWorkspaceTemplate,
+				BuildExample:     grpcCompileExampleTemplate,
+				Doc:              "Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only)",
 				Attrs:            aspectProtoCompileAttrs,
 			},
 			&Rule{
@@ -147,6 +185,14 @@ func makePython() *Language {
 					},
 				}...),
 				SkipTestPlatforms: []string{"windows"},
+			},
+			&Rule{
+				Name:             "python_grpclib_library",
+				Kind:             "grpc",
+				Implementation:   pythonGrpclibLibraryRuleTemplate,
+				WorkspaceExample: pythonGrpcLibraryWorkspaceTemplate,
+				BuildExample:     grpcLibraryExampleTemplate,
+				Doc:              "Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only)",
 			},
 		},
 	}

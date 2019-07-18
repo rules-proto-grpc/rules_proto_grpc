@@ -851,6 +851,30 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
+  python_python_grpclib_compile_ubuntu1604:
+    name: 'python: python_grpclib_compile'
+    platform: ubuntu1604
+    build_targets:
+      - "//..."
+    working_directory: example/python/python_grpclib_compile
+  python_python_grpclib_compile_ubuntu1804:
+    name: 'python: python_grpclib_compile'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/python/python_grpclib_compile
+  python_python_grpclib_compile_windows:
+    name: 'python: python_grpclib_compile'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/python/python_grpclib_compile
+  python_python_grpclib_compile_macos:
+    name: 'python: python_grpclib_compile'
+    platform: macos
+    build_targets:
+      - "//..."
+    working_directory: example/python/python_grpclib_compile
   python_python_proto_library_ubuntu1604:
     name: 'python: python_proto_library'
     platform: ubuntu1604
@@ -893,6 +917,30 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_library
+  python_python_grpclib_library_ubuntu1604:
+    name: 'python: python_grpclib_library'
+    platform: ubuntu1604
+    build_targets:
+      - "//..."
+    working_directory: example/python/python_grpclib_library
+  python_python_grpclib_library_ubuntu1804:
+    name: 'python: python_grpclib_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/python/python_grpclib_library
+  python_python_grpclib_library_windows:
+    name: 'python: python_grpclib_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/python/python_grpclib_library
+  python_python_grpclib_library_macos:
+    name: 'python: python_grpclib_library'
+    platform: macos
+    build_targets:
+      - "//..."
+    working_directory: example/python/python_grpclib_library
   ruby_ruby_proto_compile_ubuntu1604:
     name: 'ruby: ruby_proto_compile'
     platform: ubuntu1604
