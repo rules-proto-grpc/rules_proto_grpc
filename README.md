@@ -3,9 +3,10 @@
     <h1>Protobuf and gRPC rules for <a href="https://bazel.build">Bazel</a></h1>
 </div>
 
-[Bazel](https://bazel.build) rules for building [Protocol Buffers](https://developers.google.com/protocol-buffers) ± [gRPC](https://grpc.io/) code and libraries from native [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library) targets :rocket:
-
-[![Build Status](https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master)](https://buildkite.com/bazel/rules-proto) [![License](https://img.shields.io/github/license/rules-proto-grpc/rules_proto_grpc.svg)](/LICENSE)
+<div align="center">
+    <a href="https://bazel.build">Bazel</a> rules for building <a href="https://developers.google.com/protocol-buffers">Protocol Buffers</a> ± <a href="https://grpc.io/">gRPC</a> code and libraries from <a href="https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library">proto_library</a> targets<br><br>
+    <a href="https://buildkite.com/bazel/rules-proto"><img src="https://badge.buildkite.com/5980cc1d55f96e721bd9a7bd5dc1e40a096a7c30bc13117910.svg?branch=master"></a> <img src="https://img.shields.io/github/license/rules-proto-grpc/rules_proto_grpc.svg">
+</div>
 
 
 ## Contents:
@@ -90,9 +91,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/8b1ac77b41ee16737f96c8e4dd9e4f94659688be.tar.gz"],
-    sha256 = "5d6e9173a6c00c58fd94fb0a21f2a35107d95aef7a91af4a178bbba2573072b6",
-    strip_prefix = "rules_proto_grpc-8b1ac77b41ee16737f96c8e4dd9e4f94659688be",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/96bd43a296effc1471bd118557065f063560cd2b.tar.gz"],
+    sha256 = "bf788dd42f2d074461dc781180158703f8da8df191a62077c2aaaeca7ac0fea1",
+    strip_prefix = "rules_proto_grpc-96bd43a296effc1471bd118557065f063560cd2b",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
