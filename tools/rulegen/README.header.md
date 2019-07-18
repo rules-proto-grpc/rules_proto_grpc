@@ -80,7 +80,7 @@ and add aspect-based compilation to all languages, allowing for all
 
 ## Installation
 
-Add `rules_proto` your `WORKSPACE` file:
+Add `rules_proto_grpc` your `WORKSPACE` file:
 
 ```python
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")

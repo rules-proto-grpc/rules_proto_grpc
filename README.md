@@ -80,16 +80,16 @@ and add aspect-based compilation to all languages, allowing for all
 
 ## Installation
 
-Add `rules_proto` your `WORKSPACE` file:
+Add `rules_proto_grpc` your `WORKSPACE` file:
 
 ```python
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/2f8dc7ea58d6c79471bfc876f8e46c20449e0c6c.tar.gz"],
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/de1504ea8e528f3f5c2819fbe8e7331eeb6ce348.tar.gz"],
     sha256 = "395408a3dc9c3db2b5c200b8722a13a60898c861633b99e6e250186adffd1370",
-    strip_prefix = "rules_proto_grpc-2f8dc7ea58d6c79471bfc876f8e46c20449e0c6c",
+    strip_prefix = "rules_proto_grpc-de1504ea8e528f3f5c2819fbe8e7331eeb6ce348",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
@@ -320,8 +320,8 @@ The repository root directory contains the base rule defintions:
   a particular proto plugin.
 
 * `aspect.bzl`: Contains the implementation of the compilation aspect. This is
-  shared by all rules and is the heart of `rules_proto`; it calls `protoc` with
-  a given list of plugins and generates output files.
+  shared by all rules and is the heart of `rules_proto_grpc`; it calls `protoc`
+  with a given list of plugins and generates output files.
 
 Additional protoc plugins and their rules are scoped to the github repository
 name where the plugin resides.

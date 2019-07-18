@@ -138,8 +138,8 @@ The repository root directory contains the base rule defintions:
   a particular proto plugin.
 
 * `aspect.bzl`: Contains the implementation of the compilation aspect. This is
-  shared by all rules and is the heart of `rules_proto`; it calls `protoc` with
-  a given list of plugins and generates output files.
+  shared by all rules and is the heart of `rules_proto_grpc`; it calls `protoc`
+  with a given list of plugins and generates output files.
 
 Additional protoc plugins and their rules are scoped to the github repository
 name where the plugin resides.
