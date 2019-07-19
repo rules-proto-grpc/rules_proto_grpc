@@ -8,7 +8,7 @@ par_binary(
     main = "plugin.py",
     deps = [
         "@com_google_protobuf//:protobuf_python",
-        "@grpc_py3_deps//grpclib",
+        "@rules_proto_grpc_py3_deps//grpclib",
     ],
     python_version = "PY3",
     srcs_version = "PY3",

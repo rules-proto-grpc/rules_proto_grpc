@@ -15,13 +15,13 @@ pip_rules_dependencies()
 load("@com_apt_itude_rules_pip//rules:repository.bzl", "pip_repository")
 
 pip_repository(
-    name = "grpc_py2_deps",
+    name = "rules_proto_grpc_py2_deps",
     python_interpreter = "python2",
     requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 pip_repository(
-    name = "grpc_py3_deps",
+    name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "@rules_proto_grpc//python:requirements.txt",
 )`)
@@ -83,11 +83,11 @@ def python_grpc_library(**kwargs):
     )
 
 GRPC_PYTHON2_DEPS = [
-    "@grpc_py2_deps//grpcio"
+    "@rules_proto_grpc_py2_deps//grpcio"
 ]
 
 GRPC_PYTHON3_DEPS = [
-    "@grpc_py3_deps//grpcio"
+    "@rules_proto_grpc_py3_deps//grpcio"
 ]
 
 # Alias
@@ -115,7 +115,7 @@ def python_grpclib_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@grpc_py3_deps//grpclib"
+    "@rules_proto_grpc_py3_deps//grpclib"
 ]
 
 # Alias

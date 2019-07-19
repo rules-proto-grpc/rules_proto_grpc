@@ -20,7 +20,7 @@ def python_grpclib_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@grpc_py3_deps//grpclib"
+    "@rules_proto_grpc_py3_deps//grpclib"
 ]
 
 # Alias

@@ -29,11 +29,11 @@ def python_grpc_library(**kwargs):
     )
 
 GRPC_PYTHON2_DEPS = [
-    "@grpc_py2_deps//grpcio"
+    "@rules_proto_grpc_py2_deps//grpcio"
 ]
 
 GRPC_PYTHON3_DEPS = [
-    "@grpc_py3_deps//grpcio"
+    "@rules_proto_grpc_py3_deps//grpcio"
 ]
 
 # Alias
