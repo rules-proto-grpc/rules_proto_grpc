@@ -107,6 +107,12 @@ access that rule by adding `_pb` at the end of the rule name, like `bazel build
 //example/proto:cpp_thing_proto_pb`.
 
 
+## Migration
+
+For users migrating from the [stackb/rules_proto](https://github.com/stackb/rules_proto)
+rules, please see the help at [MIGRATION.md](/docs/MIGRATION.md)
+
+
 ## Developers
 
 ### Code Layout
@@ -160,11 +166,12 @@ Briefly, here's how the rules work:
 
 1. Using the `proto_library` graph, an aspect walks through the [`ProtoInfo`](https://docs.bazel.build/versions/master/skylark/lib/ProtoInfo.html)
    providers on the `deps` attribute to `{lang}_{proto|grpc}_compile`. This
-   finds all the directly and transitively required proto files., along with
+   finds all the directly and transitively required proto files, along with
    their options.
 
 2. At each node visited by the aspect, `protoc` is invoked with the relevant
-   plugins and options to generate the desired outputs.
+   plugins and options to generate the desired outputs. The aspect uses only
+   the generated proto descriptors from the `ProtoInfo` providers.
 
 3. Once the aspect stage is complete, all generated outputs are optionally
    gathered into a final output tree.
@@ -252,10 +259,11 @@ def example_compile(**kwargs):
 
 This project is derived from [stackb/rules_proto](https://github.com/stackb/rules_proto)
 under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license and
-this project therefore maintains the terms of that license.
+this project therefore maintains the terms of that license. An overview of the
+changes can be found at [MIGRATION.md](/docs/MIGRATION.md).
 
 
 ## Contributing
 
-Contributions are very welcome. Please see [CONTRIBUTING](/.github/CONTRIBUTING.md)
+Contributions are very welcome. Please see [CONTRIBUTING.md](/docs/CONTRIBUTING.md)
 for further details.

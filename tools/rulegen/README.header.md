@@ -34,6 +34,7 @@
     - [Scala](/scala/README.md)
     - [Swift](/swift/README.md)
 - [Example Usage](#example-usage)
+- [Migration](#migration)
 - [Developers](#developers)
     - [Code Layout](#code-layout)
     - [Rule Generation](#rule-generation)

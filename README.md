@@ -34,6 +34,7 @@
     - [Scala](/scala/README.md)
     - [Swift](/swift/README.md)
 - [Example Usage](#example-usage)
+- [Migration](#migration)
 - [Developers](#developers)
     - [Code Layout](#code-layout)
     - [Rule Generation](#rule-generation)
@@ -91,9 +92,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/2b2f15b81a2913ef1283ec85cda4e52481081c2a.tar.gz"],
-    sha256 = "dfd757ebd9d65218ea3a45ed2f782d71e183c83e7cb2babd2e46657e75b28bbe",
-    strip_prefix = "rules_proto_grpc-2b2f15b81a2913ef1283ec85cda4e52481081c2a",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/b08d568056410a3bb290c004005afb420452d5f8.tar.gz"],
+    sha256 = "8367b214d51767403b70d072531ca93c88de735f9290e0208ed9fba1116de9ae",
+    strip_prefix = "rules_proto_grpc-b08d568056410a3bb290c004005afb420452d5f8",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
@@ -293,6 +294,12 @@ access that rule by adding `_pb` at the end of the rule name, like `bazel build
 //example/proto:cpp_thing_proto_pb`.
 
 
+## Migration
+
+For users migrating from the [stackb/rules_proto](https://github.com/stackb/rules_proto)
+rules, please see the help at [MIGRATION.md](/docs/MIGRATION.md)
+
+
 ## Developers
 
 ### Code Layout
@@ -346,11 +353,12 @@ Briefly, here's how the rules work:
 
 1. Using the `proto_library` graph, an aspect walks through the [`ProtoInfo`](https://docs.bazel.build/versions/master/skylark/lib/ProtoInfo.html)
    providers on the `deps` attribute to `{lang}_{proto|grpc}_compile`. This
-   finds all the directly and transitively required proto files., along with
+   finds all the directly and transitively required proto files, along with
    their options.
 
 2. At each node visited by the aspect, `protoc` is invoked with the relevant
-   plugins and options to generate the desired outputs.
+   plugins and options to generate the desired outputs. The aspect uses only
+   the generated proto descriptors from the `ProtoInfo` providers.
 
 3. Once the aspect stage is complete, all generated outputs are optionally
    gathered into a final output tree.
@@ -438,10 +446,11 @@ def example_compile(**kwargs):
 
 This project is derived from [stackb/rules_proto](https://github.com/stackb/rules_proto)
 under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license and
-this project therefore maintains the terms of that license.
+this project therefore maintains the terms of that license. An overview of the
+changes can be found at [MIGRATION.md](/docs/MIGRATION.md).
 
 
 ## Contributing
 
-Contributions are very welcome. Please see [CONTRIBUTING](/.github/CONTRIBUTING.md)
+Contributions are very welcome. Please see [CONTRIBUTING.md](/docs/CONTRIBUTING.md)
 for further details.
