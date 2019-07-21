@@ -13,8 +13,8 @@ help where possible.
 ## General
 
 - All languages are now compiled by the aspect-based compilation described in
-  [How-it-works](/#how-it-works). Due to constraints on Bazel aspects, this
-  means the `plugin_options` attribute on rules is no longer supportable;
+  [How-it-works](/README.md#how-it-works). Due to constraints on Bazel aspects,
+  this means the `plugin_options` attribute on rules is no longer supportable;
   although this attribute is still supported at the plugin level
 - The layout of `.bzl` files to `load()` has been changed. Rules are now in
   `//{lang}:defs.bzl` and workspace rules are in `//{lang}:repositories.bzl`.
