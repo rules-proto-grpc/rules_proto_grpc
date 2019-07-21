@@ -22,6 +22,7 @@ android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 grpc_java_repositories(
+    omit_bazel_skylib = True,
     omit_com_google_protobuf = True,
     omit_com_google_protobuf_javalite = True,
     omit_net_zlib = True
@@ -59,7 +60,11 @@ load("//closure:repositories.bzl", "closure_repos")
 closure_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-closure_repositories()
+closure_repositories(
+    omit_bazel_skylib = True,
+    omit_com_google_protobuf = True,
+    omit_zlib = True,
+)
 
 
 #

@@ -1,6 +1,5 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
-load("//internal:utils.bzl", "github_archive", "get_ref", "get_sha256")
 
 # Versions
 VERSIONS = {
@@ -277,30 +276,65 @@ def _generic_dependency(name, **kwargs):
         fail("Name {} not in VERSIONS".format(name))
     dep = VERSIONS[name]
 
+    existing_rules = native.existing_rules()
     if dep["type"] == "github":
-        if name not in native.existing_rules():
-            ref = get_ref(name, dep["ref"], kwargs)
-            sha256 = get_sha256(name, dep["sha256"], kwargs)
-            github_archive(name, dep["org"], dep["repo"], ref, sha256)
-        else:
-            pass
-            #print("Dependency '{}' has already been declared, skipping".format(name))
+        # Resolve ref and sha256
+        ref = kwargs.get(name + "_ref", dep["ref"])
+        sha256 = kwargs.get(name + "_sha256", dep["sha256"])
+
+        # Fix GitHub naming quirk in path
+        strippedRef = ref
+        if strippedRef.startswith("v"):
+            strippedRef = ref[1:]
+
+        # Generate URLs
+        urls = [
+            "https://mirror.bazel.build/github.com/{}/{}/archive/{}.tar.gz".format(dep["org"], dep["repo"], ref),
+            "https://github.com/{}/{}/archive/{}.tar.gz".format(dep["org"], dep["repo"], ref),
+        ]
+
+        # Check for existing rule
+        if name not in existing_rules:
+            http_archive(
+                name = name,
+                strip_prefix = dep["repo"] + "-" + strippedRef,
+                urls = urls,
+                sha256 = sha256,
+            )
+        elif existing_rules[name]["kind"] != "http_archive":
+            print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
+                name, existing_rules[name]["kind"],
+            ))
+        elif existing_rules[name]["urls"] != tuple(urls):
+            print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
+                name, existing_rules[name]["urls"], tuple(urls)
+            ))
 
     elif dep["type"] == "http":
-        if name not in native.existing_rules():
+        if name not in existing_rules:
             args = {k: v for k, v in dep.items() if k in ["urls", "sha256", "strip_prefix", "build_file", "build_file_content"]}
             http_archive(name = name, **args)
-        else:
-            pass
-            #print("Dependency '{}' has already been declared, skipping".format(name))
+        elif existing_rules[name]["kind"] != "http_archive":
+            print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
+                name, existing_rules[name]["kind"],
+            ))
+        elif existing_rules[name]["urls"] != tuple(dep["urls"]):
+            print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
+                name, existing_rules[name]["urls"], tuple(dep["urls"])
+            ))
 
     elif dep["type"] == "jvm_maven_import_external":
-        if name not in native.existing_rules():
+        if name not in existing_rules:
             args = {k: v for k, v in dep.items() if k in ["artifact", "server_urls", "artifact_sha256"]}
             jvm_maven_import_external(name = name, **args)
-        else:
-            pass
-            #print("Dependency '{}' has already been declared, skipping".format(name))
+        elif existing_rules[name]["kind"] != "jvm_import_external":
+            print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected jvm_import_external".format(
+                name, existing_rules[name]["kind"],
+            ))
+        elif existing_rules[name]["artifact_sha256"] != dep["artifact_sha256"]:
+            print("Dependency '{}' has already been declared with a different version. Found artifact_sha256={}, expected {}".format(
+                name, existing_rules[name]["artifact_sha256"], dep["artifact_sha256"]
+            ))
 
     else:
         fail("Unknown dependency type {}".format(dep))
