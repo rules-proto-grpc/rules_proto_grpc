@@ -13,7 +13,7 @@ help where possible.
 ## General
 
 - All languages are now compiled by the aspect-based compilation described in
-  [How-it-works](#how-it-works). Due to constraints on Bazel aspects, this
+  [How-it-works](/#how-it-works). Due to constraints on Bazel aspects, this
   means the `plugin_options` attribute on rules is no longer supportable;
   although this attribute is still supported at the plugin level
 - The layout of `.bzl` files to `load()` has been changed. Rules are now in
@@ -32,6 +32,8 @@ help where possible.
 - Test workspaces have been added to ensure the rules produce the correct
   outputs for a selection of known issues
 - The use of `--incompatible-*` flags is no longer required
+- Dependencies are now managed at a language-level granularity, rather than at
+  rule-level. Bazel will ensure unused dependencies are not loaded
 
   
 ## Language Specific
@@ -68,4 +70,5 @@ help where possible.
 ### Rust
 
 - Rust raze dependencies are now internally managed due to outdated versions
-  upstream.
+  upstream
+- Rust gRPC now uses [grpc-rs](https://github.com/pingcap/grpc-rs)
