@@ -15,8 +15,10 @@ rules_proto_grpc_{{ .Lang.Name }}_repos()
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
 grpc_java_repositories(
+    omit_bazel_skylib = True,
     omit_com_google_protobuf = True,
-    omit_net_zlib = True
+    omit_com_google_protobuf_javalite = True,
+    omit_net_zlib = True,
 )`)
 
 var javaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")

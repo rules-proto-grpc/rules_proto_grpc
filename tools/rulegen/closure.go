@@ -6,7 +6,11 @@ rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
 
-closure_repositories()`)
+closure_repositories(
+    omit_bazel_skylib = True,
+    omit_com_google_protobuf = True,
+    omit_zlib = True,
+)`)
 
 var closureProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")
