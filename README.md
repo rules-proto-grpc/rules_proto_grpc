@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo-1024.png" width=200>
+    <img src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo-200.png">
     <h1>Protobuf and gRPC rules for <a href="https://bazel.build">Bazel</a></h1>
 </div>
 
@@ -92,9 +92,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/60baba46d11b0323fd1c2da9c34630944d9ddc1e.tar.gz"],
-    sha256 = "395408a3dc9c3db2b5c200b8722a13a60898c861633b99e6e250186adffd1370",
-    strip_prefix = "rules_proto_grpc-60baba46d11b0323fd1c2da9c34630944d9ddc1e",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/1978bafb1cb8f13a628bdfccdd285df12bbbad06.tar.gz"],
+    sha256 = "abb70ecfdcba24c001becea52790dda321f35c10367999b9f65c55720dd338b4",
+    strip_prefix = "rules_proto_grpc-1978bafb1cb8f13a628bdfccdd285df12bbbad06",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")

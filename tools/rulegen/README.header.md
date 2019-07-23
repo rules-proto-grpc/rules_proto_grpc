@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo-1024.png" width=200>
+    <img src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo-200.png">
     <h1>Protobuf and gRPC rules for <a href="https://bazel.build">Bazel</a></h1>
 </div>
 
