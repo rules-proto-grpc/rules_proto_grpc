@@ -1931,6 +1931,38 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_deps
+  test_workspace_readme_http_archive_ubuntu1604:
+    name: 'test workspace: readme_http_archive'
+    platform: ubuntu1604
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/readme_http_archive
+  test_workspace_readme_http_archive_ubuntu1804:
+    name: 'test workspace: readme_http_archive'
+    platform: ubuntu1804
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/readme_http_archive
+  test_workspace_readme_http_archive_windows:
+    name: 'test workspace: readme_http_archive'
+    platform: windows
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/readme_http_archive
+  test_workspace_readme_http_archive_macos:
+    name: 'test workspace: readme_http_archive'
+    platform: macos
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/readme_http_archive
   test_workspace_shared_proto_ubuntu1604:
     name: 'test workspace: shared_proto'
     platform: ubuntu1604

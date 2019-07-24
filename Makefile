@@ -1,7 +1,7 @@
 # Run the rulegen system
 rulegen:
 	bazel query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt; \
-	bazel run --run_under="cd $$PWD && " //tools/rulegen -- --ref=`git rev-parse HEAD`; \
+	bazel run --run_under="cd $$PWD && " //tools/rulegen -- --ref=$$(git describe --abbrev=0 --tags); \
 	rm available_tests.txt; \
 
 

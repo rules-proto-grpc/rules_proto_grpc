@@ -137,6 +137,7 @@ func action(c *cli.Context) error {
 
 	mustWriteExamplesMakefile(dir, languages)
 	mustWriteTestWorkspacesMakefile(dir)
+	mustWriteHttpArchiveTestWorkspace(dir, ref, sha256)
 
 	return nil
 }
@@ -493,6 +494,21 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 
 	out.ln()
 	out.MustWrite(path.Join(dir, "test_workspaces", "Makefile.mk"))
+}
+
+
+func mustWriteHttpArchiveTestWorkspace(dir, ref, sha256 string) {
+	out := &LineWriter{}
+	out.w(`load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "rules_proto_grpc",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/%s.tar.gz"],
+    sha256 = "%s",
+    strip_prefix = "rules_proto_grpc-%s",
+)
+`, ref, sha256, ref)
+	out.MustWrite(path.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
 }
 
 
