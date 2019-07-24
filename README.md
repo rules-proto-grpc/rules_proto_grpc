@@ -101,8 +101,14 @@ load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
 rules_proto_grpc_toolchains()
 ```
 
-**Important**: Follow instructions in the language-specific `README.md` for
-additional workspace dependencies that may be required.
+It is recommended that you use the tagged releases for stable rules. Master is
+intended to be 'ready-to-use', but may be unstable at certain periods. To be
+notified of new releases, you can use GitHub's 'Watch Releases Only' on the
+repository.
+
+**Important**: You will also need to follow instructions in the
+language-specific `README.md` for additional workspace dependencies that may be
+required.
 
 
 ## Rules
