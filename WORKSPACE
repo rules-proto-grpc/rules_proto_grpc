@@ -332,12 +332,8 @@ apple_support_dependencies()
 #
 # Misc
 #
-load("//:repositories.bzl", "bazel_gazelle", "com_github_bazelbuild_buildtools")
-com_github_bazelbuild_buildtools()
+load("//:repositories.bzl", "bazel_gazelle")
 bazel_gazelle()
-
-load("@com_github_bazelbuild_buildtools//buildifier:deps.bzl", "buildifier_dependencies")
-buildifier_dependencies()
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 gazelle_dependencies()
