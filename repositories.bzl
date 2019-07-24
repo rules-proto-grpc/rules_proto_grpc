@@ -8,8 +8,8 @@ VERSIONS = {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "2d0fdcb791dd59599cce812841149ff779b7c371", # 3.9.0 rc1 + PR 6310
-        "sha256": "a6d34f9f32421425f6e2971de121356cf61efa576100dd37762b83869f05b17a",
+        "ref": "19ca196e4dcc8ff03136c950cf1bc298d5e1ce1e", # 3.9.0 + fixes
+        "sha256": "91247e58e744572bef69e0f1a2c54d73eaa48164023fa8b2648d15e247f8698b",
         "binds": [
             {
                 "name": "protobuf_clib",
