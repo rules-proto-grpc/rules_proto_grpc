@@ -34,10 +34,5 @@ routeguide_test_matrix(
     tagmap = {
         # Don't sandbox any csharp test and set to manual
         "csharp": ["no-sandbox", "manual"],
-
-        # Ruby clients and servers don't run due to a problem with their
-        # launcher script being run outside the original package. Make them
-        # manual only
-        "ruby": ["manual"],
     },
 )
