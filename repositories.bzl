@@ -374,6 +374,9 @@ def com_github_grpc_grpc(**kwargs):
 def bazel_skylib(**kwargs):
     _generic_dependency("bazel_skylib", **kwargs)
 
+def com_github_bazelbuild_buildtools(**kwargs):
+    _generic_dependency("com_github_bazelbuild_buildtools", **kwargs)
+
 
 #
 # Android
