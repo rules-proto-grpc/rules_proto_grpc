@@ -22,6 +22,7 @@
 this_dir = File.expand_path(File.dirname(__FILE__))
 lib_dir = File.join(File.dirname(this_dir), 'lib')
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
+$LOAD_PATH.unshift('ruby/example/routeguide/routeguide_pb') # Required until https://github.com/yugui/rules_ruby/pull/8 is merged
 
 require 'grpc'
 require 'multi_json'

@@ -13,6 +13,7 @@ def ruby_proto_library(**kwargs):
     ruby_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        includes = [name_pb],
+        deps = ["@rules_proto_grpc_gems//:libs"],
+        includes = [name_pb], # This does not presently work as expected, as it is workspace relative. See https://github.com/yugui/rules_ruby/pull/8
         visibility = kwargs.get("visibility"),
     )

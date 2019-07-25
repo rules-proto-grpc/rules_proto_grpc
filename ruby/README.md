@@ -1,6 +1,6 @@
 # Ruby rules
 
-Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/yugui/rules_ruby)
+Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/yugui/rules_ruby). Note, the Ruby library rules presently cannot set the `includes` attribute correctly, requiring users to set this manually. See https://github.com/yugui/rules_ruby/pull/8
 
 | Rule | Description |
 | ---: | :--- |
@@ -97,9 +97,9 @@ ruby_register_toolchains()
 load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
 
 bundle_install(
-    name = "routeguide_gems_bundle",
-    gemfile = "//ruby:Gemfile",
-    gemfile_lock = "//ruby:Gemfile.lock",
+    name = "rules_proto_grpc_gems",
+    gemfile = "@rules_proto_grpc//ruby:Gemfile",
+    gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )
 ```
 
@@ -145,9 +145,9 @@ grpc_deps()
 load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
 
 bundle_install(
-    name = "routeguide_gems_bundle",
-    gemfile = "//ruby:Gemfile",
-    gemfile_lock = "//ruby:Gemfile.lock",
+    name = "rules_proto_grpc_gems",
+    gemfile = "@rules_proto_grpc//ruby:Gemfile",
+    gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )
 ```
 

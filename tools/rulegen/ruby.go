@@ -11,9 +11,9 @@ ruby_register_toolchains()
 load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
 
 bundle_install(
-    name = "routeguide_gems_bundle",
-    gemfile = "//ruby:Gemfile",
-    gemfile_lock = "//ruby:Gemfile.lock",
+    name = "rules_proto_grpc_gems",
+    gemfile = "@rules_proto_grpc//ruby:Gemfile",
+    gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )`)
 
 var rubyGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
@@ -31,9 +31,9 @@ grpc_deps()
 load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
 
 bundle_install(
-    name = "routeguide_gems_bundle",
-    gemfile = "//ruby:Gemfile",
-    gemfile_lock = "//ruby:Gemfile.lock",
+    name = "rules_proto_grpc_gems",
+    gemfile = "@rules_proto_grpc//ruby:Gemfile",
+    gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )`)
 
 var rubyLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
@@ -51,7 +51,8 @@ def {{ .Rule.Name }}(**kwargs):
     ruby_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        includes = [name_pb],
+        deps = ["@rules_proto_grpc_gems//:libs"],
+        includes = [name_pb], # This does not presently work as expected, as it is workspace relative. See https://github.com/yugui/rules_ruby/pull/8
         visibility = kwargs.get("visibility"),
     )`)
 
@@ -60,7 +61,7 @@ func makeRuby() *Language {
 		Dir:   "ruby",
 		Name:  "ruby",
 		DisplayName: "Ruby",
-		Notes: mustTemplate("Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/yugui/rules_ruby)"),
+		Notes: mustTemplate("Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/yugui/rules_ruby). Note, the Ruby library rules presently cannot set the `includes` attribute correctly, requiring users to set this manually. See https://github.com/yugui/rules_ruby/pull/8"),
 		Flags: commonLangFlags,
 		Rules: []*Rule{
 			&Rule{

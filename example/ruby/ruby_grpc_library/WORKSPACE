@@ -21,7 +21,7 @@ grpc_deps()
 load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
 
 bundle_install(
-    name = "routeguide_gems_bundle",
-    gemfile = "//ruby:Gemfile",
-    gemfile_lock = "//ruby:Gemfile.lock",
+    name = "rules_proto_grpc_gems",
+    gemfile = "@rules_proto_grpc//ruby:Gemfile",
+    gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )

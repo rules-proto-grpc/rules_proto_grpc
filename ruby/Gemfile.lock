@@ -19,6 +19,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  google-protobuf (= 3.8.0)
   grpc (= 1.22.0)
   multi_json (= 1.13.1)
 

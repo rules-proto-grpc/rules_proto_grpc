@@ -6,3 +6,4 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem 'grpc', '1.22.0'
 gem 'multi_json', '1.13.1'
+gem "google-protobuf", "3.8.0"

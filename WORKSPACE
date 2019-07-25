@@ -240,7 +240,7 @@ ruby_register_toolchains()
 
 load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
 bundle_install(
-    name = "routeguide_gems_bundle",
+    name = "rules_proto_grpc_gems",
     gemfile = "//ruby:Gemfile",
     gemfile_lock = "//ruby:Gemfile.lock",
 )

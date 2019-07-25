@@ -4,6 +4,9 @@ proto_plugin(
     name = "ruby_plugin",
     protoc_plugin_name = "ruby",
     outputs = ["{protopath}_pb.rb"],
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -11,5 +14,8 @@ proto_plugin(
     name = "grpc_ruby_plugin",
     outputs = ["{protopath}_services_pb.rb"],
     tool = "@com_github_grpc_grpc//:grpc_ruby_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )
