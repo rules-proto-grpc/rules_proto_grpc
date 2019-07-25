@@ -7,6 +7,9 @@ proto_plugin(
         "{protopath}.pb.h",
         "{protopath}.pb.cc",
     ],
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -21,5 +24,8 @@ proto_plugin(
         "{protopath}_mock.grpc.pb.h",
     ],
     tool = "@com_github_grpc_grpc//:grpc_cpp_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )
