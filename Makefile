@@ -77,23 +77,6 @@ pending_servers:
 		//ruby/example/routeguide:server \
 		//rust/example/routeguide:server
 
-
-# grpc-web closure test seems to crash phantomjs.  Todo move to headless-chrome
-# for rules_closure.
-closure_test:
-	bazel test \
-		//github.com/grpc/grpc-web/example/routeguide/...
-
-csharp:
-	bazel build \
-		//csharp/example/routeguide:server \
-		//csharp/example/routeguide:client
-
-rust:
-	bazel build \
-		//csharp/example/routeguide:server \
-		//csharp/example/routeguide:client
-
 all: clients servers tests
 
 
