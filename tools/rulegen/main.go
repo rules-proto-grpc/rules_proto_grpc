@@ -456,7 +456,7 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			langNames = append(langNames, name)
 			out.w("%s:", name)
 			out.w("	cd %s; \\", exampleDir)
-			out.w("	bazel --batch build --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+			out.w("	bazel --batch build --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			out.ln()
 		}
 
@@ -483,7 +483,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 		allNames = append(allNames, name)
 		out.w("%s:", name)
 		out.w("	cd %s; \\", path.Join(dir, "test_workspaces", testWorkspace))
-		out.w("	bazel --batch test --disk_cache=../bazel-disk-cache --test_output=errors //...")
+		out.w("	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
 		out.ln()
 	}
 
