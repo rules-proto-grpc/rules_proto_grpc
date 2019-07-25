@@ -45,6 +45,7 @@ def calculate_distance(point_a, point_b)
   a = Math.sin(delta_lat / 2)**2 +
       Math.cos(lat_a) * Math.cos(lat_b) +
       Math.sin(delta_lon / 2)**2
+  a = [a, 1].min
   (2 * RADIUS *  Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))).to_i
 end
 
@@ -161,11 +162,13 @@ end
 
 def main
   if ARGV.length == 0
-    fail 'Please specify the path to the route_guide json database'
+    data_path = ENV["DATABASE_FILE"]
+  else
+    data_path = ARGV[0]
   end
-  puts "Loading features from #{ARGV[0]}"
+  puts "Loading features from #{data_path}"
   raw_data = []
-  File.open(ARGV[0]) do |f|
+  File.open(data_path) do |f|
     raw_data = MultiJson.load(f.read)
   end
   feature_db = Hash[raw_data.map { |x| [x['location'], x['name']] }]
