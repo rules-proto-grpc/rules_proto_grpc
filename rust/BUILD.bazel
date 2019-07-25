@@ -6,6 +6,9 @@ proto_plugin(
     # Ths function will append '_pb' if the basename is a rust keyword.
     outputs = ["{basename|rust_keyword}.rs"],
     tool = "//rust/raze:cargo_bin_protoc_gen_rust",
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )
 
@@ -15,5 +18,8 @@ proto_plugin(
     # Ths function will append '_pb' if the basename is a rust keyword.
     outputs = ["{basename|rust_keyword}_grpc.rs"],
     tool = "//rust/raze:cargo_bin_grpc_rust_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )
