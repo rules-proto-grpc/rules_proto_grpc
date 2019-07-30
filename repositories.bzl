@@ -4,7 +4,7 @@ load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 # Versions
 VERSIONS = {
     # Core
-    "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements
+    "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
@@ -21,7 +21,7 @@ VERSIONS = {
             },
         ],
     },
-    "com_github_grpc_grpc": { # When updating, also update Python requirements, Node.js requirements, Ruby requirements
+    "com_github_grpc_grpc": { # When updating, also update Python requirements, Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
@@ -79,8 +79,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_dotnet",
-        "ref": "e9537b4a545528b11b270dfa124f3193bdb2d78e", # June 26, 2019
-        "sha256": "9ee5429417190f00b2c970ba628db833e7ce71323efb646b9ce6b3aaaf56f125",
+        "ref": "420a6b6cf49223bb372e734da8dc181d615ed01c", # June 26, 2019
+        "sha256": "e6e0e513d23c655a97f3700683aba924c578cb1458bcd42bbbc5e5c512f6d86b",
     },
 
     # Closure

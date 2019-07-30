@@ -17,10 +17,6 @@ dotnet_register_toolchains(
     core_version = core_version,
 )
 
-dotnet_register_toolchains(
-    core_version = core_version,
-)
-
 core_register_sdk(
     name = "core_sdk",
     core_version = core_version,

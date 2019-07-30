@@ -7,8 +7,8 @@ set -eu
 set -o pipefail
 set -x
 
-PROTOBUF_VERSION="3.8.0"
-GRPC_VERSION="1.21.0"
+PROTOBUF_VERSION="3.9.0"
+GRPC_VERSION="1.22.0"
 
 OUTPUT_FILE="./csharp/nuget/nuget.bzl"
 

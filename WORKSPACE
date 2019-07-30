@@ -86,15 +86,12 @@ csharp_repos()
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
     "core_register_sdk",
+    "net_register_sdk",
     "dotnet_register_toolchains",
     "dotnet_repositories",
 )
 
-core_version = "v2.1.503"
-
-dotnet_register_toolchains(
-    core_version = core_version,
-)
+core_version = "v2.2.101"
 
 dotnet_register_toolchains(
     core_version = core_version,

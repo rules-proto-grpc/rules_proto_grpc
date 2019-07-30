@@ -127,10 +127,6 @@ dotnet_register_toolchains(
     core_version = core_version,
 )
 
-dotnet_register_toolchains(
-    core_version = core_version,
-)
-
 core_register_sdk(
     name = "core_sdk",
     core_version = core_version,
@@ -194,10 +190,6 @@ load(
 )
 
 core_version = "v2.1.503"
-
-dotnet_register_toolchains(
-    core_version = core_version,
-)
 
 dotnet_register_toolchains(
     core_version = core_version,
