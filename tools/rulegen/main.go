@@ -232,6 +232,13 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 		out.w(`%s = _%s`, rule.Name, rule.Name)
 	}
 	out.ln()
+	if len(lang.Aliases) > 0 {
+		out.w(`# Aliases`)
+		for alias, realName  := range lang.Aliases {
+			out.w(`%s = _%s`, alias, realName)
+		}
+		out.ln()
+	}
 	out.MustWrite(path.Join(dir, lang.Dir, "defs.bzl"))
 }
 

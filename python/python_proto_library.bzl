@@ -20,6 +20,3 @@ def python_proto_library(**kwargs):
 PROTO_DEPS = [
     "@com_google_protobuf//:protobuf_python",
 ]
-
-# Alias
-py_proto_library = python_proto_library

@@ -22,6 +22,3 @@ def python_grpclib_library(**kwargs):
 GRPC_DEPS = [
     "@rules_proto_grpc_py3_deps//grpclib"
 ]
-
-# Alias
-py_grpclib_library = python_grpclib_library

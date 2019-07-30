@@ -38,6 +38,9 @@ type Language struct {
 	// Platforms for which to skip testing this lang
 	// The special value 'all' will skip app platforms
 	SkipTestPlatforms []string
+
+	// Extra aliases to add to defs.bzl. Stored as alias name -> real name
+	Aliases map[string]string
 }
 
 

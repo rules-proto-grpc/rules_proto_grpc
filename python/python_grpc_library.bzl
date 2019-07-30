@@ -35,6 +35,3 @@ GRPC_PYTHON2_DEPS = [
 GRPC_PYTHON3_DEPS = [
     "@rules_proto_grpc_py3_deps//grpcio"
 ]
-
-# Alias
-py_grpc_library = python_grpc_library

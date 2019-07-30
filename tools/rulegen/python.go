@@ -47,10 +47,7 @@ def python_proto_library(**kwargs):
 
 PROTO_DEPS = [
     "@com_google_protobuf//:protobuf_python",
-]
-
-# Alias
-py_proto_library = python_proto_library`)
+]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
@@ -88,10 +85,7 @@ GRPC_PYTHON2_DEPS = [
 
 GRPC_PYTHON3_DEPS = [
     "@rules_proto_grpc_py3_deps//grpcio"
-]
-
-# Alias
-py_grpc_library = python_grpc_library`)
+]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 
@@ -116,10 +110,7 @@ def python_grpclib_library(**kwargs):
 
 GRPC_DEPS = [
     "@rules_proto_grpc_py3_deps//grpclib"
-]
-
-# Alias
-py_grpclib_library = python_grpclib_library`)
+]`)
 
 func makePython() *Language {
 	return &Language{
@@ -128,6 +119,14 @@ func makePython() *Language {
 		DisplayName: "Python",
 		Notes: mustTemplate("Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with the Bazel native `py_library`"),
 		Flags: commonLangFlags,
+		Aliases: map[string]string{
+			"py_proto_compile": "python_proto_compile",
+			"py_grpc_compile": "python_grpc_compile",
+			"py_grpclib_compile": "python_grpclib_compile",
+			"py_proto_library": "python_proto_library",
+			"py_grpc_library": "python_grpc_library",
+			"py_grpclib_library": "python_grpclib_library",
+		},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "python_proto_compile",
