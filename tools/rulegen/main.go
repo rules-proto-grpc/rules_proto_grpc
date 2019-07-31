@@ -128,12 +128,8 @@ func action(c *cli.Context) error {
 		Sha256: sha256,
 	}, languages)
 
-	mustWriteBazelciPresubmitYml(dir, struct {
-		Ref, Sha256 string
-	}{
-		Ref:    ref,
-		Sha256: sha256,
-	}, languages, []string{}, c.String("available_tests"))
+	mustWriteBazelciPresubmitYml(dir, languages, []string{}, c.String("available_tests"))
+	mustWriteWerckerciYml(dir, languages, []string{}, c.String("available_tests"))
 
 	mustWriteExamplesMakefile(dir, languages)
 	mustWriteTestWorkspacesMakefile(dir)
@@ -343,7 +339,7 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 }
 
 
-func mustWriteBazelciPresubmitYml(dir string, data interface{}, languages []*Language, envVars []string, availableTestsPath string) {
+func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []string, availableTestsPath string) {
 	// Read available tests
 	content, err := ioutil.ReadFile(availableTestsPath)
 	if err != nil {
