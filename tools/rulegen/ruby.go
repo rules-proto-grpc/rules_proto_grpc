@@ -63,6 +63,7 @@ func makeRuby() *Language {
 		DisplayName: "Ruby",
 		Notes: mustTemplate("Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/yugui/rules_ruby). Note, the Ruby library rules presently cannot set the `includes` attribute correctly, requiring users to set this manually. See https://github.com/yugui/rules_ruby/pull/8"),
 		Flags: commonLangFlags,
+		SkipTestPlatforms: []string{"windows"}, // CI has no Ruby available for windows
 		Rules: []*Rule{
 			&Rule{
 				Name:             "ruby_proto_compile",
@@ -73,6 +74,7 @@ func makeRuby() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf `.rb` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
+				SkipTestPlatforms: []string{"none"}, // CI has no Ruby available for windows, but this rule can be tested
 			},
 			&Rule{
 				Name:             "ruby_grpc_compile",
@@ -83,6 +85,7 @@ func makeRuby() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf+gRPC `.rb` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
+				SkipTestPlatforms: []string{"none"}, // CI has no Ruby available for windows, but this rule can be tested
 			},
 			&Rule{
 				Name:             "ruby_proto_library",
