@@ -1,0 +1,14 @@
+rulegen:
+  box:
+    id: gcr.io/bazel-public/ubuntu1804
+    tag: java8
+  steps:
+    - script:
+        name: test rulegen diff
+        code: |
+          bazel --output_base="$WERCKER_CACHE_DIR/bazel-base" query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt &&
+          bazel --output_base="$WERCKER_CACHE_DIR/bazel-base" run --run_under="cd $PWD && " //tools/rulegen -- --ref=`git describe --abbrev=0 --tags` &&
+          rm available_tests.txt &&
+          git checkout -- README.md &&
+          git diff &&
+          git diff-files --quiet

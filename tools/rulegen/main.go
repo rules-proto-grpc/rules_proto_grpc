@@ -129,7 +129,6 @@ func action(c *cli.Context) error {
 	}, languages)
 
 	mustWriteBazelciPresubmitYml(dir, languages, []string{}, c.String("available_tests"))
-	mustWriteWerckerciYml(dir, languages, []string{}, c.String("available_tests"))
 
 	mustWriteExamplesMakefile(dir, languages)
 	mustWriteTestWorkspacesMakefile(dir)
