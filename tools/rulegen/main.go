@@ -9,6 +9,7 @@ import (
 	"os"
 	"path"
 	"regexp"
+	"sort"
 	"strings"
 
 	"github.com/urfave/cli"
@@ -229,9 +230,17 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 	out.ln()
 	if len(lang.Aliases) > 0 {
 		out.w(`# Aliases`)
-		for alias, realName  := range lang.Aliases {
-			out.w(`%s = _%s`, alias, realName)
+
+		aliases := make([]string, 0, len(lang.Aliases))
+		for alias := range lang.Aliases {
+			aliases = append(aliases, alias)
 		}
+		sort.Strings(aliases)
+
+		for _, alias := range aliases {
+			out.w(`%s = _%s`, alias, lang.Aliases[alias])
+		}
+
 		out.ln()
 	}
 	out.MustWrite(path.Join(dir, lang.Dir, "defs.bzl"))

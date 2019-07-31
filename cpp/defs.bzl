@@ -10,7 +10,7 @@ cpp_proto_library = _cpp_proto_library
 cpp_grpc_library = _cpp_grpc_library
 
 # Aliases
-cc_proto_compile = _cpp_proto_compile
 cc_grpc_compile = _cpp_grpc_compile
-cc_proto_library = _cpp_proto_library
 cc_grpc_library = _cpp_grpc_library
+cc_proto_compile = _cpp_proto_compile
+cc_proto_library = _cpp_proto_library
