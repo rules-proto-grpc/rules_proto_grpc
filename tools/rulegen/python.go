@@ -157,6 +157,7 @@ func makePython() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only)",
 				Attrs:            aspectProtoCompileAttrs,
+				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "python_proto_library",
@@ -193,6 +194,7 @@ func makePython() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only)",
 				Attrs:            aspectProtoCompileAttrs,
+				SkipTestPlatforms: []string{"windows"},
 			},
 		},
 	}

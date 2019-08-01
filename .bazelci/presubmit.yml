@@ -661,12 +661,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_compile
-  python_python_grpclib_compile_windows:
-    name: 'python: python_grpclib_compile'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpclib_compile
   python_python_grpclib_compile_macos:
     name: 'python: python_grpclib_compile'
     platform: macos
@@ -706,12 +700,6 @@ tasks:
   python_python_grpclib_library_ubuntu1804:
     name: 'python: python_grpclib_library'
     platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpclib_library
-  python_python_grpclib_library_windows:
-    name: 'python: python_grpclib_library'
-    platform: windows
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_library
