@@ -1,6 +1,6 @@
 rulegen:
   box:
-    id: gcr.io/bazel-public/ubuntu1804
+    id: gcr.io/bazel-public/ubuntu1604
     tag: java8
   steps:
     - script:
