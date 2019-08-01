@@ -63,39 +63,6 @@ tasks:
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_ruby"
     - "//example/routeguide:scala_rust"
-  main_windows:
-    name: build & test all
-    platform: windows
-    build_targets:
-    - "//closure/..."
-    - "//cpp/..."
-    - "//d/..."
-    - "//go/..."
-    - "//java/..."
-    - "//php/..."
-    - "//python/..."
-    - "//github.com/gogo/protobuf/..."
-    - "//github.com/grpc-ecosystem/grpc-gateway/..."
-    - "//github.com/grpc/grpc-web/..."
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-    - "//example/routeguide:cpp_cpp"
-    - "//example/routeguide:cpp_go"
-    - "//example/routeguide:cpp_java"
-    - "//example/routeguide:cpp_python"
-    - "//example/routeguide:go_cpp"
-    - "//example/routeguide:go_go"
-    - "//example/routeguide:go_java"
-    - "//example/routeguide:go_python"
-    - "//example/routeguide:java_cpp"
-    - "//example/routeguide:java_go"
-    - "//example/routeguide:java_java"
-    - "//example/routeguide:java_python"
-    - "//example/routeguide:python_cpp"
-    - "//example/routeguide:python_go"
-    - "//example/routeguide:python_java"
-    - "//example/routeguide:python_python"
   main_macos:
     name: build & test all
     platform: macos
