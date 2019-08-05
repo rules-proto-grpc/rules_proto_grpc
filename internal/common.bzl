@@ -210,9 +210,6 @@ def descriptor_proto_path(proto, proto_info):
     Adapted from https://github.com/bazelbuild/rules_go
     """
 
-    # Strip proto_source_root
-    path = strip_path_prefix(proto.path, proto_info.proto_source_root)
-
     # Strip root
     path = strip_path_prefix(path, proto.root.path)
 

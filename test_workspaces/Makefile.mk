@@ -14,10 +14,6 @@ test_workspace_objc_capitalisation:
 	cd test_workspaces/objc_capitalisation; \
 	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...
 
-test_workspace_proto_source_root:
-	cd test_workspaces/proto_source_root; \
-	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...
-
 test_workspace_python2_grpc:
 	cd test_workspaces/python2_grpc; \
 	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...
@@ -46,4 +42,4 @@ test_workspace_strip_import_prefix:
 	cd test_workspaces/strip_import_prefix; \
 	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...
 
-all_test_workspaces: test_workspace_exclusions test_workspace_generated_proto test_workspace_go_importpath test_workspace_objc_capitalisation test_workspace_proto_source_root test_workspace_python2_grpc test_workspace_python3_grpc test_workspace_python_dashes test_workspace_python_deps test_workspace_readme_http_archive test_workspace_shared_proto test_workspace_strip_import_prefix
+all_test_workspaces: test_workspace_exclusions test_workspace_generated_proto test_workspace_go_importpath test_workspace_objc_capitalisation test_workspace_python2_grpc test_workspace_python3_grpc test_workspace_python_dashes test_workspace_python_deps test_workspace_readme_http_archive test_workspace_shared_proto test_workspace_strip_import_prefix

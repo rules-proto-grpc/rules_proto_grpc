@@ -1472,33 +1472,6 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
-  test_workspace_proto_source_root_ubuntu1804:
-    name: 'test workspace: proto_source_root'
-    bazel: last_green
-    platform: ubuntu1804
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/proto_source_root
-  test_workspace_proto_source_root_windows:
-    name: 'test workspace: proto_source_root'
-    bazel: last_green
-    platform: windows
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/proto_source_root
-  test_workspace_proto_source_root_macos:
-    name: 'test workspace: proto_source_root'
-    bazel: last_green
-    platform: macos
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/proto_source_root
   test_workspace_python2_grpc_ubuntu1804:
     name: 'test workspace: python2_grpc'
     bazel: last_green
