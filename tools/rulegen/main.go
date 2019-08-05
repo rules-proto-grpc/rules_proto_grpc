@@ -370,6 +370,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		}
 		out.w("  main_%s:", ciPlatform)
 		out.w("    name: build & test all")
+		out.w("    bazel: last_green")
 		out.w("    platform: %s", ciPlatform)
 		if ciPlatform == "macos" {
 			out.w("    build_flags:")
@@ -411,6 +412,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 
 				out.w("  %s_%s_%s:", lang.Name, rule.Name, ciPlatform)
 				out.w("    name: '%s: %s'", lang.Name, rule.Name)
+				out.w("    bazel: last_green")
 				out.w("    platform: %s", ciPlatform)
 				out.w("    build_targets:")
 				out.w(`      - "//..."`)
@@ -437,6 +439,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 			}
 			out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
 			out.w("    name: 'test workspace: %s'", testWorkspace)
+			out.w("    bazel: last_green")
 			out.w("    platform: %s", ciPlatform)
 			out.w("    test_flags:")
 			out.w(`    - "--test_output=errors"`)
