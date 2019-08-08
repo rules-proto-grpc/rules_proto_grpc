@@ -4,12 +4,6 @@ tasks:
     name: build & test all
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
     - "//closure/..."
     - "//cpp/..."
@@ -26,11 +20,6 @@ tasks:
     - "//github.com/stackb/grpc.js/..."
     - "//github.com/grpc/grpc-web/..."
     test_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     - "--test_output=errors"
     test_targets:
     - "//example/routeguide:cpp_cpp"
@@ -81,11 +70,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
     - "//closure/..."
     - "//cpp/..."
@@ -104,11 +88,6 @@ tasks:
     - "//github.com/grpc/grpc-web/..."
     test_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     - "--test_output=errors"
     test_targets:
     - "//example/routeguide:cpp_cpp"
@@ -157,12 +136,6 @@ tasks:
     name: 'android: android_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_compile
@@ -170,12 +143,6 @@ tasks:
     name: 'android: android_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_compile
@@ -183,12 +150,6 @@ tasks:
     name: 'android: android_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_compile
@@ -196,12 +157,6 @@ tasks:
     name: 'android: android_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_compile
@@ -209,12 +164,6 @@ tasks:
     name: 'android: android_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_compile
@@ -222,12 +171,6 @@ tasks:
     name: 'android: android_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_compile
@@ -235,12 +178,6 @@ tasks:
     name: 'android: android_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_library
@@ -248,12 +185,6 @@ tasks:
     name: 'android: android_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_library
@@ -261,12 +192,6 @@ tasks:
     name: 'android: android_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_library
@@ -274,12 +199,6 @@ tasks:
     name: 'android: android_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
@@ -287,12 +206,6 @@ tasks:
     name: 'android: android_grpc_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
@@ -300,12 +213,6 @@ tasks:
     name: 'android: android_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
@@ -313,12 +220,6 @@ tasks:
     name: 'closure: closure_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/closure/closure_proto_compile
@@ -326,12 +227,6 @@ tasks:
     name: 'closure: closure_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/closure/closure_proto_compile
@@ -339,12 +234,6 @@ tasks:
     name: 'closure: closure_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/closure/closure_proto_compile
@@ -352,12 +241,6 @@ tasks:
     name: 'closure: closure_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/closure/closure_proto_library
@@ -365,12 +248,6 @@ tasks:
     name: 'closure: closure_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/closure/closure_proto_library
@@ -378,12 +255,6 @@ tasks:
     name: 'closure: closure_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/closure/closure_proto_library
@@ -391,12 +262,6 @@ tasks:
     name: 'cpp: cpp_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_compile
@@ -404,12 +269,6 @@ tasks:
     name: 'cpp: cpp_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_compile
@@ -417,12 +276,6 @@ tasks:
     name: 'cpp: cpp_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_compile
@@ -430,12 +283,6 @@ tasks:
     name: 'cpp: cpp_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_compile
@@ -443,12 +290,6 @@ tasks:
     name: 'cpp: cpp_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_compile
@@ -456,12 +297,6 @@ tasks:
     name: 'cpp: cpp_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_compile
@@ -469,12 +304,6 @@ tasks:
     name: 'cpp: cpp_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_library
@@ -482,12 +311,6 @@ tasks:
     name: 'cpp: cpp_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_library
@@ -495,12 +318,6 @@ tasks:
     name: 'cpp: cpp_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_library
@@ -508,12 +325,6 @@ tasks:
     name: 'cpp: cpp_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_library
@@ -521,12 +332,6 @@ tasks:
     name: 'cpp: cpp_grpc_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_library
@@ -534,12 +339,6 @@ tasks:
     name: 'cpp: cpp_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_library
@@ -547,12 +346,6 @@ tasks:
     name: 'csharp: csharp_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_compile
@@ -560,12 +353,6 @@ tasks:
     name: 'csharp: csharp_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_compile
@@ -573,12 +360,6 @@ tasks:
     name: 'csharp: csharp_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_compile
@@ -586,12 +367,6 @@ tasks:
     name: 'csharp: csharp_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
@@ -599,12 +374,6 @@ tasks:
     name: 'csharp: csharp_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
@@ -612,12 +381,6 @@ tasks:
     name: 'csharp: csharp_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
@@ -625,12 +388,6 @@ tasks:
     name: 'd: d_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/d/d_proto_compile
@@ -638,12 +395,6 @@ tasks:
     name: 'd: d_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/d/d_proto_library
@@ -651,12 +402,6 @@ tasks:
     name: 'go: go_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_compile
@@ -664,12 +409,6 @@ tasks:
     name: 'go: go_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_compile
@@ -677,12 +416,6 @@ tasks:
     name: 'go: go_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_compile
@@ -690,12 +423,6 @@ tasks:
     name: 'go: go_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
@@ -703,12 +430,6 @@ tasks:
     name: 'go: go_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
@@ -716,12 +437,6 @@ tasks:
     name: 'go: go_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
@@ -729,12 +444,6 @@ tasks:
     name: 'go: go_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_library
@@ -742,12 +451,6 @@ tasks:
     name: 'go: go_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_library
@@ -755,12 +458,6 @@ tasks:
     name: 'go: go_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_library
@@ -768,12 +465,6 @@ tasks:
     name: 'go: go_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
@@ -781,12 +472,6 @@ tasks:
     name: 'go: go_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
@@ -794,12 +479,6 @@ tasks:
     name: 'java: java_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_compile
@@ -807,12 +486,6 @@ tasks:
     name: 'java: java_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_compile
@@ -820,12 +493,6 @@ tasks:
     name: 'java: java_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_compile
@@ -833,12 +500,6 @@ tasks:
     name: 'java: java_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_compile
@@ -846,12 +507,6 @@ tasks:
     name: 'java: java_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_compile
@@ -859,12 +514,6 @@ tasks:
     name: 'java: java_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_compile
@@ -872,12 +521,6 @@ tasks:
     name: 'java: java_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_library
@@ -885,12 +528,6 @@ tasks:
     name: 'java: java_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_library
@@ -898,12 +535,6 @@ tasks:
     name: 'java: java_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_library
@@ -911,12 +542,6 @@ tasks:
     name: 'java: java_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_library
@@ -924,12 +549,6 @@ tasks:
     name: 'java: java_grpc_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_library
@@ -937,12 +556,6 @@ tasks:
     name: 'java: java_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_library
@@ -950,12 +563,6 @@ tasks:
     name: 'nodejs: nodejs_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_proto_compile
@@ -963,12 +570,6 @@ tasks:
     name: 'nodejs: nodejs_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_proto_compile
@@ -976,12 +577,6 @@ tasks:
     name: 'nodejs: nodejs_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_proto_compile
@@ -989,12 +584,6 @@ tasks:
     name: 'nodejs: nodejs_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_grpc_compile
@@ -1002,12 +591,6 @@ tasks:
     name: 'nodejs: nodejs_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_grpc_compile
@@ -1015,12 +598,6 @@ tasks:
     name: 'nodejs: nodejs_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_grpc_compile
@@ -1028,12 +605,6 @@ tasks:
     name: 'objc: objc_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/objc/objc_proto_compile
@@ -1041,12 +612,6 @@ tasks:
     name: 'objc: objc_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/objc/objc_grpc_compile
@@ -1054,12 +619,6 @@ tasks:
     name: 'objc: objc_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/objc/objc_proto_library
@@ -1067,12 +626,6 @@ tasks:
     name: 'php: php_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/php/php_proto_compile
@@ -1080,12 +633,6 @@ tasks:
     name: 'php: php_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/php/php_proto_compile
@@ -1093,12 +640,6 @@ tasks:
     name: 'php: php_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/php/php_proto_compile
@@ -1106,12 +647,6 @@ tasks:
     name: 'php: php_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/php/php_grpc_compile
@@ -1119,12 +654,6 @@ tasks:
     name: 'php: php_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/php/php_grpc_compile
@@ -1132,12 +661,6 @@ tasks:
     name: 'php: php_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/php/php_grpc_compile
@@ -1145,12 +668,6 @@ tasks:
     name: 'python: python_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_compile
@@ -1158,12 +675,6 @@ tasks:
     name: 'python: python_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_compile
@@ -1171,12 +682,6 @@ tasks:
     name: 'python: python_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_compile
@@ -1184,12 +689,6 @@ tasks:
     name: 'python: python_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
@@ -1197,12 +696,6 @@ tasks:
     name: 'python: python_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
@@ -1210,12 +703,6 @@ tasks:
     name: 'python: python_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
@@ -1223,12 +710,6 @@ tasks:
     name: 'python: python_grpclib_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_compile
@@ -1236,12 +717,6 @@ tasks:
     name: 'python: python_grpclib_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_compile
@@ -1249,12 +724,6 @@ tasks:
     name: 'python: python_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_library
@@ -1262,12 +731,6 @@ tasks:
     name: 'python: python_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_library
@@ -1275,12 +738,6 @@ tasks:
     name: 'python: python_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_library
@@ -1288,12 +745,6 @@ tasks:
     name: 'python: python_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_library
@@ -1301,12 +752,6 @@ tasks:
     name: 'python: python_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_library
@@ -1314,12 +759,6 @@ tasks:
     name: 'python: python_grpclib_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_library
@@ -1327,12 +766,6 @@ tasks:
     name: 'python: python_grpclib_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_library
@@ -1340,12 +773,6 @@ tasks:
     name: 'ruby: ruby_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_compile
@@ -1353,12 +780,6 @@ tasks:
     name: 'ruby: ruby_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_compile
@@ -1366,12 +787,6 @@ tasks:
     name: 'ruby: ruby_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_compile
@@ -1379,12 +794,6 @@ tasks:
     name: 'ruby: ruby_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_compile
@@ -1392,12 +801,6 @@ tasks:
     name: 'ruby: ruby_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_compile
@@ -1405,12 +808,6 @@ tasks:
     name: 'ruby: ruby_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_compile
@@ -1418,12 +815,6 @@ tasks:
     name: 'ruby: ruby_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_library
@@ -1431,12 +822,6 @@ tasks:
     name: 'ruby: ruby_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_library
@@ -1444,12 +829,6 @@ tasks:
     name: 'ruby: ruby_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_library
@@ -1457,12 +836,6 @@ tasks:
     name: 'ruby: ruby_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_library
@@ -1470,12 +843,6 @@ tasks:
     name: 'rust: rust_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/rust/rust_proto_compile
@@ -1483,12 +850,6 @@ tasks:
     name: 'rust: rust_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/rust/rust_proto_compile
@@ -1496,12 +857,6 @@ tasks:
     name: 'rust: rust_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/rust/rust_grpc_compile
@@ -1509,12 +864,6 @@ tasks:
     name: 'rust: rust_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/rust/rust_grpc_compile
@@ -1522,12 +871,6 @@ tasks:
     name: 'rust: rust_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/rust/rust_proto_library
@@ -1535,12 +878,6 @@ tasks:
     name: 'rust: rust_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/rust/rust_proto_library
@@ -1548,12 +885,6 @@ tasks:
     name: 'rust: rust_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/rust/rust_grpc_library
@@ -1561,12 +892,6 @@ tasks:
     name: 'rust: rust_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/rust/rust_grpc_library
@@ -1574,12 +899,6 @@ tasks:
     name: 'scala: scala_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_compile
@@ -1587,12 +906,6 @@ tasks:
     name: 'scala: scala_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_compile
@@ -1600,12 +913,6 @@ tasks:
     name: 'scala: scala_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_compile
@@ -1613,12 +920,6 @@ tasks:
     name: 'scala: scala_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_compile
@@ -1626,12 +927,6 @@ tasks:
     name: 'scala: scala_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_library
@@ -1639,12 +934,6 @@ tasks:
     name: 'scala: scala_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_library
@@ -1652,12 +941,6 @@ tasks:
     name: 'scala: scala_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_library
@@ -1665,12 +948,6 @@ tasks:
     name: 'scala: scala_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_library
@@ -1678,12 +955,6 @@ tasks:
     name: 'gogo: gogo_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_proto_compile
@@ -1691,12 +962,6 @@ tasks:
     name: 'gogo: gogo_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_proto_compile
@@ -1704,12 +969,6 @@ tasks:
     name: 'gogo: gogo_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_proto_compile
@@ -1717,12 +976,6 @@ tasks:
     name: 'gogo: gogo_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_grpc_compile
@@ -1730,12 +983,6 @@ tasks:
     name: 'gogo: gogo_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_grpc_compile
@@ -1743,12 +990,6 @@ tasks:
     name: 'gogo: gogo_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_grpc_compile
@@ -1756,12 +997,6 @@ tasks:
     name: 'gogo: gogo_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_proto_library
@@ -1769,12 +1004,6 @@ tasks:
     name: 'gogo: gogo_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_proto_library
@@ -1782,12 +1011,6 @@ tasks:
     name: 'gogo: gogo_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_proto_library
@@ -1795,12 +1018,6 @@ tasks:
     name: 'gogo: gogo_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_grpc_library
@@ -1808,12 +1025,6 @@ tasks:
     name: 'gogo: gogo_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_grpc_library
@@ -1821,12 +1032,6 @@ tasks:
     name: 'gogo: gogofast_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_proto_compile
@@ -1834,12 +1039,6 @@ tasks:
     name: 'gogo: gogofast_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_proto_compile
@@ -1847,12 +1046,6 @@ tasks:
     name: 'gogo: gogofast_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_proto_compile
@@ -1860,12 +1053,6 @@ tasks:
     name: 'gogo: gogofast_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_grpc_compile
@@ -1873,12 +1060,6 @@ tasks:
     name: 'gogo: gogofast_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_grpc_compile
@@ -1886,12 +1067,6 @@ tasks:
     name: 'gogo: gogofast_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_grpc_compile
@@ -1899,12 +1074,6 @@ tasks:
     name: 'gogo: gogofast_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_proto_library
@@ -1912,12 +1081,6 @@ tasks:
     name: 'gogo: gogofast_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_proto_library
@@ -1925,12 +1088,6 @@ tasks:
     name: 'gogo: gogofast_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_proto_library
@@ -1938,12 +1095,6 @@ tasks:
     name: 'gogo: gogofast_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_grpc_library
@@ -1951,12 +1102,6 @@ tasks:
     name: 'gogo: gogofast_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_grpc_library
@@ -1964,12 +1109,6 @@ tasks:
     name: 'gogo: gogofaster_proto_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_proto_compile
@@ -1977,12 +1116,6 @@ tasks:
     name: 'gogo: gogofaster_proto_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_proto_compile
@@ -1990,12 +1123,6 @@ tasks:
     name: 'gogo: gogofaster_proto_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_proto_compile
@@ -2003,12 +1130,6 @@ tasks:
     name: 'gogo: gogofaster_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_grpc_compile
@@ -2016,12 +1137,6 @@ tasks:
     name: 'gogo: gogofaster_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_grpc_compile
@@ -2029,12 +1144,6 @@ tasks:
     name: 'gogo: gogofaster_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_grpc_compile
@@ -2042,12 +1151,6 @@ tasks:
     name: 'gogo: gogofaster_proto_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_proto_library
@@ -2055,12 +1158,6 @@ tasks:
     name: 'gogo: gogofaster_proto_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_proto_library
@@ -2068,12 +1165,6 @@ tasks:
     name: 'gogo: gogofaster_proto_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_proto_library
@@ -2081,12 +1172,6 @@ tasks:
     name: 'gogo: gogofaster_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_grpc_library
@@ -2094,12 +1179,6 @@ tasks:
     name: 'gogo: gogofaster_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_grpc_library
@@ -2107,12 +1186,6 @@ tasks:
     name: 'grpc-gateway: gateway_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_compile
@@ -2120,12 +1193,6 @@ tasks:
     name: 'grpc-gateway: gateway_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_compile
@@ -2133,12 +1200,6 @@ tasks:
     name: 'grpc-gateway: gateway_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_compile
@@ -2146,12 +1207,6 @@ tasks:
     name: 'grpc-gateway: gateway_swagger_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_swagger_compile
@@ -2159,12 +1214,6 @@ tasks:
     name: 'grpc-gateway: gateway_swagger_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_swagger_compile
@@ -2172,12 +1221,6 @@ tasks:
     name: 'grpc-gateway: gateway_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_library
@@ -2185,12 +1228,6 @@ tasks:
     name: 'grpc-gateway: gateway_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_library
@@ -2198,12 +1235,6 @@ tasks:
     name: 'grpc.js: grpcjs_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/stackb/grpc.js/grpcjs_grpc_compile
@@ -2211,12 +1242,6 @@ tasks:
     name: 'grpc.js: grpcjs_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/stackb/grpc.js/grpcjs_grpc_compile
@@ -2224,12 +1249,6 @@ tasks:
     name: 'grpc.js: grpcjs_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/stackb/grpc.js/grpcjs_grpc_library
@@ -2237,12 +1256,6 @@ tasks:
     name: 'grpc.js: grpcjs_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/stackb/grpc.js/grpcjs_grpc_library
@@ -2250,12 +1263,6 @@ tasks:
     name: 'grpc-web: closure_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/closure_grpc_compile
@@ -2263,12 +1270,6 @@ tasks:
     name: 'grpc-web: closure_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/closure_grpc_compile
@@ -2276,12 +1277,6 @@ tasks:
     name: 'grpc-web: closure_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/closure_grpc_compile
@@ -2289,12 +1284,6 @@ tasks:
     name: 'grpc-web: commonjs_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/commonjs_grpc_compile
@@ -2302,12 +1291,6 @@ tasks:
     name: 'grpc-web: commonjs_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/commonjs_grpc_compile
@@ -2315,12 +1298,6 @@ tasks:
     name: 'grpc-web: commonjs_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/commonjs_grpc_compile
@@ -2328,12 +1305,6 @@ tasks:
     name: 'grpc-web: commonjs_dts_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/commonjs_dts_grpc_compile
@@ -2341,12 +1312,6 @@ tasks:
     name: 'grpc-web: commonjs_dts_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/commonjs_dts_grpc_compile
@@ -2354,12 +1319,6 @@ tasks:
     name: 'grpc-web: commonjs_dts_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/commonjs_dts_grpc_compile
@@ -2367,12 +1326,6 @@ tasks:
     name: 'grpc-web: ts_grpc_compile'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/ts_grpc_compile
@@ -2380,12 +1333,6 @@ tasks:
     name: 'grpc-web: ts_grpc_compile'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/ts_grpc_compile
@@ -2393,12 +1340,6 @@ tasks:
     name: 'grpc-web: ts_grpc_compile'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/ts_grpc_compile
@@ -2406,12 +1347,6 @@ tasks:
     name: 'grpc-web: closure_grpc_library'
     bazel: last_green
     platform: ubuntu1804
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/closure_grpc_library
@@ -2419,12 +1354,6 @@ tasks:
     name: 'grpc-web: closure_grpc_library'
     bazel: last_green
     platform: windows
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/closure_grpc_library
@@ -2432,12 +1361,6 @@ tasks:
     name: 'grpc-web: closure_grpc_library'
     bazel: last_green
     platform: macos
-    build_flags:
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/closure_grpc_library
@@ -2447,11 +1370,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
@@ -2461,11 +1379,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
@@ -2475,11 +1388,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
@@ -2489,11 +1397,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
@@ -2503,11 +1406,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
@@ -2517,11 +1415,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
@@ -2531,11 +1424,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/exclusions
@@ -2545,11 +1433,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/exclusions
@@ -2559,11 +1442,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/exclusions
@@ -2573,11 +1451,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
@@ -2587,11 +1460,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
@@ -2601,11 +1469,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
@@ -2615,11 +1478,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
@@ -2629,11 +1487,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
@@ -2643,11 +1496,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
@@ -2657,11 +1505,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/import_prefix
@@ -2671,11 +1514,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/import_prefix
@@ -2685,11 +1523,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/import_prefix
@@ -2699,11 +1532,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
@@ -2713,11 +1541,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
@@ -2727,11 +1550,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
@@ -2741,11 +1559,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python2_grpc
@@ -2755,11 +1568,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python2_grpc
@@ -2769,11 +1577,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python3_grpc
@@ -2783,11 +1586,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python3_grpc
@@ -2797,11 +1595,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_dashes
@@ -2811,11 +1604,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_dashes
@@ -2825,11 +1613,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_dashes
@@ -2839,11 +1622,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_deps
@@ -2853,11 +1631,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_deps
@@ -2867,11 +1640,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/readme_http_archive
@@ -2881,11 +1649,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/readme_http_archive
@@ -2895,11 +1658,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/readme_http_archive
@@ -2909,11 +1667,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/relative_strip_import_prefix
@@ -2923,11 +1676,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/relative_strip_import_prefix
@@ -2937,11 +1685,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/relative_strip_import_prefix
@@ -2951,11 +1694,6 @@ tasks:
     platform: ubuntu1804
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
@@ -2965,11 +1703,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
@@ -2979,11 +1712,6 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_disable_proto_source_root"
-    - "--incompatible_load_python_rules_from_bzl"
-    - "--incompatible_load_cc_rules_from_bzl"
-    - "--incompatible_load_proto_rules_from_bzl"
-    - "--incompatible_load_java_rules_from_bzl"
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
