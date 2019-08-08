@@ -2,7 +2,7 @@ package(default_visibility = ["//visibility:private"])
 
 load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
 
-# Use the strip_import_prefix attribute
+# Use the strip_import_prefix attribute with a relative path
 
 proto_library(
     name = "proto_lib",
