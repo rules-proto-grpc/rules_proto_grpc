@@ -2609,6 +2609,48 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
+  test_workspace_import_prefix_ubuntu1804:
+    name: 'test workspace: import_prefix'
+    bazel: last_green
+    platform: ubuntu1804
+    test_flags:
+    - "--test_output=errors"
+    - "--incompatible_disable_proto_source_root"
+    - "--incompatible_load_python_rules_from_bzl"
+    - "--incompatible_load_cc_rules_from_bzl"
+    - "--incompatible_load_proto_rules_from_bzl"
+    - "--incompatible_load_java_rules_from_bzl"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/import_prefix
+  test_workspace_import_prefix_windows:
+    name: 'test workspace: import_prefix'
+    bazel: last_green
+    platform: windows
+    test_flags:
+    - "--test_output=errors"
+    - "--incompatible_disable_proto_source_root"
+    - "--incompatible_load_python_rules_from_bzl"
+    - "--incompatible_load_cc_rules_from_bzl"
+    - "--incompatible_load_proto_rules_from_bzl"
+    - "--incompatible_load_java_rules_from_bzl"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/import_prefix
+  test_workspace_import_prefix_macos:
+    name: 'test workspace: import_prefix'
+    bazel: last_green
+    platform: macos
+    test_flags:
+    - "--test_output=errors"
+    - "--incompatible_disable_proto_source_root"
+    - "--incompatible_load_python_rules_from_bzl"
+    - "--incompatible_load_cc_rules_from_bzl"
+    - "--incompatible_load_proto_rules_from_bzl"
+    - "--incompatible_load_java_rules_from_bzl"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/import_prefix
   test_workspace_objc_capitalisation_ubuntu1804:
     name: 'test workspace: objc_capitalisation'
     bazel: last_green
