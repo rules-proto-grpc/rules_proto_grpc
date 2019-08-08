@@ -253,7 +253,7 @@ def proto_compile_aspect_impl(target, ctx):
             if any([
                 proto.dirname.endswith(exclusion) or proto.path.endswith(exclusion)
                 for exclusion in plugin.exclusions
-            ]):
+            ]) or proto in protos: # TODO: When using import_prefix, the ProtoInfo.direct_sources list appears to contain duplicate records, this line removes these
                 continue
 
             # Proto not excluded
