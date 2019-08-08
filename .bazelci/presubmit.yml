@@ -2483,6 +2483,48 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
+  test_workspace_combined_strip_and_add_prefix_ubuntu1804:
+    name: 'test workspace: combined_strip_and_add_prefix'
+    bazel: last_green
+    platform: ubuntu1804
+    test_flags:
+    - "--test_output=errors"
+    - "--incompatible_disable_proto_source_root"
+    - "--incompatible_load_python_rules_from_bzl"
+    - "--incompatible_load_cc_rules_from_bzl"
+    - "--incompatible_load_proto_rules_from_bzl"
+    - "--incompatible_load_java_rules_from_bzl"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/combined_strip_and_add_prefix
+  test_workspace_combined_strip_and_add_prefix_windows:
+    name: 'test workspace: combined_strip_and_add_prefix'
+    bazel: last_green
+    platform: windows
+    test_flags:
+    - "--test_output=errors"
+    - "--incompatible_disable_proto_source_root"
+    - "--incompatible_load_python_rules_from_bzl"
+    - "--incompatible_load_cc_rules_from_bzl"
+    - "--incompatible_load_proto_rules_from_bzl"
+    - "--incompatible_load_java_rules_from_bzl"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/combined_strip_and_add_prefix
+  test_workspace_combined_strip_and_add_prefix_macos:
+    name: 'test workspace: combined_strip_and_add_prefix'
+    bazel: last_green
+    platform: macos
+    test_flags:
+    - "--test_output=errors"
+    - "--incompatible_disable_proto_source_root"
+    - "--incompatible_load_python_rules_from_bzl"
+    - "--incompatible_load_cc_rules_from_bzl"
+    - "--incompatible_load_proto_rules_from_bzl"
+    - "--incompatible_load_java_rules_from_bzl"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/combined_strip_and_add_prefix
   test_workspace_exclusions_ubuntu1804:
     name: 'test workspace: exclusions'
     bazel: last_green
