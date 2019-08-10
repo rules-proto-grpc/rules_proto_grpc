@@ -1,5 +1,6 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
+load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
 VERSIONS = {
@@ -352,6 +353,7 @@ def _generic_dependency(name, **kwargs):
 # Toolchains
 #
 def rules_proto_grpc_toolchains():
+    check_bazel_minimum_version("1.0.0")
     native.register_toolchains(str(Label("//protobuf:protoc_toolchain")))
 
 
