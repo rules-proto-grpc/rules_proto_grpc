@@ -289,7 +289,6 @@ def _generic_dependency(name, **kwargs):
 
         # Generate URLs
         urls = [
-            "https://mirror.bazel.build/github.com/{}/{}/archive/{}.tar.gz".format(dep["org"], dep["repo"], ref),
             "https://github.com/{}/{}/archive/{}.tar.gz".format(dep["org"], dep["repo"], ref),
         ]
 
