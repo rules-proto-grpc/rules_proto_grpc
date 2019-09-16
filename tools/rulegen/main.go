@@ -370,17 +370,12 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		}
 		out.w("  main_%s:", ciPlatform)
 		out.w("    name: build & test all")
-		out.w("    bazel: last_green")
+		out.w("    bazel: 1.0.0rc3")
 		out.w("    platform: %s", ciPlatform)
-		out.w("    build_flags:")
 		if ciPlatform == "macos" {
+		    out.w("    build_flags:")
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 		}
-		out.w(`    - "--incompatible_disable_proto_source_root"`)
-		out.w(`    - "--incompatible_load_python_rules_from_bzl"`)
-		out.w(`    - "--incompatible_load_cc_rules_from_bzl"`)
-		out.w(`    - "--incompatible_load_proto_rules_from_bzl"`)
-		out.w(`    - "--incompatible_load_java_rules_from_bzl"`)
 		out.w("    build_targets:")
 		for _, lang := range languages {
 			// Skip experimental or excluded
@@ -392,11 +387,6 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		if ciPlatform == "macos" {
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 		}
-		out.w(`    - "--incompatible_disable_proto_source_root"`)
-		out.w(`    - "--incompatible_load_python_rules_from_bzl"`)
-		out.w(`    - "--incompatible_load_cc_rules_from_bzl"`)
-		out.w(`    - "--incompatible_load_proto_rules_from_bzl"`)
-		out.w(`    - "--incompatible_load_java_rules_from_bzl"`)
 		out.w(`    - "--test_output=errors"`)
 		out.w("    test_targets:")
 		for _, clientLang := range languages {
@@ -422,14 +412,8 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 
 				out.w("  %s_%s_%s:", lang.Name, rule.Name, ciPlatform)
 				out.w("    name: '%s: %s'", lang.Name, rule.Name)
-				out.w("    bazel: last_green")
+				out.w("    bazel: 1.0.0rc3")
 				out.w("    platform: %s", ciPlatform)
-				out.w("    build_flags:")
-				out.w(`    - "--incompatible_disable_proto_source_root"`)
-				out.w(`    - "--incompatible_load_python_rules_from_bzl"`)
-				out.w(`    - "--incompatible_load_cc_rules_from_bzl"`)
-				out.w(`    - "--incompatible_load_proto_rules_from_bzl"`)
-				out.w(`    - "--incompatible_load_java_rules_from_bzl"`)
 				out.w("    build_targets:")
 				out.w(`      - "//..."`)
 				out.w("    working_directory: %s", exampleDir)
@@ -455,15 +439,10 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 			}
 			out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
 			out.w("    name: 'test workspace: %s'", testWorkspace)
-			out.w("    bazel: last_green")
+			out.w("    bazel: 1.0.0rc3")
 			out.w("    platform: %s", ciPlatform)
 			out.w("    test_flags:")
 			out.w(`    - "--test_output=errors"`)
-			out.w(`    - "--incompatible_disable_proto_source_root"`)
-			out.w(`    - "--incompatible_load_python_rules_from_bzl"`)
-			out.w(`    - "--incompatible_load_cc_rules_from_bzl"`)
-			out.w(`    - "--incompatible_load_proto_rules_from_bzl"`)
-			out.w(`    - "--incompatible_load_java_rules_from_bzl"`)
 			out.w("    test_targets:")
 			out.w(`      - "//..."`)
 			out.w("    working_directory: %s", path.Join(dir, "test_workspaces", testWorkspace))
