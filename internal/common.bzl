@@ -243,7 +243,7 @@ def parse_version(version_str):
     semver_str = version_str.partition(" ")[0].partition("-")[0]
 
     # Return version tuple
-    return tuple([int(n) for n in semver_str.split(".")])
+    return tuple([n for n in semver_str.split(".")])
 
 
 # Check that a specific bazel version is being used.
