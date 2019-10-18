@@ -33,7 +33,7 @@ rust_library(
     srcs = glob(["**/*.rs"]),
     deps = [
         "@raze__byteorder__1_3_2//:byteorder",
-        "@raze__iovec__0_1_2//:iovec",
+        "@raze__iovec__0_1_4//:iovec",
     ],
     rustc_flags = [
         "--cap-lints=allow",

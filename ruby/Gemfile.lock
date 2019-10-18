@@ -5,10 +5,10 @@ GEM
     google-protobuf (3.8.0-x86_64-linux)
     googleapis-common-protos-types (1.0.4)
       google-protobuf (~> 3.0)
-    grpc (1.22.0)
+    grpc (1.24.0)
       google-protobuf (~> 3.8)
       googleapis-common-protos-types (~> 1.0)
-    grpc (1.22.0-x86_64-linux)
+    grpc (1.24.0-x86_64-linux)
       google-protobuf (~> 3.8)
       googleapis-common-protos-types (~> 1.0)
     multi_json (1.13.1)
@@ -20,8 +20,8 @@ PLATFORMS
 
 DEPENDENCIES
   google-protobuf (= 3.8.0)
-  grpc (= 1.22.0)
+  grpc (= 1.24.0)
   multi_json (= 1.13.1)
 
 BUNDLED WITH
-   1.16.1
+   1.17.3

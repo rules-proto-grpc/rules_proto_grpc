@@ -53,5 +53,5 @@ alias(
 )
 alias(
     name = "serde_json",
-    actual = "@raze__serde_json__1_0_40//:serde_json",
+    actual = "@raze__serde_json__1_0_41//:serde_json",
 )

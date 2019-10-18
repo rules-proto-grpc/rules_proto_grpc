@@ -32,7 +32,7 @@ rust_library(
     edition = "2015",
     srcs = glob(["**/*.rs"]),
     deps = [
-        "@raze__cfg_if__0_1_9//:cfg_if",
+        "@raze__cfg_if__0_1_10//:cfg_if",
     ],
     rustc_flags = [
         "--cap-lints=allow",
