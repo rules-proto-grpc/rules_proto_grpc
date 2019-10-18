@@ -127,15 +127,19 @@ d_repositories()
 #
 # Go
 #
-load("//:repositories.bzl", "bazel_gazelle")
+load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+io_bazel_rules_go()
 bazel_gazelle()
-
-load("//go:repositories.bzl", "go_repos")
-go_repos()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 go_rules_dependencies()
 go_register_toolchains()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+gazelle_dependencies()
+
+load("//go:repositories.bzl", "go_repos")
+go_repos()
 
 
 #
@@ -154,9 +158,6 @@ go_register_toolchains()
 
 load("//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", "gateway_repos")
 gateway_repos()
-
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-gazelle_dependencies()
 
 
 #

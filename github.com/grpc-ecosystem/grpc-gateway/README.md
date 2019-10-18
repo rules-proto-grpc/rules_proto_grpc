@@ -15,23 +15,25 @@ Generates grpc-gateway `.go` files
 ### `WORKSPACE`
 
 ```python
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+
+io_bazel_rules_go()
+
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
 
-load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle")
-
 bazel_gazelle()
-
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
-
-rules_proto_grpc_gateway_repos()
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
+
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
+
+rules_proto_grpc_gateway_repos()
 ```
 
 ### `BUILD.bazel`
@@ -61,23 +63,25 @@ Generates grpc-gateway swagger `.json` files
 ### `WORKSPACE`
 
 ```python
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+
+io_bazel_rules_go()
+
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
 
-load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle")
-
 bazel_gazelle()
-
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
-
-rules_proto_grpc_gateway_repos()
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
+
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
+
+rules_proto_grpc_gateway_repos()
 ```
 
 ### `BUILD.bazel`
@@ -107,23 +111,25 @@ Generates grpc-gateway library files
 ### `WORKSPACE`
 
 ```python
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+
+io_bazel_rules_go()
+
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
 
-load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle")
-
 bazel_gazelle()
-
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
-
-rules_proto_grpc_gateway_repos()
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
+
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
+
+rules_proto_grpc_gateway_repos()
 ```
 
 ### `BUILD.bazel`

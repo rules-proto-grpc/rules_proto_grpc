@@ -1,6 +1,5 @@
 load(
     "//:repositories.bzl",
-    "bazel_gazelle",
     "io_bazel_rules_go",
     "rules_proto_grpc_dependencies",
 )
@@ -9,7 +8,6 @@ load("@bazel_gazelle//:deps.bzl", "go_repository")
 def go_repos(**kwargs):
     rules_proto_grpc_dependencies(**kwargs)
     io_bazel_rules_go(**kwargs)
-    bazel_gazelle(**kwargs)
 
     go_repository(
         name = "org_golang_google_grpc",
