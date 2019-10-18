@@ -6,13 +6,6 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 MINIMUM_BAZEL_VERSION = "1.0.0"
 VERSIONS = {
     # Core
-    "rules_python": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_python",
-        "ref": "0.0.1",
-        "sha256": "fa53cc0afe276d8f6675df1a424592e00e4f37b2a497e48399123233902e2e76",
-    },
     "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
@@ -34,8 +27,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.24.0",
-        "sha256": "03a22a2fbfec8ccc44ff2e8061c312c9b4a0d33046b6d0c84c8eca5c56569387",
+        "ref": "v1.24.2",
+        "sha256": "fd040f5238ff1e32b468d9d38e50f0d7f8da0828019948c9001e9a03093e1d8f",
     },
     "zlib": {
         "type": "http",
@@ -44,15 +37,37 @@ VERSIONS = {
         "strip_prefix": "zlib-1.2.11",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.zlib",
     },
-
-    # Misc
+    "rules_python": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "rules_python",
+        "ref": "0.0.1",
+        "sha256": "fa53cc0afe276d8f6675df1a424592e00e4f37b2a497e48399123233902e2e76",
+    },
+    "build_bazel_rules_swift": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "rules_swift",
+        "ref": "0.13.0",
+        "sha256": "617e568aa8263c454f63362f5ab837038da710d646510b8f4a6760ff6361f714",
+    },
+    "build_bazel_apple_support": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "apple_support",
+        "ref": "8c585c66c29b9d528e5fcf78da8057a6f3a4f001",
+        "sha256": "0a8831032b06cabae582b604e734e10f32742311de8975d5182933e586760c5f",
+    },
     "bazel_skylib": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-skylib",
-        "ref": "0.8.0",
-        "sha256": "2ea8a5ed2b448baf4a6855d3ce049c4c452a6470b1efd1504fdb7c1c134d220a",
+        "ref": "1.0.2",
+        "sha256": "e5d90f0ec952883d56747b7604e2a15ee36e288bb556c3d0ed33e818a4d971f2",
     },
+
+
+    # Misc
     "com_github_bazelbuild_buildtools": {
         "type": "github",
         "org": "bazelbuild",
@@ -264,13 +279,6 @@ VERSIONS = {
     },
 
     # Swift
-    "build_bazel_rules_swift": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_swift",
-        "ref": "0.12.1",
-        "sha256": "338b0124f9ebc31d44bd26f40e797a70de89d0b693ac17a3eb726c5ba02fa43b",
-    },
     "com_github_apple_swift_swift_protobuf": {
         "type": "github",
         "org": "apple",
@@ -388,6 +396,8 @@ def rules_proto_grpc_dependencies(**kwargs):
     )
 
     rules_python(**kwargs)
+    build_bazel_rules_swift(**kwargs)
+    build_bazel_apple_support(**kwargs)
     bazel_skylib(**kwargs)
 
     com_google_protobuf(**kwargs)
@@ -396,6 +406,12 @@ def rules_proto_grpc_dependencies(**kwargs):
 
 def rules_python(**kwargs):
     _generic_dependency("rules_python", **kwargs)
+
+def build_bazel_rules_swift(**kwargs):
+    _generic_dependency("build_bazel_rules_swift", **kwargs)
+
+def build_bazel_apple_support(**kwargs):
+    _generic_dependency("build_bazel_apple_support", **kwargs)
 
 def com_google_protobuf(**kwargs):
     _generic_dependency("com_google_protobuf", **kwargs)
@@ -551,8 +567,5 @@ def com_github_scalapb_scalapb(**kwargs):
 #
 # Swift
 #
-def build_bazel_rules_swift(**kwargs):
-    _generic_dependency("build_bazel_rules_swift", **kwargs)
-
 def com_github_apple_swift_swift_protobuf(**kwargs):
     _generic_dependency("com_github_apple_swift_swift_protobuf", **kwargs)
