@@ -15,15 +15,13 @@ Generates grpc-gateway `.go` files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
-
-io_bazel_rules_go()
-
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
+
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle")
 
 bazel_gazelle()
 
@@ -63,15 +61,13 @@ Generates grpc-gateway swagger `.json` files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
-
-io_bazel_rules_go()
-
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
+
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle")
 
 bazel_gazelle()
 
@@ -111,15 +107,13 @@ Generates grpc-gateway library files
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
-
-io_bazel_rules_go()
-
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
+
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle")
 
 bazel_gazelle()
 

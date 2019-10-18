@@ -7,12 +7,16 @@ load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rul
 rules_proto_grpc_toolchains()
 rules_proto_grpc_dependencies()
 
-load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
-
-rules_proto_grpc_gogo_repos()
-
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
+
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle")
+
+bazel_gazelle()
+
+load("@rules_proto_grpc//github.com/gogo/protobuf:repositories.bzl", rules_proto_grpc_gogo_repos="gogo_repos")
+
+rules_proto_grpc_gogo_repos()
