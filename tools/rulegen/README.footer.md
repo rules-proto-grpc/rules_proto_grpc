@@ -239,7 +239,7 @@ _rule = rule(
         deps = attr.label_list(
             mandatory = True,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [example_compile],
+            aspects = [example_aspect],
         ),
     ),
 )

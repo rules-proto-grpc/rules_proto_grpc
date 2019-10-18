@@ -10,6 +10,11 @@
 </div>
 
 
+## Announcements
+
+- **2019/10/10**: Bazel 1.0.0 has been released but is not yet supported fully by rules_proto_grpc. Please follow the [Bazel 1.0.0 Support issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/22) if you are waiting for support, which will be released in version 1.0.0 of rules_proto_grpc. If you are seeing issues with Bazel 1.0.0 that are not mentioned or linked in that issue, please add a comment or open a new issue.
+
+
 ## Contents:
 
 - [Overview](#overview)
@@ -433,7 +438,7 @@ _rule = rule(
         deps = attr.label_list(
             mandatory = True,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [example_compile],
+            aspects = [example_aspect],
         ),
     ),
 )
