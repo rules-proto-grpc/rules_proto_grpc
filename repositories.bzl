@@ -3,14 +3,15 @@ load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
+MINIMUM_BAZEL_VERSION = "1.0.0"
 VERSIONS = {
     # Core
     "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "19ca196e4dcc8ff03136c950cf1bc298d5e1ce1e", # 3.9.0 + fixes
-        "sha256": "91247e58e744572bef69e0f1a2c54d73eaa48164023fa8b2648d15e247f8698b",
+        "ref": "v3.10.0",
+        "sha256": "758249b537abba2f21ebc2d02555bf080917f0f2f88f4cbe2903e0e28c4187ed",
         "binds": [
             {
                 "name": "protobuf_clib",
@@ -26,8 +27,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.22.0",
-        "sha256": "11ac793c562143d52fd440f6549588712badc79211cdc8c509b183cb69bddad8",
+        "ref": "v1.24.0",
+        "sha256": "03a22a2fbfec8ccc44ff2e8061c312c9b4a0d33046b6d0c84c8eca5c56569387",
     },
     "zlib": {
         "type": "http",
@@ -42,15 +43,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-skylib",
-        "ref": "be3b1fc838386bdbea39d9750ea4411294870575", # Apr 13, 2019
-        "sha256": "6128dd2af9830430e0ae404cb6fdce754fb80ed88942e1a0865a7f376bb68c4e",
+        "ref": "0.8.0",
+        "sha256": "2ea8a5ed2b448baf4a6855d3ce049c4c452a6470b1efd1504fdb7c1c134d220a",
     },
     "com_github_bazelbuild_buildtools": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "buildtools",
-        "ref": "6415663945d3248207da955aafa1fa2af1a0f2ed",
-        "sha256": "d1e28237d1f4c2255c504246b4f3fd36f74d590f2974491b4399a84c58b495ed",
+        "ref": "0.28.0",
+        "sha256": "d1e28237d1a4c2255c504246b4f3fd36f74d590f2974491b4399a84c58b495ed",
     },
 
     # Android
@@ -58,7 +59,7 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_android",
-        "ref": "9ab1134546364c6de84fc6c80b4202fdbebbbb35", # 2019-06-19
+        "ref": "9ab1134546364c6de84fc6c80b4202fdbebbbb35",
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
     },
     "com_google_guava_guava_android": {
@@ -71,7 +72,7 @@ VERSIONS = {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "fa08222434bc58d743e8c2cc716bc219c3d0f44e",
+        "ref": "fa08222434bc58d743e8c2cc716bc219c3d0f44e", # Jul 2019
         "sha256": "b04b08d31208be32aafdf5842d1b6073d527a67ff8d2cf4b17ee8f22a5273758",
     },
 
@@ -89,8 +90,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_closure",
-        "ref": "03110588392d8c6c05b99c08a6f1c2121604ca27",
-        "sha256": "12d17f241fc73f562825b0bba11a21040580d82da00be4689f5942c05508d8da",
+        "ref": "b2a6fb762a2a655d9970d88a9218b7a1cf098ffa",
+        "sha256": "f2badc609a80a234bb51d1855281dd46cac90eadc57545880a3b5c38be0960e7",
     },
 
     # D
@@ -114,15 +115,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "6fc21c78143ff1d4ea98100e8fd7a928d45abd00", # 0.18.6
-        "sha256": "d9f58122d7cece7c73ddd4408e90ba0ac48bf45b58de74550cc446319ad61617",
+        "ref": "0.19.2",
+        "sha256": "0cf3ce532ceaba7ef3a12caf96f4741357d44e98cdbd7c2c9cf3cb17a8702dc9",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "63ddd72aa315d020456f1a96bc6fcca9405810cb",
-        "sha256": "bff502b74b6ad77d0b9b558ebe99b030d6ba9ab0e3a8b4cb396448bf7fe88ab4",
+        "ref": "0.18.1",
+        "sha256": "40f6b81c163d190ce7e16ea734ee748ad45e371306a46653fcab93aecda5c0da",
     },
 
     # gRPC gateway
@@ -130,8 +131,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "79ff520b46091f8148bafeafd6e798826d6d47c2", # Apr 2019
-        "sha256": "a8d283391d1e37b2bea798082f198187dd1edfed03da00f5be96edc6dadfde44",
+        "ref": "v1.9.5",
+        "sha256": "a8d2a3391d1e37b2bea798082f198187dd1edfed03da00f5be96edc6dadfde44",
     },
 
     # gRPC web
@@ -139,8 +140,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-web",
-        "ref": "ffe8e9c9036f4ec7d5b55da75b1758b1f57fbf8d",
-        "sha256": "936ca06fe7a9b55c1e334e4869e1d153fec68d92d750d2b550e41e1c5580b4dd",
+        "ref": "1.0.6",
+        "sha256": "a36ca06fe7a9b55c1e334e4869e1d153fec68d92d750d2b550e41e1c5580b4dd",
     },
 
     # gRPC.js
@@ -157,15 +158,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_jvm_external",
-        "ref": "e359007344bc53133e1e54c891670d08453d4827", # May 7 2019
-        "sha256": "150c8cd5a3abe8b2da09235ebe5aedd0a379440d9f6a15d1c99c2b1e560a09f9",
+        "ref": "2.6.1",
+        "sha256": "19fd7312feda452744c0b738260941f7be15bf9894aecdf7c81d19738cebb673",
     },
     "io_grpc_grpc_java": {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "e341d4c6554ddac8f883c03357e2b9646c090ff1", # v1.21.0 + plugin fix + netty fix
-        "sha256": "408889c0614fe1a788f1c581e73e9cf84bec0c436035fcef72851d651ae311ad",
+        "ref": "v1.23.0",
+        "sha256": "9618a6f4ec0f2bdb77d9b6e01865af9796f370e63e1352210798bacfc99ccdac",
     },
     "javax_annotation_javax_annotation_api": {
         "type": "jvm_maven_import_external",
@@ -193,8 +194,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_nodejs",
-        "ref": "fb1133d1259992c196df31e2da6540fa6d54f191", # 0.32.2
-        "sha256": "4e91b794f01cc8b1c690ae4d7ae8815ac6a4d4e9d2a5ac5988233ad0be564355",
+        "ref": "0.35.0",
+        "sha256": "48be6c21d4ee7bf2a6c3dd35ac54f8ff430944b65ab7a43a9cd742f23c9a7279",
     },
 
     # Python
@@ -234,8 +235,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "3fac9fe0001d2a829d8ddaf3033b5171c049abdb", # 2019-07-02
-        "sha256": "299108772020c103eefacb4de30873d45224e8e0e6c11df7b56ffd11d959e212",
+        "ref": "05bd7d1d1bd34225a6614fc131267181aee2b61e",
+        "sha256": "55968c5377d9d9f4a5c61780c8a041d478eaac26d984d19fd589afaf12b353dc",
     },
 
     # Scala
@@ -243,14 +244,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "14d9742496859faaf860b1adfc8126f3ed077921", # May 3, 2019
-        "sha256": "72fc4357b29ec93951d472ee22a4cc3f30e170234a4ec73ff678f43f7e276bd4",
+        "ref": "8a5ca6b426efbd2415520abdae39877c4dfa206c",
+        "sha256": "54e2213994976387ab6cb08a6e08fe075eb16d4af0b09d27877e90c1042fc51a",
     },
     "com_github_scalapb_scalapb": {
-        "type": "http",
-        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.8.0/scalapbc-0.8.0.zip"],
-        "sha256": "bda0b44b50f0a816342a52c34e6a341b1a792f2a6d26f4f060852f8f10f5d854",
-        "strip_prefix": "scalapbc-0.8.0/lib",
+        "type": "github",
+        "org": "scalapb",
+        "repo": "ScalaPB",
+        "ref": "v0.9.0",
+        "sha256": "8486c05fbcff62c18937e26203b464d3fc8c05608eae5d2ffb65bbfcc6ed4ceb",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
     },
 
@@ -259,14 +261,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "c935de3d04a8d24feb09a57df3b33a328be5d863", # 0.11.1
-        "sha256": "797593aef1401c3fedfe0762ec073bfe7619ab8e4e26558614a1daa491e501a4",
+        "ref": "0.12.1",
+        "sha256": "338b0124f9ebc31d44bd26f40e797a70de89d0b693ac17a3eb726c5ba02fa43b",
     },
     "com_github_apple_swift_swift_protobuf": {
-        "type": "http",
-        "urls": ["https://github.com/apple/swift-protobuf/archive/1.4.0.tar.gz"],
-        "sha256": "efa256d572d19fc23756a30089129af523173ad29a84ee87800fa88f056efaac",
-        "strip_prefix": "swift-protobuf-1.4.0",
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-protobuf",
+        "ref": "1.6.0",
+        "sha256": "33ab0124f9ebc31d44bd26f40e797a70de89d0b693ac17a3eb726c5ba02fa43b",
         "build_file": "@build_bazel_rules_swift//third_party:com_github_apple_swift_swift_protobuf/BUILD.overlay",
     },
 }
@@ -348,25 +351,49 @@ def _generic_dependency(name, **kwargs):
                 )
 
 
+# Write version data. Required for both upb and rules_rust
+def _store_bazel_version(repository_ctx):
+    repository_ctx.file("BUILD", "exports_files(['def.bzl'])")
+    repository_ctx.file("bazel_version.bzl", "bazel_version = \"{}\"".format(native.bazel_version))
+    repository_ctx.file("def.bzl", "BAZEL_VERSION='{}'".format(native.bazel_version))
+
+bazel_version_repository = repository_rule(
+    implementation = _store_bazel_version,
+)
+
+
 #
 # Toolchains
 #
 def rules_proto_grpc_toolchains():
-    check_bazel_minimum_version("1.0.0")
+    check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
     native.register_toolchains(str(Label("//protobuf:protoc_toolchain")))
 
 
 #
 # Core
 #
-def external_zlib(**kwargs):
-    _generic_dependency("zlib", **kwargs)
+def rules_proto_grpc_dependencies(**kwargs):
+    check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
+
+    bazel_version_repository(
+        name = "bazel_version"
+    )
+
+    bazel_skylib(**kwargs)
+    com_google_protobuf(**kwargs)
+    external_zlib(**kwargs)
+
 
 def com_google_protobuf(**kwargs):
     _generic_dependency("com_google_protobuf", **kwargs)
 
 def com_github_grpc_grpc(**kwargs):
     _generic_dependency("com_github_grpc_grpc", **kwargs)
+
+def external_zlib(**kwargs):
+    _generic_dependency("zlib", **kwargs)
+
 
 
 #
