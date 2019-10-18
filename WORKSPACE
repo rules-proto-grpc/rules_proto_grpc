@@ -13,9 +13,6 @@ rules_proto_grpc_toolchains()
 load("//:repositories.bzl", "rules_proto_grpc_dependencies")
 rules_proto_grpc_dependencies()
 
-load("//protobuf:repositories.bzl", "protobuf_repos")
-protobuf_repos()
-
 
 #
 # Android

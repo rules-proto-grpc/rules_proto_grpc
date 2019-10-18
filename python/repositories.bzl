@@ -1,17 +1,13 @@
 load(
     "//:repositories.bzl",
-    "com_github_grpc_grpc",
     "com_apt_itude_rules_pip",
     "subpar",
     "six",
-)
-load(
-    "//grpc:repositories.bzl",
-    "grpc_repos",
+    "rules_proto_grpc_dependencies",
 )
 
 def python_repos(**kwargs):
-    grpc_repos(**kwargs)
+    rules_proto_grpc_dependencies(**kwargs)
     subpar(**kwargs)
     six(**kwargs)
     com_apt_itude_rules_pip(**kwargs)

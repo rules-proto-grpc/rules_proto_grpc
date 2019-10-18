@@ -1,12 +1,9 @@
 load(
     "//:repositories.bzl",
     "io_bazel_rules_dotnet",
-)
-load(
-    "//grpc:repositories.bzl",
-    "grpc_repos",
+    "rules_proto_grpc_dependencies",
 )
 
 def csharp_repos(**kwargs):
-    grpc_repos(**kwargs)
+    rules_proto_grpc_dependencies(**kwargs)
     io_bazel_rules_dotnet(**kwargs)

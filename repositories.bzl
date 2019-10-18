@@ -6,6 +6,13 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 MINIMUM_BAZEL_VERSION = "1.0.0"
 VERSIONS = {
     # Core
+    "rules_python": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "rules_python",
+        "ref": "0.0.1",
+        "sha256": "fa53cc0afe276d8f6675df1a424592e00e4f37b2a497e48399123233902e2e76",
+    },
     "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
@@ -199,13 +206,6 @@ VERSIONS = {
     },
 
     # Python
-    "rules_python": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_python",
-        "ref": "0.0.1",
-        "sha256": "fa53cc0afe276d8f6675df1a424592e00e4f37b2a497e48399123233902e2e76",
-    },
     "com_apt_itude_rules_pip": {
         "type": "github",
         "org": "apt-itude",
@@ -387,11 +387,15 @@ def rules_proto_grpc_dependencies(**kwargs):
         name = "bazel_version"
     )
 
-    bazel_skylib(**kwargs)
-    com_google_protobuf(**kwargs)
-    external_zlib(**kwargs)
     rules_python(**kwargs)
+    bazel_skylib(**kwargs)
 
+    com_google_protobuf(**kwargs)
+    com_github_grpc_grpc(**kwargs)
+    external_zlib(**kwargs)
+
+def rules_python(**kwargs):
+    _generic_dependency("rules_python", **kwargs)
 
 def com_google_protobuf(**kwargs):
     _generic_dependency("com_google_protobuf", **kwargs)
@@ -510,9 +514,6 @@ def build_bazel_rules_nodejs(**kwargs):
 #
 # Python
 #
-def rules_python(**kwargs):
-    _generic_dependency("rules_python", **kwargs)
-
 def com_apt_itude_rules_pip(**kwargs):
     _generic_dependency("com_apt_itude_rules_pip", **kwargs)
 

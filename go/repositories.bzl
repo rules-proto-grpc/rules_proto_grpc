@@ -1,12 +1,9 @@
 load(
     "//:repositories.bzl",
     "io_bazel_rules_go",
-)
-load(
-    "//protobuf:repositories.bzl",
-    "protobuf_repos",
+    "rules_proto_grpc_dependencies",
 )
 
 def go_repos(**kwargs):
-    protobuf_repos(**kwargs)
+    rules_proto_grpc_dependencies(**kwargs)
     io_bazel_rules_go(**kwargs)
