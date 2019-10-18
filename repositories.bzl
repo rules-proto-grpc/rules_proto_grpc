@@ -137,8 +137,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "0.19.2",
-        "sha256": "0cf3ce532ceaba7ef3a12caf96f4741357d44e98cdbd7c2c9cf3cb17a8702dc9",
+        "ref": "v0.20.1",
+        "sha256": "58f52fb4d67506f5e58490146fca5ca41583b36b74e4cd8dcd2a1d9c46ca8c62",
     },
     "bazel_gazelle": {
         "type": "github",
@@ -266,8 +266,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "8a5ca6b426efbd2415520abdae39877c4dfa206c",
-        "sha256": "54e2213994976387ab6cb08a6e08fe075eb16d4af0b09d27877e90c1042fc51a",
+        "ref": "f985e5e0d6364970be8d6f15d262c8b0e0973d1b",
+        "sha256": "4276b2ab877d6e1271825933eea00869248d32948d42770bfe4fedd491b2824c",
     },
     "com_github_scalapb_scalapb": {
         "type": "github",
