@@ -176,8 +176,9 @@ func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
     path = "%s",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
-rules_proto_grpc_toolchains()`, relpath)
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_dependencies")
+rules_proto_grpc_toolchains()
+rules_proto_grpc_dependencies()`, relpath)
 
 	out.ln()
 	out.t(rule.WorkspaceExample, &ruleData{lang, rule})

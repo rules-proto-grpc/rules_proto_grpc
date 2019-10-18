@@ -3,8 +3,9 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_dependencies")
 rules_proto_grpc_toolchains()
+rules_proto_grpc_dependencies()
 
 load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
 

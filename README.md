@@ -103,8 +103,9 @@ http_archive(
     strip_prefix = "rules_proto_grpc-0.2.0",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_dependencies")
 rules_proto_grpc_toolchains()
+rules_proto_grpc_dependencies()
 ```
 
 It is recommended that you use the tagged releases for stable rules. Master is
