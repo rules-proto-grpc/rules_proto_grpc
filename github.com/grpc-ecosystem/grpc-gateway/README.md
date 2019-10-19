@@ -34,6 +34,10 @@ gazelle_dependencies()
 load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
 
 rules_proto_grpc_gateway_repos()
+
+load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+
+go_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -82,6 +86,10 @@ gazelle_dependencies()
 load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
 
 rules_proto_grpc_gateway_repos()
+
+load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+
+go_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -130,6 +138,10 @@ gazelle_dependencies()
 load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
 
 rules_proto_grpc_gateway_repos()
+
+load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+
+go_repositories()
 ```
 
 ### `BUILD.bazel`

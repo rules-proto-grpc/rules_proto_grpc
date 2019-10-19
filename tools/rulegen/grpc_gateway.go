@@ -18,7 +18,11 @@ gazelle_dependencies()
 
 load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
 
-rules_proto_grpc_gateway_repos()`)
+rules_proto_grpc_gateway_repos()
+
+load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+
+go_repositories()`)
 
 var grpcGatewayLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:gateway_grpc_compile.bzl", "gateway_grpc_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
