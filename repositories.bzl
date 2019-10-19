@@ -163,7 +163,7 @@ VERSIONS = {
         "org": "grpc",
         "repo": "grpc-web",
         "ref": "1.0.6",
-        "sha256": "a36ca06fe7a9b55c1e334e4869e1d153fec68d92d750d2b550e41e1c5580b4dd",
+        "sha256": "304e3c7e65e71a63e2d981df8c3f6604a3314f9e388ce704ced46b8b60dddae3",
     },
 
     # gRPC.js
