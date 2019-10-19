@@ -270,11 +270,10 @@ VERSIONS = {
         "sha256": "4276b2ab877d6e1271825933eea00869248d32948d42770bfe4fedd491b2824c",
     },
     "com_github_scalapb_scalapb": {
-        "type": "github",
-        "org": "scalapb",
-        "repo": "ScalaPB",
-        "ref": "v0.9.0",
-        "sha256": "8486c05fbcff62c18937e26203b464d3fc8c05608eae5d2ffb65bbfcc6ed4ceb",
+        "type": "http",
+        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.9.4/scalapbc-0.9.4.zip"],
+        "sha256": "7fe84b201195cd437c4393d882d08cb6354f6f24804c2a782a5c3379a2beb48d",
+        "strip_prefix": "scalapbc-0.9.4",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
     },
 
