@@ -3,9 +3,9 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_dependencies")
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
 rules_proto_grpc_toolchains()
-rules_proto_grpc_dependencies()
+rules_proto_grpc_repos()
 
 load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 

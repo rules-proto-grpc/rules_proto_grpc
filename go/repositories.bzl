@@ -1,12 +1,12 @@
 load(
     "//:repositories.bzl",
     "io_bazel_rules_go",
-    "rules_proto_grpc_dependencies",
+    "rules_proto_grpc_repos",
 )
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
 def go_repos(**kwargs):
-    rules_proto_grpc_dependencies(**kwargs)
+    rules_proto_grpc_repos(**kwargs)
     io_bazel_rules_go(**kwargs)
 
     go_repository(

@@ -10,8 +10,8 @@ rules_proto_grpc_toolchains()
 #
 # Core
 #
-load("//:repositories.bzl", "rules_proto_grpc_dependencies")
-rules_proto_grpc_dependencies()
+load("//:repositories.bzl", "rules_proto_grpc_repos")
+rules_proto_grpc_repos()
 
 
 #

@@ -5,11 +5,11 @@ load(
     "scalapb_runtime",
     "scalapb_runtime_grpc",
     "scalapb_lenses",
-    "rules_proto_grpc_dependencies",
+    "rules_proto_grpc_repos",
 )
 
 def scala_repos(**kwargs):
-    rules_proto_grpc_dependencies(**kwargs)
+    rules_proto_grpc_repos(**kwargs)
     com_github_scalapb_scalapb(**kwargs)
     scalapb_runtime(**kwargs)
     scalapb_runtime_grpc(**kwargs)

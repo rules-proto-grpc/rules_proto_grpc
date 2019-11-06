@@ -412,7 +412,7 @@ def rules_proto_grpc_toolchains():
 #
 # Core
 #
-def rules_proto_grpc_dependencies(**kwargs):
+def rules_proto_grpc_repos(**kwargs):
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
 
     bazel_version_repository(
