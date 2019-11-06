@@ -20,4 +20,6 @@ def scala_proto_library(**kwargs):
 
 PROTO_DEPS = [
     "@scalapb_runtime//jar",
+    "@scalapb_lenses//jar",
+    "@com_google_protobuf//:protobuf_java",
 ]

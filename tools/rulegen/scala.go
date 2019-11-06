@@ -36,6 +36,8 @@ var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString 
 
 PROTO_DEPS = [
     "@scalapb_runtime//jar",
+    "@scalapb_lenses//jar",
+    "@com_google_protobuf//:protobuf_java",
 ]`)
 
 var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString + `
