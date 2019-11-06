@@ -22,13 +22,6 @@ load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="
 
 rules_proto_grpc_scala_repos()
 
-# rules_go used here to compile a wrapper around the protoc-gen-scala plugin
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
-
-go_rules_dependencies()
-
-go_register_toolchains()
-
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
@@ -36,10 +29,6 @@ scala_repositories()
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
-
-load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-
-scala_proto_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -75,13 +64,6 @@ load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="
 
 rules_proto_grpc_scala_repos()
 
-# rules_go used here to compile a wrapper around the protoc-gen-scala plugin
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
-
-go_rules_dependencies()
-
-go_register_toolchains()
-
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
@@ -89,10 +71,6 @@ scala_repositories()
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
-
-load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-
-scala_proto_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -126,13 +104,6 @@ load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="
 
 rules_proto_grpc_scala_repos()
 
-# rules_go used here to compile a wrapper around the protoc-gen-scala plugin
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
-
-go_rules_dependencies()
-
-go_register_toolchains()
-
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
@@ -140,10 +111,6 @@ scala_repositories()
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
-
-load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-
-scala_proto_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -179,13 +146,6 @@ load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="
 
 rules_proto_grpc_scala_repos()
 
-# rules_go used here to compile a wrapper around the protoc-gen-scala plugin
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
-
-go_rules_dependencies()
-
-go_register_toolchains()
-
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
@@ -193,10 +153,6 @@ scala_repositories()
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
-
-load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-
-scala_proto_repositories()
 ```
 
 ### `BUILD.bazel`

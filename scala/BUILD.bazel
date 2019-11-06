@@ -1,10 +1,7 @@
 load("//:plugin.bzl", "proto_plugin")
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_binary", "scala_library", "scala_test")
 
 proto_plugin(
     name = "scala_plugin",
-    # Use the proto basename and pipe the value to the scala_keyword function.
-    # Ths function will append '_pb' if the basename is a scala keyword.
     out = "{name}.jar",
     tool = "@com_github_scalapb_scalapb//:bin/protoc-gen-scala",
     visibility = ["//visibility:public"],
@@ -12,14 +9,7 @@ proto_plugin(
 
 proto_plugin(
     name = "grpc_scala_plugin",
-    # Use the proto basename and pipe the value to the scala_keyword function.
-    # Ths function will append '_pb' if the basename is a scala keyword.
     out = "{name}.jar",
-    options = [
-        "grpc",
-        # "java_conversions", # causes weird import problems
-    ],
     tool = "@com_github_scalapb_scalapb//:bin/protoc-gen-scala",
     visibility = ["//visibility:public"],
 )
-

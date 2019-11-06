@@ -266,8 +266,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "f985e5e0d6364970be8d6f15d262c8b0e0973d1b",
-        "sha256": "4276b2ab877d6e1271825933eea00869248d32948d42770bfe4fedd491b2824c",
+        "ref": "0f89c210ade8f4320017daf718a61de3c1ac4773",
+        "sha256": "050a484981eb8fd1ca6c3bac8223f80121b4ee384e30c969926a1afbd32aefad",
     },
     "com_github_scalapb_scalapb": {
         "type": "http",
@@ -275,6 +275,24 @@ VERSIONS = {
         "sha256": "7fe84b201195cd437c4393d882d08cb6354f6f24804c2a782a5c3379a2beb48d",
         "strip_prefix": "scalapbc-0.9.4",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
+    },
+    "scalapb_runtime": {
+        "type": "jvm_maven_import_external",
+        "artifact": "com.thesamet.scalapb:scalapb-runtime_2.12:jar:0.9.4",
+        "server_urls": ["http://central.maven.org/maven2"],
+        "artifact_sha256": "151b9e353980bc266d4630ed1c2792712e109b02942211115afe97232b15f694",
+    },
+    "scalapb_runtime_grpc": {
+        "type": "jvm_maven_import_external",
+        "artifact": "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:jar:0.9.4",
+        "server_urls": ["http://central.maven.org/maven2"],
+        "artifact_sha256": "249467665168edf58690e81af17b1efb4fbdfd1c68f63b035c1ee5cbdc206eae",
+    },
+    "scalapb_lenses": {
+        "type": "jvm_maven_import_external",
+        "artifact": "com.thesamet.scalapb:lenses_2.12:jar:0.9.4",
+        "server_urls": ["http://central.maven.org/maven2"],
+        "artifact_sha256": "51a82005e64c15690aabfa1641047e584b98eb01157930639c83ecea55d32b42",
     },
 
     # Swift
@@ -561,6 +579,15 @@ def io_bazel_rules_scala(**kwargs):
 
 def com_github_scalapb_scalapb(**kwargs):
     _generic_dependency("com_github_scalapb_scalapb", **kwargs)
+
+def scalapb_runtime(**kwargs):
+    _generic_dependency("scalapb_runtime", **kwargs)
+
+def scalapb_runtime_grpc(**kwargs):
+    _generic_dependency("scalapb_runtime_grpc", **kwargs)
+
+def scalapb_lenses(**kwargs):
+    _generic_dependency("scalapb_lenses", **kwargs)
 
 
 #

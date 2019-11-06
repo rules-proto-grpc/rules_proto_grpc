@@ -4,24 +4,13 @@ var scalaWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
-# rules_go used here to compile a wrapper around the protoc-gen-scala plugin
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
-
-go_rules_dependencies()
-
-go_register_toolchains()
-
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
 
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
-scala_register_toolchains()
-
-load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-
-scala_proto_repositories()`)
+scala_register_toolchains()`)
 
 var scalaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
@@ -46,10 +35,7 @@ var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString 
     )
 
 PROTO_DEPS = [
-    "//external:io_bazel_rules_scala/dependency/com_google_protobuf/protobuf_java",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_fastparse",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_lenses",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_runtime",
+    "@scalapb_runtime//jar",
 ]`)
 
 var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString + `
@@ -63,30 +49,10 @@ var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString +
     )
 
 GRPC_DEPS = [
-    "//external:io_bazel_rules_scala/dependency/com_google_protobuf/protobuf_java",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_fastparse",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_lenses",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_runtime",
-    "//external:io_bazel_rules_scala/dependency/proto/google_instrumentation",
-    "//external:io_bazel_rules_scala/dependency/proto/grpc_context",
-    "//external:io_bazel_rules_scala/dependency/proto/grpc_core",
-    "//external:io_bazel_rules_scala/dependency/proto/grpc_netty",
-    "//external:io_bazel_rules_scala/dependency/proto/grpc_protobuf",
-    "//external:io_bazel_rules_scala/dependency/proto/grpc_stub",
-    "//external:io_bazel_rules_scala/dependency/proto/guava",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_buffer",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_codec",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_codec_http",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_codec_http2",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_codec_socks",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_common",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_handler",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_handler_proxy",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_resolver",
-    "//external:io_bazel_rules_scala/dependency/proto/netty_transport",
-    "//external:io_bazel_rules_scala/dependency/proto/opencensus_api",
-    "//external:io_bazel_rules_scala/dependency/proto/opencensus_contrib_grpc_metrics",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_runtime_grpc",
+    "@scalapb_runtime//jar",
+    "@scalapb_runtime_grpc//jar",
+    "@scalapb_lenses//jar",
+    "@com_google_protobuf//:protobuf_java",
 ]`)
 
 func makeScala() *Language {
