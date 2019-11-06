@@ -6,6 +6,7 @@ proto_plugin(
     outputs = ["{protopath}.pb.go"],
     tool = "@com_github_golang_protobuf//protoc-gen-go",
     exclusions = [
+        "google/api",
         "google/protobuf",
     ],
     visibility = ["//visibility:public"],
@@ -20,6 +21,7 @@ proto_plugin(
     outputs = ["{protopath}.pb.go"],
     tool = "@com_github_golang_protobuf//protoc-gen-go",
     exclusions = [
+        "google/api",
         "google/protobuf",
     ],
     visibility = ["//visibility:public"],
