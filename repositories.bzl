@@ -4,6 +4,7 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
 MINIMUM_BAZEL_VERSION = "1.0.0"
+ENABLE_VERSION_NAGS = False
 VERSIONS = {
     # Core
     "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
@@ -337,39 +338,45 @@ def _generic_dependency(name, **kwargs):
                 sha256 = sha256,
             )
         elif existing_rules[name]["kind"] != "http_archive":
-            print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
-                name, existing_rules[name]["kind"],
-            ))
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
+                    name, existing_rules[name]["kind"],
+                ))
         elif existing_rules[name]["urls"] != tuple(urls):
-            print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
-                name, existing_rules[name]["urls"], tuple(urls)
-            ))
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
+                    name, existing_rules[name]["urls"], tuple(urls)
+                ))
 
     elif dep["type"] == "http":
         if name not in existing_rules:
             args = {k: v for k, v in dep.items() if k in ["urls", "sha256", "strip_prefix", "build_file", "build_file_content"]}
             http_archive(name = name, **args)
         elif existing_rules[name]["kind"] != "http_archive":
-            print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
-                name, existing_rules[name]["kind"],
-            ))
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
+                    name, existing_rules[name]["kind"],
+                ))
         elif existing_rules[name]["urls"] != tuple(dep["urls"]):
-            print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
-                name, existing_rules[name]["urls"], tuple(dep["urls"])
-            ))
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
+                    name, existing_rules[name]["urls"], tuple(dep["urls"])
+                ))
 
     elif dep["type"] == "jvm_maven_import_external":
         if name not in existing_rules:
             args = {k: v for k, v in dep.items() if k in ["artifact", "server_urls", "artifact_sha256"]}
             jvm_maven_import_external(name = name, **args)
         elif existing_rules[name]["kind"] != "jvm_import_external":
-            print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected jvm_import_external".format(
-                name, existing_rules[name]["kind"],
-            ))
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected jvm_import_external".format(
+                    name, existing_rules[name]["kind"],
+                ))
         elif existing_rules[name]["artifact_sha256"] != dep["artifact_sha256"]:
-            print("Dependency '{}' has already been declared with a different version. Found artifact_sha256={}, expected {}".format(
-                name, existing_rules[name]["artifact_sha256"], dep["artifact_sha256"]
-            ))
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different version. Found artifact_sha256={}, expected {}".format(
+                    name, existing_rules[name]["artifact_sha256"], dep["artifact_sha256"]
+                ))
 
     else:
         fail("Unknown dependency type {}".format(dep))
