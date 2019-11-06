@@ -36,6 +36,7 @@ def {{ .Rule.Name }}(**kwargs):
             "JSC_STRICT_INEXISTENT_PROPERTY",
             "JSC_POSSIBLE_INEXISTENT_PROPERTY",
             "JSC_UNRECOGNIZED_TYPE_ERROR",
+            "JSC_TYPE_MISMATCH",
         ],
     )
 
