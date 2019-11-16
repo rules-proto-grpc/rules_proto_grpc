@@ -1,6 +1,5 @@
 load(
     "//:repositories.bzl",
-    "com_google_protobuf",
     "io_grpc_grpc_java",
     "javax_annotation_javax_annotation_api",
     "com_google_errorprone_error_prone_annotations",
