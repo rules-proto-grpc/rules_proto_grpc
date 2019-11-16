@@ -143,13 +143,6 @@ go_repos()
 
 
 #
-# grpc.js
-#
-load("//github.com/stackb/grpc.js:repositories.bzl", "grpcjs_repos")
-grpcjs_repos()
-
-
-#
 # gRPC gateway
 #
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")

@@ -29,7 +29,6 @@
     - [Go (gogoprotobuf)](/github.com/gogo/protobuf/README.md)
     - [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway/README.md)
     - [gRPC-Web](/github.com/grpc/grpc-web/README.md)
-    - [grpc.js](/github.com/stackb/grpc.js/README.md)
     - [Java](/java/README.md)
     - [Node.js](/nodejs/README.md)
     - [Objective-C](/objc/README.md)

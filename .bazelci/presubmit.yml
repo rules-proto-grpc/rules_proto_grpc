@@ -16,7 +16,6 @@ tasks:
     - "//scala/..."
     - "//github.com/gogo/protobuf/..."
     - "//github.com/grpc-ecosystem/grpc-gateway/..."
-    - "//github.com/stackb/grpc.js/..."
     - "//github.com/grpc/grpc-web/..."
     test_flags:
     - "--test_output=errors"
@@ -81,7 +80,6 @@ tasks:
     - "//scala/..."
     - "//github.com/gogo/protobuf/..."
     - "//github.com/grpc-ecosystem/grpc-gateway/..."
-    - "//github.com/stackb/grpc.js/..."
     - "//github.com/grpc/grpc-web/..."
     test_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
@@ -1035,30 +1033,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_library
-  grpc.js_grpcjs_grpc_compile_ubuntu1804:
-    name: 'grpc.js: grpcjs_grpc_compile'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/github.com/stackb/grpc.js/grpcjs_grpc_compile
-  grpc.js_grpcjs_grpc_compile_macos:
-    name: 'grpc.js: grpcjs_grpc_compile'
-    platform: macos
-    build_targets:
-      - "//..."
-    working_directory: example/github.com/stackb/grpc.js/grpcjs_grpc_compile
-  grpc.js_grpcjs_grpc_library_ubuntu1804:
-    name: 'grpc.js: grpcjs_grpc_library'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/github.com/stackb/grpc.js/grpcjs_grpc_library
-  grpc.js_grpcjs_grpc_library_macos:
-    name: 'grpc.js: grpcjs_grpc_library'
-    platform: macos
-    build_targets:
-      - "//..."
-    working_directory: example/github.com/stackb/grpc.js/grpcjs_grpc_library
   grpc-web_closure_grpc_compile_ubuntu1804:
     name: 'grpc-web: closure_grpc_compile'
     platform: ubuntu1804

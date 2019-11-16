@@ -167,15 +167,6 @@ VERSIONS = {
         "sha256": "304e3c7e65e71a63e2d981df8c3f6604a3314f9e388ce704ced46b8b60dddae3",
     },
 
-    # gRPC.js
-    "com_github_stackb_grpc_js": {
-        "type": "github",
-        "org": "stackb",
-        "repo": "grpc.js",
-        "ref": "d075960a9e62846ce92ae1029a777c141809f489",
-        "sha256": "c0f422823486986ea965fd36a0f5d3380151516421a6de8b69b72778cf3798a4",
-    },
-
     # Java
     "rules_jvm_external": {
         "type": "github",
@@ -517,13 +508,6 @@ def grpc_ecosystem_grpc_gateway(**kwargs):
 #
 def com_github_grpc_grpc_web(**kwargs):
     _generic_dependency("com_github_grpc_grpc_web", **kwargs)
-
-
-#
-# gRPC.js
-#
-def com_github_stackb_grpc_js(**kwargs):
-    _generic_dependency("com_github_stackb_grpc_js", **kwargs)
 
 
 #

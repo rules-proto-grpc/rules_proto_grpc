@@ -111,7 +111,6 @@ func action(c *cli.Context) error {
 
 		makeGogo(),
 		makeGrpcGateway(),
-		makeGrpcJs(),
 		makeGithubComGrpcGrpcWeb(),
 	}
 

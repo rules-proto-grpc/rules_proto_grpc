@@ -56,7 +56,6 @@ servers:
 tests:
 	bazel test \
 		//closure/example/routeguide/... \
-		//github.com/stackb/grpc.js/example/routeguide/... \
 		//cpp/example/routeguide/... \
 		//java/example/routeguide/... \
 		//go/example/routeguide/... \
@@ -68,7 +67,6 @@ pending_clients:
 		//nodejs/example/routeguide:client \
 		//ruby/example/routeguide:client \
 		//github.com/grpc/grpc-web/example/routeguide/closure:bundle \
-		//github.com/stackb/grpc.js/example/routeguide/client:bundle \
 		//rust/example/routeguide:client
 
 pending_servers:
