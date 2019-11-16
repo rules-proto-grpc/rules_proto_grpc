@@ -415,6 +415,7 @@ def rules_proto_grpc_repos(**kwargs):
     build_bazel_apple_support(**kwargs)
     bazel_skylib(**kwargs)
 
+    six(**kwargs)
     com_google_protobuf(**kwargs)
     com_github_grpc_grpc(**kwargs)
     external_zlib(**kwargs)
