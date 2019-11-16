@@ -10,6 +10,9 @@ proto_plugin(
 proto_plugin(
     name = "grpc_scala_plugin",
     out = "{name}.jar",
+    options = [
+        "grpc",
+    ],
     tool = "@com_github_scalapb_scalapb//:bin/protoc-gen-scala",
     visibility = ["//visibility:public"],
 )
