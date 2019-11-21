@@ -1,0 +1,40 @@
+package(default_visibility = ["//visibility:private"])
+
+load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
+
+# Use the same base proto in two different trees. The rules should not tread
+# on each other and try to write the same file.
+
+proto_library(
+    name = "proto_lib_a",
+    srcs = ["common.proto"],
+    deps = ["@com_google_protobuf//:descriptor_proto"],
+)
+
+proto_library(
+    name = "proto_lib_b",
+    srcs = ["demo.proto"],
+    deps = [":proto_lib_a"],
+)
+
+cpp_proto_library(
+    name = "cpp_lib_a",
+    deps = ["proto_lib_a"],
+)
+
+cpp_proto_library(
+    name = "cpp_lib_b",
+    deps = ["proto_lib_b"],
+)
+
+cc_test(
+    name = "test",
+    srcs = ["test.cc"],
+    deps = [
+        # Depend on both -- this is typically due to a "diamond" pattern in
+        # some other transitive include graph, rather than "direct" redundant
+        # dependencies.
+        "cpp_lib_a",
+        "cpp_lib_b",
+    ],
+)
