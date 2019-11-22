@@ -75,7 +75,7 @@ def nuget_grpc_packages():
     nuget_package(
         name = "grpc.core",
         package = "grpc.core",
-        version = "1.21.0",
+        version = "2.25.0",
         core_lib = {
             "netstandard1.5": "lib/netstandard1.5/Grpc.Core.dll",
         },
@@ -130,7 +130,7 @@ def nuget_grpc_packages():
     nuget_package(
         name = "grpc",
         package = "grpc",
-        version = "1.21.0",
+        version = "2.25.0",
         core_deps = {
             "netstandard1.5": [
                 "@grpc.core//:netstandard1.5_core",
