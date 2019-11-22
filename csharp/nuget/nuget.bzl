@@ -463,10 +463,10 @@ def nuget_grpc_packages():
         mono_lib = "lib/net45/Grpc.Core.Api.dll",
         core_deps = {
             "netcoreapp2.0": [
-               "@system.memory//:netcoreapp2.0_core",
+               "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.memory.dll",
             ],
             "netcoreapp2.1": [
-               "@system.memory//:netcoreapp2.1_core",
+               "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.memory.dll",
             ],
         },
         net_deps = {
