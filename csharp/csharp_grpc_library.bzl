@@ -21,5 +21,6 @@ GRPC_DEPS = [
     "@google.protobuf//:netstandard1.0_core",
     "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.io.dll",
     "@grpc.core//:netstandard1.5_core",
+    "@grpc.core.api//:netcoreapp2.0_core",
     "@system.interactive.async//:netstandard2.0_core",
 ]

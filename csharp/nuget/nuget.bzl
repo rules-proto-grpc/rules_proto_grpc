@@ -145,4 +145,157 @@ def nuget_grpc_packages():
             "@grpc.core//:mono",
         ],
     )
+    nuget_package(
+        name = "grpc.core.api",
+        package = "grpc.core.api",
+        version = "2.25.0",
+        sha256 = "994c80a96bb16754e180cd9f715947d5a45c5ce647e2a536c001cdf0c4caa6cb",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
+        },
+        net_lib = {
+            "net45": "lib/net45/Grpc.Core.Api.dll",
+            "net451": "lib/net45/Grpc.Core.Api.dll",
+            "net452": "lib/net45/Grpc.Core.Api.dll",
+            "net46": "lib/net45/Grpc.Core.Api.dll",
+            "net461": "lib/net45/Grpc.Core.Api.dll",
+            "net462": "lib/net45/Grpc.Core.Api.dll",
+            "net47": "lib/net45/Grpc.Core.Api.dll",
+            "net471": "lib/net45/Grpc.Core.Api.dll",
+            "net472": "lib/net45/Grpc.Core.Api.dll",
+            "netstandard1.5": "lib/netstandard1.5/Grpc.Core.Api.dll",
+            "netstandard1.6": "lib/netstandard1.5/Grpc.Core.Api.dll",
+            "netstandard2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
+        },
+        mono_lib = "lib/net45/Grpc.Core.Api.dll",
+        core_deps = {
+            "netcoreapp2.0": [
+               "@system.memory//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+               "@system.memory//:netcoreapp2.1_core",
+            ],
+        },
+        net_deps = {
+            "net45": [
+               "@system.memory//:net45_net",
+            ],
+            "net451": [
+               "@system.memory//:net451_net",
+            ],
+            "net452": [
+               "@system.memory//:net452_net",
+            ],
+            "net46": [
+               "@system.memory//:net46_net",
+            ],
+            "net461": [
+               "@system.memory//:net461_net",
+            ],
+            "net462": [
+               "@system.memory//:net462_net",
+            ],
+            "net47": [
+               "@system.memory//:net47_net",
+            ],
+            "net471": [
+               "@system.memory//:net471_net",
+            ],
+            "net472": [
+               "@system.memory//:net472_net",
+            ],
+            "netstandard1.5": [
+               "@system.memory//:netstandard1.5_net",
+            ],
+            "netstandard1.6": [
+               "@system.memory//:netstandard1.6_net",
+            ],
+            "netstandard2.0": [
+               "@system.memory//:netstandard2.0_net",
+            ],
+        },
+        mono_deps = [
+            "@system.memory//:mono",
+        ],
+        core_files = {
+            "netcoreapp2.0": [
+               "lib/netstandard2.0/Grpc.Core.Api.dll",
+               "lib/netstandard2.0/Grpc.Core.Api.pdb",
+               "lib/netstandard2.0/Grpc.Core.Api.xml",
+            ],
+            "netcoreapp2.1": [
+               "lib/netstandard2.0/Grpc.Core.Api.dll",
+               "lib/netstandard2.0/Grpc.Core.Api.pdb",
+               "lib/netstandard2.0/Grpc.Core.Api.xml",
+            ],
+        },
+        net_files = {
+            "net45": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "net451": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "net452": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "net46": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "net461": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "net462": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "net47": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "net471": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "net472": [
+               "lib/net45/Grpc.Core.Api.dll",
+               "lib/net45/Grpc.Core.Api.pdb",
+               "lib/net45/Grpc.Core.Api.xml",
+            ],
+            "netstandard1.5": [
+               "lib/netstandard1.5/Grpc.Core.Api.dll",
+               "lib/netstandard1.5/Grpc.Core.Api.pdb",
+               "lib/netstandard1.5/Grpc.Core.Api.xml",
+            ],
+            "netstandard1.6": [
+               "lib/netstandard1.5/Grpc.Core.Api.dll",
+               "lib/netstandard1.5/Grpc.Core.Api.pdb",
+               "lib/netstandard1.5/Grpc.Core.Api.xml",
+            ],
+            "netstandard2.0": [
+               "lib/netstandard2.0/Grpc.Core.Api.dll",
+               "lib/netstandard2.0/Grpc.Core.Api.pdb",
+               "lib/netstandard2.0/Grpc.Core.Api.xml",
+            ],
+        },
+        mono_files = [
+            "lib/net45/Grpc.Core.Api.dll",
+            "lib/net45/Grpc.Core.Api.pdb",
+            "lib/net45/Grpc.Core.Api.xml",
+        ],
+    )
     ### End of generated by the tool
