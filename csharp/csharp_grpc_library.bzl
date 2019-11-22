@@ -22,7 +22,7 @@ GRPC_DEPS = [
     "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.io.dll",
     "@grpc.core//:netstandard1.5_core",
     "@grpc.core.api//:netcoreapp2.0_core",
-    "@system.memory//:netcoreapp2.0_core",
+    "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.memory.dll",
     "@system.runtime.compilerservices.unsafe//:netcoreapp2.0_core",
     "@system.interactive.async//:netstandard2.0_core",
 ]
