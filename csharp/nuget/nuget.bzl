@@ -258,8 +258,6 @@ def nuget_grpc_packages():
         ],
         core_files = {
             "netcoreapp2.0": [
-               "lib/netstandard2.0/System.Memory.dll",
-               "lib/netstandard2.0/System.Memory.xml",
             ],
         },
         net_files = {
