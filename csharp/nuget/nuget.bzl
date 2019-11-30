@@ -5,7 +5,7 @@ def nuget_protobuf_packages():
     nuget_package(
         name = "google.protobuf",
         package = "google.protobuf",
-        version = "3.10.1",
+        version = "3.10.0",
         core_lib = {
             "netstandard1.0": "lib/netstandard1.0/Google.Protobuf.dll",
         },
