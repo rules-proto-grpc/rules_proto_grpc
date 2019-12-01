@@ -31,6 +31,8 @@ def closure_grpc_library(**kwargs):
             "JSC_UNUSED_PRIVATE_PROPERTY",
             "JSC_EXTRA_REQUIRE_WARNING",
             "JSC_INVALID_INTERFACE_MEMBER_DECLARATION",
+            "JSC_TYPE_MISMATCH",
+            "CR_NOT_PROVIDED",
         ],
         visibility = kwargs.get("visibility"),
     )
