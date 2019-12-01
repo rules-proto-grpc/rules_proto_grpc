@@ -139,7 +139,7 @@ VERSIONS = {
         "org": "bazelbuild",
         "repo": "rules_go",
         "ref": "v0.20.2",
-        "sha256": "58f52fb4d67a06f5e58490146fca5ca41583b36b74e4cd8dcd2a1d9c46ca8c62",
+        "sha256": "c92e9be17b8f5d3a5cd4b0549a92c4835a37388b50f007c9cdec9f4ad7baf1f4",
     },
     "bazel_gazelle": {
         "type": "github",
@@ -230,7 +230,7 @@ VERSIONS = {
     "six": {
         "type": "http",
         "urls": ["https://pypi.python.org/packages/source/s/six/six-1.13.0.tar.gz"],
-        "sha256": "d16a0141ec1a18405cdace8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73",
+        "sha256": "30f610279e8b2578cab6db20741130331735c781b56053c59c4076da27f06b66",
         "strip_prefix": "six-1.13.0",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.six",
     },
