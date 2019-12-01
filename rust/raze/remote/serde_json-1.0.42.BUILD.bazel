@@ -12,7 +12,7 @@ package(default_visibility = [
 ])
 
 licenses([
-  "notice", # "Apache-2.0"
+  "restricted", # "MIT OR Apache-2.0"
 ])
 
 load(
@@ -23,24 +23,24 @@ load(
 )
 
 
-# Unsupported target "build-script-build" with type "custom-build" omitted
 
 rust_library(
-    name = "grpcio_sys",
+    name = "serde_json",
     crate_root = "src/lib.rs",
     crate_type = "lib",
     edition = "2015",
     srcs = glob(["**/*.rs"]),
     deps = [
-        "@raze__libc__0_2_65//:libc",
+        "@raze__itoa__0_4_4//:itoa",
+        "@raze__ryu__1_0_2//:ryu",
+        "@raze__serde__1_0_103//:serde",
     ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.4.5",
+    version = "1.0.42",
     crate_features = [
         "default",
-        "secure",
     ],
 )
 

@@ -12,7 +12,7 @@ package(default_visibility = [
 ])
 
 licenses([
-  "restricted", # "MIT OR Apache-2.0"
+  "notice", # "MIT,Apache-2.0"
 ])
 
 load(
@@ -23,10 +23,9 @@ load(
 )
 
 
-# Unsupported target "build-script-build" with type "custom-build" omitted
 
 rust_library(
-    name = "serde",
+    name = "pkg_config",
     crate_root = "src/lib.rs",
     crate_type = "lib",
     edition = "2015",
@@ -36,10 +35,9 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "1.0.101",
+    version = "0.3.17",
     crate_features = [
-        "default",
-        "std",
     ],
 )
 
+# Unsupported target "test" with type "test" omitted

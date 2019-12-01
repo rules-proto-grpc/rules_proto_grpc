@@ -24,6 +24,7 @@ load(
 
 
 # Unsupported target "build-script-build" with type "custom-build" omitted
+# Unsupported target "const_fn" with type "test" omitted
 
 rust_library(
     name = "libc",
@@ -36,7 +37,7 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.2.65",
+    version = "0.2.66",
     crate_features = [
         "default",
         "std",
