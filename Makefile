@@ -26,7 +26,7 @@ yarn_upgrade:
 # Run bundle to upgrade the Ruby dependencies
 ruby_bundle_upgrade:
 	cd ruby; \
-	bundle; \
+	bundle install --path /tmp/ruby-bundle; \
 
 
 # Run all language specific updates

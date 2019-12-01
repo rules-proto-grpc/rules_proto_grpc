@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@types/bytebuffer@*":
+"@types/bytebuffer@^5.0.40":
   version "5.0.40"
   resolved "https://registry.yarnpkg.com/@types/bytebuffer/-/bytebuffer-5.0.40.tgz#d6faac40dcfb09cd856cdc4c01d3690ba536d3ee"
   integrity sha512-h48dyzZrPMz25K6Q4+NCwWaxwXany2FhQg/ErOcdZS1ZpsaDnDMZg8JYLMTGz7uvXKrcKGJUZJlZObyfgdaN9g==
@@ -19,14 +19,6 @@
   version "12.6.2"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.6.2.tgz#a5ccec6abb6060d5f20d256fb03ed743e9774999"
   integrity sha512-gojym4tX0FWeV2gsW4Xmzo5wxGjXGm550oVUII7f7G5o4BV6c7DBdiG1RRQd+y1bvqRyYtPfMK85UM95vsapqQ==
-
-"@types/protobufjs@^5.0.31":
-  version "5.0.31"
-  resolved "https://registry.yarnpkg.com/@types/protobufjs/-/protobufjs-5.0.31.tgz#83985309833e355b9836b21bf500e2b114274cd0"
-  integrity sha1-g5hTCYM+NVuYNrIb9QDisRQnTNA=
-  dependencies:
-    "@types/bytebuffer" "*"
-    "@types/node" "*"
 
 abbrev@1:
   version "1.1.1"
@@ -198,21 +190,21 @@ glob@^7.0.5, glob@^7.1.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-google-protobuf@3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.8.0.tgz#4fd2ee3a97751cb543dc5de85ffd264aff9f4980"
-  integrity sha512-tx39PTc//HaIT7K/baUF/8JYLGDozEi1e4xwPP1qSx3InP78cNpbSJpxiDsDMwj77qNOndVBDXnn7oi9zKxZew==
+google-protobuf@3.11.0:
+  version "3.11.0"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.11.0.tgz#9449d6029569aa4603fdaa154ec6a7681aea0787"
+  integrity sha512-Pni0ZGKZc/FpaRiz2n11+FfjzeuoUpnMdtuqoBUandjsEPsLDLh5C0yacl/bgNAFaZkyUgIGcGowW34u6mVWPw==
 
-grpc@1.22.0:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/grpc/-/grpc-1.22.0.tgz#eacc43ee3a144d25491117641bd408b9c8df1e9b"
-  integrity sha512-kQ83nrX2SuiDLHnTI57WZjVqVizD4HYXhAG0aAzq8xAYYylNGXV5r75WIKW8mYZwHMPERBkCGm68ECY/PUlNdA==
+grpc@1.24.2:
+  version "1.24.2"
+  resolved "https://registry.yarnpkg.com/grpc/-/grpc-1.24.2.tgz#76d047bfa7b05b607cbbe3abb99065dcefe0c099"
+  integrity sha512-EG3WH6AWMVvAiV15d+lr+K77HJ/KV/3FvMpjKjulXHbTwgDZkhkcWbwhxFAoTdxTkQvy0WFcO3Nog50QBbHZWw==
   dependencies:
-    "@types/protobufjs" "^5.0.31"
+    "@types/bytebuffer" "^5.0.40"
     lodash.camelcase "^4.3.0"
     lodash.clone "^4.5.0"
     nan "^2.13.2"
-    node-pre-gyp "^0.13.0"
+    node-pre-gyp "^0.14.0"
     protobufjs "^5.0.3"
 
 has-unicode@^2.0.0:
@@ -313,10 +305,18 @@ minimist@^1.2.0:
   resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
   integrity sha1-o1AIsg9BOD7sH7kU9M1d95omQoQ=
 
-minipass@^2.2.1, minipass@^2.3.5:
+minipass@^2.2.1:
   version "2.3.5"
   resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.5.tgz#cacebe492022497f656b0f0f51e2682a9ed2d848"
   integrity sha512-Gi1W4k059gyRbyVUZQ4mEqLm0YIUiGYfvxhF6SIlk3ui1WVxMTGfGdQ2SInh3PDrRTVvPKgULkpJtT4RH10+VA==
+  dependencies:
+    safe-buffer "^5.1.2"
+    yallist "^3.0.0"
+
+minipass@^2.8.6:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.9.0.tgz#e713762e7d3e32fed803115cf93e04bca9fcc9a6"
+  integrity sha512-wxfUjg9WebH+CUDX/CdbRlh5SmfZiy/hpkxaRI16Y9W56Pa75sWgd/rvFilSgrauD9NyFymP/+JFV3KwzIsJeg==
   dependencies:
     safe-buffer "^5.1.2"
     yallist "^3.0.0"
@@ -354,10 +354,10 @@ needle@^2.2.1:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-node-pre-gyp@^0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.13.0.tgz#df9ab7b68dd6498137717838e4f92a33fc9daa42"
-  integrity sha512-Md1D3xnEne8b/HGVQkZZwV27WUi1ZRuZBij24TNaZwUPU3ZAFtvT6xxJGaUVillfmMKnn5oD1HoGsp2Ftik7SQ==
+node-pre-gyp@^0.14.0:
+  version "0.14.0"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
+  integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
   dependencies:
     detect-libc "^1.0.2"
     mkdirp "^0.5.1"
@@ -368,7 +368,7 @@ node-pre-gyp@^0.13.0:
     rc "^1.2.7"
     rimraf "^2.6.1"
     semver "^5.3.0"
-    tar "^4"
+    tar "^4.4.2"
 
 nopt@^4.0.1:
   version "4.0.1"
@@ -576,14 +576,14 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
-tar@^4:
-  version "4.4.10"
-  resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.10.tgz#946b2810b9a5e0b26140cf78bea6b0b0d689eba1"
-  integrity sha512-g2SVs5QIxvo6OLp0GudTqEf05maawKUxXru104iaayWA09551tFCTI8f1Asb4lPfkBr91k07iL4c11XO3/b0tA==
+tar@^4.4.2:
+  version "4.4.13"
+  resolved "https://registry.yarnpkg.com/tar/-/tar-4.4.13.tgz#43b364bc52888d555298637b10d60790254ab525"
+  integrity sha512-w2VwSrBoHa5BsSyH+KxEqeQBAllHhccyMFVHtGtdMpF4W7IRWfZjFiQceJPChOeTsSDVUpER2T8FA93pr0L+QA==
   dependencies:
     chownr "^1.1.1"
     fs-minipass "^1.2.5"
-    minipass "^2.3.5"
+    minipass "^2.8.6"
     minizlib "^1.2.1"
     mkdirp "^0.5.0"
     safe-buffer "^5.1.2"

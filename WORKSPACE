@@ -59,12 +59,13 @@ maven_install(
 load("//closure:repositories.bzl", "closure_repos")
 closure_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-closure_repositories(
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+rules_closure_dependencies(
     omit_bazel_skylib = True,
     omit_com_google_protobuf = True,
     omit_zlib = True,
 )
+rules_closure_toolchains()
 
 
 #

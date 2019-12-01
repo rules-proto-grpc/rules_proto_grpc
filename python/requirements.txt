@@ -1,2 +1,2 @@
-grpcio==1.24.0
-grpclib==0.3.0; python_version > '3'
+grpcio==1.25.0
+grpclib==0.3.1; python_version > '3'

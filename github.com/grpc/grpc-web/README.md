@@ -21,11 +21,11 @@ load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto
 
 rules_proto_grpc_grpc_web_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-
-closure_repositories(
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+rules_closure_toolchains()
 ```
 
 ### `BUILD.bazel`
@@ -59,11 +59,11 @@ load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto
 
 rules_proto_grpc_grpc_web_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-
-closure_repositories(
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+rules_closure_toolchains()
 ```
 
 ### `BUILD.bazel`
@@ -97,11 +97,11 @@ load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto
 
 rules_proto_grpc_grpc_web_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-
-closure_repositories(
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+rules_closure_toolchains()
 ```
 
 ### `BUILD.bazel`
@@ -135,11 +135,11 @@ load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto
 
 rules_proto_grpc_grpc_web_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-
-closure_repositories(
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+rules_closure_toolchains()
 ```
 
 ### `BUILD.bazel`
@@ -173,11 +173,11 @@ load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto
 
 rules_proto_grpc_grpc_web_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-
-closure_repositories(
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+rules_closure_toolchains()
 ```
 
 ### `BUILD.bazel`

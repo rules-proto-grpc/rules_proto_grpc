@@ -4,13 +4,14 @@ var closureLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ 
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
 
-closure_repositories(
+rules_closure_dependencies(
     omit_bazel_skylib = True,
     omit_com_google_protobuf = True,
     omit_zlib = True,
-)`)
+)
+rules_closure_toolchains()`)
 
 var closureProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")

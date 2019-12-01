@@ -11,8 +11,8 @@ VERSIONS = {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.10.0",
-        "sha256": "758249b537abba2f21ebc2d02555bf080917f0f2f88f4cbe2903e0e28c4187ed",
+        "ref": "v3.11.0",
+        "sha256": "6d356a6279cc76d2d5c4dfa6541641264b59eae0bc96b852381361e3400d1f1c",
         "binds": [
             {
                 "name": "protobuf_clib",
@@ -28,8 +28,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.24.2",
-        "sha256": "fd040f5238ff1e32b468d9d38e50f0d7f8da0828019948c9001e9a03093e1d8f",
+        "ref": "v1.25.0",
+        "sha256": "ffbe61269160ea745e487f79b0fd06b6edd3d50c6d9123f053b5634737cf2f69",
     },
     "zlib": {
         "type": "http",
@@ -42,8 +42,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "0.0.1",
-        "sha256": "fa53cc0afe276d8f6675df1a424592e00e4f37b2a497e48399123233902e2e76",
+        "ref": "94677401bc56ed5d756f50b441a6a5c7f735a6d4",
+        "sha256": "acbd018f11355ead06b250b352e59824fbb9e77f4874d250d230138231182c1c",
     },
     "build_bazel_rules_swift": {
         "type": "github",
@@ -56,8 +56,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "apple_support",
-        "ref": "8c585c66c29b9d528e5fcf78da8057a6f3a4f001",
-        "sha256": "0a8831032b06cabae582b604e734e10f32742311de8975d5182933e586760c5f",
+        "ref": "0.7.2",
+        "sha256": "519a3bc32132f7b5780e82c2fc6ad2a78d4b28b81561e6fd7b7e0b14ea110074",
     },
     "bazel_skylib": {
         "type": "github",
@@ -113,8 +113,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_closure",
-        "ref": "b2a6fb762a2a655d9970d88a9218b7a1cf098ffa",
-        "sha256": "f2badc609a80a234bb51d1855281dd46cac90eadc57545880a3b5c38be0960e7",
+        "ref": "0.10.0",
+        "sha256": "7d206c2383811f378a5ef03f4aacbcf5f47fd8650f6abbc3fa89f3a27dd8b176",
     },
 
     # D
@@ -138,15 +138,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.20.1",
-        "sha256": "58f52fb4d67506f5e58490146fca5ca41583b36b74e4cd8dcd2a1d9c46ca8c62",
+        "ref": "v0.20.2",
+        "sha256": "58f52fb4d67a06f5e58490146fca5ca41583b36b74e4cd8dcd2a1d9c46ca8c62",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "0.18.1",
-        "sha256": "40f6b81c163d190ce7e16ea734ee748ad45e371306a46653fcab93aecda5c0da",
+        "ref": "v0.19.1",
+        "sha256": "d987004a72697334a095bbaa18d615804a28280201a50ed6c234c40ccc41e493",
     },
 
     # gRPC gateway
@@ -154,8 +154,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v1.11.3",
-        "sha256": "679871f54763eccbe2ddba2e723ed73a32ce4aaa5a3c6fc6ef4287ac32d2743c",
+        "ref": "v1.12.1",
+        "sha256": "679871f54763accbe2ddba2e723ed73a32ce4aaa5a3c6fc6ef4287ac32d2743c",
     },
 
     # gRPC web
@@ -172,15 +172,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_jvm_external",
-        "ref": "2.6.1",
-        "sha256": "19fd7312feda452744c0b738260941f7be15bf9894aecdf7c81d19738cebb673",
+        "ref": "2.10",
+        "sha256": "5c1b22eab26807d5286ada7392d796cbc8425d3ef9a57d114b79c5f8ef8aca7c",
     },
     "io_grpc_grpc_java": {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "v1.23.0",
-        "sha256": "9618a6f4ec0f2bdb77d9b6e01865af9796f370e63e1352210798bacfc99ccdac",
+        "ref": "v1.24.2",
+        "sha256": "83bb3a29b0fcbf6d3242b5827e9e8d3683b4aad907628fcb9a37925dc9d7c867",
     },
     "javax_annotation_javax_annotation_api": {
         "type": "jvm_maven_import_external",
@@ -208,8 +208,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_nodejs",
-        "ref": "0.35.0",
-        "sha256": "48be6c21d4ee7bf2a6c3dd35ac54f8ff430944b65ab7a43a9cd742f23c9a7279",
+        "ref": "0.42.1",
+        "sha256": "7061f4782999ddfe5dd9a6ffa1945843ed52d5e144ae84e656693e92544e8d41",
     },
 
     # Python
@@ -217,8 +217,8 @@ VERSIONS = {
         "type": "github",
         "org": "apt-itude",
         "repo": "rules_pip",
-        "ref": "ce667087818553cdc4b1a2258fc53df917c4f87c", # 2019-07-07
-        "sha256": "5cabd6bfb9cef095d0d076faf5e7acd5698f7172e803059c21c4e700a07b131b",
+        "ref": "aafdefd2bf1a9f6995669c1d744da493de9a7b75", # 2019-10-11
+        "sha256": "d63149e2f327c1411e1853bbc3379d978945d159da0602abc67e02373ee9206c",
     },
     "subpar": {
         "type": "github",
@@ -229,9 +229,9 @@ VERSIONS = {
     },
     "six": {
         "type": "http",
-        "urls": ["https://pypi.python.org/packages/source/s/six/six-1.12.0.tar.gz"],
-        "sha256": "d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73",
-        "strip_prefix": "six-1.12.0",
+        "urls": ["https://pypi.python.org/packages/source/s/six/six-1.13.0.tar.gz"],
+        "sha256": "d16a0141ec1a18405cdace8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73",
+        "strip_prefix": "six-1.13.0",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.six",
     },
 
@@ -249,8 +249,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "05bd7d1d1bd34225a6614fc131267181aee2b61e",
-        "sha256": "55968c5377d9d9f4a5c61780c8a041d478eaac26d984d19fd589afaf12b353dc",
+        "ref": "3251240a915875fc1bb396a4c818472c46e52368",
+        "sha256": "06c32fde6db017ac60af099fa17d4dd10ee13811db3f13dad847f7c21a93276f",
     },
 
     # Scala
@@ -258,8 +258,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "0f89c210ade8f4320017daf718a61de3c1ac4773",
-        "sha256": "050a484981eb8fd1ca6c3bac8223f80121b4ee384e30c969926a1afbd32aefad",
+        "ref": "e56840204179b1f668ba2f6f8f23f28d00d96794",
+        "sha256": "4f22711a0e91cbe557ea8402e0a2ad95509db52ead995215f6abd1b94372d278",
     },
     "com_github_scalapb_scalapb": {
         "type": "http",
@@ -292,8 +292,8 @@ VERSIONS = {
         "type": "github",
         "org": "apple",
         "repo": "swift-protobuf",
-        "ref": "1.6.0",
-        "sha256": "33ab0124f9ebc31d44bd26f40e797a70de89d0b693ac17a3eb726c5ba02fa43b",
+        "ref": "1.7.0",
+        "sha256": "33ab0124f9ebc31d44bd26f4ae797a70de89d0b693ac17a3eb726c5ba02fa43b",
         "build_file": "@build_bazel_rules_swift//third_party:com_github_apple_swift_swift_protobuf/BUILD.overlay",
     },
 }
