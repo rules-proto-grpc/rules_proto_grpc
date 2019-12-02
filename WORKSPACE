@@ -204,20 +204,29 @@ php_repos()
 load("//python:repositories.bzl", "python_repos")
 python_repos()
 
-load("@com_apt_itude_rules_pip//rules:dependencies.bzl", "pip_rules_dependencies")
-pip_rules_dependencies()
+load("@rules_python//python:repositories.bzl", "py_repositories")
+py_repositories()
+load("@rules_python//python:pip.bzl", "pip_repositories")
+pip_repositories()
 
-load("@com_apt_itude_rules_pip//rules:repository.bzl", "pip_repository")
-pip_repository(
+load("@rules_python//python:pip.bzl", "pip_import")
+pip_import(
     name = "rules_proto_grpc_py2_deps",
     python_interpreter = "python2",
     requirements = "//python:requirements.txt",
 )
-pip_repository(
+
+load("@rules_proto_grpc_py2_deps//:requirements.bzl", pip2_install="pip_install")
+pip2_install()
+
+pip_import(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "//python:requirements.txt",
 )
+
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip3_install="pip_install")
+pip3_install()
 
 
 #

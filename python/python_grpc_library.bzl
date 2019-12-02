@@ -29,9 +29,9 @@ def python_grpc_library(**kwargs):
     )
 
 GRPC_PYTHON2_DEPS = [
-    "@rules_proto_grpc_py2_deps//grpcio"
+    "@rules_proto_grpc_py2_deps_pypi__grpcio_1_25_0//:pkg",
 ]
 
 GRPC_PYTHON3_DEPS = [
-    "@rules_proto_grpc_py3_deps//grpcio"
+    "@rules_proto_grpc_py3_deps_pypi__grpcio_1_25_0//:pkg",
 ]

@@ -213,13 +213,6 @@ VERSIONS = {
     },
 
     # Python
-    "com_apt_itude_rules_pip": {
-        "type": "github",
-        "org": "apt-itude",
-        "repo": "rules_pip",
-        "ref": "aafdefd2bf1a9f6995669c1d744da493de9a7b75", # 2019-10-11
-        "sha256": "d63149e2f327c1411e1853bbc3379d978945d159da0602abc67e02373ee9206c",
-    },
     "subpar": {
         "type": "github",
         "org": "google",
@@ -539,9 +532,6 @@ def build_bazel_rules_nodejs(**kwargs):
 #
 # Python
 #
-def com_apt_itude_rules_pip(**kwargs):
-    _generic_dependency("com_apt_itude_rules_pip", **kwargs)
-
 def subpar(**kwargs):
     _generic_dependency("subpar", **kwargs)
 
