@@ -70,6 +70,13 @@ GRPC_DEPS = [
     Label("//rust/raze:futures"),
     Label("//rust/raze:grpcio"),
     Label("//rust/raze:protobuf"),
+    Label("//rust:grpc_wrap"),
+    Label("//rust:address_sorting"),
+    Label("//rust:grpc"),
+    Label("//rust:gpr"),
+    Label("//rust:z"),
+    Label("//rust:cares"),
+    Label("//rust:ssl"),
 ]`)
 
 func makeRust() *Language {
