@@ -74,7 +74,7 @@ VERSIONS = {
         "org": "bazelbuild",
         "repo": "buildtools",
         "ref": "0.28.0",
-        "sha256": "d1e28237d1a4c2255c504246b4f3fd36f74d590f2974491b4399a84c58b495ed",
+        "sha256": "5ec71602e9b458b01717fab1d37492154c1c12ea83f881c745dbd88e9b2098d8",
     },
 
     # Android
