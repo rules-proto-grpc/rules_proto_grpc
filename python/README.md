@@ -106,7 +106,7 @@ load("@rules_python//python:pip.bzl", "pip_import")
 pip_import(
     name = "rules_proto_grpc_py2_deps",
     python_interpreter = "python2",
-    requirements = "//python:requirements.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 load("@rules_proto_grpc_py2_deps//:requirements.bzl", pip2_install="pip_install")
@@ -115,7 +115,7 @@ pip2_install()
 pip_import(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
-    requirements = "//python:requirements.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip3_install="pip_install")
@@ -199,7 +199,7 @@ load("@rules_python//python:pip.bzl", "pip_import")
 pip_import(
     name = "rules_proto_grpc_py2_deps",
     python_interpreter = "python2",
-    requirements = "//python:requirements.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 load("@rules_proto_grpc_py2_deps//:requirements.bzl", pip2_install="pip_install")
@@ -208,7 +208,7 @@ pip2_install()
 pip_import(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
-    requirements = "//python:requirements.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip3_install="pip_install")
@@ -261,7 +261,7 @@ load("@rules_python//python:pip.bzl", "pip_import")
 pip_import(
     name = "rules_proto_grpc_py2_deps",
     python_interpreter = "python2",
-    requirements = "//python:requirements.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 load("@rules_proto_grpc_py2_deps//:requirements.bzl", pip2_install="pip_install")
@@ -270,7 +270,7 @@ pip2_install()
 pip_import(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
-    requirements = "//python:requirements.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip3_install="pip_install")
