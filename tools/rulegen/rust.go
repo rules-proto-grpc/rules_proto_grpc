@@ -76,6 +76,7 @@ GRPC_DEPS = [
     Label("//rust:gpr"),
     Label("//rust:z"),
     Label("//rust:cares"),
+    Label("//rust:crypto"),
     Label("//rust:ssl"),
 ]`)
 

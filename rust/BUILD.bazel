@@ -26,6 +26,11 @@ proto_plugin(
 
 
 # Import extra libraries that cargo raze misses
+#
+# The grpcio crate emits cargo rules to use the generated static libs (cargo:rustc-link-lib), which are not used by
+# cargo raze. This process pulls out the static libraries that need to be linked, imports them to bazel and makes them
+# available for use by rust_grpc_library
+#
 genrule(
     name = "extract_libraries",
     exec_tools = [
@@ -39,6 +44,7 @@ genrule(
         "build/libgpr.a",
         "build/third_party/zlib/libz.a",
         "build/third_party/cares/cares/lib/libcares.a",
+        "build/third_party/boringssl/crypto/libcrypto.a",
         "build/third_party/boringssl/ssl/libssl.a",
     ],
 )
@@ -76,6 +82,12 @@ cc_import(
 cc_import(
     name = "cares",
     static_library = "build/third_party/cares/cares/lib/libcares.a",
+    visibility = ["//visibility:public"],
+)
+
+cc_import(
+    name = "crypto",
+    static_library = "build/third_party/boringssl/crypto/libcrypto.a",
     visibility = ["//visibility:public"],
 )
 
