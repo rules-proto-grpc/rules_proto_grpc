@@ -17,7 +17,7 @@ pip_repositories()
 load("@rules_python//python:pip.bzl", "pip_import")
 pip_import(
     name = "rules_proto_grpc_py2_deps",
-    python_interpreter = "python2",
+    python_interpreter = "python", # Replace this with the platform specific Python 2 name, or remove if not using Python 2
     requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 

@@ -212,7 +212,7 @@ pip_repositories()
 load("@rules_python//python:pip.bzl", "pip_import")
 pip_import(
     name = "rules_proto_grpc_py2_deps",
-    python_interpreter = "python2",
+    python_interpreter = "python",
     requirements = "//python:requirements.txt",
 )
 
