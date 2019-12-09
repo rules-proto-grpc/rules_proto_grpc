@@ -13,7 +13,6 @@ tasks:
     - "//python/..."
     - "//ruby/..."
     - "//rust/..."
-    - "//scala/..."
     - "//github.com/gogo/protobuf/..."
     - "//github.com/grpc-ecosystem/grpc-gateway/..."
     - "//github.com/grpc/grpc-web/..."
@@ -56,12 +55,6 @@ tasks:
     - "//example/routeguide:rust_python"
     - "//example/routeguide:rust_ruby"
     - "//example/routeguide:rust_rust"
-    - "//example/routeguide:scala_cpp"
-    - "//example/routeguide:scala_go"
-    - "//example/routeguide:scala_java"
-    - "//example/routeguide:scala_python"
-    - "//example/routeguide:scala_ruby"
-    - "//example/routeguide:scala_rust"
   main_macos:
     name: build & test all
     platform: macos
@@ -77,7 +70,6 @@ tasks:
     - "//php/..."
     - "//python/..."
     - "//ruby/..."
-    - "//scala/..."
     - "//github.com/gogo/protobuf/..."
     - "//github.com/grpc-ecosystem/grpc-gateway/..."
     - "//github.com/grpc/grpc-web/..."
@@ -110,11 +102,6 @@ tasks:
     - "//example/routeguide:ruby_java"
     - "//example/routeguide:ruby_python"
     - "//example/routeguide:ruby_ruby"
-    - "//example/routeguide:scala_cpp"
-    - "//example/routeguide:scala_go"
-    - "//example/routeguide:scala_java"
-    - "//example/routeguide:scala_python"
-    - "//example/routeguide:scala_ruby"
   android_android_proto_compile_ubuntu1804:
     name: 'android: android_proto_compile'
     platform: ubuntu1804
