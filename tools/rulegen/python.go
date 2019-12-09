@@ -117,6 +117,8 @@ def python_grpclib_library(**kwargs):
 
 GRPC_DEPS = [
     "@rules_proto_grpc_py3_deps_pypi__grpclib_0_3_1//:pkg",
+    "@rules_proto_grpc_py3_deps_pypi__hpack_3_0_0//:pkg",
+    "@rules_proto_grpc_py3_deps_pypi__hyperframe_5_2_0//:pkg",
 ]`)
 
 func makePython() *Language {

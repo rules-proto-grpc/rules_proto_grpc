@@ -9,6 +9,8 @@ par_binary(
     deps = [
         "@com_google_protobuf//:protobuf_python",
         "@rules_proto_grpc_py3_deps_pypi__grpclib_0_3_1//:pkg",
+        "@rules_proto_grpc_py3_deps_pypi__hpack_3_0_0//:pkg",
+        "@rules_proto_grpc_py3_deps_pypi__hyperframe_5_2_0//:pkg",
     ],
     python_version = "PY3",
     srcs_version = "PY3",
