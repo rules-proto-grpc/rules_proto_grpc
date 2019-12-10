@@ -1,6 +1,6 @@
 rulegen:
   box:
-    id: gcr.io/cloud-builders/bazel
+    id: marketplace.gcr.io/google/bazel
     tag: latest
     entrypoint: /bin/bash
     cmd: -c /bin/bash
