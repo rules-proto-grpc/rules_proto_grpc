@@ -1,7 +1,8 @@
 rulegen:
   box:
-    id: gcr.io/bazel-public/ubuntu1804
-    tag: java8
+    id: gcr.io/cloud-builders/bazel
+    tag: latest
+    entrypoint: /bin/bash -c
   steps:
     - script:
         name: test rulegen diff
