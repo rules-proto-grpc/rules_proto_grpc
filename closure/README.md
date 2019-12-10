@@ -52,13 +52,14 @@ load("@rules_proto_grpc//closure:repositories.bzl", rules_proto_grpc_closure_rep
 
 rules_proto_grpc_closure_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
 
-closure_repositories(
+rules_closure_dependencies(
     omit_bazel_skylib = True,
     omit_com_google_protobuf = True,
     omit_zlib = True,
 )
+rules_closure_toolchains()
 ```
 
 ### `BUILD.bazel`

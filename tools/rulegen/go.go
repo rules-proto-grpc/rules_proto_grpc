@@ -1,14 +1,24 @@
 package main
 
-var goWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var goWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
-rules_proto_grpc_{{ .Lang.Name }}_repos()
+io_bazel_rules_go()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
-go_register_toolchains()`)
+go_register_toolchains()
+
+bazel_gazelle()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
+
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+
+rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
 
 var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
@@ -51,6 +61,8 @@ var goGrpcLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
 GRPC_DEPS = [
     "@com_github_golang_protobuf//proto:go_default_library",
     "@org_golang_google_grpc//:go_default_library",
+    "@org_golang_google_grpc//codes:go_default_library",
+    "@org_golang_google_grpc//status:go_default_library",
     "@org_golang_x_net//context:go_default_library",
 ]`)
 

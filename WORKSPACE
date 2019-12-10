@@ -10,8 +10,8 @@ rules_proto_grpc_toolchains()
 #
 # Core
 #
-load("//protobuf:repositories.bzl", "protobuf_repos")
-protobuf_repos()
+load("//:repositories.bzl", "rules_proto_grpc_repos")
+rules_proto_grpc_repos()
 
 
 #
@@ -59,12 +59,13 @@ maven_install(
 load("//closure:repositories.bzl", "closure_repos")
 closure_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-closure_repositories(
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+rules_closure_dependencies(
     omit_bazel_skylib = True,
     omit_com_google_protobuf = True,
     omit_zlib = True,
 )
+rules_closure_toolchains()
 
 
 #
@@ -127,37 +128,30 @@ d_repositories()
 #
 # Go
 #
-load("//go:repositories.bzl", "go_repos")
-go_repos()
+load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+io_bazel_rules_go()
+bazel_gazelle()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 go_rules_dependencies()
 go_register_toolchains()
 
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+gazelle_dependencies()
 
-#
-# grpc.js
-#
-load("//github.com/stackb/grpc.js:repositories.bzl", "grpcjs_repos")
-grpcjs_repos()
+load("//go:repositories.bzl", "go_repos")
+go_repos()
 
 
 #
 # gRPC gateway
 #
-load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
-io_bazel_rules_go()
-
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 go_rules_dependencies()
 go_register_toolchains()
-bazel_gazelle()
 
 load("//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", "gateway_repos")
 gateway_repos()
-
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-gazelle_dependencies()
 
 
 #
@@ -210,20 +204,29 @@ php_repos()
 load("//python:repositories.bzl", "python_repos")
 python_repos()
 
-load("@com_apt_itude_rules_pip//rules:dependencies.bzl", "pip_rules_dependencies")
-pip_rules_dependencies()
+load("@rules_python//python:repositories.bzl", "py_repositories")
+py_repositories()
+load("@rules_python//python:pip.bzl", "pip_repositories")
+pip_repositories()
 
-load("@com_apt_itude_rules_pip//rules:repository.bzl", "pip_repository")
-pip_repository(
+load("@rules_python//python:pip.bzl", "pip_import")
+pip_import(
     name = "rules_proto_grpc_py2_deps",
-    python_interpreter = "python2",
+    python_interpreter = "python",
     requirements = "//python:requirements.txt",
 )
-pip_repository(
+
+load("@rules_proto_grpc_py2_deps//:requirements.bzl", pip2_install="pip_install")
+pip2_install()
+
+pip_import(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "//python:requirements.txt",
 )
+
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip3_install="pip_install")
+pip3_install()
 
 
 #

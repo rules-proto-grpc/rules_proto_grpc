@@ -8,23 +8,30 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@com_apt_itude_rules_pip//rules:dependencies.bzl", "pip_rules_dependencies")
+load("@rules_python//python:repositories.bzl", "py_repositories")
+py_repositories()
 
-pip_rules_dependencies()
+load("@rules_python//python:pip.bzl", "pip_repositories")
+pip_repositories()
 
-load("@com_apt_itude_rules_pip//rules:repository.bzl", "pip_repository")
-
-pip_repository(
+load("@rules_python//python:pip.bzl", "pip_import")
+pip_import(
     name = "rules_proto_grpc_py2_deps",
-    python_interpreter = "python2",
+    python_interpreter = "python", # Replace this with the platform specific Python 2 name, or remove if not using Python 2
     requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
-pip_repository(
+load("@rules_proto_grpc_py2_deps//:requirements.bzl", pip2_install="pip_install")
+pip2_install()
+
+pip_import(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "@rules_proto_grpc//python:requirements.txt",
-)`)
+)
+
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip3_install="pip_install")
+pip3_install()`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
@@ -80,11 +87,11 @@ def python_grpc_library(**kwargs):
     )
 
 GRPC_PYTHON2_DEPS = [
-    "@rules_proto_grpc_py2_deps//grpcio"
+    "@rules_proto_grpc_py2_deps_pypi__grpcio_1_25_0//:pkg",
 ]
 
 GRPC_PYTHON3_DEPS = [
-    "@rules_proto_grpc_py3_deps//grpcio"
+    "@rules_proto_grpc_py3_deps_pypi__grpcio_1_25_0//:pkg",
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
@@ -109,7 +116,9 @@ def python_grpclib_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@rules_proto_grpc_py3_deps//grpclib"
+    "@rules_proto_grpc_py3_deps_pypi__grpclib_0_3_1//:pkg",
+    "@rules_proto_grpc_py3_deps_pypi__hpack_3_0_0//:pkg",
+    "@rules_proto_grpc_py3_deps_pypi__hyperframe_5_2_0//:pkg",
 ]`)
 
 func makePython() *Language {

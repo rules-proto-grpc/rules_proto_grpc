@@ -40,6 +40,9 @@ closure_js_library(
     deps = [
         ":client",
     ],
+    suppress = [
+        "JSC_INVALID_CLOSURE_CALL_ERROR",
+    ],
 )
 
 closure_js_binary(

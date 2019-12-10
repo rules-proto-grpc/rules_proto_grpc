@@ -18,15 +18,25 @@ Generates Go protobuf `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
-rules_proto_grpc_go_repos()
+io_bazel_rules_go()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
+
+bazel_gazelle()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
+
+load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+
+rules_proto_grpc_go_repos()
 ```
 
 ### `BUILD.bazel`
@@ -56,15 +66,25 @@ Generates Go protobuf+gRPC `.go` artifacts
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
-rules_proto_grpc_go_repos()
+io_bazel_rules_go()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
+
+bazel_gazelle()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
+
+load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+
+rules_proto_grpc_go_repos()
 ```
 
 ### `BUILD.bazel`
@@ -94,15 +114,25 @@ Generates a Go protobuf library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
-rules_proto_grpc_go_repos()
+io_bazel_rules_go()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
+
+bazel_gazelle()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
+
+load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+
+rules_proto_grpc_go_repos()
 ```
 
 ### `BUILD.bazel`
@@ -137,15 +167,25 @@ Generates a Go protobuf+gRPC library using `go_library` from `rules_go`
 ### `WORKSPACE`
 
 ```python
-load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
-rules_proto_grpc_go_repos()
+io_bazel_rules_go()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
 go_register_toolchains()
+
+bazel_gazelle()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
+
+load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+
+rules_proto_grpc_go_repos()
 ```
 
 ### `BUILD.bazel`

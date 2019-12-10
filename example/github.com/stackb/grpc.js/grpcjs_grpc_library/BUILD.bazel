@@ -1,6 +1,0 @@
-load("@rules_proto_grpc//github.com/stackb/grpc.js:defs.bzl", "grpcjs_grpc_library")
-
-grpcjs_grpc_library(
-    name = "greeter_grpc.js_library",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-)

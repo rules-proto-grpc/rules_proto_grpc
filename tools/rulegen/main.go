@@ -111,7 +111,6 @@ func action(c *cli.Context) error {
 
 		makeGogo(),
 		makeGrpcGateway(),
-		makeGrpcJs(),
 		makeGithubComGrpcGrpcWeb(),
 	}
 
@@ -176,8 +175,9 @@ func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
     path = "%s",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
-rules_proto_grpc_toolchains()`, relpath)
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
+rules_proto_grpc_toolchains()
+rules_proto_grpc_repos()`, relpath)
 
 	out.ln()
 	out.t(rule.WorkspaceExample, &ruleData{lang, rule})
@@ -364,7 +364,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 	// Write tasks for main code
 	//
 	for _, ciPlatform := range ciPlatforms {
-        // Skip windows, due to issues with 'undeclared inclusion'
+		// Skip windows, due to issues with 'undeclared inclusion'
 		if ciPlatform == "windows" {
 			continue
 		}
@@ -372,7 +372,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		out.w("    name: build & test all")
 		out.w("    platform: %s", ciPlatform)
 		if ciPlatform == "macos" {
-			out.w("    build_flags:")
+		    out.w("    build_flags:")
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 		}
 		out.w("    build_targets:")

@@ -21,7 +21,7 @@ alias(
 )
 alias(
     name = "grpcio",
-    actual = "@raze__grpcio__0_4_4//:grpcio",
+    actual = "@raze__grpcio__0_4_6//:grpcio",
 )
 alias(
     name = "grpcio_compiler",
@@ -39,19 +39,19 @@ alias(
 )
 alias(
     name = "protobuf",
-    actual = "@raze__protobuf__2_7_0//:protobuf",
+    actual = "@raze__protobuf__2_8_1//:protobuf",
 )
 alias(
     name = "protobuf_codegen",
-    actual = "@raze__protobuf_codegen__2_7_0//:protobuf_codegen",
+    actual = "@raze__protobuf_codegen__2_8_1//:protobuf_codegen",
 )
 alias(
     # Extra aliased target, from raze configuration
     # N.B.: The exact form of this is subject to change.
     name = "cargo_bin_protoc_gen_rust",
-    actual = "@raze__protobuf_codegen__2_7_0//:cargo_bin_protoc_gen_rust",
+    actual = "@raze__protobuf_codegen__2_8_1//:cargo_bin_protoc_gen_rust",
 )
 alias(
     name = "serde_json",
-    actual = "@raze__serde_json__1_0_40//:serde_json",
+    actual = "@raze__serde_json__1_0_42//:serde_json",
 )

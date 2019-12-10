@@ -8,10 +8,10 @@ path = "fake_lib.rs"
 
 [dependencies]
 futures = "=0.1.28"
-grpcio = { version = "=0.4.4", features = [] }
+grpcio = { version = "=0.4.6", features = [] }
 grpcio-compiler = "=0.4.3"
-protobuf = { version = "=2.7.0", features = ["with-bytes"] }
-protobuf-codegen = "=2.7.0"
+protobuf = { version = "=2.8.1", features = ["with-bytes"] }
+protobuf-codegen = "=2.8.1"
 
 log = "=0.4.6" # For routeguide example
 serde_json = "*" # For routeguide example
@@ -21,21 +21,21 @@ genmode = "Remote"
 workspace_path = "//rust/raze"
 output_buildfile_suffix = "BUILD.bazel"
 
-[raze.crates.protobuf.'2.7.0']
+[raze.crates.protobuf.'2.8.1']
 gen_buildrs = true
 buildrs_additional_environment_variables = [
     "RUSTC=$$PWD/$(location @rules_proto_grpc//rust/raze:rustc)",
-    "CARGO_PKG_VERSION=2.7.0",
+    "CARGO_PKG_VERSION=2.8.1",
 ]
 
-[raze.crates.protobuf-codegen.'2.7.0']
+[raze.crates.protobuf-codegen.'2.8.1']
 gen_buildrs = true
 extra_aliased_targets = ["cargo_bin_protoc_gen_rust"]
 
-[raze.crates.grpcio.'0.4.4']
+[raze.crates.grpcio.'0.4.6']
 gen_buildrs = true
 
-[raze.crates.grpcio-sys.'0.4.4']
+[raze.crates.grpcio-sys.'0.4.7']
 gen_buildrs = true
 buildrs_additional_environment_variables = [
     "DEBUG=false",
@@ -43,22 +43,6 @@ buildrs_additional_environment_variables = [
     "OPT_LEVEL=3",
     "PROFILE=release",
     "GOCACHE=/tmp/grpcio-sys-gocache",
-]
-additional_flags = [
-    "-Lbazel-out/k8-fastbuild/bin/external/raze__grpcio_sys__0_4_4/grpcio_sys.out_dir", # Linux
-    "-Lbazel-out/darwin-fastbuild/bin/external/raze__grpcio_sys__0_4_4/grpcio_sys.out_dir", # OSX
-    "-lstatic=grpc_wrap",
-    "-Lbazel-out/k8-fastbuild/bin/external/raze__grpcio_sys__0_4_4/grpcio_sys.out_dir/build", # Linux
-    "-Lbazel-out/darwin-fastbuild/bin/external/raze__grpcio_sys__0_4_4/grpcio_sys.out_dir/build", # OSX
-    "-lstatic=address_sorting",
-    "-lstatic=grpc",
-    "-lstatic=gpr",
-    "-Lbazel-out/k8-fastbuild/bin/external/raze__grpcio_sys__0_4_4/grpcio_sys.out_dir/build/third_party/zlib", # Linux
-    "-Lbazel-out/darwin-fastbuild/bin/external/raze__grpcio_sys__0_4_4/grpcio_sys.out_dir/build/third_party/zlib", # OSX
-    "-lstatic=z",
-    "-Lbazel-out/k8-fastbuild/bin/external/raze__grpcio_sys__0_4_4/grpcio_sys.out_dir/build/third_party/cares/cares/lib", # Linux
-    "-Lbazel-out/darwin-fastbuild/bin/external/raze__grpcio_sys__0_4_4/grpcio_sys.out_dir/build/third_party/cares/cares/lib", # OSX
-    "-lstatic=cares",
 ]
 
 [raze.crates.grpcio-compiler.'0.4.3']

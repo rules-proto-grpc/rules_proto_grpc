@@ -11,6 +11,12 @@ export RUST_BACKTRACE=1 # Print rust stack traces
 {server} &
 sleep 2
 
+# Setup trap to kill server
+function kill_server {{
+  kill %1
+}}
+trap kill_server EXIT
+
 # Run client
 {client}
 

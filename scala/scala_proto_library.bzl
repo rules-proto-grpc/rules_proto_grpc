@@ -19,8 +19,7 @@ def scala_proto_library(**kwargs):
     )
 
 PROTO_DEPS = [
-    "//external:io_bazel_rules_scala/dependency/com_google_protobuf/protobuf_java",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_fastparse",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_lenses",
-    "//external:io_bazel_rules_scala/dependency/proto/scalapb_runtime",
+    "@scalapb_runtime//jar",
+    "@scalapb_lenses//jar",
+    "@com_google_protobuf//:protobuf_java",
 ]

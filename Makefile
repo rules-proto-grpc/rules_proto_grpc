@@ -26,7 +26,7 @@ yarn_upgrade:
 # Run bundle to upgrade the Ruby dependencies
 ruby_bundle_upgrade:
 	cd ruby; \
-	bundle; \
+	bundle install --path /tmp/ruby-bundle; \
 
 
 # Run all language specific updates
@@ -56,7 +56,6 @@ servers:
 tests:
 	bazel test \
 		//closure/example/routeguide/... \
-		//github.com/stackb/grpc.js/example/routeguide/... \
 		//cpp/example/routeguide/... \
 		//java/example/routeguide/... \
 		//go/example/routeguide/... \
@@ -68,7 +67,6 @@ pending_clients:
 		//nodejs/example/routeguide:client \
 		//ruby/example/routeguide:client \
 		//github.com/grpc/grpc-web/example/routeguide/closure:bundle \
-		//github.com/stackb/grpc.js/example/routeguide/client:bundle \
 		//rust/example/routeguide:client
 
 pending_servers:

@@ -231,3 +231,41 @@ def strip_path_prefix(path, prefix):
     if path.startswith("/"):
         path = path[1:]
     return path
+
+
+def parse_version(version_str):
+    """
+    Parse the bazel version string, returning a tuple
+
+    Derived from https://github.com/tensorflow/tensorflow/blob/master/tensorflow/version_check.bzl
+    """
+    # Extract just the semver part
+    semver_str = version_str.partition(" ")[0].partition("-")[0]
+
+    # Return version tuple
+    return tuple([n for n in semver_str.split(".")])
+
+
+# Check that a specific bazel version is being used.
+def check_bazel_minimum_version(minimum_bazel_version):
+    """
+    Check that the bazel version meets or exceeds the required version
+
+    Derived from https://github.com/tensorflow/tensorflow/blob/master/tensorflow/version_check.bzl
+    """
+    # Check for bazel versions that did not support version checking
+    if "bazel_version" not in dir(native):
+        fail("Bazel version is lower than 0.2.1, rules_proto_grpc requires at least {}".format(minimum_bazel_version))
+
+    # Check for non-release versions
+    if not native.bazel_version:
+        print("Bazel is not a release version, rules_proto_grpc requires at least {}".format(minimum_bazel_version))
+        return
+
+    # Check version strings
+    current_version_tuple = parse_version(native.bazel_version)
+    minimum_version_tuple = parse_version(minimum_bazel_version)
+    if current_version_tuple < minimum_version_tuple:
+        fail("Bazel version is {}, rules_proto_grpc requires at least {}".format(
+            native.bazel_version, minimum_bazel_version)
+        )

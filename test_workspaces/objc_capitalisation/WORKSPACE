@@ -3,8 +3,9 @@ local_repository(
     path = "../../",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
 rules_proto_grpc_toolchains()
+rules_proto_grpc_repos()
 
 load("@rules_proto_grpc//objc:repositories.bzl", "objc_repos")
 objc_repos()

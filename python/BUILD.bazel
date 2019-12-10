@@ -13,7 +13,7 @@ proto_plugin(
 proto_plugin(
     name = "grpc_python_plugin",
     outputs = ["{protopath|python}_pb2_grpc.py"],
-    tool = "@com_github_grpc_grpc//:grpc_python_plugin",
+    tool = "@com_github_grpc_grpc//src/compiler:grpc_python_plugin",
     exclusions = [
         "google/protobuf",
     ],

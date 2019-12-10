@@ -22,5 +22,7 @@ def gogofaster_grpc_library(**kwargs):
 GRPC_DEPS = [
     "@com_github_gogo_protobuf//proto:go_default_library",
     "@org_golang_google_grpc//:go_default_library",
+    "@org_golang_google_grpc//codes:go_default_library",
+    "@org_golang_google_grpc//status:go_default_library",
     "@org_golang_x_net//context:go_default_library",
 ]

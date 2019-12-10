@@ -1,5 +1,2 @@
-# Don't include examples
-/example
-
 # Don't include test child workspaces
-/test_workspaces
+test_workspaces

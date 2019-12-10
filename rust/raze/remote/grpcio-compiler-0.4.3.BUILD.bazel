@@ -33,8 +33,8 @@ rust_binary(
     deps = [
         # Binaries get an implicit dependency on their crate's lib
         ":grpcio_compiler",
-        "@raze__protobuf__2_7_0//:protobuf",
-        "@raze__protobuf_codegen__2_7_0//:protobuf_codegen",
+        "@raze__protobuf__2_8_1//:protobuf",
+        "@raze__protobuf_codegen__2_8_1//:protobuf_codegen",
     ],
     rustc_flags = [
         "--cap-lints=allow",
@@ -52,8 +52,8 @@ rust_library(
     edition = "2015",
     srcs = glob(["**/*.rs"]),
     deps = [
-        "@raze__protobuf__2_7_0//:protobuf",
-        "@raze__protobuf_codegen__2_7_0//:protobuf_codegen",
+        "@raze__protobuf__2_8_1//:protobuf",
+        "@raze__protobuf_codegen__2_8_1//:protobuf_codegen",
     ],
     rustc_flags = [
         "--cap-lints=allow",

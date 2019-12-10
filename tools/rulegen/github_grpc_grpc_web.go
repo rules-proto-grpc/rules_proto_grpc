@@ -4,11 +4,11 @@ var grpcWebWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.D
 
 rules_proto_grpc_grpc_web_repos()
 
-load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-
-closure_repositories(
+load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+rules_closure_dependencies(
     omit_com_google_protobuf = True,
-)`)
+)
+rules_closure_toolchains()`)
 
 var grpcWebGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:closure_grpc_compile.bzl", "closure_grpc_compile")
 load("//closure:closure_proto_compile.bzl", "closure_proto_compile")
@@ -43,6 +43,8 @@ def {{ .Rule.Name }}(**kwargs):
             "JSC_UNUSED_PRIVATE_PROPERTY",
             "JSC_EXTRA_REQUIRE_WARNING",
             "JSC_INVALID_INTERFACE_MEMBER_DECLARATION",
+            "JSC_TYPE_MISMATCH",
+            "CR_NOT_PROVIDED",
         ],
         visibility = kwargs.get("visibility"),
     )
