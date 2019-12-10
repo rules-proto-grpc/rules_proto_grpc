@@ -2,7 +2,8 @@ rulegen:
   box:
     id: gcr.io/cloud-builders/bazel
     tag: latest
-    entrypoint: /bin/bash -c
+    entrypoint: /bin/bash
+    cmd: -c /bin/bash
   steps:
     - script:
         name: test rulegen diff
