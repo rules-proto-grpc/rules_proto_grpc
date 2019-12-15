@@ -67,7 +67,7 @@ def proto_compile_impl(ctx):
 
     elif output_dirs:
         # If we have any output dirs specified, we declare a single output
-        # directory and merge all files in one go. This is necessary to preven
+        # directory and merge all files in one go. This is necessary to prevent
         # path prefix conflicts
 
         # Declare single output directory
