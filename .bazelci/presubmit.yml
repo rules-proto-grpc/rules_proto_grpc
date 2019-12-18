@@ -1158,6 +1158,30 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
+  test_workspace_empty_output_directory_ubuntu1804:
+    name: 'test workspace: empty_output_directory'
+    platform: ubuntu1804
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/empty_output_directory
+  test_workspace_empty_output_directory_windows:
+    name: 'test workspace: empty_output_directory'
+    platform: windows
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/empty_output_directory
+  test_workspace_empty_output_directory_macos:
+    name: 'test workspace: empty_output_directory'
+    platform: macos
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/empty_output_directory
   test_workspace_exclusions_ubuntu1804:
     name: 'test workspace: exclusions'
     platform: ubuntu1804
