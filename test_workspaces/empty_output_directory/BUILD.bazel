@@ -12,6 +12,13 @@ proto_library(
 
 php_grpc_compile(
     name = "php_lib",
-    deps = ["proto_lib"],
     verbose = 4,
+    deps = ["proto_lib"],
+)
+
+# Some sort of test is required to exit cleanly
+py_test(
+    name = "placeholder",
+    srcs = ["placeholder.py"],
+    main = "placeholder.py",
 )
