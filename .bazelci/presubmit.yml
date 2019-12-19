@@ -1158,6 +1158,30 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
+  test_workspace_common_cpp_library_ubuntu1804:
+    name: 'test workspace: common_cpp_library'
+    platform: ubuntu1804
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/common_cpp_library
+  test_workspace_common_cpp_library_windows:
+    name: 'test workspace: common_cpp_library'
+    platform: windows
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/common_cpp_library
+  test_workspace_common_cpp_library_macos:
+    name: 'test workspace: common_cpp_library'
+    platform: macos
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/common_cpp_library
   test_workspace_empty_output_directory_ubuntu1804:
     name: 'test workspace: empty_output_directory'
     platform: ubuntu1804
