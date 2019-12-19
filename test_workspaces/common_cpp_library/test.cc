@@ -1,6 +1,5 @@
 #include "demo.pb.h"
 
-int main() {
-  demo x;
-  return x.ByteSize();
+int main () {
+    return demo().ByteSizeLong();
 }

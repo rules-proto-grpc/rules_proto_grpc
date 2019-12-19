@@ -3,10 +3,10 @@ syntax = "proto3";
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.MethodOptions {
-  bool foo = 50001;
+    bool foo = 50001;
 }
 
-message CommonProto{
+message CommonProto {
     string field = 1;
 }
 
