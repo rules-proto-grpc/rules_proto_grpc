@@ -521,8 +521,7 @@ def javax_annotation_javax_annotation_api(**kwargs):
     _generic_dependency("javax_annotation_javax_annotation_api", **kwargs)
 
 def com_google_errorprone_error_prone_annotations(**kwargs):
-    # Use //stub:javax_annotation for neverlink=1 support.
-    _generic_dependency("javax_annotation_javax_annotation_api", **kwargs)
+    _generic_dependency("com_google_errorprone_error_prone_annotations", **kwargs)
 
 
 #
