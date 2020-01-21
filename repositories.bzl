@@ -182,8 +182,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "v1.24.2",
-        "sha256": "83bb3a29b0fcbf6d3242b5827e9e8d3683b4aad907628fcb9a37925dc9d7c867",
+        "ref": "62e8655f1bc4dfb474afbf332ca7571c1454e6ef",  # Non-version release commit on 1.24.x branch until Maven HTTPS fix is merged to a release
+        "sha256": "920977aa6d5beeefdf6668848589319c85d5cf3570329bab4d1a04425546e9a1",
     },
     "javax_annotation_javax_annotation_api": {
         "type": "jvm_maven_import_external",
