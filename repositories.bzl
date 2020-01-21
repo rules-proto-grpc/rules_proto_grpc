@@ -254,8 +254,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "e56840204179b1f668ba2f6f8f23f28d00d96794",
-        "sha256": "4f22711a0e91cbe557ea8402e0a2ad95509db52ead995215f6abd1b94372d278",
+        "ref": "19295567e10e80349560a437c79e8f859c2a5a79",
+        "sha256": "8f1001610e80972ee1e68ddca7a497e21b5b1c1f7ddfaf8f6e0557936daa4ad8",
     },
     "com_github_scalapb_scalapb": {
         "type": "http",
