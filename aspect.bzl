@@ -347,10 +347,20 @@ def proto_compile_aspect_impl(target, ctx):
 
         # Add plugin if not built-in
         if plugin_tool:
-            args.add("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool.path))
+            # If Windows, mangle the path. It's done a bit awkwardly with
+            # `host_path_seprator` as there is no simple way to figure out what's
+            # the current OS.
+            plugin_tool_path = None
+            if ctx.configuration.host_path_separator == ";":
+                plugin_tool_path = plugin_tool.path.replace("/", "\\")
+            else:
+                plugin_tool_path = plugin_tool.path
+
+            args.add("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
 
         # Add plugin out arg
         out_arg = out_file.path if out_file else full_outdir
+
         if plugin.options:
             out_arg = "{}:{}".format(",".join(
                 [option.replace("{name}", ctx.label.name) for option in plugin.options],
@@ -399,6 +409,7 @@ def proto_compile_aspect_impl(target, ctx):
             inputs = inputs,
             tools = tools,
             outputs = plugin_outputs,
+            use_default_shell_env = True,
             input_manifests = plugin_input_manifests if plugin_input_manifests else [],
             progress_message = "Compiling protoc outputs for {} plugin".format(plugin.name),
         )
