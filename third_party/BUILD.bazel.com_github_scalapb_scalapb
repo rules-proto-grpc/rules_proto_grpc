@@ -1,4 +1,4 @@
-exports_files(["bin/protoc-gen-scala"])
+exports_files(["bin/protoc-gen-scala", "bin/protoc-gen-scala.bat"])
 
 java_import(
     name = "scala_library",
