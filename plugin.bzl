@@ -6,6 +6,7 @@ ProtoPluginInfo = provider(fields = {
     "output_directory": "Boolean flag that indicates that the plugin should just output a directory. Used for plugins that have no direct mapping from source file name to output name. Cannot be used in conjunction with outputs or out",
     "tool": "The plugin binary. If absent, it is assumed the plugin is built-in to protoc itself and plugin_name will be used if available, otherwise the plugin name",
     "tool_executable": "The plugin binary executable",
+    "use_built_in_shell_environment": "Whether the tool should use the built in shell environment or not",
     "protoc_plugin_name": "The name used for the plugin binary on the protoc command line. Useful for targeting built-in plugins. Uses plugin name when not set",
     "exclusions": "Exclusion filters to apply when generating outputs with this plugin. Used to prevent generating files that are included in the protobuf library, for example. Can exclude either by proto name prefix or by proto folder prefix",
     "data": "Additional files required for running the plugin",
@@ -33,6 +34,7 @@ def _proto_plugin_impl(ctx):
             output_directory = ctx.attr.output_directory,
             tool = ctx.attr.tool,
             tool_executable = ctx.executable.tool,
+            use_built_in_shell_environment = ctx.attr.use_built_in_shell_environment,
             protoc_plugin_name = ctx.attr.protoc_plugin_name,
             exclusions = exclusions,
             data = ctx.files.data,
@@ -61,6 +63,10 @@ proto_plugin = rule(
             cfg = "exec",
             allow_files = True,
             executable = True,
+        ),
+        "use_built_in_shell_environment": attr.bool(
+            doc = "Whether the tool should use the built in shell environment or not",
+            default = False,
         ),
         "protoc_plugin_name": attr.string(
             doc = "The name used for the plugin binary on the protoc command line. Useful for targeting built-in plugins. Uses plugin name when not set",
