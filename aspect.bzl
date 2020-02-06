@@ -409,7 +409,7 @@ def proto_compile_aspect_impl(target, ctx):
             inputs = inputs,
             tools = tools,
             outputs = plugin_outputs,
-            use_default_shell_env = True,
+            use_default_shell_env = plugin.use_built_in_shell_environment,
             input_manifests = plugin_input_manifests if plugin_input_manifests else [],
             progress_message = "Compiling protoc outputs for {} plugin".format(plugin.name),
         )
