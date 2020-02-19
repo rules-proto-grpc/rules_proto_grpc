@@ -78,7 +78,7 @@ flavours:
   gRPC `protoc` plugins for the language. e.g for C++ this provides the
   generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files.
 
-- `{lang}_proto_library`: Provides a language-specific library from the
+- `{lang}_grpc_library`: Provides a language-specific library from the
   generated Protobuf and gRPC `protoc` plugins outputs, along with necessary
   dependencies. e.g for C++ this provides a Bazel native `cpp_library` created
   from the generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h`
