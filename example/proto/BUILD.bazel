@@ -68,6 +68,9 @@ proto_library(
     srcs = [
         "greeter.proto",
     ],
+    deps = [
+        "//example/proto-status:status_proto",
+    ],
     visibility = [
         "//visibility:public",
     ],

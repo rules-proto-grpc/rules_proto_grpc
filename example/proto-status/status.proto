@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "io.grpc.examples.Status";
+option java_outer_classname = "StatusProto";
+option objc_class_prefix = "GTR";
+
+package status;
+
+
+// Response code of the Response Status.
+enum ResponseCode {
+  RESPONSE_CODE_INVALID = 0;
+  // These codes matches exact with gRPC status codes.
+  // https://developers.google.com/maps-booking/reference/grpc-api-v2/status_codes
+  RESPONSE_CODE_OK = 1;
+  RESPONSE_CODE_CANCELLED = 2;
+  RESPONSE_CODE_UNKNOWN = 3;
+  RESPONSE_CODE_INVALID_ARGUMENT = 4;
+  RESPONSE_CODE_DEADLINE_EXCEEDED = 5;
+  RESPONSE_CODE_NOT_FOUND = 6;
+  RESPONSE_CODE_ALREADY_EXISTS = 7;
+  RESPONSE_CODE_PERMISSION_DENIED = 8;
+  RESPONSE_CODE_UNAUTHENTICATED = 9;
+  RESPONSE_CODE_RESOURCE_EXHAUSTED = 10;
+  RESPONSE_CODE_FAILED_PRECONDITION = 11;
+  RESPONSE_CODE_ABORTED = 12;
+  RESPONSE_CODE_OUT_OF_RANGE = 13;
+  RESPONSE_CODE_UNIMPLEMENTED = 14;
+  RESPONSE_CODE_INTERNAL = 15;
+  RESPONSE_CODE_UNAVAILABLE = 16;
+  RESPONSE_CODE_DATA_LOSS = 17;
+  // Response code for any unhandled exception on the server.
+  RESPONSE_CODE_UNHANDLED_EXCEPTION = 18;
+  // Custom Response code not present in gRPC status codes.
+  RESPONSE_CODE_INVALID_OBJECT_VERSION = 19;
+}
+
+message Status {
+  ResponseCode response_code = 1;
+}

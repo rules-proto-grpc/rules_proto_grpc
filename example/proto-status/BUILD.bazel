@@ -1,0 +1,9 @@
+proto_library(
+    name = "status_proto",
+    srcs = [
+        "status.proto",
+    ],
+    visibility = [
+        "//visibility:public",
+    ],
+)
