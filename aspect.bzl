@@ -77,7 +77,9 @@ def proto_compile_impl(ctx):
         # Use cp {}/. rather than {}/* to allow for empty output directories from a plugin (e.g when no service exists,
         # so no files generated)
         # TODO: make output_dirs a depset properly.
-        command_parts = ["cp -r {} '{}'".format(
+        # `|| true` is a workaround for this action to work with remote builds on buildbarn.
+        # See https://github.com/buildbarn/bb-remote-execution/issues/59 for details.
+        command_parts = ["cp -r {} '{}' || true".format(
             " ".join(["'" + d.path + "/.'" for d in depset(output_dirs).to_list()]),
             new_dir.path,
         )]
