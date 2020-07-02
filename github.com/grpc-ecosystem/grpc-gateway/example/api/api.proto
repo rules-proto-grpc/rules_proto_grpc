@@ -3,6 +3,7 @@ syntax = "proto3";
 package example.api;
 
 import "google/api/annotations.proto";
+import "github.com/grpc-ecosystem/grpc-gateway/example/api/test.proto";
 
 service CustomerService {
     rpc GetCustomer(GetCustomerRequest) returns (GetCustomerResponse) {
@@ -10,11 +11,6 @@ service CustomerService {
 			get: "/v1/customer/{id}"
 		};
 	}
-}
-
-message Customer {
-    string id = 1;
-    string name = 2;
 }
 
 message GetCustomerRequest {
