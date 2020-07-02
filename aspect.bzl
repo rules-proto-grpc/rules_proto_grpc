@@ -76,11 +76,8 @@ def proto_compile_impl(ctx):
         # Build copy command for directory outputs
         # Use cp {}/. rather than {}/* to allow for empty output directories from a plugin (e.g when no service exists,
         # so no files generated)
-        # TODO: make output_dirs a depset properly.
-        # `|| true` is a workaround for this action to work with remote builds on buildbarn.
-        # See https://github.com/buildbarn/bb-remote-execution/issues/59 for details.
-        command_parts = ["cp -r {} '{}' || true".format(
-            " ".join(["'" + d.path + "/.'" for d in depset(output_dirs).to_list()]),
+        command_parts = ["cp -r {} '{}'".format(
+            " ".join(["'" + d.path + "/.'" for d in output_dirs]),
             new_dir.path,
         )]
 
@@ -369,9 +366,6 @@ def proto_compile_aspect_impl(target, ctx):
                 [option.replace("{name}", ctx.label.name) for option in plugin.options],
             ), out_arg)
         args.add("--{}_out={}".format(plugin_name, out_arg))
-
-        if plugin.extra_options:
-            args.add_all(plugin.extra_options)
 
         # Add source proto files as descriptor paths
         for proto in protos:
