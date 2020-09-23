@@ -16,6 +16,7 @@ def java_grpc_library(**kwargs):
         runtime_deps = ["@io_grpc_grpc_java//netty"],
         exports = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
