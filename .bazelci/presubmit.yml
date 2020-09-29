@@ -1302,22 +1302,6 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
-  test_workspace_python2_grpc_ubuntu1804:
-    name: 'test workspace: python2_grpc'
-    platform: ubuntu1804
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python2_grpc
-  test_workspace_python2_grpc_macos:
-    name: 'test workspace: python2_grpc'
-    platform: macos
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python2_grpc
   test_workspace_python3_grpc_ubuntu1804:
     name: 'test workspace: python3_grpc'
     platform: ubuntu1804

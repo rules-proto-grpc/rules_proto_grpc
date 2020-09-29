@@ -27,5 +27,5 @@ pip_import(
     requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
-load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip3_install="pip_install")
-pip3_install()
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip_install="pip_install")
+pip_install()
