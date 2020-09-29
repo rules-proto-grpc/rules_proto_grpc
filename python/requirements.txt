@@ -1,8 +1,7 @@
-grpcio==1.25.0
-grpclib==0.3.1; python_version > '3'
+grpclib==0.4.1; python_version > '3'
 
 # Workaround for rules_python not parsing METADATA from packages that don't have JSON file
 # These are the requirements for h2, which is required by grpclib
 # This can be removed when rules_python correctly parses METADATA
-hyperframe==5.2.0
-hpack==3.0.0
+hyperframe==6.0.0; python_version > '3'
+hpack==4.0.0; python_version > '3'

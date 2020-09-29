@@ -11,8 +11,8 @@ VERSIONS = {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.11.0",
-        "sha256": "6d356a6279cc76d2d5c4dfa6541641264b59eae0bc96b852381361e3400d1f1c",
+        "ref": "v3.13.0",
+        "sha256": "9b4ee22c250fe31b16f1a24d61467e40780a3fbb9b91c3b65be2a376ed913a1a",
         "binds": [
             {
                 "name": "protobuf_clib",
@@ -24,12 +24,12 @@ VERSIONS = {
             },
         ],
     },
-    "com_github_grpc_grpc": { # When updating, also update Python requirements, Node.js requirements, Ruby requirements and C# requirements
+    "com_github_grpc_grpc": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.25.0",
-        "sha256": "ffbe61269160ea745e487f79b0fd06b6edd3d50c6d9123f053b5634737cf2f69",
+        "ref": "v1.32.0",
+        "sha256": "f880ebeb2ccf0e47721526c10dd97469200e40b5f101a0d9774eb69efa0bd07a",
     },
     "zlib": {
         "type": "http",
@@ -45,29 +45,29 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "94677401bc56ed5d756f50b441a6a5c7f735a6d4",
-        "sha256": "acbd018f11355ead06b250b352e59824fbb9e77f4874d250d230138231182c1c",
+        "ref": "0.0.3",
+        "sha256": "3720faae8aed1415c3af58d241ecffccfa4d31f2bb70ffa2f6dfb68ca9729626",
     },
     "build_bazel_rules_swift": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "0.13.0",
-        "sha256": "617e568aa8263c454f63362f5ab837038da710d646510b8f4a6760ff6361f714",
+        "ref": "0.15.0",
+        "sha256": "fdaf142efe96f4fa648c10479e5deb86fba8f22ff39726d9c003ddb5ef0b6b9a",
     },
     "build_bazel_apple_support": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "apple_support",
-        "ref": "0.7.2",
-        "sha256": "519a3bc32132f7b5780e82c2fc6ad2a78d4b28b81561e6fd7b7e0b14ea110074",
+        "ref": "0.9.0",
+        "sha256": "2e7ea40b2b5637dc691d0f0d2639bffe3a857b6d3f906e8c8ef3006ccd1fb404",
     },
     "bazel_skylib": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-skylib",
-        "ref": "1.0.2",
-        "sha256": "e5d90f0ec952883d56747b7604e2a15ee36e288bb556c3d0ed33e818a4d971f2",
+        "ref": "1.0.3",
+        "sha256": "7ac0fa88c0c4ad6f5b9ffb5e09ef81e235492c873659e6bb99efb89d11246bcb",
     },
 
 

@@ -66,33 +66,18 @@ def python_grpc_library(**kwargs):
         **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
     )
 
-    # Pick deps based on python version
-    if "python_version" not in kwargs or kwargs["python_version"] == "PY3":
-        grpc_deps = GRPC_PYTHON3_DEPS
-    elif kwargs["python_version"] == "PY2":
-        grpc_deps = GRPC_PYTHON2_DEPS
-    else:
-        fail("The 'python_version' attribute to python_grpc_library must be one of ['PY2', 'PY3']")
-
-
     # Create {{ .Lang.Name }} library
     native.py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = [
             "@com_google_protobuf//:protobuf_python",
-        ] + grpc_deps,
+            "@com_github_grpc_grpc//src/python/grpcio/grpc:grpcio",
+        ],
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
     )
-
-GRPC_PYTHON2_DEPS = [
-    "@rules_proto_grpc_py2_deps_pypi__grpcio_1_25_0//:pkg",
-]
-
-GRPC_PYTHON3_DEPS = [
-    "@rules_proto_grpc_py3_deps_pypi__grpcio_1_25_0//:pkg",
-]`)
+`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 
@@ -116,9 +101,9 @@ def python_grpclib_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@rules_proto_grpc_py3_deps_pypi__grpclib_0_3_1//:pkg",
-    "@rules_proto_grpc_py3_deps_pypi__hpack_3_0_0//:pkg",
-    "@rules_proto_grpc_py3_deps_pypi__hyperframe_5_2_0//:pkg",
+    "@rules_proto_grpc_py3_deps_pypi__hpack_4_0_0//:pkg",
+    "@rules_proto_grpc_py3_deps_pypi__hyperframe_6_0_0//:pkg",
+    "@rules_proto_grpc_py3_deps_pypi__grpclib_0_4_1//:pkg",
 ]`)
 
 func makePython() *Language {
@@ -184,15 +169,7 @@ func makePython() *Language {
 				WorkspaceExample: pythonGrpcLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf+gRPC library using `py_library`",
-				Attrs:            append(aspectProtoCompileAttrs, []*Attr{
-					&Attr{
-						Name:      "python_version",
-						Type:      "string",
-						Default:   "PY3",
-						Doc:       "Specify the Python version to use for the bundled dependencies. Valid values are \"PY3\" (the default) and \"PY2\"",
-						Mandatory: false,
-					},
-				}...),
+				Attrs:            aspectProtoCompileAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
