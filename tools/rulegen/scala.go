@@ -74,6 +74,7 @@ GRPC_DEPS = [
     "@io_grpc_grpc_java//api",
     "@io_grpc_grpc_java//protobuf",
     "@io_grpc_grpc_java//stub",
+    "@com_google_guava_guava//jar",
 ]`)
 
 func makeScala() *Language {
