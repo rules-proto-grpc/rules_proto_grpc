@@ -15,6 +15,6 @@ load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
 grpc_java_repositories()
 
-load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
+load("@build_bazel_rules_android//android:android_sdk_repository.bzl", "android_sdk_repository")
 
 android_sdk_repository(name = "androidsdk")
