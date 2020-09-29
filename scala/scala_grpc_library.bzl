@@ -23,8 +23,7 @@ GRPC_DEPS = [
     "@scalapb_runtime_grpc//jar",
     "@scalapb_lenses//jar",
     "@com_google_protobuf//:protobuf_java",
-    "@com_google_guava_guava//jar",
-    "@io_grpc_grpc_java//core",
+    "@io_grpc_grpc_java//api",
     "@io_grpc_grpc_java//protobuf",
     "@io_grpc_grpc_java//stub",
 ]

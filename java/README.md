@@ -85,10 +85,6 @@ Generates a Java protobuf library using `java_library`
 load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
 rules_proto_grpc_java_repos()
-
-load("@io_grpc_grpc_java//:repositories.bzl", "com_google_guava")
-
-com_google_guava()
 ```
 
 ### `BUILD.bazel`
@@ -124,12 +120,7 @@ rules_proto_grpc_java_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 ```
 
 ### `BUILD.bazel`

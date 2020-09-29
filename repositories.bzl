@@ -88,19 +88,6 @@ VERSIONS = {
         "ref": "9ab1134546364c6de84fc6c80b4202fdbebbbb35",
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
     },
-    "com_google_guava_guava_android": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.google.guava:guava:27.0.1-android",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "caf0955aed29a1e6d149f85cfb625a89161b5cf88e0e246552b7ffa358204e28",
-    },
-    "com_google_protobuf_javalite": {
-        "type": "github",
-        "org": "protocolbuffers",
-        "repo": "protobuf",
-        "ref": "fa08222434bc58d743e8c2cc716bc219c3d0f44e", # Jul 2019
-        "sha256": "b04b08d31208be32aafdf5842d1b6073d527a67ff8d2cf4b17ee8f22a5273758",
-    },
 
     # C Sharp
     "io_bazel_rules_dotnet": {
@@ -171,39 +158,12 @@ VERSIONS = {
     },
 
     # Java
-    "rules_jvm_external": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_jvm_external",
-        "ref": "2.10",
-        "sha256": "5c1b22eab26807d5286ada7392d796cbc8425d3ef9a57d114b79c5f8ef8aca7c",
-    },
     "io_grpc_grpc_java": {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "62e8655f1bc4dfb474afbf332ca7571c1454e6ef",  # Non-version release commit on 1.24.x branch until Maven HTTPS fix is merged to a release
-        "sha256": "920977aa6d5beeefdf6668848589319c85d5cf3570329bab4d1a04425546e9a1",
-    },
-    "javax_annotation_javax_annotation_api": {
-        "type": "jvm_maven_import_external",
-        "artifact": "javax.annotation:javax.annotation-api:1.2",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "5909b396ca3a2be10d0eea32c74ef78d816e1b4ead21de1d78de1f890d033e04",
-        "licenses": ["reciprocal"], # CDDL License
-    },
-    "com_google_errorprone_error_prone_annotations": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.google.errorprone:error_prone_annotations:2.3.2",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "357cd6cfb067c969226c442451502aee13800a24e950fdfde77bcdb4565a668d",
-        "licenses": ["notice"], # Apache 2.0
-        "binds": [
-            {
-                "name": "error_prone_annotations",
-                "actual": "@com_google_errorprone_error_prone_annotations//jar",
-            },
-        ]
+        "ref": "v1.32.1",  # Bug in 1.32.0 release means 1.32.1 should be used
+        "sha256": "e5d691f80e7388035c34616a17830ec2687fb2ef5c5d9c9b79c605a7addb78ab",
     },
 
     # NodeJS
@@ -452,12 +412,6 @@ def com_github_bazelbuild_buildtools(**kwargs):
 def build_bazel_rules_android(**kwargs):
     _generic_dependency("build_bazel_rules_android", **kwargs)
 
-def com_google_guava_guava_android(**kwargs):
-    _generic_dependency("com_google_guava_guava_android", **kwargs)
-
-def com_google_protobuf_javalite(**kwargs):
-    _generic_dependency("com_google_protobuf_javalite", **kwargs)
-
 
 #
 # Closure
@@ -510,18 +464,8 @@ def com_github_grpc_grpc_web(**kwargs):
 #
 # Java
 #
-def rules_jvm_external(**kwargs):
-    _generic_dependency("rules_jvm_external", **kwargs)
-
 def io_grpc_grpc_java(**kwargs):
     _generic_dependency("io_grpc_grpc_java", **kwargs)
-
-def javax_annotation_javax_annotation_api(**kwargs):
-    # Use //stub:javax_annotation for neverlink=1 support.
-    _generic_dependency("javax_annotation_javax_annotation_api", **kwargs)
-
-def com_google_errorprone_error_prone_annotations(**kwargs):
-    _generic_dependency("com_google_errorprone_error_prone_annotations", **kwargs)
 
 
 #

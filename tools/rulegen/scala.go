@@ -26,12 +26,7 @@ scala_register_toolchains()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)`)
+grpc_java_repositories()`)
 
 var scalaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
@@ -76,8 +71,7 @@ GRPC_DEPS = [
     "@scalapb_runtime_grpc//jar",
     "@scalapb_lenses//jar",
     "@com_google_protobuf//:protobuf_java",
-    "@com_google_guava_guava//jar",
-    "@io_grpc_grpc_java//core",
+    "@io_grpc_grpc_java//api",
     "@io_grpc_grpc_java//protobuf",
     "@io_grpc_grpc_java//stub",
 ]`)

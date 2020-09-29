@@ -19,11 +19,12 @@ def android_grpc_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@com_google_guava_guava_android//jar",
+    "@io_grpc_grpc_java//api",
+    "@io_grpc_grpc_java//protobuf",
+    "@io_grpc_grpc_java//stub",
+    "@io_grpc_grpc_java//stub:javax_annotation",
+    "@com_google_code_findbugs_jsr305//jar",
+    "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_javalite",
     "@com_google_protobuf//:protobuf_java_util",
-    "@javax_annotation_javax_annotation_api//jar",
-    "@io_grpc_grpc_java//core",
-    "@io_grpc_grpc_java//protobuf-lite",
-    "@io_grpc_grpc_java//stub",
 ]

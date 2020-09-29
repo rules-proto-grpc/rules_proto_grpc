@@ -6,12 +6,7 @@ rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
 
@@ -44,9 +39,7 @@ var androidProtoLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStr
     )
 
 PROTO_DEPS = [
-    "@com_google_guava_guava_android//jar",
     "@com_google_protobuf//:protobuf_javalite",
-    "@javax_annotation_javax_annotation_api//jar"
 ]`)
 
 var androidGrpcLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateString + `
@@ -60,13 +53,14 @@ var androidGrpcLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStri
     )
 
 GRPC_DEPS = [
-    "@com_google_guava_guava_android//jar",
+    "@io_grpc_grpc_java//api",
+    "@io_grpc_grpc_java//protobuf",
+    "@io_grpc_grpc_java//stub",
+    "@io_grpc_grpc_java//stub:javax_annotation",
+    "@com_google_code_findbugs_jsr305//jar",
+    "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_javalite",
     "@com_google_protobuf//:protobuf_java_util",
-    "@javax_annotation_javax_annotation_api//jar",
-    "@io_grpc_grpc_java//core",
-    "@io_grpc_grpc_java//protobuf-lite",
-    "@io_grpc_grpc_java//stub",
 ]`)
 
 func makeAndroid() *Language {

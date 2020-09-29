@@ -21,36 +21,10 @@ load("//android:repositories.bzl", "android_repos")
 android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
 android_sdk_repository(name = "androidsdk")
-
-#
-# Android routeguide
-#
-load("//:repositories.bzl", "rules_jvm_external")
-rules_jvm_external()
-
-load("@rules_jvm_external//:defs.bzl", "maven_install")
-maven_install(
-    name = "maven_android",
-    artifacts = [
-        "com.android.support:appcompat-v7:28.0.0",
-    ],
-    # Fail if a checksum file for the artifact is missing in the repository.
-    # Falls through "SHA-1" and "MD5". Defaults to True.
-    fail_on_missing_checksum = False,
-    repositories = [
-        "https://maven.google.com",
-        "https://repo1.maven.org/maven2",
-    ],
-)
 
 
 #
