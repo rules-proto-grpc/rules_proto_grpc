@@ -20,7 +20,7 @@ def android_grpc_library(**kwargs):
 
 GRPC_DEPS = [
     "@io_grpc_grpc_java//api",
-    "@io_grpc_grpc_java//protobuf",
+    "@io_grpc_grpc_java//protobuf-lite",
     "@io_grpc_grpc_java//stub",
     "@io_grpc_grpc_java//stub:javax_annotation",
     "@com_google_code_findbugs_jsr305//jar",
