@@ -153,8 +153,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-web",
-        "ref": "1.0.7",
-        "sha256": "04460e28ffa80bfc797a8758da10ba40107347ef0af8e9cc065ade10398da4bb",
+        "ref": "1.2.1",
+        "sha256": "23cf98fbcb69743b8ba036728b56dfafb9e16b887a9735c12eafa7669862ec7b",
     },
 
     # Java
