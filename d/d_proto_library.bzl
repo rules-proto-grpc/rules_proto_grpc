@@ -14,11 +14,9 @@ def d_proto_library(**kwargs):
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS,
-        imports = ["external/com_github_dcarp_protobuf_d/src", name_pb],
         visibility = kwargs.get("visibility"),
     )
 
 PROTO_DEPS = [
-    "@com_github_dcarp_protobuf_d//:protosrc",
     "@com_github_dcarp_protobuf_d//:protobuf",
 ]

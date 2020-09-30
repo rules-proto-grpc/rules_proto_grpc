@@ -112,8 +112,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_d",
-        "ref": "c4af62269c85dd5dcab0be119196baa5da4662b6", # June 28, 2019 + PR 30
-        "sha256": "ef380076035d42bfc8b9a5547092779792de4b0cf718b9623a7c1923b0cd23e6",
+        "ref": "4cce5c52da42bf3c3aab0c943fd31276e807d6e4",
+        "sha256": "6940c342a448d0df20bd4cf41a0ec92a9c830042fcb95d64a9ed273018dec40e",
     },
     "com_github_dcarp_protobuf_d": {
         "type": "http",
