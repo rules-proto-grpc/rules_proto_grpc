@@ -139,13 +139,13 @@ VERSIONS = {
         "sha256": "d987004a72697334a095bbaa18d615804a28280201a50ed6c234c40ccc41e493",
     },
 
-    # gRPC gateway
+    # grpc-gateway
     "grpc_ecosystem_grpc_gateway": {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v1.12.1",
-        "sha256": "8a3ce7fa981dd21c0693fb2922457053a7c2e5a5687e22d9f19fe7c35520c35e",
+        "ref": "v1.15.0",
+        "sha256": "0630c364e47aa7f813dd92f1874c778e496251304719c65e959675b15f7c7f15",
     },
 
     # gRPC web
