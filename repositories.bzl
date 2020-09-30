@@ -103,8 +103,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_closure",
-        "ref": "db4683a2a1836ac8e265804ca5fa31852395185b",  # Non-version release commit until Maven HTTPS fix is merged to a release
-        "sha256": "6a900831c1eb8dbfc9d6879b5820fd614d4ea1db180eb5ff8aedcb75ee747c1f",
+        "ref": "0.11.0",
+        "sha256": "d66deed38a0bb20581c15664f0ab62270af5940786855c7adc3087b27168b529",
     },
 
     # D
