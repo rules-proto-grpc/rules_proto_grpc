@@ -12,7 +12,7 @@ var nodeProtoLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
-load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
     name = "nodejs_modules",
@@ -28,7 +28,7 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
     name = "nodejs_modules",
@@ -37,7 +37,7 @@ yarn_install(
 )`)
 
 var nodeLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("@build_bazel_rules_nodejs//:defs.bzl", "npm_package")
+load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
@@ -50,10 +50,10 @@ def {{ .Rule.Name }}(**kwargs):
 
 var nodeProtoLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
-    npm_package(
+    js_library(
         name = kwargs.get("name"),
-        deps = [name_pb],
-        packages = PROTO_DEPS,
+        srcs = [name_pb],
+        deps = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
     )
 
@@ -63,10 +63,10 @@ PROTO_DEPS = [
 
 var nodeGrpcLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
-    npm_package(
+    js_library(
         name = kwargs.get("name"),
-        deps = [name_pb],
-        packages = GRPC_DEPS,
+        srcs = [name_pb],
+        deps = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
     )
 

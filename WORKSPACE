@@ -150,7 +150,7 @@ java_repos()
 load("//nodejs:repositories.bzl", "nodejs_repos")
 nodejs_repos()
 
-load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 yarn_install(
     name = "nodejs_modules",
     package_json = "//nodejs:requirements/package.json",

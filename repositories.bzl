@@ -171,8 +171,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_nodejs",
-        "ref": "0.42.1",
-        "sha256": "7061f4782999ddfe5dd9a6ffa1945843ed52d5e144ae84e656693e92544e8d41",
+        "ref": "2.2.0",
+        "sha256": "f1f012be053ee9ea785b671f16db951add9e68eb3a62e69a05749485b9ecb6b5",
     },
 
     # Python
