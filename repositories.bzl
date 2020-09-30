@@ -214,33 +214,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "19295567e10e80349560a437c79e8f859c2a5a79",
-        "sha256": "8f1001610e80972ee1e68ddca7a497e21b5b1c1f7ddfaf8f6e0557936daa4ad8",
+        "ref": "6280cdbdb03bbace36e5458ca73745b80a9fe467",
+        "sha256": "723ac4c2eda86c6a5d9cbe64bde36f17185e7205acf8064a2b8bb1aea2fbf831",
     },
     "com_github_scalapb_scalapb": {
         "type": "http",
-        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.9.4/scalapbc-0.9.4.zip"],
-        "sha256": "7fe84b201195cd437c4393d882d08cb6354f6f24804c2a782a5c3379a2beb48d",
-        "strip_prefix": "scalapbc-0.9.4",
+        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.9.7/scalapbc-0.9.7.zip"],  # Matches version in https://github.com/bazelbuild/rules_scala/blob/master/scala_proto/private/scala_proto_default_repositories.bzl
+        "sha256": "623f626e97cca119b2a12c4e1d9a3c85aab9f9fd6dcb8dc22b4f704b824da94e",
+        "strip_prefix": "scalapbc-0.9.7",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
-    },
-    "scalapb_runtime": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.thesamet.scalapb:scalapb-runtime_2.12:jar:0.9.4",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "151b9e353980bc266d4630ed1c2792712e109b02942211115afe97232b15f694",
-    },
-    "scalapb_runtime_grpc": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:jar:0.9.4",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "249467665168edf58690e81af17b1efb4fbdfd1c68f63b035c1ee5cbdc206eae",
-    },
-    "scalapb_lenses": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.thesamet.scalapb:lenses_2.12:jar:0.9.4",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "51a82005e64c15690aabfa1641047e584b98eb01157930639c83ecea55d32b42",
     },
 
     # Swift
@@ -507,15 +489,6 @@ def io_bazel_rules_scala(**kwargs):
 
 def com_github_scalapb_scalapb(**kwargs):
     _generic_dependency("com_github_scalapb_scalapb", **kwargs)
-
-def scalapb_runtime(**kwargs):
-    _generic_dependency("scalapb_runtime", **kwargs)
-
-def scalapb_runtime_grpc(**kwargs):
-    _generic_dependency("scalapb_runtime_grpc", **kwargs)
-
-def scalapb_lenses(**kwargs):
-    _generic_dependency("scalapb_lenses", **kwargs)
 
 
 #

@@ -8,6 +8,10 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
 
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
+
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()`)
@@ -19,6 +23,10 @@ rules_proto_grpc_{{ .Lang.Name }}_repos()
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
+
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
 
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
@@ -51,9 +59,7 @@ var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString 
     )
 
 PROTO_DEPS = [
-    "@scalapb_runtime//jar",
-    "@scalapb_lenses//jar",
-    "@com_google_protobuf//:protobuf_java",
+    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
 ]`)
 
 var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString + `
@@ -67,14 +73,8 @@ var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString +
     )
 
 GRPC_DEPS = [
-    "@scalapb_runtime//jar",
-    "@scalapb_runtime_grpc//jar",
-    "@scalapb_lenses//jar",
-    "@com_google_protobuf//:protobuf_java",
-    "@io_grpc_grpc_java//api",
-    "@io_grpc_grpc_java//protobuf",
-    "@io_grpc_grpc_java//stub",
-    "@com_google_guava_guava//jar",
+    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
+    "@io_bazel_rules_scala//scala_proto:default_scalapb_grpc_dependencies",
 ]`)
 
 func makeScala() *Language {
