@@ -117,9 +117,9 @@ VERSIONS = {
     },
     "com_github_dcarp_protobuf_d": {
         "type": "http",
-        "urls": ["https://github.com/dcarp/protobuf-d/archive/v0.5.0.tar.gz"],
-        "sha256": "67a037dc29242f0d2f099746da67f40afff27c07f9ab48dda53d5847620db421",
-        "strip_prefix": "protobuf-d-0.5.0",
+        "urls": ["https://github.com/dcarp/protobuf-d/archive/v0.6.2.tar.gz"],
+        "sha256": "5509883fa042aa2e1c8c0e072e52c695fb01466f572bd828bcde06347b82d465",
+        "strip_prefix": "protobuf-d-0.6.2",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_dcarp_protobuf_d",
     },
 
