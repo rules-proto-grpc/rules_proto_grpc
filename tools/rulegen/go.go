@@ -46,6 +46,8 @@ var goProtoLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
 
 PROTO_DEPS = [
     "@com_github_golang_protobuf//proto:go_default_library",
+    "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
+    "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
 ]`)
 
 var goGrpcLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
@@ -60,6 +62,8 @@ var goGrpcLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
 
 GRPC_DEPS = [
     "@com_github_golang_protobuf//proto:go_default_library",
+    "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
+    "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
     "@org_golang_google_grpc//:go_default_library",
     "@org_golang_google_grpc//codes:go_default_library",
     "@org_golang_google_grpc//status:go_default_library",

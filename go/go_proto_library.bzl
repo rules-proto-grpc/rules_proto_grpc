@@ -21,4 +21,6 @@ def go_proto_library(**kwargs):
 
 PROTO_DEPS = [
     "@com_github_golang_protobuf//proto:go_default_library",
+    "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
+    "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
 ]
