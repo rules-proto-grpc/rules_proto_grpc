@@ -48,10 +48,12 @@ def {{ .Rule.Name }}(**kwargs):
 GRPC_DEPS = [
     "@com_github_golang_protobuf//descriptor:go_default_library",
     "@com_github_golang_protobuf//proto:go_default_library",
-    "@com_github_golang_protobuf//protoc-gen-go/descriptor:go_default_library",
+    "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
+    "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
     "@org_golang_google_grpc//:go_default_library",
     "@org_golang_google_grpc//codes:go_default_library",
     "@org_golang_google_grpc//grpclog:go_default_library",
+    "@org_golang_google_grpc//metadata:go_default_library",
     "@org_golang_google_grpc//status:go_default_library",
     "@org_golang_x_net//context:go_default_library",
     "@grpc_ecosystem_grpc_gateway//runtime:go_default_library",
