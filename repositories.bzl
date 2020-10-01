@@ -71,15 +71,6 @@ VERSIONS = {
     },
 
 
-    # Misc
-    "com_github_bazelbuild_buildtools": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "buildtools",
-        "ref": "0.28.0",
-        "sha256": "5ec71602e9b458b01717fab1d37492154c1c12ea83f881c745dbd88e9b2098d8",
-    },
-
     # Android
     "build_bazel_rules_android": {
         "type": "github",
@@ -383,9 +374,6 @@ def external_zlib(**kwargs):
 #
 def bazel_skylib(**kwargs):
     _generic_dependency("bazel_skylib", **kwargs)
-
-def com_github_bazelbuild_buildtools(**kwargs):
-    _generic_dependency("com_github_bazelbuild_buildtools", **kwargs)
 
 
 #
