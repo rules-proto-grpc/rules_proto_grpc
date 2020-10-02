@@ -18,9 +18,51 @@ load(
 
 apple_support_dependencies()`)
 
-var swiftLibraryRuleTemplate = mustTemplate(`load("@build_bazel_rules_swift//swift:swift.bzl", _{{ .Lang.Name }}_{{ .Rule.Kind }}_library = "{{ .Lang.Name }}_{{ .Rule.Kind }}_library")
+var swiftProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-{{ .Lang.Name }}_{{ .Rule.Kind }}_library = _{{ .Lang.Name }}_{{ .Rule.Kind }}_library`)
+def {{ .Rule.Name }}(**kwargs):
+    # Compile protos
+    name_pb = kwargs.get("name") + "_pb"
+    {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
+        name = name_pb,
+        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+    )
+
+    # Create {{ .Lang.Name }} library
+    swift_library(
+        name = kwargs.get("name"),
+        srcs = [name_pb],
+        deps = PROTO_DEPS,
+        visibility = kwargs.get("visibility"),
+    )
+
+PROTO_DEPS = [
+    "@com_github_apple_swift_protobuf//:SwiftProtobuf",
+]`)
+
+var swiftGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+def {{ .Rule.Name }}(**kwargs):
+    # Compile protos
+    name_pb = kwargs.get("name") + "_pb"
+    {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
+        name = name_pb,
+        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+    )
+
+    # Create {{ .Lang.Name }} library
+    swift_library(
+        name = kwargs.get("name"),
+        srcs = [name_pb],
+        deps = GRPC_DEPS,
+        visibility = kwargs.get("visibility"),
+    )
+
+GRPC_DEPS = [
+    "@com_github_grpc_grpc_swift//:SwiftGRPC",
+]`)
 
 var swiftGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
@@ -71,7 +113,7 @@ func makeSwift() *Language {
 			&Rule{
 				Name:             "swift_proto_library",
 				Kind:             "proto",
-				Implementation:   swiftLibraryRuleTemplate,
+				Implementation:   swiftProtoLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf library",
@@ -81,7 +123,7 @@ func makeSwift() *Language {
 			&Rule{
 				Name:             "swift_grpc_library",
 				Kind:             "grpc",
-				Implementation:   swiftLibraryRuleTemplate,
+				Implementation:   swiftGrpcLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     swiftGrpcLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf+gRPC library",
