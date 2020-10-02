@@ -12,11 +12,12 @@ def python_grpc_library(**kwargs):
     native.py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = [
-            "@com_google_protobuf//:protobuf_python",
-            "@com_github_grpc_grpc//src/python/grpcio/grpc:grpcio",
-        ],
+        deps = GRPC_DEPS,
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
     )
 
+GRPC_DEPS = [
+    "@com_google_protobuf//:protobuf_python",
+    "@com_github_grpc_grpc//src/python/grpcio/grpc:grpcio",
+]

@@ -26,7 +26,7 @@ pip_install()`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
-def python_proto_library(**kwargs):
+def {{ .Rule.Name }}(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     python_proto_compile(
@@ -49,7 +49,7 @@ PROTO_DEPS = [
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
-def python_grpc_library(**kwargs):
+def {{ .Rule.Name }}(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     python_grpc_compile(
@@ -61,18 +61,19 @@ def python_grpc_library(**kwargs):
     native.py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = [
-            "@com_google_protobuf//:protobuf_python",
-            "@com_github_grpc_grpc//src/python/grpcio/grpc:grpcio",
-        ],
+        deps = GRPC_DEPS,
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
     )
-`)
+
+GRPC_DEPS = [
+    "@com_google_protobuf//:protobuf_python",
+    "@com_github_grpc_grpc//src/python/grpcio/grpc:grpcio",
+]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 
-def python_grpclib_library(**kwargs):
+def {{ .Rule.Name }}(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     python_grpclib_compile(
