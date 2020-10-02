@@ -43,6 +43,27 @@ rules_closure_toolchains()
 
 
 #
+# Go
+#
+# Load rules_go before running grpc_deps in C++, since that depends on a very old version of
+# rules_go
+#
+load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+io_bazel_rules_go()
+bazel_gazelle()
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+go_rules_dependencies()
+go_register_toolchains()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+gazelle_dependencies()
+
+load("//go:repositories.bzl", "go_repos")
+go_repos()
+
+
+#
 # C++
 #
 load("//cpp:repositories.bzl", "cpp_repos")
@@ -102,19 +123,7 @@ d_repositories()
 #
 # Go
 #
-load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
-io_bazel_rules_go()
-bazel_gazelle()
-
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
-go_rules_dependencies()
-go_register_toolchains()
-
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-gazelle_dependencies()
-
-load("//go:repositories.bzl", "go_repos")
-go_repos()
+# Moved to above C++
 
 
 #
@@ -297,12 +306,7 @@ apple_support_dependencies()
 #
 # Misc
 #
-load("//:repositories.bzl", "bazel_gazelle")
-bazel_gazelle()
-
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
-gazelle_dependencies()
-
+load("@bazel_gazelle//:deps.bzl", "go_repository")
 go_repository(
     name = "com_github_urfave_cli",
     commit = "44cb242eeb4d76cc813fdc69ba5c4b224677e799",
