@@ -86,7 +86,6 @@ func makeSwift() *Language {
 			Name:     "strategy=SwiftCompile",
 			Value:    "standalone",
 		}),
-		SkipTestPlatforms: []string{"all"},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "swift_proto_compile",
