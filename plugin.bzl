@@ -14,17 +14,6 @@ ProtoPluginInfo = provider(fields = {
 
 
 def _proto_plugin_impl(ctx):
-    # Handle back-compat for transitivity by converting to exclusions
-    exclusions = list(ctx.attr.exclusions)
-    if ctx.attr.transitivity:
-        for pattern, trans_type in ctx.attr.transitivity.items():
-            if trans_type == 'exclude':
-                exclusions.append(pattern)
-            else:
-                fail('Cannot convert transitivity filter with type "{}" to exclusion'.format(trans_type))
-
-
-    # Build ProtoPluginInfo provider
     return [
         ProtoPluginInfo(
             name = ctx.attr.name,
@@ -36,7 +25,7 @@ def _proto_plugin_impl(ctx):
             tool_executable = ctx.executable.tool,
             use_built_in_shell_environment = ctx.attr.use_built_in_shell_environment,
             protoc_plugin_name = ctx.attr.protoc_plugin_name,
-            exclusions = exclusions,
+            exclusions = ctx.attr.exclusions,
             data = ctx.files.data,
         )
     ]
@@ -73,9 +62,6 @@ proto_plugin = rule(
         ),
         "exclusions": attr.string_list(
             doc = "Exclusion filters to apply when generating outputs with this plugin. Used to prevent generating files that are included in the protobuf library, for example. Can exclude either by proto name prefix or by proto folder prefix",
-        ),
-        "transitivity": attr.string_dict(
-            doc = "(deprecated, use exclusions). Transitive filters to apply when the 'transitive' property is enabled. This string_dict can be used to exclude or explicitly include protos from the compilation list by using `exclude` or `include` respectively as the dict value",
         ),
         "data": attr.label_list(
             doc = "Additional files required for running the plugin",
