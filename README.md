@@ -153,6 +153,8 @@ required.
 | [Java](/java) | [java_grpc_library](/java#java_grpc_library) | Generates a Java protobuf+gRPC library using `java_library` ([example](/example/java/java_grpc_library)) |
 | [Node.js](/nodejs) | [nodejs_proto_compile](/nodejs#nodejs_proto_compile) | Generates Node.js protobuf `.js` artifacts ([example](/example/nodejs/nodejs_proto_compile)) |
 | [Node.js](/nodejs) | [nodejs_grpc_compile](/nodejs#nodejs_grpc_compile) | Generates Node.js protobuf+gRPC `.js` artifacts ([example](/example/nodejs/nodejs_grpc_compile)) |
+| [Node.js](/nodejs) | [nodejs_proto_library](/nodejs#nodejs_proto_library) | Generates a Node.js protobuf library ([example](/example/nodejs/nodejs_proto_library)) |
+| [Node.js](/nodejs) | [nodejs_grpc_library](/nodejs#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library ([example](/example/nodejs/nodejs_grpc_library)) |
 | [Objective-C](/objc) | [objc_proto_compile](/objc#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` artifacts ([example](/example/objc/objc_proto_compile)) |
 | [Objective-C](/objc) | [objc_grpc_compile](/objc#objc_grpc_compile) | Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts ([example](/example/objc/objc_grpc_compile)) |
 | [Objective-C](/objc) | [objc_proto_library](/objc#objc_proto_library) | Generates an Objective-C protobuf library using `objc_library` ([example](/example/objc/objc_proto_library)) |
