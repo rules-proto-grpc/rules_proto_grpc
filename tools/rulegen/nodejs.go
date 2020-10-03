@@ -72,7 +72,7 @@ var nodeGrpcLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
 
 GRPC_DEPS = [
     "@nodejs_modules//google-protobuf",
-    "@nodejs_modules//grpc",
+    "@nodejs_modules//@grpc/grpc-js",
 ]`)
 
 func makeNode() *Language {
@@ -112,7 +112,7 @@ func makeNode() *Language {
 				Implementation:   nodeProtoLibraryRuleTemplate,
 				WorkspaceExample: nodeProtoLibraryWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a Node.js protobuf library",
+				Doc:              "Generates a Node.js protobuf library using `js_library` from `rules_nodejs`",
 				Attrs:            aspectProtoCompileAttrs,
 				SkipTestPlatforms: []string{},
 				Experimental:     true,
@@ -123,7 +123,7 @@ func makeNode() *Language {
 				Implementation:   nodeGrpcLibraryRuleTemplate,
 				WorkspaceExample: nodeGrpcLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Node.js protobuf+gRPC library",
+				Doc:              "Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`",
 				Attrs:            aspectProtoCompileAttrs,
 				SkipTestPlatforms: []string{},
 				Experimental:     true,

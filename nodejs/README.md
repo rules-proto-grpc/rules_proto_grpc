@@ -6,8 +6,8 @@ Rules for generating Node.js protobuf and gRPC `.js` files using standard Protoc
 | ---: | :--- |
 | [nodejs_proto_compile](#nodejs_proto_compile) | Generates Node.js protobuf `.js` artifacts |
 | [nodejs_grpc_compile](#nodejs_grpc_compile) | Generates Node.js protobuf+gRPC `.js` artifacts |
-| [nodejs_proto_library](#nodejs_proto_library) | Generates a Node.js protobuf library |
-| [nodejs_grpc_library](#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library |
+| [nodejs_proto_library](#nodejs_proto_library) | Generates a Node.js protobuf library using `js_library` from `rules_nodejs` |
+| [nodejs_grpc_library](#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs` |
 
 ---
 
@@ -83,7 +83,7 @@ nodejs_grpc_compile(
 
 > NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
 
-Generates a Node.js protobuf library
+Generates a Node.js protobuf library using `js_library` from `rules_nodejs`
 
 ### `WORKSPACE`
 
@@ -125,7 +125,7 @@ nodejs_proto_library(
 
 > NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
 
-Generates a Node.js protobuf+gRPC library
+Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`
 
 ### `WORKSPACE`
 
