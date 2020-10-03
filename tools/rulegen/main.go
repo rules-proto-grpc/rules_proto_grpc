@@ -444,6 +444,9 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 			}
 			out.w("    test_flags:")
+			if ciPlatform == "macos" {
+				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+			}
 			out.w(`    - "--test_output=errors"`)
 			out.w("    test_targets:")
 			out.w(`      - "//..."`)

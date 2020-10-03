@@ -1341,6 +1341,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1367,6 +1368,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1393,6 +1395,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1419,6 +1422,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1445,6 +1449,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1471,6 +1476,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1497,6 +1503,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1523,6 +1530,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1549,6 +1557,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1575,6 +1584,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1601,6 +1611,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1627,6 +1638,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1653,6 +1665,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1679,6 +1692,7 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
