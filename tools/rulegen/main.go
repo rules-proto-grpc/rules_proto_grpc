@@ -412,6 +412,10 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				out.w("  %s_%s_%s:", lang.Name, rule.Name, ciPlatform)
 				out.w("    name: '%s: %s'", lang.Name, rule.Name)
 				out.w("    platform: %s", ciPlatform)
+				if ciPlatform == "macos" {
+					out.w("    build_flags:")
+					out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+				}
 				out.w("    build_targets:")
 				out.w(`      - "//..."`)
 				out.w("    working_directory: %s", exampleDir)
@@ -438,6 +442,10 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 			out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
 			out.w("    name: 'test workspace: %s'", testWorkspace)
 			out.w("    platform: %s", ciPlatform)
+			if ciPlatform == "macos" {
+				out.w("    build_flags:")
+				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+			}
 			out.w("    test_flags:")
 			out.w(`    - "--test_output=errors"`)
 			out.w("    test_targets:")
