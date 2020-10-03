@@ -1,5 +1,4 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
@@ -281,21 +280,6 @@ def _generic_dependency(name, **kwargs):
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
                     name, existing_rules[name]["urls"], tuple(dep["urls"])
-                ))
-
-    elif dep["type"] == "jvm_maven_import_external":
-        if name not in existing_rules:
-            args = {k: v for k, v in dep.items() if k in ["artifact", "server_urls", "artifact_sha256"]}
-            jvm_maven_import_external(name = name, **args)
-        elif existing_rules[name]["kind"] != "jvm_import_external":
-            if ENABLE_VERSION_NAGS:
-                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected jvm_import_external".format(
-                    name, existing_rules[name]["kind"],
-                ))
-        elif existing_rules[name]["artifact_sha256"] != dep["artifact_sha256"]:
-            if ENABLE_VERSION_NAGS:
-                print("Dependency '{}' has already been declared with a different version. Found artifact_sha256={}, expected {}".format(
-                    name, existing_rules[name]["artifact_sha256"], dep["artifact_sha256"]
                 ))
 
     else:
