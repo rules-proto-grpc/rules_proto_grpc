@@ -85,7 +85,7 @@ func makeScala() *Language {
 		Notes: mustTemplate("Rules for generating Scala protobuf and gRPC `.jar` files and libraries using [ScalaPB](https://github.com/scalapb/ScalaPB). Libraries are created with `scala_library` from [rules_scala](https://github.com/bazelbuild/rules_scala)"),
 		Flags: commonLangFlags,
 		SkipDirectoriesMerge: true,
-		SkipTestPlatforms: []string{"all"}, // Disabled for 1.0 release until fixes are in place
+		SkipTestPlatforms: []string{},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "scala_proto_compile",
