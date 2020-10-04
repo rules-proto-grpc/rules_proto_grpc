@@ -99,18 +99,12 @@ grpc_deps()
 load("@rules_python//python:repositories.bzl", "py_repositories")
 py_repositories()
 
-load("@rules_python//python:pip.bzl", "pip_repositories")
-pip_repositories()
-
-load("@rules_python//python:pip.bzl", "pip_import")
-pip_import(
+load("@rules_python//python:pip.bzl", "pip_install")
+pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "@rules_proto_grpc//python:requirements.txt",
 )
-
-load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip_install="pip_install")
-pip_install()
 ```
 
 ### `BUILD.bazel`
@@ -219,18 +213,12 @@ grpc_deps()
 load("@rules_python//python:repositories.bzl", "py_repositories")
 py_repositories()
 
-load("@rules_python//python:pip.bzl", "pip_repositories")
-pip_repositories()
-
-load("@rules_python//python:pip.bzl", "pip_import")
-pip_import(
+load("@rules_python//python:pip.bzl", "pip_install")
+pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "@rules_proto_grpc//python:requirements.txt",
 )
-
-load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip_install="pip_install")
-pip_install()
 ```
 
 ### `BUILD.bazel`

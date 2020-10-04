@@ -19,18 +19,12 @@ grpc_deps()
 load("@rules_python//python:repositories.bzl", "py_repositories")
 py_repositories()
 
-load("@rules_python//python:pip.bzl", "pip_repositories")
-pip_repositories()
-
-load("@rules_python//python:pip.bzl", "pip_import")
-pip_import(
+load("@rules_python//python:pip.bzl", "pip_install")
+pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "@rules_proto_grpc//python:requirements.txt",
-)
-
-load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip_install="pip_install")
-pip_install()`)
+)`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@rules_python//python:defs.bzl", "py_library")
@@ -83,6 +77,7 @@ GRPC_DEPS = [
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 load("@rules_python//python:defs.bzl", "py_library")
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", "requirement")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
@@ -104,9 +99,7 @@ def {{ .Rule.Name }}(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@rules_proto_grpc_py3_deps_pypi__hpack_4_0_0//:pkg",
-    "@rules_proto_grpc_py3_deps_pypi__hyperframe_6_0_0//:pkg",
-    "@rules_proto_grpc_py3_deps_pypi__grpclib_0_4_1//:pkg",
+    requirement('grpclib'),
 ]`)
 
 func makePython() *Language {

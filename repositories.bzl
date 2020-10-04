@@ -44,8 +44,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "0.0.3",
-        "sha256": "3720faae8aed1415c3af58d241ecffccfa4d31f2bb70ffa2f6dfb68ca9729626",
+        "ref": "c064f7008a30f307ea7516cf52358a653011f82b",
+        "sha256": "b9cf39396181e8d4434625a3533240469ca21242442745bd0b672731555823b8",
     },
     "build_bazel_rules_swift": {
         "type": "github",

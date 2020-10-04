@@ -1,5 +1,6 @@
 load("//python:python_grpclib_compile.bzl", "python_grpclib_compile")
 load("@rules_python//python:defs.bzl", "py_library")
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", "requirement")
 
 def python_grpclib_library(**kwargs):
     # Compile protos
@@ -21,7 +22,5 @@ def python_grpclib_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@rules_proto_grpc_py3_deps_pypi__hpack_4_0_0//:pkg",
-    "@rules_proto_grpc_py3_deps_pypi__hyperframe_6_0_0//:pkg",
-    "@rules_proto_grpc_py3_deps_pypi__grpclib_0_4_1//:pkg",
+    requirement('grpclib'),
 ]
