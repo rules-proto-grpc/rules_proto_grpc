@@ -159,7 +159,7 @@ def proto_compile_impl(ctx):
     else:
         # If we have not merged directories, all files/dirs are transitive
         all_outputs = depset(
-            transitive=[depset(direct=[final_output_files_list]), final_output_dirs]
+            transitive=[depset(direct=final_output_files_list), final_output_dirs]
         )
 
     # Create default and proto compile providers
