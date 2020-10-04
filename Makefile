@@ -31,7 +31,7 @@ ruby_bundle_upgrade:
 
 # Run pip-compile to upgrade python dependencies
 pip_compile:
-	pip-compile --generate-hashes python/requirements.in --output-file python/requirements.txt
+	pip-compile python/requirements.in --output-file python/requirements.txt
 
 
 # Run all language specific updates
