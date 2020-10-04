@@ -97,7 +97,6 @@ func makeSwift() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf `.swift` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				Experimental:     true,
 			},
 			&Rule{
 				Name:             "swift_grpc_compile",
@@ -108,7 +107,6 @@ func makeSwift() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf+gRPC `.swift` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				Experimental:     true,
 			},
 			&Rule{
 				Name:             "swift_proto_library",
@@ -116,7 +114,7 @@ func makeSwift() *Language {
 				Implementation:   swiftProtoLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a Swift protobuf library",
+				Doc:              "Generates a Swift protobuf library using `swift_library` from `rules_swift`",
 				Attrs:            aspectProtoCompileAttrs,
 				Experimental:     true,
 			},
@@ -126,7 +124,7 @@ func makeSwift() *Language {
 				Implementation:   swiftGrpcLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     swiftGrpcLibraryExampleTemplate,
-				Doc:              "Generates a Swift protobuf+gRPC library",
+				Doc:              "Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`",
 				Attrs:            aspectProtoCompileAttrs,
 				Experimental:     true,
 			},

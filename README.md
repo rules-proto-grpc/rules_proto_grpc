@@ -180,8 +180,8 @@ required.
 | [Scala](/scala) | [scala_grpc_library](/scala#scala_grpc_library) | Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala` ([example](/example/scala/scala_grpc_library)) |
 | [Swift](/swift) | [swift_proto_compile](/swift#swift_proto_compile) | Generates Swift protobuf `.swift` artifacts ([example](/example/swift/swift_proto_compile)) |
 | [Swift](/swift) | [swift_grpc_compile](/swift#swift_grpc_compile) | Generates Swift protobuf+gRPC `.swift` artifacts ([example](/example/swift/swift_grpc_compile)) |
-| [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library ([example](/example/swift/swift_proto_library)) |
-| [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library ([example](/example/swift/swift_grpc_library)) |
+| [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library using `swift_library` from `rules_swift` ([example](/example/swift/swift_proto_library)) |
+| [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift` ([example](/example/swift/swift_grpc_library)) |
 | [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_proto_compile](/github.com/gogo/protobuf#gogo_proto_compile) | Generates gogo protobuf `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogo_proto_compile)) |
 | [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_grpc_compile](/github.com/gogo/protobuf#gogo_grpc_compile) | Generates gogo protobuf+gRPC `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogo_grpc_compile)) |
 | [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_proto_library](/github.com/gogo/protobuf#gogo_proto_library) | Generates a Go gogo protobuf library using `go_library` from `rules_go` ([example](/example/github.com/gogo/protobuf/gogo_proto_library)) |
