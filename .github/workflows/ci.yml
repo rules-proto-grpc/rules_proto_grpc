@@ -25,8 +25,9 @@ jobs:
 
     - name: Test rulegen diff
       run: |
-        "${GITHUB_WORKSPACE}/bin/bazel" --output_base="$WERCKER_CACHE_DIR/bazel-base" query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt &&
-        "${GITHUB_WORKSPACE}/bin/bazel" --output_base="$WERCKER_CACHE_DIR/bazel-base" run --run_under="cd $PWD && " //tools/rulegen -- --ref=`git describe --abbrev=0 --tags` &&
+        export CC=clang
+        "${GITHUB_WORKSPACE}/bin/bazel" --output_base="/home/runner/.cache/bazel" query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt &&
+        "${GITHUB_WORKSPACE}/bin/bazel" --output_base="/home/runner/.cache/bazel" run --run_under="cd $PWD && " //tools/rulegen -- --ref=`git describe --abbrev=0 --tags` &&
         rm available_tests.txt &&
         git checkout -- README.md &&
         git diff &&
