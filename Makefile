@@ -29,8 +29,13 @@ ruby_bundle_upgrade:
 	bundle install --path /tmp/ruby-bundle; \
 
 
+# Run pip-compile to upgrade python dependencies
+pip_compile:
+	pip-compile --generate-hashes python/requirements.in --output-file python/requirements.txt
+
+
 # Run all language specific updates
-all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade
+all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade pip_compile
 
 
 # A collection of targets that build routeguide clients
