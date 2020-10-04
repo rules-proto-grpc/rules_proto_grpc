@@ -6,6 +6,14 @@ rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
+grpc_deps()`)
+
+var pythonGrpclibLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+
+rules_proto_grpc_{{ .Lang.Name }}_repos()
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
 grpc_deps()
 
 load("@rules_python//python:repositories.bzl", "py_repositories")
@@ -139,7 +147,7 @@ func makePython() *Language {
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
 				Plugins:          []string{"//python:python_plugin", "//python:grpclib_python_plugin"},
-				WorkspaceExample: pythonGrpcLibraryWorkspaceTemplate,
+				WorkspaceExample: pythonGrpclibLibraryWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only)",
 				Attrs:            aspectProtoCompileAttrs,
@@ -168,7 +176,7 @@ func makePython() *Language {
 				Name:             "python_grpclib_library",
 				Kind:             "grpc",
 				Implementation:   pythonGrpclibLibraryRuleTemplate,
-				WorkspaceExample: pythonGrpcLibraryWorkspaceTemplate,
+				WorkspaceExample: pythonGrpclibLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only)",
 				Attrs:            aspectProtoCompileAttrs,
