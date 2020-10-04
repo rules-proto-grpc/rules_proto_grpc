@@ -436,6 +436,9 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 	// Add test workspaces
 	for _, testWorkspace := range findTestWorkspaceNames(dir) {
 		for _, ciPlatform := range ciPlatforms {
+			if ciPlatform == "windows" && (testWorkspace == "python3_grpc" || testWorkspace == "python_deps") {
+				continue // Don't run python grpc test workspaces on windows
+			}
 			out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
 			out.w("    name: 'test workspace: %s'", testWorkspace)
 			out.w("    platform: %s", ciPlatform)
