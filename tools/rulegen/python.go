@@ -77,7 +77,6 @@ GRPC_DEPS = [
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 load("@rules_python//python:defs.bzl", "py_library")
-load("@rules_proto_grpc_py3_deps//:requirements.bzl", "requirement")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
@@ -99,7 +98,9 @@ def {{ .Rule.Name }}(**kwargs):
     )
 
 GRPC_DEPS = [
-    requirement('grpclib'),
+    # Don't use requirement(), since rules_proto_grpc_py3_deps doesn't necessarily exist when
+    # imported by defs.bzl
+    "@rules_proto_grpc_py3_deps_pypi__grpclib_0_4_1//:pkg",
 ]`)
 
 func makePython() *Language {
