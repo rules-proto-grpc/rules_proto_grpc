@@ -3,6 +3,8 @@ tasks:
   main_ubuntu1804:
     name: build & test all
     platform: ubuntu1804
+    environment:
+      CC: clang
     build_targets:
     - "//closure/..."
     - "//cpp/..."
@@ -81,6 +83,8 @@ tasks:
   main_macos:
     name: build & test all
     platform: macos
+    environment:
+      CC: clang
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:

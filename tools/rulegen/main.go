@@ -371,6 +371,8 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		out.w("  main_%s:", ciPlatform)
 		out.w("    name: build & test all")
 		out.w("    platform: %s", ciPlatform)
+		out.w("    environment:")
+		out.w(`      CC: clang`)
 		if ciPlatform == "macos" {
 			out.w("    build_flags:")
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
