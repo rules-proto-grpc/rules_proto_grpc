@@ -443,7 +443,7 @@ def proto_compile_aspect_impl(target, ctx):
     transitive_output_dirs_list = []
     for transitive_info in transitive_infos:
         output_files_dict.update(**transitive_info.output_files)
-        transitive_output_dirs_list += transitive_info.output_dirs
+        transitive_output_dirs_list.append(transitive_info.output_dirs)
 
     return [
         ProtoLibraryAspectNodeInfo(
