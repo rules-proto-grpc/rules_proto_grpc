@@ -9,6 +9,7 @@ tasks:
     - "//d/..."
     - "//go/..."
     - "//java/..."
+    - "//nodejs/..."
     - "//php/..."
     - "//python/..."
     - "//ruby/..."
@@ -24,42 +25,56 @@ tasks:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_go"
     - "//example/routeguide:cpp_java"
+    - "//example/routeguide:cpp_nodejs"
     - "//example/routeguide:cpp_python"
     - "//example/routeguide:cpp_ruby"
     - "//example/routeguide:cpp_rust"
     - "//example/routeguide:go_cpp"
     - "//example/routeguide:go_go"
     - "//example/routeguide:go_java"
+    - "//example/routeguide:go_nodejs"
     - "//example/routeguide:go_python"
     - "//example/routeguide:go_ruby"
     - "//example/routeguide:go_rust"
     - "//example/routeguide:java_cpp"
     - "//example/routeguide:java_go"
     - "//example/routeguide:java_java"
+    - "//example/routeguide:java_nodejs"
     - "//example/routeguide:java_python"
     - "//example/routeguide:java_ruby"
     - "//example/routeguide:java_rust"
+    - "//example/routeguide:nodejs_cpp"
+    - "//example/routeguide:nodejs_go"
+    - "//example/routeguide:nodejs_java"
+    - "//example/routeguide:nodejs_nodejs"
+    - "//example/routeguide:nodejs_python"
+    - "//example/routeguide:nodejs_ruby"
+    - "//example/routeguide:nodejs_rust"
     - "//example/routeguide:python_cpp"
     - "//example/routeguide:python_go"
     - "//example/routeguide:python_java"
+    - "//example/routeguide:python_nodejs"
     - "//example/routeguide:python_python"
     - "//example/routeguide:python_ruby"
     - "//example/routeguide:python_rust"
     - "//example/routeguide:ruby_cpp"
     - "//example/routeguide:ruby_go"
     - "//example/routeguide:ruby_java"
+    - "//example/routeguide:ruby_nodejs"
     - "//example/routeguide:ruby_python"
     - "//example/routeguide:ruby_ruby"
     - "//example/routeguide:ruby_rust"
     - "//example/routeguide:rust_cpp"
     - "//example/routeguide:rust_go"
     - "//example/routeguide:rust_java"
+    - "//example/routeguide:rust_nodejs"
     - "//example/routeguide:rust_python"
     - "//example/routeguide:rust_ruby"
     - "//example/routeguide:rust_rust"
     - "//example/routeguide:scala_cpp"
     - "//example/routeguide:scala_go"
     - "//example/routeguide:scala_java"
+    - "//example/routeguide:scala_nodejs"
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_ruby"
     - "//example/routeguide:scala_rust"
@@ -74,6 +89,7 @@ tasks:
     - "//d/..."
     - "//go/..."
     - "//java/..."
+    - "//nodejs/..."
     - "//objc/..."
     - "//php/..."
     - "//python/..."
@@ -90,31 +106,43 @@ tasks:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_go"
     - "//example/routeguide:cpp_java"
+    - "//example/routeguide:cpp_nodejs"
     - "//example/routeguide:cpp_python"
     - "//example/routeguide:cpp_ruby"
     - "//example/routeguide:go_cpp"
     - "//example/routeguide:go_go"
     - "//example/routeguide:go_java"
+    - "//example/routeguide:go_nodejs"
     - "//example/routeguide:go_python"
     - "//example/routeguide:go_ruby"
     - "//example/routeguide:java_cpp"
     - "//example/routeguide:java_go"
     - "//example/routeguide:java_java"
+    - "//example/routeguide:java_nodejs"
     - "//example/routeguide:java_python"
     - "//example/routeguide:java_ruby"
+    - "//example/routeguide:nodejs_cpp"
+    - "//example/routeguide:nodejs_go"
+    - "//example/routeguide:nodejs_java"
+    - "//example/routeguide:nodejs_nodejs"
+    - "//example/routeguide:nodejs_python"
+    - "//example/routeguide:nodejs_ruby"
     - "//example/routeguide:python_cpp"
     - "//example/routeguide:python_go"
     - "//example/routeguide:python_java"
+    - "//example/routeguide:python_nodejs"
     - "//example/routeguide:python_python"
     - "//example/routeguide:python_ruby"
     - "//example/routeguide:ruby_cpp"
     - "//example/routeguide:ruby_go"
     - "//example/routeguide:ruby_java"
+    - "//example/routeguide:ruby_nodejs"
     - "//example/routeguide:ruby_python"
     - "//example/routeguide:ruby_ruby"
     - "//example/routeguide:scala_cpp"
     - "//example/routeguide:scala_go"
     - "//example/routeguide:scala_java"
+    - "//example/routeguide:scala_nodejs"
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_ruby"
   android_android_proto_compile_ubuntu1804:
@@ -563,6 +591,46 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_grpc_compile
+  nodejs_nodejs_proto_library_ubuntu1804:
+    name: 'nodejs: nodejs_proto_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_proto_library
+  nodejs_nodejs_proto_library_windows:
+    name: 'nodejs: nodejs_proto_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_proto_library
+  nodejs_nodejs_proto_library_macos:
+    name: 'nodejs: nodejs_proto_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_proto_library
+  nodejs_nodejs_grpc_library_ubuntu1804:
+    name: 'nodejs: nodejs_grpc_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_grpc_library
+  nodejs_nodejs_grpc_library_windows:
+    name: 'nodejs: nodejs_grpc_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_grpc_library
+  nodejs_nodejs_grpc_library_macos:
+    name: 'nodejs: nodejs_grpc_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_grpc_library
   objc_objc_proto_compile_macos:
     name: 'objc: objc_proto_compile'
     platform: macos

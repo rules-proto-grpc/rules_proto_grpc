@@ -82,7 +82,7 @@ func makeNode() *Language {
 		DisplayName: "Node.js",
 		Notes: mustTemplate("Rules for generating Node.js protobuf and gRPC `.js` files using standard Protocol Buffers and gRPC."),
 		Flags: commonLangFlags,
-		SkipTestPlatforms: []string{"all"},
+		SkipTestPlatforms: []string{},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "nodejs_proto_compile",
