@@ -1,4 +1,5 @@
 load("//python:python_grpclib_compile.bzl", "python_grpclib_compile")
+load("@rules_python//python:defs.bzl", "py_library")
 
 def python_grpclib_library(**kwargs):
     # Compile protos
@@ -9,7 +10,7 @@ def python_grpclib_library(**kwargs):
     )
 
     # Create python library
-    native.py_library(
+    py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = [

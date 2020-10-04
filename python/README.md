@@ -1,15 +1,15 @@
 # Python rules
 
-Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with the Bazel native `py_library`
+Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with `py_library` from `rules_python`
 
 | Rule | Description |
 | ---: | :--- |
 | [python_proto_compile](#python_proto_compile) | Generates Python protobuf `.py` artifacts |
 | [python_grpc_compile](#python_grpc_compile) | Generates Python protobuf+gRPC `.py` artifacts |
 | [python_grpclib_compile](#python_grpclib_compile) | Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only) |
-| [python_proto_library](#python_proto_library) | Generates a Python protobuf library using `py_library` |
-| [python_grpc_library](#python_grpc_library) | Generates a Python protobuf+gRPC library using `py_library` |
-| [python_grpclib_library](#python_grpclib_library) | Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only) |
+| [python_proto_library](#python_proto_library) | Generates a Python protobuf library using `py_library` from `rules_python` |
+| [python_grpc_library](#python_grpc_library) | Generates a Python protobuf+gRPC library using `py_library` from `rules_python` |
+| [python_grpclib_library](#python_grpclib_library) | Generates a Python protobuf+grpclib library using `py_library` from `rules_python` (supports Python 3 only) |
 
 ---
 
@@ -135,7 +135,7 @@ python_grpclib_compile(
 
 ## `python_proto_library`
 
-Generates a Python protobuf library using `py_library`
+Generates a Python protobuf library using `py_library` from `rules_python`
 
 ### `WORKSPACE`
 
@@ -167,7 +167,7 @@ python_proto_library(
 
 ## `python_grpc_library`
 
-Generates a Python protobuf+gRPC library using `py_library`
+Generates a Python protobuf+gRPC library using `py_library` from `rules_python`
 
 ### `WORKSPACE`
 
@@ -203,7 +203,7 @@ python_grpc_library(
 
 ## `python_grpclib_library`
 
-Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only)
+Generates a Python protobuf+grpclib library using `py_library` from `rules_python` (supports Python 3 only)
 
 ### `WORKSPACE`
 

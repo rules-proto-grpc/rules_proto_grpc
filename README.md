@@ -163,9 +163,9 @@ required.
 | [Python](/python) | [python_proto_compile](/python#python_proto_compile) | Generates Python protobuf `.py` artifacts ([example](/example/python/python_proto_compile)) |
 | [Python](/python) | [python_grpc_compile](/python#python_grpc_compile) | Generates Python protobuf+gRPC `.py` artifacts ([example](/example/python/python_grpc_compile)) |
 | [Python](/python) | [python_grpclib_compile](/python#python_grpclib_compile) | Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only) ([example](/example/python/python_grpclib_compile)) |
-| [Python](/python) | [python_proto_library](/python#python_proto_library) | Generates a Python protobuf library using `py_library` ([example](/example/python/python_proto_library)) |
-| [Python](/python) | [python_grpc_library](/python#python_grpc_library) | Generates a Python protobuf+gRPC library using `py_library` ([example](/example/python/python_grpc_library)) |
-| [Python](/python) | [python_grpclib_library](/python#python_grpclib_library) | Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only) ([example](/example/python/python_grpclib_library)) |
+| [Python](/python) | [python_proto_library](/python#python_proto_library) | Generates a Python protobuf library using `py_library` from `rules_python` ([example](/example/python/python_proto_library)) |
+| [Python](/python) | [python_grpc_library](/python#python_grpc_library) | Generates a Python protobuf+gRPC library using `py_library` from `rules_python` ([example](/example/python/python_grpc_library)) |
+| [Python](/python) | [python_grpclib_library](/python#python_grpclib_library) | Generates a Python protobuf+grpclib library using `py_library` from `rules_python` (supports Python 3 only) ([example](/example/python/python_grpclib_library)) |
 | [Ruby](/ruby) | [ruby_proto_compile](/ruby#ruby_proto_compile) | Generates Ruby protobuf `.rb` artifacts ([example](/example/ruby/ruby_proto_compile)) |
 | [Ruby](/ruby) | [ruby_grpc_compile](/ruby#ruby_grpc_compile) | Generates Ruby protobuf+gRPC `.rb` artifacts ([example](/example/ruby/ruby_grpc_compile)) |
 | [Ruby](/ruby) | [ruby_proto_library](/ruby#ruby_proto_library) | Generates a Ruby protobuf library using `ruby_library` from `rules_ruby` ([example](/example/ruby/ruby_proto_library)) |

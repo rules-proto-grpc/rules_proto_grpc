@@ -33,6 +33,7 @@ load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip_install="pip_install")
 pip_install()`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
@@ -43,7 +44,7 @@ def {{ .Rule.Name }}(**kwargs):
     )
 
     # Create {{ .Lang.Name }} library
-    native.py_library(
+    py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS,
@@ -56,6 +57,7 @@ PROTO_DEPS = [
 ]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
@@ -66,7 +68,7 @@ def {{ .Rule.Name }}(**kwargs):
     )
 
     # Create {{ .Lang.Name }} library
-    native.py_library(
+    py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS,
@@ -80,6 +82,7 @@ GRPC_DEPS = [
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
+load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
@@ -90,7 +93,7 @@ def {{ .Rule.Name }}(**kwargs):
     )
 
     # Create {{ .Lang.Name }} library
-    native.py_library(
+    py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = [
@@ -111,7 +114,7 @@ func makePython() *Language {
 		Dir:   "python",
 		Name:  "python",
 		DisplayName: "Python",
-		Notes: mustTemplate("Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with the Bazel native `py_library`"),
+		Notes: mustTemplate("Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with `py_library` from `rules_python`"),
 		Flags: commonLangFlags,
 		Aliases: map[string]string{
 			"py_proto_compile": "python_proto_compile",
@@ -159,7 +162,7 @@ func makePython() *Language {
 				Implementation:   pythonProtoLibraryRuleTemplate,
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a Python protobuf library using `py_library`",
+				Doc:              "Generates a Python protobuf library using `py_library` from `rules_python`",
 				Attrs:            aspectProtoCompileAttrs,
 			},
 			&Rule{
@@ -168,7 +171,7 @@ func makePython() *Language {
 				Implementation:   pythonGrpcLibraryRuleTemplate,
 				WorkspaceExample: pythonGrpcLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Python protobuf+gRPC library using `py_library`",
+				Doc:              "Generates a Python protobuf+gRPC library using `py_library` from `rules_python`",
 				Attrs:            aspectProtoCompileAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
@@ -178,7 +181,7 @@ func makePython() *Language {
 				Implementation:   pythonGrpclibLibraryRuleTemplate,
 				WorkspaceExample: pythonGrpclibLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only)",
+				Doc:              "Generates a Python protobuf+grpclib library using `py_library` from `rules_python` (supports Python 3 only)",
 				Attrs:            aspectProtoCompileAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
