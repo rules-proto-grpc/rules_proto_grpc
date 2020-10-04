@@ -195,8 +195,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "3251240a915875fc1bb396a4c818472c46e52368",
-        "sha256": "06c32fde6db017ac60af099fa17d4dd10ee13811db3f13dad847f7c21a93276f",
+        "ref": "5998baf9016eca24fafbad60e15f4125dd1c5f46",
+        "sha256": "618cba29165b7a893960de7bc48510b0fb182b21a4286e1d3dbacfef89ace906",
     },
 
     # Scala

@@ -8,13 +8,9 @@ load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()`)
+rust_workspace()`)
 
 var rustLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("//{{ .Lang.Dir }}:rust_proto_lib.bzl", "rust_proto_lib")

@@ -224,11 +224,8 @@ rust_repos()
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-rust_proto_repositories()
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
+rust_workspace()
 
 
 #

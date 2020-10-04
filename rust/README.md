@@ -26,13 +26,9 @@ load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()
+rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -70,13 +66,9 @@ load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()
+rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -114,13 +106,9 @@ load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()
+rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -158,13 +146,9 @@ load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()
+rust_workspace()
 ```
 
 ### `BUILD.bazel`
