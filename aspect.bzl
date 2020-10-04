@@ -114,7 +114,7 @@ def proto_compile_impl(ctx):
         # Copy directories and files to shared output directory in one action
         ctx.actions.run_shell(
             mnemonic = "CopyDirs",
-            inputs = output_dirs + command_input_files,
+            inputs = depset(direct=command_input_files, transitive=[output_dirs]),
             outputs = [new_dir],
             command = " && ".join(command_parts),
             progress_message = "copying directories and files to {}".format(new_dir.path),
