@@ -29,7 +29,7 @@ licenses([
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "futures_io",
     crate_type = "lib",
     deps = [
     ],
@@ -39,12 +39,12 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.3.6",
     tags = [
         "cargo-raze",
         "manual",
     ],
     crate_features = [
+        "std",
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted

@@ -22,14 +22,16 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "unencumbered",  # Unlicense from expression "Unlicense OR MIT"
 ])
 
 # Generated targets
+# Unsupported target "is_same_file" with type "example" omitted
+# Unsupported target "is_stderr" with type "example" omitted
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "same_file",
     crate_type = "lib",
     deps = [
     ],
@@ -39,7 +41,7 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "1.0.6",
     tags = [
         "cargo-raze",
         "manual",
@@ -47,4 +49,3 @@ rust_library(
     crate_features = [
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted

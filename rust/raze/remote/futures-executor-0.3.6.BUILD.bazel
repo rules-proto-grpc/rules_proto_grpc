@@ -29,9 +29,12 @@ licenses([
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "futures_executor",
     crate_type = "lib",
     deps = [
+        "@raze__futures_core__0_3_6//:futures_core",
+        "@raze__futures_task__0_3_6//:futures_task",
+        "@raze__futures_util__0_3_6//:futures_util",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
@@ -39,12 +42,14 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.3.6",
     tags = [
         "cargo-raze",
         "manual",
     ],
     crate_features = [
+        "std",
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted
+# Unsupported target "local_pool" with type "test" omitted
+# Unsupported target "thread_notify" with type "bench" omitted

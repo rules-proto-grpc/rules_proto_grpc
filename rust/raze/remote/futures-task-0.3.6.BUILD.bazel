@@ -29,9 +29,10 @@ licenses([
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "futures_task",
     crate_type = "lib",
     deps = [
+        "@raze__once_cell__1_4_1//:once_cell",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
@@ -39,12 +40,14 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.3.6",
     tags = [
         "cargo-raze",
         "manual",
     ],
     crate_features = [
+        "alloc",
+        "once_cell",
+        "std",
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted

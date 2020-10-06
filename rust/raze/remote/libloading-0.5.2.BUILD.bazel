@@ -22,24 +22,27 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "notice",  # ISC from expression "ISC"
 ])
 
 # Generated targets
+# Unsupported target "build-script-build" with type "custom-build" omitted
+# Unsupported target "functions" with type "test" omitted
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "libloading",
     crate_type = "lib",
     deps = [
+        ":global_static",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
-    edition = "2018",
+    edition = "2015",
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.5.2",
     tags = [
         "cargo-raze",
         "manual",
@@ -47,4 +50,15 @@ rust_library(
     crate_features = [
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted
+# Unsupported target "markers" with type "test" omitted
+# Unsupported target "windows" with type "test" omitted
+
+# Additional content from ../../third_party/BUILD.bazel.raze_libloading
+cc_library(
+    name = "global_static",
+    srcs = select({
+        "@bazel_tools//src/conditions:host_windows": [],
+        "//conditions:default": ["src/os/unix/global_static.c"],
+    }),
+    copts = ["-fPIC"],
+)

@@ -4,6 +4,10 @@ var rustWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir 
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
@@ -66,14 +70,6 @@ GRPC_DEPS = [
     Label("//rust/raze:futures"),
     Label("//rust/raze:grpcio"),
     Label("//rust/raze:protobuf"),
-    Label("//rust:grpc_wrap"),
-    Label("//rust:address_sorting"),
-    Label("//rust:grpc"),
-    Label("//rust:gpr"),
-    Label("//rust:z"),
-    Label("//rust:cares"),
-    Label("//rust:crypto"),
-    Label("//rust:ssl"),
 ]`)
 
 func makeRust() *Language {
@@ -81,7 +77,7 @@ func makeRust() *Language {
 		Dir:  "rust",
 		Name: "rust",
 		DisplayName: "Rust",
-		Notes: mustTemplate("Rules for generating Rust protobuf and gRPC `.rs` files and libraries using [rust-protobuf](https://github.com/stepancheg/rust-protobuf) and [grpc-rs](https://github.com/pingcap/grpc-rs). Libraries are created with `rust_library` from [rules_rust](https://github.com/bazelbuild/rules_rust). Due to upstream requirements, these rules require that the system has a valid GOPATH set."),
+		Notes: mustTemplate("Rules for generating Rust protobuf and gRPC `.rs` files and libraries using [rust-protobuf](https://github.com/stepancheg/rust-protobuf) and [grpc-rs](https://github.com/tikv/grpc-rs). Libraries are created with `rust_library` from [rules_rust](https://github.com/bazelbuild/rules_rust)."),
 		Flags: commonLangFlags,
 		SkipTestPlatforms: []string{"windows", "macos"}, // CI has no rust toolchain for windows and is broken on mac
 		Rules: []*Rule{

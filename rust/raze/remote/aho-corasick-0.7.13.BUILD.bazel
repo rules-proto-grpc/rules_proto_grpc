@@ -22,29 +22,31 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "unencumbered",  # Unlicense from expression "Unlicense OR MIT"
 ])
 
 # Generated targets
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "aho_corasick",
     crate_type = "lib",
     deps = [
+        "@raze__memchr__2_3_3//:memchr",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
-    edition = "2018",
+    edition = "2015",
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.7.13",
     tags = [
         "cargo-raze",
         "manual",
     ],
     crate_features = [
+        "default",
+        "std",
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted

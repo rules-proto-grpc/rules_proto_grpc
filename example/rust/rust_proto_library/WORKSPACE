@@ -11,6 +11,10 @@ load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="ru
 
 rules_proto_grpc_rust_repos()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()

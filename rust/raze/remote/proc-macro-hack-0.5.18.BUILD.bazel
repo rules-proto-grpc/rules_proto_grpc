@@ -26,11 +26,12 @@ licenses([
 ])
 
 # Generated targets
+# Unsupported target "compiletest" with type "test" omitted
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
-    crate_type = "lib",
+    name = "proc_macro_hack",
+    crate_type = "proc-macro",
     deps = [
     ],
     srcs = glob(["**/*.rs"]),
@@ -39,7 +40,7 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.5.18",
     tags = [
         "cargo-raze",
         "manual",
@@ -47,4 +48,3 @@ rust_library(
     crate_features = [
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted

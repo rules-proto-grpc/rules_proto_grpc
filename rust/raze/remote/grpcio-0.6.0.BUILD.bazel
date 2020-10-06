@@ -22,16 +22,22 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "notice",  # Apache-2.0 from expression "Apache-2.0"
 ])
 
 # Generated targets
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "grpcio",
     crate_type = "lib",
     deps = [
+        "@raze__futures__0_3_6//:futures",
+        "@raze__grpcio_sys__0_6_0//:grpcio_sys",
+        "@raze__libc__0_2_79//:libc",
+        "@raze__log__0_4_6//:log",
+        "@raze__parking_lot__0_10_2//:parking_lot",
+        "@raze__protobuf__2_17_0//:protobuf",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
@@ -39,12 +45,15 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.6.0",
     tags = [
         "cargo-raze",
         "manual",
     ],
     crate_features = [
+        "default",
+        "protobuf",
+        "protobuf-codec",
+        "secure",
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted

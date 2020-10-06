@@ -29,7 +29,7 @@ licenses([
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "pin_utils",
     crate_type = "lib",
     deps = [
     ],
@@ -39,7 +39,7 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.1.0",
     tags = [
         "cargo-raze",
         "manual",
@@ -47,4 +47,5 @@ rust_library(
     crate_features = [
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted
+# Unsupported target "projection" with type "test" omitted
+# Unsupported target "stack_pin" with type "test" omitted

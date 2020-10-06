@@ -29,17 +29,23 @@ licenses([
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
-    crate_type = "lib",
+    name = "futures_macro",
+    crate_type = "proc-macro",
     deps = [
+        "@raze__proc_macro2__1_0_24//:proc_macro2",
+        "@raze__quote__1_0_7//:quote",
+        "@raze__syn__1_0_42//:syn",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
     edition = "2018",
+    proc_macro_deps = [
+        "@raze__proc_macro_hack__0_5_18//:proc_macro_hack",
+    ],
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.3.6",
     tags = [
         "cargo-raze",
         "manual",
@@ -47,4 +53,3 @@ rust_library(
     crate_features = [
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted

@@ -1,6 +1,6 @@
 # Rust rules
 
-Rules for generating Rust protobuf and gRPC `.rs` files and libraries using [rust-protobuf](https://github.com/stepancheg/rust-protobuf) and [grpc-rs](https://github.com/pingcap/grpc-rs). Libraries are created with `rust_library` from [rules_rust](https://github.com/bazelbuild/rules_rust). Due to upstream requirements, these rules require that the system has a valid GOPATH set.
+Rules for generating Rust protobuf and gRPC `.rs` files and libraries using [rust-protobuf](https://github.com/stepancheg/rust-protobuf) and [grpc-rs](https://github.com/tikv/grpc-rs). Libraries are created with `rust_library` from [rules_rust](https://github.com/bazelbuild/rules_rust).
 
 | Rule | Description |
 | ---: | :--- |
@@ -21,6 +21,10 @@ Generates Rust protobuf `.rs` artifacts
 load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
 rules_proto_grpc_rust_repos()
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
@@ -62,6 +66,10 @@ load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="ru
 
 rules_proto_grpc_rust_repos()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
@@ -102,6 +110,10 @@ load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="ru
 
 rules_proto_grpc_rust_repos()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
@@ -141,6 +153,10 @@ Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`
 load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
 rules_proto_grpc_rust_repos()
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 

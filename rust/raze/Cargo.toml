@@ -4,14 +4,14 @@ version = "0.0.0"
 
 # Mandatory (or Cargo tooling is unhappy)
 [lib]
-path = "fake_lib.rs"
+path = "lib.rs"
 
 [dependencies]
-futures = "=0.1.28"
-grpcio = { version = "=0.4.6", features = [] }
-grpcio-compiler = "=0.4.3"
-protobuf = { version = "=2.8.1", features = ["with-bytes"] }
-protobuf-codegen = "=2.8.1"
+futures = "=0.3.6"
+grpcio = { version = "=0.6.0", features = [] }
+grpcio-compiler = "=0.6.0"
+protobuf = { version = "=2.17.0", features = ["with-bytes"] }
+protobuf-codegen = "=2.17.0"
 
 log = "=0.4.6" # For routeguide example
 serde_json = "*" # For routeguide example
@@ -20,30 +20,30 @@ serde_json = "*" # For routeguide example
 genmode = "Remote"
 workspace_path = "//rust/raze"
 output_buildfile_suffix = "BUILD.bazel"
+default_gen_buildrs = true
 
-[raze.crates.protobuf.'2.8.1']
-gen_buildrs = true
-buildrs_additional_environment_variables = [
-    "RUSTC=$$PWD/$(location @rules_proto_grpc//rust/raze:rustc)",
-    "CARGO_PKG_VERSION=2.8.1",
-]
 
-[raze.crates.protobuf-codegen.'2.8.1']
-gen_buildrs = true
+# Plugins
+[raze.crates.protobuf-codegen.'2.17.0']
 extra_aliased_targets = ["cargo_bin_protoc_gen_rust"]
 
-[raze.crates.grpcio.'0.4.6']
-gen_buildrs = true
-
-[raze.crates.grpcio-sys.'0.4.7']
-gen_buildrs = true
-buildrs_additional_environment_variables = [
-    "DEBUG=false",
-    "HOST=$$TARGET",
-    "OPT_LEVEL=3",
-    "PROFILE=release",
-    "GOCACHE=/tmp/grpcio-sys-gocache",
-]
-
-[raze.crates.grpcio-compiler.'0.4.3']
+[raze.crates.grpcio-compiler.'0.6.0']
 extra_aliased_targets = ["cargo_bin_grpc_rust_plugin"]
+
+
+# Crate fixes
+[raze.crates.grpcio-sys.'0.6.0']
+gen_buildrs = false  # CMake build used by grpc-sys does not work nicely with Bazel and sandbox
+additional_deps = [":grpc_bindings"]  # Use manual gRPC binding compilation
+additional_build_file = "../../third_party/BUILD.bazel.raze_grpc_sys"  # Add binding definition
+
+# We need to pass BINDING_PATH env var to grpcio_sys rust_library to emulate the behaviour of
+# running build.rs
+additional_env = { BINDING_PATH = "../bindings/x86_64-unknown-linux-gnu-bindings.rs" }
+
+
+[raze.crates.libloading.'0.5.2']
+# See https://github.com/google/cargo-raze/issues/38
+gen_buildrs = false  # Depends on env vars that raze does not set
+additional_deps = [":global_static"]
+additional_build_file = "../../third_party/BUILD.bazel.raze_libloading"  # Add library definition

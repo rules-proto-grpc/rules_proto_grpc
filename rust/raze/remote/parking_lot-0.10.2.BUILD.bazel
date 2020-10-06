@@ -22,16 +22,19 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "notice",  # Apache-2.0 from expression "Apache-2.0 OR MIT"
 ])
 
 # Generated targets
+# Unsupported target "issue_203" with type "test" omitted
 
 # buildifier: leave-alone
 rust_library(
-    name = "cfg_if",
+    name = "parking_lot",
     crate_type = "lib",
     deps = [
+        "@raze__lock_api__0_3_4//:lock_api",
+        "@raze__parking_lot_core__0_7_2//:parking_lot_core",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
@@ -39,12 +42,12 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "0.1.10",
+    version = "0.10.2",
     tags = [
         "cargo-raze",
         "manual",
     ],
     crate_features = [
+        "default",
     ],
 )
-# Unsupported target "xcrate" with type "test" omitted
