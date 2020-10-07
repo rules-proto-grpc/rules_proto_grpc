@@ -1,32 +1,8 @@
 package main
 
-var nodeGrpcCompileWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var nodeWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-
-grpc_deps()`)
-
-var nodeProtoLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
-
-rules_proto_grpc_{{ .Lang.Name }}_repos()
-
-load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
-
-yarn_install(
-    name = "nodejs_modules",
-    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
-)`)
-
-var nodeGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
-
-rules_proto_grpc_{{ .Lang.Name }}_repos()
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-
-grpc_deps()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
@@ -54,6 +30,7 @@ var nodeProtoLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + 
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS,
+        package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
     )
 
@@ -67,6 +44,7 @@ var nodeGrpcLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS,
+        package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
     )
 
@@ -89,28 +67,28 @@ func makeNode() *Language {
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
 				Plugins:          []string{"//nodejs:nodejs_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Node.js protobuf `.js` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"},
+				SkipTestPlatforms: []string{},
 			},
 			&Rule{
 				Name:             "nodejs_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
 				Plugins:          []string{"//nodejs:nodejs_plugin", "//nodejs:grpc_nodejs_plugin"},
-				WorkspaceExample: nodeGrpcCompileWorkspaceTemplate,
+				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Node.js protobuf+gRPC `.js` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"},
+				SkipTestPlatforms: []string{},
 			},
 			&Rule{
 				Name:             "nodejs_proto_library",
 				Kind:             "proto",
 				Implementation:   nodeProtoLibraryRuleTemplate,
-				WorkspaceExample: nodeProtoLibraryWorkspaceTemplate,
+				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Node.js protobuf library using `js_library` from `rules_nodejs`",
 				Attrs:            aspectProtoCompileAttrs,
@@ -121,7 +99,7 @@ func makeNode() *Language {
 				Name:             "nodejs_grpc_library",
 				Kind:             "grpc",
 				Implementation:   nodeGrpcLibraryRuleTemplate,
-				WorkspaceExample: nodeGrpcLibraryWorkspaceTemplate,
+				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`",
 				Attrs:            aspectProtoCompileAttrs,

@@ -21,6 +21,14 @@ Generates Node.js protobuf `.js` artifacts
 load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
+
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
+
+yarn_install(
+    name = "nodejs_modules",
+    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+)
 ```
 
 ### `BUILD.bazel`
@@ -54,9 +62,13 @@ load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos
 
 rules_proto_grpc_nodejs_repos()
 
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
-grpc_deps()
+yarn_install(
+    name = "nodejs_modules",
+    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+)
 ```
 
 ### `BUILD.bazel`
@@ -133,10 +145,6 @@ Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`
 load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-
-grpc_deps()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 

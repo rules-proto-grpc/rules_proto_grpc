@@ -1,7 +1,7 @@
-load("//nodejs:defs.bzl", "nodejs_grpc_compile")
+load("//nodejs:defs.bzl", "nodejs_grpc_library")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
-nodejs_grpc_compile(
+nodejs_grpc_library(
     name = "routeguide",
     deps = ["//example/proto:routeguide_proto"],
 )

@@ -10,3 +10,11 @@ rules_proto_grpc_repos()
 load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
+
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
+
+yarn_install(
+    name = "nodejs_modules",
+    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+)

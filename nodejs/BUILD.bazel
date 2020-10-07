@@ -17,7 +17,10 @@ proto_plugin(
 proto_plugin(
     name = "grpc_nodejs_plugin",
     outputs = ["{protopath}_grpc_pb.js"],
-    tool = "@com_github_grpc_grpc//src/compiler:grpc_node_plugin",
+    tool = "@nodejs_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
+    options = [
+        "grpc_js",
+    ],
     exclusions = [
         "google/protobuf",
     ],
