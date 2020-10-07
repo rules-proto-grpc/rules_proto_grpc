@@ -136,6 +136,9 @@ go_register_toolchains()
 load("//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", "gateway_repos")
 gateway_repos()
 
+load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+go_repositories()
+
 
 #
 # gRPC web
