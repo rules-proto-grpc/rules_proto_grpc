@@ -157,12 +157,11 @@ VERSIONS = {
     },
 
     # NodeJS
+    # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_nodejs",
-        "ref": "2.2.0",
-        "sha256": "f1f012be053ee9ea785b671f16db951add9e68eb3a62e69a05749485b9ecb6b5",
+        "type": "http",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/2.2.0/rules_nodejs-2.2.0.tar.gz"],
+        "sha256": "4952ef879704ab4ad6729a29007e7094aef213ea79e9f2e94cbe1c9a753e63ef",
     },
 
     # Python
