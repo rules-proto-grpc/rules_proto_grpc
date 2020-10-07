@@ -5,4 +5,7 @@ rust_library(
     deps = [
         "@com_github_grpc_grpc//:grpc++",
     ],
+    rustc_flags = [
+        "--cap-lints=allow",
+    ],
 )
