@@ -281,6 +281,21 @@ def _generic_dependency(name, **kwargs):
                     name, existing_rules[name]["urls"], tuple(dep["urls"])
                 ))
 
+    elif dep["type"] == "local":
+        if name not in existing_rules:
+            args = {k: v for k, v in dep.items() if k in ["path"]}
+            native.local_repository(name = name, **args)
+        elif existing_rules[name]["kind"] != "local_repository":
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected local_repository".format(
+                    name, existing_rules[name]["kind"],
+                ))
+        elif existing_rules[name]["path"] != dep["path"]:
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different version. Found path={}, expected {}".format(
+                    name, existing_rules[name]["path"], dep["urls"]
+                ))
+
     else:
         fail("Unknown dependency type {}".format(dep))
 
