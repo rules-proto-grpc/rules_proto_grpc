@@ -11,15 +11,10 @@
 </div>
 
 
-## Announcements
+## Announcements 📣
 
-- **2019/12/19**: [Bazel 2.0.0 has been released](https://github.com/bazelbuild/bazel/releases/tag/2.0.0) and
-  [appears](https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc/builds/220) to be fully supported by
-  `rules_proto_grpc` version 1.0.0+. If you discover any issues with Bazel 2.x.x support, please open a new issue.
-
-- **2019/12/10**: Bazel 1.0.0+ support has been added in `rules_proto_grpc` version 1.0.0. There have been a number of changes
-  necessary to add support, which may require updating how you load `rules_proto_grpc` and its dependencies. Please see the
-  1.0.0 [release notes](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/1.0.0) for further information.
+- **2020/10/xx**: [Version 2.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/2.0.0)
+  with updated Protobuf and gRPC versions. If you discover any issues with the new release, please open a new issue.
 
 
 ## Contents:
