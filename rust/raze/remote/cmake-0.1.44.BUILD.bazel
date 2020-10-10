@@ -32,7 +32,7 @@ rust_library(
     name = "cmake",
     crate_type = "lib",
     deps = [
-        "@raze__cc__1_0_60//:cc",
+        "@raze__cc__1_0_61//:cc",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",

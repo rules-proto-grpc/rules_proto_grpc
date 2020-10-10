@@ -1,8 +1,0 @@
-cc_library(
-    name = "global_static",
-    srcs = select({
-        "@bazel_tools//src/conditions:host_windows": [],
-        "//conditions:default": ["src/os/unix/global_static.c"],
-    }),
-    copts = ["-fPIC"],
-)

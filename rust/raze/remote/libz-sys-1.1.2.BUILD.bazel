@@ -40,7 +40,7 @@ cargo_build_script(
     edition = "2015",
     # buildifier: leave-alone
     deps = [
-        "@raze__cc__1_0_60//:cc",
+        "@raze__cc__1_0_61//:cc",
         "@raze__pkg_config__0_3_18//:pkg_config",
     ],
     rustc_flags = [

@@ -26,7 +26,38 @@ licenses([
 ])
 
 # Generated targets
-# Unsupported target "build-script-build" with type "custom-build" omitted
+# buildifier: disable=load-on-top
+load(
+    "@io_bazel_rules_rust//cargo:cargo_build_script.bzl",
+    "cargo_build_script",
+)
+
+# buildifier: leave-alone
+cargo_build_script(
+    name = "libloading_build_script",
+    srcs = glob(["**/*.rs"]),
+    crate_root = "build.rs",
+    edition = "2015",
+    # buildifier: leave-alone
+    deps = [
+        "@raze__cc__1_0_61//:cc",
+    ],
+    rustc_flags = [
+        "--cap-lints=allow",
+    ],
+    crate_features = [
+    ],
+    build_script_env = {
+    },
+    data = glob(["**"]),
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+    version = "0.5.2",
+    visibility = ["//visibility:private"],
+)
+
 # Unsupported target "functions" with type "test" omitted
 
 # buildifier: leave-alone
@@ -34,7 +65,7 @@ rust_library(
     name = "libloading",
     crate_type = "lib",
     deps = [
-        ":global_static",
+        ":libloading_build_script",
     ],
     srcs = glob(["**/*.rs"]),
     crate_root = "src/lib.rs",
@@ -52,13 +83,3 @@ rust_library(
 )
 # Unsupported target "markers" with type "test" omitted
 # Unsupported target "windows" with type "test" omitted
-
-# Additional content from ../../third_party/BUILD.bazel.raze_libloading
-cc_library(
-    name = "global_static",
-    srcs = select({
-        "@bazel_tools//src/conditions:host_windows": [],
-        "//conditions:default": ["src/os/unix/global_static.c"],
-    }),
-    copts = ["-fPIC"],
-)

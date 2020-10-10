@@ -49,11 +49,11 @@ def raze_fetch_remote_crates():
 
     maybe(
         http_archive,
-        name = "raze__cc__1_0_60",
-        url = "https://crates-io.s3-us-west-1.amazonaws.com/crates/cc/cc-1.0.60.crate",
+        name = "raze__cc__1_0_61",
+        url = "https://crates-io.s3-us-west-1.amazonaws.com/crates/cc/cc-1.0.61.crate",
         type = "tar.gz",
-        strip_prefix = "cc-1.0.60",
-        build_file = Label("//rust/raze/remote:cc-1.0.60.BUILD.bazel"),
+        strip_prefix = "cc-1.0.61",
+        build_file = Label("//rust/raze/remote:cc-1.0.61.BUILD.bazel"),
     )
 
     maybe(
@@ -535,11 +535,11 @@ def raze_fetch_remote_crates():
 
     maybe(
         http_archive,
-        name = "raze__syn__1_0_42",
-        url = "https://crates-io.s3-us-west-1.amazonaws.com/crates/syn/syn-1.0.42.crate",
+        name = "raze__syn__1_0_43",
+        url = "https://crates-io.s3-us-west-1.amazonaws.com/crates/syn/syn-1.0.43.crate",
         type = "tar.gz",
-        strip_prefix = "syn-1.0.42",
-        build_file = Label("//rust/raze/remote:syn-1.0.42.BUILD.bazel"),
+        strip_prefix = "syn-1.0.43",
+        build_file = Label("//rust/raze/remote:syn-1.0.43.BUILD.bazel"),
     )
 
     maybe(

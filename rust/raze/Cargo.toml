@@ -40,10 +40,3 @@ additional_build_file = "../../third_party/BUILD.bazel.raze_grpc_sys"  # Add bin
 # We need to pass BINDING_PATH env var to grpcio_sys rust_library to emulate the behaviour of
 # running build.rs
 additional_env = { BINDING_PATH = "../bindings/x86_64-unknown-linux-gnu-bindings.rs" }
-
-
-[raze.crates.libloading.'0.5.2']
-# See https://github.com/google/cargo-raze/issues/38
-gen_buildrs = false  # Depends on env vars that raze does not set
-additional_deps = [":global_static"]
-additional_build_file = "../../third_party/BUILD.bazel.raze_libloading"  # Add library definition

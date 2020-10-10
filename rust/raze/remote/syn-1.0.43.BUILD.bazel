@@ -62,7 +62,7 @@ cargo_build_script(
         "cargo-raze",
         "manual",
     ],
-    version = "1.0.42",
+    version = "1.0.43",
     visibility = ["//visibility:private"],
 )
 
@@ -85,7 +85,7 @@ rust_library(
     rustc_flags = [
         "--cap-lints=allow",
     ],
-    version = "1.0.42",
+    version = "1.0.43",
     tags = [
         "cargo-raze",
         "manual",
