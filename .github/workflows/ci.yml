@@ -10,12 +10,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Mount Bazel cache
-      uses: actions/cache@v1
-      with:
-        path: "/home/runner/.cache/bazel"
-        key: bazel
-
     - name: Install bazelisk
       run: |
         curl -LO "https://github.com/bazelbuild/bazelisk/releases/download/v1.6.1/bazelisk-linux-amd64"
@@ -26,8 +20,8 @@ jobs:
     - name: Test rulegen diff
       run: |
         export CC=clang
-        "${GITHUB_WORKSPACE}/bin/bazel" --output_base="/home/runner/.cache/bazel" query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt
-        "${GITHUB_WORKSPACE}/bin/bazel" --output_base="/home/runner/.cache/bazel" run --run_under="cd $PWD && " //tools/rulegen -- --ref=`git describe --abbrev=0 --tags`
+        "${GITHUB_WORKSPACE}/bin/bazel" query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt
+        "${GITHUB_WORKSPACE}/bin/bazel" run --run_under="cd $PWD && " //tools/rulegen -- --ref=`git describe --abbrev=0 --tags`
         rm available_tests.txt
         git checkout -- README.md
         git diff
