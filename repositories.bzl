@@ -223,7 +223,8 @@ VERSIONS = {
         "sha256": "82e0a3d8fe2b9ee813b918e1a674f5a7c6dc024abe08109a347b686db6e57432",
         "build_file": "@build_bazel_rules_swift//third_party:com_github_grpc_grpc_swift/BUILD.overlay",
         "patch_cmds": [
-            "sed -i 's/if fileDescriptor.services.count > 0/if true/g' Sources/protoc-gen-swiftgrpc/main.swift"  # Make grpc plugin always output files
+            "sed -i.bak -e 's/if fileDescriptor.services.count > 0/if true/g' Sources/protoc-gen-swiftgrpc/main.swift",  # Make grpc plugin always output files
+            "rm Sources/protoc-gen-swiftgrpc/main.swift.bak",  # Remove .bak file we had to create above due to mac OS sed weirdness
         ],
     },
 }
