@@ -213,16 +213,6 @@ VERSIONS = {
         "strip_prefix": "scalapbc-0.9.7",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
     },
-
-    # Swift
-    "com_github_apple_swift_swift_protobuf": {
-        "type": "github",
-        "org": "apple",
-        "repo": "swift-protobuf",
-        "ref": "1.12.0",
-        "sha256": "33ab0124f9ebc31d44bd26f4ae797a70de89d0b693ac17a3ab726c5ba02fa43b",
-        "build_file": "@build_bazel_rules_swift//third_party:com_github_apple_swift_swift_protobuf/BUILD.overlay",
-    },
 }
 
 
