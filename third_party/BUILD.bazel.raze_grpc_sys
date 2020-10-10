@@ -2,10 +2,16 @@
 rust_library(
     name = "grpc_bindings",
     srcs = ["bindings/x86_64-unknown-linux-gnu-bindings.rs"],
-    deps = [
-        "@com_github_grpc_grpc//:grpc++",
-    ],
     rustc_flags = [
         "--cap-lints=allow",
+    ],
+    deps = [":grpc_wrap"],
+)
+
+cc_library(
+    name = "grpc_wrap",
+    srcs = ["grpc_wrap.cc"],
+    deps = [
+        "@com_github_grpc_grpc//:grpc",
     ],
 )

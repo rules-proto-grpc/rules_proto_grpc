@@ -34,7 +34,6 @@ rust_library(
     crate_type = "lib",
     deps = [
         "@raze__libc__0_2_79//:libc",
-        "@raze__libz_sys__1_1_2//:libz_sys",
         ":grpc_bindings",
     ],
     srcs = glob(["**/*.rs"]),
@@ -62,7 +61,16 @@ rust_library(
 rust_library(
     name = "grpc_bindings",
     srcs = ["bindings/x86_64-unknown-linux-gnu-bindings.rs"],
+    rustc_flags = [
+        "--cap-lints=allow",
+    ],
+    deps = [":grpc_wrap"],
+)
+
+cc_library(
+    name = "grpc_wrap",
+    srcs = ["grpc_wrap.cc"],
     deps = [
-        "@com_github_grpc_grpc//:grpc++",
+        "@com_github_grpc_grpc//:grpc",
     ],
 )

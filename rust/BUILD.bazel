@@ -23,3 +23,20 @@ proto_plugin(
     ],
     visibility = ["//visibility:public"],
 )
+
+
+# Bodge to allow linking against c-ares.
+# The @com_github_cares_cares//:ares rule will output a .lo file that the rust rules don't know how
+# to handle and therefore fails to link. See https://github.com/bazelbuild/rules_rust/issues/325
+genrule(
+    name = "copy_ares",
+    srcs = ["@com_github_cares_cares//:ares"],
+    outs = ["libares.a"],
+    cmd = "cp $(location @com_github_cares_cares//:ares) \"$@\"",
+)
+
+cc_import(
+    name = "ares",
+    static_library = ":copy_ares",
+    visibility = ["//visibility:public"],
+)

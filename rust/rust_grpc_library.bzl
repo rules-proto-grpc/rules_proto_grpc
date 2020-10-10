@@ -30,4 +30,5 @@ GRPC_DEPS = [
     Label("//rust/raze:futures"),
     Label("//rust/raze:grpcio"),
     Label("//rust/raze:protobuf"),
+    "@rules_proto_grpc//rust:ares",
 ]

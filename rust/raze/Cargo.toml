@@ -35,6 +35,7 @@ extra_aliased_targets = ["cargo_bin_grpc_rust_plugin"]
 [raze.crates.grpcio-sys.'0.6.0']
 gen_buildrs = false  # CMake build used by grpc-sys does not work nicely with Bazel and sandbox
 additional_deps = [":grpc_bindings"]  # Use manual gRPC binding compilation
+skipped_deps = ["libz-sys-1.1.2"]  # This now comes from manual gRPC binding compilation
 additional_build_file = "../../third_party/BUILD.bazel.raze_grpc_sys"  # Add binding definition
 
 # We need to pass BINDING_PATH env var to grpcio_sys rust_library to emulate the behaviour of
