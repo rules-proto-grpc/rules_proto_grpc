@@ -213,6 +213,19 @@ VERSIONS = {
         "strip_prefix": "scalapbc-0.9.7",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
     },
+
+    # Swift
+    "com_github_grpc_grpc_swift_patched": {
+        "type": "github",
+        "org": "grpc",
+        "repo": "grpc-swift",
+        "ref": "0.11.0",
+        "sha256": "82e0a3d8fe2b9ee813b918e1a674f5a7c6dc024abe08109a347b686db6e57432",
+        "build_file": "@build_bazel_rules_swift//third_party:com_github_grpc_grpc_swift/BUILD.overlay",
+        "patch_cmds": [
+            "sed -i 's/if fileDescriptor.services.count > 0/if true/g' Sources/protoc-gen-swiftgrpc/main.swift"  # Make grpc plugin always output files
+        ],
+    },
 }
 
 
@@ -244,6 +257,7 @@ def _generic_dependency(name, **kwargs):
                 strip_prefix = dep["repo"] + "-" + strippedRef,
                 urls = urls,
                 sha256 = sha256,
+                **{k: v for k, v in dep.items() if k in ["build_file", "patch_cmds"]}
             )
         elif existing_rules[name]["kind"] != "http_archive":
             if ENABLE_VERSION_NAGS:
@@ -470,5 +484,5 @@ def com_github_scalapb_scalapb(**kwargs):
 #
 # Swift
 #
-def com_github_apple_swift_swift_protobuf(**kwargs):
-    _generic_dependency("com_github_apple_swift_swift_protobuf", **kwargs)
+def com_github_grpc_grpc_swift_patched(**kwargs):
+    _generic_dependency("com_github_grpc_grpc_swift_patched", **kwargs)
