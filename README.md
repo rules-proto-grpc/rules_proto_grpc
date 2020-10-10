@@ -14,7 +14,8 @@
 ## Announcements 📣
 
 - **2020/10/xx**: [Version 2.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/2.0.0)
-  with updated Protobuf and gRPC versions. If you discover any issues with the new release, please open a new issue.
+  with updated Protobuf and gRPC versions. If you discover any issues with the new release, please
+  [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new).
 
 
 ## Contents:
