@@ -2,46 +2,46 @@ load("//csharp:defs.bzl", "csharp_grpc_library")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_binary", "core_library")
 
 csharp_grpc_library(
-    name = "routeguide",
+    name = "routeguide.dll",
     deps = ["//example/proto:routeguide_proto"],
 )
 
 core_library(
-    name = "util",
+    name = "util.dll",
     srcs = [
         "RouteGuideUtil.cs",
     ],
     deps = [
-        ":routeguide",
+        ":routeguide.dll",
         "@newtonsoft.json//:netcoreapp2.0_core",
     ],
 )
 
 core_binary(
-    name = "client",
+    name = "client.exe",
     srcs = [
         "Client.cs",
     ],
     data = ["//example/proto:routeguide_features"],
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
-        ":routeguide",
-        ":util",
+        ":routeguide.dll",
+        ":util.dll",
         "@google.protobuf//:netstandard1.0_core",
         "@grpc.core//:netstandard1.5_core",
     ],
 )
 
 core_binary(
-    name = "server",
+    name = "server.exe",
     srcs = [
         "Server.cs",
     ],
     data = ["//example/proto:routeguide_features"],
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
-        ":routeguide",
-        ":util",
+        ":routeguide.dll",
+        ":util.dll",
         "@google.protobuf//:netstandard1.0_core",
         "@grpc.core//:netstandard1.5_core",
     ],
