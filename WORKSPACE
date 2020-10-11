@@ -13,6 +13,10 @@ rules_proto_grpc_toolchains()
 load("//:repositories.bzl", "rules_proto_grpc_repos")
 rules_proto_grpc_repos()
 
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
+
 
 #
 # Android

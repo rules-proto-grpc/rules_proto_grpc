@@ -6,6 +6,13 @@ MINIMUM_BAZEL_VERSION = "1.0.0"
 ENABLE_VERSION_NAGS = False
 VERSIONS = {
     # Core
+    "rules_proto": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "rules_proto",
+        "ref": "97d8af4dc474595af3900dd85cb3a29ad28cc313",
+        "sha256": "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+    },
     "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
@@ -338,10 +345,9 @@ def rules_proto_grpc_toolchains():
 def rules_proto_grpc_repos(**kwargs):
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
 
-    bazel_version_repository(
-        name = "bazel_version"
-    )
+    bazel_version_repository(name = "bazel_version")
 
+    rules_proto(**kwargs)
     rules_python(**kwargs)
     build_bazel_rules_swift(**kwargs)
     build_bazel_apple_support(**kwargs)
@@ -351,6 +357,9 @@ def rules_proto_grpc_repos(**kwargs):
     com_google_protobuf(**kwargs)
     com_github_grpc_grpc(**kwargs)
     external_zlib(**kwargs)
+
+def rules_proto(**kwargs):
+    _generic_dependency("rules_proto", **kwargs)
 
 def rules_python(**kwargs):
     _generic_dependency("rules_python", **kwargs)
