@@ -9,7 +9,7 @@ def nuget_grpc_packages():
 
 def no_op():
     # Function that does nothing, to be placeholder in below function. This prevents it being a
-    # syntax error when nuget2bazel is run
+    # syntax error when nuget2bazel is first run
     pass
 
 def nuget_rules_proto_grpc_packages():
@@ -1174,25 +1174,57 @@ def nuget_rules_proto_grpc_packages():
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
-               "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             ],
             "netcoreapp2.1": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
-               "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             ],
             "netcoreapp3.0": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
-               "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             ],
             "netcoreapp3.1": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
-               "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             ],
         },
         net_files = {
@@ -1200,87 +1232,222 @@ def nuget_rules_proto_grpc_packages():
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net451": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net452": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net46": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net461": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net462": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net47": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net471": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net472": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "net48": [
                "lib/net45/Grpc.Core.dll",
                "lib/net45/Grpc.Core.pdb",
                "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
                "build/net45/Grpc.Core.targets",
             ],
             "netstandard1.5": [
                "lib/netstandard1.5/Grpc.Core.dll",
                "lib/netstandard1.5/Grpc.Core.pdb",
                "lib/netstandard1.5/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             ],
             "netstandard1.6": [
                "lib/netstandard1.5/Grpc.Core.dll",
                "lib/netstandard1.5/Grpc.Core.pdb",
                "lib/netstandard1.5/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             ],
             "netstandard2.0": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             ],
             "netstandard2.1": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             ],
         },
         mono_files = [
             "lib/net45/Grpc.Core.dll",
             "lib/net45/Grpc.Core.pdb",
             "lib/net45/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
+                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
+                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
             "build/net45/Grpc.Core.targets",
         ],
     )

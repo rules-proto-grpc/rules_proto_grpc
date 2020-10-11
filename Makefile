@@ -30,8 +30,13 @@ pip_compile:
 	pip-compile python/requirements.in --output-file python/requirements.txt
 
 
+# Run C# package regeneration
+csharp_regenerate_packages:
+	./csharp/nuget/regenerate_packages.sh
+
+
 # Run all language specific updates
-all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade pip_compile
+all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade pip_compile csharp_regenerate_packages
 
 
 # A collection of targets that build routeguide clients

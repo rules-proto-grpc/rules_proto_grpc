@@ -75,7 +75,7 @@ var csharpProtoLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateStrin
 
 PROTO_DEPS = [
     "@google.protobuf//:core",
-    "@io_bazel_rules_dotnet//dotnet/stdlib.core:libraryset",
+    "@io_bazel_rules_dotnet//dotnet/stdlib.core:netstandard.dll",
 ]`)
 
 var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString + `
@@ -90,7 +90,7 @@ var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString
 GRPC_DEPS = [
     "@google.protobuf//:core",
     "@grpc.core//:core",
-    "@io_bazel_rules_dotnet//dotnet/stdlib.core:libraryset",
+    "@io_bazel_rules_dotnet//dotnet/stdlib.core:netstandard.dll",
 ]`)
 
 func makeCsharp() *Language {

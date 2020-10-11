@@ -19,5 +19,5 @@ def csharp_proto_library(**kwargs):
 
 PROTO_DEPS = [
     "@google.protobuf//:core",
-    "@io_bazel_rules_dotnet//dotnet/stdlib.core:libraryset",
+    "@io_bazel_rules_dotnet//dotnet/stdlib.core:netstandard.dll",
 ]
