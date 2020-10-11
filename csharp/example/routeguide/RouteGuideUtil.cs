@@ -41,11 +41,13 @@ public static class RouteGuideUtil
 
     public static double GetLatitude(this Point point)
     {
+        if (point == null) return 0;
         return point.Latitude / CoordFactor;
     }
 
     public static double GetLongitude(this Point point)
     {
+        if (point == null) return 0;
         return point.Longitude / CoordFactor;
     }
 
