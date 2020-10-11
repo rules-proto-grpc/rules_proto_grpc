@@ -1174,21 +1174,25 @@ def nuget_rules_proto_grpc_packages():
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
+               "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
             ],
             "netcoreapp2.1": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
+               "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
             ],
             "netcoreapp3.0": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
+               "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
             ],
             "netcoreapp3.1": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
+               "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
             ],
         },
         net_files = {
