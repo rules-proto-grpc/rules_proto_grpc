@@ -127,7 +127,7 @@ func makeCsharp() *Language {
 				Implementation:   csharpProtoLibraryRuleTemplate,
 				WorkspaceExample: csharpProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a C# protobuf library using `core_library` from `rules_dotnet`",
+				Doc:              "Generates a C# protobuf library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll`",
 				Attrs:            aspectProtoCompileAttrs,
 			},
 			&Rule{
@@ -136,7 +136,7 @@ func makeCsharp() *Language {
 				Implementation:   csharpGrpcLibraryRuleTemplate,
 				WorkspaceExample: csharpGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`",
+				Doc:              "Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll`",
 				Attrs:            aspectProtoCompileAttrs,
 			},
 		},
