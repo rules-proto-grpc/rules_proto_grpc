@@ -111,15 +111,8 @@ func makePython() *Language {
 		Dir:   "python",
 		Name:  "python",
 		DisplayName: "Python",
-		Notes: mustTemplate("Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with `py_library` from `rules_python`"),
-		Flags: append(commonLangFlags, []*Flag{
-			{
-				Category:    "build",
-				Name:        "define",
-				Value:       "use_fast_cpp_protos=true",
-				Description: "Uses the fast C++ Protobuf implementation for the Python libraries.",
-			},
-		}...),
+		Notes: mustTemplate("Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with `py_library` from `rules_python`. To use the fast C++ Protobuf implementation, you can add `--define=use_fast_cpp_protos=true` to your build, but this requires you setup the path to your Python headers."),
+		Flags: commonLangFlags,
 		Aliases: map[string]string{
 			"py_proto_compile": "python_proto_compile",
 			"py_grpc_compile": "python_grpc_compile",

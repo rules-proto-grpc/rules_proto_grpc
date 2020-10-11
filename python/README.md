@@ -1,6 +1,6 @@
 # Python rules
 
-Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with `py_library` from `rules_python`
+Rules for generating Python protobuf and gRPC `.py` files and libraries using standard Protocol Buffers and gRPC or [grpclib](https://github.com/vmagamedov/grpclib). Libraries are created with `py_library` from `rules_python`. To use the fast C++ Protobuf implementation, you can add `--define=use_fast_cpp_protos=true` to your build, but this requires you setup the path to your Python headers.
 
 | Rule | Description |
 | ---: | :--- |
