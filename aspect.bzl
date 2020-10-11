@@ -1,3 +1,4 @@
+load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load("//:plugin.bzl", "ProtoPluginInfo")
 load(
     "//internal:common.bzl",
