@@ -4,3 +4,6 @@ node_modules
 .idea
 available_tests.txt
 .ipynb_checkpoints
+csharp/nuget/nuget2config.json
+ruby/.bundle
+nodejs/requirements/yarn-error.log
