@@ -16,7 +16,7 @@ proto_plugin(
 
 proto_plugin(
     name = "grpc_nodejs_plugin",
-    outputs = ["{protopath}_grpc_pb.js"],
+    output_directory = True,
     tool = "@nodejs_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
     options = [
         "grpc_js",
