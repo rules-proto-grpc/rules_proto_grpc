@@ -16,6 +16,7 @@ def nodejs_proto_library(**kwargs):
         deps = PROTO_DEPS,
         package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [

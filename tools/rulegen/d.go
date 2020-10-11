@@ -32,6 +32,7 @@ def {{ .Rule.Name }}(**kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [

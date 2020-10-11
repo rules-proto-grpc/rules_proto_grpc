@@ -44,6 +44,7 @@ def {{ .Rule.Name }}(**kwargs):
         deps = PROTO_DEPS,
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
@@ -68,6 +69,7 @@ def {{ .Rule.Name }}(**kwargs):
         deps = GRPC_DEPS,
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
@@ -95,6 +97,7 @@ def {{ .Rule.Name }}(**kwargs):
         ] + GRPC_DEPS,
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

@@ -16,6 +16,7 @@ def python_proto_library(**kwargs):
         deps = PROTO_DEPS,
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [

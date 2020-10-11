@@ -32,6 +32,7 @@ var nodeProtoLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + 
         deps = PROTO_DEPS,
         package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
@@ -46,6 +47,7 @@ var nodeGrpcLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
         deps = GRPC_DEPS,
         package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

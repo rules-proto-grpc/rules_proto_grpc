@@ -16,6 +16,7 @@ def nodejs_grpc_library(**kwargs):
         deps = GRPC_DEPS,
         package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

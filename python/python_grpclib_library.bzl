@@ -18,6 +18,7 @@ def python_grpclib_library(**kwargs):
         ] + GRPC_DEPS,
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

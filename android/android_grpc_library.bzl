@@ -16,6 +16,7 @@ def android_grpc_library(**kwargs):
         deps = GRPC_DEPS,
         exports = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

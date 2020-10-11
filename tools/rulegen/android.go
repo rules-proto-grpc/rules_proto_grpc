@@ -36,6 +36,7 @@ var androidProtoLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStr
         deps = PROTO_DEPS,
         exports = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
@@ -50,6 +51,7 @@ var androidGrpcLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStri
         deps = GRPC_DEPS,
         exports = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

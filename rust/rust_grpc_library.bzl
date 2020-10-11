@@ -24,6 +24,7 @@ def rust_grpc_library(**kwargs):
         srcs = [name_pb, name_lib],
         deps = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

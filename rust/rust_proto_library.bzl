@@ -24,6 +24,7 @@ def rust_proto_library(**kwargs):
         srcs = [name_pb, name_lib],
         deps = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [

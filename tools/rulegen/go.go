@@ -42,6 +42,7 @@ var goProtoLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
         deps = kwargs.get("go_deps", []) + PROTO_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
@@ -58,6 +59,7 @@ var goGrpcLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
         deps = kwargs.get("go_deps", []) + GRPC_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

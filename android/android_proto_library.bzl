@@ -16,6 +16,7 @@ def android_proto_library(**kwargs):
         deps = PROTO_DEPS,
         exports = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
