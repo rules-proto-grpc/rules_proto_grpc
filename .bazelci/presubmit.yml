@@ -8,6 +8,7 @@ tasks:
     build_targets:
     - "//closure/..."
     - "//cpp/..."
+    - "//csharp/..."
     - "//d/..."
     - "//go/..."
     - "//java/..."
@@ -90,6 +91,7 @@ tasks:
     build_targets:
     - "//closure/..."
     - "//cpp/..."
+    - "//csharp/..."
     - "//d/..."
     - "//go/..."
     - "//java/..."
@@ -389,6 +391,46 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
+  csharp_csharp_proto_library_ubuntu1804:
+    name: 'csharp: csharp_proto_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_proto_library
+  csharp_csharp_proto_library_windows:
+    name: 'csharp: csharp_proto_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_proto_library
+  csharp_csharp_proto_library_macos:
+    name: 'csharp: csharp_proto_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_proto_library
+  csharp_csharp_grpc_library_ubuntu1804:
+    name: 'csharp: csharp_grpc_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_grpc_library
+  csharp_csharp_grpc_library_windows:
+    name: 'csharp: csharp_grpc_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_grpc_library
+  csharp_csharp_grpc_library_macos:
+    name: 'csharp: csharp_grpc_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_grpc_library
   d_d_proto_compile_ubuntu1804:
     name: 'd: d_proto_compile'
     platform: ubuntu1804

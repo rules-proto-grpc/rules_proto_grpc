@@ -71,7 +71,7 @@ func makeCsharp() *Language {
 		Name:  "csharp",
 		DisplayName: "C#",
 		Flags: commonLangFlags,
-		SkipTestPlatforms: []string{"all"},
+		//SkipTestPlatforms: []string{"all"},
 		Notes: mustTemplate(`Rules for generating C# protobuf and gRPC ` + "`.cs`" + ` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ` + "`core_library`" + ` from [rules_dotnet](https://github.com/bazelbuild/rules_dotnet)`),
 		Rules: []*Rule{
 			&Rule{
