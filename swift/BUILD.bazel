@@ -12,7 +12,7 @@ proto_plugin(
 
 proto_plugin(
     name = "grpc_swift_plugin",
-    output_directory = True,
+    outputs = ["{protopath}.grpc.swift"],
     tool = "@com_github_grpc_grpc_swift_patched//:protoc-gen-swiftgrpc",
     exclusions = [
         "google/protobuf",

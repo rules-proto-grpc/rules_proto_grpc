@@ -18,5 +18,6 @@ def swift_grpc_library(**kwargs):
     )
 
 GRPC_DEPS = [
+    "@com_github_apple_swift_protobuf//:SwiftProtobuf",
     "@com_github_grpc_grpc_swift//:SwiftGRPC",
 ]

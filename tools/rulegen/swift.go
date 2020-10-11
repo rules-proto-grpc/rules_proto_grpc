@@ -58,10 +58,10 @@ def {{ .Rule.Name }}(**kwargs):
         srcs = [name_pb],
         deps = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
-        copts = ["-v"],
     )
 
 GRPC_DEPS = [
+    "@com_github_apple_swift_protobuf//:SwiftProtobuf",
     "@com_github_grpc_grpc_swift//:SwiftGRPC",
 ]`)
 
@@ -79,6 +79,7 @@ func makeSwift() *Language {
 			Name:     "strategy=SwiftCompile",
 			Value:    "standalone",
 		}),
+		SkipDirectoriesMerge: true,
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{
@@ -95,7 +96,7 @@ func makeSwift() *Language {
 				Name:             "swift_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//swift:grpc_swift_plugin"},
+				Plugins:          []string{"//swift:swift_plugin", "//swift:grpc_swift_plugin"},
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf+gRPC `.swift` artifacts",

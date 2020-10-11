@@ -19,6 +19,7 @@ swift_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
+                Label("//swift:swift_plugin"),
                 Label("//swift:grpc_swift_plugin"),
             ],
         ),
@@ -47,6 +48,6 @@ _rule = rule(
 def swift_grpc_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
-        merge_directories = True,
+        merge_directories = False,
         **{k: v for k, v in kwargs.items() if k != "merge_directories"}
     )
