@@ -379,9 +379,13 @@ def proto_compile_aspect_impl(target, ctx):
         out_arg = out_file.path if out_file else full_outdir
 
         if plugin.options:
-            out_arg = "{}:{}".format(",".join(
+            opts_str = ",".join(
                 [option.replace("{name}", ctx.label.name) for option in plugin.options],
-            ), out_arg)
+            )
+            if plugin.separate_options_flag:
+                args.add("--{}_opt={}".format(plugin_name, opts_str))
+            else:
+                out_arg = "{}:{}".format(opts_str, out_arg)
         args.add("--{}_out={}".format(plugin_name, out_arg))
 
         # Add source proto files as descriptor paths
