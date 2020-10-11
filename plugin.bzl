@@ -71,7 +71,7 @@ proto_plugin = rule(
         ),
         "separate_options_flag": attr.bool(
             doc = "Flag to indicate if plugin options should be sent via the --{lang}_opts flag",
-            default = True,
+            default = False,
         ),
     },
 )
