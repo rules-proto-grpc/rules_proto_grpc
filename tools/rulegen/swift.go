@@ -58,19 +58,12 @@ def {{ .Rule.Name }}(**kwargs):
         srcs = [name_pb],
         deps = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        copts = ["-v"],
     )
 
 GRPC_DEPS = [
     "@com_github_grpc_grpc_swift//:SwiftGRPC",
 ]`)
-
-var swiftGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
-
-{{ .Rule.Name }}(
-    name = "person_{{ .Lang.Name }}_library",
-    flavor = "client",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
-)`)
 
 func makeSwift() *Language {
 	return &Language{
@@ -123,7 +116,7 @@ func makeSwift() *Language {
 				Kind:             "grpc",
 				Implementation:   swiftGrpcLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
-				BuildExample:     swiftGrpcLibraryExampleTemplate,
+				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`",
 				Attrs:            aspectProtoCompileAttrs,
 				Experimental:     true,

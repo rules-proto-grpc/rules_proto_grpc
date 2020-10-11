@@ -186,7 +186,6 @@ load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_library")
 
 swift_grpc_library(
     name = "person_swift_library",
-    flavor = "client",
     deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 ```
