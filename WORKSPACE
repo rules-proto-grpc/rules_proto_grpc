@@ -74,40 +74,30 @@ grpc_deps()
 
 
 #
-# C Sharp
+# C#
 #
 load("//csharp:repositories.bzl", "csharp_repos")
 csharp_repos()
+
+load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
+
+dotnet_repositories()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
     "core_register_sdk",
     "net_register_sdk",
     "dotnet_register_toolchains",
-    "dotnet_repositories",
+    "dotnet_repositories_nugets",
 )
 
-core_version = "v2.2.101"
+dotnet_register_toolchains()
+dotnet_repositories_nugets()
 
-dotnet_register_toolchains(
-    core_version = core_version,
-)
+core_register_sdk()
 
-core_register_sdk(
-    name = "core_sdk_{}".format(core_version),
-    core_version = core_version,
-)
-
-dotnet_repositories()
-
-load("//csharp/nuget:packages.bzl", nuget_packages = "packages")
-nuget_packages()
-
-load("//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
-nuget_protobuf_packages()
-
-load("//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
-nuget_grpc_packages()
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
+nuget_rules_proto_grpc_packages()
 
 
 #

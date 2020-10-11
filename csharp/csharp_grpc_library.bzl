@@ -18,8 +18,7 @@ def csharp_grpc_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@google.protobuf//:netstandard1.0_core",
-    "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.io.dll",
-    "@grpc.core//:netstandard1.5_core",
-    "@system.interactive.async//:netstandard2.0_core",
+    "@google.protobuf//:core",
+    "@grpc.core//:core",
+    "@io_bazel_rules_dotnet//dotnet/stdlib.core:libraryset",
 ]

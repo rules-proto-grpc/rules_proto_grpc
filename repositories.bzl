@@ -79,13 +79,13 @@ VERSIONS = {
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
     },
 
-    # C Sharp
+    # C#
     "io_bazel_rules_dotnet": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_dotnet",
-        "ref": "420a6b6cf49223bb372e734da8dc181d615ed01c", # June 26, 2019
-        "sha256": "e6e0e513d23c655a97f3700683aba924c578cb1458bcd42bbbc5e5c512f6d86b",
+        "ref": "98cc58708e0ea150a8737e7f83a74f0f41ececf8",
+        "sha256": "1b61f931391cd449fa60bb823c511db30d0567ecc2c6ef9d393bfba391c9a2da",
     },
 
     # Closure
@@ -394,7 +394,7 @@ def io_bazel_rules_closure(**kwargs):
 
 
 #
-# C Sharp
+# C#
 #
 def io_bazel_rules_dotnet(**kwargs):
     _generic_dependency("io_bazel_rules_dotnet", **kwargs)
