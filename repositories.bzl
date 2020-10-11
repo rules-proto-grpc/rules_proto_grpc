@@ -1,5 +1,4 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
@@ -7,12 +6,19 @@ MINIMUM_BAZEL_VERSION = "1.0.0"
 ENABLE_VERSION_NAGS = False
 VERSIONS = {
     # Core
+    "rules_proto": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "rules_proto",
+        "ref": "97d8af4dc474595af3900dd85cb3a29ad28cc313",
+        "sha256": "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+    },
     "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.11.0",
-        "sha256": "6d356a6279cc76d2d5c4dfa6541641264b59eae0bc96b852381361e3400d1f1c",
+        "ref": "v3.13.0",
+        "sha256": "9b4ee22c250fe31b16f1a24d61467e40780a3fbb9b91c3b65be2a376ed913a1a",
         "binds": [
             {
                 "name": "protobuf_clib",
@@ -24,12 +30,12 @@ VERSIONS = {
             },
         ],
     },
-    "com_github_grpc_grpc": { # When updating, also update Python requirements, Node.js requirements, Ruby requirements and C# requirements
+    "com_github_grpc_grpc": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.25.0",
-        "sha256": "ffbe61269160ea745e487f79b0fd06b6edd3d50c6d9123f053b5634737cf2f69",
+        "ref": "v1.32.0",
+        "sha256": "f880ebeb2ccf0e47721526c10dd97469200e40b5f101a0d9774eb69efa0bd07a",
     },
     "zlib": {
         "type": "http",
@@ -45,15 +51,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "94677401bc56ed5d756f50b441a6a5c7f735a6d4",
-        "sha256": "acbd018f11355ead06b250b352e59824fbb9e77f4874d250d230138231182c1c",
+        "ref": "c064f7008a30f307ea7516cf52358a653011f82b",
+        "sha256": "b9cf39396181e8d4434625a3533240469ca21242442745bd0b672731555823b8",
     },
     "build_bazel_rules_swift": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "0.13.0",
-        "sha256": "617e568aa8263c454f63362f5ab837038da710d646510b8f4a6760ff6361f714",
+        "ref": "0.14.0",
+        "sha256": "fa746a50f442ea4bcce78b747182107b4f0041f868b285714364ce4508d19979",
     },
     "build_bazel_apple_support": {
         "type": "github",
@@ -66,19 +72,10 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-skylib",
-        "ref": "1.0.2",
-        "sha256": "e5d90f0ec952883d56747b7604e2a15ee36e288bb556c3d0ed33e818a4d971f2",
+        "ref": "1.0.3",
+        "sha256": "7ac0fa88c0c4ad6f5b9ffb5e09ef81e235492c873659e6bb99efb89d11246bcb",
     },
 
-
-    # Misc
-    "com_github_bazelbuild_buildtools": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "buildtools",
-        "ref": "0.28.0",
-        "sha256": "5ec71602e9b458b01717fab1d37492154c1c12ea83f881c745dbd88e9b2098d8",
-    },
 
     # Android
     "build_bazel_rules_android": {
@@ -88,27 +85,14 @@ VERSIONS = {
         "ref": "9ab1134546364c6de84fc6c80b4202fdbebbbb35",
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
     },
-    "com_google_guava_guava_android": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.google.guava:guava:27.0.1-android",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "caf0955aed29a1e6d149f85cfb625a89161b5cf88e0e246552b7ffa358204e28",
-    },
-    "com_google_protobuf_javalite": {
-        "type": "github",
-        "org": "protocolbuffers",
-        "repo": "protobuf",
-        "ref": "fa08222434bc58d743e8c2cc716bc219c3d0f44e", # Jul 2019
-        "sha256": "b04b08d31208be32aafdf5842d1b6073d527a67ff8d2cf4b17ee8f22a5273758",
-    },
 
-    # C Sharp
+    # C#
     "io_bazel_rules_dotnet": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_dotnet",
-        "ref": "420a6b6cf49223bb372e734da8dc181d615ed01c", # June 26, 2019
-        "sha256": "e6e0e513d23c655a97f3700683aba924c578cb1458bcd42bbbc5e5c512f6d86b",
+        "ref": "98cc58708e0ea150a8737e7f83a74f0f41ececf8",
+        "sha256": "1b61f931391cd449fa60bb823c511db30d0567ecc2c6ef9d393bfba391c9a2da",
     },
 
     # Closure
@@ -116,8 +100,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_closure",
-        "ref": "db4683a2a1836ac8e265804ca5fa31852395185b",  # Non-version release commit until Maven HTTPS fix is merged to a release
-        "sha256": "6a900831c1eb8dbfc9d6879b5820fd614d4ea1db180eb5ff8aedcb75ee747c1f",
+        "ref": "0.11.0",
+        "sha256": "d66deed38a0bb20581c15664f0ab62270af5940786855c7adc3087b27168b529",
     },
 
     # D
@@ -125,14 +109,14 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_d",
-        "ref": "c4af62269c85dd5dcab0be119196baa5da4662b6", # June 28, 2019 + PR 30
-        "sha256": "ef380076035d42bfc8b9a5547092779792de4b0cf718b9623a7c1923b0cd23e6",
+        "ref": "064206527421aa6d1a4c11fbee5c93fd1619d99e",
+        "sha256": "e514c8be2d029563fec81eb1ecf3a931491cc5a02960cb3ab4331ac5c9124893",
     },
     "com_github_dcarp_protobuf_d": {
         "type": "http",
-        "urls": ["https://github.com/dcarp/protobuf-d/archive/v0.5.0.tar.gz"],
-        "sha256": "67a037dc29242f0d2f099746da67f40afff27c07f9ab48dda53d5847620db421",
-        "strip_prefix": "protobuf-d-0.5.0",
+        "urls": ["https://github.com/dcarp/protobuf-d/archive/v0.6.2.tar.gz"],
+        "sha256": "5509883fa042aa2e1c8c0e072e52c695fb01466f572bd828bcde06347b82d465",
+        "strip_prefix": "protobuf-d-0.6.2",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_dcarp_protobuf_d",
     },
 
@@ -141,24 +125,24 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.20.2",
-        "sha256": "c92e9be17b8f5d3a5cd4b0549a92c4835a37388b50f007c9cdec9f4ad7baf1f4",
+        "ref": "v0.24.3",
+        "sha256": "e37e7937141a1deea40ee2f06a7850fc520e2272de7aacd85ad8a2ace11d2e83",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.19.1",
-        "sha256": "d987004a72697334a095bbaa18d615804a28280201a50ed6c234c40ccc41e493",
+        "ref": "v0.21.1",
+        "sha256": "2423201f91471ea87925b81962258e27a22cd8ebb4fe355bf033dcf2ad668541",
     },
 
-    # gRPC gateway
+    # grpc-gateway
     "grpc_ecosystem_grpc_gateway": {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v1.12.1",
-        "sha256": "8a3ce7fa981dd21c0693fb2922457053a7c2e5a5687e22d9f19fe7c35520c35e",
+        "ref": "v1.15.0",
+        "sha256": "0630c364e47aa7f813dd92f1874c778e496251304719c65e959675b15f7c7f15",
     },
 
     # gRPC web
@@ -166,53 +150,25 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-web",
-        "ref": "1.0.7",
-        "sha256": "04460e28ffa80bfc797a8758da10ba40107347ef0af8e9cc065ade10398da4bb",
+        "ref": "1.2.1",
+        "sha256": "23cf98fbcb69743b8ba036728b56dfafb9e16b887a9735c12eafa7669862ec7b",
     },
 
     # Java
-    "rules_jvm_external": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_jvm_external",
-        "ref": "2.10",
-        "sha256": "5c1b22eab26807d5286ada7392d796cbc8425d3ef9a57d114b79c5f8ef8aca7c",
-    },
     "io_grpc_grpc_java": {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "62e8655f1bc4dfb474afbf332ca7571c1454e6ef",  # Non-version release commit on 1.24.x branch until Maven HTTPS fix is merged to a release
-        "sha256": "920977aa6d5beeefdf6668848589319c85d5cf3570329bab4d1a04425546e9a1",
-    },
-    "javax_annotation_javax_annotation_api": {
-        "type": "jvm_maven_import_external",
-        "artifact": "javax.annotation:javax.annotation-api:1.2",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "5909b396ca3a2be10d0eea32c74ef78d816e1b4ead21de1d78de1f890d033e04",
-        "licenses": ["reciprocal"], # CDDL License
-    },
-    "com_google_errorprone_error_prone_annotations": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.google.errorprone:error_prone_annotations:2.3.2",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "357cd6cfb067c969226c442451502aee13800a24e950fdfde77bcdb4565a668d",
-        "licenses": ["notice"], # Apache 2.0
-        "binds": [
-            {
-                "name": "error_prone_annotations",
-                "actual": "@com_google_errorprone_error_prone_annotations//jar",
-            },
-        ]
+        "ref": "v1.32.1",  # Bug in 1.32.0 release means 1.32.1 should be used
+        "sha256": "e5d691f80e7388035c34616a17830ec2687fb2ef5c5d9c9b79c605a7addb78ab",
     },
 
     # NodeJS
+    # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_nodejs",
-        "ref": "0.42.1",
-        "sha256": "7061f4782999ddfe5dd9a6ffa1945843ed52d5e144ae84e656693e92544e8d41",
+        "type": "http",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/2.2.0/rules_nodejs-2.2.0.tar.gz"],
+        "sha256": "4952ef879704ab4ad6729a29007e7094aef213ea79e9f2e94cbe1c9a753e63ef",
     },
 
     # Python
@@ -245,8 +201,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "3251240a915875fc1bb396a4c818472c46e52368",
-        "sha256": "06c32fde6db017ac60af099fa17d4dd10ee13811db3f13dad847f7c21a93276f",
+        "ref": "e64700dc9b8b3869bce4f77b78c33cb9d088cc4b",
+        "sha256": "eb384450d3b89332b386173233daa66a71e13cf63fe6d9ee51bd09fba0eb41f2",
     },
 
     # Scala
@@ -254,43 +210,29 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "19295567e10e80349560a437c79e8f859c2a5a79",
-        "sha256": "8f1001610e80972ee1e68ddca7a497e21b5b1c1f7ddfaf8f6e0557936daa4ad8",
+        "ref": "6280cdbdb03bbace36e5458ca73745b80a9fe467",
+        "sha256": "723ac4c2eda86c6a5d9cbe64bde36f17185e7205acf8064a2b8bb1aea2fbf831",
     },
     "com_github_scalapb_scalapb": {
         "type": "http",
-        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.9.4/scalapbc-0.9.4.zip"],
-        "sha256": "7fe84b201195cd437c4393d882d08cb6354f6f24804c2a782a5c3379a2beb48d",
-        "strip_prefix": "scalapbc-0.9.4",
+        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.9.7/scalapbc-0.9.7.zip"],  # Matches version in https://github.com/bazelbuild/rules_scala/blob/master/scala_proto/private/scala_proto_default_repositories.bzl
+        "sha256": "623f626e97cca119b2a12c4e1d9a3c85aab9f9fd6dcb8dc22b4f704b824da94e",
+        "strip_prefix": "scalapbc-0.9.7",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
-    },
-    "scalapb_runtime": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.thesamet.scalapb:scalapb-runtime_2.12:jar:0.9.4",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "151b9e353980bc266d4630ed1c2792712e109b02942211115afe97232b15f694",
-    },
-    "scalapb_runtime_grpc": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:jar:0.9.4",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "249467665168edf58690e81af17b1efb4fbdfd1c68f63b035c1ee5cbdc206eae",
-    },
-    "scalapb_lenses": {
-        "type": "jvm_maven_import_external",
-        "artifact": "com.thesamet.scalapb:lenses_2.12:jar:0.9.4",
-        "server_urls": ["https://repo.maven.apache.org/maven2"],
-        "artifact_sha256": "51a82005e64c15690aabfa1641047e584b98eb01157930639c83ecea55d32b42",
     },
 
     # Swift
-    "com_github_apple_swift_swift_protobuf": {
+    "com_github_grpc_grpc_swift_patched": {
         "type": "github",
-        "org": "apple",
-        "repo": "swift-protobuf",
-        "ref": "1.7.0",
-        "sha256": "33ab0124f9ebc31d44bd26f4ae797a70de89d0b693ac17a3eb726c5ba02fa43b",
-        "build_file": "@build_bazel_rules_swift//third_party:com_github_apple_swift_swift_protobuf/BUILD.overlay",
+        "org": "grpc",
+        "repo": "grpc-swift",
+        "ref": "0.11.0",
+        "sha256": "82e0a3d8fe2b9ee813b918e1a674f5a7c6dc024abe08109a347b686db6e57432",
+        "build_file": "@build_bazel_rules_swift//third_party:com_github_grpc_grpc_swift/BUILD.overlay",
+        "patch_cmds": [
+            "sed -i.bak -e 's/if fileDescriptor.services.count > 0/if true/g' Sources/protoc-gen-swiftgrpc/main.swift",  # Make grpc plugin always output files
+            "rm Sources/protoc-gen-swiftgrpc/main.swift.bak",  # Remove .bak file we had to create above due to mac OS sed weirdness
+        ],
     },
 }
 
@@ -323,6 +265,7 @@ def _generic_dependency(name, **kwargs):
                 strip_prefix = dep["repo"] + "-" + strippedRef,
                 urls = urls,
                 sha256 = sha256,
+                **{k: v for k, v in dep.items() if k in ["build_file", "patch_cmds"]}
             )
         elif existing_rules[name]["kind"] != "http_archive":
             if ENABLE_VERSION_NAGS:
@@ -350,19 +293,19 @@ def _generic_dependency(name, **kwargs):
                     name, existing_rules[name]["urls"], tuple(dep["urls"])
                 ))
 
-    elif dep["type"] == "jvm_maven_import_external":
+    elif dep["type"] == "local":
         if name not in existing_rules:
-            args = {k: v for k, v in dep.items() if k in ["artifact", "server_urls", "artifact_sha256"]}
-            jvm_maven_import_external(name = name, **args)
-        elif existing_rules[name]["kind"] != "jvm_import_external":
+            args = {k: v for k, v in dep.items() if k in ["path"]}
+            native.local_repository(name = name, **args)
+        elif existing_rules[name]["kind"] != "local_repository":
             if ENABLE_VERSION_NAGS:
-                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected jvm_import_external".format(
+                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected local_repository".format(
                     name, existing_rules[name]["kind"],
                 ))
-        elif existing_rules[name]["artifact_sha256"] != dep["artifact_sha256"]:
+        elif existing_rules[name]["path"] != dep["path"]:
             if ENABLE_VERSION_NAGS:
-                print("Dependency '{}' has already been declared with a different version. Found artifact_sha256={}, expected {}".format(
-                    name, existing_rules[name]["artifact_sha256"], dep["artifact_sha256"]
+                print("Dependency '{}' has already been declared with a different version. Found path={}, expected {}".format(
+                    name, existing_rules[name]["path"], dep["urls"]
                 ))
 
     else:
@@ -402,10 +345,9 @@ def rules_proto_grpc_toolchains():
 def rules_proto_grpc_repos(**kwargs):
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
 
-    bazel_version_repository(
-        name = "bazel_version"
-    )
+    bazel_version_repository(name = "bazel_version")
 
+    rules_proto(**kwargs)
     rules_python(**kwargs)
     build_bazel_rules_swift(**kwargs)
     build_bazel_apple_support(**kwargs)
@@ -415,6 +357,9 @@ def rules_proto_grpc_repos(**kwargs):
     com_google_protobuf(**kwargs)
     com_github_grpc_grpc(**kwargs)
     external_zlib(**kwargs)
+
+def rules_proto(**kwargs):
+    _generic_dependency("rules_proto", **kwargs)
 
 def rules_python(**kwargs):
     _generic_dependency("rules_python", **kwargs)
@@ -442,21 +387,12 @@ def external_zlib(**kwargs):
 def bazel_skylib(**kwargs):
     _generic_dependency("bazel_skylib", **kwargs)
 
-def com_github_bazelbuild_buildtools(**kwargs):
-    _generic_dependency("com_github_bazelbuild_buildtools", **kwargs)
-
 
 #
 # Android
 #
 def build_bazel_rules_android(**kwargs):
     _generic_dependency("build_bazel_rules_android", **kwargs)
-
-def com_google_guava_guava_android(**kwargs):
-    _generic_dependency("com_google_guava_guava_android", **kwargs)
-
-def com_google_protobuf_javalite(**kwargs):
-    _generic_dependency("com_google_protobuf_javalite", **kwargs)
 
 
 #
@@ -467,7 +403,7 @@ def io_bazel_rules_closure(**kwargs):
 
 
 #
-# C Sharp
+# C#
 #
 def io_bazel_rules_dotnet(**kwargs):
     _generic_dependency("io_bazel_rules_dotnet", **kwargs)
@@ -510,18 +446,8 @@ def com_github_grpc_grpc_web(**kwargs):
 #
 # Java
 #
-def rules_jvm_external(**kwargs):
-    _generic_dependency("rules_jvm_external", **kwargs)
-
 def io_grpc_grpc_java(**kwargs):
     _generic_dependency("io_grpc_grpc_java", **kwargs)
-
-def javax_annotation_javax_annotation_api(**kwargs):
-    # Use //stub:javax_annotation for neverlink=1 support.
-    _generic_dependency("javax_annotation_javax_annotation_api", **kwargs)
-
-def com_google_errorprone_error_prone_annotations(**kwargs):
-    _generic_dependency("com_google_errorprone_error_prone_annotations", **kwargs)
 
 
 #
@@ -564,18 +490,9 @@ def io_bazel_rules_scala(**kwargs):
 def com_github_scalapb_scalapb(**kwargs):
     _generic_dependency("com_github_scalapb_scalapb", **kwargs)
 
-def scalapb_runtime(**kwargs):
-    _generic_dependency("scalapb_runtime", **kwargs)
-
-def scalapb_runtime_grpc(**kwargs):
-    _generic_dependency("scalapb_runtime_grpc", **kwargs)
-
-def scalapb_lenses(**kwargs):
-    _generic_dependency("scalapb_lenses", **kwargs)
-
 
 #
 # Swift
 #
-def com_github_apple_swift_swift_protobuf(**kwargs):
-    _generic_dependency("com_github_apple_swift_swift_protobuf", **kwargs)
+def com_github_grpc_grpc_swift_patched(**kwargs):
+    _generic_dependency("com_github_grpc_grpc_swift_patched", **kwargs)

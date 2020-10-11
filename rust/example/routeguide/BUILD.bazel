@@ -16,6 +16,7 @@ rust_binary(
         "@rules_proto_grpc//rust/raze:log",
         "@rules_proto_grpc//rust/raze:serde_json",
     ] + GRPC_DEPS,
+    edition = '2018',
 )
 
 rust_binary(
@@ -28,4 +29,5 @@ rust_binary(
         "@rules_proto_grpc//rust/raze:log",
         "@rules_proto_grpc//rust/raze:serde_json",
     ] + GRPC_DEPS,
+    edition = '2018',
 )

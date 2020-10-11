@@ -177,7 +177,11 @@ func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
 rules_proto_grpc_toolchains()
-rules_proto_grpc_repos()`, relpath)
+rules_proto_grpc_repos()
+
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()`, relpath)
 
 	out.ln()
 	out.t(rule.WorkspaceExample, &ruleData{lang, rule})
@@ -371,8 +375,10 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		out.w("  main_%s:", ciPlatform)
 		out.w("    name: build & test all")
 		out.w("    platform: %s", ciPlatform)
+		out.w("    environment:")
+		out.w(`      CC: clang`)
 		if ciPlatform == "macos" {
-		    out.w("    build_flags:")
+			out.w("    build_flags:")
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 		}
 		out.w("    build_targets:")
@@ -412,6 +418,10 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				out.w("  %s_%s_%s:", lang.Name, rule.Name, ciPlatform)
 				out.w("    name: '%s: %s'", lang.Name, rule.Name)
 				out.w("    platform: %s", ciPlatform)
+				if ciPlatform == "macos" {
+					out.w("    build_flags:")
+					out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+				}
 				out.w("    build_targets:")
 				out.w(`      - "//..."`)
 				out.w("    working_directory: %s", exampleDir)
@@ -432,13 +442,20 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 	// Add test workspaces
 	for _, testWorkspace := range findTestWorkspaceNames(dir) {
 		for _, ciPlatform := range ciPlatforms {
-			if ciPlatform == "windows" && (testWorkspace == "python2_grpc" || testWorkspace == "python3_grpc" || testWorkspace == "python_deps") {
+			if ciPlatform == "windows" && (testWorkspace == "python3_grpc" || testWorkspace == "python_deps") {
 				continue // Don't run python grpc test workspaces on windows
 			}
 			out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
 			out.w("    name: 'test workspace: %s'", testWorkspace)
 			out.w("    platform: %s", ciPlatform)
+			if ciPlatform == "macos" {
+				out.w("    build_flags:")
+				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+			}
 			out.w("    test_flags:")
+			if ciPlatform == "macos" {
+				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+			}
 			out.w(`    - "--test_output=errors"`)
 			out.w("    test_targets:")
 			out.w(`      - "//..."`)

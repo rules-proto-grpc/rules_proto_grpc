@@ -3,16 +3,22 @@ tasks:
   main_ubuntu1804:
     name: build & test all
     platform: ubuntu1804
+    environment:
+      CC: clang
     build_targets:
     - "//closure/..."
     - "//cpp/..."
+    - "//csharp/..."
     - "//d/..."
     - "//go/..."
     - "//java/..."
+    - "//nodejs/..."
     - "//php/..."
     - "//python/..."
     - "//ruby/..."
     - "//rust/..."
+    - "//scala/..."
+    - "//swift/..."
     - "//github.com/gogo/protobuf/..."
     - "//github.com/grpc-ecosystem/grpc-gateway/..."
     - "//github.com/grpc/grpc-web/..."
@@ -20,56 +26,98 @@ tasks:
     - "--test_output=errors"
     test_targets:
     - "//example/routeguide:cpp_cpp"
+    - "//example/routeguide:cpp_csharp"
     - "//example/routeguide:cpp_go"
     - "//example/routeguide:cpp_java"
+    - "//example/routeguide:cpp_nodejs"
     - "//example/routeguide:cpp_python"
     - "//example/routeguide:cpp_ruby"
     - "//example/routeguide:cpp_rust"
+    - "//example/routeguide:csharp_cpp"
+    - "//example/routeguide:csharp_csharp"
+    - "//example/routeguide:csharp_go"
+    - "//example/routeguide:csharp_java"
+    - "//example/routeguide:csharp_nodejs"
+    - "//example/routeguide:csharp_python"
+    - "//example/routeguide:csharp_ruby"
+    - "//example/routeguide:csharp_rust"
     - "//example/routeguide:go_cpp"
+    - "//example/routeguide:go_csharp"
     - "//example/routeguide:go_go"
     - "//example/routeguide:go_java"
+    - "//example/routeguide:go_nodejs"
     - "//example/routeguide:go_python"
     - "//example/routeguide:go_ruby"
     - "//example/routeguide:go_rust"
     - "//example/routeguide:java_cpp"
+    - "//example/routeguide:java_csharp"
     - "//example/routeguide:java_go"
     - "//example/routeguide:java_java"
+    - "//example/routeguide:java_nodejs"
     - "//example/routeguide:java_python"
     - "//example/routeguide:java_ruby"
     - "//example/routeguide:java_rust"
+    - "//example/routeguide:nodejs_cpp"
+    - "//example/routeguide:nodejs_csharp"
+    - "//example/routeguide:nodejs_go"
+    - "//example/routeguide:nodejs_java"
+    - "//example/routeguide:nodejs_nodejs"
+    - "//example/routeguide:nodejs_python"
+    - "//example/routeguide:nodejs_ruby"
+    - "//example/routeguide:nodejs_rust"
     - "//example/routeguide:python_cpp"
+    - "//example/routeguide:python_csharp"
     - "//example/routeguide:python_go"
     - "//example/routeguide:python_java"
+    - "//example/routeguide:python_nodejs"
     - "//example/routeguide:python_python"
     - "//example/routeguide:python_ruby"
     - "//example/routeguide:python_rust"
     - "//example/routeguide:ruby_cpp"
+    - "//example/routeguide:ruby_csharp"
     - "//example/routeguide:ruby_go"
     - "//example/routeguide:ruby_java"
+    - "//example/routeguide:ruby_nodejs"
     - "//example/routeguide:ruby_python"
     - "//example/routeguide:ruby_ruby"
     - "//example/routeguide:ruby_rust"
     - "//example/routeguide:rust_cpp"
+    - "//example/routeguide:rust_csharp"
     - "//example/routeguide:rust_go"
     - "//example/routeguide:rust_java"
+    - "//example/routeguide:rust_nodejs"
     - "//example/routeguide:rust_python"
     - "//example/routeguide:rust_ruby"
     - "//example/routeguide:rust_rust"
+    - "//example/routeguide:scala_cpp"
+    - "//example/routeguide:scala_csharp"
+    - "//example/routeguide:scala_go"
+    - "//example/routeguide:scala_java"
+    - "//example/routeguide:scala_nodejs"
+    - "//example/routeguide:scala_python"
+    - "//example/routeguide:scala_ruby"
+    - "//example/routeguide:scala_rust"
   main_macos:
     name: build & test all
     platform: macos
+    environment:
+      CC: clang
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
     - "//closure/..."
     - "//cpp/..."
+    - "//csharp/..."
     - "//d/..."
     - "//go/..."
     - "//java/..."
+    - "//nodejs/..."
     - "//objc/..."
     - "//php/..."
     - "//python/..."
     - "//ruby/..."
+    - "//scala/..."
+    - "//swift/..."
     - "//github.com/gogo/protobuf/..."
     - "//github.com/grpc-ecosystem/grpc-gateway/..."
     - "//github.com/grpc/grpc-web/..."
@@ -78,30 +126,61 @@ tasks:
     - "--test_output=errors"
     test_targets:
     - "//example/routeguide:cpp_cpp"
+    - "//example/routeguide:cpp_csharp"
     - "//example/routeguide:cpp_go"
     - "//example/routeguide:cpp_java"
+    - "//example/routeguide:cpp_nodejs"
     - "//example/routeguide:cpp_python"
     - "//example/routeguide:cpp_ruby"
+    - "//example/routeguide:csharp_cpp"
+    - "//example/routeguide:csharp_csharp"
+    - "//example/routeguide:csharp_go"
+    - "//example/routeguide:csharp_java"
+    - "//example/routeguide:csharp_nodejs"
+    - "//example/routeguide:csharp_python"
+    - "//example/routeguide:csharp_ruby"
     - "//example/routeguide:go_cpp"
+    - "//example/routeguide:go_csharp"
     - "//example/routeguide:go_go"
     - "//example/routeguide:go_java"
+    - "//example/routeguide:go_nodejs"
     - "//example/routeguide:go_python"
     - "//example/routeguide:go_ruby"
     - "//example/routeguide:java_cpp"
+    - "//example/routeguide:java_csharp"
     - "//example/routeguide:java_go"
     - "//example/routeguide:java_java"
+    - "//example/routeguide:java_nodejs"
     - "//example/routeguide:java_python"
     - "//example/routeguide:java_ruby"
+    - "//example/routeguide:nodejs_cpp"
+    - "//example/routeguide:nodejs_csharp"
+    - "//example/routeguide:nodejs_go"
+    - "//example/routeguide:nodejs_java"
+    - "//example/routeguide:nodejs_nodejs"
+    - "//example/routeguide:nodejs_python"
+    - "//example/routeguide:nodejs_ruby"
     - "//example/routeguide:python_cpp"
+    - "//example/routeguide:python_csharp"
     - "//example/routeguide:python_go"
     - "//example/routeguide:python_java"
+    - "//example/routeguide:python_nodejs"
     - "//example/routeguide:python_python"
     - "//example/routeguide:python_ruby"
     - "//example/routeguide:ruby_cpp"
+    - "//example/routeguide:ruby_csharp"
     - "//example/routeguide:ruby_go"
     - "//example/routeguide:ruby_java"
+    - "//example/routeguide:ruby_nodejs"
     - "//example/routeguide:ruby_python"
     - "//example/routeguide:ruby_ruby"
+    - "//example/routeguide:scala_cpp"
+    - "//example/routeguide:scala_csharp"
+    - "//example/routeguide:scala_go"
+    - "//example/routeguide:scala_java"
+    - "//example/routeguide:scala_nodejs"
+    - "//example/routeguide:scala_python"
+    - "//example/routeguide:scala_ruby"
   android_android_proto_compile_ubuntu1804:
     name: 'android: android_proto_compile'
     platform: ubuntu1804
@@ -117,6 +196,8 @@ tasks:
   android_android_proto_compile_macos:
     name: 'android: android_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_compile
@@ -135,6 +216,8 @@ tasks:
   android_android_grpc_compile_macos:
     name: 'android: android_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_compile
@@ -153,6 +236,8 @@ tasks:
   android_android_proto_library_macos:
     name: 'android: android_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_library
@@ -171,6 +256,8 @@ tasks:
   android_android_grpc_library_macos:
     name: 'android: android_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
@@ -189,6 +276,8 @@ tasks:
   closure_closure_proto_compile_macos:
     name: 'closure: closure_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/closure/closure_proto_compile
@@ -207,6 +296,8 @@ tasks:
   closure_closure_proto_library_macos:
     name: 'closure: closure_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/closure/closure_proto_library
@@ -225,6 +316,8 @@ tasks:
   cpp_cpp_proto_compile_macos:
     name: 'cpp: cpp_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_compile
@@ -243,6 +336,8 @@ tasks:
   cpp_cpp_grpc_compile_macos:
     name: 'cpp: cpp_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_compile
@@ -261,6 +356,8 @@ tasks:
   cpp_cpp_proto_library_macos:
     name: 'cpp: cpp_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_library
@@ -279,6 +376,8 @@ tasks:
   cpp_cpp_grpc_library_macos:
     name: 'cpp: cpp_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_library
@@ -297,6 +396,8 @@ tasks:
   csharp_csharp_proto_compile_macos:
     name: 'csharp: csharp_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_compile
@@ -315,9 +416,51 @@ tasks:
   csharp_csharp_grpc_compile_macos:
     name: 'csharp: csharp_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
+  csharp_csharp_proto_library_ubuntu1804:
+    name: 'csharp: csharp_proto_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_proto_library
+  csharp_csharp_proto_library_windows:
+    name: 'csharp: csharp_proto_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_proto_library
+  csharp_csharp_proto_library_macos:
+    name: 'csharp: csharp_proto_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_proto_library
+  csharp_csharp_grpc_library_ubuntu1804:
+    name: 'csharp: csharp_grpc_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_grpc_library
+  csharp_csharp_grpc_library_windows:
+    name: 'csharp: csharp_grpc_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_grpc_library
+  csharp_csharp_grpc_library_macos:
+    name: 'csharp: csharp_grpc_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/csharp/csharp_grpc_library
   d_d_proto_compile_ubuntu1804:
     name: 'd: d_proto_compile'
     platform: ubuntu1804
@@ -345,6 +488,8 @@ tasks:
   go_go_proto_compile_macos:
     name: 'go: go_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_compile
@@ -363,6 +508,8 @@ tasks:
   go_go_grpc_compile_macos:
     name: 'go: go_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
@@ -381,6 +528,8 @@ tasks:
   go_go_proto_library_macos:
     name: 'go: go_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_library
@@ -393,6 +542,8 @@ tasks:
   go_go_grpc_library_macos:
     name: 'go: go_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
@@ -411,6 +562,8 @@ tasks:
   java_java_proto_compile_macos:
     name: 'java: java_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_compile
@@ -429,6 +582,8 @@ tasks:
   java_java_grpc_compile_macos:
     name: 'java: java_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_compile
@@ -447,6 +602,8 @@ tasks:
   java_java_proto_library_macos:
     name: 'java: java_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_library
@@ -465,6 +622,8 @@ tasks:
   java_java_grpc_library_macos:
     name: 'java: java_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_library
@@ -483,6 +642,8 @@ tasks:
   nodejs_nodejs_proto_compile_macos:
     name: 'nodejs: nodejs_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_proto_compile
@@ -501,24 +662,72 @@ tasks:
   nodejs_nodejs_grpc_compile_macos:
     name: 'nodejs: nodejs_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/nodejs/nodejs_grpc_compile
+  nodejs_nodejs_proto_library_ubuntu1804:
+    name: 'nodejs: nodejs_proto_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_proto_library
+  nodejs_nodejs_proto_library_windows:
+    name: 'nodejs: nodejs_proto_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_proto_library
+  nodejs_nodejs_proto_library_macos:
+    name: 'nodejs: nodejs_proto_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_proto_library
+  nodejs_nodejs_grpc_library_ubuntu1804:
+    name: 'nodejs: nodejs_grpc_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_grpc_library
+  nodejs_nodejs_grpc_library_windows:
+    name: 'nodejs: nodejs_grpc_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_grpc_library
+  nodejs_nodejs_grpc_library_macos:
+    name: 'nodejs: nodejs_grpc_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/nodejs/nodejs_grpc_library
   objc_objc_proto_compile_macos:
     name: 'objc: objc_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/objc/objc_proto_compile
   objc_objc_grpc_compile_macos:
     name: 'objc: objc_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/objc/objc_grpc_compile
   objc_objc_proto_library_macos:
     name: 'objc: objc_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/objc/objc_proto_library
@@ -537,6 +746,8 @@ tasks:
   php_php_proto_compile_macos:
     name: 'php: php_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/php/php_proto_compile
@@ -555,6 +766,8 @@ tasks:
   php_php_grpc_compile_macos:
     name: 'php: php_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/php/php_grpc_compile
@@ -573,6 +786,8 @@ tasks:
   python_python_proto_compile_macos:
     name: 'python: python_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_compile
@@ -591,6 +806,8 @@ tasks:
   python_python_grpc_compile_macos:
     name: 'python: python_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
@@ -603,6 +820,8 @@ tasks:
   python_python_grpclib_compile_macos:
     name: 'python: python_grpclib_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_compile
@@ -621,6 +840,8 @@ tasks:
   python_python_proto_library_macos:
     name: 'python: python_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_library
@@ -633,6 +854,8 @@ tasks:
   python_python_grpc_library_macos:
     name: 'python: python_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_library
@@ -645,6 +868,8 @@ tasks:
   python_python_grpclib_library_macos:
     name: 'python: python_grpclib_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_library
@@ -663,6 +888,8 @@ tasks:
   ruby_ruby_proto_compile_macos:
     name: 'ruby: ruby_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_compile
@@ -681,6 +908,8 @@ tasks:
   ruby_ruby_grpc_compile_macos:
     name: 'ruby: ruby_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_compile
@@ -693,6 +922,8 @@ tasks:
   ruby_ruby_proto_library_macos:
     name: 'ruby: ruby_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_library
@@ -705,6 +936,8 @@ tasks:
   ruby_ruby_grpc_library_macos:
     name: 'ruby: ruby_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_library
@@ -741,6 +974,8 @@ tasks:
   scala_scala_proto_compile_macos:
     name: 'scala: scala_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_compile
@@ -753,6 +988,8 @@ tasks:
   scala_scala_grpc_compile_macos:
     name: 'scala: scala_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_compile
@@ -765,6 +1002,8 @@ tasks:
   scala_scala_proto_library_macos:
     name: 'scala: scala_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_library
@@ -777,9 +1016,83 @@ tasks:
   scala_scala_grpc_library_macos:
     name: 'scala: scala_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_library
+  swift_swift_proto_compile_ubuntu1804:
+    name: 'swift: swift_proto_compile'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/swift/swift_proto_compile
+    environment:
+      CC: clang
+  swift_swift_proto_compile_macos:
+    name: 'swift: swift_proto_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/swift/swift_proto_compile
+    environment:
+      CC: clang
+  swift_swift_grpc_compile_ubuntu1804:
+    name: 'swift: swift_grpc_compile'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/swift/swift_grpc_compile
+    environment:
+      CC: clang
+  swift_swift_grpc_compile_macos:
+    name: 'swift: swift_grpc_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/swift/swift_grpc_compile
+    environment:
+      CC: clang
+  swift_swift_proto_library_ubuntu1804:
+    name: 'swift: swift_proto_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/swift/swift_proto_library
+    environment:
+      CC: clang
+  swift_swift_proto_library_macos:
+    name: 'swift: swift_proto_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/swift/swift_proto_library
+    environment:
+      CC: clang
+  swift_swift_grpc_library_ubuntu1804:
+    name: 'swift: swift_grpc_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/swift/swift_grpc_library
+    environment:
+      CC: clang
+  swift_swift_grpc_library_macos:
+    name: 'swift: swift_grpc_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/swift/swift_grpc_library
+    environment:
+      CC: clang
   gogo_gogo_proto_compile_ubuntu1804:
     name: 'gogo: gogo_proto_compile'
     platform: ubuntu1804
@@ -795,6 +1108,8 @@ tasks:
   gogo_gogo_proto_compile_macos:
     name: 'gogo: gogo_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_proto_compile
@@ -813,6 +1128,8 @@ tasks:
   gogo_gogo_grpc_compile_macos:
     name: 'gogo: gogo_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_grpc_compile
@@ -831,6 +1148,8 @@ tasks:
   gogo_gogo_proto_library_macos:
     name: 'gogo: gogo_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_proto_library
@@ -843,6 +1162,8 @@ tasks:
   gogo_gogo_grpc_library_macos:
     name: 'gogo: gogo_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogo_grpc_library
@@ -861,6 +1182,8 @@ tasks:
   gogo_gogofast_proto_compile_macos:
     name: 'gogo: gogofast_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_proto_compile
@@ -879,6 +1202,8 @@ tasks:
   gogo_gogofast_grpc_compile_macos:
     name: 'gogo: gogofast_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_grpc_compile
@@ -897,6 +1222,8 @@ tasks:
   gogo_gogofast_proto_library_macos:
     name: 'gogo: gogofast_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_proto_library
@@ -909,6 +1236,8 @@ tasks:
   gogo_gogofast_grpc_library_macos:
     name: 'gogo: gogofast_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofast_grpc_library
@@ -927,6 +1256,8 @@ tasks:
   gogo_gogofaster_proto_compile_macos:
     name: 'gogo: gogofaster_proto_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_proto_compile
@@ -945,6 +1276,8 @@ tasks:
   gogo_gogofaster_grpc_compile_macos:
     name: 'gogo: gogofaster_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_grpc_compile
@@ -963,6 +1296,8 @@ tasks:
   gogo_gogofaster_proto_library_macos:
     name: 'gogo: gogofaster_proto_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_proto_library
@@ -975,6 +1310,8 @@ tasks:
   gogo_gogofaster_grpc_library_macos:
     name: 'gogo: gogofaster_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/gogo/protobuf/gogofaster_grpc_library
@@ -993,6 +1330,8 @@ tasks:
   grpc-gateway_gateway_grpc_compile_macos:
     name: 'grpc-gateway: gateway_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_compile
@@ -1005,6 +1344,8 @@ tasks:
   grpc-gateway_gateway_swagger_compile_macos:
     name: 'grpc-gateway: gateway_swagger_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_swagger_compile
@@ -1017,6 +1358,8 @@ tasks:
   grpc-gateway_gateway_grpc_library_macos:
     name: 'grpc-gateway: gateway_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_library
@@ -1035,6 +1378,8 @@ tasks:
   grpc-web_closure_grpc_compile_macos:
     name: 'grpc-web: closure_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/closure_grpc_compile
@@ -1053,6 +1398,8 @@ tasks:
   grpc-web_commonjs_grpc_compile_macos:
     name: 'grpc-web: commonjs_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/commonjs_grpc_compile
@@ -1071,6 +1418,8 @@ tasks:
   grpc-web_commonjs_dts_grpc_compile_macos:
     name: 'grpc-web: commonjs_dts_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/commonjs_dts_grpc_compile
@@ -1089,6 +1438,8 @@ tasks:
   grpc-web_ts_grpc_compile_macos:
     name: 'grpc-web: ts_grpc_compile'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/ts_grpc_compile
@@ -1107,6 +1458,8 @@ tasks:
   grpc-web_closure_grpc_library_macos:
     name: 'grpc-web: closure_grpc_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
     working_directory: example/github.com/grpc/grpc-web/closure_grpc_library
@@ -1129,7 +1482,10 @@ tasks:
   test_workspace_absolute_strip_import_prefix_macos:
     name: 'test workspace: absolute_strip_import_prefix'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1153,7 +1509,10 @@ tasks:
   test_workspace_combined_strip_and_add_prefix_macos:
     name: 'test workspace: combined_strip_and_add_prefix'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1177,7 +1536,10 @@ tasks:
   test_workspace_empty_output_directory_macos:
     name: 'test workspace: empty_output_directory'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1201,7 +1563,10 @@ tasks:
   test_workspace_exclusions_macos:
     name: 'test workspace: exclusions'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1225,7 +1590,10 @@ tasks:
   test_workspace_generated_proto_macos:
     name: 'test workspace: generated_proto'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1249,7 +1617,10 @@ tasks:
   test_workspace_go_importpath_macos:
     name: 'test workspace: go_importpath'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1273,7 +1644,10 @@ tasks:
   test_workspace_import_prefix_macos:
     name: 'test workspace: import_prefix'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1297,27 +1671,14 @@ tasks:
   test_workspace_objc_capitalisation_macos:
     name: 'test workspace: objc_capitalisation'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
-  test_workspace_python2_grpc_ubuntu1804:
-    name: 'test workspace: python2_grpc'
-    platform: ubuntu1804
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python2_grpc
-  test_workspace_python2_grpc_macos:
-    name: 'test workspace: python2_grpc'
-    platform: macos
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python2_grpc
   test_workspace_python3_grpc_ubuntu1804:
     name: 'test workspace: python3_grpc'
     platform: ubuntu1804
@@ -1329,7 +1690,10 @@ tasks:
   test_workspace_python3_grpc_macos:
     name: 'test workspace: python3_grpc'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1353,7 +1717,10 @@ tasks:
   test_workspace_python_dashes_macos:
     name: 'test workspace: python_dashes'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1369,7 +1736,10 @@ tasks:
   test_workspace_python_deps_macos:
     name: 'test workspace: python_deps'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1393,7 +1763,10 @@ tasks:
   test_workspace_readme_http_archive_macos:
     name: 'test workspace: readme_http_archive'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1417,7 +1790,10 @@ tasks:
   test_workspace_relative_strip_import_prefix_macos:
     name: 'test workspace: relative_strip_import_prefix'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1441,7 +1817,10 @@ tasks:
   test_workspace_shared_proto_macos:
     name: 'test workspace: shared_proto'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."

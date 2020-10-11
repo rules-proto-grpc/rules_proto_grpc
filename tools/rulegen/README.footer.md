@@ -20,7 +20,7 @@ message Thing {
 ```
 
 
-**Step 2**: Write a `BAZEL.build` file with a native [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
+**Step 2**: Write a `BAZEL.build` file with a [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
 rule:
 
 ```python

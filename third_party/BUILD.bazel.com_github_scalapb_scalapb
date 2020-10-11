@@ -1,7 +1,1 @@
 exports_files(["bin/protoc-gen-scala", "bin/protoc-gen-scala.bat"])
-
-java_import(
-    name = "scala_library",
-    jars = ["lib/org.scala-lang.scala-library-2.11.12.jar"],
-    visibility = ["//visibility:public"],
-)

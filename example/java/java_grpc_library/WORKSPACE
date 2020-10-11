@@ -7,15 +7,14 @@ load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rul
 rules_proto_grpc_toolchains()
 rules_proto_grpc_repos()
 
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
+
 load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
 rules_proto_grpc_java_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()

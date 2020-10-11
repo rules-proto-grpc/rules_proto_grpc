@@ -1,10 +1,9 @@
-goog.provide('example.routeguide.grpc_web.client.run');
+goog.module('example.routeguide.grpc_web.client.run');
 
 /**
  * Main entry point
- * @export
  */
-example.routeguide.grpc_web.client.run = function() {
+exports = function() {
     const Client = goog.require('example.routeguide.grpc_web.Client');
     const client = new Client("localhost", null, null);
     client.run();

@@ -15,10 +15,9 @@ def java_proto_library(**kwargs):
         deps = PROTO_DEPS,
         exports = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
-    "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_java",
-    "@javax_annotation_javax_annotation_api//jar",
 ]

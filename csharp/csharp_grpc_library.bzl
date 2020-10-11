@@ -15,11 +15,11 @@ def csharp_grpc_library(**kwargs):
         srcs = [name_pb],
         deps = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
-    "@google.protobuf//:netstandard1.0_core",
-    "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.io.dll",
-    "@grpc.core//:netstandard1.5_core",
-    "@system.interactive.async//:netstandard2.0_core",
+    "@google.protobuf//:core",
+    "@grpc.core//:core",
+    "@io_bazel_rules_dotnet//dotnet/stdlib.core:netstandard.dll",
 ]

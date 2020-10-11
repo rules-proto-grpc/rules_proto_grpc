@@ -8,6 +8,10 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
 
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
+
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()`)
@@ -20,18 +24,17 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
 
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
+
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)`)
+grpc_java_repositories()`)
 
 var scalaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
@@ -53,12 +56,11 @@ var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString 
         deps = PROTO_DEPS,
         exports = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
-    "@scalapb_runtime//jar",
-    "@scalapb_lenses//jar",
-    "@com_google_protobuf//:protobuf_java",
+    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
 ]`)
 
 var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString + `
@@ -69,17 +71,12 @@ var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString +
         deps = GRPC_DEPS,
         exports = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
-    "@scalapb_runtime//jar",
-    "@scalapb_runtime_grpc//jar",
-    "@scalapb_lenses//jar",
-    "@com_google_protobuf//:protobuf_java",
-    "@com_google_guava_guava//jar",
-    "@io_grpc_grpc_java//core",
-    "@io_grpc_grpc_java//protobuf",
-    "@io_grpc_grpc_java//stub",
+    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
+    "@io_bazel_rules_scala//scala_proto:default_scalapb_grpc_dependencies",
 ]`)
 
 func makeScala() *Language {
@@ -90,7 +87,7 @@ func makeScala() *Language {
 		Notes: mustTemplate("Rules for generating Scala protobuf and gRPC `.jar` files and libraries using [ScalaPB](https://github.com/scalapb/ScalaPB). Libraries are created with `scala_library` from [rules_scala](https://github.com/bazelbuild/rules_scala)"),
 		Flags: commonLangFlags,
 		SkipDirectoriesMerge: true,
-		SkipTestPlatforms: []string{"all"}, // Disabled for 1.0 release until fixes are in place
+		SkipTestPlatforms: []string{},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "scala_proto_compile",

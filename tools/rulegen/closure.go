@@ -30,6 +30,7 @@ def {{ .Rule.Name }}(**kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
         suppress = [
             "JSC_LATE_PROVIDE_ERROR",
             "JSC_UNDEFINED_VARIABLE",

@@ -25,74 +25,18 @@ proto_plugin(
 )
 
 
-# Import extra libraries that cargo raze misses
-#
-# The grpcio crate emits cargo rules to use the generated static libs (cargo:rustc-link-lib), which are not used by
-# cargo raze. This process pulls out the static libraries that need to be linked, imports them to bazel and makes them
-# available for use by rust_grpc_library
-#
+# Bodge to allow linking against c-ares.
+# The @com_github_cares_cares//:ares rule will output a .lo file that the rust rules don't know how
+# to handle and therefore fails to link. See https://github.com/bazelbuild/rules_rust/issues/325
 genrule(
-    name = "extract_libraries",
-    exec_tools = [
-        "@raze__grpcio_sys__0_4_7//:grpcio_sys_out_dir_outputs.tar.gz", # Force exec cfg
-    ],
-    cmd = "tar -xf $(location @raze__grpcio_sys__0_4_7//:grpcio_sys_out_dir_outputs.tar.gz) --directory $(RULEDIR)",
-    outs = [
-        "libgrpc_wrap.a",
-        "build/libaddress_sorting.a",
-        "build/libgrpc.a",
-        "build/libgpr.a",
-        "build/third_party/zlib/libz.a",
-        "build/third_party/cares/cares/lib/libcares.a",
-        "build/third_party/boringssl/crypto/libcrypto.a",
-        "build/third_party/boringssl/ssl/libssl.a",
-    ],
+    name = "copy_ares",
+    srcs = ["@com_github_cares_cares//:ares"],
+    outs = ["libares.a"],
+    cmd = "cp $(location @com_github_cares_cares//:ares) \"$@\"",
 )
 
 cc_import(
-    name = "grpc_wrap",
-    static_library = "libgrpc_wrap.a",
-    visibility = ["//visibility:public"],
-)
-
-cc_import(
-    name = "address_sorting",
-    static_library = "build/libaddress_sorting.a",
-    visibility = ["//visibility:public"],
-)
-
-cc_import(
-    name = "grpc",
-    static_library = "build/libgrpc.a",
-    visibility = ["//visibility:public"],
-)
-
-cc_import(
-    name = "gpr",
-    static_library = "build/libgpr.a",
-    visibility = ["//visibility:public"],
-)
-
-cc_import(
-    name = "z",
-    static_library = "build/third_party/zlib/libz.a",
-    visibility = ["//visibility:public"],
-)
-
-cc_import(
-    name = "cares",
-    static_library = "build/third_party/cares/cares/lib/libcares.a",
-    visibility = ["//visibility:public"],
-)
-
-cc_import(
-    name = "crypto",
-    static_library = "build/third_party/boringssl/crypto/libcrypto.a",
-    visibility = ["//visibility:public"],
-)
-
-cc_import(
-    name = "ssl",
-    static_library = "build/third_party/boringssl/ssl/libssl.a",
+    name = "ares",
+    static_library = ":copy_ares",
     visibility = ["//visibility:public"],
 )

@@ -56,12 +56,7 @@ rules_proto_grpc_android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -99,12 +94,7 @@ rules_proto_grpc_android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
 
@@ -144,12 +134,7 @@ rules_proto_grpc_android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
 

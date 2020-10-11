@@ -10,11 +10,7 @@ rust_raze:
 	cd rust/raze; \
 	rm Cargo.lock; \
 	rm -r remote; \
-	cargo raze; \
-	mv BUILD.bazel BUILD.bazel.suffix; \
-	cat BUILD.bazel.prefix BUILD.bazel.suffix > BUILD.bazel; \
-	rm BUILD.bazel.suffix; \
-	sed -i 's#":protobuf_build_script",#":protobuf_build_script","@rules_proto_grpc//rust/raze:rustc",#' remote/protobuf-*.BUILD.bazel; \
+	cargo raze;
 
 
 # Run yarn to upgrade the nodejs dependencies
@@ -29,8 +25,18 @@ ruby_bundle_upgrade:
 	bundle install --path /tmp/ruby-bundle; \
 
 
+# Run pip-compile to upgrade python dependencies
+pip_compile:
+	pip-compile python/requirements.in --output-file python/requirements.txt
+
+
+# Run C# package regeneration
+csharp_regenerate_packages:
+	./csharp/nuget/regenerate_packages.sh
+
+
 # Run all language specific updates
-all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade
+all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade pip_compile csharp_regenerate_packages
 
 
 # A collection of targets that build routeguide clients

@@ -1,6 +1,6 @@
 # Rust rules
 
-Rules for generating Rust protobuf and gRPC `.rs` files and libraries using [rust-protobuf](https://github.com/stepancheg/rust-protobuf) and [grpc-rs](https://github.com/pingcap/grpc-rs). Libraries are created with `rust_library` from [rules_rust](https://github.com/bazelbuild/rules_rust). Due to upstream requirements, these rules require that the system has a valid GOPATH set.
+Rules for generating Rust protobuf and gRPC `.rs` files and libraries using [rust-protobuf](https://github.com/stepancheg/rust-protobuf) and [grpc-rs](https://github.com/tikv/grpc-rs). Libraries are created with `rust_library` from [rules_rust](https://github.com/bazelbuild/rules_rust).
 
 | Rule | Description |
 | ---: | :--- |
@@ -22,17 +22,17 @@ load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="ru
 
 rules_proto_grpc_rust_repos()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()
+rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -66,17 +66,17 @@ load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="ru
 
 rules_proto_grpc_rust_repos()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()
+rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -110,17 +110,17 @@ load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="ru
 
 rules_proto_grpc_rust_repos()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()
+rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -154,17 +154,17 @@ load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="ru
 
 rules_proto_grpc_rust_repos()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
 
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-
-rust_proto_repositories()
+rust_workspace()
 ```
 
 ### `BUILD.bazel`

@@ -1,24 +1,24 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo-200.png">
+    <img width="200" height="200" src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo.svg">
     <h1>Protobuf and gRPC rules for <a href="https://bazel.build">Bazel</a></h1>
 </div>
 
 <div align="center">
     <a href="https://bazel.build">Bazel</a> rules for building <a href="https://developers.google.com/protocol-buffers">Protocol Buffers</a> ± <a href="https://grpc.io/">gRPC</a> code and libraries from <a href="https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library">proto_library</a> targets<br><br>
     <a href="https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc"><img src="https://badge.buildkite.com/a0c88e60f21c85a8bb53a8c73175aebd64f50a0d4bacbdb038.svg?branch=master"></a>
+    <a href="https://github.com/rules-proto-grpc/rules_proto_grpc/actions"><img src="https://github.com/rules-proto-grpc/rules_proto_grpc/workflows/CI/badge.svg"></a>
     <img src="https://img.shields.io/github/license/rules-proto-grpc/rules_proto_grpc.svg">
 </div>
 
 
-## Announcements
+## Announcements 📣
 
-- **2019/12/19**: [Bazel 2.0.0 has been released](https://github.com/bazelbuild/bazel/releases/tag/2.0.0) and
-  [appears](https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc/builds/220) to be fully supported by
-  `rules_proto_grpc` version 1.0.0+. If you discover any issues with Bazel 2.x.x support, please open a new issue.
-
-- **2019/12/10**: Bazel 1.0.0+ support has been added in `rules_proto_grpc` version 1.0.0. There have been a number of changes
-  necessary to add support, which may require updating how you load `rules_proto_grpc` and its dependencies. Please see the
-  1.0.0 [release notes](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/1.0.0) for further information.
+- **2020/10/11**: [Version 2.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/2.0.0)
+  with updated Protobuf and gRPC versions. For some languages this may not be a drop-in replacement
+  and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
+  the above linked release notes for details or the language specific rules pages. If you discover
+  any problems with the new release, please
+  [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new).
 
 
 ## Contents:
@@ -102,6 +102,16 @@ Add `rules_proto_grpc` your `WORKSPACE` file:
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
+    name = "rules_proto",
+    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+    ],
+)
+
+http_archive(
     name = "rules_proto_grpc",
     urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/1.0.2.tar.gz"],
     sha256 = "5f0f2fc0199810c65a2de148a52ba0aff14d631d4e8202f41aff6a9d590a471b",
@@ -111,6 +121,10 @@ http_archive(
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
 rules_proto_grpc_toolchains()
 rules_proto_grpc_repos()
+
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
 ```
 
 It is recommended that you use the tagged releases for stable rules. Master is
@@ -139,8 +153,8 @@ required.
 | [C++](/cpp) | [cpp_grpc_library](/cpp#cpp_grpc_library) | Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies linked ([example](/example/cpp/cpp_grpc_library)) |
 | [C#](/csharp) | [csharp_proto_compile](/csharp#csharp_proto_compile) | Generates C# protobuf `.cs` artifacts ([example](/example/csharp/csharp_proto_compile)) |
 | [C#](/csharp) | [csharp_grpc_compile](/csharp#csharp_grpc_compile) | Generates C# protobuf+gRPC `.cs` artifacts ([example](/example/csharp/csharp_grpc_compile)) |
-| [C#](/csharp) | [csharp_proto_library](/csharp#csharp_proto_library) | Generates a C# protobuf library using `core_library` from `rules_dotnet` ([example](/example/csharp/csharp_proto_library)) |
-| [C#](/csharp) | [csharp_grpc_library](/csharp#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet` ([example](/example/csharp/csharp_grpc_library)) |
+| [C#](/csharp) | [csharp_proto_library](/csharp#csharp_proto_library) | Generates a C# protobuf library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_proto_library)) |
+| [C#](/csharp) | [csharp_grpc_library](/csharp#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_grpc_library)) |
 | [D](/d) | [d_proto_compile](/d#d_proto_compile) | Generates D protobuf `.d` artifacts ([example](/example/d/d_proto_compile)) |
 | [D](/d) | [d_proto_library](/d#d_proto_library) | Generates a D protobuf library using `d_library` from `rules_d` ([example](/example/d/d_proto_library)) |
 | [Go](/go) | [go_proto_compile](/go#go_proto_compile) | Generates Go protobuf `.go` artifacts ([example](/example/go/go_proto_compile)) |
@@ -153,6 +167,8 @@ required.
 | [Java](/java) | [java_grpc_library](/java#java_grpc_library) | Generates a Java protobuf+gRPC library using `java_library` ([example](/example/java/java_grpc_library)) |
 | [Node.js](/nodejs) | [nodejs_proto_compile](/nodejs#nodejs_proto_compile) | Generates Node.js protobuf `.js` artifacts ([example](/example/nodejs/nodejs_proto_compile)) |
 | [Node.js](/nodejs) | [nodejs_grpc_compile](/nodejs#nodejs_grpc_compile) | Generates Node.js protobuf+gRPC `.js` artifacts ([example](/example/nodejs/nodejs_grpc_compile)) |
+| [Node.js](/nodejs) | [nodejs_proto_library](/nodejs#nodejs_proto_library) | Generates a Node.js protobuf library using `js_library` from `rules_nodejs` ([example](/example/nodejs/nodejs_proto_library)) |
+| [Node.js](/nodejs) | [nodejs_grpc_library](/nodejs#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs` ([example](/example/nodejs/nodejs_grpc_library)) |
 | [Objective-C](/objc) | [objc_proto_compile](/objc#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` artifacts ([example](/example/objc/objc_proto_compile)) |
 | [Objective-C](/objc) | [objc_grpc_compile](/objc#objc_grpc_compile) | Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts ([example](/example/objc/objc_grpc_compile)) |
 | [Objective-C](/objc) | [objc_proto_library](/objc#objc_proto_library) | Generates an Objective-C protobuf library using `objc_library` ([example](/example/objc/objc_proto_library)) |
@@ -161,9 +177,9 @@ required.
 | [Python](/python) | [python_proto_compile](/python#python_proto_compile) | Generates Python protobuf `.py` artifacts ([example](/example/python/python_proto_compile)) |
 | [Python](/python) | [python_grpc_compile](/python#python_grpc_compile) | Generates Python protobuf+gRPC `.py` artifacts ([example](/example/python/python_grpc_compile)) |
 | [Python](/python) | [python_grpclib_compile](/python#python_grpclib_compile) | Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only) ([example](/example/python/python_grpclib_compile)) |
-| [Python](/python) | [python_proto_library](/python#python_proto_library) | Generates a Python protobuf library using `py_library` ([example](/example/python/python_proto_library)) |
-| [Python](/python) | [python_grpc_library](/python#python_grpc_library) | Generates a Python protobuf+gRPC library using `py_library` ([example](/example/python/python_grpc_library)) |
-| [Python](/python) | [python_grpclib_library](/python#python_grpclib_library) | Generates a Python protobuf+grpclib library using `py_library` (supports Python 3 only) ([example](/example/python/python_grpclib_library)) |
+| [Python](/python) | [python_proto_library](/python#python_proto_library) | Generates a Python protobuf library using `py_library` from `rules_python` ([example](/example/python/python_proto_library)) |
+| [Python](/python) | [python_grpc_library](/python#python_grpc_library) | Generates a Python protobuf+gRPC library using `py_library` from `rules_python` ([example](/example/python/python_grpc_library)) |
+| [Python](/python) | [python_grpclib_library](/python#python_grpclib_library) | Generates a Python protobuf+grpclib library using `py_library` from `rules_python` (supports Python 3 only) ([example](/example/python/python_grpclib_library)) |
 | [Ruby](/ruby) | [ruby_proto_compile](/ruby#ruby_proto_compile) | Generates Ruby protobuf `.rb` artifacts ([example](/example/ruby/ruby_proto_compile)) |
 | [Ruby](/ruby) | [ruby_grpc_compile](/ruby#ruby_grpc_compile) | Generates Ruby protobuf+gRPC `.rb` artifacts ([example](/example/ruby/ruby_grpc_compile)) |
 | [Ruby](/ruby) | [ruby_proto_library](/ruby#ruby_proto_library) | Generates a Ruby protobuf library using `ruby_library` from `rules_ruby` ([example](/example/ruby/ruby_proto_library)) |
@@ -178,8 +194,8 @@ required.
 | [Scala](/scala) | [scala_grpc_library](/scala#scala_grpc_library) | Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala` ([example](/example/scala/scala_grpc_library)) |
 | [Swift](/swift) | [swift_proto_compile](/swift#swift_proto_compile) | Generates Swift protobuf `.swift` artifacts ([example](/example/swift/swift_proto_compile)) |
 | [Swift](/swift) | [swift_grpc_compile](/swift#swift_grpc_compile) | Generates Swift protobuf+gRPC `.swift` artifacts ([example](/example/swift/swift_grpc_compile)) |
-| [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library ([example](/example/swift/swift_proto_library)) |
-| [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library ([example](/example/swift/swift_grpc_library)) |
+| [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library using `swift_library` from `rules_swift` ([example](/example/swift/swift_proto_library)) |
+| [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift` ([example](/example/swift/swift_grpc_library)) |
 | [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_proto_compile](/github.com/gogo/protobuf#gogo_proto_compile) | Generates gogo protobuf `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogo_proto_compile)) |
 | [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_grpc_compile](/github.com/gogo/protobuf#gogo_grpc_compile) | Generates gogo protobuf+gRPC `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogo_grpc_compile)) |
 | [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_proto_library](/github.com/gogo/protobuf#gogo_proto_library) | Generates a Go gogo protobuf library using `go_library` from `rules_go` ([example](/example/github.com/gogo/protobuf/gogo_proto_library)) |
@@ -223,7 +239,7 @@ message Thing {
 ```
 
 
-**Step 2**: Write a `BAZEL.build` file with a native [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
+**Step 2**: Write a `BAZEL.build` file with a [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
 rule:
 
 ```python

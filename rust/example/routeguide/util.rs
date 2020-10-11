@@ -20,7 +20,7 @@ use std::f64::consts::PI;
 
 use serde_json;
 
-use routeguide::*;
+use ::routeguide::*;
 
 pub fn load_db() -> Vec<Feature> {
     let data = include_str!("../../../example/proto/routeguide_features.json");

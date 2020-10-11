@@ -26,6 +26,10 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
 
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
+
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
@@ -68,18 +72,17 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
 
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
+
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -116,6 +119,10 @@ rules_proto_grpc_scala_repos()
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
+
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
 
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
@@ -159,18 +166,17 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
 
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
+
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 ```
 
 ### `BUILD.bazel`

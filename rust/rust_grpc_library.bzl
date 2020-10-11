@@ -24,18 +24,12 @@ def rust_grpc_library(**kwargs):
         srcs = [name_pb, name_lib],
         deps = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
     Label("//rust/raze:futures"),
     Label("//rust/raze:grpcio"),
     Label("//rust/raze:protobuf"),
-    Label("//rust:grpc_wrap"),
-    Label("//rust:address_sorting"),
-    Label("//rust:grpc"),
-    Label("//rust:gpr"),
-    Label("//rust:z"),
-    Label("//rust:cares"),
-    Label("//rust:crypto"),
-    Label("//rust:ssl"),
+    "@rules_proto_grpc//rust:ares",
 ]

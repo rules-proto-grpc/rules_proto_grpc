@@ -1,44 +1,56 @@
 package main
 
-var csharpLibraryWorkspaceTemplateString = `load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var csharpProtoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
+
+load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
+
+dotnet_repositories()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
     "core_register_sdk",
     "dotnet_register_toolchains",
-    "dotnet_repositories",
+    "dotnet_repositories_nugets",
 )
 
-core_version = "v2.1.503"
+dotnet_register_toolchains()
+dotnet_repositories_nugets()
 
-dotnet_register_toolchains(
-    core_version = core_version,
-)
+core_register_sdk()
 
-core_register_sdk(
-    name = "core_sdk",
-    core_version = core_version,
-)
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
+
+nuget_rules_proto_grpc_packages()`)
+
+var csharpGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+
+rules_proto_grpc_{{ .Lang.Name }}_repos()
+
+load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
 
 dotnet_repositories()
 
-load("@rules_proto_grpc//csharp/nuget:packages.bzl", nuget_packages = "packages")
+load(
+    "@io_bazel_rules_dotnet//dotnet:defs.bzl",
+    "core_register_sdk",
+    "dotnet_register_toolchains",
+    "dotnet_repositories_nugets",
+)
 
-nuget_packages()
+dotnet_register_toolchains()
+dotnet_repositories_nugets()
 
-load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
+core_register_sdk()
 
-nuget_protobuf_packages()`
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 
-var csharpProtoLibraryWorkspaceTemplate = mustTemplate(csharpLibraryWorkspaceTemplateString)
-
-var csharpGrpcLibraryWorkspaceTemplate = mustTemplate(csharpLibraryWorkspaceTemplateString + `
-
-load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
-
-nuget_grpc_packages()`)
+nuget_rules_proto_grpc_packages()`)
 
 var csharpLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_library")
@@ -59,11 +71,12 @@ var csharpProtoLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateStrin
         srcs = [name_pb],
         deps = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
-    "@google.protobuf//:netstandard1.0_core",
-    "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.io.dll",
+    "@google.protobuf//:core",
+    "@io_bazel_rules_dotnet//dotnet/stdlib.core:netstandard.dll",
 ]`)
 
 var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString + `
@@ -73,23 +86,14 @@ var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString
         srcs = [name_pb],
         deps = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
-    "@google.protobuf//:netstandard1.0_core",
-    "@io_bazel_rules_dotnet//dotnet/stdlib.core:system.io.dll",
-    "@grpc.core//:netstandard1.5_core",
-    "@system.interactive.async//:netstandard2.0_core",
+    "@google.protobuf//:core",
+    "@grpc.core//:core",
+    "@io_bazel_rules_dotnet//dotnet/stdlib.core:netstandard.dll",
 ]`)
-
-var csharpLibraryFlags = []*Flag{
-	{
-		Category:    "build",
-		Name:        "strategy",
-		Value:       "CoreCompile=standalone",
-		Description: "dotnet SDK desperately wants to find the HOME directory",
-	},
-}
 
 func makeCsharp() *Language {
 	return &Language{
@@ -97,74 +101,45 @@ func makeCsharp() *Language {
 		Name:  "csharp",
 		DisplayName: "C#",
 		Flags: commonLangFlags,
-		SkipTestPlatforms: []string{"all"},
-		Notes: mustTemplate(`Rules for generating C# protobuf and gRPC ` + "`.cs`" + ` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ` + "`core_library`" + ` from [rules_dotnet](https://github.com/bazelbuild/rules_dotnet)
-
-**NOTE 1**: the csharp_* rules currently don't play nicely with sandboxing.  You may see errors like:
-
-~~~python
-The user's home directory could not be determined. Set the 'DOTNET_CLI_HOME' environment variable to specify the directory to use.
-~~~
-
-or
-
-~~~python
-System.ArgumentNullException: Value cannot be null.
-Parameter name: path1
-   at System.IO.Path.Combine(String path1, String path2)
-   at Microsoft.DotNet.Configurer.CliFallbackFolderPathCalculator.get_DotnetUserProfileFolderPath()
-   at Microsoft.DotNet.Configurer.FirstTimeUseNoticeSentinel..ctor(CliFallbackFolderPathCalculator cliFallbackFolderPathCalculator)
-   at Microsoft.DotNet.Cli.Program.ProcessArgs(String[] args, ITelemetry telemetryClient)
-   at Microsoft.DotNet.Cli.Program.Main(String[] args)
-~~~
-
-To remedy this, use --strategy=CoreCompile=standalone for the csharp rules (put it in your .bazelrc file).
-
-**NOTE 2**: the csharp nuget dependency sha256 values do not appear stable.`),
+		Notes: mustTemplate(`Rules for generating C# protobuf and gRPC ` + "`.cs`" + ` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ` + "`core_library`" + ` from [rules_dotnet](https://github.com/bazelbuild/rules_dotnet)`),
 		Rules: []*Rule{
 			&Rule{
 				Name:             "csharp_proto_compile",
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
 				Plugins:          []string{"//csharp:csharp_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				WorkspaceExample: csharpProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates C# protobuf `.cs` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"},
 			},
 			&Rule{
 				Name:             "csharp_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
 				Plugins:          []string{"//csharp:csharp_plugin", "//csharp:grpc_csharp_plugin"},
-				WorkspaceExample: grpcWorkspaceTemplate,
+				WorkspaceExample: csharpGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates C# protobuf+gRPC `.cs` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"},
 			},
 			&Rule{
 				Name:             "csharp_proto_library",
 				Kind:             "proto",
 				Implementation:   csharpProtoLibraryRuleTemplate,
-				WorkspaceExample: csharpProtoLibraryWorkspaceTemplate,
+				WorkspaceExample: csharpProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a C# protobuf library using `core_library` from `rules_dotnet`",
+				Doc:              "Generates a C# protobuf library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll`",
 				Attrs:            aspectProtoCompileAttrs,
-				Flags:            csharpLibraryFlags,
-				Experimental:     true, // Due to failing dependencies
 			},
 			&Rule{
 				Name:             "csharp_grpc_library",
 				Kind:             "grpc",
 				Implementation:   csharpGrpcLibraryRuleTemplate,
-				WorkspaceExample: csharpGrpcLibraryWorkspaceTemplate,
+				WorkspaceExample: csharpGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`",
+				Doc:              "Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll`",
 				Attrs:            aspectProtoCompileAttrs,
-				Flags:            csharpLibraryFlags,
-				Experimental:     true, // Due to failing dependencies
 			},
 		},
 	}

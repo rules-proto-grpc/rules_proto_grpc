@@ -1,24 +1,24 @@
 <div align="center">
-    <img src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo-200.png">
+    <img width="200" height="200" src="https://raw.githubusercontent.com/rules-proto-grpc/rules_proto_grpc/master/internal/resources/logo.svg">
     <h1>Protobuf and gRPC rules for <a href="https://bazel.build">Bazel</a></h1>
 </div>
 
 <div align="center">
     <a href="https://bazel.build">Bazel</a> rules for building <a href="https://developers.google.com/protocol-buffers">Protocol Buffers</a> ± <a href="https://grpc.io/">gRPC</a> code and libraries from <a href="https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library">proto_library</a> targets<br><br>
     <a href="https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc"><img src="https://badge.buildkite.com/a0c88e60f21c85a8bb53a8c73175aebd64f50a0d4bacbdb038.svg?branch=master"></a>
+    <a href="https://github.com/rules-proto-grpc/rules_proto_grpc/actions"><img src="https://github.com/rules-proto-grpc/rules_proto_grpc/workflows/CI/badge.svg"></a>
     <img src="https://img.shields.io/github/license/rules-proto-grpc/rules_proto_grpc.svg">
 </div>
 
 
-## Announcements
+## Announcements 📣
 
-- **2019/12/19**: [Bazel 2.0.0 has been released](https://github.com/bazelbuild/bazel/releases/tag/2.0.0) and
-  [appears](https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc/builds/220) to be fully supported by
-  `rules_proto_grpc` version 1.0.0+. If you discover any issues with Bazel 2.x.x support, please open a new issue.
-
-- **2019/12/10**: Bazel 1.0.0+ support has been added in `rules_proto_grpc` version 1.0.0. There have been a number of changes
-  necessary to add support, which may require updating how you load `rules_proto_grpc` and its dependencies. Please see the
-  1.0.0 [release notes](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/1.0.0) for further information.
+- **2020/10/11**: [Version 2.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/2.0.0)
+  with updated Protobuf and gRPC versions. For some languages this may not be a drop-in replacement
+  and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
+  the above linked release notes for details or the language specific rules pages. If you discover
+  any problems with the new release, please
+  [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new).
 
 
 ## Contents:
@@ -78,7 +78,7 @@ flavours:
   gRPC `protoc` plugins for the language. e.g for C++ this provides the
   generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files.
 
-- `{lang}_proto_library`: Provides a language-specific library from the
+- `{lang}_grpc_library`: Provides a language-specific library from the
   generated Protobuf and gRPC `protoc` plugins outputs, along with necessary
   dependencies. e.g for C++ this provides a Bazel native `cpp_library` created
   from the generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h`
@@ -102,6 +102,16 @@ Add `rules_proto_grpc` your `WORKSPACE` file:
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
+    name = "rules_proto",
+    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+    ],
+)
+
+http_archive(
     name = "rules_proto_grpc",
     urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/{{ .Ref }}.tar.gz"],
     sha256 = "{{ .Sha256 }}",
@@ -111,6 +121,10 @@ http_archive(
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
 rules_proto_grpc_toolchains()
 rules_proto_grpc_repos()
+
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
 ```
 
 It is recommended that you use the tagged releases for stable rules. Master is

@@ -15,6 +15,7 @@ def cpp_grpc_library(**kwargs):
         deps = GRPC_DEPS,
         includes = [name_pb],
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

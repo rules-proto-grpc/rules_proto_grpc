@@ -1,0 +1,76 @@
+"""
+@generated
+cargo-raze crate build file.
+
+DO NOT EDIT! Replaced on runs of cargo-raze
+"""
+
+# buildifier: disable=load
+load(
+    "@io_bazel_rules_rust//rust:rust.bzl",
+    "rust_binary",
+    "rust_library",
+    "rust_test",
+)
+
+package(default_visibility = [
+    # Public for visibility by "@raze__crate__version//" targets.
+    #
+    # Prefer access through "//rust/raze", which limits external
+    # visibility to explicit Cargo.toml dependencies.
+    "//visibility:public",
+])
+
+licenses([
+    "notice",  # Apache-2.0 from expression "Apache-2.0"
+])
+
+# Generated targets
+# Unsupported target "build-script-build" with type "custom-build" omitted
+
+# buildifier: leave-alone
+rust_library(
+    name = "grpcio_sys",
+    crate_type = "lib",
+    deps = [
+        "@raze__libc__0_2_79//:libc",
+        ":grpc_bindings",
+    ],
+    srcs = glob(["**/*.rs"]),
+    crate_root = "src/lib.rs",
+    edition = "2018",
+    rustc_flags = [
+        "--cap-lints=allow",
+    ],
+    rustc_env = {
+        "BINDING_PATH": "../bindings/x86_64-unknown-linux-gnu-bindings.rs",
+    },
+    version = "0.6.0",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+    crate_features = [
+        "default",
+        "secure",
+    ],
+)
+
+# Additional content from ../../third_party/BUILD.bazel.raze_grpc_sys
+# Manually build the bindings and link to the Bazel built version of gPRC
+rust_library(
+    name = "grpc_bindings",
+    srcs = ["bindings/x86_64-unknown-linux-gnu-bindings.rs"],
+    rustc_flags = [
+        "--cap-lints=allow",
+    ],
+    deps = [":grpc_wrap"],
+)
+
+cc_library(
+    name = "grpc_wrap",
+    srcs = ["grpc_wrap.cc"],
+    deps = [
+        "@com_github_grpc_grpc//:grpc",
+    ],
+)

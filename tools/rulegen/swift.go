@@ -18,17 +18,54 @@ load(
 
 apple_support_dependencies()`)
 
-var swiftLibraryRuleTemplate = mustTemplate(`load("@build_bazel_rules_swift//swift:swift.bzl", _{{ .Lang.Name }}_{{ .Rule.Kind }}_library = "{{ .Lang.Name }}_{{ .Rule.Kind }}_library")
+var swiftProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-{{ .Lang.Name }}_{{ .Rule.Kind }}_library = _{{ .Lang.Name }}_{{ .Rule.Kind }}_library`)
+def {{ .Rule.Name }}(**kwargs):
+    # Compile protos
+    name_pb = kwargs.get("name") + "_pb"
+    {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
+        name = name_pb,
+        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+    )
 
-var swiftGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+    # Create {{ .Lang.Name }} library
+    swift_library(
+        name = kwargs.get("name"),
+        srcs = [name_pb],
+        deps = PROTO_DEPS,
+        visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
+    )
 
-{{ .Rule.Name }}(
-    name = "person_{{ .Lang.Name }}_library",
-    flavor = "client",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
-)`)
+PROTO_DEPS = [
+    "@com_github_apple_swift_protobuf//:SwiftProtobuf",
+]`)
+
+var swiftGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
+
+def {{ .Rule.Name }}(**kwargs):
+    # Compile protos
+    name_pb = kwargs.get("name") + "_pb"
+    {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
+        name = name_pb,
+        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+    )
+
+    # Create {{ .Lang.Name }} library
+    swift_library(
+        name = kwargs.get("name"),
+        srcs = [name_pb],
+        deps = GRPC_DEPS,
+        visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
+    )
+
+GRPC_DEPS = [
+    "@com_github_apple_swift_protobuf//:SwiftProtobuf",
+    "@com_github_grpc_grpc_swift//:SwiftGRPC",
+]`)
 
 func makeSwift() *Language {
 	return &Language{
@@ -44,7 +81,8 @@ func makeSwift() *Language {
 			Name:     "strategy=SwiftCompile",
 			Value:    "standalone",
 		}),
-		SkipTestPlatforms: []string{"all"},
+		SkipDirectoriesMerge: true,
+		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "swift_proto_compile",
@@ -55,36 +93,34 @@ func makeSwift() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf `.swift` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				Experimental:     true,
 			},
 			&Rule{
 				Name:             "swift_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//swift:grpc_swift_plugin"},
+				Plugins:          []string{"//swift:swift_plugin", "//swift:grpc_swift_plugin"},
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf+gRPC `.swift` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				Experimental:     true,
 			},
 			&Rule{
 				Name:             "swift_proto_library",
 				Kind:             "proto",
-				Implementation:   swiftLibraryRuleTemplate,
+				Implementation:   swiftProtoLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a Swift protobuf library",
+				Doc:              "Generates a Swift protobuf library using `swift_library` from `rules_swift`",
 				Attrs:            aspectProtoCompileAttrs,
 				Experimental:     true,
 			},
 			&Rule{
 				Name:             "swift_grpc_library",
 				Kind:             "grpc",
-				Implementation:   swiftLibraryRuleTemplate,
+				Implementation:   swiftGrpcLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
-				BuildExample:     swiftGrpcLibraryExampleTemplate,
-				Doc:              "Generates a Swift protobuf+gRPC library",
+				BuildExample:     protoLibraryExampleTemplate,
+				Doc:              "Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`",
 				Attrs:            aspectProtoCompileAttrs,
 				Experimental:     true,
 			},

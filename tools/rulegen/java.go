@@ -2,11 +2,7 @@ package main
 
 var javaProtoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
-rules_proto_grpc_{{ .Lang.Name }}_repos()
-
-load("@io_grpc_grpc_java//:repositories.bzl", "com_google_guava")
-
-com_google_guava()`)
+rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
 var javaGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
@@ -14,12 +10,7 @@ rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)`)
+grpc_java_repositories()`)
 
 var javaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
@@ -40,12 +31,11 @@ var javaProtoLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + 
         deps = PROTO_DEPS,
         exports = PROTO_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
-    "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_java",
-    "@javax_annotation_javax_annotation_api//jar",
 ]`)
 
 var javaGrpcLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
@@ -57,16 +47,18 @@ var javaGrpcLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
         runtime_deps = ["@io_grpc_grpc_java//netty"],
         exports = GRPC_DEPS,
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
-GRPC_DEPS = [
+GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/3ce5df3f78e8fd4a619a791914087dd4c0562835/compiler/BUILD.bazel#L21-L27
+    "@io_grpc_grpc_java//api",
+    "@io_grpc_grpc_java//protobuf",
+    "@io_grpc_grpc_java//stub",
+    "@io_grpc_grpc_java//stub:javax_annotation",
+    "@com_google_code_findbugs_jsr305//jar",
     "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_java",
     "@com_google_protobuf//:protobuf_java_util",
-    "@javax_annotation_javax_annotation_api//jar",
-    "@io_grpc_grpc_java//core",
-    "@io_grpc_grpc_java//protobuf",
-    "@io_grpc_grpc_java//stub",
 ]`)
 
 func makeJava() *Language {

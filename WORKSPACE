@@ -13,6 +13,10 @@ rules_proto_grpc_toolchains()
 load("//:repositories.bzl", "rules_proto_grpc_repos")
 rules_proto_grpc_repos()
 
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
+
 
 #
 # Android
@@ -21,36 +25,10 @@ load("//android:repositories.bzl", "android_repos")
 android_repos()
 
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
-grpc_java_repositories(
-    omit_bazel_skylib = True,
-    omit_com_google_protobuf = True,
-    omit_com_google_protobuf_javalite = True,
-    omit_net_zlib = True,
-)
+grpc_java_repositories()
 
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
 android_sdk_repository(name = "androidsdk")
-
-#
-# Android routeguide
-#
-load("//:repositories.bzl", "rules_jvm_external")
-rules_jvm_external()
-
-load("@rules_jvm_external//:defs.bzl", "maven_install")
-maven_install(
-    name = "maven_android",
-    artifacts = [
-        "com.android.support:appcompat-v7:28.0.0",
-    ],
-    # Fail if a checksum file for the artifact is missing in the repository.
-    # Falls through "SHA-1" and "MD5". Defaults to True.
-    fail_on_missing_checksum = False,
-    repositories = [
-        "https://maven.google.com",
-        "https://repo1.maven.org/maven2",
-    ],
-)
 
 
 #
@@ -69,64 +47,10 @@ rules_closure_toolchains()
 
 
 #
-# C++
-#
-load("//cpp:repositories.bzl", "cpp_repos")
-cpp_repos()
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-grpc_deps()
-
-
-#
-# C Sharp
-#
-load("//csharp:repositories.bzl", "csharp_repos")
-csharp_repos()
-
-load(
-    "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-    "core_register_sdk",
-    "net_register_sdk",
-    "dotnet_register_toolchains",
-    "dotnet_repositories",
-)
-
-core_version = "v2.2.101"
-
-dotnet_register_toolchains(
-    core_version = core_version,
-)
-
-core_register_sdk(
-    name = "core_sdk_{}".format(core_version),
-    core_version = core_version,
-)
-
-dotnet_repositories()
-
-load("//csharp/nuget:packages.bzl", nuget_packages = "packages")
-nuget_packages()
-
-load("//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
-nuget_protobuf_packages()
-
-load("//csharp/nuget:nuget.bzl", "nuget_grpc_packages")
-nuget_grpc_packages()
-
-
-#
-# D
-#
-load("//d:repositories.bzl", "d_repos")
-d_repos()
-
-load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
-d_repositories()
-
-
-#
 # Go
+#
+# Load rules_go before running grpc_deps in C++, since that depends on a very old version of
+# rules_go
 #
 load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 io_bazel_rules_go()
@@ -144,6 +68,59 @@ go_repos()
 
 
 #
+# C++
+#
+load("//cpp:repositories.bzl", "cpp_repos")
+cpp_repos()
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+grpc_deps()
+
+
+#
+# C#
+#
+load("//csharp:repositories.bzl", "csharp_repos")
+csharp_repos()
+
+load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
+
+dotnet_repositories()
+
+load(
+    "@io_bazel_rules_dotnet//dotnet:defs.bzl",
+    "core_register_sdk",
+    "net_register_sdk",
+    "dotnet_register_toolchains",
+    "dotnet_repositories_nugets",
+)
+
+dotnet_register_toolchains()
+dotnet_repositories_nugets()
+
+core_register_sdk()
+
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
+nuget_rules_proto_grpc_packages()
+
+
+#
+# D
+#
+load("//d:repositories.bzl", "d_repos")
+d_repos()
+
+load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
+d_repositories()
+
+
+#
+# Go
+#
+# Moved to above C++
+
+
+#
 # gRPC gateway
 #
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
@@ -152,6 +129,9 @@ go_register_toolchains()
 
 load("//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", "gateway_repos")
 gateway_repos()
+
+load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+go_repositories()
 
 
 #
@@ -176,7 +156,7 @@ java_repos()
 load("//nodejs:repositories.bzl", "nodejs_repos")
 nodejs_repos()
 
-load("@build_bazel_rules_nodejs//:defs.bzl", "yarn_install")
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 yarn_install(
     name = "nodejs_modules",
     package_json = "//nodejs:requirements/package.json",
@@ -206,27 +186,13 @@ python_repos()
 
 load("@rules_python//python:repositories.bzl", "py_repositories")
 py_repositories()
-load("@rules_python//python:pip.bzl", "pip_repositories")
-pip_repositories()
 
-load("@rules_python//python:pip.bzl", "pip_import")
-pip_import(
-    name = "rules_proto_grpc_py2_deps",
-    python_interpreter = "python",
-    requirements = "//python:requirements.txt",
-)
-
-load("@rules_proto_grpc_py2_deps//:requirements.bzl", pip2_install="pip_install")
-pip2_install()
-
-pip_import(
+load("@rules_python//python:pip.bzl", "pip_install")
+pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "//python:requirements.txt",
 )
-
-load("@rules_proto_grpc_py3_deps//:requirements.bzl", pip3_install="pip_install")
-pip3_install()
 
 
 #
@@ -255,11 +221,8 @@ rust_repos()
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
 rust_repositories()
 
-load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
-bazel_version(name = "bazel_version")
-
-load("@io_bazel_rules_rust//proto:repositories.bzl", "rust_proto_repositories")
-rust_proto_repositories()
+load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
+rust_workspace()
 
 
 #
@@ -332,12 +295,7 @@ apple_support_dependencies()
 #
 # Misc
 #
-load("//:repositories.bzl", "bazel_gazelle")
-bazel_gazelle()
-
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
-gazelle_dependencies()
-
+load("@bazel_gazelle//:deps.bzl", "go_repository")
 go_repository(
     name = "com_github_urfave_cli",
     commit = "44cb242eeb4d76cc813fdc69ba5c4b224677e799",

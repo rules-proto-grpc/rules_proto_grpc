@@ -12,7 +12,7 @@ load("//example/routeguide:routeguide_test.bzl", "routeguide_test", "routeguide_
 routeguide_test_matrix(
     clients = [
         "//cpp/example/routeguide:client",
-        "//csharp/example/routeguide:client",
+        "//csharp/example/routeguide:client.exe",
         "//go/example/routeguide/client",
         "//java/example/routeguide:client",
         "//nodejs/example/routeguide:client",
@@ -23,7 +23,7 @@ routeguide_test_matrix(
     ],
     servers = [
         "//cpp/example/routeguide:server",
-        "//csharp/example/routeguide:server",
+        "//csharp/example/routeguide:server.exe",
         "//go/example/routeguide/server",
         "//java/example/routeguide:server",
         "//nodejs/example/routeguide:server",
@@ -32,7 +32,7 @@ routeguide_test_matrix(
         "//rust/example/routeguide:server",
     ],
     tagmap = {
-        # Don't sandbox any csharp test and set to manual
-        "csharp": ["no-sandbox", "manual"],
+        # Apply per-lang tags
+        # "csharp": ["no-sandbox", "manual"],
     },
 )

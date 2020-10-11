@@ -8,12 +8,21 @@ proto_plugin(
         "binary",
     ],
     outputs = ["{protopath}_pb.js"],
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
     name = "grpc_nodejs_plugin",
-    outputs = ["{protopath}_grpc_pb.js"],
-    tool = "@com_github_grpc_grpc//src/compiler:grpc_node_plugin",
+    output_directory = True,
+    tool = "@nodejs_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
+    options = [
+        "grpc_js",
+    ],
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )

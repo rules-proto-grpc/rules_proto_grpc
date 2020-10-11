@@ -7,34 +7,30 @@ load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rul
 rules_proto_grpc_toolchains()
 rules_proto_grpc_repos()
 
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
+
 load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
 rules_proto_grpc_csharp_repos()
+
+load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
+
+dotnet_repositories()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
     "core_register_sdk",
     "dotnet_register_toolchains",
-    "dotnet_repositories",
+    "dotnet_repositories_nugets",
 )
 
-core_version = "v2.1.503"
+dotnet_register_toolchains()
+dotnet_repositories_nugets()
 
-dotnet_register_toolchains(
-    core_version = core_version,
-)
+core_register_sdk()
 
-core_register_sdk(
-    name = "core_sdk",
-    core_version = core_version,
-)
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 
-dotnet_repositories()
-
-load("@rules_proto_grpc//csharp/nuget:packages.bzl", nuget_packages = "packages")
-
-nuget_packages()
-
-load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_protobuf_packages")
-
-nuget_protobuf_packages()
+nuget_rules_proto_grpc_packages()

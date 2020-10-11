@@ -17,10 +17,13 @@ def go_grpc_library(**kwargs):
         deps = kwargs.get("go_deps", []) + GRPC_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
     "@com_github_golang_protobuf//proto:go_default_library",
+    "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
+    "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
     "@org_golang_google_grpc//:go_default_library",
     "@org_golang_google_grpc//codes:go_default_library",
     "@org_golang_google_grpc//status:go_default_library",

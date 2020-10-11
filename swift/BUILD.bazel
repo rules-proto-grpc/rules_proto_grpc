@@ -2,14 +2,20 @@ load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
     name = "swift_plugin",
-    outputs = [".pb.swift"],
+    outputs = ["{protopath}.pb.swift"],
     tool = "@com_github_apple_swift_protobuf//:ProtoCompilerPlugin",
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
     name = "grpc_swift_plugin",
-    outputs = [".grpc.swift"],
-    tool = "@com_github_grpc_grpc_swift//:protoc-gen-swiftgrpc",
+    outputs = ["{protopath}.grpc.swift"],
+    tool = "@com_github_grpc_grpc_swift_patched//:protoc-gen-swiftgrpc",
+    exclusions = [
+        "google/protobuf",
+    ],
     visibility = ["//visibility:public"],
 )

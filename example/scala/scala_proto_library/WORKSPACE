@@ -7,6 +7,10 @@ load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rul
 rules_proto_grpc_toolchains()
 rules_proto_grpc_repos()
 
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+rules_proto_dependencies()
+rules_proto_toolchains()
+
 load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
 
 rules_proto_grpc_scala_repos()
@@ -14,6 +18,10 @@ rules_proto_grpc_scala_repos()
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
+
+load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+
+scala_proto_repositories()
 
 load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 

@@ -1,39 +1,24 @@
-// Copyright 2017 PingCAP, Inc.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// See the License for the specific language governing permissions and
-// limitations under the License.
+// Copyright 2019 TiKV Project Authors. Licensed under Apache-2.0.
 
 #[macro_use]
 extern crate log;
 
-extern crate futures;
-extern crate grpcio;
-extern crate routeguide;
-extern crate serde_json;
-
 mod log_util;
 mod util;
 
-use std::sync::Arc;
+use std::sync::{Arc, Mutex};
 use std::time::Instant;
 
-use futures::*;
+use futures::prelude::*;
 use grpcio::*;
 
 use crate::util::*;
-use routeguide::*;
+use ::routeguide::*;
 
 #[derive(Clone)]
 struct RouteGuideService {
     data: Arc<Vec<Feature>>,
+    received_notes: Arc<Mutex<Vec<RouteNote>>>,
 }
 
 impl RouteGuide for RouteGuideService {
@@ -42,10 +27,11 @@ impl RouteGuide for RouteGuideService {
         let resp = data
             .iter()
             .find(|f| same_point(f.get_location(), &point))
-            .map_or_else(Feature::new, ToOwned::to_owned);
+            .map_or_else(Feature::default, ToOwned::to_owned);
         let f = sink
             .success(resp)
-            .map_err(|e| error!("failed to handle getfeature request: {:?}", e));
+            .map_err(|e: grpcio::Error| error!("failed to handle getfeature request: {:?}", e))
+            .map(|_| ());
         ctx.spawn(f)
     }
 
@@ -53,7 +39,7 @@ impl RouteGuide for RouteGuideService {
         &mut self,
         ctx: RpcContext<'_>,
         rect: Rectangle,
-        resp: ServerStreamingSink<Feature>,
+        mut resp: ServerStreamingSink<Feature>,
     ) {
         let data = self.data.clone();
         let features: Vec<_> = data
@@ -66,77 +52,76 @@ impl RouteGuide for RouteGuideService {
                 }
             })
             .collect();
-        let f = resp
-            .send_all(stream::iter_ok::<_, Error>(features))
-            .map(|_| {})
-            .map_err(|e| error!("failed to handle listfeatures request: {:?}", e));
+        let f = async move {
+            for feature in features {
+                resp.send(feature).await?;
+            }
+            resp.close().await?;
+            Ok(())
+        }
+        .map_err(|e: grpcio::Error| error!("failed to handle listfeatures request: {:?}", e))
+        .map(|_| ());
         ctx.spawn(f)
     }
 
     fn record_route(
         &mut self,
         ctx: RpcContext<'_>,
-        points: RequestStream<Point>,
+        mut points: RequestStream<Point>,
         resp: ClientStreamingSink<RouteSummary>,
     ) {
         let data = self.data.clone();
         let timer = Instant::now();
-        let f = points
-            .fold(
-                (None, 0f64, RouteSummary::new()),
-                move |(last, mut dis, mut summary), point| {
-                    let total_count = summary.get_point_count();
-                    summary.set_point_count(total_count + 1);
-                    let valid_point = data
-                        .iter()
-                        .any(|f| !f.get_name().is_empty() && same_point(f.get_location(), &point));
-                    if valid_point {
-                        let feature_count = summary.get_feature_count();
-                        summary.set_feature_count(feature_count + 1);
-                    }
-                    if let Some(last_point) = last {
-                        dis += cal_distance(&last_point, &point);
-                    }
-                    Ok((Some(point), dis, summary)) as Result<_>
-                },
-            )
-            .and_then(move |(_, dis, mut s)| {
-                s.set_distance(dis as i32);
-                let dur = timer.elapsed();
-                s.set_elapsed_time(dur.as_secs() as i32);
-                resp.success(s)
-            })
-            .map_err(|e| error!("failed to record route: {:?}", e));
+        let f = async move {
+            let mut summary = RouteSummary::default();
+            let mut last = None;
+            let mut dis = 0f64;
+            while let Some(point) = points.try_next().await? {
+                summary.point_count += 1;
+                let valid_point = data
+                    .iter()
+                    .any(|f| !f.get_name().is_empty() && same_point(f.get_location(), &point));
+                if valid_point {
+                    summary.feature_count += 1;
+                }
+                if let Some(last_point) = last {
+                    dis += cal_distance(&last_point, &point);
+                }
+                last = Some(point);
+            }
+            summary.distance = dis as i32;
+            let dur = timer.elapsed();
+            summary.elapsed_time = dur.as_secs() as i32;
+            resp.success(summary).await?;
+            Ok(())
+        }
+        .map_err(|e: grpcio::Error| error!("failed to record route: {:?}", e))
+        .map(|_| ());
         ctx.spawn(f)
     }
 
     fn route_chat(
         &mut self,
         ctx: RpcContext<'_>,
-        notes: RequestStream<RouteNote>,
-        resp: DuplexSink<RouteNote>,
+        mut notes: RequestStream<RouteNote>,
+        mut resp: DuplexSink<RouteNote>,
     ) {
-        let mut buffer: Vec<RouteNote> = Vec::new();
-        let to_send = notes
-            .map(move |note| {
-                let to_prints: Vec<_> = buffer
-                    .iter()
-                    .filter_map(|n| {
-                        if same_point(n.get_location(), note.get_location()) {
-                            Some((n.to_owned(), WriteFlags::default()))
-                        } else {
-                            None
-                        }
-                    })
-                    .collect();
-                buffer.push(note);
-                stream::iter_ok::<_, Error>(to_prints)
-            })
-            .flatten();
-        let f = resp
-            .send_all(to_send)
-            .map(|_| {})
-            .map_err(|e| error!("failed to route chat: {:?}", e));
+        let received_notes = self.received_notes.clone();
+        let f = async move {
+            while let Some(n) = notes.try_next().await? {
+                let buffer = received_notes.lock().unwrap().clone();
+                for note in buffer.iter() {
+                    if same_point(n.get_location(), note.get_location()) {
+                        resp.send((note.clone(), WriteFlags::default())).await?;
+                    }
+                }
+                received_notes.lock().unwrap().push(n);
+            }
+            resp.close().await?;
+            Ok(())
+        }
+        .map_err(|e: grpcio::Error| error!("failed to route chat: {:?}", e))
+        .map(|_| ());
         ctx.spawn(f)
     }
 }
@@ -146,21 +131,21 @@ fn main() {
     let env = Arc::new(Environment::new(2));
     let instance = RouteGuideService {
         data: Arc::new(load_db()),
+        received_notes: Arc::default(),
     };
-    let service = routeguide::create_route_guide(instance);
+    let service = create_route_guide(instance);
     let port = match std::env::var("SERVER_PORT") {
         Ok(val) => val.parse::<u16>().unwrap(),
         Err(_e) => 50051,
     };
     let mut server = ServerBuilder::new(env)
         .register_service(service)
-        .bind("0.0.0.0", port)
+        .bind("127.0.0.1", port)
         .build()
         .unwrap();
     server.start();
-    for &(ref host, port) in server.bind_addrs() {
+    for (host, port) in server.bind_addrs() {
         info!("listening on {}:{}", host, port);
     }
     loop { std::thread::park(); }
-    let _ = server.shutdown().wait();
 }

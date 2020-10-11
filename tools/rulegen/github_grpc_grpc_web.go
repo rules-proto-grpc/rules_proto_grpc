@@ -47,6 +47,7 @@ def {{ .Rule.Name }}(**kwargs):
             "CR_NOT_PROVIDED",
         ],
         visibility = kwargs.get("visibility"),
+        tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [

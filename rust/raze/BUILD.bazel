@@ -1,57 +1,98 @@
-# Provide resolved rustc locally, due to cargo raze not providing RUSTC env var
-# required by the protobuf crate.
-load(":rustc_resolve.bzl", "rustc_resolve")
-rustc_resolve(
-    name = "rustc"
-)
-
 """
+@generated
 cargo-raze workspace build file.
 
 DO NOT EDIT! Replaced on runs of cargo-raze
 """
+
 package(default_visibility = ["//visibility:public"])
 
 licenses([
-  "notice" # See individual crates for specific licenses
+    "notice",  # See individual crates for specific licenses
 ])
+
+# Aliased targets
 alias(
     name = "futures",
-    actual = "@raze__futures__0_1_28//:futures",
+    actual = "@raze__futures__0_3_6//:futures",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
+
 alias(
     name = "grpcio",
-    actual = "@raze__grpcio__0_4_6//:grpcio",
+    actual = "@raze__grpcio__0_6_0//:grpcio",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
+
 alias(
     name = "grpcio_compiler",
-    actual = "@raze__grpcio_compiler__0_4_3//:grpcio_compiler",
+    actual = "@raze__grpcio_compiler__0_6_0//:grpcio_compiler",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
+
 alias(
     # Extra aliased target, from raze configuration
     # N.B.: The exact form of this is subject to change.
     name = "cargo_bin_grpc_rust_plugin",
-    actual = "@raze__grpcio_compiler__0_4_3//:cargo_bin_grpc_rust_plugin",
+    actual = "@raze__grpcio_compiler__0_6_0//:cargo_bin_grpc_rust_plugin",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
+
 alias(
     name = "log",
     actual = "@raze__log__0_4_6//:log",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
+
 alias(
     name = "protobuf",
-    actual = "@raze__protobuf__2_8_1//:protobuf",
+    actual = "@raze__protobuf__2_17_0//:protobuf",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
+
 alias(
     name = "protobuf_codegen",
-    actual = "@raze__protobuf_codegen__2_8_1//:protobuf_codegen",
+    actual = "@raze__protobuf_codegen__2_17_0//:protobuf_codegen",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
+
 alias(
     # Extra aliased target, from raze configuration
     # N.B.: The exact form of this is subject to change.
     name = "cargo_bin_protoc_gen_rust",
-    actual = "@raze__protobuf_codegen__2_8_1//:cargo_bin_protoc_gen_rust",
+    actual = "@raze__protobuf_codegen__2_17_0//:cargo_bin_protoc_gen_rust",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
+
 alias(
     name = "serde_json",
-    actual = "@raze__serde_json__1_0_42//:serde_json",
+    actual = "@raze__serde_json__1_0_58//:serde_json",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
 )
