@@ -32,7 +32,7 @@ routeguide_test_matrix(
         "//rust/example/routeguide:server",
     ],
     tagmap = {
-        # Don't sandbox any csharp test and set to manual
-        "csharp": ["no-sandbox", "manual"],
+        # Apply per-lang tags
+        # "csharp": ["no-sandbox", "manual"],
     },
 )
