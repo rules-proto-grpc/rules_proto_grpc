@@ -13,8 +13,8 @@ def objc_proto_library(**kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS,
         includes = [name_pb],
-        visibility = kwargs.get("visibility"),
         copts = kwargs.get("copts"),
+        visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 

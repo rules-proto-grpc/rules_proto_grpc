@@ -17,6 +17,7 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
         srcs = [name_pb],
         deps = PROTO_DEPS,
         includes = [name_pb],
+        copts = kwargs.get("copts"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -32,6 +33,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
         srcs = [name_pb],
         deps = GRPC_DEPS,
         includes = [name_pb],
+        copts = kwargs.get("copts"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
