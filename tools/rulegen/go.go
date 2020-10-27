@@ -169,7 +169,6 @@ func makeGo() *Language {
 				BuildExample:     goGrpcLibraryExampleTemplate,
 				Doc:              "Generates a Go protobuf+gRPC library using `go_library` from `rules_go`",
 				Attrs:            append(aspectProtoCompileAttrs, goProtoAttrs...),
-				SkipTestPlatforms: []string{"windows"}, // gRPC go lib rules fail on windows due to bad path
 			},
 		},
 	}

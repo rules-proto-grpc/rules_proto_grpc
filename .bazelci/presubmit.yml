@@ -539,6 +539,12 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
+  go_go_grpc_library_windows:
+    name: 'go: go_grpc_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/go/go_grpc_library
   go_go_grpc_library_macos:
     name: 'go: go_grpc_library'
     platform: macos
