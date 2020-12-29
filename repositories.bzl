@@ -17,8 +17,8 @@ VERSIONS = {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.13.0",
-        "sha256": "9b4ee22c250fe31b16f1a24d61467e40780a3fbb9b91c3b65be2a376ed913a1a",
+        "ref": "v3.14.0",
+        "sha256": "d0f5f605d0d656007ce6c8b5a82df3037e1d8fe8b121ed42e536f569dec16113",
         "binds": [
             {
                 "name": "protobuf_clib",
@@ -34,8 +34,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.32.0",
-        "sha256": "f880ebeb2ccf0e47721526c10dd97469200e40b5f101a0d9774eb69efa0bd07a",
+        "ref": "v1.34.0",
+        "sha256": "7372a881122cd85a7224435a1d58bc5e11c88d4fb98a64b83f36f3d1c2f16d39",
     },
     "zlib": {
         "type": "http",

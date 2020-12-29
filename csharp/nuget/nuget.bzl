@@ -644,8 +644,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "google.protobuf",
         package = "google.protobuf",
-        version = "3.13.0",
-        sha256 = "3a2c760749cc086fc2a095bb06a8d2d3e799365d916060c5eb5a608843491154",
+        version = "3.14.0",
+        sha256 = "cbf79fe9b04cd8742a255f88e5961a3d075bfa6367012ce88e056e6e0c8dc523",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Google.Protobuf.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Google.Protobuf.dll",
@@ -875,8 +875,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.core.api",
         package = "grpc.core.api",
-        version = "2.32.0",
-        sha256 = "7af20fcd3487973cda00965d567861c0fba30a274f12dbc5054d41e3eaa040fa",
+        version = "2.34.0",
+        sha256 = "abb9ac6e5ee7d46dafb0dbf83ed47f504d328359dfad6393517f4a6822da6d33",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
@@ -1064,8 +1064,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.core",
         package = "grpc.core",
-        version = "2.32.0",
-        sha256 = "a8b7cee7006398a2f70e559b01c48225c13c4a343a62e1ff8171f27b83a8ee4c",
+        version = "2.34.0",
+        sha256 = "0762a788c57c8f9db64de8390f0a6e77d906a773eccb4a97989e4af663832904",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.dll",
@@ -1454,8 +1454,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc",
         package = "grpc",
-        version = "2.32.0",
-        sha256 = "2570ae17fcca9a43595b961811ead65f216c9cba19646ed8ea3bbb498ac6d728",
+        version = "2.34.0",
+        sha256 = "f2f574e3cf5c767eb8a578662f74b24e5bfda51fcc95b973008f0a6c5b7cee56",
         core_deps = {
             "netcoreapp2.0": [
                "@grpc.core//:netcoreapp2.0_core",
