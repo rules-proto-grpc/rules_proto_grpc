@@ -17,7 +17,7 @@ Generates a Scala protobuf `.jar` artifact
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
 
 rules_proto_grpc_scala_repos()
@@ -37,7 +37,7 @@ scala_register_toolchains()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//scala:defs.bzl", "scala_proto_compile")
 
 scala_proto_compile(
@@ -63,7 +63,7 @@ Generates Scala protobuf+gRPC `.jar` artifacts
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
 
 rules_proto_grpc_scala_repos()
@@ -87,7 +87,7 @@ grpc_java_repositories()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_compile")
 
 scala_grpc_compile(
@@ -111,7 +111,7 @@ Generates a Scala protobuf library using `scala_library` from `rules_scala`
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
 
 rules_proto_grpc_scala_repos()
@@ -131,7 +131,7 @@ scala_register_toolchains()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//scala:defs.bzl", "scala_proto_library")
 
 scala_proto_library(
@@ -157,7 +157,7 @@ Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
 
 rules_proto_grpc_scala_repos()
@@ -181,7 +181,7 @@ grpc_java_repositories()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_library")
 
 scala_grpc_library(

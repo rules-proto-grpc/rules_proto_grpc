@@ -278,7 +278,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("### `WORKSPACE`")
 		out.ln()
 
-		out.w("```skylark")
+		out.w("```starlark")
 		out.t(rule.WorkspaceExample, &ruleData{lang, rule})
 		out.w("```")
 		out.ln()
@@ -286,7 +286,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("### `BUILD.bazel`")
 		out.ln()
 
-		out.w("```skylark")
+		out.w("```starlark")
 		out.t(rule.BuildExample, &ruleData{lang, rule})
 		out.w("```")
 		out.ln()

@@ -14,7 +14,7 @@ Generates grpc-gateway `.go` files
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
@@ -42,7 +42,7 @@ go_repositories()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_compile")
 
 gateway_grpc_compile(
@@ -66,7 +66,7 @@ Generates grpc-gateway swagger `.json` files
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
@@ -94,7 +94,7 @@ go_repositories()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_swagger_compile")
 
 gateway_swagger_compile(
@@ -118,7 +118,7 @@ Generates grpc-gateway library files
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
@@ -146,7 +146,7 @@ go_repositories()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_library")
 
 gateway_grpc_library(
