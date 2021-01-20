@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"path/filepath"
 	"regexp"
 	"sort"
 	"strings"
@@ -144,12 +145,12 @@ func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
 	out.t(rule.Implementation, &ruleData{lang, rule})
 	out.ln()
-	out.MustWrite(path.Join(dir, lang.Dir, rule.Name+".bzl"))
+	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name+".bzl"))
 }
 
 func mustWriteLanguageExamples(dir string, lang *Language) {
 	for _, rule := range lang.Rules {
-		exampleDir := path.Join(dir, "example", lang.Dir, rule.Name)
+		exampleDir := filepath.Join(dir, "example", lang.Dir, rule.Name)
 		os.MkdirAll(exampleDir, os.ModePerm)
 		mustWriteLanguageExampleWorkspace(exampleDir, lang, rule)
 		mustWriteLanguageExampleBuildFile(exampleDir, lang, rule)
@@ -179,14 +180,14 @@ rules_proto_toolchains()`, relpath)
 	out.ln()
 	out.t(rule.WorkspaceExample, &ruleData{lang, rule})
 	out.ln()
-	out.MustWrite(path.Join(dir, "WORKSPACE"))
+	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
 }
 
 func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
 	out.t(rule.BuildExample, &ruleData{lang, rule})
 	out.ln()
-	out.MustWrite(path.Join(dir, "BUILD.bazel"))
+	out.MustWrite(filepath.Join(dir, "BUILD.bazel"))
 }
 
 func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule) {
@@ -208,7 +209,7 @@ func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule)
 		out.w("%s --%s=%s", f.Category, f.Name, f.Value)
 	}
 	out.ln()
-	out.MustWrite(path.Join(dir, ".bazelrc"))
+	out.MustWrite(filepath.Join(dir, ".bazelrc"))
 }
 
 func mustWriteLanguageDefs(dir string, lang *Language) {
@@ -237,7 +238,7 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 
 		out.ln()
 	}
-	out.MustWrite(path.Join(dir, lang.Dir, "defs.bzl"))
+	out.MustWrite(filepath.Join(dir, lang.Dir, "defs.bzl"))
 }
 
 func mustWriteLanguageReadme(dir string, lang *Language) {
@@ -309,7 +310,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 	}
 
-	out.MustWrite(path.Join(dir, lang.Dir, "README.md"))
+	out.MustWrite(filepath.Join(dir, lang.Dir, "README.md"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
@@ -335,7 +336,7 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 
 	out.tpl(footer, data)
 
-	out.MustWrite(path.Join(dir, "README.md"))
+	out.MustWrite(filepath.Join(dir, "README.md"))
 }
 
 func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []string, availableTestsPath string) {
@@ -451,7 +452,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 	}
 
 	out.ln()
-	out.MustWrite(path.Join(dir, ".bazelci", "presubmit.yml"))
+	out.MustWrite(filepath.Join(dir, ".bazelci", "presubmit.yml"))
 }
 
 func mustWriteExamplesMakefile(dir string, languages []*Language) {
@@ -491,7 +492,7 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 	out.w("all_examples: %s", strings.Join(allNames, " "))
 
 	out.ln()
-	out.MustWrite(path.Join(dir, "example", "Makefile.mk"))
+	out.MustWrite(filepath.Join(dir, "example", "Makefile.mk"))
 }
 
 func mustWriteTestWorkspacesMakefile(dir string) {
@@ -514,7 +515,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 	out.w("all_test_workspaces: %s", strings.Join(allNames, " "))
 
 	out.ln()
-	out.MustWrite(path.Join(dir, "test_workspaces", "Makefile.mk"))
+	out.MustWrite(filepath.Join(dir, "test_workspaces", "Makefile.mk"))
 }
 
 func mustWriteHttpArchiveTestWorkspace(dir, ref, sha256 string) {
@@ -528,11 +529,11 @@ http_archive(
     strip_prefix = "rules_proto_grpc-%s",
 )
 `, ref, sha256, ref)
-	out.MustWrite(path.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
+	out.MustWrite(filepath.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
 }
 
 func findTestWorkspaceNames(dir string) []string {
-	files, err := ioutil.ReadDir(path.Join(dir, "test_workspaces"))
+	files, err := ioutil.ReadDir(filepath.Join(dir, "test_workspaces"))
 	if err != nil {
 		log.Fatal(err)
 	}
