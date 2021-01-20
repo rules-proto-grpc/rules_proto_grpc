@@ -17,7 +17,7 @@ Generates a Java protobuf srcjar artifact
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
 rules_proto_grpc_java_repos()
@@ -25,7 +25,7 @@ rules_proto_grpc_java_repos()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//java:defs.bzl", "java_proto_compile")
 
 java_proto_compile(
@@ -49,7 +49,7 @@ Generates a Java protobuf+gRPC srcjar artifact
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
 rules_proto_grpc_java_repos()
@@ -57,7 +57,7 @@ rules_proto_grpc_java_repos()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//java:defs.bzl", "java_grpc_compile")
 
 java_grpc_compile(
@@ -81,7 +81,7 @@ Generates a Java protobuf library using `java_library`
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
 rules_proto_grpc_java_repos()
@@ -89,7 +89,7 @@ rules_proto_grpc_java_repos()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//java:defs.bzl", "java_proto_library")
 
 java_proto_library(
@@ -113,7 +113,7 @@ Generates a Java protobuf+gRPC library using `java_library`
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos="java_repos")
 
 rules_proto_grpc_java_repos()
@@ -125,7 +125,7 @@ grpc_java_repositories()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
 
 java_grpc_library(

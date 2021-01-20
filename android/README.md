@@ -17,7 +17,7 @@ Generates an Android protobuf `.jar` artifact
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
 
 rules_proto_grpc_android_repos()
@@ -25,7 +25,7 @@ rules_proto_grpc_android_repos()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//android:defs.bzl", "android_proto_compile")
 
 android_proto_compile(
@@ -49,7 +49,7 @@ Generates Android protobuf+gRPC `.jar` artifacts
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
 
 rules_proto_grpc_android_repos()
@@ -61,7 +61,7 @@ grpc_java_repositories()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//android:defs.bzl", "android_grpc_compile")
 
 android_grpc_compile(
@@ -85,7 +85,7 @@ Generates an Android protobuf library using `android_library` from `rules_androi
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 # The set of dependencies loaded here is excessive for android proto alone
 # (but simplifies our setup)
 load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
@@ -103,7 +103,7 @@ android_sdk_repository(name = "androidsdk")
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//android:defs.bzl", "android_proto_library")
 
 android_proto_library(
@@ -127,7 +127,7 @@ Generates Android protobuf+gRPC library using `android_library` from `rules_andr
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
 
 rules_proto_grpc_android_repos()
@@ -143,7 +143,7 @@ android_sdk_repository(name = "androidsdk")
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//android:defs.bzl", "android_grpc_library")
 
 android_grpc_library(

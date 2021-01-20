@@ -21,7 +21,7 @@ Generates Python protobuf `.py` artifacts
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
 rules_proto_grpc_python_repos()
@@ -29,7 +29,7 @@ rules_proto_grpc_python_repos()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:defs.bzl", "python_proto_compile")
 
 python_proto_compile(
@@ -53,7 +53,7 @@ Generates Python protobuf+gRPC `.py` artifacts
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
 rules_proto_grpc_python_repos()
@@ -65,7 +65,7 @@ grpc_deps()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:defs.bzl", "python_grpc_compile")
 
 python_grpc_compile(
@@ -89,7 +89,7 @@ Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only)
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
 rules_proto_grpc_python_repos()
@@ -111,7 +111,7 @@ pip_install(
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_compile")
 
 python_grpclib_compile(
@@ -135,7 +135,7 @@ Generates a Python protobuf library using `py_library` from `rules_python`
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
 rules_proto_grpc_python_repos()
@@ -143,7 +143,7 @@ rules_proto_grpc_python_repos()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
 
 python_proto_library(
@@ -167,7 +167,7 @@ Generates a Python protobuf+gRPC library using `py_library` from `rules_python`
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
 rules_proto_grpc_python_repos()
@@ -179,7 +179,7 @@ grpc_deps()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library")
 
 python_grpc_library(
@@ -203,7 +203,7 @@ Generates a Python protobuf+grpclib library using `py_library` from `rules_pytho
 
 ### `WORKSPACE`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
 
 rules_proto_grpc_python_repos()
@@ -225,7 +225,7 @@ pip_install(
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_library")
 
 python_grpclib_library(
