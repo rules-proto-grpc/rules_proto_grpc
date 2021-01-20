@@ -472,6 +472,7 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			var name = fmt.Sprintf("%s_%s_example", lang.Name, rule.Name)
 			allNames = append(allNames, name)
 			langNames = append(langNames, name)
+			out.w(".PHONY: %s", name)
 			out.w("%s:", name)
 			out.w("	cd %s; \\", exampleDir)
 			out.w("	bazel --batch build --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
@@ -479,11 +480,14 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 		}
 
 		// Create grouped rules for each language
-		out.w("%s_examples: %s", lang.Name, strings.Join(langNames, " "))
+		targetName := fmt.Sprintf("%s_examples", lang.Name)
+		out.w(".PHONY: %s", targetName)
+		out.w("%s: %s", targetName, strings.Join(langNames, " "))
 		out.ln()
 	}
 
 	// Write all examples rule
+	out.w(".PHONY: all_examples")
 	out.w("all_examples: %s", strings.Join(allNames, " "))
 
 	out.ln()
@@ -498,6 +502,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 	for _, testWorkspace := range findTestWorkspaceNames(dir) {
 		var name = fmt.Sprintf("test_workspace_%s", testWorkspace)
 		allNames = append(allNames, name)
+		out.w(".PHONY: %s", name)
 		out.w("%s:", name)
 		out.w("	cd %s; \\", path.Join(dir, "test_workspaces", testWorkspace))
 		out.w("	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
@@ -505,6 +510,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 	}
 
 	// Write all test workspaces rule
+	out.w(".PHONY: all_test_workspaces")
 	out.w("all_test_workspaces: %s", strings.Join(allNames, " "))
 
 	out.ln()
