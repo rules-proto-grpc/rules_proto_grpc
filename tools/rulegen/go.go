@@ -22,13 +22,13 @@ load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ 
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
-var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_proto_compile.bzl", "{{ .Rule.Base }}_proto_compile")
+var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
-    {{ .Rule.Base}}_proto_compile(
+    {{ .Rule.Base}}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         prefix_path = kwargs.get("importpath", ""),
         **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
@@ -54,19 +54,11 @@ PROTO_DEPS = [
 
 var goGrpcLibraryRuleTemplate = mustTemplate(
 	`load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_proto_library.bzl", "PROTO_DEPS")
-load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 ` + goLibraryRuleTemplateString + `
-    grpc_name_pb = kwargs.get("name") + "_grpc_pb"
-    {{ .Rule.Base }}_{{ .Rule.Kind }}_compile(
-        name = grpc_name_pb,
-        prefix_path = kwargs.get("importpath", ""),
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
-    )
-
     # Create {{ .Lang.Name }} library
     go_library(
         name = kwargs.get("name"),
-        srcs = [name_pb, grpc_name_pb],
+        srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + GRPC_DEPS + PROTO_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
@@ -151,7 +143,7 @@ func makeGo() *Language {
 				Base:             "go",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//go:grpc_go_plugin"},
+				Plugins:          []string{"//go:go_plugin", "//go:grpc_go_plugin"},
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Go protobuf+gRPC `.go` artifacts",
