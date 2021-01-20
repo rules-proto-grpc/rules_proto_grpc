@@ -151,7 +151,10 @@ func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 func mustWriteLanguageExamples(dir string, lang *Language) {
 	for _, rule := range lang.Rules {
 		exampleDir := filepath.Join(dir, "example", lang.Dir, rule.Name)
-		os.MkdirAll(exampleDir, os.ModePerm)
+		err := os.MkdirAll(exampleDir, os.ModePerm)
+		if err != nil {
+			log.Fatalf("FAILED to create %s: %v", exampleDir, err)
+		}
 		mustWriteLanguageExampleWorkspace(exampleDir, lang, rule)
 		mustWriteLanguageExampleBuildFile(exampleDir, lang, rule)
 		mustWriteLanguageExampleBazelrcFile(exampleDir, lang, rule)
