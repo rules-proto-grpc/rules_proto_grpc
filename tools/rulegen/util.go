@@ -116,12 +116,3 @@ func doTestOnPlatform(lang *Language, rule *Rule, ciPlatform string) bool {
 
 	return true
 }
-
-func doTestOnAnyPlaform(lang *Language, rule *Rule) bool {
-	for _, ciPlatform := range ciPlatforms {
-		if doTestOnPlatform(lang, rule, ciPlatform) {
-			return true
-		}
-	}
-	return false
-}
