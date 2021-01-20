@@ -61,15 +61,15 @@ func mustGetSha256(url string) string {
 	defer response.Body.Close()
 
 	h := sha256.New()
-	if _, err := io.Copy(h, response.Body); err != nil {
+	if _, err = io.Copy(h, response.Body); err != nil {
 		log.Fatal(err)
 	}
 
-	sha256 := fmt.Sprintf("%x", h.Sum(nil))
+	sha256sum := fmt.Sprintf("%x", h.Sum(nil))
 
-	log.Printf("sha256 for %s is %q", url, sha256)
+	log.Printf("sha256 for %s is %q", url, sha256sum)
 
-	return sha256
+	return sha256sum
 }
 
 func stringInSlice(search string, slice []string) bool {
