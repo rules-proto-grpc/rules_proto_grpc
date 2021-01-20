@@ -8,7 +8,9 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 
 go_rules_dependencies()
 
-go_register_toolchains()
+go_register_toolchains(
+    version = "1.15.7",
+)
 
 bazel_gazelle()
 
@@ -79,10 +81,10 @@ var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{
 
 func makeGrpcGateway() *Language {
 	return &Language{
-		Dir:  "github.com/grpc-ecosystem/grpc-gateway",
-		Name: "grpc-gateway",
+		Dir:         "github.com/grpc-ecosystem/grpc-gateway",
+		Name:        "grpc-gateway",
 		DisplayName: "grpc-gateway",
-		Flags: commonLangFlags,
+		Flags:       commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "gateway_grpc_compile",
@@ -95,24 +97,24 @@ func makeGrpcGateway() *Language {
 				Attrs:            aspectProtoCompileAttrs,
 			},
 			&Rule{
-				Name:             "gateway_swagger_compile",
-				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//github.com/grpc-ecosystem/grpc-gateway:swagger_plugin"},
-				WorkspaceExample: grpcGatewayWorkspaceTemplate,
-				BuildExample:     grpcGatewayCompileExampleTemplate,
-				Doc:              "Generates grpc-gateway swagger `.json` files",
-				Attrs:            aspectProtoCompileAttrs,
+				Name:              "gateway_swagger_compile",
+				Kind:              "grpc",
+				Implementation:    aspectRuleTemplate,
+				Plugins:           []string{"//github.com/grpc-ecosystem/grpc-gateway:swagger_plugin"},
+				WorkspaceExample:  grpcGatewayWorkspaceTemplate,
+				BuildExample:      grpcGatewayCompileExampleTemplate,
+				Doc:               "Generates grpc-gateway swagger `.json` files",
+				Attrs:             aspectProtoCompileAttrs,
 				SkipTestPlatforms: []string{"windows"}, // gRPC go lib rules fail on windows due to bad path
 			},
 			&Rule{
-				Name:             "gateway_grpc_library",
-				Kind:             "grpc",
-				Implementation:   grpcGatewayLibraryRuleTemplate,
-				WorkspaceExample: grpcGatewayWorkspaceTemplate,
-				BuildExample:     grpcGatewayLibraryExampleTemplate,
-				Doc:              "Generates grpc-gateway library files",
-				Attrs:            append(aspectProtoCompileAttrs, goProtoAttrs...),
+				Name:              "gateway_grpc_library",
+				Kind:              "grpc",
+				Implementation:    grpcGatewayLibraryRuleTemplate,
+				WorkspaceExample:  grpcGatewayWorkspaceTemplate,
+				BuildExample:      grpcGatewayLibraryExampleTemplate,
+				Doc:               "Generates grpc-gateway library files",
+				Attrs:             append(aspectProtoCompileAttrs, goProtoAttrs...),
 				SkipTestPlatforms: []string{"windows"}, // gRPC go lib rules fail on windows due to bad path
 			},
 		},

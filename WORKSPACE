@@ -58,7 +58,9 @@ bazel_gazelle()
 
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 go_rules_dependencies()
-go_register_toolchains()
+go_register_toolchains(
+    version = "1.15.7",
+)
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()
@@ -123,9 +125,7 @@ d_repositories()
 #
 # gRPC gateway
 #
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
-go_rules_dependencies()
-go_register_toolchains()
+# Uses same dependencies as Go.
 
 load("//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", "gateway_repos")
 gateway_repos()

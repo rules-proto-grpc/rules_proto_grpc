@@ -8,7 +8,9 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 
 go_rules_dependencies()
 
-go_register_toolchains()
+go_register_toolchains(
+    version = "1.15.7",
+)
 
 bazel_gazelle()
 
@@ -20,14 +22,13 @@ load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ 
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
-
-var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
+var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_proto_compile.bzl", "{{ .Rule.Base }}_proto_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
-    {{ .Rule.Base}}_{{ .Rule.Kind }}_compile(
+    {{ .Rule.Base}}_proto_compile(
         name = name_pb,
         prefix_path = kwargs.get("importpath", ""),
         **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
@@ -51,25 +52,31 @@ PROTO_DEPS = [
     "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
 ]`)
 
-var goGrpcLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
+var goGrpcLibraryRuleTemplate = mustTemplate(
+	`load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_proto_library.bzl", "PROTO_DEPS")
+load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
+` + goLibraryRuleTemplateString + `
+    grpc_name_pb = kwargs.get("name") + "_grpc_pb"
+    {{ .Rule.Base }}_{{ .Rule.Kind }}_compile(
+        name = grpc_name_pb,
+        prefix_path = kwargs.get("importpath", ""),
+        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+    )
+
     # Create {{ .Lang.Name }} library
     go_library(
         name = kwargs.get("name"),
-        srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GRPC_DEPS,
+        srcs = [name_pb, grpc_name_pb],
+        deps = kwargs.get("go_deps", []) + GRPC_DEPS + PROTO_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
-    "@com_github_golang_protobuf//proto:go_default_library",
-    "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
-    "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
     "@org_golang_google_grpc//:go_default_library",
     "@org_golang_google_grpc//codes:go_default_library",
     "@org_golang_google_grpc//status:go_default_library",
-    "@org_golang_x_net//context:go_default_library",
 ]`)
 
 var goProtoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
@@ -122,11 +129,11 @@ var goProtoAttrs = []*Attr{
 
 func makeGo() *Language {
 	return &Language{
-		Dir:  "go",
-		Name: "go",
+		Dir:         "go",
+		Name:        "go",
 		DisplayName: "Go",
-		Notes: mustTemplate("Rules for generating Go protobuf and gRPC `.go` files and libraries using [golang/protobuf](https://github.com/golang/protobuf). Libraries are created with `go_library` from [rules_go](https://github.com/bazelbuild/rules_go)"),
-		Flags: commonLangFlags,
+		Notes:       mustTemplate("Rules for generating Go protobuf and gRPC `.go` files and libraries using [golang/protobuf](https://github.com/golang/protobuf). Libraries are created with `go_library` from [rules_go](https://github.com/bazelbuild/rules_go)"),
+		Flags:       commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "go_proto_compile",
