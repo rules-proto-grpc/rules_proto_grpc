@@ -1,6 +1,0 @@
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_swagger_compile")
-
-gateway_swagger_compile(
-    name = "api_gateway_grpc",
-    deps = ["@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
-)

@@ -21,6 +21,7 @@ gateway_grpc_compile_aspect = aspect(
             default = [
                 Label("//github.com/grpc-ecosystem/grpc-gateway:grpc_gateway_plugin"),
                 Label("//go:grpc_go_plugin"),
+                Label("//go:go_plugin"),
             ],
         ),
         _prefix = attr.string(

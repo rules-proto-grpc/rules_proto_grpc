@@ -19,16 +19,16 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "swagger_plugin",
+    name = "openapiv2_plugin",
     outputs = [
         "{protopath}.swagger.json",
     ],
     # Show options:
-    # $ bazel run @grpc_ecosystem_grpc_gateway//protoc-gen-grpc-swagger -- --help
+    # $ bazel run @grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2 -- --help
     # options = [
     #     "json_names_for_fields",
     # ],
-    tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-swagger",
+    tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2",
     exclusions = [
         "google/api",
         "google/protobuf",

@@ -3,7 +3,7 @@
 | Rule | Description |
 | ---: | :--- |
 | [gateway_grpc_compile](#gateway_grpc_compile) | Generates grpc-gateway `.go` files |
-| [gateway_swagger_compile](#gateway_swagger_compile) | Generates grpc-gateway swagger `.json` files |
+| [gateway_openapiv2_compile](#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files |
 | [gateway_grpc_library](#gateway_grpc_library) | Generates grpc-gateway library files |
 
 ---
@@ -62,9 +62,9 @@ gateway_grpc_compile(
 
 ---
 
-## `gateway_swagger_compile`
+## `gateway_openapiv2_compile`
 
-Generates grpc-gateway swagger `.json` files
+Generates grpc-gateway OpenAPI v2 `.json` files
 
 ### `WORKSPACE`
 
@@ -99,9 +99,9 @@ go_repositories()
 ### `BUILD.bazel`
 
 ```skylark
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_swagger_compile")
+load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_openapiv2_compile")
 
-gateway_swagger_compile(
+gateway_openapiv2_compile(
     name = "api_gateway_grpc",
     deps = ["@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
 )
