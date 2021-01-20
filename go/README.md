@@ -17,7 +17,7 @@ Generates Go protobuf `.go` artifacts
 
 ### `WORKSPACE`
 
-```python
+```skylark
 load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
@@ -41,7 +41,7 @@ rules_proto_grpc_go_repos()
 
 ### `BUILD.bazel`
 
-```python
+```skylark
 load("@rules_proto_grpc//go:defs.bzl", "go_proto_compile")
 
 go_proto_compile(
@@ -65,7 +65,7 @@ Generates Go protobuf+gRPC `.go` artifacts
 
 ### `WORKSPACE`
 
-```python
+```skylark
 load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
@@ -89,7 +89,7 @@ rules_proto_grpc_go_repos()
 
 ### `BUILD.bazel`
 
-```python
+```skylark
 load("@rules_proto_grpc//go:defs.bzl", "go_grpc_compile")
 
 go_grpc_compile(
@@ -113,7 +113,7 @@ Generates a Go protobuf library using `go_library` from `rules_go`
 
 ### `WORKSPACE`
 
-```python
+```skylark
 load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
@@ -137,7 +137,7 @@ rules_proto_grpc_go_repos()
 
 ### `BUILD.bazel`
 
-```python
+```skylark
 load("@rules_proto_grpc//go:defs.bzl", "go_proto_library")
 
 go_proto_library(
@@ -166,7 +166,7 @@ Generates a Go protobuf+gRPC library using `go_library` from `rules_go`
 
 ### `WORKSPACE`
 
-```python
+```skylark
 load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
 
 io_bazel_rules_go()
@@ -190,7 +190,7 @@ rules_proto_grpc_go_repos()
 
 ### `BUILD.bazel`
 
-```python
+```skylark
 load("@rules_proto_grpc//go:defs.bzl", "go_grpc_library")
 
 go_grpc_library(

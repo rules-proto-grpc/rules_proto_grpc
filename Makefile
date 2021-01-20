@@ -1,4 +1,5 @@
 # Run the rulegen system
+.PHONY: rulegen
 rulegen:
 	bazel query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt; \
 	bazel run --run_under="cd $$PWD && " //tools/rulegen -- --ref=$$(git describe --abbrev=0 --tags); \
@@ -6,6 +7,7 @@ rulegen:
 
 
 # Run cargo raze on the rust dependencies
+.PHONY: rust_raze
 rust_raze:
 	cd rust/raze; \
 	rm Cargo.lock; \
@@ -14,32 +16,38 @@ rust_raze:
 
 
 # Run yarn to upgrade the nodejs dependencies
+.PHONY: yarn_upgrade
 yarn_upgrade:
 	cd nodejs/requirements; \
 	yarn install; \
 
 
 # Run bundle to upgrade the Ruby dependencies
+.PHONY: ruby_bundle_upgrade
 ruby_bundle_upgrade:
 	cd ruby; \
 	bundle install --path /tmp/ruby-bundle; \
 
 
 # Run pip-compile to upgrade python dependencies
+.PHONY: pip_compile
 pip_compile:
 	pip-compile python/requirements.in --output-file python/requirements.txt
 
 
 # Run C# package regeneration
+.PHONY: csharp_regenerate_packages
 csharp_regenerate_packages:
 	./csharp/nuget/regenerate_packages.sh
 
 
 # Run all language specific updates
+.PHONY: all_updates
 all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade pip_compile csharp_regenerate_packages
 
 
 # A collection of targets that build routeguide clients
+.PHONY: clients
 clients:
 	bazel build \
 		//cpp/example/routeguide:client \
@@ -49,6 +57,7 @@ clients:
 		//scala/example/routeguide:client \
 
 # A collection of targets that build routeguide servers
+.PHONY: servers
 servers:
 	bazel build \
 		//cpp/example/routeguide:server \
@@ -59,6 +68,7 @@ servers:
 
 
 # A collection of test targets
+.PHONY: tests
 tests:
 	bazel test \
 		//closure/example/routeguide/... \
@@ -66,6 +76,7 @@ tests:
 		//java/example/routeguide/... \
 		//go/example/routeguide/... \
 
+.PHONY: pending_clients
 pending_clients:
 	bazel build \
 		//android/example/routeguide:client \
@@ -75,12 +86,14 @@ pending_clients:
 		//github.com/grpc/grpc-web/example/routeguide/closure:bundle \
 		//rust/example/routeguide:client
 
+.PHONY: pending_servers
 pending_servers:
 	bazel build \
 		//nodejs/example/routeguide:server \
 		//ruby/example/routeguide:server \
 		//rust/example/routeguide:server
 
+.PHONY: all
 all: clients servers tests
 
 

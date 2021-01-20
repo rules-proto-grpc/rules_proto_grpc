@@ -17,7 +17,7 @@ Generates Rust protobuf `.rs` artifacts
 
 ### `WORKSPACE`
 
-```python
+```skylark
 load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
 rules_proto_grpc_rust_repos()
@@ -37,7 +37,7 @@ rust_workspace()
 
 ### `BUILD.bazel`
 
-```python
+```skylark
 load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_compile")
 
 rust_proto_compile(
@@ -61,7 +61,7 @@ Generates Rust protobuf+gRPC `.rs` artifacts
 
 ### `WORKSPACE`
 
-```python
+```skylark
 load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
 rules_proto_grpc_rust_repos()
@@ -81,7 +81,7 @@ rust_workspace()
 
 ### `BUILD.bazel`
 
-```python
+```skylark
 load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_compile")
 
 rust_grpc_compile(
@@ -105,7 +105,7 @@ Generates a Rust protobuf library using `rust_library` from `rules_rust`
 
 ### `WORKSPACE`
 
-```python
+```skylark
 load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
 rules_proto_grpc_rust_repos()
@@ -125,7 +125,7 @@ rust_workspace()
 
 ### `BUILD.bazel`
 
-```python
+```skylark
 load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_library")
 
 rust_proto_library(
@@ -149,7 +149,7 @@ Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`
 
 ### `WORKSPACE`
 
-```python
+```skylark
 load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
 
 rules_proto_grpc_rust_repos()
@@ -169,7 +169,7 @@ rust_workspace()
 
 ### `BUILD.bazel`
 
-```python
+```skylark
 load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_library")
 
 rust_grpc_library(

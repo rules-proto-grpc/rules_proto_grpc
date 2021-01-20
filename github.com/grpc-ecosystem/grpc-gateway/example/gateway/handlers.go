@@ -3,7 +3,7 @@ package gateway
 import (
 	"fmt"
 	"net/http"
-	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/golang/glog"
@@ -21,7 +21,7 @@ func swaggerServer(dir string) http.HandlerFunc {
 
 		glog.Infof("Serving %s", r.URL.Path)
 		p := strings.TrimPrefix(r.URL.Path, "/swagger/")
-		p = path.Join(dir, p)
+		p = filepath.Join(dir, p)
 		http.ServeFile(w, r, p)
 	}
 }
