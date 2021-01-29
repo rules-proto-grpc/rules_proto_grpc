@@ -2,27 +2,34 @@ load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
     name = "nodejs_plugin",
-    protoc_plugin_name = "js",
+    exclusions = [
+        "google/protobuf",
+    ],
     options = [
         "import_style=commonjs",
         "binary",
     ],
     outputs = ["{protopath}_pb.js"],
-    exclusions = [
-        "google/protobuf",
-    ],
+    protoc_plugin_name = "js",
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
     name = "grpc_nodejs_plugin",
-    output_directory = True,
-    tool = "@nodejs_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
-    options = [
-        "grpc_js",
-    ],
     exclusions = [
         "google/protobuf",
     ],
+    options = [
+        "grpc_js",
+    ],
+    output_directory = True,
+    tool = "@nodejs_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "protoc-gen-ts_plugin",
+    outputs = ["{protopath}_pb.d.ts"],
+    tool = "@nodejs_modules//ts-protoc-gen/bin:protoc-gen-ts",
     visibility = ["//visibility:public"],
 )

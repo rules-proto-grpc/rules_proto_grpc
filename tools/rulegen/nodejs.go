@@ -68,7 +68,7 @@ func makeNode() *Language {
 				Name:             "nodejs_proto_compile",
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//nodejs:nodejs_plugin"},
+				Plugins:          []string{"//nodejs:nodejs_plugin", "//nodejs:protoc-gen-ts_plugin"},
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Node.js protobuf `.js` artifacts",

@@ -20,6 +20,7 @@ nodejs_proto_compile_aspect = aspect(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//nodejs:nodejs_plugin"),
+                Label("//nodejs:protoc-gen-ts_plugin"),
             ],
         ),
         _prefix = attr.string(
