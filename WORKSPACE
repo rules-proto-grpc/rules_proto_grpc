@@ -184,9 +184,6 @@ php_repos()
 load("//python:repositories.bzl", "python_repos")
 python_repos()
 
-load("@rules_python//python:repositories.bzl", "py_repositories")
-py_repositories()
-
 load("@rules_python//python:pip.bzl", "pip_install")
 pip_install(
     name = "rules_proto_grpc_py3_deps",

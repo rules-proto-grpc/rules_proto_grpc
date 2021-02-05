@@ -98,9 +98,6 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@rules_python//python:repositories.bzl", "py_repositories")
-py_repositories()
-
 load("@rules_python//python:pip.bzl", "pip_install")
 pip_install(
     name = "rules_proto_grpc_py3_deps",
@@ -211,9 +208,6 @@ rules_proto_grpc_python_repos()
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
-
-load("@rules_python//python:repositories.bzl", "py_repositories")
-py_repositories()
 
 load("@rules_python//python:pip.bzl", "pip_install")
 pip_install(

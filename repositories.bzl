@@ -13,7 +13,7 @@ VERSIONS = {
         "ref": "84ba6ec814eebbf5312b2cc029256097ae0042c3",
         "sha256": "3bce0e2fcf502619119c7cac03613fb52ce3034b2159dd3ae9d35f7339558aa3",
     },
-    "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
+    "com_google_protobuf": {  # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
@@ -30,12 +30,12 @@ VERSIONS = {
             },
         ],
     },
-    "com_github_grpc_grpc": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
+    "com_github_grpc_grpc": {  # When updating, also update Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.34.0",
-        "sha256": "7372a881122cd85a7224435a1d58bc5e11c88d4fb98a64b83f36f3d1c2f16d39",
+        "ref": "v1.35.0",
+        "sha256": "27dd2fc5c9809ddcde8eb6fa1fa278a3486566dfc28335fca13eb8df8bd3b958",
     },
     "zlib": {
         "type": "http",
@@ -51,22 +51,22 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "c064f7008a30f307ea7516cf52358a653011f82b",
-        "sha256": "b9cf39396181e8d4434625a3533240469ca21242442745bd0b672731555823b8",
+        "ref": "c7e068d38e2fec1d899e1c150e372f205c220e27",
+        "sha256": "8cc0ad31c8fc699a49ad31628273529ef8929ded0a0859a3d841ce711a9a90d5",
     },
     "build_bazel_rules_swift": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "0.14.0",
-        "sha256": "fa746a50f442ea4bcce78b747182107b4f0041f868b285714364ce4508d19979",
+        "ref": "0.18.0",
+        "sha256": "3da7a2e1b6bf002e1ee47b0d10d889a67ec5cab42b13cf52b08b6e2f77ca3acf",
     },
     "build_bazel_apple_support": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "apple_support",
-        "ref": "0.7.2",
-        "sha256": "519a3bc32132f7b5780e82c2fc6ad2a78d4b28b81561e6fd7b7e0b14ea110074",
+        "ref": "0.9.1",
+        "sha256": "7fc0f9aadff33216bb24973c258efefc5d3d7c41c246871eaf00531ab378c6b3",
     },
     "bazel_skylib": {
         "type": "github",
@@ -320,17 +320,6 @@ def _generic_dependency(name, **kwargs):
                 )
 
 
-# Write version data. Required for both upb and rules_rust
-def _store_bazel_version(repository_ctx):
-    repository_ctx.file("BUILD", "exports_files(['def.bzl'])")
-    repository_ctx.file("bazel_version.bzl", "bazel_version = \"{}\"".format(native.bazel_version))
-    repository_ctx.file("def.bzl", "BAZEL_VERSION='{}'".format(native.bazel_version))
-
-bazel_version_repository = repository_rule(
-    implementation = _store_bazel_version,
-)
-
-
 #
 # Toolchains
 #
@@ -344,8 +333,6 @@ def rules_proto_grpc_toolchains():
 #
 def rules_proto_grpc_repos(**kwargs):
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
-
-    bazel_version_repository(name = "bazel_version")
 
     rules_proto(**kwargs)
     rules_python(**kwargs)
