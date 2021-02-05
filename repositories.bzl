@@ -65,8 +65,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "apple_support",
-        "ref": "0.9.1",
-        "sha256": "7fc0f9aadff33216bb24973c258efefc5d3d7c41c246871eaf00531ab378c6b3",
+        "ref": "0.7.2",
+        "sha256": "519a3bc32132f7b5780e82c2fc6ad2a78d4b28b81561e6fd7b7e0b14ea110074",
     },
     "bazel_skylib": {
         "type": "github",
