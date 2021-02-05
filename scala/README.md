@@ -22,6 +22,10 @@ load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="
 
 rules_proto_grpc_scala_repos()
 
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
+scala_config()
+
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
@@ -67,6 +71,10 @@ Generates Scala protobuf+gRPC `.jar` artifacts
 load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
 
 rules_proto_grpc_scala_repos()
+
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
+scala_config()
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
@@ -116,6 +124,10 @@ load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="
 
 rules_proto_grpc_scala_repos()
 
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
+scala_config()
+
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
@@ -161,6 +173,10 @@ Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`
 load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
 
 rules_proto_grpc_scala_repos()
+
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
+scala_config()
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 

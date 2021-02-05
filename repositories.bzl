@@ -210,8 +210,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "6280cdbdb03bbace36e5458ca73745b80a9fe467",
-        "sha256": "723ac4c2eda86c6a5d9cbe64bde36f17185e7205acf8064a2b8bb1aea2fbf831",
+        "ref": "642561f2a7de4f6442e23e034dd1e0a7a5d842c0",
+        "sha256": "d70212e4df7e328008b9d29fb28399d4e8af49a7c163b53911859bff5ede4eb4",
     },
     "com_github_scalapb_scalapb": {
         "type": "http",

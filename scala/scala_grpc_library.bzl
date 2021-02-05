@@ -1,5 +1,6 @@
 load("//scala:scala_grpc_compile.bzl", "scala_grpc_compile")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
+load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")
 
 def scala_grpc_library(**kwargs):
     # Compile protos
@@ -20,6 +21,7 @@ def scala_grpc_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
-    "@io_bazel_rules_scala//scala_proto:default_scalapb_grpc_dependencies",
-]
+    # One dependency in this list is not valid outside of rules_scala workspace, fix up
+    "@io_bazel_rules_scala" + dep if not dep.startswith("//external") else dep
+    for dep in DEFAULT_SCALAPB_COMPILE_DEPS
+] + DEFAULT_SCALAPB_GRPC_DEPS

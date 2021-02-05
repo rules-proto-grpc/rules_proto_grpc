@@ -4,6 +4,10 @@ var scalaProtoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lan
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
+scala_config()
+
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
 scala_repositories()
@@ -19,6 +23,10 @@ scala_register_toolchains()`)
 var scalaGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
+
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
+scala_config()
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
@@ -38,6 +46,7 @@ grpc_java_repositories()`)
 
 var scalaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
+load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
@@ -60,7 +69,9 @@ var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString 
     )
 
 PROTO_DEPS = [
-    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
+    # One dependency in this list is not valid outside of rules_scala workspace, fix up
+    "@io_bazel_rules_scala" + dep if not dep.startswith("//external") else dep
+    for dep in DEFAULT_SCALAPB_COMPILE_DEPS
 ]`)
 
 var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString + `
@@ -75,9 +86,10 @@ var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString +
     )
 
 GRPC_DEPS = [
-    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
-    "@io_bazel_rules_scala//scala_proto:default_scalapb_grpc_dependencies",
-]`)
+    # One dependency in this list is not valid outside of rules_scala workspace, fix up
+    "@io_bazel_rules_scala" + dep if not dep.startswith("//external") else dep
+    for dep in DEFAULT_SCALAPB_COMPILE_DEPS
+] + DEFAULT_SCALAPB_GRPC_DEPS`)
 
 func makeScala() *Language {
 	return &Language{
