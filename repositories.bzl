@@ -197,12 +197,12 @@ VERSIONS = {
     },
 
     # Rust
-    "io_bazel_rules_rust": {
+    "rules_rust": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "e64700dc9b8b3869bce4f77b78c33cb9d088cc4b",
-        "sha256": "eb384450d3b89332b386173233daa66a71e13cf63fe6d9ee51bd09fba0eb41f2",
+        "ref": "3b02397bde43b1eeee1528227ceb3da6c6bdadd6",
+        "sha256": "f2d9f804e1a8042a41ad41e1aeeca55ad0fc2d294ecd52e34ef8c63f7ce350fd",
     },
 
     # Scala
@@ -464,8 +464,8 @@ def com_github_yugui_rules_ruby(**kwargs):
 #
 # Rust
 #
-def io_bazel_rules_rust(**kwargs):
-    _generic_dependency("io_bazel_rules_rust", **kwargs)
+def rules_rust(**kwargs):
+    _generic_dependency("rules_rust", **kwargs)
 
 
 #

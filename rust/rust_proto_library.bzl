@@ -1,6 +1,6 @@
 load("//rust:rust_proto_compile.bzl", "rust_proto_compile")
 load("//rust:rust_proto_lib.bzl", "rust_proto_lib")
-load("@io_bazel_rules_rust//rust:rust.bzl", "rust_library")
+load("@rules_rust//rust:rust.bzl", "rust_library")
 
 def rust_proto_library(**kwargs):
     # Compile protos

@@ -8,17 +8,13 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 
-rust_repositories()
-
-load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
-
-rust_workspace()`)
+rust_repositories()`)
 
 var rustLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("//{{ .Lang.Dir }}:rust_proto_lib.bzl", "rust_proto_lib")
-load("@io_bazel_rules_rust//rust:rust.bzl", "rust_library")
+load("@rules_rust//rust:rust.bzl", "rust_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos

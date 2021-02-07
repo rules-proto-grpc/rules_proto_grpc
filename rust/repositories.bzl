@@ -1,6 +1,6 @@
 load(
     "//:repositories.bzl",
-    "io_bazel_rules_rust",
+    "rules_rust",
     "rules_proto_grpc_repos",
 )
 load(
@@ -10,5 +10,5 @@ load(
 
 def rust_repos(**kwargs):
     rules_proto_grpc_repos(**kwargs)
-    io_bazel_rules_rust(**kwargs)
+    rules_rust(**kwargs)
     raze_fetch_remote_crates()

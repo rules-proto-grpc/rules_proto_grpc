@@ -215,11 +215,8 @@ bundle_install(
 load("//rust:repositories.bzl", "rust_repos")
 rust_repos()
 
-load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 rust_repositories()
-
-load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
-rust_workspace()
 
 
 #

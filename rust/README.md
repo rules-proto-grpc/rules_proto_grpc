@@ -26,13 +26,9 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
-
-load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
-
-rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -70,13 +66,9 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
-
-load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
-
-rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -114,13 +106,9 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
-
-load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
-
-rust_workspace()
 ```
 
 ### `BUILD.bazel`
@@ -158,13 +146,9 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 
 rust_repositories()
-
-load("@io_bazel_rules_rust//:workspace.bzl", "rust_workspace")
-
-rust_workspace()
 ```
 
 ### `BUILD.bazel`

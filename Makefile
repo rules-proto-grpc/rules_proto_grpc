@@ -10,7 +10,8 @@ rust_raze:
 	cd rust/raze; \
 	rm Cargo.lock; \
 	rm -r remote; \
-	cargo raze;
+	cargo raze; \
+	sed -i -e 's/io_bazel_rules_rust/rules_rust/g' rust/raze/remote/*.bazel;
 
 
 # Run yarn to upgrade the nodejs dependencies
