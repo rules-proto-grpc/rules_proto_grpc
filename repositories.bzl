@@ -159,8 +159,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "v1.32.1",  # Bug in 1.32.0 release means 1.32.1 should be used
-        "sha256": "e5d691f80e7388035c34616a17830ec2687fb2ef5c5d9c9b79c605a7addb78ab",
+        "ref": "v1.35.0",
+        "sha256": "537d01bdc5ae2bdb267853a75578d671db3075b33e3a00a93f5a572191d3a7b3",
     },
 
     # NodeJS
