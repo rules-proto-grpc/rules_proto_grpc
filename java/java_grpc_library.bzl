@@ -19,7 +19,7 @@ def java_grpc_library(**kwargs):
         tags = kwargs.get("tags"),
     )
 
-GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/3ce5df3f78e8fd4a619a791914087dd4c0562835/compiler/BUILD.bazel#L21-L27
+GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/f6c2d221e2b6c975c6cf465d68fe11ab12dabe55/BUILD.bazel#L32-L38
     "@io_grpc_grpc_java//api",
     "@io_grpc_grpc_java//protobuf",
     "@io_grpc_grpc_java//stub",
@@ -27,5 +27,4 @@ GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/3ce5df3f78e8fd4a619
     "@com_google_code_findbugs_jsr305//jar",
     "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_java",
-    "@com_google_protobuf//:protobuf_java_util",
 ]

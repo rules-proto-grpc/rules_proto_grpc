@@ -162,6 +162,13 @@ VERSIONS = {
         "ref": "v1.35.0",
         "sha256": "537d01bdc5ae2bdb267853a75578d671db3075b33e3a00a93f5a572191d3a7b3",
     },
+    "rules_jvm_external": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "rules_jvm_external",
+        "ref": "3.0",
+        "sha256": "baa842cbc67aec78408aec3e480b2e94dbdd14d6b0170d3a3ee14a0e1a5bb95f",
+    },
 
     # NodeJS
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
@@ -435,6 +442,9 @@ def com_github_grpc_grpc_web(**kwargs):
 #
 def io_grpc_grpc_java(**kwargs):
     _generic_dependency("io_grpc_grpc_java", **kwargs)
+
+def rules_jvm_external(**kwargs):
+    _generic_dependency("rules_jvm_external", **kwargs)
 
 
 #

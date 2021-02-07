@@ -8,6 +8,23 @@ var javaGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS")
+load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS")
+
+maven_install(
+    artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS,
+    generate_compat_repositories = True,
+    override_targets = IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS,
+    repositories = [
+        "https://repo.maven.apache.org/maven2/",
+    ],
+)
+
+load("@maven//:compat.bzl", "compat_repositories")
+
+compat_repositories()
+
 load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
 grpc_java_repositories()`)
@@ -50,7 +67,7 @@ var javaGrpcLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
         tags = kwargs.get("tags"),
     )
 
-GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/3ce5df3f78e8fd4a619a791914087dd4c0562835/compiler/BUILD.bazel#L21-L27
+GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/f6c2d221e2b6c975c6cf465d68fe11ab12dabe55/BUILD.bazel#L32-L38
     "@io_grpc_grpc_java//api",
     "@io_grpc_grpc_java//protobuf",
     "@io_grpc_grpc_java//stub",
@@ -58,7 +75,6 @@ GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/3ce5df3f78e8fd4a619
     "@com_google_code_findbugs_jsr305//jar",
     "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_java",
-    "@com_google_protobuf//:protobuf_java_util",
 ]`)
 
 func makeJava() *Language {
