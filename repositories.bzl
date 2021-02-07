@@ -82,8 +82,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_android",
-        "ref": "9ab1134546364c6de84fc6c80b4202fdbebbbb35",
-        "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
+        "ref": "e8fbc49f913101e846235b9c9a31b3aa9788364a",
+        "sha256": "6a3cfb7b7e54cf704bf2ff169bde03666ae3b49a536c27a5f43d013388a7c38d",
     },
 
     # C#
