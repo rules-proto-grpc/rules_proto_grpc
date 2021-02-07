@@ -109,8 +109,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_d",
-        "ref": "064206527421aa6d1a4c11fbee5c93fd1619d99e",
-        "sha256": "e514c8be2d029563fec81eb1ecf3a931491cc5a02960cb3ab4331ac5c9124893",
+        "ref": "40c63a7bd74036be3edaf782d34269c2debed5fd",
+        "sha256": "e9a1368f0bb3a513b839f14df8d753d42ae81b437ff107526ad62eebd2b24332",
     },
     "com_github_dcarp_protobuf_d": {
         "type": "http",
