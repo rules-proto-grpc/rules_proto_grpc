@@ -90,7 +90,6 @@ dotnet_repositories()
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
     "core_register_sdk",
-    "net_register_sdk",
     "dotnet_register_toolchains",
     "dotnet_repositories_nugets",
 )
