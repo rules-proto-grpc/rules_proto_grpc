@@ -30,7 +30,7 @@ VERSIONS = {
             },
         ],
     },
-    "com_github_grpc_grpc": {  # When updating, also update Node.js requirements, Ruby requirements and C# requirements
+    "com_github_grpc_grpc": {  # When updating, also update Go repositories.bzl, Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
@@ -125,15 +125,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.24.3",
-        "sha256": "e37e7937141a1deea40ee2f06a7850fc520e2272de7aacd85ad8a2ace11d2e83",
+        "ref": "v0.25.1",
+        "sha256": "aa301ab560203bf740d07456a505730bf1ee20f4c471f77357cd31e7e11f5170",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.21.1",
-        "sha256": "2423201f91471ea87925b81962258e27a22cd8ebb4fe355bf033dcf2ad668541",
+        "ref": "v0.22.3",
+        "sha256": "112ceace31ac48a9dde28f1f1ad98e76fc7f901ef088b944a84e55bc93cd198a",
     },
 
     # grpc-gateway
