@@ -313,8 +313,8 @@ Target //example/proto:cpp_thing_proto up-to-date:
 This way, we can use `//example/proto:cpp_thing_proto` as a dependency of any
 other `cc_library` or `cc_binary` target as per normal.
 
-> NOTE: the `cpp_proto_library` implicitly calls `cpp_proto_compile`, and we can
-access that rule's output by adding `_pb` at the end of the target name, like `bazel build
+> NOTE: the `cpp_proto_library` target implicitly calls `cpp_proto_compile`, and we can
+access that rule's by adding `_pb` at the end of the target name, like `bazel build
 //example/proto:cpp_thing_proto_pb`.
 
 

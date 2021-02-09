@@ -98,7 +98,7 @@ go_repositories()
 
 ### `BUILD.bazel`
 
-```skylark
+```starlark
 load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_openapiv2_compile")
 
 gateway_openapiv2_compile(
