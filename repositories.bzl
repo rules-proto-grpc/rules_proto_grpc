@@ -141,8 +141,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.1.0",
-        "sha256": "2bca9747a3726497bd2cce43502858be936e23f13b6be292eb42bd422018e439",
+        "ref": "v2.2.0",
+        "sha256": "4082a4872c16d9d833a16a87b0b3ee887249d0a1af0daa679d83b65f5c0fbeee",
     },
 
     # gRPC web
