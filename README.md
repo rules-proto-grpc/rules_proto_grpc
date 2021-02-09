@@ -13,6 +13,8 @@
 
 ## Announcements 📣
 
+- **2021/02/09**: Version 4.0 of Bazel has been released recently and is supported without update for most languages.
+  Changes for full Bazel 4.0 compatibility and updated dependencies are in progress.
 - **2020/10/11**: [Version 2.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/2.0.0)
   with updated Protobuf and gRPC versions. For some languages this may not be a drop-in replacement
   and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
