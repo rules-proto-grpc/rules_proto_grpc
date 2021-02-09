@@ -16,7 +16,7 @@ Generates Objective-C protobuf `.m` & `.h` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos="objc_repos")
 
 rules_proto_grpc_objc_repos()
@@ -24,7 +24,7 @@ rules_proto_grpc_objc_repos()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_compile")
 
 objc_proto_compile(
@@ -48,7 +48,7 @@ Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos="objc_repos")
 
 rules_proto_grpc_objc_repos()
@@ -60,7 +60,7 @@ grpc_deps()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//objc:defs.bzl", "objc_grpc_compile")
 
 objc_grpc_compile(
@@ -84,7 +84,7 @@ Generates an Objective-C protobuf library using `objc_library`
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos="objc_repos")
 
 rules_proto_grpc_objc_repos()
@@ -92,7 +92,7 @@ rules_proto_grpc_objc_repos()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_library")
 
 objc_proto_library(

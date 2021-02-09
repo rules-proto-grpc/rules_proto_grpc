@@ -17,7 +17,7 @@ Generates Swift protobuf `.swift` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
 
 rules_proto_grpc_swift_repos()
@@ -39,7 +39,7 @@ apple_support_dependencies()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_compile")
 
 swift_proto_compile(
@@ -63,7 +63,7 @@ Generates Swift protobuf+gRPC `.swift` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
 
 rules_proto_grpc_swift_repos()
@@ -85,7 +85,7 @@ apple_support_dependencies()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_compile")
 
 swift_grpc_compile(
@@ -111,7 +111,7 @@ Generates a Swift protobuf library using `swift_library` from `rules_swift`
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
 
 rules_proto_grpc_swift_repos()
@@ -133,7 +133,7 @@ apple_support_dependencies()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_library")
 
 swift_proto_library(
@@ -159,7 +159,7 @@ Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
 
 rules_proto_grpc_swift_repos()
@@ -181,7 +181,7 @@ apple_support_dependencies()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_library")
 
 swift_grpc_library(

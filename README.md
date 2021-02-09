@@ -100,7 +100,7 @@ and add aspect-based compilation to all languages, allowing for all
 
 Add `rules_proto_grpc` your `WORKSPACE` file:
 
-```python
+```starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
@@ -234,7 +234,7 @@ message Thing {
 **Step 2**: Write a `BAZEL.build` file with a [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
 target:
 
-```python
+```starlark
 proto_library(
     name = "thing_proto",
     srcs = ["thing.proto"],
@@ -252,7 +252,7 @@ of your choice).
 > NOTE: In this example `thing.proto` does not include service definitions
 (gRPC).  For protos with services, use the `cpp_grpc_compile` rule instead.
 
-```python
+```starlark
 # BUILD.bazel
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
 
@@ -268,7 +268,7 @@ for this rule (from [cpp/README.md](/cpp/README.md)):
 
 **Step 4**: Load the workspace macro corresponding to the build rule.
 
-```python
+```starlark
 # WORKSPACE
 load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_repos")
 
@@ -292,7 +292,7 @@ If we were only interested in the generated file artifacts, the
 have the outputs compiled into an `*.so` file. To do that, let's change the
 rule from `cpp_proto_compile` to `cpp_proto_library`:
 
-```python
+```starlark
 # BUILD.bazel
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
@@ -403,7 +403,7 @@ repository.  The basic idea is:
       non-predictable way. e.g. if the output paths depend on the service names.
 5. Create a compilation rule and aspect using the following template:
 
-```python
+```starlark
 load("@rules_proto_grpc//:plugin.bzl", "ProtoPluginInfo")
 load(
     "@rules_proto_grpc//:aspect.bzl",

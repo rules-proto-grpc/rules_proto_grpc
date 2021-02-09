@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"path/filepath"
 	"regexp"
 	"sort"
 	"strings"
@@ -15,15 +16,13 @@ import (
 	"github.com/urfave/cli"
 )
 
-
 var defaultPlatforms = []string{"linux", "windows", "macos"}
 var ciPlatforms = []string{"ubuntu1804", "windows", "macos"}
 var ciPlatformsMap = map[string][]string{
-	"linux": []string{"ubuntu1604", "ubuntu1804", "rbe_ubuntu1604", "rbe_ubuntu1804"},
+	"linux":   []string{"ubuntu1604", "ubuntu1804", "rbe_ubuntu1604", "rbe_ubuntu1804"},
 	"windows": []string{"windows"},
-	"macos": []string{"macos"},
+	"macos":   []string{"macos"},
 }
-
 
 func main() {
 	app := cli.NewApp()
@@ -75,7 +74,6 @@ func main() {
 
 	app.Run(os.Args)
 }
-
 
 func action(c *cli.Context) error {
 	dir := c.String("dir")
@@ -137,32 +135,31 @@ func action(c *cli.Context) error {
 	return nil
 }
 
-
 func mustWriteLanguageRules(dir string, lang *Language) {
 	for _, rule := range lang.Rules {
 		mustWriteLanguageRule(dir, lang, rule)
 	}
 }
 
-
 func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
 	out.t(rule.Implementation, &ruleData{lang, rule})
 	out.ln()
-	out.MustWrite(path.Join(dir, lang.Dir, rule.Name+".bzl"))
+	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name+".bzl"))
 }
-
 
 func mustWriteLanguageExamples(dir string, lang *Language) {
 	for _, rule := range lang.Rules {
-		exampleDir := path.Join(dir, "example", lang.Dir, rule.Name)
-		os.MkdirAll(exampleDir, os.ModePerm)
+		exampleDir := filepath.Join(dir, "example", lang.Dir, rule.Name)
+		err := os.MkdirAll(exampleDir, os.ModePerm)
+		if err != nil {
+			log.Fatalf("FAILED to create %s: %v", exampleDir, err)
+		}
 		mustWriteLanguageExampleWorkspace(exampleDir, lang, rule)
 		mustWriteLanguageExampleBuildFile(exampleDir, lang, rule)
 		mustWriteLanguageExampleBazelrcFile(exampleDir, lang, rule)
 	}
 }
-
 
 func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
@@ -186,17 +183,15 @@ rules_proto_toolchains()`, relpath)
 	out.ln()
 	out.t(rule.WorkspaceExample, &ruleData{lang, rule})
 	out.ln()
-	out.MustWrite(path.Join(dir, "WORKSPACE"))
+	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
 }
-
 
 func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
 	out.t(rule.BuildExample, &ruleData{lang, rule})
 	out.ln()
-	out.MustWrite(path.Join(dir, "BUILD.bazel"))
+	out.MustWrite(filepath.Join(dir, "BUILD.bazel"))
 }
-
 
 func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
@@ -217,9 +212,8 @@ func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule)
 		out.w("%s --%s=%s", f.Category, f.Name, f.Value)
 	}
 	out.ln()
-	out.MustWrite(path.Join(dir, ".bazelrc"))
+	out.MustWrite(filepath.Join(dir, ".bazelrc"))
 }
-
 
 func mustWriteLanguageDefs(dir string, lang *Language) {
 	out := &LineWriter{}
@@ -247,9 +241,8 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 
 		out.ln()
 	}
-	out.MustWrite(path.Join(dir, lang.Dir, "defs.bzl"))
+	out.MustWrite(filepath.Join(dir, lang.Dir, "defs.bzl"))
 }
-
 
 func mustWriteLanguageReadme(dir string, lang *Language) {
 	out := &LineWriter{}
@@ -285,7 +278,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("### `WORKSPACE`")
 		out.ln()
 
-		out.w("```python")
+		out.w("```starlark")
 		out.t(rule.WorkspaceExample, &ruleData{lang, rule})
 		out.w("```")
 		out.ln()
@@ -293,7 +286,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("### `BUILD.bazel`")
 		out.ln()
 
-		out.w("```python")
+		out.w("```starlark")
 		out.t(rule.BuildExample, &ruleData{lang, rule})
 		out.w("```")
 		out.ln()
@@ -320,9 +313,8 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 	}
 
-	out.MustWrite(path.Join(dir, lang.Dir, "README.md"))
+	out.MustWrite(filepath.Join(dir, lang.Dir, "README.md"))
 }
-
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
 	out := &LineWriter{}
@@ -337,7 +329,7 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	out.w("| ---: | :--- | :--- |")
 	for _, lang := range languages {
 		for _, rule := range lang.Rules {
-			dirLink := fmt.Sprintf("[%s](/%s)", lang.DisplayName , lang.Dir)
+			dirLink := fmt.Sprintf("[%s](/%s)", lang.DisplayName, lang.Dir)
 			ruleLink := fmt.Sprintf("[%s](/%s#%s)", rule.Name, lang.Dir, rule.Name)
 			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
 			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
@@ -347,9 +339,8 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 
 	out.tpl(footer, data)
 
-	out.MustWrite(path.Join(dir, "README.md"))
+	out.MustWrite(filepath.Join(dir, "README.md"))
 }
-
 
 func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []string, availableTestsPath string) {
 	// Read available tests
@@ -464,9 +455,8 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 	}
 
 	out.ln()
-	out.MustWrite(path.Join(dir, ".bazelci", "presubmit.yml"))
+	out.MustWrite(filepath.Join(dir, ".bazelci", "presubmit.yml"))
 }
-
 
 func mustWriteExamplesMakefile(dir string, languages []*Language) {
 	out := &LineWriter{}
@@ -486,6 +476,7 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			var name = fmt.Sprintf("%s_%s_example", lang.Name, rule.Name)
 			allNames = append(allNames, name)
 			langNames = append(langNames, name)
+			out.w(".PHONY: %s", name)
 			out.w("%s:", name)
 			out.w("	cd %s; \\", exampleDir)
 			out.w("	bazel --batch build --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
@@ -493,17 +484,19 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 		}
 
 		// Create grouped rules for each language
-		out.w("%s_examples: %s", lang.Name, strings.Join(langNames, " "))
+		targetName := fmt.Sprintf("%s_examples", lang.Name)
+		out.w(".PHONY: %s", targetName)
+		out.w("%s: %s", targetName, strings.Join(langNames, " "))
 		out.ln()
 	}
 
 	// Write all examples rule
+	out.w(".PHONY: all_examples")
 	out.w("all_examples: %s", strings.Join(allNames, " "))
 
 	out.ln()
-	out.MustWrite(path.Join(dir, "example", "Makefile.mk"))
+	out.MustWrite(filepath.Join(dir, "example", "Makefile.mk"))
 }
-
 
 func mustWriteTestWorkspacesMakefile(dir string) {
 	out := &LineWriter{}
@@ -513,6 +506,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 	for _, testWorkspace := range findTestWorkspaceNames(dir) {
 		var name = fmt.Sprintf("test_workspace_%s", testWorkspace)
 		allNames = append(allNames, name)
+		out.w(".PHONY: %s", name)
 		out.w("%s:", name)
 		out.w("	cd %s; \\", path.Join(dir, "test_workspaces", testWorkspace))
 		out.w("	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
@@ -520,12 +514,12 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 	}
 
 	// Write all test workspaces rule
+	out.w(".PHONY: all_test_workspaces")
 	out.w("all_test_workspaces: %s", strings.Join(allNames, " "))
 
 	out.ln()
-	out.MustWrite(path.Join(dir, "test_workspaces", "Makefile.mk"))
+	out.MustWrite(filepath.Join(dir, "test_workspaces", "Makefile.mk"))
 }
-
 
 func mustWriteHttpArchiveTestWorkspace(dir, ref, sha256 string) {
 	out := &LineWriter{}
@@ -538,12 +532,11 @@ http_archive(
     strip_prefix = "rules_proto_grpc-%s",
 )
 `, ref, sha256, ref)
-	out.MustWrite(path.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
+	out.MustWrite(filepath.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
 }
 
-
 func findTestWorkspaceNames(dir string) []string {
-	files, err := ioutil.ReadDir(path.Join(dir, "test_workspaces"))
+	files, err := ioutil.ReadDir(filepath.Join(dir, "test_workspaces"))
 	if err != nil {
 		log.Fatal(err)
 	}

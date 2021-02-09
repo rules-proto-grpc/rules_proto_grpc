@@ -15,7 +15,7 @@ Generates PHP protobuf `.php` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos="php_repos")
 
 rules_proto_grpc_php_repos()
@@ -23,7 +23,7 @@ rules_proto_grpc_php_repos()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//php:defs.bzl", "php_proto_compile")
 
 php_proto_compile(
@@ -47,7 +47,7 @@ Generates PHP protobuf+gRPC `.php` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos="php_repos")
 
 rules_proto_grpc_php_repos()
@@ -59,7 +59,7 @@ grpc_deps()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//php:defs.bzl", "php_grpc_compile")
 
 php_grpc_compile(

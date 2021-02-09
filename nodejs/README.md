@@ -17,7 +17,7 @@ Generates Node.js protobuf `.js` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
@@ -33,7 +33,7 @@ yarn_install(
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_proto_compile")
 
 nodejs_proto_compile(
@@ -57,7 +57,7 @@ Generates Node.js protobuf+gRPC `.js` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
@@ -73,7 +73,7 @@ yarn_install(
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_grpc_compile")
 
 nodejs_grpc_compile(
@@ -99,7 +99,7 @@ Generates a Node.js protobuf library using `js_library` from `rules_nodejs`
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
@@ -115,7 +115,7 @@ yarn_install(
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_proto_library")
 
 nodejs_proto_library(
@@ -141,7 +141,7 @@ Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
@@ -157,7 +157,7 @@ yarn_install(
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_grpc_library")
 
 nodejs_grpc_library(

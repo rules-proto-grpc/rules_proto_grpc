@@ -98,7 +98,7 @@ and add aspect-based compilation to all languages, allowing for all
 
 Add `rules_proto_grpc` your `WORKSPACE` file:
 
-```python
+```starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(

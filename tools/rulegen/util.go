@@ -5,23 +5,20 @@ import (
 	"crypto/sha256"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"os"
 	"strings"
 	"text/template"
 )
-
 
 type LineWriter struct {
 	lines []string
 }
 
-
 func (w *LineWriter) w(s string, args ...interface{}) {
 	w.lines = append(w.lines, fmt.Sprintf(s, args...))
 }
-
 
 func (w *LineWriter) t(t *template.Template, data interface{}) {
 	var buf bytes.Buffer
@@ -32,7 +29,6 @@ func (w *LineWriter) t(t *template.Template, data interface{}) {
 	w.lines = append(w.lines, buf.String())
 }
 
-
 func (w *LineWriter) tpl(filename string, data interface{}) {
 	tpl, err := template.ParseFiles(filename)
 	if err != nil {
@@ -41,41 +37,21 @@ func (w *LineWriter) tpl(filename string, data interface{}) {
 	w.t(tpl, data)
 }
 
-
 func (w *LineWriter) ln() {
 	w.lines = append(w.lines, "")
 }
 
-
 func (w *LineWriter) MustWrite(filepath string) {
-	err := writeFile(filepath, strings.Join(w.lines, "\n"))
+	err := ioutil.WriteFile(filepath, []byte(strings.Join(w.lines, "\n")), 0666)
 	if err != nil {
 		log.Fatalf("FAIL %s: %v", filepath, err)
 	}
+	log.Printf("Wrote %s", filepath)
 }
-
 
 func mustTemplate(tpl string) *template.Template {
 	return template.Must(template.New("").Option("missingkey=error").Parse(tpl))
 }
-
-
-func writeFile(filepath, content string) error {
-	fo, err := os.Create(filepath)
-	if err != nil {
-		return err
-	}
-	defer fo.Close()
-
-	_, err = io.Copy(fo, strings.NewReader(content))
-	if err != nil {
-		return err
-	}
-
-	log.Printf("Wrote %s", filepath)
-	return nil
-}
-
 
 func mustGetSha256(url string) string {
 	response, err := http.Get(url)
@@ -85,17 +61,16 @@ func mustGetSha256(url string) string {
 	defer response.Body.Close()
 
 	h := sha256.New()
-	if _, err := io.Copy(h, response.Body); err != nil {
+	if _, err = io.Copy(h, response.Body); err != nil {
 		log.Fatal(err)
 	}
 
-	sha256 := fmt.Sprintf("%x", h.Sum(nil))
+	sha256sum := fmt.Sprintf("%x", h.Sum(nil))
 
-	log.Printf("sha256 for %s is %q", url, sha256)
+	log.Printf("sha256 for %s is %q", url, sha256sum)
 
-	return sha256
+	return sha256sum
 }
-
 
 func stringInSlice(search string, slice []string) bool {
 	for _, item := range slice {
@@ -105,7 +80,6 @@ func stringInSlice(search string, slice []string) bool {
 	}
 	return false
 }
-
 
 func doTestOnPlatform(lang *Language, rule *Rule, ciPlatform string) bool {
 	// Load platforms to skip
@@ -141,14 +115,4 @@ func doTestOnPlatform(lang *Language, rule *Rule, ciPlatform string) bool {
 	}
 
 	return true
-}
-
-
-func doTestOnAnyPlaform(lang *Language, rule *Rule) bool {
-	for _, ciPlatform := range ciPlatforms {
-		if doTestOnPlatform(lang, rule, ciPlatform) {
-			return true
-		}
-	}
-	return false
 }

@@ -17,7 +17,7 @@ Generates C# protobuf `.cs` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
 rules_proto_grpc_csharp_repos()
@@ -45,7 +45,7 @@ nuget_rules_proto_grpc_packages()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_compile")
 
 csharp_proto_compile(
@@ -69,7 +69,7 @@ Generates C# protobuf+gRPC `.cs` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
 rules_proto_grpc_csharp_repos()
@@ -101,7 +101,7 @@ nuget_rules_proto_grpc_packages()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_compile")
 
 csharp_grpc_compile(
@@ -125,7 +125,7 @@ Generates a C# protobuf library using `core_library` from `rules_dotnet`. Note t
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
 rules_proto_grpc_csharp_repos()
@@ -153,7 +153,7 @@ nuget_rules_proto_grpc_packages()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_library")
 
 csharp_proto_library(
@@ -177,7 +177,7 @@ Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`. N
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
 
 rules_proto_grpc_csharp_repos()
@@ -209,7 +209,7 @@ nuget_rules_proto_grpc_packages()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library")
 
 csharp_grpc_library(

@@ -17,7 +17,7 @@ Generates Ruby protobuf `.rb` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
 rules_proto_grpc_ruby_repos()
@@ -25,7 +25,7 @@ rules_proto_grpc_ruby_repos()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//ruby:defs.bzl", "ruby_proto_compile")
 
 ruby_proto_compile(
@@ -49,7 +49,7 @@ Generates Ruby protobuf+gRPC `.rb` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
 rules_proto_grpc_ruby_repos()
@@ -61,7 +61,7 @@ grpc_deps()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//ruby:defs.bzl", "ruby_grpc_compile")
 
 ruby_grpc_compile(
@@ -85,7 +85,7 @@ Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
 rules_proto_grpc_ruby_repos()
@@ -105,7 +105,7 @@ bundle_install(
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//ruby:defs.bzl", "ruby_proto_library")
 
 ruby_proto_library(
@@ -129,7 +129,7 @@ Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby`
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
 rules_proto_grpc_ruby_repos()
@@ -153,7 +153,7 @@ bundle_install(
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//ruby:defs.bzl", "ruby_grpc_library")
 
 ruby_grpc_library(

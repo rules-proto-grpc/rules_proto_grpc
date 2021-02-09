@@ -17,7 +17,7 @@ Generates C++ protobuf `.h` & `.cc` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
 rules_proto_grpc_cpp_repos()
@@ -25,7 +25,7 @@ rules_proto_grpc_cpp_repos()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
 
 cpp_proto_compile(
@@ -49,7 +49,7 @@ Generates C++ protobuf+gRPC `.h` & `.cc` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
 rules_proto_grpc_cpp_repos()
@@ -61,7 +61,7 @@ grpc_deps()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_compile")
 
 cpp_grpc_compile(
@@ -85,7 +85,7 @@ Generates a C++ protobuf library using `cc_library`, with dependencies linked
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
 rules_proto_grpc_cpp_repos()
@@ -93,7 +93,7 @@ rules_proto_grpc_cpp_repos()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
 cpp_proto_library(
@@ -117,7 +117,7 @@ Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies link
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
 
 rules_proto_grpc_cpp_repos()
@@ -129,7 +129,7 @@ grpc_deps()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_library")
 
 cpp_grpc_library(

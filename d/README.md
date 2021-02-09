@@ -17,7 +17,7 @@ Generates D protobuf `.d` artifacts
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//d:repositories.bzl", rules_proto_grpc_d_repos="d_repos")
 
 rules_proto_grpc_d_repos()
@@ -29,7 +29,7 @@ d_repositories()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//d:defs.bzl", "d_proto_compile")
 
 d_proto_compile(
@@ -53,7 +53,7 @@ Generates a D protobuf library using `d_library` from `rules_d`
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//d:repositories.bzl", rules_proto_grpc_d_repos="d_repos")
 
 rules_proto_grpc_d_repos()
@@ -65,7 +65,7 @@ d_repositories()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//d:defs.bzl", "d_proto_library")
 
 d_proto_library(

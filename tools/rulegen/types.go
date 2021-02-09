@@ -4,7 +4,6 @@ import (
 	"text/template"
 )
 
-
 // Language represents one directory in this repo
 type Language struct {
 	// Directory in the repo where this language is rooted.  Typically this is
@@ -42,7 +41,6 @@ type Language struct {
 	// Extra aliases to add to defs.bzl. Stored as alias name -> real name
 	Aliases map[string]string
 }
-
 
 type Rule struct {
 	// Name of the rule
@@ -86,7 +84,6 @@ type Rule struct {
 	SkipTestPlatforms []string
 }
 
-
 // Flag captures information about a bazel build flag.
 type Flag struct {
 	Category    string
@@ -95,7 +92,6 @@ type Flag struct {
 	Description string
 }
 
-
 type Attr struct {
 	Name      string
 	Type      string
@@ -103,13 +99,6 @@ type Attr struct {
 	Doc       string
 	Mandatory bool
 }
-
-
-type Plugin struct {
-	Tool    string
-	Options []string
-}
-
 
 type ruleData struct {
 	Lang *Language

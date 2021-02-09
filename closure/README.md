@@ -15,7 +15,7 @@ Generates Closure protobuf `.js` files
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//closure:repositories.bzl", rules_proto_grpc_closure_repos="closure_repos")
 
 rules_proto_grpc_closure_repos()
@@ -23,7 +23,7 @@ rules_proto_grpc_closure_repos()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//closure:defs.bzl", "closure_proto_compile")
 
 closure_proto_compile(
@@ -47,7 +47,7 @@ Generates a Closure library with compiled protobuf `.js` files using `closure_js
 
 ### `WORKSPACE`
 
-```python
+```starlark
 load("@rules_proto_grpc//closure:repositories.bzl", rules_proto_grpc_closure_repos="closure_repos")
 
 rules_proto_grpc_closure_repos()
@@ -64,7 +64,7 @@ rules_closure_toolchains()
 
 ### `BUILD.bazel`
 
-```python
+```starlark
 load("@rules_proto_grpc//closure:defs.bzl", "closure_proto_library")
 
 closure_proto_library(
