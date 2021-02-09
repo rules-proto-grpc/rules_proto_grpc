@@ -1,4 +1,4 @@
-load("//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_library", "gateway_swagger_compile")
+load("//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_library", "gateway_openapiv2_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 
 proto_library(
@@ -17,7 +17,7 @@ gateway_grpc_library(
     deps = ["api_proto"],
 )
 
-gateway_swagger_compile(
-    name = "api_swagger",
+gateway_openapiv2_compile(
+    name = "api_openapiv2",
     deps = ["api_proto"],
 )

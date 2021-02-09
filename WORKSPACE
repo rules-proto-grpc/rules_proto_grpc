@@ -140,6 +140,8 @@ d_repositories()
 #
 # gRPC gateway
 #
+# Uses same dependencies as Go.
+
 load("//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", "gateway_repos")
 gateway_repos()
 

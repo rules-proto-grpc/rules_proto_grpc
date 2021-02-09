@@ -22,7 +22,6 @@ load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ 
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
-
 var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
@@ -53,25 +52,23 @@ PROTO_DEPS = [
     "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
 ]`)
 
-var goGrpcLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
+var goGrpcLibraryRuleTemplate = mustTemplate(
+	`load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_proto_library.bzl", "PROTO_DEPS")
+` + goLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     go_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GRPC_DEPS,
+        deps = kwargs.get("go_deps", []) + GRPC_DEPS + PROTO_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
-    "@com_github_golang_protobuf//proto:go_default_library",
-    "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
-    "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
     "@org_golang_google_grpc//:go_default_library",
     "@org_golang_google_grpc//codes:go_default_library",
     "@org_golang_google_grpc//status:go_default_library",
-    "@org_golang_x_net//context:go_default_library",
 ]`)
 
 var goProtoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
@@ -124,11 +121,11 @@ var goProtoAttrs = []*Attr{
 
 func makeGo() *Language {
 	return &Language{
-		Dir:  "go",
-		Name: "go",
+		Dir:         "go",
+		Name:        "go",
 		DisplayName: "Go",
-		Notes: mustTemplate("Rules for generating Go protobuf and gRPC `.go` files and libraries using [golang/protobuf](https://github.com/golang/protobuf). Libraries are created with `go_library` from [rules_go](https://github.com/bazelbuild/rules_go)"),
-		Flags: commonLangFlags,
+		Notes:       mustTemplate("Rules for generating Go protobuf and gRPC `.go` files and libraries using [golang/protobuf](https://github.com/golang/protobuf). Libraries are created with `go_library` from [rules_go](https://github.com/bazelbuild/rules_go)"),
+		Flags:       commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "go_proto_compile",
@@ -146,7 +143,7 @@ func makeGo() *Language {
 				Base:             "go",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//go:grpc_go_plugin"},
+				Plugins:          []string{"//go:go_plugin", "//go:grpc_go_plugin"},
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Go protobuf+gRPC `.go` artifacts",

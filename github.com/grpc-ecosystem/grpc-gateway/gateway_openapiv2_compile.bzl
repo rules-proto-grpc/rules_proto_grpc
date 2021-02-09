@@ -8,8 +8,8 @@ load(
     "proto_compile_impl",
 )
 
-# Create aspect for gateway_swagger_compile
-gateway_swagger_compile_aspect = aspect(
+# Create aspect for gateway_openapiv2_compile
+gateway_openapiv2_compile_aspect = aspect(
     implementation = proto_compile_aspect_impl,
     provides = [ProtoLibraryAspectNodeInfo],
     attr_aspects = ["deps"],
@@ -19,12 +19,13 @@ gateway_swagger_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/grpc-ecosystem/grpc-gateway:swagger_plugin"),
+                Label("//github.com/grpc-ecosystem/grpc-gateway:openapiv2_plugin"),
+                Label("//go:go_plugin"),
             ],
         ),
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
-            default = "gateway_swagger_compile_aspect",
+            default = "gateway_openapiv2_compile_aspect",
         )
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
@@ -38,13 +39,13 @@ _rule = rule(
         deps = attr.label_list(
             mandatory = True,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [gateway_swagger_compile_aspect],
+            aspects = [gateway_openapiv2_compile_aspect],
         ),
     ),
 )
 
 # Create macro for converting attrs and passing to compile
-def gateway_swagger_compile(**kwargs):
+def gateway_openapiv2_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
         merge_directories = True,
