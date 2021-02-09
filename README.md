@@ -318,12 +318,6 @@ access that rule by adding `_pb` at the end of the rule name, like `bazel build
 //example/proto:cpp_thing_proto_pb`.
 
 
-## Migration
-
-For users migrating from the [stackb/rules_proto](https://github.com/stackb/rules_proto)
-rules, please see the help at [MIGRATION.md](/docs/MIGRATION.md)
-
-
 ## Developers
 
 ### Code Layout
