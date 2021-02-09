@@ -232,7 +232,7 @@ message Thing {
 
 
 **Step 2**: Write a `BAZEL.build` file with a [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
-rule:
+target:
 
 ```python
 proto_library(
@@ -246,7 +246,7 @@ In this example we have a dependency on a well-known type `any.proto`, hence the
 `proto_library` to `proto_library` dependency (`"@com_google_protobuf//:any_proto"`)
 
 
-**Step 3**: Add a `cpp_proto_compile` rule (substitute `cpp_` for the language
+**Step 3**: Add a `cpp_proto_compile` target (substitute `cpp_` for the language
 of your choice).
 
 > NOTE: In this example `thing.proto` does not include service definitions
@@ -275,7 +275,7 @@ load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_repos")
 cpp_repos()
 ```
 
-We're now ready to build the rule:
+We're now ready to build the target:
 
 
 **Step 5**: Build it!
@@ -311,10 +311,10 @@ Target //example/proto:cpp_thing_proto up-to-date:
 ```
 
 This way, we can use `//example/proto:cpp_thing_proto` as a dependency of any
-other `cc_library` or `cc_binary` rule as per normal.
+other `cc_library` or `cc_binary` target as per normal.
 
 > NOTE: the `cpp_proto_library` implicitly calls `cpp_proto_compile`, and we can
-access that rule by adding `_pb` at the end of the rule name, like `bazel build
+access that rule's output by adding `_pb` at the end of the target name, like `bazel build
 //example/proto:cpp_thing_proto_pb`.
 
 
