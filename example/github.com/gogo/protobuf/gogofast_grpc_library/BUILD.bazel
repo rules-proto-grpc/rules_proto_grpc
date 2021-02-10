@@ -1,7 +1,0 @@
-load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofast_grpc_library")
-
-gogofast_grpc_library(
-    name = "greeter_gogo_library",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogofast_grpc_library/greeter",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-)

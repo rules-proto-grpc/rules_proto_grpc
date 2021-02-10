@@ -34,7 +34,6 @@
     - [C#](/csharp/README.md)
     - [D](/d/README.md)
     - [Go](/go/README.md)
-    - [Go (gogoprotobuf)](/github.com/gogo/protobuf/README.md)
     - [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway/README.md)
     - [gRPC-Web](/github.com/grpc/grpc-web/README.md)
     - [Java](/java/README.md)
@@ -188,18 +187,6 @@ required.
 | [Swift](/swift) | [swift_grpc_compile](/swift#swift_grpc_compile) | Generates Swift protobuf+gRPC `.swift` artifacts ([example](/example/swift/swift_grpc_compile)) |
 | [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library using `swift_library` from `rules_swift` ([example](/example/swift/swift_proto_library)) |
 | [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift` ([example](/example/swift/swift_grpc_library)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_proto_compile](/github.com/gogo/protobuf#gogo_proto_compile) | Generates gogo protobuf `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogo_proto_compile)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_grpc_compile](/github.com/gogo/protobuf#gogo_grpc_compile) | Generates gogo protobuf+gRPC `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogo_grpc_compile)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_proto_library](/github.com/gogo/protobuf#gogo_proto_library) | Generates a Go gogo protobuf library using `go_library` from `rules_go` ([example](/example/github.com/gogo/protobuf/gogo_proto_library)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogo_grpc_library](/github.com/gogo/protobuf#gogo_grpc_library) | Generates a Go gogo protobuf+gRPC library using `go_library` from `rules_go` ([example](/example/github.com/gogo/protobuf/gogo_grpc_library)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogofast_proto_compile](/github.com/gogo/protobuf#gogofast_proto_compile) | Generates gogofast protobuf `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogofast_proto_compile)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogofast_grpc_compile](/github.com/gogo/protobuf#gogofast_grpc_compile) | Generates gogofast protobuf+gRPC `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogofast_grpc_compile)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogofast_proto_library](/github.com/gogo/protobuf#gogofast_proto_library) | Generates a Go gogofast protobuf library using `go_library` from `rules_go` ([example](/example/github.com/gogo/protobuf/gogofast_proto_library)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogofast_grpc_library](/github.com/gogo/protobuf#gogofast_grpc_library) | Generates a Go gogofast protobuf+gRPC library using `go_library` from `rules_go` ([example](/example/github.com/gogo/protobuf/gogofast_grpc_library)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogofaster_proto_compile](/github.com/gogo/protobuf#gogofaster_proto_compile) | Generates gogofaster protobuf `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogofaster_proto_compile)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogofaster_grpc_compile](/github.com/gogo/protobuf#gogofaster_grpc_compile) | Generates gogofaster protobuf+gRPC `.go` artifacts ([example](/example/github.com/gogo/protobuf/gogofaster_grpc_compile)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogofaster_proto_library](/github.com/gogo/protobuf#gogofaster_proto_library) | Generates a Go gogofaster protobuf library using `go_library` from `rules_go` ([example](/example/github.com/gogo/protobuf/gogofaster_proto_library)) |
-| [Go (gogoprotobuf)](/github.com/gogo/protobuf) | [gogofaster_grpc_library](/github.com/gogo/protobuf#gogofaster_grpc_library) | Generates a Go gogofaster protobuf+gRPC library using `go_library` from `rules_go` ([example](/example/github.com/gogo/protobuf/gogofaster_grpc_library)) |
 | [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway) | [gateway_grpc_compile](/github.com/grpc-ecosystem/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_compile)) |
 | [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway) | [gateway_openapiv2_compile](/github.com/grpc-ecosystem/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/github.com/grpc-ecosystem/grpc-gateway/gateway_openapiv2_compile)) |
 | [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway) | [gateway_grpc_library](/github.com/grpc-ecosystem/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_library)) |

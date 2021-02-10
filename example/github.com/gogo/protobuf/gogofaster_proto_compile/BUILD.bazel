@@ -1,6 +1,0 @@
-load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofaster_proto_compile")
-
-gogofaster_proto_compile(
-    name = "person_gogo_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
-)

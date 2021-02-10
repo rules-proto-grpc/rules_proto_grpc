@@ -36,5 +36,4 @@ PROTO_DEPS = [
     "@org_golang_google_protobuf//types/known/timestamppb:go_default_library",
     "@org_golang_google_protobuf//types/known/typepb:go_default_library",
     "@org_golang_google_protobuf//types/known/wrapperspb:go_default_library",
-
 ]
