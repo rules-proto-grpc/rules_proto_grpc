@@ -72,6 +72,7 @@ proto_library(
         "//visibility:public",
     ],
     deps = [
-        "@com_google_protobuf//:any_proto",
+        ":person_proto",  # Non well-known
+        "@com_google_protobuf//:any_proto",  # Well-known
     ],
 )

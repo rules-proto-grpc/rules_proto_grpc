@@ -22,6 +22,8 @@ option objc_class_prefix = "GTR";
 package greeter;
 
 import "google/protobuf/any.proto";
+import "example/proto/person.proto";
+
 
 // The greeting service definition.
 service Greeter {
@@ -38,4 +40,5 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
   google.protobuf.Any payload = 2;
+  example.proto.Person person = 3;
 }
