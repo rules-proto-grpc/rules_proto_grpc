@@ -50,6 +50,18 @@ PROTO_DEPS = [
     "@com_github_golang_protobuf//proto:go_default_library",
     "@org_golang_google_protobuf//reflect/protoreflect:go_default_library",
     "@org_golang_google_protobuf//runtime/protoimpl:go_default_library",
+
+    # Well-known types
+    "@org_golang_google_protobuf//types/known/anypb:go_default_library",
+    "@org_golang_google_protobuf//types/known/apipb:go_default_library",
+    "@org_golang_google_protobuf//types/known/durationpb:go_default_library",
+    "@org_golang_google_protobuf//types/known/emptypb:go_default_library",
+    "@org_golang_google_protobuf//types/known/fieldmaskpb:go_default_library",
+    "@org_golang_google_protobuf//types/known/sourcecontextpb:go_default_library",
+    "@org_golang_google_protobuf//types/known/structpb:go_default_library",
+    "@org_golang_google_protobuf//types/known/timestamppb:go_default_library",
+    "@org_golang_google_protobuf//types/known/typepb:go_default_library",
+    "@org_golang_google_protobuf//types/known/wrapperspb:go_default_library",
 ]`)
 
 var goGrpcLibraryRuleTemplate = mustTemplate(
@@ -59,7 +71,7 @@ var goGrpcLibraryRuleTemplate = mustTemplate(
     go_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GRPC_DEPS + PROTO_DEPS,
+        deps = kwargs.get("go_deps", []) + GRPC_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -69,7 +81,7 @@ GRPC_DEPS = [
     "@org_golang_google_grpc//:go_default_library",
     "@org_golang_google_grpc//codes:go_default_library",
     "@org_golang_google_grpc//status:go_default_library",
-]`)
+] + PROTO_DEPS`)
 
 var goProtoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
@@ -91,9 +103,6 @@ var goProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .L
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_library",
-    go_deps = [
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-    ],
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/{{ .Lang.Name }}/example/{{ .Rule.Name }}/person",
     deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )`)
@@ -102,9 +111,6 @@ var goGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .La
 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Lang.Name }}_library",
-    go_deps = [
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-    ],
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/{{ .Lang.Name }}/example/{{ .Rule.Name }}/greeter",
     deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )`)

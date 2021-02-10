@@ -148,9 +148,6 @@ load("@rules_proto_grpc//go:defs.bzl", "go_proto_library")
 
 go_proto_library(
     name = "person_go_library",
-    go_deps = [
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-    ],
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/go/example/go_proto_library/person",
     deps = ["@rules_proto_grpc//example/proto:person_proto"],
 )
@@ -203,9 +200,6 @@ load("@rules_proto_grpc//go:defs.bzl", "go_grpc_library")
 
 go_grpc_library(
     name = "greeter_go_library",
-    go_deps = [
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-    ],
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/go/example/go_grpc_library/greeter",
     deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

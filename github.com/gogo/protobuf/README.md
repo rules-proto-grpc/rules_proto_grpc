@@ -212,9 +212,6 @@ load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogo_grpc_library"
 
 gogo_grpc_library(
     name = "greeter_gogo_library",
-    go_deps = [
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-    ],
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogo_grpc_library/greeter",
     deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
@@ -423,9 +420,6 @@ load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofast_grpc_libr
 
 gogofast_grpc_library(
     name = "greeter_gogo_library",
-    go_deps = [
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-    ],
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogofast_grpc_library/greeter",
     deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
@@ -634,9 +628,6 @@ load("@rules_proto_grpc//github.com/gogo/protobuf:defs.bzl", "gogofaster_grpc_li
 
 gogofaster_grpc_library(
     name = "greeter_gogo_library",
-    go_deps = [
-        "@com_github_golang_protobuf//ptypes/any:go_default_library",
-    ],
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/gogo/example/gogofaster_grpc_library/greeter",
     deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

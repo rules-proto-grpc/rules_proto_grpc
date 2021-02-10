@@ -15,7 +15,7 @@ def go_grpc_library(**kwargs):
     go_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GRPC_DEPS + PROTO_DEPS,
+        deps = kwargs.get("go_deps", []) + GRPC_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -25,4 +25,4 @@ GRPC_DEPS = [
     "@org_golang_google_grpc//:go_default_library",
     "@org_golang_google_grpc//codes:go_default_library",
     "@org_golang_google_grpc//status:go_default_library",
-]
+] + PROTO_DEPS
