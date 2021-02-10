@@ -4,7 +4,7 @@ proto_plugin(
     name = "go_plugin",
     options = ["paths=source_relative"],
     outputs = ["{protopath}.pb.go"],
-    tool = "@com_github_golang_protobuf//protoc-gen-go",
+    tool = "@org_golang_google_protobuf//cmd/protoc-gen-go",
     exclusions = [
         "google/api",
         "google/protobuf",

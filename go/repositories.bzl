@@ -17,6 +17,7 @@ def go_repos(**kwargs):
         version = "v1.35.0",
     )
 
+    # Required for org_golang_google_grpc
     go_repository(
         name = "org_golang_x_net",
         importpath = "golang.org/x/net",
@@ -24,6 +25,7 @@ def go_repos(**kwargs):
         version = "v0.0.0-20210129194117-4acb7895a057",
     )
 
+    # Required for org_golang_google_grpc
     go_repository(
         name = "org_golang_x_text",
         importpath = "golang.org/x/text",
