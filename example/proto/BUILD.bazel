@@ -38,16 +38,6 @@ proto_library(
 )
 
 proto_library(
-    name = "empty_proto",
-    srcs = [
-        "empty.proto",
-    ],
-    visibility = [
-        "//visibility:public",
-    ],
-)
-
-proto_library(
     name = "routeguide_proto",
     srcs = [
         "routeguide.proto",
