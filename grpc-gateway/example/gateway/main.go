@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/golang/glog"
-	gwruntime "github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	gwruntime "grpc-gateway/v2/runtime"
 )
 
 // Endpoint describes a gRPC endpoint

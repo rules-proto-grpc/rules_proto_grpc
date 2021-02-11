@@ -1,4 +1,4 @@
-load("//github.com/grpc-ecosystem/grpc-gateway:gateway_grpc_compile.bzl", "gateway_grpc_compile")
+load("//grpc-gateway:gateway_grpc_compile.bzl", "gateway_grpc_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("//go:go_proto_library.bzl", "PROTO_DEPS")
 load("//go:go_grpc_library.bzl", "GRPC_DEPS")

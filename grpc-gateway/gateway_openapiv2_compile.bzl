@@ -19,7 +19,7 @@ gateway_openapiv2_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/grpc-ecosystem/grpc-gateway:openapiv2_plugin"),
+                Label("//grpc-gateway:openapiv2_plugin"),
                 Label("//go:go_plugin"),
             ],
         ),

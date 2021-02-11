@@ -70,13 +70,13 @@ var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{
 
 {{ .Rule.Name }}(
     name = "api_gateway_library",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/github.com/grpc-ecosystem/grpc-gateway/examples/api",
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api",
     deps = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
 )`)
 
 func makeGrpcGateway() *Language {
 	return &Language{
-		Dir:         "github.com/grpc-ecosystem/grpc-gateway",
+		Dir:         "grpc-gateway",
 		Name:        "grpc-gateway",
 		DisplayName: "grpc-gateway",
 		Flags:       commonLangFlags,
@@ -85,7 +85,7 @@ func makeGrpcGateway() *Language {
 				Name:             "gateway_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//github.com/grpc-ecosystem/grpc-gateway:grpc_gateway_plugin", "//go:grpc_go_plugin", "//go:go_plugin"},
+				Plugins:          []string{"//grpc-gateway:grpc_gateway_plugin", "//go:grpc_go_plugin", "//go:go_plugin"},
 				WorkspaceExample: grpcGatewayWorkspaceTemplate,
 				BuildExample:     grpcGatewayCompileExampleTemplate,
 				Doc:              "Generates grpc-gateway `.go` files",
@@ -95,7 +95,7 @@ func makeGrpcGateway() *Language {
 				Name:              "gateway_openapiv2_compile",
 				Kind:              "grpc",
 				Implementation:    aspectRuleTemplate,
-				Plugins:           []string{"//github.com/grpc-ecosystem/grpc-gateway:openapiv2_plugin", "//go:go_plugin"},
+				Plugins:           []string{"//grpc-gateway:openapiv2_plugin", "//go:go_plugin"},
 				WorkspaceExample:  grpcGatewayWorkspaceTemplate,
 				BuildExample:      grpcGatewayCompileExampleTemplate,
 				Doc:               "Generates grpc-gateway OpenAPI v2 `.json` files",

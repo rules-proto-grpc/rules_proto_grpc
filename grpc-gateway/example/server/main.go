@@ -10,7 +10,7 @@ import (
 	"log"
 
 	"github.com/golang/glog"
-	"github.com/rules-proto-grpc/rules_proto_grpc/github.com/grpc-ecosystem/grpc-gateway/example/gateway"
+	"github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/example/gateway"
 )
 
 var (

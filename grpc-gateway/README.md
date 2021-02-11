@@ -33,7 +33,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
+load("@rules_proto_grpc//grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
 
 rules_proto_grpc_gateway_repos()
 
@@ -45,11 +45,11 @@ go_repositories()
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_compile")
+load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_compile")
 
 gateway_grpc_compile(
     name = "api_gateway_grpc",
-    deps = ["@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
+    deps = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
 )
 ```
 
@@ -87,7 +87,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
+load("@rules_proto_grpc//grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
 
 rules_proto_grpc_gateway_repos()
 
@@ -99,11 +99,11 @@ go_repositories()
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_openapiv2_compile")
+load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_openapiv2_compile")
 
 gateway_openapiv2_compile(
     name = "api_gateway_grpc",
-    deps = ["@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
+    deps = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
 )
 ```
 
@@ -141,7 +141,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
+load("@rules_proto_grpc//grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
 
 rules_proto_grpc_gateway_repos()
 
@@ -153,12 +153,12 @@ go_repositories()
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway:defs.bzl", "gateway_grpc_library")
+load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_library")
 
 gateway_grpc_library(
     name = "api_gateway_library",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/github.com/grpc-ecosystem/grpc-gateway/examples/api",
-    deps = ["@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway/example/api:api_proto"],
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api",
+    deps = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
 )
 ```
 

@@ -34,7 +34,7 @@
     - [C#](/csharp/README.md)
     - [D](/d/README.md)
     - [Go](/go/README.md)
-    - [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway/README.md)
+    - [grpc-gateway](/grpc-gateway/README.md)
     - [gRPC-Web](/github.com/grpc/grpc-web/README.md)
     - [Java](/java/README.md)
     - [Node.js](/nodejs/README.md)

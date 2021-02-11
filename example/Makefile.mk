@@ -320,18 +320,18 @@ swift_examples: swift_swift_proto_compile_example swift_swift_grpc_compile_examp
 
 .PHONY: grpc-gateway_gateway_grpc_compile_example
 grpc-gateway_gateway_grpc_compile_example:
-	cd example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_compile; \
-	bazel --batch build --verbose_failures --disk_cache=../../../../bazel-disk-cache //...
+	cd example/grpc-gateway/gateway_grpc_compile; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc-gateway_gateway_openapiv2_compile_example
 grpc-gateway_gateway_openapiv2_compile_example:
-	cd example/github.com/grpc-ecosystem/grpc-gateway/gateway_openapiv2_compile; \
-	bazel --batch build --verbose_failures --disk_cache=../../../../bazel-disk-cache //...
+	cd example/grpc-gateway/gateway_openapiv2_compile; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc-gateway_gateway_grpc_library_example
 grpc-gateway_gateway_grpc_library_example:
-	cd example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_library; \
-	bazel --batch build --verbose_failures --disk_cache=../../../../bazel-disk-cache //...
+	cd example/grpc-gateway/gateway_grpc_library; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc-gateway_examples
 grpc-gateway_examples: grpc-gateway_gateway_grpc_compile_example grpc-gateway_gateway_openapiv2_compile_example grpc-gateway_gateway_grpc_library_example

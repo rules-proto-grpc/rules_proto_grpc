@@ -34,7 +34,7 @@
     - [C#](/csharp/README.md)
     - [D](/d/README.md)
     - [Go](/go/README.md)
-    - [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway/README.md)
+    - [grpc-gateway](/grpc-gateway/README.md)
     - [gRPC-Web](/github.com/grpc/grpc-web/README.md)
     - [Java](/java/README.md)
     - [Node.js](/nodejs/README.md)
@@ -187,9 +187,9 @@ required.
 | [Swift](/swift) | [swift_grpc_compile](/swift#swift_grpc_compile) | Generates Swift protobuf+gRPC `.swift` artifacts ([example](/example/swift/swift_grpc_compile)) |
 | [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library using `swift_library` from `rules_swift` ([example](/example/swift/swift_proto_library)) |
 | [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift` ([example](/example/swift/swift_grpc_library)) |
-| [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway) | [gateway_grpc_compile](/github.com/grpc-ecosystem/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_compile)) |
-| [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway) | [gateway_openapiv2_compile](/github.com/grpc-ecosystem/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/github.com/grpc-ecosystem/grpc-gateway/gateway_openapiv2_compile)) |
-| [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway) | [gateway_grpc_library](/github.com/grpc-ecosystem/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/github.com/grpc-ecosystem/grpc-gateway/gateway_grpc_library)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_grpc_compile](/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/grpc-gateway/gateway_grpc_compile)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_openapiv2_compile](/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/grpc-gateway/gateway_openapiv2_compile)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_grpc_library](/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/grpc-gateway/gateway_grpc_library)) |
 | [gRPC-Web](/github.com/grpc/grpc-web) | [closure_grpc_compile](/github.com/grpc/grpc-web#closure_grpc_compile) | Generates Closure *.js protobuf+gRPC files ([example](/example/github.com/grpc/grpc-web/closure_grpc_compile)) |
 | [gRPC-Web](/github.com/grpc/grpc-web) | [commonjs_grpc_compile](/github.com/grpc/grpc-web#commonjs_grpc_compile) | Generates CommonJS *.js protobuf+gRPC files ([example](/example/github.com/grpc/grpc-web/commonjs_grpc_compile)) |
 | [gRPC-Web](/github.com/grpc/grpc-web) | [commonjs_dts_grpc_compile](/github.com/grpc/grpc-web#commonjs_dts_grpc_compile) | Generates commonjs_dts *.js protobuf+gRPC files ([example](/example/github.com/grpc/grpc-web/commonjs_dts_grpc_compile)) |
