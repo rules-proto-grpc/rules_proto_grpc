@@ -14,6 +14,7 @@ proto_plugin(
     name = "grpc_ruby_plugin",
     outputs = ["{protopath}_services_pb.rb"],
     tool = "@com_github_grpc_grpc//src/compiler:grpc_ruby_plugin",
+    empty_template = "empty.template",
     exclusions = [
         "google/protobuf",
     ],
