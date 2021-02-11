@@ -9,14 +9,7 @@ load(
     "swift_rules_dependencies",
 )
 
-swift_rules_dependencies()
-
-load(
-    "@build_bazel_apple_support//lib:repositories.bzl",
-    "apple_support_dependencies",
-)
-
-apple_support_dependencies()`)
+swift_rules_dependencies()`)
 
 var swiftProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")

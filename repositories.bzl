@@ -61,13 +61,6 @@ VERSIONS = {
         "ref": "0.18.0",
         "sha256": "3da7a2e1b6bf002e1ee47b0d10d889a67ec5cab42b13cf52b08b6e2f77ca3acf",
     },
-    "build_bazel_apple_support": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "apple_support",
-        "ref": "0.7.2",
-        "sha256": "519a3bc32132f7b5780e82c2fc6ad2a78d4b28b81561e6fd7b7e0b14ea110074",
-    },
     "bazel_skylib": {
         "type": "github",
         "org": "bazelbuild",
@@ -343,8 +336,7 @@ def rules_proto_grpc_repos(**kwargs):
 
     rules_proto(**kwargs)
     rules_python(**kwargs)
-    #build_bazel_rules_swift(**kwargs)
-    #build_bazel_apple_support(**kwargs)
+    build_bazel_rules_swift(**kwargs)
     bazel_skylib(**kwargs)
 
     six(**kwargs)
@@ -360,9 +352,6 @@ def rules_python(**kwargs):
 
 def build_bazel_rules_swift(**kwargs):
     _generic_dependency("build_bazel_rules_swift", **kwargs)
-
-def build_bazel_apple_support(**kwargs):
-    _generic_dependency("build_bazel_apple_support", **kwargs)
 
 def com_google_protobuf(**kwargs):
     _generic_dependency("com_google_protobuf", **kwargs)
