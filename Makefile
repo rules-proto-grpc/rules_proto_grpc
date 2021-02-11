@@ -84,7 +84,7 @@ pending_clients:
 		//closure/example/routeguide/client \
 		//nodejs/example/routeguide:client \
 		//ruby/example/routeguide:client \
-		//github.com/grpc/grpc-web/example/routeguide/closure:bundle \
+		//grpc-web/example/routeguide/closure:bundle \
 		//rust/example/routeguide:client
 
 .PHONY: pending_servers

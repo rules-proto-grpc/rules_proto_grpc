@@ -152,7 +152,7 @@ go_repositories()
 #
 # gRPC web
 #
-load("//github.com/grpc/grpc-web:repositories.bzl", "grpc_web_repos")
+load("//grpc-web:repositories.bzl", "grpc_web_repos")
 grpc_web_repos()
 
 

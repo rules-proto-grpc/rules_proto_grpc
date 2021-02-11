@@ -59,9 +59,9 @@ GRPC_DEPS = [
     "@io_bazel_rules_closure//closure/protobuf:jspb",
 ]`)
 
-func makeGithubComGrpcGrpcWeb() *Language {
+func makeGrpcWeb() *Language {
 	return &Language{
-		Dir:  "github.com/grpc/grpc-web",
+		Dir:  "grpc-web",
 		Name: "grpc-web",
 		DisplayName: "gRPC-Web",
 		Rules: []*Rule{
@@ -69,7 +69,7 @@ func makeGithubComGrpcGrpcWeb() *Language {
 				Name:             "closure_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//github.com/grpc/grpc-web:closure_plugin"},
+				Plugins:          []string{"//grpc-web:closure_plugin"},
 				WorkspaceExample: grpcWebWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Closure *.js protobuf+gRPC files",
@@ -79,7 +79,7 @@ func makeGithubComGrpcGrpcWeb() *Language {
 				Name:             "commonjs_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//github.com/grpc/grpc-web:commonjs_plugin"},
+				Plugins:          []string{"//grpc-web:commonjs_plugin"},
 				WorkspaceExample: grpcWebWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates CommonJS *.js protobuf+gRPC files",
@@ -89,7 +89,7 @@ func makeGithubComGrpcGrpcWeb() *Language {
 				Name:             "commonjs_dts_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//github.com/grpc/grpc-web:commonjs_dts_plugin"},
+				Plugins:          []string{"//grpc-web:commonjs_dts_plugin"},
 				WorkspaceExample: grpcWebWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates commonjs_dts *.js protobuf+gRPC files",
@@ -99,7 +99,7 @@ func makeGithubComGrpcGrpcWeb() *Language {
 				Name:             "ts_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//github.com/grpc/grpc-web:ts_plugin"},
+				Plugins:          []string{"//grpc-web:ts_plugin"},
 				WorkspaceExample: grpcWebWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates CommonJS *.ts protobuf+gRPC files",

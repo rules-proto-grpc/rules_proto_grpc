@@ -1,4 +1,4 @@
-load("@rules_proto_grpc//github.com/grpc/grpc-web:defs.bzl", "closure_grpc_compile")
+load("@rules_proto_grpc//grpc-web:defs.bzl", "closure_grpc_compile")
 
 closure_grpc_compile(
     name = "greeter_grpc-web_grpc",

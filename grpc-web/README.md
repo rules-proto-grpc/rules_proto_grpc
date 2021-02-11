@@ -17,7 +17,7 @@ Generates Closure *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
@@ -31,7 +31,7 @@ rules_closure_toolchains()
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:defs.bzl", "closure_grpc_compile")
+load("@rules_proto_grpc//grpc-web:defs.bzl", "closure_grpc_compile")
 
 closure_grpc_compile(
     name = "greeter_grpc-web_grpc",
@@ -55,7 +55,7 @@ Generates CommonJS *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
@@ -69,7 +69,7 @@ rules_closure_toolchains()
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:defs.bzl", "commonjs_grpc_compile")
+load("@rules_proto_grpc//grpc-web:defs.bzl", "commonjs_grpc_compile")
 
 commonjs_grpc_compile(
     name = "greeter_grpc-web_grpc",
@@ -93,7 +93,7 @@ Generates commonjs_dts *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
@@ -107,7 +107,7 @@ rules_closure_toolchains()
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:defs.bzl", "commonjs_dts_grpc_compile")
+load("@rules_proto_grpc//grpc-web:defs.bzl", "commonjs_dts_grpc_compile")
 
 commonjs_dts_grpc_compile(
     name = "greeter_grpc-web_grpc",
@@ -131,7 +131,7 @@ Generates CommonJS *.ts protobuf+gRPC files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
@@ -145,7 +145,7 @@ rules_closure_toolchains()
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:defs.bzl", "ts_grpc_compile")
+load("@rules_proto_grpc//grpc-web:defs.bzl", "ts_grpc_compile")
 
 ts_grpc_compile(
     name = "greeter_grpc-web_grpc",
@@ -169,7 +169,7 @@ Generates protobuf closure library *.js files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
@@ -183,7 +183,7 @@ rules_closure_toolchains()
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//github.com/grpc/grpc-web:defs.bzl", "closure_grpc_library")
+load("@rules_proto_grpc//grpc-web:defs.bzl", "closure_grpc_library")
 
 closure_grpc_library(
     name = "greeter_grpc-web_library",

@@ -1,4 +1,4 @@
-load("//github.com/grpc/grpc-web:closure_grpc_compile.bzl", "closure_grpc_compile")
+load("//grpc-web:closure_grpc_compile.bzl", "closure_grpc_compile")
 load("//closure:closure_proto_compile.bzl", "closure_proto_compile")
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")
 

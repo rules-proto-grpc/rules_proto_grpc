@@ -1,6 +1,6 @@
 local_repository(
     name = "rules_proto_grpc",
-    path = "../../../../../",
+    path = "../../../",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
@@ -11,7 +11,7 @@ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_
 rules_proto_dependencies()
 rules_proto_toolchains()
 
-load("@rules_proto_grpc//github.com/grpc/grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 

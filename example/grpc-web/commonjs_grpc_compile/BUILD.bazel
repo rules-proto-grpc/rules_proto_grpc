@@ -1,6 +1,6 @@
-load("@rules_proto_grpc//github.com/grpc/grpc-web:defs.bzl", "ts_grpc_compile")
+load("@rules_proto_grpc//grpc-web:defs.bzl", "commonjs_grpc_compile")
 
-ts_grpc_compile(
+commonjs_grpc_compile(
     name = "greeter_grpc-web_grpc",
     deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

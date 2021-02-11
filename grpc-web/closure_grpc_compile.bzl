@@ -8,8 +8,8 @@ load(
     "proto_compile_impl",
 )
 
-# Create aspect for commonjs_dts_grpc_compile
-commonjs_dts_grpc_compile_aspect = aspect(
+# Create aspect for closure_grpc_compile
+closure_grpc_compile_aspect = aspect(
     implementation = proto_compile_aspect_impl,
     provides = [ProtoLibraryAspectNodeInfo],
     attr_aspects = ["deps"],
@@ -19,12 +19,12 @@ commonjs_dts_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//github.com/grpc/grpc-web:commonjs_dts_plugin"),
+                Label("//grpc-web:closure_plugin"),
             ],
         ),
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
-            default = "commonjs_dts_grpc_compile_aspect",
+            default = "closure_grpc_compile_aspect",
         )
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
@@ -38,13 +38,13 @@ _rule = rule(
         deps = attr.label_list(
             mandatory = True,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [commonjs_dts_grpc_compile_aspect],
+            aspects = [closure_grpc_compile_aspect],
         ),
     ),
 )
 
 # Create macro for converting attrs and passing to compile
-def commonjs_dts_grpc_compile(**kwargs):
+def closure_grpc_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
         merge_directories = True,

@@ -108,7 +108,7 @@ func action(c *cli.Context) error {
 		makeSwift(),
 
 		makeGrpcGateway(),
-		makeGithubComGrpcGrpcWeb(),
+		makeGrpcWeb(),
 	}
 
 	for _, lang := range languages {

@@ -338,28 +338,28 @@ grpc-gateway_examples: grpc-gateway_gateway_grpc_compile_example grpc-gateway_ga
 
 .PHONY: grpc-web_closure_grpc_compile_example
 grpc-web_closure_grpc_compile_example:
-	cd example/github.com/grpc/grpc-web/closure_grpc_compile; \
-	bazel --batch build --verbose_failures --disk_cache=../../../../bazel-disk-cache //...
+	cd example/grpc-web/closure_grpc_compile; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc-web_commonjs_grpc_compile_example
 grpc-web_commonjs_grpc_compile_example:
-	cd example/github.com/grpc/grpc-web/commonjs_grpc_compile; \
-	bazel --batch build --verbose_failures --disk_cache=../../../../bazel-disk-cache //...
+	cd example/grpc-web/commonjs_grpc_compile; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc-web_commonjs_dts_grpc_compile_example
 grpc-web_commonjs_dts_grpc_compile_example:
-	cd example/github.com/grpc/grpc-web/commonjs_dts_grpc_compile; \
-	bazel --batch build --verbose_failures --disk_cache=../../../../bazel-disk-cache //...
+	cd example/grpc-web/commonjs_dts_grpc_compile; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc-web_ts_grpc_compile_example
 grpc-web_ts_grpc_compile_example:
-	cd example/github.com/grpc/grpc-web/ts_grpc_compile; \
-	bazel --batch build --verbose_failures --disk_cache=../../../../bazel-disk-cache //...
+	cd example/grpc-web/ts_grpc_compile; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc-web_closure_grpc_library_example
 grpc-web_closure_grpc_library_example:
-	cd example/github.com/grpc/grpc-web/closure_grpc_library; \
-	bazel --batch build --verbose_failures --disk_cache=../../../../bazel-disk-cache //...
+	cd example/grpc-web/closure_grpc_library; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc-web_examples
 grpc-web_examples: grpc-web_closure_grpc_compile_example grpc-web_commonjs_grpc_compile_example grpc-web_commonjs_dts_grpc_compile_example grpc-web_ts_grpc_compile_example grpc-web_closure_grpc_library_example
