@@ -222,17 +222,61 @@ VERSIONS = {
     },
 
     # Swift
-    "com_github_grpc_grpc_swift_patched": {
+    "com_github_grpc_grpc_swift": {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-swift",
-        "ref": "0.11.0",
-        "sha256": "82e0a3d8fe2b9ee813b918e1a674f5a7c6dc024abe08109a347b686db6e57432",
-        "build_file": "@build_bazel_rules_swift//third_party:com_github_grpc_grpc_swift/BUILD.overlay",
-        "patch_cmds": [
-            "sed -i.bak -e 's/if fileDescriptor.services.count > 0/if true/g' Sources/protoc-gen-swiftgrpc/main.swift",  # Make grpc plugin always output files
-            "rm Sources/protoc-gen-swiftgrpc/main.swift.bak",  # Remove .bak file we had to create above due to mac OS sed weirdness
-        ],
+        "ref": "1.0.0",
+        "sha256": "5e0258437538bdfa26ca0e023649d97baa138d91881b949b2b344ef84cc2082a",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_grpc_grpc_swift",
+    },
+    "com_github_apple_swift_log": {  # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-log",
+        "ref": "1.4.0",
+        "sha256": "057fb5fd7e7f60a368c0cd4a93cd5ecce701031d8ccafb7973b3635415d2e368",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_log",
+    },
+    "com_github_apple_swift_nio": {  # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio",
+        "ref": "2.25.1",
+        "sha256": "ddaeaba8f94d4480a4607ce8f262aa654649632bdf51d280beebf053c8f37b2c",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio",
+    },
+    "com_github_apple_swift_nio_extras": {  # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio-extras",
+        "ref": "1.7.0",
+        "sha256": "b718ee9fb24c1f0fa77a54747eba472e50067b90d5df6f2b67cfdea2036b0ee0",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio_extras",
+    },
+    "com_github_apple_swift_nio_http2": {  # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio-http2",
+        "ref": "1.16.2",
+        "sha256": "af65870424c6e0eb643365278886d0c5358f6700eae2255f11dbf5b10f90b567",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio_http2",
+    },
+    "com_github_apple_swift_nio_ssl": {  # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio-ssl",
+        "ref": "2.10.2",
+        "sha256": "700c69f5496ae473164a338677e07f826eb24d7d3808d6e0fdcf50f27df0614d",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio_ssl",
+    },
+    "com_github_apple_swift_nio_transport_services": {  # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio-transport-services",
+        "ref": "1.9.1",
+        "sha256": "2f0283647d8e17dcea6d4b6454c915d10c4c0106c7025d233aec0aaf4a3f2255",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio_transport_services",
     },
 }
 
@@ -480,5 +524,23 @@ def com_github_scalapb_scalapb(**kwargs):
 #
 # Swift
 #
-def com_github_grpc_grpc_swift_patched(**kwargs):
-    _generic_dependency("com_github_grpc_grpc_swift_patched", **kwargs)
+def com_github_grpc_grpc_swift(**kwargs):
+    _generic_dependency("com_github_grpc_grpc_swift", **kwargs)
+
+def com_github_apple_swift_log(**kwargs):
+    _generic_dependency("com_github_apple_swift_log", **kwargs)
+
+def com_github_apple_swift_nio(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio", **kwargs)
+
+def com_github_apple_swift_nio_extras(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio_extras", **kwargs)
+
+def com_github_apple_swift_nio_http2(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio_http2", **kwargs)
+
+def com_github_apple_swift_nio_ssl(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio_ssl", **kwargs)
+
+def com_github_apple_swift_nio_transport_services(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio_transport_services", **kwargs)
