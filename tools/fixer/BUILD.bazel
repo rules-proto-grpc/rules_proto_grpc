@@ -1,0 +1,7 @@
+exports_files(["empty.template"])
+
+cc_binary(
+    name = "fixer",
+    srcs = ["main.cpp"],
+    visibility = ["//visibility:public"],
+)

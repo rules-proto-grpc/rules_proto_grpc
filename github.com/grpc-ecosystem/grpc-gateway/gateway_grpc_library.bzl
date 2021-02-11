@@ -16,7 +16,7 @@ def gateway_grpc_library(**kwargs):
     go_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GATEWAY_DEPS + GRPC_DEPS + PROTO_DEPS,
+        deps = kwargs.get("go_deps", []) + GATEWAY_DEPS + GRPC_DEPS,
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

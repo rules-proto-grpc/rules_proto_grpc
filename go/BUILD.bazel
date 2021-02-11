@@ -18,6 +18,7 @@ proto_plugin(
         "paths=source_relative",
     ],
     outputs = ["{protopath}_grpc.pb.go"],
+    empty_template = "empty.template",
     tool = "@org_golang_google_grpc_cmd_protoc_gen_go_grpc//:protoc-gen-go-grpc",
     exclusions = [
         "google/api",

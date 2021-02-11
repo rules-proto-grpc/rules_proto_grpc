@@ -17,5 +17,6 @@ proto_plugin(
         "{protopath|pascal|objc}.pbrpc.m",
     ],
     tool = "@com_github_grpc_grpc//src/compiler:grpc_objective_c_plugin",
+    empty_template = "empty.template",
     visibility = ["//visibility:public"],
 )

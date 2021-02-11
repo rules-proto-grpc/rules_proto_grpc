@@ -10,7 +10,8 @@ ProtoPluginInfo = provider(fields = {
     "protoc_plugin_name": "The name used for the plugin binary on the protoc command line. Useful for targeting built-in plugins. Uses plugin name when not set",
     "exclusions": "Exclusion filters to apply when generating outputs with this plugin. Used to prevent generating files that are included in the protobuf library, for example. Can exclude either by proto name prefix or by proto folder prefix",
     "data": "Additional files required for running the plugin",
-    "separate_options_flag": "Flag to indicate if plugin options should be sent via the --{lang}_opts flag"
+    "separate_options_flag": "Flag to indicate if plugin options should be sent via the --{lang}_opts flag",
+    "empty_template": "Template file to use to fill missing outputs",
 })
 
 
@@ -29,6 +30,7 @@ def _proto_plugin_impl(ctx):
             exclusions = ctx.attr.exclusions,
             data = ctx.files.data,
             separate_options_flag = ctx.attr.separate_options_flag,
+            empty_template = ctx.file.empty_template,
         )
     ]
 
@@ -72,6 +74,10 @@ proto_plugin = rule(
         "separate_options_flag": attr.bool(
             doc = "Flag to indicate if plugin options should be sent via the --{lang}_opts flag",
             default = False,
+        ),
+        "empty_template": attr.label(
+            doc = "Template file to use to fill missing outputs. If not provided, the fixer is not run",
+            allow_single_file = True,
         ),
     },
 )

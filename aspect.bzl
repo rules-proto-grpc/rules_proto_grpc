@@ -178,65 +178,56 @@ def proto_compile_impl(ctx):
 
 def proto_compile_aspect_impl(target, ctx):
     ###
-    ### Part 1: setup variables used in scope
+    ### Part 1: Setup common state
     ###
 
-    # <int> verbose level
-    # verbose = ctx.attr.verbose
-    verbose = get_int_attr(ctx.attr, "verbose_string")
-
-    # <struct> The resolved protoc toolchain
-    protoc_toolchain_info = ctx.toolchains[str(Label("//protobuf:toolchain_type"))]
-
-    # <Target> The resolved protoc compiler from the protoc toolchain
-    protoc = protoc_toolchain_info.protoc_executable
-
-    # <ProtoInfo> The ProtoInfo of the current node
-    proto_info = target[ProtoInfo]
-
-    # <string> The directory where the outputs will be generated, relative to
-    # the package. This contains the aspect _prefix attr to disambiguate
-    # different aspects that may share the same plugins and would otherwise try
-    # to touch the same file. The same is true for the verbose_string attr.
-    rel_outdir = "{}/{}_verb{}".format(ctx.label.name, ctx.attr._prefix, verbose)
-
-    # <string> The full path to the directory where the outputs will be generated
-    full_outdir = ctx.bin_dir.path + "/"
-    if ctx.label.workspace_root:
-        full_outdir += ctx.label.workspace_root + "/"
-    if ctx.label.package:
-        full_outdir += ctx.label.package + "/"
-    full_outdir += rel_outdir
-
-    # <list<PluginInfo>> A list of PluginInfo providers for the requested
-    # plugins
+    # Load attrs
+    verbose = get_int_attr(ctx.attr, "verbose_string")  # Integer verbosity level
     plugins = [plugin[ProtoPluginInfo] for plugin in ctx.attr._plugins]
 
-    # <list<File>> The list of generated artifacts like 'foo_pb2.py' that we
-    # expect to be produced.
+    # Load toolchain
+    protoc_toolchain_info = ctx.toolchains[str(Label("//protobuf:toolchain_type"))]
+    protoc = protoc_toolchain_info.protoc_executable
+    fixer = protoc_toolchain_info.fixer_executable
+
+    # Load ProtoInfo of the current node
+    proto_info = target[ProtoInfo]
+
+    # The directory where the outputs will be generated, relative to the package. This contains the aspect _prefix attr
+    # to disambiguate different aspects that may share the same plugins and would otherwise try to touch the same file.
+    # The same is true for the verbose_string attr.
+    rel_outdir = "{}/{}_verb{}".format(ctx.label.name, ctx.attr._prefix, verbose)
+
+    # The full path to the package output directory, relative to workspace root
+    package_root = ctx.bin_dir.path
+    if ctx.label.workspace_root:
+        package_root += "/" + ctx.label.workspace_root
+    if ctx.label.package:
+        package_root += "/" + ctx.label.package
+
+    # The path to the
+    full_outdir = package_root + "/" + rel_outdir
+
+    # The lists of generated files and directories that we expect to be produced.
     output_files = []
-
-    # <list<File>> The list of generated artifacts directories that we
-    # expect to be produced.
-    output_dirs_list = []
+    output_dirs = []
 
     ###
-    ### Part 2: iterate over plugins
+    ### Part 2: Setup plugins
     ###
 
-    # Each plugin is isolated to its own execution of protoc, as plugins may
-    # have differing exclusions that cannot be expressed in a single protoc
-    # execution for all plugins
+    # Each plugin is isolated to its own execution of protoc, as plugins may have differing exclusions that cannot be
+    # expressed in a single protoc execution for all plugins.
 
     for plugin in plugins:
         ###
-        ### Part 2.1: fetch plugin tool and runfiles
+        ### Part 2.1: Fetch plugin tool and runfiles
         ###
 
-        # <list<File>> Files required for running the plugins
+        # Files required for running the plugin
         plugin_runfiles = []
 
-        # <list<opaque>> Plugin input manifests
+        # Plugin input manifests
         plugin_input_manifests = None
 
         # Get plugin name
@@ -254,26 +245,26 @@ def proto_compile_aspect_impl(target, ctx):
             plugin_runfiles, plugin_input_manifests = ctx.resolve_tools(tools = [plugin.tool])
             plugin_runfiles = plugin_runfiles.to_list()
 
-        # Add extra plugin data files
+        # Add extra plugin data files to runfiles
         plugin_runfiles += plugin.data
 
         # Check plugin outputs
-        if plugin.output_directory and (plugin.out or plugin.outputs):
-            fail("Proto plugin {} cannot use output_directory in conjunction with outputs or out".format(plugin.name))
+        if plugin.output_directory and (plugin.out or plugin.outputs or plugin.empty_template):
+            fail("Proto plugin {} cannot use output_directory in conjunction with outputs, out or empty_template".format(plugin.name))
 
         ###
-        ### Part 2.2: gather proto files and filter by exclusions
+        ### Part 2.2: Gather proto files and filter by exclusions
         ###
 
-        # <list<File>> The filtered set of .proto files to compile
-        protos = []
-
+        protos = []  # The filtered set of .proto files to compile
         for proto in proto_info.direct_sources:
             # Check for exclusion
             if any([
                 proto.dirname.endswith(exclusion) or proto.path.endswith(exclusion)
                 for exclusion in plugin.exclusions
-            ]) or proto in protos:  # TODO: When using import_prefix, the ProtoInfo.direct_sources list appears to contain duplicate records, this line removes these. https://github.com/bazelbuild/bazel/issues/9127
+            ]) or proto in protos:
+                # When using import_prefix, the ProtoInfo.direct_sources list appears to contain duplicate records,
+                # the final check 'proto in protos' removes these. See https://github.com/bazelbuild/bazel/issues/9127
                 continue
 
             # Proto not excluded
@@ -282,45 +273,40 @@ def proto_compile_aspect_impl(target, ctx):
         # Skip plugin if all proto files have now been excluded
         if len(protos) == 0:
             if verbose > 2:
-                print('Skipping plugin "{}" for "{}" as all proto files have been excluded'.format(plugin.name, ctx.label))
+                print(
+                    'Skipping plugin "{}" for "{}" as all proto files have been excluded'.format(plugin.name, ctx.label)
+                )
             continue
 
         ###
-        ### Part 2.3: declare per-proto generated outputs from plugin
+        ### Part 2.3: Declare per-proto generated outputs from plugin
         ###
 
-        # <list<File>> The list of generated artifacts like 'foo_pb2.py' that we
-        # expect to be produced by this plugin only
         plugin_outputs = []
-
         for proto in protos:
             for pattern in plugin.outputs:
                 plugin_outputs.append(ctx.actions.declare_file("{}/{}".format(
-                    rel_outdir,
-                    get_output_filename(proto, pattern, proto_info),
+                    rel_outdir, get_output_filename(proto, pattern, proto_info),
                 )))
 
-        # Append current plugin outputs to global outputs before looking at
-        # per-plugin outputs; these are manually added globally as there may
-        # be srcjar outputs.
+        # Append current plugin outputs to global outputs before looking at per-plugin outputs; these are manually added
+        # globally as there may be srcjar outputs.
         output_files.extend(plugin_outputs)
 
         ###
-        ### Part 2.4: declare per-plugin artifacts
+        ### Part 2.4: Declare per-plugin outputs
         ###
 
-        # Some protoc plugins generate a set of output files (like python) while
-        # others generate a single 'archive' file that contains the individual
-        # outputs (like java). Jar outputs are gathered as a special case as we need to
-        # post-process them to have a 'srcjar' extension (java_library rules don't
-        # accept source jars with a 'jar' extension)
+        # Some protoc plugins generate a set of output files (like python) while others generate a single 'archive' file
+        # that contains the individual outputs (like java). Jar outputs are gathered as a special case as we need to
+        # post-process them to have a 'srcjar' extension (java_library rules don't accept source jars with a 'jar'
+        # extension).
 
         out_file = None
         if plugin.out:
             # Define out file
             out_file = ctx.actions.declare_file("{}/{}".format(
-                rel_outdir,
-                plugin.out.replace("{name}", ctx.label.name),
+                rel_outdir, plugin.out.replace("{name}", ctx.label.name),
             ))
             plugin_outputs.append(out_file)
 
@@ -330,30 +316,57 @@ def proto_compile_aspect_impl(target, ctx):
             else:
                 # Create .srcjar from .jar for global outputs
                 output_files.append(copy_file(
-                    ctx,
-                    out_file,
-                    "{}.srcjar".format(out_file.basename.rpartition(".")[0]),
-                    sibling = out_file,
+                    ctx, out_file, "{}.srcjar".format(out_file.basename.rpartition(".")[0]), sibling = out_file,
                 ))
 
         ###
-        ### Part 2.5: declare plugin output directory
+        ### Part 2.5: Declare plugin output directory
         ###
 
-        # Some plugins outputs a structure that cannot be predicted from the
-        # input file paths alone. For these plugins, we simply declare the
-        # directory.
+        # Some plugins outputs a structure that cannot be predicted from the input file paths alone. For these plugins,
+        # we simply declare the directory.
 
         if plugin.output_directory:
             out_file = ctx.actions.declare_directory(rel_outdir + "/" + "_plugin_" + plugin.name)
             plugin_outputs.append(out_file)
-            output_dirs_list.append(out_file)
+            output_dirs.append(out_file)
 
         ###
-        ### Part 2.6: build command
+        ### Part 2.6: Build command
         ###
 
-        # <Args> argument list for protoc execution
+        # Determine the outputs expected by protoc.
+        # When plugin.empty_template is not set, protoc will output directly to the final targets. When set, we will
+        # direct the plugin outputs to a temporary folder, then use the fixer executable to write to the final targets.
+        if plugin.empty_template:
+            # Create path list for fixer
+            fixer_paths_file = ctx.actions.declare_file(rel_outdir + "/" + "_plugin_ef_" + plugin.name + ".txt")
+            ctx.actions.write(fixer_paths_file, '\n'.join([
+                file.path.partition(full_outdir + "/")[2] for file in plugin_outputs
+            ]))
+
+            # Create output directory for protoc to write into
+            fixer_dir = ctx.actions.declare_directory(rel_outdir + "/" + "_plugin_ef_" + plugin.name)
+            out_arg = fixer_dir.path
+            plugin_protoc_outputs = [fixer_dir]
+
+            # Apply fixer
+            ctx.actions.run(
+                inputs = [fixer_paths_file, fixer_dir, plugin.empty_template],
+                outputs = plugin_outputs,
+                arguments = [
+                    fixer_paths_file.path, plugin.empty_template.path, fixer_dir.path, full_outdir
+                ],
+                progress_message = "Applying fixer for {} plugin on target {}".format(plugin.name, target.label),
+                executable = fixer,
+            )
+
+        else:
+            # No fixer, protoc writes files directly
+            out_arg = out_file.path if out_file else full_outdir
+            plugin_protoc_outputs = plugin_outputs
+
+        # Argument list for protoc execution
         args = ctx.actions.args()
 
         # Add descriptors
@@ -362,7 +375,7 @@ def proto_compile_aspect_impl(target, ctx):
             [f.path for f in proto_info.transitive_descriptor_sets.to_list()],
         )))
 
-        # Add plugin if not built-in
+        # Add --plugin if not a built-in plugin
         if plugin_tool:
             # If Windows, mangle the path. It's done a bit awkwardly with
             # `host_path_seprator` as there is no simple way to figure out what's
@@ -375,9 +388,7 @@ def proto_compile_aspect_impl(target, ctx):
 
             args.add("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
 
-        # Add plugin out arg
-        out_arg = out_file.path if out_file else full_outdir
-
+        # Add plugin --*_out/--*_opt args
         if plugin.options:
             opts_str = ",".join(
                 [option.replace("{name}", ctx.label.name) for option in plugin.options],
@@ -393,7 +404,7 @@ def proto_compile_aspect_impl(target, ctx):
             args.add(descriptor_proto_path(proto, proto_info))
 
         ###
-        ### Part 2.7: run command
+        ### Part 2.7: Specify protoc command
         ###
 
         mnemonic = "ProtoCompile"
@@ -429,14 +440,14 @@ def proto_compile_aspect_impl(target, ctx):
             arguments = [args],
             inputs = inputs,
             tools = tools,
-            outputs = plugin_outputs,
+            outputs = plugin_protoc_outputs,
             use_default_shell_env = plugin.use_built_in_shell_environment,
             input_manifests = plugin_input_manifests if plugin_input_manifests else [],
-            progress_message = "Compiling protoc outputs for {} plugin".format(plugin.name),
+            progress_message = "Compiling protoc outputs for {} plugin on target {}".format(plugin.name, target.label),
         )
 
     ###
-    ### Step 3: generate providers
+    ### Step 3: Generate providers
     ###
 
     # Gather transitive info
@@ -445,14 +456,14 @@ def proto_compile_aspect_impl(target, ctx):
     if output_files:
         output_files_dict[full_outdir] = output_files
 
-    transitive_output_dirs_list = []
+    transitive_output_dirs = []
     for transitive_info in transitive_infos:
         output_files_dict.update(**transitive_info.output_files)
-        transitive_output_dirs_list.append(transitive_info.output_dirs)
+        transitive_output_dirs.append(transitive_info.output_dirs)
 
     return [
         ProtoLibraryAspectNodeInfo(
             output_files = output_files_dict,
-            output_dirs = depset(direct=output_dirs_list, transitive=transitive_output_dirs_list),
+            output_dirs = depset(direct=output_dirs, transitive=transitive_output_dirs),
         ),
     ]
