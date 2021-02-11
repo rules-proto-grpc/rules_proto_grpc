@@ -18,6 +18,7 @@ option java_package = "io.grpc.examples.routeguide";
 option java_outer_classname = "RouteGuideProto";
 option objc_class_prefix = "RTG";
 option csharp_namespace = "RouteGuide";
+option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto";
 
 package routeguide;
 

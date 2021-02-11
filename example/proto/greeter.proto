@@ -18,6 +18,7 @@ option java_multiple_files = true;
 option java_package = "io.grpc.examples.Greeter";
 option java_outer_classname = "GreeterProto";
 option objc_class_prefix = "GTR";
+option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto";
 
 package greeter;
 
