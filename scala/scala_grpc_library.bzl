@@ -21,7 +21,9 @@ def scala_grpc_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    # One dependency in this list is not valid outside of rules_scala workspace, fix up
-    "@io_bazel_rules_scala" + dep if not dep.startswith("//external") else dep
+    # One dependency in this list is not valid outside of rules_scala workspace, fix up. The '//external' check is for
+    # older rules_scala prior to
+    # https://github.com/bazelbuild/rules_scala/commit/e9dfbe39fa44a8dc7ab0b9aef46488f215646d9c
+    "@io_bazel_rules_scala" + dep if not dep.startswith("//external") and not dep.startswith("@") else dep
     for dep in DEFAULT_SCALAPB_COMPILE_DEPS
 ] + DEFAULT_SCALAPB_GRPC_DEPS
