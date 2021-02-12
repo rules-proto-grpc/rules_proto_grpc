@@ -25,7 +25,7 @@ rules_proto_grpc_ruby_repos()
 load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
-rules_ruby_select_sdk()
+rules_ruby_select_sdk(version = "2.7.1")
 
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
 
@@ -70,7 +70,7 @@ rules_proto_grpc_ruby_repos()
 load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
-rules_ruby_select_sdk()
+rules_ruby_select_sdk(version = "2.7.1")
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
@@ -119,7 +119,7 @@ rules_proto_grpc_ruby_repos()
 load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
-rules_ruby_select_sdk()
+rules_ruby_select_sdk(version = "2.7.1")
 
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
 
@@ -164,7 +164,7 @@ rules_proto_grpc_ruby_repos()
 load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
-rules_ruby_select_sdk()
+rules_ruby_select_sdk(version = "2.7.1")
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
