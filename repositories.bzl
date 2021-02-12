@@ -188,12 +188,12 @@ VERSIONS = {
     },
 
     # Ruby
-    "com_github_yugui_rules_ruby": {
+    "bazelruby_rules_ruby": {
         "type": "github",
-        "org": "yugui",
+        "org": "bazelruby",
         "repo": "rules_ruby",
-        "ref": "73479cdc6a34a8d940cc3c904badf7a2ae6bdc6d", # PR#8
-        "sha256": "bd88b1aa144f70bb3f069ff3ddc5ddba032311ce27fb40b7276db694dcb63490",
+        "ref": "v0.4.1",
+        "sha256": "5a9660a2ef8dc115b192aa89c94e624378078988e2e9bff6792e61b02b390320",
     },
 
     # Rust
@@ -500,8 +500,8 @@ def six(**kwargs):
 #
 # Ruby
 #
-def com_github_yugui_rules_ruby(**kwargs):
-    _generic_dependency("com_github_yugui_rules_ruby", **kwargs)
+def bazelruby_rules_ruby(**kwargs):
+    _generic_dependency("bazelruby_rules_ruby", **kwargs)
 
 
 #

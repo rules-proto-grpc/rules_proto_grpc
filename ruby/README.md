@@ -21,6 +21,19 @@ Generates Ruby protobuf `.rb` artifacts
 load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
 
 rules_proto_grpc_ruby_repos()
+
+load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
+
+rules_ruby_dependencies()
+rules_ruby_select_sdk()
+
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+
+ruby_bundle(
+    name = "rules_proto_grpc_bundle",
+    gemfile = "@rules_proto_grpc//ruby:Gemfile",
+    gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+)
 ```
 
 ### `BUILD.bazel`
@@ -54,9 +67,22 @@ load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ru
 
 rules_proto_grpc_ruby_repos()
 
+load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
+
+rules_ruby_dependencies()
+rules_ruby_select_sdk()
+
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
+
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+
+ruby_bundle(
+    name = "rules_proto_grpc_bundle",
+    gemfile = "@rules_proto_grpc//ruby:Gemfile",
+    gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+)
 ```
 
 ### `BUILD.bazel`
@@ -90,14 +116,15 @@ load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ru
 
 rules_proto_grpc_ruby_repos()
 
-load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
+load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
 
-ruby_register_toolchains()
+rules_ruby_dependencies()
+rules_ruby_select_sdk()
 
-load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
 
-bundle_install(
-    name = "rules_proto_grpc_gems",
+ruby_bundle(
+    name = "rules_proto_grpc_bundle",
     gemfile = "@rules_proto_grpc//ruby:Gemfile",
     gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )
@@ -134,18 +161,19 @@ load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ru
 
 rules_proto_grpc_ruby_repos()
 
-load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
+load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
 
-ruby_register_toolchains()
+rules_ruby_dependencies()
+rules_ruby_select_sdk()
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
 
-bundle_install(
-    name = "rules_proto_grpc_gems",
+ruby_bundle(
+    name = "rules_proto_grpc_bundle",
     gemfile = "@rules_proto_grpc//ruby:Gemfile",
     gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )

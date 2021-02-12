@@ -174,8 +174,8 @@ nodejs_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 yarn_install(
     name = "nodejs_modules",
-    package_json = "//nodejs:requirements/package.json",
-    yarn_lock = "//nodejs:requirements/yarn.lock",
+    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
 )
 
 
@@ -203,7 +203,7 @@ load("@rules_python//python:pip.bzl", "pip_install")
 pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
-    requirements = "//python:requirements.txt",
+    requirements = "@rules_proto_grpc//python:requirements.txt",
 )
 
 
@@ -213,14 +213,15 @@ pip_install(
 load("//ruby:repositories.bzl", "ruby_repos")
 ruby_repos()
 
-load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
-ruby_register_toolchains()
+load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
+rules_ruby_dependencies()
+rules_ruby_select_sdk()
 
-load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
-bundle_install(
-    name = "rules_proto_grpc_gems",
-    gemfile = "//ruby:Gemfile",
-    gemfile_lock = "//ruby:Gemfile.lock",
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+ruby_bundle(
+    name = "rules_proto_grpc_bundle",
+    gemfile = "@rules_proto_grpc//ruby:Gemfile",
+    gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )
 
 
