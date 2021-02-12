@@ -77,7 +77,6 @@ func makeRuby() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf `.rb` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"}, // CI has no Ruby available for windows, but this rule can be tested
 			},
 			&Rule{
 				Name:             "ruby_grpc_compile",
@@ -88,7 +87,6 @@ func makeRuby() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf+gRPC `.rb` artifacts",
 				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"}, // CI has no Ruby available for windows, but this rule can be tested
 			},
 			&Rule{
 				Name:             "ruby_proto_library",

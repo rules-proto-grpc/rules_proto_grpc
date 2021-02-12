@@ -883,12 +883,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_compile
-  ruby_ruby_proto_compile_windows:
-    name: 'ruby: ruby_proto_compile'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_proto_compile
   ruby_ruby_proto_compile_macos:
     name: 'ruby: ruby_proto_compile'
     platform: macos
@@ -900,12 +894,6 @@ tasks:
   ruby_ruby_grpc_compile_ubuntu1804:
     name: 'ruby: ruby_grpc_compile'
     platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_grpc_compile
-  ruby_ruby_grpc_compile_windows:
-    name: 'ruby: ruby_grpc_compile'
-    platform: windows
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_compile
