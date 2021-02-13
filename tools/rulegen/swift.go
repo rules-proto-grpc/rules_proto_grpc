@@ -27,6 +27,7 @@ def {{ .Rule.Name }}(**kwargs):
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        module_name = kwargs.get("module_name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -51,6 +52,7 @@ def {{ .Rule.Name }}(**kwargs):
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        module_name = kwargs.get("module_name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -59,6 +61,16 @@ GRPC_DEPS = [
     "@com_github_apple_swift_protobuf//:SwiftProtobuf",
     "@com_github_grpc_grpc_swift//:GRPC",
 ]`)
+
+var swiftLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
+	&Attr{
+		Name:      "module_name",
+		Type:      "string",
+		Default:   "",
+		Doc:       "The name of the Swift module being built.",
+		Mandatory: false,
+	},
+}...)
 
 func makeSwift() *Language {
 	return &Language{
@@ -104,7 +116,7 @@ func makeSwift() *Language {
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf library using `swift_library` from `rules_swift`",
-				Attrs:            libraryRuleAttrs,
+				Attrs:            swiftLibraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "swift_grpc_library",
@@ -113,7 +125,7 @@ func makeSwift() *Language {
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`",
-				Attrs:            libraryRuleAttrs,
+				Attrs:            swiftLibraryRuleAttrs,
 			},
 		},
 	}
