@@ -1,6 +1,7 @@
 ProtoPluginInfo = provider(fields = {
     "name": "The proto plugin name",
     "options": "A list of options to pass to the compiler for this plugin",
+    "extra_protoc_args": "A list of extra args to pass directly to protoc, not as plugin options",
     "outputs": "Output filenames generated on a per-proto basis. Example: '{basename}_pb2.py",
     "out": "Output filename generated on a per-plugin basis; to be used in the value for --NAME-out=OUT",
     "output_directory": "Flag that indicates that the plugin should just output a directory. Used for plugins that have no direct mapping from source file name to output name. Cannot be used in conjunction with outputs or out",
@@ -20,6 +21,7 @@ def _proto_plugin_impl(ctx):
         ProtoPluginInfo(
             name = ctx.attr.name,
             options = ctx.attr.options,
+            extra_protoc_args = ctx.attr.extra_protoc_args,
             outputs = ctx.attr.outputs,
             out = ctx.attr.out,
             output_directory = ctx.attr.output_directory,
@@ -40,6 +42,9 @@ proto_plugin = rule(
     attrs = {
         "options": attr.string_list(
             doc = "A list of options to pass to the compiler for this plugin",
+        ),
+        "extra_protoc_args": attr.string_list(
+            doc = "A list of extra args to pass directly to protoc, not as plugin options",
         ),
         "outputs": attr.string_list(
             doc = "Output filenames generated on a per-proto basis. Example: '{basename}_pb2.py'",

@@ -414,6 +414,10 @@ def proto_compile_aspect_impl(target, ctx):
                 out_arg = "{}:{}".format(opts_str, out_arg)
         args.add("--{}_out={}".format(plugin_name, out_arg))
 
+        # Add any extra protoc args that the plugin has
+        if plugin.extra_protoc_args:
+            args.add_all(plugin.extra_protoc_args)
+
         # Add source proto files as descriptor paths
         for proto in protos:
             args.add(descriptor_proto_path(proto, proto_info))
