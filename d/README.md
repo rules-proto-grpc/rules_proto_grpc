@@ -18,7 +18,7 @@ Generates D protobuf `.d` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//d:repositories.bzl", rules_proto_grpc_d_repos="d_repos")
+load("@rules_proto_grpc//d:repositories.bzl", rules_proto_grpc_d_repos = "d_repos")
 
 rules_proto_grpc_d_repos()
 
@@ -64,7 +64,7 @@ Generates a D protobuf library using `d_library` from `rules_d`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//d:repositories.bzl", rules_proto_grpc_d_repos="d_repos")
+load("@rules_proto_grpc//d:repositories.bzl", rules_proto_grpc_d_repos = "d_repos")
 
 rules_proto_grpc_d_repos()
 

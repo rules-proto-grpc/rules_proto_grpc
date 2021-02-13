@@ -1,6 +1,6 @@
 package main
 
-var closureLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var closureLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
@@ -11,6 +11,7 @@ rules_closure_dependencies(
     omit_com_google_protobuf = True,
     omit_zlib = True,
 )
+
 rules_closure_toolchains()`)
 
 var closureProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
@@ -43,7 +44,7 @@ def {{ .Rule.Name }}(**kwargs):
     )
 
 PROTO_DEPS = [
-    "@io_bazel_rules_closure//closure/protobuf:jspb"
+    "@io_bazel_rules_closure//closure/protobuf:jspb",
 ]`)
 
 func makeClosure() *Language {

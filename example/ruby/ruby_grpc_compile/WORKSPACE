@@ -3,21 +3,26 @@ local_repository(
     path = "../../../",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
+
 rules_proto_grpc_toolchains()
+
 rules_proto_grpc_repos()
 
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+
 rules_proto_dependencies()
+
 rules_proto_toolchains()
 
-load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
 
 rules_proto_grpc_ruby_repos()
 
-load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
+load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
+
 rules_ruby_select_sdk(version = "2.7.1")
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")

@@ -45,11 +45,11 @@ closure_js_library(
     srcs = [
         "main.js",
     ],
-    deps = [
-        ":client",
-    ],
     suppress = [
         "JSC_INVALID_CLOSURE_CALL_ERROR",
+    ],
+    deps = [
+        ":client",
     ],
 )
 

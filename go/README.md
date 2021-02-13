@@ -36,7 +36,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
 
 rules_proto_grpc_go_repos()
 ```
@@ -96,7 +96,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
 
 rules_proto_grpc_go_repos()
 ```
@@ -151,7 +151,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
 
 rules_proto_grpc_go_repos()
 ```
@@ -208,7 +208,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos="go_repos")
+load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
 
 rules_proto_grpc_go_repos()
 ```
@@ -222,8 +222,8 @@ go_grpc_library(
     name = "greeter_go_grpc",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
     protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )
 ```

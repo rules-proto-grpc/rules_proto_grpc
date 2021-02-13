@@ -40,7 +40,6 @@ echo '---- DONE ----'
         runfiles = runfiles,
     )]
 
-
 routeguide_test = rule(
     implementation = _routeguide_test_impl,
     attrs = {
@@ -69,12 +68,10 @@ routeguide_test = rule(
     test = True,
 )
 
-
 def get_parent_dirname(label):
     if label.startswith("//"):
         label = label[2:]
     return label.partition("/")[0]
-
 
 def routeguide_test_matrix(clients = [], servers = [], database = "//example/proto:routeguide_features", tagmap = {}):
     """Build a matrix of tests that checks every client against every server"""

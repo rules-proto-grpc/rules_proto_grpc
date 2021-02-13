@@ -8,24 +8,24 @@ nodejs_grpc_library(
 
 nodejs_binary(
     name = "client",
-    entry_point = "client.js",
     data = [
         "client.js",
         ":routeguide",
         "//example/proto:routeguide_features",
     ],
-    visibility = ["//example/routeguide:__pkg__"],
+    entry_point = "client.js",
     link_workspace_root = True,  # Required to load routeguide_features
+    visibility = ["//example/routeguide:__pkg__"],
 )
 
 nodejs_binary(
     name = "server",
-    entry_point = "server.js",
     data = [
         "server.js",
         ":routeguide",
         "//example/proto:routeguide_features",
     ],
-    visibility = ["//example/routeguide:__pkg__"],
+    entry_point = "server.js",
     link_workspace_root = True,  # Required to load routeguide_features
+    visibility = ["//example/routeguide:__pkg__"],
 )

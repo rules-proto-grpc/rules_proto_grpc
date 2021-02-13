@@ -4,9 +4,9 @@ load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 
 proto_plugin(
     name = "javalite_plugin",
-    protoc_plugin_name = "java",
     out = "{name}.jar",
     options = ["lite"],
+    protoc_plugin_name = "java",
     visibility = ["//visibility:public"],
 )
 
@@ -17,7 +17,6 @@ proto_plugin(
     tool = "@io_grpc_grpc_java//compiler:grpc_java_plugin",
     visibility = ["//visibility:public"],
 )
-
 
 # Lite is missing gen_well_known_protos_java from protobuf, compile them manually
 # https://github.com/protocolbuffers/protobuf/blob/d16bf914bc5ba569d2b70376051d15f68ce4322d/java/core/BUILD#L94-L112
@@ -41,7 +40,7 @@ android_proto_compile(
 android_library(
     name = "well_known_protos",
     srcs = ["well_known_protos_srcs"],
-    deps = ["@com_google_protobuf//:protobuf_javalite"],
-    exports = ["@com_google_protobuf//:protobuf_javalite"],
     visibility = ["//visibility:public"],
+    exports = ["@com_google_protobuf//:protobuf_javalite"],
+    deps = ["@com_google_protobuf//:protobuf_javalite"],
 )

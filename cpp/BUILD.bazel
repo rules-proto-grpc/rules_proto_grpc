@@ -2,19 +2,22 @@ load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
     name = "cpp_plugin",
-    protoc_plugin_name = "cpp",
+    exclusions = [
+        "google/protobuf",
+    ],
     outputs = [
         "{protopath}.pb.h",
         "{protopath}.pb.cc",
     ],
-    exclusions = [
-        "google/protobuf",
-    ],
+    protoc_plugin_name = "cpp",
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
     name = "grpc_cpp_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
     options = [
         "generate_mock_code=true",
     ],
@@ -24,8 +27,5 @@ proto_plugin(
         "{protopath}_mock.grpc.pb.h",
     ],
     tool = "@com_github_grpc_grpc//src/compiler:grpc_cpp_plugin",
-    exclusions = [
-        "google/protobuf",
-    ],
     visibility = ["//visibility:public"],
 )

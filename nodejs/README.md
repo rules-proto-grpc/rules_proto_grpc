@@ -18,7 +18,7 @@ Generates Node.js protobuf `.js` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
+load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos = "nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
 
@@ -68,7 +68,7 @@ Generates Node.js protobuf+gRPC `.js` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
+load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos = "nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
 
@@ -115,7 +115,7 @@ Generates a Node.js protobuf library using `js_library` from `rules_nodejs`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
+load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos = "nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
 
@@ -170,7 +170,7 @@ Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos="nodejs_repos")
+load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos = "nodejs_repos")
 
 rules_proto_grpc_nodejs_repos()
 

@@ -18,7 +18,7 @@ def _rust_proto_lib_impl(ctx):
     if ctx.attr.grpc:
         content.append("extern crate grpcio;")
         content.append("extern crate futures;")
-    content.append("") # Newline
+    content.append("")  # Newline
 
     # List each output
     srcs = [f for files in compilation.output_files.values() for f in files.to_list()]

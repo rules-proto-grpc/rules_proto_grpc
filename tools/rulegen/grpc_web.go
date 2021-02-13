@@ -1,13 +1,15 @@
 package main
 
-var grpcWebWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+var grpcWebWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_grpc_web_repos = "grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+
 rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+
 rules_closure_toolchains()`)
 
 var grpcWebGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:closure_grpc_compile.bzl", "closure_grpc_compile")

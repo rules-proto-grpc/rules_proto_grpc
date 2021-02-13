@@ -18,7 +18,7 @@ Generates an Android protobuf `.jar` artifact
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos = "android_repos")
 
 rules_proto_grpc_android_repos()
 ```
@@ -60,7 +60,7 @@ Generates Android protobuf+gRPC `.jar` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos = "android_repos")
 
 rules_proto_grpc_android_repos()
 
@@ -120,7 +120,7 @@ Generates an Android protobuf library using `android_library` from `rules_androi
 ```starlark
 # The set of dependencies loaded here is excessive for android proto alone
 # (but simplifies our setup)
-load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos = "android_repos")
 
 rules_proto_grpc_android_repos()
 
@@ -191,7 +191,7 @@ Generates Android protobuf+gRPC library using `android_library` from `rules_andr
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos="android_repos")
+load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos = "android_repos")
 
 rules_proto_grpc_android_repos()
 

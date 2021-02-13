@@ -1,7 +1,7 @@
 load(
     "//:repositories.bzl",
-    "io_bazel_rules_d",
     "com_github_dcarp_protobuf_d",
+    "io_bazel_rules_d",
     "rules_proto_grpc_repos",
 )
 

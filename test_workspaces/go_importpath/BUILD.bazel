@@ -17,19 +17,22 @@ proto_library(
 
 go_proto_library(
     name = "go_lib_a",
-    deps = ["proto_lib_a"],
     importpath = "test_import_path",
+    deps = ["proto_lib_a"],
 )
 
 go_proto_library(
     name = "go_lib_b",
-    deps = ["proto_lib_b"],
     importpath = "test_import_path/folder",
+    deps = ["proto_lib_b"],
 )
 
 go_test(
     name = "test",
     srcs = ["main.go"],
-    deps = ["go_lib_a", "go_lib_b"],
     visibility = ["//visibility:public"],
+    deps = [
+        "go_lib_a",
+        "go_lib_b",
+    ],
 )

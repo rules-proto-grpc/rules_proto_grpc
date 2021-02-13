@@ -18,7 +18,7 @@ Generates Rust protobuf `.rs` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
+load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
 
 rules_proto_grpc_rust_repos()
 
@@ -68,7 +68,7 @@ Generates Rust protobuf+gRPC `.rs` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
+load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
 
 rules_proto_grpc_rust_repos()
 
@@ -113,7 +113,7 @@ Generates a Rust protobuf library using `rust_library` from `rules_rust`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
+load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
 
 rules_proto_grpc_rust_repos()
 
@@ -158,7 +158,7 @@ Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos="rust_repos")
+load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
 
 rules_proto_grpc_rust_repos()
 
@@ -179,8 +179,8 @@ load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_library")
 rust_grpc_library(
     name = "greeter_rust_grpc",
     protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )
 ```

@@ -1,4 +1,5 @@
 load("//objc:objc_proto_compile.bzl", "objc_proto_compile")
+
 def objc_proto_library(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"

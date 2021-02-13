@@ -11,15 +11,15 @@ proto_library(
 
 python_grpc_library(
     name = "py_lib",
-    deps = ["proto_lib"],
     python_version = "PY3",
+    deps = ["proto_lib"],
 )
 
 py_test(
     name = "test",
     srcs = ["main.py"],
-    main = "main.py",
-    deps = ["py_lib"],
     legacy_create_init = False,
+    main = "main.py",
     python_version = "PY3",
+    deps = ["py_lib"],
 )

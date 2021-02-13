@@ -7,8 +7,8 @@ load(
     "descriptor_proto_path",
     "get_int_attr",
     "get_output_filename",
-    "strip_path_prefix",
     "get_package_root",
+    "strip_path_prefix",
 )
 
 ProtoLibraryAspectNodeInfo = provider(
@@ -58,8 +58,9 @@ def proto_compile_impl(ctx):
             aspect_node_info = dep[ProtoLibraryAspectNodeInfo]
             output_files_dicts.append({aspect_node_info.output_root: aspect_node_info.direct_output_files})
 
-        output_dirs = depset(transitive=[
-            dep[ProtoLibraryAspectNodeInfo].direct_output_dirs for dep in ctx.attr.protos
+        output_dirs = depset(transitive = [
+            dep[ProtoLibraryAspectNodeInfo].direct_output_dirs
+            for dep in ctx.attr.protos
         ])
 
     elif ctx.attr.deps:
@@ -68,8 +69,9 @@ def proto_compile_impl(ctx):
 
         # Aggregate all output files and dirs created by the aspect as it has walked the deps. Legacy behaviour
         output_files_dicts = [dep[ProtoLibraryAspectNodeInfo].output_files for dep in ctx.attr.deps]
-        output_dirs = depset(transitive=[
-            dep[ProtoLibraryAspectNodeInfo].output_dirs for dep in ctx.attr.deps
+        output_dirs = depset(transitive = [
+            dep[ProtoLibraryAspectNodeInfo].output_dirs
+            for dep in ctx.attr.deps
         ])
 
     else:
@@ -102,7 +104,7 @@ def proto_compile_impl(ctx):
         if prefix_path:
             dir_name = dir_name + "/" + prefix_path
         new_dir = ctx.actions.declare_directory(dir_name)
-        final_output_dirs = depset(direct=[new_dir])
+        final_output_dirs = depset(direct = [new_dir])
 
         # Build copy command for directory outputs
         # Use cp {}/. rather than {}/* to allow for empty output directories from a plugin (e.g when no service exists,
@@ -141,7 +143,7 @@ def proto_compile_impl(ctx):
         # Copy directories and files to shared output directory in one action
         ctx.actions.run_shell(
             mnemonic = "CopyDirs",
-            inputs = depset(direct=command_input_files, transitive=[output_dirs]),
+            inputs = depset(direct = command_input_files, transitive = [output_dirs]),
             outputs = [new_dir],
             command = " && ".join(command_parts),
             progress_message = "copying directories and files to {}".format(new_dir.path),
@@ -170,29 +172,29 @@ def proto_compile_impl(ctx):
                         "{}/{}".format(ctx.label.name, path),
                     ))
 
-        final_output_files[output_root] = depset(direct=final_output_files_list)
+        final_output_files[output_root] = depset(direct = final_output_files_list)
 
     # Create depset containing all outputs
     if ctx.attr.merge_directories:
         # If we've merged directories, we have copied files/dirs that are now direct rather than
         # transitive dependencies
-        all_outputs = depset(direct=final_output_files_list + final_output_dirs.to_list())
+        all_outputs = depset(direct = final_output_files_list + final_output_dirs.to_list())
     else:
         # If we have not merged directories, all files/dirs are transitive
         all_outputs = depset(
-            transitive=[depset(direct=final_output_files_list), final_output_dirs]
+            transitive = [depset(direct = final_output_files_list), final_output_dirs],
         )
 
     # Create default and proto compile providers
     return [
         ProtoCompileInfo(
-            label=ctx.label,
-            output_files=final_output_files,
-            output_dirs=final_output_dirs,
+            label = ctx.label,
+            output_files = final_output_files,
+            output_dirs = final_output_dirs,
         ),
         DefaultInfo(
-            files=all_outputs,
-            data_runfiles=ctx.runfiles(transitive_files=all_outputs),
+            files = all_outputs,
+            data_runfiles = ctx.runfiles(transitive_files = all_outputs),
         ),
     ]
 
@@ -289,7 +291,7 @@ def proto_compile_aspect_impl(target, ctx):
         if len(protos) == 0:
             if verbose > 2:
                 print(
-                    'Skipping plugin "{}" for "{}" as all proto files have been excluded'.format(plugin.name, ctx.label)
+                    'Skipping plugin "{}" for "{}" as all proto files have been excluded'.format(plugin.name, ctx.label),
                 )
             continue
 
@@ -301,7 +303,8 @@ def proto_compile_aspect_impl(target, ctx):
         for proto in protos:
             for pattern in plugin.outputs:
                 plugin_outputs.append(ctx.actions.declare_file("{}/{}".format(
-                    rel_output_root, get_output_filename(proto, pattern, proto_info),
+                    rel_output_root,
+                    get_output_filename(proto, pattern, proto_info),
                 )))
 
         # Append current plugin outputs to global outputs before looking at per-plugin outputs; these are manually added
@@ -321,7 +324,8 @@ def proto_compile_aspect_impl(target, ctx):
         if plugin.out:
             # Define out file
             out_file = ctx.actions.declare_file("{}/{}".format(
-                rel_output_root, plugin.out.replace("{name}", ctx.label.name),
+                rel_output_root,
+                plugin.out.replace("{name}", ctx.label.name),
             ))
             plugin_outputs.append(out_file)
 
@@ -331,7 +335,10 @@ def proto_compile_aspect_impl(target, ctx):
             else:
                 # Create .srcjar from .jar for global outputs
                 output_files.append(copy_file(
-                    ctx, out_file, "{}.srcjar".format(out_file.basename.rpartition(".")[0]), sibling = out_file,
+                    ctx,
+                    out_file,
+                    "{}.srcjar".format(out_file.basename.rpartition(".")[0]),
+                    sibling = out_file,
                 ))
 
         ###
@@ -356,8 +363,9 @@ def proto_compile_aspect_impl(target, ctx):
         if plugin.empty_template:
             # Create path list for fixer
             fixer_paths_file = ctx.actions.declare_file(rel_output_root + "/" + "_plugin_ef_" + plugin.name + ".txt")
-            ctx.actions.write(fixer_paths_file, '\n'.join([
-                file.path.partition(output_root + "/")[2] for file in plugin_outputs
+            ctx.actions.write(fixer_paths_file, "\n".join([
+                file.path.partition(output_root + "/")[2]
+                for file in plugin_outputs
             ]))
 
             # Create output directory for protoc to write into
@@ -370,7 +378,10 @@ def proto_compile_aspect_impl(target, ctx):
                 inputs = [fixer_paths_file, fixer_dir, plugin.empty_template],
                 outputs = plugin_outputs,
                 arguments = [
-                    fixer_paths_file.path, plugin.empty_template.path, fixer_dir.path, output_root
+                    fixer_paths_file.path,
+                    plugin.empty_template.path,
+                    fixer_dir.path,
+                    output_root,
                 ],
                 progress_message = "Applying fixer for {} plugin on target {}".format(plugin.name, target.label),
                 executable = fixer,
@@ -473,7 +484,7 @@ def proto_compile_aspect_impl(target, ctx):
     transitive_infos = [dep[ProtoLibraryAspectNodeInfo] for dep in ctx.rule.attr.deps]
     output_files_dict = {}
     if output_files:
-        output_files_dict[output_root] = depset(direct=output_files)
+        output_files_dict[output_root] = depset(direct = output_files)
 
     transitive_output_dirs = []
     for transitive_info in transitive_infos:
@@ -483,9 +494,9 @@ def proto_compile_aspect_impl(target, ctx):
     return [
         ProtoLibraryAspectNodeInfo(
             output_root = output_root,
-            direct_output_files = depset(direct=output_files),
-            direct_output_dirs = depset(direct=output_dirs),
+            direct_output_files = depset(direct = output_files),
+            direct_output_dirs = depset(direct = output_dirs),
             output_files = output_files_dict,
-            output_dirs = depset(direct=output_dirs, transitive=transitive_output_dirs),
+            output_dirs = depset(direct = output_dirs, transitive = transitive_output_dirs),
         ),
     ]

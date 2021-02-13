@@ -20,6 +20,6 @@ objc_proto_compile(
 py_test(
     name = "test",
     srcs = ["main.py"],
-    main = "main.py",
     data = ["objc_lib"],
+    main = "main.py",
 )

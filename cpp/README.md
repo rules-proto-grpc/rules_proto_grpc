@@ -18,7 +18,7 @@ Generates C++ protobuf `.h` & `.cc` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
 
 rules_proto_grpc_cpp_repos()
 ```
@@ -60,7 +60,7 @@ Generates C++ protobuf+gRPC `.h` & `.cc` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
 
 rules_proto_grpc_cpp_repos()
 
@@ -101,7 +101,7 @@ Generates a C++ protobuf library using `cc_library`, with dependencies linked
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
 
 rules_proto_grpc_cpp_repos()
 ```
@@ -146,7 +146,7 @@ Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies link
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos="cpp_repos")
+load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
 
 rules_proto_grpc_cpp_repos()
 

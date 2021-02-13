@@ -2,29 +2,28 @@ load("//:plugin.bzl", "proto_plugin")
 
 proto_plugin(
     name = "rust_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
     # Use the proto basename and pipe the value to the rust_keyword function.
     # Ths function will append '_pb' if the basename is a rust keyword.
     outputs = ["{basename|rust_keyword}.rs"],
     tool = "//rust/raze:cargo_bin_protoc_gen_rust",
-    exclusions = [
-        "google/protobuf",
-    ],
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
     name = "grpc_rust_plugin",
-    # Use the proto basename and pipe the value to the rust_keyword function.
-    # Ths function will append '_pb' if the basename is a rust keyword.
-    outputs = ["{basename|rust_keyword}_grpc.rs"],
-    tool = "//rust/raze:cargo_bin_grpc_rust_plugin",
     empty_template = "empty.template",
     exclusions = [
         "google/protobuf",
     ],
+    # Use the proto basename and pipe the value to the rust_keyword function.
+    # Ths function will append '_pb' if the basename is a rust keyword.
+    outputs = ["{basename|rust_keyword}_grpc.rs"],
+    tool = "//rust/raze:cargo_bin_grpc_rust_plugin",
     visibility = ["//visibility:public"],
 )
-
 
 # Bodge to allow linking against c-ares.
 # The @com_github_cares_cares//:ares rule will output a .lo file that the rust rules don't know how

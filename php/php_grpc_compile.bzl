@@ -26,7 +26,7 @@ php_grpc_compile_aspect = aspect(
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
             default = "php_grpc_compile_aspect",
-        )
+        ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
@@ -46,7 +46,7 @@ _rule = rule(
             mandatory = False,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
             aspects = [php_grpc_compile_aspect],
-            doc = "DEPRECATED: Use protos attr"
+            doc = "DEPRECATED: Use protos attr",
         ),
     ),
 )

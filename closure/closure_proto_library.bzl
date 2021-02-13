@@ -28,5 +28,5 @@ def closure_proto_library(**kwargs):
     )
 
 PROTO_DEPS = [
-    "@io_bazel_rules_closure//closure/protobuf:jspb"
+    "@io_bazel_rules_closure//closure/protobuf:jspb",
 ]

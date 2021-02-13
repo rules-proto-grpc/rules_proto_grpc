@@ -60,7 +60,7 @@ load(
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
             default = "{{ .Rule.Name }}_aspect",
-        )
+        ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
@@ -80,7 +80,7 @@ _rule = rule(
             mandatory = False,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
             aspects = [{{ .Rule.Name }}_aspect],
-            doc = "DEPRECATED: Use protos attr"
+            doc = "DEPRECATED: Use protos attr",
         ),
     ),
 )
@@ -94,12 +94,12 @@ def {{ .Rule.Name }}(**kwargs):
     )`)
 
 
-var protoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var protoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
 
-var grpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var grpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 

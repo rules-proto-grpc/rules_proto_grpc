@@ -18,7 +18,7 @@ Generates Swift protobuf `.swift` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
+load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
 
 rules_proto_grpc_swift_repos()
 
@@ -67,7 +67,7 @@ Generates Swift protobuf+gRPC `.swift` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
+load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
 
 rules_proto_grpc_swift_repos()
 
@@ -111,7 +111,7 @@ Generates a Swift protobuf library using `swift_library` from `rules_swift`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
+load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
 
 rules_proto_grpc_swift_repos()
 
@@ -156,7 +156,7 @@ Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos="swift_repos")
+load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
 
 rules_proto_grpc_swift_repos()
 
@@ -176,8 +176,8 @@ load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_library")
 swift_grpc_library(
     name = "greeter_swift_grpc",
     protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )
 ```

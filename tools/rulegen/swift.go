@@ -1,6 +1,6 @@
 package main
 
-var swiftWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var swiftWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
@@ -79,8 +79,8 @@ var swiftGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
     protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )`)
 

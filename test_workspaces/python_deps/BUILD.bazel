@@ -17,8 +17,8 @@ python_grpc_library(
 py_test(
     name = "test",
     srcs = ["main.py"],
-    main = "main.py",
-    deps = ["py_lib"],
     legacy_create_init = False,
+    main = "main.py",
     python_version = "PY3",
+    deps = ["py_lib"],
 )

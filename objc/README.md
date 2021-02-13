@@ -17,7 +17,7 @@ Generates Objective-C protobuf `.m` & `.h` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos="objc_repos")
+load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
 
 rules_proto_grpc_objc_repos()
 ```
@@ -59,7 +59,7 @@ Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos="objc_repos")
+load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
 
 rules_proto_grpc_objc_repos()
 
@@ -100,7 +100,7 @@ Generates an Objective-C protobuf library using `objc_library`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos="objc_repos")
+load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
 
 rules_proto_grpc_objc_repos()
 ```

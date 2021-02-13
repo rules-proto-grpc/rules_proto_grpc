@@ -16,7 +16,7 @@ Generates Closure protobuf `.js` files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//closure:repositories.bzl", rules_proto_grpc_closure_repos="closure_repos")
+load("@rules_proto_grpc//closure:repositories.bzl", rules_proto_grpc_closure_repos = "closure_repos")
 
 rules_proto_grpc_closure_repos()
 ```
@@ -58,7 +58,7 @@ Generates a Closure library with compiled protobuf `.js` files using `closure_js
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//closure:repositories.bzl", rules_proto_grpc_closure_repos="closure_repos")
+load("@rules_proto_grpc//closure:repositories.bzl", rules_proto_grpc_closure_repos = "closure_repos")
 
 rules_proto_grpc_closure_repos()
 
@@ -69,6 +69,7 @@ rules_closure_dependencies(
     omit_com_google_protobuf = True,
     omit_zlib = True,
 )
+
 rules_closure_toolchains()
 ```
 

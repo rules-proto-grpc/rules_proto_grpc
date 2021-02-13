@@ -15,7 +15,6 @@ ProtoPluginInfo = provider(fields = {
     "empty_template": "Template file to use to fill missing outputs",
 })
 
-
 def _proto_plugin_impl(ctx):
     return [
         ProtoPluginInfo(
@@ -33,9 +32,8 @@ def _proto_plugin_impl(ctx):
             data = ctx.files.data,
             separate_options_flag = ctx.attr.separate_options_flag,
             empty_template = ctx.file.empty_template,
-        )
+        ),
     ]
-
 
 proto_plugin = rule(
     implementation = _proto_plugin_impl,

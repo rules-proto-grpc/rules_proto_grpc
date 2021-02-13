@@ -1,8 +1,8 @@
 load(
     "//:repositories.bzl",
-    "subpar",
-    "six",
     "rules_proto_grpc_repos",
+    "six",
+    "subpar",
 )
 
 def python_repos(**kwargs):

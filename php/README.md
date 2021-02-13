@@ -16,7 +16,7 @@ Generates PHP protobuf `.php` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos="php_repos")
+load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos = "php_repos")
 
 rules_proto_grpc_php_repos()
 ```
@@ -58,7 +58,7 @@ Generates PHP protobuf+gRPC `.php` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos="php_repos")
+load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos = "php_repos")
 
 rules_proto_grpc_php_repos()
 

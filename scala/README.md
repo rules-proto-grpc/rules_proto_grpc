@@ -18,7 +18,7 @@ Generates a Scala protobuf `.jar` artifact
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
+load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
 
 rules_proto_grpc_scala_repos()
 
@@ -78,7 +78,7 @@ Generates Scala protobuf+gRPC `.jar` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
+load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
 
 rules_proto_grpc_scala_repos()
 
@@ -135,7 +135,7 @@ Generates a Scala protobuf library using `scala_library` from `rules_scala`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
+load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
 
 rules_proto_grpc_scala_repos()
 
@@ -199,7 +199,7 @@ Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos="scala_repos")
+load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
 
 rules_proto_grpc_scala_repos()
 

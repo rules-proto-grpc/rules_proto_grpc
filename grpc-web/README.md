@@ -17,14 +17,16 @@ Generates Closure *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos = "grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+
 rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+
 rules_closure_toolchains()
 ```
 
@@ -60,14 +62,16 @@ Generates CommonJS *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos = "grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+
 rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+
 rules_closure_toolchains()
 ```
 
@@ -103,14 +107,16 @@ Generates commonjs_dts *.js protobuf+gRPC files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos = "grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+
 rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+
 rules_closure_toolchains()
 ```
 
@@ -146,14 +152,16 @@ Generates CommonJS *.ts protobuf+gRPC files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos = "grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+
 rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+
 rules_closure_toolchains()
 ```
 
@@ -189,14 +197,16 @@ Generates protobuf closure library *.js files
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos="grpc_web_repos")
+load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos = "grpc_web_repos")
 
 rules_proto_grpc_grpc_web_repos()
 
 load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+
 rules_closure_dependencies(
     omit_com_google_protobuf = True,
 )
+
 rules_closure_toolchains()
 ```
 

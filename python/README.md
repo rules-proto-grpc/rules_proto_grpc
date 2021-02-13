@@ -22,7 +22,7 @@ Generates Python protobuf `.py` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 ```
@@ -64,7 +64,7 @@ Generates Python protobuf+gRPC `.py` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 
@@ -105,7 +105,7 @@ Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only)
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 
@@ -114,6 +114,7 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 grpc_deps()
 
 load("@rules_python//python:pip.bzl", "pip_install")
+
 pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
@@ -153,7 +154,7 @@ Generates a Python protobuf library using `py_library` from `rules_python`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 ```
@@ -198,7 +199,7 @@ Generates a Python protobuf+gRPC library using `py_library` from `rules_python`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 
@@ -241,7 +242,7 @@ Generates a Python protobuf+grpclib library using `py_library` from `rules_pytho
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 
@@ -250,6 +251,7 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 grpc_deps()
 
 load("@rules_python//python:pip.bzl", "pip_install")
+
 pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",

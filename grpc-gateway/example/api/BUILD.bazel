@@ -13,8 +13,8 @@ proto_library(
 gateway_grpc_library(
     name = "go_default_library",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api",
-    visibility = ["//visibility:public"],
     protos = ["api_proto"],
+    visibility = ["//visibility:public"],
 )
 
 gateway_openapiv2_compile(

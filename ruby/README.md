@@ -18,13 +18,14 @@ Generates Ruby protobuf `.rb` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
 
 rules_proto_grpc_ruby_repos()
 
-load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
+load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
+
 rules_ruby_select_sdk(version = "2.7.1")
 
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
@@ -73,13 +74,14 @@ Generates Ruby protobuf+gRPC `.rb` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
 
 rules_proto_grpc_ruby_repos()
 
-load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
+load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
+
 rules_ruby_select_sdk(version = "2.7.1")
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
@@ -127,13 +129,14 @@ Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
 
 rules_proto_grpc_ruby_repos()
 
-load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
+load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
+
 rules_ruby_select_sdk(version = "2.7.1")
 
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
@@ -185,13 +188,14 @@ Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos="ruby_repos")
+load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
 
 rules_proto_grpc_ruby_repos()
 
-load("@bazelruby_rules_ruby//ruby:deps.bzl","rules_ruby_dependencies", "rules_ruby_select_sdk")
+load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
 
 rules_ruby_dependencies()
+
 rules_ruby_select_sdk(version = "2.7.1")
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")

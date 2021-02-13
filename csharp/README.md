@@ -18,7 +18,7 @@ Generates C# protobuf `.cs` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
 
 rules_proto_grpc_csharp_repos()
 
@@ -34,6 +34,7 @@ load(
 )
 
 dotnet_register_toolchains()
+
 dotnet_repositories_nugets()
 
 core_register_sdk()
@@ -80,12 +81,11 @@ Generates C# protobuf+gRPC `.cs` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
 
 rules_proto_grpc_csharp_repos()
 
 load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
-
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
@@ -100,6 +100,7 @@ load(
 )
 
 dotnet_register_toolchains()
+
 dotnet_repositories_nugets()
 
 core_register_sdk()
@@ -141,7 +142,7 @@ Generates a C# protobuf library using `core_library` from `rules_dotnet`. Note t
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
 
 rules_proto_grpc_csharp_repos()
 
@@ -157,6 +158,7 @@ load(
 )
 
 dotnet_register_toolchains()
+
 dotnet_repositories_nugets()
 
 core_register_sdk()
@@ -206,12 +208,11 @@ Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`. N
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
 
 rules_proto_grpc_csharp_repos()
 
 load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
-
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
@@ -226,6 +227,7 @@ load(
 )
 
 dotnet_register_toolchains()
+
 dotnet_repositories_nugets()
 
 core_register_sdk()

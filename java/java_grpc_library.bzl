@@ -19,7 +19,8 @@ def java_grpc_library(**kwargs):
         tags = kwargs.get("tags"),
     )
 
-GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/f6c2d221e2b6c975c6cf465d68fe11ab12dabe55/BUILD.bazel#L32-L38
+GRPC_DEPS = [
+    # From https://github.com/grpc/grpc-java/blob/f6c2d221e2b6c975c6cf465d68fe11ab12dabe55/BUILD.bazel#L32-L38
     "@io_grpc_grpc_java//api",
     "@io_grpc_grpc_java//protobuf",
     "@io_grpc_grpc_java//stub",

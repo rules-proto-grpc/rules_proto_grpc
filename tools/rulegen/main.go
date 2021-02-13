@@ -171,12 +171,16 @@ func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
     path = "%s",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
+
 rules_proto_grpc_toolchains()
+
 rules_proto_grpc_repos()
 
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+
 rules_proto_dependencies()
+
 rules_proto_toolchains()`, relpath)
 
 	out.ln()
@@ -218,7 +222,7 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 	out := &LineWriter{}
 	out.w("# Aggregate all `%s` rules to one loadable file", lang.Name)
 	for _, rule := range lang.Rules {
-		out.w(`load(":%s.bzl", _%s="%s")`, rule.Name, rule.Name, rule.Name)
+		out.w(`load(":%s.bzl", _%s = "%s")`, rule.Name, rule.Name, rule.Name)
 	}
 	out.ln()
 	for _, rule := range lang.Rules {
@@ -526,9 +530,9 @@ func mustWriteHttpArchiveTestWorkspace(dir, ref, sha256 string) {
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/%s.tar.gz"],
     sha256 = "%s",
     strip_prefix = "rules_proto_grpc-%s",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/%s.tar.gz"],
 )
 `, ref, sha256, ref)
 	out.MustWrite(filepath.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))

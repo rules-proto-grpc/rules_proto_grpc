@@ -18,7 +18,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_gateway_repos = "gateway_repos")
 
 rules_proto_grpc_gateway_repos()
 

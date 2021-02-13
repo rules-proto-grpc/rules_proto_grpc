@@ -18,7 +18,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
@@ -102,8 +102,8 @@ var goGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .La
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
     protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )`)
 
