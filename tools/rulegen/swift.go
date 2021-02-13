@@ -62,6 +62,28 @@ GRPC_DEPS = [
     "@com_github_grpc_grpc_swift//:GRPC",
 ]`)
 
+// For swift, produce one library for all protos, since they are all in the same module
+var swiftProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "proto_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = [
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+        "@rules_proto_grpc//example/proto:thing_proto",
+    ],
+)`)
+
+var swiftGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = [
+        "@rules_proto_grpc//example/proto:thing_proto",
+        "@rules_proto_grpc//example/proto:greeter_grpc",
+    ],
+)`)
+
 var swiftLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{
 		Name:      "module_name",
@@ -114,7 +136,7 @@ func makeSwift() *Language {
 				Kind:             "proto",
 				Implementation:   swiftProtoLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
-				BuildExample:     protoLibraryExampleTemplate,
+				BuildExample:     swiftProtoLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf library using `swift_library` from `rules_swift`",
 				Attrs:            swiftLibraryRuleAttrs,
 			},
@@ -123,7 +145,7 @@ func makeSwift() *Language {
 				Kind:             "grpc",
 				Implementation:   swiftGrpcLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
-				BuildExample:     protoLibraryExampleTemplate,
+				BuildExample:     swiftGrpcLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`",
 				Attrs:            swiftLibraryRuleAttrs,
 			},

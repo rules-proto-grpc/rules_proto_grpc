@@ -129,20 +129,12 @@ swift_rules_dependencies()
 load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_library")
 
 swift_proto_library(
-    name = "person_swift_proto",
-    protos = ["@rules_proto_grpc//example/proto:person_proto"],
-    deps = ["place_swift_proto"],
-)
-
-swift_proto_library(
-    name = "place_swift_proto",
-    protos = ["@rules_proto_grpc//example/proto:place_proto"],
-    deps = ["thing_swift_proto"],
-)
-
-swift_proto_library(
-    name = "thing_swift_proto",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    name = "proto_swift_proto",
+    protos = [
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+        "@rules_proto_grpc//example/proto:thing_proto",
+    ],
 )
 ```
 
@@ -182,20 +174,11 @@ swift_rules_dependencies()
 load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_library")
 
 swift_grpc_library(
-    name = "person_swift_grpc",
-    protos = ["@rules_proto_grpc//example/proto:person_proto"],
-    deps = ["place_swift_grpc"],
-)
-
-swift_grpc_library(
-    name = "place_swift_grpc",
-    protos = ["@rules_proto_grpc//example/proto:place_proto"],
-    deps = ["thing_swift_grpc"],
-)
-
-swift_grpc_library(
-    name = "thing_swift_grpc",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    name = "greeter_swift_grpc",
+    protos = [
+        "@rules_proto_grpc//example/proto:thing_proto",
+        "@rules_proto_grpc//example/proto:greeter_grpc",
+    ],
 )
 ```
 
