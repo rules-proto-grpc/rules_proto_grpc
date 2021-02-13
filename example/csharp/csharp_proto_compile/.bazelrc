@@ -1,5 +1,0 @@
-# rules_dotnet uses platforms to select which .Net SDK should be used
-build --host_platform @io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100 
-build --platforms @io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100
-test --host_platform @io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100 
-test --platforms @io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100
