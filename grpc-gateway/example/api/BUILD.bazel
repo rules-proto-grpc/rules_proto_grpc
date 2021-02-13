@@ -14,10 +14,10 @@ gateway_grpc_library(
     name = "go_default_library",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api",
     visibility = ["//visibility:public"],
-    deps = ["api_proto"],
+    protos = ["api_proto"],
 )
 
 gateway_openapiv2_compile(
     name = "api_openapiv2",
-    deps = ["api_proto"],
+    protos = ["api_proto"],
 )

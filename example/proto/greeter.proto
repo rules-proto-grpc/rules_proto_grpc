@@ -23,7 +23,7 @@ option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto"
 package greeter;
 
 import "google/protobuf/any.proto";
-import "example/proto/person.proto";
+import "example/proto/thing.proto";
 
 
 // The greeting service definition.
@@ -41,5 +41,5 @@ message HelloRequest {
 message HelloReply {
   string message = 1;
   google.protobuf.Any payload = 2;
-  example.proto.Person person = 3;
+  example.proto.Thing thing = 3;
 }

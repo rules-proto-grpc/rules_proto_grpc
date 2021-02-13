@@ -8,14 +8,14 @@ def go_grpc_library(**kwargs):
     go_grpc_compile(
         name = name_pb,
         prefix_path = kwargs.get("importpath", ""),
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create go library
     go_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GRPC_DEPS,
+        deps = kwargs.get("go_deps", []) + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

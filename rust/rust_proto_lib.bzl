@@ -21,7 +21,7 @@ def _rust_proto_lib_impl(ctx):
     content.append("") # Newline
 
     # List each output
-    srcs = [f for files in compilation.output_files.values() for f in files]
+    srcs = [f for files in compilation.output_files.values() for f in files.to_list()]
     for f in srcs:
         content.append("pub mod %s;" % _strip_extension(f))
         content.append("pub use %s::*;" % _strip_extension(f))

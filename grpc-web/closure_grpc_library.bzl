@@ -8,19 +8,19 @@ def closure_grpc_library(**kwargs):
     name_pb_grpc = kwargs.get("name") + "_pb_grpc"
     closure_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     closure_grpc_compile(
         name = name_pb_grpc,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create closure library
     closure_js_library(
         name = kwargs.get("name"),
         srcs = [name_pb, name_pb_grpc],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         suppress = [
             "JSC_LATE_PROVIDE_ERROR",
             "JSC_UNDEFINED_VARIABLE",

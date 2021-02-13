@@ -6,15 +6,15 @@ def android_grpc_library(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     android_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create android library
     android_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
-        exports = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        exports = GRPC_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )

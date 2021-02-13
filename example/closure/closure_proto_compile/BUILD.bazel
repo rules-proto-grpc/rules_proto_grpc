@@ -2,5 +2,15 @@ load("@rules_proto_grpc//closure:defs.bzl", "closure_proto_compile")
 
 closure_proto_compile(
     name = "person_closure_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+closure_proto_compile(
+    name = "place_closure_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+closure_proto_compile(
+    name = "thing_closure_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )

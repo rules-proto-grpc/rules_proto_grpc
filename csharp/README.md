@@ -50,7 +50,17 @@ load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_compile")
 
 csharp_proto_compile(
     name = "person_csharp_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+csharp_proto_compile(
+    name = "place_csharp_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+csharp_proto_compile(
+    name = "thing_csharp_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -58,7 +68,7 @@ csharp_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -105,8 +115,13 @@ nuget_rules_proto_grpc_packages()
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_compile")
 
 csharp_grpc_compile(
+    name = "thing_csharp_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+csharp_grpc_compile(
     name = "greeter_csharp_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -114,7 +129,7 @@ csharp_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -157,8 +172,20 @@ nuget_rules_proto_grpc_packages()
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_library")
 
 csharp_proto_library(
-    name = "person_csharp_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_csharp_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_csharp_proto"],
+)
+
+csharp_proto_library(
+    name = "place_csharp_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_csharp_proto"],
+)
+
+csharp_proto_library(
+    name = "thing_csharp_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -166,8 +193,9 @@ csharp_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
 
 ---
 
@@ -213,8 +241,14 @@ nuget_rules_proto_grpc_packages()
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library")
 
 csharp_grpc_library(
-    name = "greeter_csharp_library",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "thing_csharp_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+csharp_grpc_library(
+    name = "greeter_csharp_grpc",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    deps = ["thing_csharp_grpc"],
 )
 ```
 
@@ -222,5 +256,6 @@ csharp_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |

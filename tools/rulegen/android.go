@@ -41,7 +41,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 `
 
@@ -50,8 +50,8 @@ var androidProtoLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStr
     android_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = PROTO_DEPS,
-        exports = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        exports = PROTO_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -65,8 +65,8 @@ var androidGrpcLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStri
     android_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
-        exports = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        exports = GRPC_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -100,7 +100,7 @@ func makeAndroid() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates an Android protobuf `.jar` artifact",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"none"},
 			},
 			&Rule{
@@ -111,7 +111,7 @@ func makeAndroid() *Language {
 				WorkspaceExample: javaGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Android protobuf+gRPC `.jar` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"none"},
 			},
 			&Rule{
@@ -121,7 +121,7 @@ func makeAndroid() *Language {
 				WorkspaceExample: androidProtoLibraryWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates an Android protobuf library using `android_library` from `rules_android`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            javaLibraryRuleAttrs,
 				SkipTestPlatforms: []string{"none"},
 			},
 			&Rule{
@@ -131,7 +131,7 @@ func makeAndroid() *Language {
 				WorkspaceExample: androidGrpcLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates Android protobuf+gRPC library using `android_library` from `rules_android`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            javaLibraryRuleAttrs,
 				SkipTestPlatforms: []string{"none"},
 			},
 		},

@@ -31,14 +31,14 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create {{ .Lang.Name }} library
     py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -56,14 +56,14 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create {{ .Lang.Name }} library
     py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -82,7 +82,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_grpclib_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create {{ .Lang.Name }} library
@@ -91,7 +91,7 @@ def {{ .Rule.Name }}(**kwargs):
         srcs = [name_pb],
         deps = [
             "@com_google_protobuf//:protobuf_python",
-        ] + GRPC_DEPS,
+        ] + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -127,7 +127,7 @@ func makePython() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Python protobuf `.py` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "python_grpc_compile",
@@ -137,7 +137,7 @@ func makePython() *Language {
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf+gRPC `.py` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "python_grpclib_compile",
@@ -147,7 +147,7 @@ func makePython() *Language {
 				WorkspaceExample: pythonGrpclibLibraryWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only)",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
@@ -157,7 +157,7 @@ func makePython() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf library using `py_library` from `rules_python`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "python_grpc_library",
@@ -166,7 +166,7 @@ func makePython() *Language {
 				WorkspaceExample: pythonGrpcLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf+gRPC library using `py_library` from `rules_python`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
@@ -176,7 +176,7 @@ func makePython() *Language {
 				WorkspaceExample: pythonGrpclibLibraryWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf+grpclib library using `py_library` from `rules_python` (supports Python 3 only)",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
 		},

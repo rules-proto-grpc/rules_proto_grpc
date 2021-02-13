@@ -19,14 +19,14 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create {{ .Lang.Name }} library
     swift_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -43,14 +43,14 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create {{ .Lang.Name }} library
     swift_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -85,7 +85,7 @@ func makeSwift() *Language {
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf `.swift` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "swift_grpc_compile",
@@ -95,7 +95,7 @@ func makeSwift() *Language {
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf+gRPC `.swift` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "swift_proto_library",
@@ -104,8 +104,7 @@ func makeSwift() *Language {
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf library using `swift_library` from `rules_swift`",
-				Attrs:            aspectProtoCompileAttrs,
-				Experimental:     true,
+				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "swift_grpc_library",
@@ -114,8 +113,7 @@ func makeSwift() *Language {
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`",
-				Attrs:            aspectProtoCompileAttrs,
-				Experimental:     true,
+				Attrs:            libraryRuleAttrs,
 			},
 		},
 	}

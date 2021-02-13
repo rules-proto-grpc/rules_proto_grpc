@@ -5,16 +5,16 @@ def java_grpc_library(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     java_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create java library
     native.java_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         runtime_deps = ["@io_grpc_grpc_java//netty"],
-        exports = GRPC_DEPS,
+        exports = GRPC_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -27,4 +27,5 @@ GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/f6c2d221e2b6c975c6c
     "@com_google_code_findbugs_jsr305//jar",
     "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_java",
+    "@com_google_protobuf//:protobuf_java_util",
 ]

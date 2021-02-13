@@ -28,7 +28,17 @@ load("@rules_proto_grpc//php:defs.bzl", "php_proto_compile")
 
 php_proto_compile(
     name = "person_php_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+php_proto_compile(
+    name = "place_php_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+php_proto_compile(
+    name = "thing_php_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -36,7 +46,7 @@ php_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -63,8 +73,13 @@ grpc_deps()
 load("@rules_proto_grpc//php:defs.bzl", "php_grpc_compile")
 
 php_grpc_compile(
+    name = "thing_php_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+php_grpc_compile(
     name = "greeter_php_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -72,5 +87,5 @@ php_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |

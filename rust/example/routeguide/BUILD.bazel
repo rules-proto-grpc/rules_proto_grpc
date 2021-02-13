@@ -3,7 +3,7 @@ load("@rules_rust//rust:rust.bzl", "rust_binary", "rust_library")
 
 rust_grpc_library(
     name = "routeguide",
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )
 
 rust_binary(

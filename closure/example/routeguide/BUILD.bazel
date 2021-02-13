@@ -10,7 +10,7 @@ load("//closure:defs.bzl", "closure_proto_library")
 closure_proto_library(
     name = "routeguide",
     visibility = ["//closure/example/routeguide:__subpackages__"],
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )
 
 closure_js_library(

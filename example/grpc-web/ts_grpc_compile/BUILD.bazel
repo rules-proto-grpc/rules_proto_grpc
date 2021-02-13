@@ -1,6 +1,11 @@
 load("@rules_proto_grpc//grpc-web:defs.bzl", "ts_grpc_compile")
 
 ts_grpc_compile(
+    name = "thing_grpc-web_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+ts_grpc_compile(
     name = "greeter_grpc-web_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )

@@ -36,10 +36,17 @@ _rule = rule(
     implementation = proto_compile_impl,
     attrs = dict(
         proto_compile_attrs,
-        deps = attr.label_list(
-            mandatory = True,
+        protos = attr.label_list(
+            mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
             aspects = [python_grpc_compile_aspect],
+            doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
+        ),
+        deps = attr.label_list(
+            mandatory = False,
+            providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
+            aspects = [python_grpc_compile_aspect],
+            doc = "DEPRECATED: Use protos attr"
         ),
     ),
 )

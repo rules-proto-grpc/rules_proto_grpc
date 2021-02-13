@@ -3,7 +3,7 @@ load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
 nodejs_grpc_library(
     name = "routeguide",
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )
 
 nodejs_binary(
@@ -15,6 +15,7 @@ nodejs_binary(
         "//example/proto:routeguide_features",
     ],
     visibility = ["//example/routeguide:__pkg__"],
+    link_workspace_root = True,  # Required to load routeguide_features
 )
 
 nodejs_binary(
@@ -26,4 +27,5 @@ nodejs_binary(
         "//example/proto:routeguide_features",
     ],
     visibility = ["//example/routeguide:__pkg__"],
+    link_workspace_root = True,  # Required to load routeguide_features
 )

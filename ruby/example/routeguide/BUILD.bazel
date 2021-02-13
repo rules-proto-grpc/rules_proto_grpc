@@ -1,10 +1,10 @@
 load("//ruby:defs.bzl", "ruby_grpc_library")
-load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_binary", "ruby_library")
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_binary", "ruby_library")
 
 ruby_grpc_library(
     name = "routeguide",
     includes = ["."],
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )
 
 ruby_binary(

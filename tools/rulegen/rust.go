@@ -22,7 +22,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_lib = kwargs.get("name") + "_lib"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 `
 
@@ -38,7 +38,7 @@ var rustProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + 
     rust_library(
         name = kwargs.get("name"),
         srcs = [name_pb, name_lib],
-        deps = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -59,7 +59,7 @@ var rustGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
     rust_library(
         name = kwargs.get("name"),
         srcs = [name_pb, name_lib],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -68,8 +68,31 @@ GRPC_DEPS = [
     Label("//rust/raze:futures"),
     Label("//rust/raze:grpcio"),
     Label("//rust/raze:protobuf"),
-    "@rules_proto_grpc//rust:ares",
+    Label("//rust:ares"),
+    Label("//rust:upb_libdescriptor_proto"),
 ]`)
+
+// For rust, produce one library for all protos, since they are all in the same crate
+var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "proto_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = [
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+        "@rules_proto_grpc//example/proto:thing_proto",
+    ],
+)`)
+
+var rustGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = [
+        "@rules_proto_grpc//example/proto:thing_proto",
+        "@rules_proto_grpc//example/proto:greeter_grpc",
+    ],
+)`)
 
 func makeRust() *Language {
 	return &Language{
@@ -88,7 +111,7 @@ func makeRust() *Language {
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Rust protobuf `.rs` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "rust_grpc_compile",
@@ -98,25 +121,25 @@ func makeRust() *Language {
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Rust protobuf+gRPC `.rs` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "rust_proto_library",
 				Kind:             "proto",
 				Implementation:   rustProtoLibraryRuleTemplate,
 				WorkspaceExample: rustWorkspaceTemplate,
-				BuildExample:     protoLibraryExampleTemplate,
+				BuildExample:     rustProtoLibraryExampleTemplate,
 				Doc:              "Generates a Rust protobuf library using `rust_library` from `rules_rust`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "rust_grpc_library",
 				Kind:             "grpc",
 				Implementation:   rustGrpcLibraryRuleTemplate,
 				WorkspaceExample: rustWorkspaceTemplate,
-				BuildExample:     grpcLibraryExampleTemplate,
+				BuildExample:     rustGrpcLibraryExampleTemplate,
 				Doc:              "Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 		},
 	}

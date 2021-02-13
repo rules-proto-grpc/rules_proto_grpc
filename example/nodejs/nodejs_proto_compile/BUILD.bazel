@@ -2,5 +2,15 @@ load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_proto_compile")
 
 nodejs_proto_compile(
     name = "person_nodejs_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+nodejs_proto_compile(
+    name = "place_nodejs_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+nodejs_proto_compile(
+    name = "thing_nodejs_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )

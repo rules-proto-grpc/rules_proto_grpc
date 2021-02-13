@@ -41,3 +41,17 @@ cc_import(
     static_library = ":copy_ares",
     visibility = ["//visibility:public"],
 )
+
+# Do the same for @upb libdescriptor_proto.upb.a, which again fails to be taken as a valid static lib by rules_rust
+genrule(
+    name = "copy_upb_libdescriptor_proto",
+    srcs = ["@upb//:descriptor_upb_proto"],
+    outs = ["libdescriptor_proto.a"],
+    cmd = "cp $(locations @upb//:descriptor_upb_proto) \"$(@D)\" && mv \"$(@D)/libdescriptor_proto.upb.a\" \"$(@D)/libdescriptor_proto.a\"",
+)
+
+cc_import(
+    name = "upb_libdescriptor_proto",
+    static_library = ":copy_upb_libdescriptor_proto",
+    visibility = ["//visibility:public"],
+)

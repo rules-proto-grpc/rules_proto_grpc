@@ -30,7 +30,17 @@ load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
 
 cpp_proto_compile(
     name = "person_cpp_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+cpp_proto_compile(
+    name = "place_cpp_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+cpp_proto_compile(
+    name = "thing_cpp_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -38,7 +48,7 @@ cpp_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -65,8 +75,13 @@ grpc_deps()
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_compile")
 
 cpp_grpc_compile(
+    name = "thing_cpp_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+cpp_grpc_compile(
     name = "greeter_cpp_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -74,7 +89,7 @@ cpp_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -97,8 +112,20 @@ rules_proto_grpc_cpp_repos()
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
 cpp_proto_library(
-    name = "person_cpp_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_cpp_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_cpp_proto"],
+)
+
+cpp_proto_library(
+    name = "place_cpp_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_cpp_proto"],
+)
+
+cpp_proto_library(
+    name = "thing_cpp_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -106,8 +133,9 @@ cpp_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
 
 ---
 
@@ -133,8 +161,14 @@ grpc_deps()
 load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_library")
 
 cpp_grpc_library(
-    name = "greeter_cpp_library",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "thing_cpp_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+cpp_grpc_library(
+    name = "greeter_cpp_grpc",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    deps = ["thing_cpp_grpc"],
 )
 ```
 
@@ -142,5 +176,6 @@ cpp_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |

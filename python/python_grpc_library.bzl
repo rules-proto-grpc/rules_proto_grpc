@@ -6,14 +6,14 @@ def python_grpc_library(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create python library
     py_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

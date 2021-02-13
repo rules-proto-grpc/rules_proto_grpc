@@ -4,7 +4,7 @@ load("//go:defs.bzl", "go_grpc_library")
 go_grpc_library(
     name = "routeguide",
     importpath = "google.golang.org/grpc/examples/route_guide/routeguide",
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )
 
 go_library(
