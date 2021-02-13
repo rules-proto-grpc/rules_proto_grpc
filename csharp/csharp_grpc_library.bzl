@@ -1,5 +1,5 @@
 load("//csharp:csharp_grpc_compile.bzl", "csharp_grpc_compile")
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_library")
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "csharp_library")
 
 def csharp_grpc_library(**kwargs):
     # Compile protos
@@ -10,7 +10,7 @@ def csharp_grpc_library(**kwargs):
     )
 
     # Create csharp library
-    core_library(
+    csharp_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS,
@@ -19,7 +19,7 @@ def csharp_grpc_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@google.protobuf//:core",
-    "@grpc.core//:core",
-    "@io_bazel_rules_dotnet//dotnet/stdlib.core:netstandard.dll",
+    "@google.protobuf//:lib",
+    "@grpc.core//:lib",
+    "@core_sdk_stdlib//:libraryset",
 ]

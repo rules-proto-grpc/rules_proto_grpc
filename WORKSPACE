@@ -107,7 +107,6 @@ dotnet_repositories()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-    "core_register_sdk",
     "dotnet_register_toolchains",
     "dotnet_repositories_nugets",
 )
@@ -115,7 +114,6 @@ load(
 dotnet_register_toolchains()
 dotnet_repositories_nugets()
 
-core_register_sdk()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 nuget_rules_proto_grpc_packages()
