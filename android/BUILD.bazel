@@ -23,7 +23,7 @@ proto_plugin(
 android_proto_compile(
     name = "well_known_protos_srcs",
     protos = [
-        "@com_googled_protobuf//:any_proto",
+        "@com_google_protobuf//:any_proto",
         "@com_google_protobuf//:api_proto",
         "@com_google_protobuf//:descriptor_proto",
         "@com_google_protobuf//:duration_proto",
