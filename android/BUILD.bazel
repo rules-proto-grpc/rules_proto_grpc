@@ -1,4 +1,6 @@
 load("//:plugin.bzl", "proto_plugin")
+load("//android:defs.bzl", "android_proto_compile")
+load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 
 proto_plugin(
     name = "javalite_plugin",
@@ -13,5 +15,32 @@ proto_plugin(
     out = "{name}_grpc.jar",
     options = ["lite"],
     tool = "@io_grpc_grpc_java//compiler:grpc_java_plugin",
+    visibility = ["//visibility:public"],
+)
+
+
+# Lite is missing gen_well_known_protos_java from protobuf, compile them manually
+android_proto_compile(
+    name = "well_known_protos_srcs",
+    protos = [
+        "@com_googled_protobuf//:any_proto",
+        "@com_google_protobuf//:api_proto",
+        "@com_google_protobuf//:descriptor_proto",
+        "@com_google_protobuf//:duration_proto",
+        "@com_google_protobuf//:empty_proto",
+        "@com_google_protobuf//:field_mask_proto",
+        "@com_google_protobuf//:source_context_proto",
+        "@com_google_protobuf//:struct_proto",
+        "@com_google_protobuf//:timestamp_proto",
+        "@com_google_protobuf//:type_proto",
+        "@com_google_protobuf//:wrappers_proto",
+    ],
+)
+
+android_library(
+    name = "well_known_protos",
+    srcs = ["well_known_protos_srcs"],
+    deps = ["@com_google_protobuf//:protobuf_javalite"],
+    exports = ["@com_google_protobuf//:protobuf_javalite"],
     visibility = ["//visibility:public"],
 )

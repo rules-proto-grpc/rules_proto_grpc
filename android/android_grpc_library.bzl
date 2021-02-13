@@ -28,4 +28,5 @@ GRPC_DEPS = [
     "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_javalite",
     "@com_google_protobuf//:protobuf_java_util",
+    Label("//android:well_known_protos"),  # Lite is missing gen_well_known_protos_java from protobuf, compile them manually
 ]
