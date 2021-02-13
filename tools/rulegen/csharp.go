@@ -97,7 +97,7 @@ func makeCsharp() *Language {
 		Flags: commonLangFlags,
 		Notes: mustTemplate(`Rules for generating C# protobuf and gRPC ` + "`.cs`" + ` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ` + "`csharp_library`" + ` from [rules_dotnet](https://github.com/bazelbuild/rules_dotnet)`),
 		Rules: []*Rule{
-			&Rule{            
+			&Rule{
 				Name:             "csharp_proto_compile",
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
