@@ -53,7 +53,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 `
 
@@ -62,8 +62,8 @@ var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString 
     scala_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = PROTO_DEPS,
-        exports = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        exports = PROTO_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -81,8 +81,8 @@ var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString +
     scala_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
-        exports = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        exports = GRPC_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -113,7 +113,7 @@ func makeScala() *Language {
 				WorkspaceExample: scalaProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates a Scala protobuf `.jar` artifact",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
@@ -124,7 +124,7 @@ func makeScala() *Language {
 				WorkspaceExample: scalaGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Scala protobuf+gRPC `.jar` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 				Experimental:     true,
 			},
@@ -135,7 +135,7 @@ func makeScala() *Language {
 				WorkspaceExample: scalaProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Scala protobuf library using `scala_library` from `rules_scala`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            javaLibraryRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
@@ -145,7 +145,7 @@ func makeScala() *Language {
 				WorkspaceExample: scalaGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            javaLibraryRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 				Experimental:     true,
 			},

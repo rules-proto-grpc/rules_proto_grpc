@@ -3,5 +3,5 @@ load("@io_bazel_rules_d//d:d.bzl", "d_library")
 
 d_proto_compile(
     name = "routeguide",
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )

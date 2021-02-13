@@ -20,7 +20,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 `
 
@@ -29,7 +29,7 @@ var nodeProtoLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + 
     js_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -44,7 +44,7 @@ var nodeGrpcLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
     js_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -72,7 +72,7 @@ func makeNode() *Language {
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Node.js protobuf `.js` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{},
 			},
 			&Rule{
@@ -83,7 +83,7 @@ func makeNode() *Language {
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Node.js protobuf+gRPC `.js` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{},
 			},
 			&Rule{
@@ -93,7 +93,7 @@ func makeNode() *Language {
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Node.js protobuf library using `js_library` from `rules_nodejs`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 				SkipTestPlatforms: []string{},
 				Experimental:     true,
 			},
@@ -104,7 +104,7 @@ func makeNode() *Language {
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 				SkipTestPlatforms: []string{},
 				Experimental:     true,
 			},

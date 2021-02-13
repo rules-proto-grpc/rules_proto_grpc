@@ -6,7 +6,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 `
 
@@ -15,7 +15,7 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
     native.objc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb],
         copts = kwargs.get("copts"),
         visibility = kwargs.get("visibility"),
@@ -31,7 +31,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
     native.objc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb],
         copts = kwargs.get("copts"),
         visibility = kwargs.get("visibility"),
@@ -61,7 +61,7 @@ func makeObjc() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Objective-C protobuf `.m` & `.h` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "objc_grpc_compile",
@@ -71,7 +71,7 @@ func makeObjc() *Language {
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "objc_proto_library",
@@ -80,7 +80,7 @@ func makeObjc() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates an Objective-C protobuf library using `objc_library`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 // 			&Rule{ // Disabled due to issues fetching gRPC dependencies
 // 				Name:             "objc_grpc_library",
@@ -89,7 +89,7 @@ func makeObjc() *Language {
 // 				WorkspaceExample: grpcWorkspaceTemplate,
 // 				BuildExample:     grpcLibraryExampleTemplate,
 // 				Doc:              "Generates an Objective-C protobuf+gRPC library using `objc_library`",
-// 				Attrs:            aspectProtoCompileAttrs,
+// 				Attrs:            libraryRuleAttrs,
 // 			},
 		},
 	}

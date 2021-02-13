@@ -6,14 +6,14 @@ def nodejs_grpc_library(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     nodejs_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create nodejs library
     js_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         package_name = kwargs.get("name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

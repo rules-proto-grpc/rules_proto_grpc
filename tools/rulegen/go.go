@@ -31,7 +31,7 @@ def {{ .Rule.Name }}(**kwargs):
     {{ .Rule.Base}}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         prefix_path = kwargs.get("importpath", ""),
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 `
 
@@ -40,7 +40,7 @@ var goProtoLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
     go_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + PROTO_DEPS,
+        deps = kwargs.get("go_deps", []) + PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -71,7 +71,7 @@ var goGrpcLibraryRuleTemplate = mustTemplate(
     go_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GRPC_DEPS,
+        deps = kwargs.get("go_deps", []) + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -83,39 +83,31 @@ GRPC_DEPS = [
     "@org_golang_google_grpc//status:go_default_library",
 ] + PROTO_DEPS`)
 
-var goProtoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
-
-{{ .Rule.Name }}(
-    name = "person_{{ .Lang.Name }}_proto",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/{{ .Lang.Name }}/example/{{ .Rule.Name }}/person",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
-)`)
-
-var goGrpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
-
-{{ .Rule.Name }}(
-    name = "greeter_{{ .Lang.Name }}_grpc",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/{{ .Lang.Name }}/example/{{ .Rule.Name }}/greeter",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-)`)
-
+// For go, produce one library for all protos, since they are all in the same package
 var goProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
-    name = "person_{{ .Lang.Name }}_library",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/{{ .Lang.Name }}/example/{{ .Rule.Name }}/person",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "proto_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
+    protos = [
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+        "@rules_proto_grpc//example/proto:thing_proto",
+    ],
 )`)
 
 var goGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
-    name = "greeter_{{ .Lang.Name }}_library",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/{{ .Lang.Name }}/example/{{ .Rule.Name }}/greeter",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
+    protos = [
+        "@rules_proto_grpc//example/proto:thing_proto",
+        "@rules_proto_grpc//example/proto:greeter_grpc",
+    ],
 )`)
 
-var goProtoAttrs = []*Attr{
+var goLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{
 		Name:      "importpath",
 		Type:      "string",
@@ -123,7 +115,7 @@ var goProtoAttrs = []*Attr{
 		Doc:       "Importpath for the generated artifacts",
 		Mandatory: false,
 	},
-}
+}...)
 
 func makeGo() *Language {
 	return &Language{
@@ -142,7 +134,7 @@ func makeGo() *Language {
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Go protobuf `.go` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "go_grpc_compile",
@@ -153,7 +145,7 @@ func makeGo() *Language {
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Go protobuf+gRPC `.go` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "go_proto_library",
@@ -163,7 +155,7 @@ func makeGo() *Language {
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     goProtoLibraryExampleTemplate,
 				Doc:              "Generates a Go protobuf library using `go_library` from `rules_go`",
-				Attrs:            append(aspectProtoCompileAttrs, goProtoAttrs...),
+				Attrs:            goLibraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "go_grpc_library",
@@ -173,7 +165,7 @@ func makeGo() *Language {
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     goGrpcLibraryExampleTemplate,
 				Doc:              "Generates a Go protobuf+gRPC library using `go_library` from `rules_go`",
-				Attrs:            append(aspectProtoCompileAttrs, goProtoAttrs...),
+				Attrs:            goLibraryRuleAttrs,
 			},
 		},
 	}

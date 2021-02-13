@@ -1,6 +1,18 @@
 load("@rules_proto_grpc//closure:defs.bzl", "closure_proto_library")
 
 closure_proto_library(
-    name = "person_closure_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_closure_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_closure_proto"],
+)
+
+closure_proto_library(
+    name = "place_closure_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_closure_proto"],
+)
+
+closure_proto_library(
+    name = "thing_closure_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )

@@ -34,7 +34,17 @@ load("@rules_proto_grpc//d:defs.bzl", "d_proto_compile")
 
 d_proto_compile(
     name = "person_d_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+d_proto_compile(
+    name = "place_d_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+d_proto_compile(
+    name = "thing_d_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -42,7 +52,7 @@ d_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -69,8 +79,20 @@ d_repositories()
 load("@rules_proto_grpc//d:defs.bzl", "d_proto_library")
 
 d_proto_library(
-    name = "person_d_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_d_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_d_proto"],
+)
+
+d_proto_library(
+    name = "place_d_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_d_proto"],
+)
+
+d_proto_library(
+    name = "thing_d_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -78,5 +100,5 @@ d_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |

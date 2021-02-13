@@ -37,7 +37,17 @@ load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_compile")
 
 swift_proto_compile(
     name = "person_swift_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+swift_proto_compile(
+    name = "place_swift_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+swift_proto_compile(
+    name = "thing_swift_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -45,7 +55,7 @@ swift_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -75,8 +85,13 @@ swift_rules_dependencies()
 load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_compile")
 
 swift_grpc_compile(
+    name = "thing_swift_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+swift_grpc_compile(
     name = "greeter_swift_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -84,14 +99,12 @@ swift_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
 
 ## `swift_proto_library`
-
-> NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
 
 Generates a Swift protobuf library using `swift_library` from `rules_swift`
 
@@ -116,8 +129,20 @@ swift_rules_dependencies()
 load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_library")
 
 swift_proto_library(
-    name = "person_swift_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_swift_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_swift_proto"],
+)
+
+swift_proto_library(
+    name = "place_swift_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_swift_proto"],
+)
+
+swift_proto_library(
+    name = "thing_swift_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -125,14 +150,13 @@ swift_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
 
 ---
 
 ## `swift_grpc_library`
-
-> NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
 
 Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`
 
@@ -157,8 +181,20 @@ swift_rules_dependencies()
 load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_library")
 
 swift_grpc_library(
-    name = "person_swift_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_swift_grpc",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_swift_grpc"],
+)
+
+swift_grpc_library(
+    name = "place_swift_grpc",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_swift_grpc"],
+)
+
+swift_grpc_library(
+    name = "thing_swift_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -166,5 +202,6 @@ swift_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |

@@ -46,15 +46,16 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create {{ .Lang.Name }} library
+    print(native.package_name())
     ruby_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = ["@rules_proto_grpc_bundle//:gems"],
-        includes = [name_pb], # This does not presently work as expected, as it is workspace relative. See https://github.com/yugui/rules_ruby/pull/8
+        deps = ["@rules_proto_grpc_bundle//:gems"] + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        includes = [native.package_name() + "/" + name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )`)
@@ -76,8 +77,7 @@ func makeRuby() *Language {
 				WorkspaceExample: rubyProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf `.rb` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"}, // CI has no Ruby available for windows, but this rule can be tested
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "ruby_grpc_compile",
@@ -87,8 +87,7 @@ func makeRuby() *Language {
 				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf+gRPC `.rb` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"}, // CI has no Ruby available for windows, but this rule can be tested
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "ruby_proto_library",
@@ -97,7 +96,7 @@ func makeRuby() *Language {
 				WorkspaceExample: rubyProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "ruby_grpc_library",
@@ -106,7 +105,7 @@ func makeRuby() *Language {
 				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 		},
 	}

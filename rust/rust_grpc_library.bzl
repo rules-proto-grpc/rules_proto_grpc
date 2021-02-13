@@ -8,7 +8,7 @@ def rust_grpc_library(**kwargs):
     name_lib = kwargs.get("name") + "_lib"
     rust_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create lib file
@@ -22,7 +22,7 @@ def rust_grpc_library(**kwargs):
     rust_library(
         name = kwargs.get("name"),
         srcs = [name_pb, name_lib],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -31,5 +31,6 @@ GRPC_DEPS = [
     Label("//rust/raze:futures"),
     Label("//rust/raze:grpcio"),
     Label("//rust/raze:protobuf"),
-    "@rules_proto_grpc//rust:ares",
+    Label("//rust:ares"),
+    Label("//rust:upb_libdescriptor_proto"),
 ]

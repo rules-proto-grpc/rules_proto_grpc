@@ -54,7 +54,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 `
 
@@ -63,7 +63,7 @@ var csharpProtoLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateStrin
     csharp_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -78,7 +78,7 @@ var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString
     csharp_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -105,7 +105,7 @@ func makeCsharp() *Language {
 				WorkspaceExample: csharpProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates C# protobuf `.cs` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "csharp_grpc_compile",
@@ -115,7 +115,7 @@ func makeCsharp() *Language {
 				WorkspaceExample: csharpGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates C# protobuf+gRPC `.cs` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "csharp_proto_library",
@@ -124,7 +124,7 @@ func makeCsharp() *Language {
 				WorkspaceExample: csharpProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "csharp_grpc_library",
@@ -133,7 +133,7 @@ func makeCsharp() *Language {
 				WorkspaceExample: csharpGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 		},
 	}

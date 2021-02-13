@@ -2,7 +2,7 @@ load("//java:defs.bzl", "java_grpc_library")
 
 java_grpc_library(
     name = "routeguide",
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )
 
 java_binary(

@@ -30,7 +30,17 @@ load("@rules_proto_grpc//android:defs.bzl", "android_proto_compile")
 
 android_proto_compile(
     name = "person_android_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+android_proto_compile(
+    name = "place_android_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+android_proto_compile(
+    name = "thing_android_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -38,7 +48,7 @@ android_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -82,8 +92,13 @@ grpc_java_repositories()
 load("@rules_proto_grpc//android:defs.bzl", "android_grpc_compile")
 
 android_grpc_compile(
+    name = "thing_android_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+android_grpc_compile(
     name = "greeter_android_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -91,7 +106,7 @@ android_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -141,8 +156,20 @@ android_sdk_repository(name = "androidsdk")
 load("@rules_proto_grpc//android:defs.bzl", "android_proto_library")
 
 android_proto_library(
-    name = "person_android_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_android_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_android_proto"],
+)
+
+android_proto_library(
+    name = "place_android_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_android_proto"],
+)
+
+android_proto_library(
+    name = "thing_android_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -150,8 +177,10 @@ android_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `exports` | `list` | false | `[]`    | List of labels to pass as exports attr to underlying lang_library rule          |
 
 ---
 
@@ -198,8 +227,14 @@ android_sdk_repository(name = "androidsdk")
 load("@rules_proto_grpc//android:defs.bzl", "android_grpc_library")
 
 android_grpc_library(
-    name = "greeter_android_library",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "thing_android_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+android_grpc_library(
+    name = "greeter_android_grpc",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    deps = ["thing_android_grpc"],
 )
 ```
 
@@ -207,5 +242,7 @@ android_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `exports` | `list` | false | `[]`    | List of labels to pass as exports attr to underlying lang_library rule          |

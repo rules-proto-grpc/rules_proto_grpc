@@ -34,8 +34,13 @@ rules_closure_toolchains()
 load("@rules_proto_grpc//grpc-web:defs.bzl", "closure_grpc_compile")
 
 closure_grpc_compile(
+    name = "thing_grpc-web_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+closure_grpc_compile(
     name = "greeter_grpc-web_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -43,7 +48,7 @@ closure_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -72,8 +77,13 @@ rules_closure_toolchains()
 load("@rules_proto_grpc//grpc-web:defs.bzl", "commonjs_grpc_compile")
 
 commonjs_grpc_compile(
+    name = "thing_grpc-web_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+commonjs_grpc_compile(
     name = "greeter_grpc-web_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -81,7 +91,7 @@ commonjs_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -110,8 +120,13 @@ rules_closure_toolchains()
 load("@rules_proto_grpc//grpc-web:defs.bzl", "commonjs_dts_grpc_compile")
 
 commonjs_dts_grpc_compile(
+    name = "thing_grpc-web_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+commonjs_dts_grpc_compile(
     name = "greeter_grpc-web_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -119,7 +134,7 @@ commonjs_dts_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -148,8 +163,13 @@ rules_closure_toolchains()
 load("@rules_proto_grpc//grpc-web:defs.bzl", "ts_grpc_compile")
 
 ts_grpc_compile(
+    name = "thing_grpc-web_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+ts_grpc_compile(
     name = "greeter_grpc-web_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -157,7 +177,7 @@ ts_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 
 ---
@@ -186,8 +206,14 @@ rules_closure_toolchains()
 load("@rules_proto_grpc//grpc-web:defs.bzl", "closure_grpc_library")
 
 closure_grpc_library(
-    name = "greeter_grpc-web_library",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "thing_grpc-web_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+closure_grpc_library(
+    name = "greeter_grpc-web_grpc",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    deps = ["thing_grpc-web_grpc"],
 )
 ```
 
@@ -195,5 +221,6 @@ closure_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |

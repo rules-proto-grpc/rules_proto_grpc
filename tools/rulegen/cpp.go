@@ -7,7 +7,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 `
 
@@ -16,14 +16,14 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     native.cc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
-    "@com_google_protobuf//:protoc_lib",
+    "@com_google_protobuf//:protobuf",
 ]`)
 
 var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
@@ -31,14 +31,14 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     native.cc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
-    "@com_google_protobuf//:protoc_lib",
+    "@com_google_protobuf//:protobuf",
     "@com_github_grpc_grpc//:grpc++",
     "@com_github_grpc_grpc//:grpc++_reflection",
 ]`)
@@ -65,7 +65,7 @@ func makeCpp() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates C++ protobuf `.h` & `.cc` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "cpp_grpc_compile",
@@ -75,7 +75,7 @@ func makeCpp() *Language {
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates C++ protobuf+gRPC `.h` & `.cc` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "cpp_proto_library",
@@ -84,7 +84,7 @@ func makeCpp() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a C++ protobuf library using `cc_library`, with dependencies linked",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "cpp_grpc_library",
@@ -93,7 +93,7 @@ func makeCpp() *Language {
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies linked",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 		},
 	}

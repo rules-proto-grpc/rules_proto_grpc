@@ -8,7 +8,7 @@ load("//grpc-web:defs.bzl", "closure_grpc_library")
 
 closure_grpc_library(
     name = "routeguide",
-    deps = [
+    protos = [
         "//example/proto:routeguide_proto",
     ],
 )

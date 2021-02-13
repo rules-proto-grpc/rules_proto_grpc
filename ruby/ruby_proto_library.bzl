@@ -6,15 +6,16 @@ def ruby_proto_library(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     ruby_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
     )
 
     # Create ruby library
+    print(native.package_name())
     ruby_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
-        deps = ["@rules_proto_grpc_bundle//:gems"],
-        includes = [name_pb], # This does not presently work as expected, as it is workspace relative. See https://github.com/yugui/rules_ruby/pull/8
+        deps = ["@rules_proto_grpc_bundle//:gems"] + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        includes = [native.package_name() + "/" + name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )

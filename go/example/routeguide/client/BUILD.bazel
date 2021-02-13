@@ -5,7 +5,7 @@ go_grpc_library(
     name = "routeguide",
     importpath = "google.golang.org/grpc/examples/route_guide/routeguide",
     visibility = ["//visibility:public"],
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )
 
 go_library(

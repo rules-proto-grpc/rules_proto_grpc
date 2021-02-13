@@ -4,12 +4,12 @@ package main
 var commonLangFlags = []*Flag{}
 
 
-var aspectProtoCompileAttrs = []*Attr{
-	&Attr{
-		Name:      "deps",
+var compileRuleAttrs = []*Attr{
+    &Attr{
+		Name:      "protos",
 		Type:      "list<ProtoInfo>",
 		Default:   "[]",
-		Doc:       "List of labels that provide a `ProtoInfo` (such as `native.proto_library`)",
+		Doc:       "List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)",
 		Mandatory: true,
 	},
 	&Attr{
@@ -20,6 +20,17 @@ var aspectProtoCompileAttrs = []*Attr{
 		Mandatory: false,
 	},
 }
+
+
+var libraryRuleAttrs = append(append([]*Attr(nil), compileRuleAttrs...), []*Attr{
+    &Attr{
+		Name:      "deps",
+		Type:      "list",
+		Default:   "[]",
+		Doc:       "List of labels to pass as deps attr to underlying lang_library rule",
+		Mandatory: false,
+	},
+}...)
 
 
 var aspectRuleTemplate = mustTemplate(`load("//:plugin.bzl", "ProtoPluginInfo")
@@ -59,10 +70,17 @@ _rule = rule(
     implementation = proto_compile_impl,
     attrs = dict(
         proto_compile_attrs,
-        deps = attr.label_list(
-            mandatory = True,
+        protos = attr.label_list(
+            mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
             aspects = [{{ .Rule.Name }}_aspect],
+            doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
+        ),
+        deps = attr.label_list(
+            mandatory = False,
+            providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
+            aspects = [{{ .Rule.Name }}_aspect],
+            doc = "DEPRECATED: Use protos attr"
         ),
     ),
 )
@@ -93,30 +111,63 @@ grpc_deps()`)
 var protoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
-    name = "person_{{ .Lang.Name }}_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+{{ .Rule.Name }}(
+    name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+{{ .Rule.Name }}(
+    name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )`)
 
 
 var grpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
-    name = "greeter_{{ .Lang.Name }}_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+{{ .Rule.Name }}(
+    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )`)
 
 
 var protoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
-    name = "person_{{ .Lang.Name }}_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
+)
+
+{{ .Rule.Name }}(
+    name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
+)
+
+{{ .Rule.Name }}(
+    name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )`)
 
 
 var grpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
-    name = "greeter_{{ .Lang.Name }}_library",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+{{ .Rule.Name }}(
+    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    deps = ["thing_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
 )`)

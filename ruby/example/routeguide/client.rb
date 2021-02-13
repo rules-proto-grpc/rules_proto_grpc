@@ -17,24 +17,10 @@
 this_dir = File.expand_path(File.dirname(__FILE__))
 lib_dir = File.join(File.dirname(this_dir), 'lib')
 $LOAD_PATH.unshift(lib_dir) unless $LOAD_PATH.include?(lib_dir)
-$LOAD_PATH.unshift('ruby/example/routeguide/routeguide_pb') # Required until https://github.com/yugui/rules_ruby/pull/8 is merged
 
 require 'grpc'
 require 'multi_json'
 require 'example/proto/routeguide_services_pb'
-
-# Note: observing this error when running against the python server (possibly others), but not the ruby server:
-#
-# /home/pcj/.cache/bazel/_bazel_pcj/f30627c9a545b48e0bc7f4dc59625584/external/routeguide_gems_bundle/lib/ruby/2.3.0/gems/grpc-1.15.0-x86_64-linux/src/ruby/lib/grpc/generic/active_call.rb:31:in `check_status': 2:Exception calling application: global name 'routeguide_pb' is not defined (GRPC::Unknown)
-# 	from /home/pcj/.cache/bazel/_bazel_pcj/f30627c9a545b48e0bc7f4dc59625584/external/routeguide_gems_bundle/lib/ruby/2.3.0/gems/grpc-1.15.0-x86_64-linux/src/ruby/lib/grpc/generic/active_call.rb:181:in `attach_status_results_and_complete_call'
-# 	from /home/pcj/.cache/bazel/_bazel_pcj/f30627c9a545b48e0bc7f4dc59625584/external/routeguide_gems_bundle/lib/ruby/2.3.0/gems/grpc-1.15.0-x86_64-linux/src/ruby/lib/grpc/generic/active_call.rb:418:in `client_streamer'
-# 	from /home/pcj/.cache/bazel/_bazel_pcj/f30627c9a545b48e0bc7f4dc59625584/external/routeguide_gems_bundle/lib/ruby/2.3.0/gems/grpc-1.15.0-x86_64-linux/src/ruby/lib/grpc/generic/client_stub.rb:255:in `block in client_streamer'
-# 	from /home/pcj/.cache/bazel/_bazel_pcj/f30627c9a545b48e0bc7f4dc59625584/external/routeguide_gems_bundle/lib/ruby/2.3.0/gems/grpc-1.15.0-x86_64-linux/src/ruby/lib/grpc/generic/interceptors.rb:170:in `intercept!'
-# 	from /home/pcj/.cache/bazel/_bazel_pcj/f30627c9a545b48e0bc7f4dc59625584/external/routeguide_gems_bundle/lib/ruby/2.3.0/gems/grpc-1.15.0-x86_64-linux/src/ruby/lib/grpc/generic/client_stub.rb:254:in `client_streamer'
-# 	from /home/pcj/.cache/bazel/_bazel_pcj/f30627c9a545b48e0bc7f4dc59625584/external/routeguide_gems_bundle/lib/ruby/2.3.0/gems/grpc-1.15.0-x86_64-linux/src/ruby/lib/grpc/generic/service.rb:175:in `block (3 levels) in rpc_stub_class'
-# 	from ruby/example/routeguide/client.rb:106:in `run_record_route'
-# 	from ruby/example/routeguide/client.rb:162:in `main'
-# 	from ruby/example/routeguide/client.rb:165:in `<main>'
 
 include Routeguide
 

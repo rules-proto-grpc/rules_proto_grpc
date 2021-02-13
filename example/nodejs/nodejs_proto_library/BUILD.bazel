@@ -1,6 +1,18 @@
 load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_proto_library")
 
 nodejs_proto_library(
-    name = "person_nodejs_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_nodejs_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_nodejs_proto"],
+)
+
+nodejs_proto_library(
+    name = "place_nodejs_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_nodejs_proto"],
+)
+
+nodejs_proto_library(
+    name = "thing_nodejs_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )

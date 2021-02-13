@@ -4,7 +4,7 @@ load("@io_bazel_rules_scala//scala:scala.bzl", "scala_binary", "scala_library")
 
 scala_grpc_library(
     name = "routeguide_scala_grpc",
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )
 
 scala_library(
