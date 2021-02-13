@@ -1,13 +1,13 @@
 # C# rules
 
-Rules for generating C# protobuf and gRPC `.cs` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `core_library` from [rules_dotnet](https://github.com/bazelbuild/rules_dotnet)
+Rules for generating C# protobuf and gRPC `.cs` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `csharp_library` from [rules_dotnet](https://github.com/bazelbuild/rules_dotnet)
 
 | Rule | Description |
 | ---: | :--- |
 | [csharp_proto_compile](#csharp_proto_compile) | Generates C# protobuf `.cs` artifacts |
 | [csharp_grpc_compile](#csharp_grpc_compile) | Generates C# protobuf+gRPC `.cs` artifacts |
-| [csharp_proto_library](#csharp_proto_library) | Generates a C# protobuf library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
-| [csharp_grpc_library](#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
+| [csharp_proto_library](#csharp_proto_library) | Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
+| [csharp_grpc_library](#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
 
 ---
 
@@ -28,15 +28,12 @@ dotnet_repositories()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-    "core_register_sdk",
     "dotnet_register_toolchains",
     "dotnet_repositories_nugets",
 )
 
 dotnet_register_toolchains()
 dotnet_repositories_nugets()
-
-core_register_sdk()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 
@@ -84,15 +81,12 @@ dotnet_repositories()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-    "core_register_sdk",
     "dotnet_register_toolchains",
     "dotnet_repositories_nugets",
 )
 
 dotnet_register_toolchains()
 dotnet_repositories_nugets()
-
-core_register_sdk()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 
@@ -121,7 +115,7 @@ csharp_grpc_compile(
 
 ## `csharp_proto_library`
 
-Generates a C# protobuf library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll`
+Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
 
 ### `WORKSPACE`
 
@@ -136,15 +130,12 @@ dotnet_repositories()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-    "core_register_sdk",
     "dotnet_register_toolchains",
     "dotnet_repositories_nugets",
 )
 
 dotnet_register_toolchains()
 dotnet_repositories_nugets()
-
-core_register_sdk()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 
@@ -173,7 +164,7 @@ csharp_proto_library(
 
 ## `csharp_grpc_library`
 
-Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll`
+Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
 
 ### `WORKSPACE`
 
@@ -192,15 +183,12 @@ dotnet_repositories()
 
 load(
     "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-    "core_register_sdk",
     "dotnet_register_toolchains",
     "dotnet_repositories_nugets",
 )
 
 dotnet_register_toolchains()
 dotnet_repositories_nugets()
-
-core_register_sdk()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 

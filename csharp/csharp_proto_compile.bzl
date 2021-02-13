@@ -1,3 +1,4 @@
+load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load("//:plugin.bzl", "ProtoPluginInfo")
 load(
     "//:aspect.bzl",
@@ -25,7 +26,7 @@ csharp_proto_compile_aspect = aspect(
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
             default = "csharp_proto_compile_aspect",
-        )
+        ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
