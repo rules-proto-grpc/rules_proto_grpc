@@ -6,6 +6,11 @@ rulegen:
 	rm available_tests.txt; \
 
 
+# Apply buildifier
+buildifier:
+	go run github.com/bazelbuild/buildtools/buildifier -r .
+
+
 # Run cargo raze on the rust dependencies
 .PHONY: rust_raze
 rust_raze:
