@@ -52,6 +52,3 @@ ${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc "${G
 if [ -d "${OUTPUT_DIR}/packages" ]; then
     rm -r "${OUTPUT_DIR}/packages"
 fi
-
-# Patch missing Grpc.Core runtimes into nuget_package
-cat "${OUTPUT_DIR}/${FILE_NAME}" | python3 -c "import sys; patch = open('${OUTPUT_DIR}/${FILE_NAME}.patch').read(); sys.stdout.write(sys.stdin.read().replace('Grpc.Core.xml\",', 'Grpc.Core.xml\",' + patch))" | sponge "${OUTPUT_DIR}/${FILE_NAME}"

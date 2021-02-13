@@ -20,258 +20,12 @@ def nuget_rules_proto_grpc_packages():
         package = "system.buffers",
         version = "4.5.1",
         sha256 = "c30b3dd2c7e2f4cee4b823d692fd42118309b42ab1f5007f923d329a5b0d6b12",
-        net_lib = {
-            "net45": "lib/netstandard1.1/System.Buffers.dll",
-            "net451": "lib/netstandard1.1/System.Buffers.dll",
-            "net452": "lib/netstandard1.1/System.Buffers.dll",
-            "net46": "lib/netstandard1.1/System.Buffers.dll",
-            "net461": "lib/net461/System.Buffers.dll",
-            "net462": "lib/net461/System.Buffers.dll",
-            "net47": "lib/net461/System.Buffers.dll",
-            "net471": "lib/net461/System.Buffers.dll",
-            "net472": "lib/net461/System.Buffers.dll",
-            "net48": "lib/net461/System.Buffers.dll",
-            "netstandard1.1": "lib/netstandard1.1/System.Buffers.dll",
-            "netstandard1.2": "lib/netstandard1.1/System.Buffers.dll",
-            "netstandard1.3": "lib/netstandard1.1/System.Buffers.dll",
-            "netstandard1.4": "lib/netstandard1.1/System.Buffers.dll",
-            "netstandard1.5": "lib/netstandard1.1/System.Buffers.dll",
-            "netstandard1.6": "lib/netstandard1.1/System.Buffers.dll",
-            "netstandard2.0": "lib/netstandard2.0/System.Buffers.dll",
-            "netstandard2.1": "lib/netstandard2.0/System.Buffers.dll",
-        },
-        net_ref = {
-            "net45": "ref/net45/System.Buffers.dll",
-            "net451": "ref/net45/System.Buffers.dll",
-            "net452": "ref/net45/System.Buffers.dll",
-            "net46": "ref/net45/System.Buffers.dll",
-            "net461": "ref/net45/System.Buffers.dll",
-            "net462": "ref/net45/System.Buffers.dll",
-            "net47": "ref/net45/System.Buffers.dll",
-            "net471": "ref/net45/System.Buffers.dll",
-            "net472": "ref/net45/System.Buffers.dll",
-            "net48": "ref/net45/System.Buffers.dll",
-            "netstandard1.1": "ref/netstandard1.1/System.Buffers.dll",
-            "netstandard1.2": "ref/netstandard1.1/System.Buffers.dll",
-            "netstandard1.3": "ref/netstandard1.1/System.Buffers.dll",
-            "netstandard1.4": "ref/netstandard1.1/System.Buffers.dll",
-            "netstandard1.5": "ref/netstandard1.1/System.Buffers.dll",
-            "netstandard1.6": "ref/netstandard1.1/System.Buffers.dll",
-            "netstandard2.0": "ref/netstandard2.0/System.Buffers.dll",
-            "netstandard2.1": "ref/netstandard2.0/System.Buffers.dll",
-        },
-        mono_lib = "lib/net461/System.Buffers.dll",
-        mono_ref = "ref/net45/System.Buffers.dll",
-        net_files = {
-            "net45": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "net451": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "net452": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "net46": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "net461": [
-               "lib/net461/System.Buffers.dll",
-               "lib/net461/System.Buffers.xml",
-            ],
-            "net462": [
-               "lib/net461/System.Buffers.dll",
-               "lib/net461/System.Buffers.xml",
-            ],
-            "net47": [
-               "lib/net461/System.Buffers.dll",
-               "lib/net461/System.Buffers.xml",
-            ],
-            "net471": [
-               "lib/net461/System.Buffers.dll",
-               "lib/net461/System.Buffers.xml",
-            ],
-            "net472": [
-               "lib/net461/System.Buffers.dll",
-               "lib/net461/System.Buffers.xml",
-            ],
-            "net48": [
-               "lib/net461/System.Buffers.dll",
-               "lib/net461/System.Buffers.xml",
-            ],
-            "netstandard1.1": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "netstandard1.2": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "netstandard1.3": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "netstandard1.4": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "netstandard1.5": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "netstandard1.6": [
-               "lib/netstandard1.1/System.Buffers.dll",
-               "lib/netstandard1.1/System.Buffers.xml",
-            ],
-            "netstandard2.0": [
-               "lib/netstandard2.0/System.Buffers.dll",
-               "lib/netstandard2.0/System.Buffers.xml",
-            ],
-            "netstandard2.1": [
-               "lib/netstandard2.0/System.Buffers.dll",
-               "lib/netstandard2.0/System.Buffers.xml",
-            ],
-        },
-        mono_files = [
-            "lib/net461/System.Buffers.dll",
-            "lib/net461/System.Buffers.xml",
-        ],
     )
     nuget_package(
         name = "system.numerics.vectors",
         package = "system.numerics.vectors",
         version = "4.5.0",
         sha256 = "a9d49320581fda1b4f4be6212c68c01a22cdf228026099c20a8eabefcf90f9cf",
-        net_lib = {
-            "net45": "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
-            "net451": "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
-            "net452": "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
-            "net46": "lib/net46/System.Numerics.Vectors.dll",
-            "net461": "lib/net46/System.Numerics.Vectors.dll",
-            "net462": "lib/net46/System.Numerics.Vectors.dll",
-            "net47": "lib/net46/System.Numerics.Vectors.dll",
-            "net471": "lib/net46/System.Numerics.Vectors.dll",
-            "net472": "lib/net46/System.Numerics.Vectors.dll",
-            "net48": "lib/net46/System.Numerics.Vectors.dll",
-            "netstandard1.0": "lib/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.1": "lib/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.2": "lib/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.3": "lib/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.4": "lib/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.5": "lib/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.6": "lib/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard2.0": "lib/netstandard2.0/System.Numerics.Vectors.dll",
-            "netstandard2.1": "lib/netstandard2.0/System.Numerics.Vectors.dll",
-        },
-        net_ref = {
-            "net45": "ref/net45/System.Numerics.Vectors.dll",
-            "net451": "ref/net45/System.Numerics.Vectors.dll",
-            "net452": "ref/net45/System.Numerics.Vectors.dll",
-            "net46": "ref/net46/System.Numerics.Vectors.dll",
-            "net461": "ref/net46/System.Numerics.Vectors.dll",
-            "net462": "ref/net46/System.Numerics.Vectors.dll",
-            "net47": "ref/net46/System.Numerics.Vectors.dll",
-            "net471": "ref/net46/System.Numerics.Vectors.dll",
-            "net472": "ref/net46/System.Numerics.Vectors.dll",
-            "net48": "ref/net46/System.Numerics.Vectors.dll",
-            "netstandard1.0": "ref/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.1": "ref/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.2": "ref/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.3": "ref/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.4": "ref/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.5": "ref/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard1.6": "ref/netstandard1.0/System.Numerics.Vectors.dll",
-            "netstandard2.0": "ref/netstandard2.0/System.Numerics.Vectors.dll",
-            "netstandard2.1": "ref/netstandard2.0/System.Numerics.Vectors.dll",
-        },
-        mono_lib = "lib/net46/System.Numerics.Vectors.dll",
-        mono_ref = "ref/net46/System.Numerics.Vectors.dll",
-        net_files = {
-            "net45": [
-               "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
-               "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.xml",
-            ],
-            "net451": [
-               "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
-               "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.xml",
-            ],
-            "net452": [
-               "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.dll",
-               "lib/portable-net45+win8+wp8+wpa81/System.Numerics.Vectors.xml",
-            ],
-            "net46": [
-               "lib/net46/System.Numerics.Vectors.dll",
-               "lib/net46/System.Numerics.Vectors.xml",
-            ],
-            "net461": [
-               "lib/net46/System.Numerics.Vectors.dll",
-               "lib/net46/System.Numerics.Vectors.xml",
-            ],
-            "net462": [
-               "lib/net46/System.Numerics.Vectors.dll",
-               "lib/net46/System.Numerics.Vectors.xml",
-            ],
-            "net47": [
-               "lib/net46/System.Numerics.Vectors.dll",
-               "lib/net46/System.Numerics.Vectors.xml",
-            ],
-            "net471": [
-               "lib/net46/System.Numerics.Vectors.dll",
-               "lib/net46/System.Numerics.Vectors.xml",
-            ],
-            "net472": [
-               "lib/net46/System.Numerics.Vectors.dll",
-               "lib/net46/System.Numerics.Vectors.xml",
-            ],
-            "net48": [
-               "lib/net46/System.Numerics.Vectors.dll",
-               "lib/net46/System.Numerics.Vectors.xml",
-            ],
-            "netstandard1.0": [
-               "lib/netstandard1.0/System.Numerics.Vectors.dll",
-               "lib/netstandard1.0/System.Numerics.Vectors.xml",
-            ],
-            "netstandard1.1": [
-               "lib/netstandard1.0/System.Numerics.Vectors.dll",
-               "lib/netstandard1.0/System.Numerics.Vectors.xml",
-            ],
-            "netstandard1.2": [
-               "lib/netstandard1.0/System.Numerics.Vectors.dll",
-               "lib/netstandard1.0/System.Numerics.Vectors.xml",
-            ],
-            "netstandard1.3": [
-               "lib/netstandard1.0/System.Numerics.Vectors.dll",
-               "lib/netstandard1.0/System.Numerics.Vectors.xml",
-            ],
-            "netstandard1.4": [
-               "lib/netstandard1.0/System.Numerics.Vectors.dll",
-               "lib/netstandard1.0/System.Numerics.Vectors.xml",
-            ],
-            "netstandard1.5": [
-               "lib/netstandard1.0/System.Numerics.Vectors.dll",
-               "lib/netstandard1.0/System.Numerics.Vectors.xml",
-            ],
-            "netstandard1.6": [
-               "lib/netstandard1.0/System.Numerics.Vectors.dll",
-               "lib/netstandard1.0/System.Numerics.Vectors.xml",
-            ],
-            "netstandard2.0": [
-               "lib/netstandard2.0/System.Numerics.Vectors.dll",
-               "lib/netstandard2.0/System.Numerics.Vectors.xml",
-            ],
-            "netstandard2.1": [
-               "lib/netstandard2.0/System.Numerics.Vectors.dll",
-               "lib/netstandard2.0/System.Numerics.Vectors.xml",
-            ],
-        },
-        mono_files = [
-            "lib/net46/System.Numerics.Vectors.dll",
-            "lib/net46/System.Numerics.Vectors.xml",
-        ],
     )
     nuget_package(
         name = "system.runtime.compilerservices.unsafe",
@@ -281,65 +35,27 @@ def nuget_rules_proto_grpc_packages():
         core_lib = {
             "netcoreapp2.0": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "netcoreapp2.1": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+            "netcoreapp2.2": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "netcoreapp3.0": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "netcoreapp3.1": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
         },
         core_ref = {
             "netcoreapp2.0": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "netcoreapp2.1": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+            "netcoreapp2.2": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "netcoreapp3.0": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "netcoreapp3.1": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         },
-        net_lib = {
-            "net45": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "net451": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "net452": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "net46": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "net461": "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net462": "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net47": "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net471": "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net472": "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net48": "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.0": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.1": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.2": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.3": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.4": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.5": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.6": "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard2.0": "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard2.1": "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        },
-        net_ref = {
-            "net45": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "net451": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "net452": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "net46": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "net461": "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net462": "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net47": "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net471": "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net472": "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "net48": "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.0": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.1": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.2": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.3": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.4": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.5": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard1.6": "ref/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard2.0": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-            "netstandard2.1": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-        },
-        mono_lib = "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-        mono_ref = "ref/net461/System.Runtime.CompilerServices.Unsafe.dll",
         core_files = {
             "netcoreapp2.0": [
                "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
                "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
             ],
             "netcoreapp2.1": [
+               "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+               "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
+            ],
+            "netcoreapp2.2": [
                "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
                "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
             ],
@@ -352,88 +68,6 @@ def nuget_rules_proto_grpc_packages():
                "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
             ],
         },
-        net_files = {
-            "net45": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net451": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net452": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net46": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net461": [
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net462": [
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net47": [
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net471": [
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net472": [
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "net48": [
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard1.0": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard1.1": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard1.2": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard1.3": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard1.4": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard1.5": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard1.6": [
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard1.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard2.0": [
-               "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-            "netstandard2.1": [
-               "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
-               "lib/netstandard2.0/System.Runtime.CompilerServices.Unsafe.xml",
-            ],
-        },
-        mono_files = [
-            "lib/net461/System.Runtime.CompilerServices.Unsafe.dll",
-            "lib/net461/System.Runtime.CompilerServices.Unsafe.xml",
-        ],
     )
     nuget_package(
         name = "system.memory",
@@ -443,203 +77,17 @@ def nuget_rules_proto_grpc_packages():
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/System.Memory.dll",
         },
-        net_lib = {
-            "net45": "lib/netstandard1.1/System.Memory.dll",
-            "net451": "lib/netstandard1.1/System.Memory.dll",
-            "net452": "lib/netstandard1.1/System.Memory.dll",
-            "net46": "lib/netstandard1.1/System.Memory.dll",
-            "net461": "lib/net461/System.Memory.dll",
-            "net462": "lib/net461/System.Memory.dll",
-            "net47": "lib/net461/System.Memory.dll",
-            "net471": "lib/net461/System.Memory.dll",
-            "net472": "lib/net461/System.Memory.dll",
-            "net48": "lib/net461/System.Memory.dll",
-            "netstandard1.1": "lib/netstandard1.1/System.Memory.dll",
-            "netstandard1.2": "lib/netstandard1.1/System.Memory.dll",
-            "netstandard1.3": "lib/netstandard1.1/System.Memory.dll",
-            "netstandard1.4": "lib/netstandard1.1/System.Memory.dll",
-            "netstandard1.5": "lib/netstandard1.1/System.Memory.dll",
-            "netstandard1.6": "lib/netstandard1.1/System.Memory.dll",
-            "netstandard2.0": "lib/netstandard2.0/System.Memory.dll",
-            "netstandard2.1": "lib/netstandard2.0/System.Memory.dll",
-        },
-        mono_lib = "lib/net461/System.Memory.dll",
         core_deps = {
             "netcoreapp2.0": [
                "@system.runtime.compilerservices.unsafe//:netcoreapp2.0_core",
             ],
         },
-        net_deps = {
-            "net45": [
-               "@system.buffers//:net45_net",
-               "@system.runtime.compilerservices.unsafe//:net45_net",
-            ],
-            "net451": [
-               "@system.buffers//:net451_net",
-               "@system.runtime.compilerservices.unsafe//:net451_net",
-            ],
-            "net452": [
-               "@system.buffers//:net452_net",
-               "@system.runtime.compilerservices.unsafe//:net452_net",
-            ],
-            "net46": [
-               "@system.buffers//:net46_net",
-               "@system.runtime.compilerservices.unsafe//:net46_net",
-            ],
-            "net461": [
-               "@system.buffers//:net461_net",
-               "@system.numerics.vectors//:net461_net",
-               "@system.runtime.compilerservices.unsafe//:net461_net",
-            ],
-            "net462": [
-               "@system.buffers//:net462_net",
-               "@system.numerics.vectors//:net462_net",
-               "@system.runtime.compilerservices.unsafe//:net462_net",
-            ],
-            "net47": [
-               "@system.buffers//:net47_net",
-               "@system.numerics.vectors//:net47_net",
-               "@system.runtime.compilerservices.unsafe//:net47_net",
-            ],
-            "net471": [
-               "@system.buffers//:net471_net",
-               "@system.numerics.vectors//:net471_net",
-               "@system.runtime.compilerservices.unsafe//:net471_net",
-            ],
-            "net472": [
-               "@system.buffers//:net472_net",
-               "@system.numerics.vectors//:net472_net",
-               "@system.runtime.compilerservices.unsafe//:net472_net",
-            ],
-            "net48": [
-               "@system.buffers//:net48_net",
-               "@system.numerics.vectors//:net48_net",
-               "@system.runtime.compilerservices.unsafe//:net48_net",
-            ],
-            "netstandard1.1": [
-               "@system.buffers//:netstandard1.1_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard1.1_net",
-            ],
-            "netstandard1.2": [
-               "@system.buffers//:netstandard1.2_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard1.2_net",
-            ],
-            "netstandard1.3": [
-               "@system.buffers//:netstandard1.3_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard1.3_net",
-            ],
-            "netstandard1.4": [
-               "@system.buffers//:netstandard1.4_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard1.4_net",
-            ],
-            "netstandard1.5": [
-               "@system.buffers//:netstandard1.5_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard1.5_net",
-            ],
-            "netstandard1.6": [
-               "@system.buffers//:netstandard1.6_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard1.6_net",
-            ],
-            "netstandard2.0": [
-               "@system.buffers//:netstandard2.0_net",
-               "@system.numerics.vectors//:netstandard2.0_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard2.0_net",
-            ],
-            "netstandard2.1": [
-               "@system.buffers//:netstandard2.1_net",
-               "@system.numerics.vectors//:netstandard2.1_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard2.1_net",
-            ],
-        },
-        mono_deps = [
-            "@system.buffers//:mono",
-            "@system.numerics.vectors//:mono",
-            "@system.runtime.compilerservices.unsafe//:mono",
-        ],
         core_files = {
             "netcoreapp2.0": [
                "lib/netstandard2.0/System.Memory.dll",
                "lib/netstandard2.0/System.Memory.xml",
             ],
         },
-        net_files = {
-            "net45": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "net451": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "net452": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "net46": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "net461": [
-               "lib/net461/System.Memory.dll",
-               "lib/net461/System.Memory.xml",
-            ],
-            "net462": [
-               "lib/net461/System.Memory.dll",
-               "lib/net461/System.Memory.xml",
-            ],
-            "net47": [
-               "lib/net461/System.Memory.dll",
-               "lib/net461/System.Memory.xml",
-            ],
-            "net471": [
-               "lib/net461/System.Memory.dll",
-               "lib/net461/System.Memory.xml",
-            ],
-            "net472": [
-               "lib/net461/System.Memory.dll",
-               "lib/net461/System.Memory.xml",
-            ],
-            "net48": [
-               "lib/net461/System.Memory.dll",
-               "lib/net461/System.Memory.xml",
-            ],
-            "netstandard1.1": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "netstandard1.2": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "netstandard1.3": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "netstandard1.4": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "netstandard1.5": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "netstandard1.6": [
-               "lib/netstandard1.1/System.Memory.dll",
-               "lib/netstandard1.1/System.Memory.xml",
-            ],
-            "netstandard2.0": [
-               "lib/netstandard2.0/System.Memory.dll",
-               "lib/netstandard2.0/System.Memory.xml",
-            ],
-            "netstandard2.1": [
-               "lib/netstandard2.0/System.Memory.dll",
-               "lib/netstandard2.0/System.Memory.xml",
-            ],
-        },
-        mono_files = [
-            "lib/net461/System.Memory.dll",
-            "lib/net461/System.Memory.xml",
-        ],
     )
     nuget_package(
         name = "google.protobuf",
@@ -649,30 +97,10 @@ def nuget_rules_proto_grpc_packages():
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Google.Protobuf.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Google.Protobuf.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Google.Protobuf.dll",
             "netcoreapp3.0": "lib/netstandard2.0/Google.Protobuf.dll",
             "netcoreapp3.1": "lib/netstandard2.0/Google.Protobuf.dll",
         },
-        net_lib = {
-            "net45": "lib/net45/Google.Protobuf.dll",
-            "net451": "lib/net45/Google.Protobuf.dll",
-            "net452": "lib/net45/Google.Protobuf.dll",
-            "net46": "lib/net45/Google.Protobuf.dll",
-            "net461": "lib/net45/Google.Protobuf.dll",
-            "net462": "lib/net45/Google.Protobuf.dll",
-            "net47": "lib/net45/Google.Protobuf.dll",
-            "net471": "lib/net45/Google.Protobuf.dll",
-            "net472": "lib/net45/Google.Protobuf.dll",
-            "net48": "lib/net45/Google.Protobuf.dll",
-            "netstandard1.1": "lib/netstandard1.1/Google.Protobuf.dll",
-            "netstandard1.2": "lib/netstandard1.1/Google.Protobuf.dll",
-            "netstandard1.3": "lib/netstandard1.1/Google.Protobuf.dll",
-            "netstandard1.4": "lib/netstandard1.1/Google.Protobuf.dll",
-            "netstandard1.5": "lib/netstandard1.1/Google.Protobuf.dll",
-            "netstandard1.6": "lib/netstandard1.1/Google.Protobuf.dll",
-            "netstandard2.0": "lib/netstandard2.0/Google.Protobuf.dll",
-            "netstandard2.1": "lib/netstandard2.0/Google.Protobuf.dll",
-        },
-        mono_lib = "lib/net45/Google.Protobuf.dll",
         core_deps = {
             "netcoreapp2.0": [
                "@system.memory//:netcoreapp2.0_core",
@@ -681,6 +109,10 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp2.1": [
                "@system.memory//:netcoreapp2.1_core",
                "@system.runtime.compilerservices.unsafe//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+               "@system.memory//:netcoreapp2.2_core",
+               "@system.runtime.compilerservices.unsafe//:netcoreapp2.2_core",
             ],
             "netcoreapp3.0": [
                "@system.memory//:netcoreapp3.0_core",
@@ -691,67 +123,6 @@ def nuget_rules_proto_grpc_packages():
                "@system.runtime.compilerservices.unsafe//:netcoreapp3.1_core",
             ],
         },
-        net_deps = {
-            "net45": [
-               "@system.memory//:net45_net",
-            ],
-            "net451": [
-               "@system.memory//:net451_net",
-            ],
-            "net452": [
-               "@system.memory//:net452_net",
-            ],
-            "net46": [
-               "@system.memory//:net46_net",
-            ],
-            "net461": [
-               "@system.memory//:net461_net",
-            ],
-            "net462": [
-               "@system.memory//:net462_net",
-            ],
-            "net47": [
-               "@system.memory//:net47_net",
-            ],
-            "net471": [
-               "@system.memory//:net471_net",
-            ],
-            "net472": [
-               "@system.memory//:net472_net",
-            ],
-            "net48": [
-               "@system.memory//:net48_net",
-            ],
-            "netstandard1.1": [
-               "@system.memory//:netstandard1.1_net",
-            ],
-            "netstandard1.2": [
-               "@system.memory//:netstandard1.2_net",
-            ],
-            "netstandard1.3": [
-               "@system.memory//:netstandard1.3_net",
-            ],
-            "netstandard1.4": [
-               "@system.memory//:netstandard1.4_net",
-            ],
-            "netstandard1.5": [
-               "@system.memory//:netstandard1.5_net",
-            ],
-            "netstandard1.6": [
-               "@system.memory//:netstandard1.6_net",
-            ],
-            "netstandard2.0": [
-               "@system.memory//:netstandard2.0_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard2.0_net",
-            ],
-            "netstandard2.1": [
-               "@system.memory//:netstandard2.1_net",
-               "@system.runtime.compilerservices.unsafe//:netstandard2.1_net",
-            ],
-        },
-        mono_deps = [
-            "@system.memory//:mono",
-        ],
         core_files = {
             "netcoreapp2.0": [
                "lib/netstandard2.0/Google.Protobuf.dll",
@@ -759,6 +130,11 @@ def nuget_rules_proto_grpc_packages():
                "lib/netstandard2.0/Google.Protobuf.xml",
             ],
             "netcoreapp2.1": [
+               "lib/netstandard2.0/Google.Protobuf.dll",
+               "lib/netstandard2.0/Google.Protobuf.pdb",
+               "lib/netstandard2.0/Google.Protobuf.xml",
+            ],
+            "netcoreapp2.2": [
                "lib/netstandard2.0/Google.Protobuf.dll",
                "lib/netstandard2.0/Google.Protobuf.pdb",
                "lib/netstandard2.0/Google.Protobuf.xml",
@@ -774,138 +150,28 @@ def nuget_rules_proto_grpc_packages():
                "lib/netstandard2.0/Google.Protobuf.xml",
             ],
         },
-        net_files = {
-            "net45": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net451": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net452": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net46": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net461": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net462": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net47": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net471": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net472": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "net48": [
-               "lib/net45/Google.Protobuf.dll",
-               "lib/net45/Google.Protobuf.pdb",
-               "lib/net45/Google.Protobuf.xml",
-            ],
-            "netstandard1.1": [
-               "lib/netstandard1.1/Google.Protobuf.dll",
-               "lib/netstandard1.1/Google.Protobuf.pdb",
-               "lib/netstandard1.1/Google.Protobuf.xml",
-            ],
-            "netstandard1.2": [
-               "lib/netstandard1.1/Google.Protobuf.dll",
-               "lib/netstandard1.1/Google.Protobuf.pdb",
-               "lib/netstandard1.1/Google.Protobuf.xml",
-            ],
-            "netstandard1.3": [
-               "lib/netstandard1.1/Google.Protobuf.dll",
-               "lib/netstandard1.1/Google.Protobuf.pdb",
-               "lib/netstandard1.1/Google.Protobuf.xml",
-            ],
-            "netstandard1.4": [
-               "lib/netstandard1.1/Google.Protobuf.dll",
-               "lib/netstandard1.1/Google.Protobuf.pdb",
-               "lib/netstandard1.1/Google.Protobuf.xml",
-            ],
-            "netstandard1.5": [
-               "lib/netstandard1.1/Google.Protobuf.dll",
-               "lib/netstandard1.1/Google.Protobuf.pdb",
-               "lib/netstandard1.1/Google.Protobuf.xml",
-            ],
-            "netstandard1.6": [
-               "lib/netstandard1.1/Google.Protobuf.dll",
-               "lib/netstandard1.1/Google.Protobuf.pdb",
-               "lib/netstandard1.1/Google.Protobuf.xml",
-            ],
-            "netstandard2.0": [
-               "lib/netstandard2.0/Google.Protobuf.dll",
-               "lib/netstandard2.0/Google.Protobuf.pdb",
-               "lib/netstandard2.0/Google.Protobuf.xml",
-            ],
-            "netstandard2.1": [
-               "lib/netstandard2.0/Google.Protobuf.dll",
-               "lib/netstandard2.0/Google.Protobuf.pdb",
-               "lib/netstandard2.0/Google.Protobuf.xml",
-            ],
-        },
-        mono_files = [
-            "lib/net45/Google.Protobuf.dll",
-            "lib/net45/Google.Protobuf.pdb",
-            "lib/net45/Google.Protobuf.xml",
-        ],
     )
     nuget_package(
         name = "grpc.core.api",
         package = "grpc.core.api",
-        version = "2.32.0",
-        sha256 = "7af20fcd3487973cda00965d567861c0fba30a274f12dbc5054d41e3eaa040fa",
+        version = "2.35.0",
+        sha256 = "cec8485deaa75e8c669fb7ce8c8a401445320a73159a5699d4d7cf7355a1d3b1",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp3.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp3.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
         },
-        net_lib = {
-            "net45": "lib/net45/Grpc.Core.Api.dll",
-            "net451": "lib/net45/Grpc.Core.Api.dll",
-            "net452": "lib/net45/Grpc.Core.Api.dll",
-            "net46": "lib/net45/Grpc.Core.Api.dll",
-            "net461": "lib/net45/Grpc.Core.Api.dll",
-            "net462": "lib/net45/Grpc.Core.Api.dll",
-            "net47": "lib/net45/Grpc.Core.Api.dll",
-            "net471": "lib/net45/Grpc.Core.Api.dll",
-            "net472": "lib/net45/Grpc.Core.Api.dll",
-            "net48": "lib/net45/Grpc.Core.Api.dll",
-            "netstandard1.5": "lib/netstandard1.5/Grpc.Core.Api.dll",
-            "netstandard1.6": "lib/netstandard1.5/Grpc.Core.Api.dll",
-            "netstandard2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
-            "netstandard2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
-        },
-        mono_lib = "lib/net45/Grpc.Core.Api.dll",
         core_deps = {
             "netcoreapp2.0": [
                "@system.memory//:netcoreapp2.0_core",
             ],
             "netcoreapp2.1": [
                "@system.memory//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+               "@system.memory//:netcoreapp2.2_core",
             ],
             "netcoreapp3.0": [
                "@system.memory//:netcoreapp3.0_core",
@@ -914,53 +180,6 @@ def nuget_rules_proto_grpc_packages():
                "@system.memory//:netcoreapp3.1_core",
             ],
         },
-        net_deps = {
-            "net45": [
-               "@system.memory//:net45_net",
-            ],
-            "net451": [
-               "@system.memory//:net451_net",
-            ],
-            "net452": [
-               "@system.memory//:net452_net",
-            ],
-            "net46": [
-               "@system.memory//:net46_net",
-            ],
-            "net461": [
-               "@system.memory//:net461_net",
-            ],
-            "net462": [
-               "@system.memory//:net462_net",
-            ],
-            "net47": [
-               "@system.memory//:net47_net",
-            ],
-            "net471": [
-               "@system.memory//:net471_net",
-            ],
-            "net472": [
-               "@system.memory//:net472_net",
-            ],
-            "net48": [
-               "@system.memory//:net48_net",
-            ],
-            "netstandard1.5": [
-               "@system.memory//:netstandard1.5_net",
-            ],
-            "netstandard1.6": [
-               "@system.memory//:netstandard1.6_net",
-            ],
-            "netstandard2.0": [
-               "@system.memory//:netstandard2.0_net",
-            ],
-            "netstandard2.1": [
-               "@system.memory//:netstandard2.1_net",
-            ],
-        },
-        mono_deps = [
-            "@system.memory//:mono",
-        ],
         core_files = {
             "netcoreapp2.0": [
                "lib/netstandard2.0/Grpc.Core.Api.dll",
@@ -968,6 +187,11 @@ def nuget_rules_proto_grpc_packages():
                "lib/netstandard2.0/Grpc.Core.Api.xml",
             ],
             "netcoreapp2.1": [
+               "lib/netstandard2.0/Grpc.Core.Api.dll",
+               "lib/netstandard2.0/Grpc.Core.Api.pdb",
+               "lib/netstandard2.0/Grpc.Core.Api.xml",
+            ],
+            "netcoreapp2.2": [
                "lib/netstandard2.0/Grpc.Core.Api.dll",
                "lib/netstandard2.0/Grpc.Core.Api.pdb",
                "lib/netstandard2.0/Grpc.Core.Api.xml",
@@ -983,112 +207,19 @@ def nuget_rules_proto_grpc_packages():
                "lib/netstandard2.0/Grpc.Core.Api.xml",
             ],
         },
-        net_files = {
-            "net45": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net451": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net452": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net46": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net461": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net462": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net47": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net471": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net472": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "net48": [
-               "lib/net45/Grpc.Core.Api.dll",
-               "lib/net45/Grpc.Core.Api.pdb",
-               "lib/net45/Grpc.Core.Api.xml",
-            ],
-            "netstandard1.5": [
-               "lib/netstandard1.5/Grpc.Core.Api.dll",
-               "lib/netstandard1.5/Grpc.Core.Api.pdb",
-               "lib/netstandard1.5/Grpc.Core.Api.xml",
-            ],
-            "netstandard1.6": [
-               "lib/netstandard1.5/Grpc.Core.Api.dll",
-               "lib/netstandard1.5/Grpc.Core.Api.pdb",
-               "lib/netstandard1.5/Grpc.Core.Api.xml",
-            ],
-            "netstandard2.0": [
-               "lib/netstandard2.0/Grpc.Core.Api.dll",
-               "lib/netstandard2.0/Grpc.Core.Api.pdb",
-               "lib/netstandard2.0/Grpc.Core.Api.xml",
-            ],
-            "netstandard2.1": [
-               "lib/netstandard2.0/Grpc.Core.Api.dll",
-               "lib/netstandard2.0/Grpc.Core.Api.pdb",
-               "lib/netstandard2.0/Grpc.Core.Api.xml",
-            ],
-        },
-        mono_files = [
-            "lib/net45/Grpc.Core.Api.dll",
-            "lib/net45/Grpc.Core.Api.pdb",
-            "lib/net45/Grpc.Core.Api.xml",
-        ],
     )
     nuget_package(
         name = "grpc.core",
         package = "grpc.core",
-        version = "2.32.0",
-        sha256 = "a8b7cee7006398a2f70e559b01c48225c13c4a343a62e1ff8171f27b83a8ee4c",
+        version = "2.35.0",
+        sha256 = "0bd5595103a9a89e989d511bb0bcdb7f18bcc665b3a14af515d62cf412ddf3e2",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Grpc.Core.dll",
             "netcoreapp3.0": "lib/netstandard2.0/Grpc.Core.dll",
             "netcoreapp3.1": "lib/netstandard2.0/Grpc.Core.dll",
         },
-        net_lib = {
-            "net45": "lib/net45/Grpc.Core.dll",
-            "net451": "lib/net45/Grpc.Core.dll",
-            "net452": "lib/net45/Grpc.Core.dll",
-            "net46": "lib/net45/Grpc.Core.dll",
-            "net461": "lib/net45/Grpc.Core.dll",
-            "net462": "lib/net45/Grpc.Core.dll",
-            "net47": "lib/net45/Grpc.Core.dll",
-            "net471": "lib/net45/Grpc.Core.dll",
-            "net472": "lib/net45/Grpc.Core.dll",
-            "net48": "lib/net45/Grpc.Core.dll",
-            "netstandard1.5": "lib/netstandard1.5/Grpc.Core.dll",
-            "netstandard1.6": "lib/netstandard1.5/Grpc.Core.dll",
-            "netstandard2.0": "lib/netstandard2.0/Grpc.Core.dll",
-            "netstandard2.1": "lib/netstandard2.0/Grpc.Core.dll",
-        },
-        mono_lib = "lib/net45/Grpc.Core.dll",
         core_deps = {
             "netcoreapp2.0": [
                "@grpc.core.api//:netcoreapp2.0_core",
@@ -1097,6 +228,10 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp2.1": [
                "@grpc.core.api//:netcoreapp2.1_core",
                "@system.memory//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+               "@grpc.core.api//:netcoreapp2.2_core",
+               "@system.memory//:netcoreapp2.2_core",
             ],
             "netcoreapp3.0": [
                "@grpc.core.api//:netcoreapp3.0_core",
@@ -1107,349 +242,43 @@ def nuget_rules_proto_grpc_packages():
                "@system.memory//:netcoreapp3.1_core",
             ],
         },
-        net_deps = {
-            "net45": [
-               "@grpc.core.api//:net45_net",
-               "@system.memory//:net45_net",
-            ],
-            "net451": [
-               "@grpc.core.api//:net451_net",
-               "@system.memory//:net451_net",
-            ],
-            "net452": [
-               "@grpc.core.api//:net452_net",
-               "@system.memory//:net452_net",
-            ],
-            "net46": [
-               "@grpc.core.api//:net46_net",
-               "@system.memory//:net46_net",
-            ],
-            "net461": [
-               "@grpc.core.api//:net461_net",
-               "@system.memory//:net461_net",
-            ],
-            "net462": [
-               "@grpc.core.api//:net462_net",
-               "@system.memory//:net462_net",
-            ],
-            "net47": [
-               "@grpc.core.api//:net47_net",
-               "@system.memory//:net47_net",
-            ],
-            "net471": [
-               "@grpc.core.api//:net471_net",
-               "@system.memory//:net471_net",
-            ],
-            "net472": [
-               "@grpc.core.api//:net472_net",
-               "@system.memory//:net472_net",
-            ],
-            "net48": [
-               "@grpc.core.api//:net48_net",
-               "@system.memory//:net48_net",
-            ],
-            "netstandard1.5": [
-               "@grpc.core.api//:netstandard1.5_net",
-               "@system.memory//:netstandard1.5_net",
-            ],
-            "netstandard1.6": [
-               "@grpc.core.api//:netstandard1.6_net",
-               "@system.memory//:netstandard1.6_net",
-            ],
-            "netstandard2.0": [
-               "@grpc.core.api//:netstandard2.0_net",
-               "@system.memory//:netstandard2.0_net",
-            ],
-            "netstandard2.1": [
-               "@grpc.core.api//:netstandard2.1_net",
-               "@system.memory//:netstandard2.1_net",
-            ],
-        },
-        mono_deps = [
-            "@grpc.core.api//:mono",
-            "@system.memory//:mono",
-        ],
         core_files = {
             "netcoreapp2.0": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
+               "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
+               "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
             ],
             "netcoreapp2.1": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
+               "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
+               "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
+            ],
+            "netcoreapp2.2": [
+               "lib/netstandard2.0/Grpc.Core.dll",
+               "lib/netstandard2.0/Grpc.Core.pdb",
+               "lib/netstandard2.0/Grpc.Core.xml",
+               "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
+               "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
             ],
             "netcoreapp3.0": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
+               "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
+               "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
             ],
             "netcoreapp3.1": [
                "lib/netstandard2.0/Grpc.Core.dll",
                "lib/netstandard2.0/Grpc.Core.pdb",
                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
+               "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
+               "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
             ],
         },
-        net_files = {
-            "net45": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net451": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net452": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net46": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net461": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net462": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net47": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net471": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net472": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "net48": [
-               "lib/net45/Grpc.Core.dll",
-               "lib/net45/Grpc.Core.pdb",
-               "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-               "build/net45/Grpc.Core.targets",
-            ],
-            "netstandard1.5": [
-               "lib/netstandard1.5/Grpc.Core.dll",
-               "lib/netstandard1.5/Grpc.Core.pdb",
-               "lib/netstandard1.5/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-            ],
-            "netstandard1.6": [
-               "lib/netstandard1.5/Grpc.Core.dll",
-               "lib/netstandard1.5/Grpc.Core.pdb",
-               "lib/netstandard1.5/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-            ],
-            "netstandard2.0": [
-               "lib/netstandard2.0/Grpc.Core.dll",
-               "lib/netstandard2.0/Grpc.Core.pdb",
-               "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-            ],
-            "netstandard2.1": [
-               "lib/netstandard2.0/Grpc.Core.dll",
-               "lib/netstandard2.0/Grpc.Core.pdb",
-               "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-            ],
-        },
-        mono_files = [
-            "lib/net45/Grpc.Core.dll",
-            "lib/net45/Grpc.Core.pdb",
-            "lib/net45/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/linux/native/libgrpc_csharp_ext.x86.so",
-                "runtimes/osx/native/libgrpc_csharp_ext.x64.dylib",
-                "runtimes/osx/native/libgrpc_csharp_ext.x86.dylib",
-            "build/net45/Grpc.Core.targets",
-        ],
     )
     nuget_package(
         name = "grpc",
@@ -1463,6 +292,9 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp2.1": [
                "@grpc.core//:netcoreapp2.1_core",
             ],
+            "netcoreapp2.2": [
+               "@grpc.core//:netcoreapp2.2_core",
+            ],
             "netcoreapp3.0": [
                "@grpc.core//:netcoreapp3.0_core",
             ],
@@ -1470,52 +302,5 @@ def nuget_rules_proto_grpc_packages():
                "@grpc.core//:netcoreapp3.1_core",
             ],
         },
-        net_deps = {
-            "net45": [
-               "@grpc.core//:net45_net",
-            ],
-            "net451": [
-               "@grpc.core//:net451_net",
-            ],
-            "net452": [
-               "@grpc.core//:net452_net",
-            ],
-            "net46": [
-               "@grpc.core//:net46_net",
-            ],
-            "net461": [
-               "@grpc.core//:net461_net",
-            ],
-            "net462": [
-               "@grpc.core//:net462_net",
-            ],
-            "net47": [
-               "@grpc.core//:net47_net",
-            ],
-            "net471": [
-               "@grpc.core//:net471_net",
-            ],
-            "net472": [
-               "@grpc.core//:net472_net",
-            ],
-            "net48": [
-               "@grpc.core//:net48_net",
-            ],
-            "netstandard1.5": [
-               "@grpc.core//:netstandard1.5_net",
-            ],
-            "netstandard1.6": [
-               "@grpc.core//:netstandard1.6_net",
-            ],
-            "netstandard2.0": [
-               "@grpc.core//:netstandard2.0_net",
-            ],
-            "netstandard2.1": [
-               "@grpc.core//:netstandard2.1_net",
-            ],
-        },
-        mono_deps = [
-            "@grpc.core//:mono",
-        ],
     )
     ### End of generated by the tool

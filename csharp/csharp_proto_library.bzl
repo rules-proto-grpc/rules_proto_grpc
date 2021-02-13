@@ -1,5 +1,5 @@
 load("//csharp:csharp_proto_compile.bzl", "csharp_proto_compile")
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_library")
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "csharp_library")
 
 def csharp_proto_library(**kwargs):
     # Compile protos
@@ -10,7 +10,7 @@ def csharp_proto_library(**kwargs):
     )
 
     # Create csharp library
-    core_library(
+    csharp_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS,
