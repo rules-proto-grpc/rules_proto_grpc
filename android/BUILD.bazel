@@ -20,6 +20,7 @@ proto_plugin(
 
 
 # Lite is missing gen_well_known_protos_java from protobuf, compile them manually
+# https://github.com/protocolbuffers/protobuf/blob/d16bf914bc5ba569d2b70376051d15f68ce4322d/java/core/BUILD#L94-L112
 android_proto_compile(
     name = "well_known_protos_srcs",
     protos = [
