@@ -20,5 +20,4 @@ def java_proto_library(**kwargs):
 
 PROTO_DEPS = [
     "@com_google_protobuf//:protobuf_java",
-    "@com_google_protobuf//:protobuf_java_util",
 ]
