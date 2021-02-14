@@ -27,6 +27,9 @@ proto_compile_attrs = {
     "prefix_path": attr.string(
         doc = "Path to prefix to the generated files in the output directory",
     ),
+    "extra_protoc_args": attr.string_list(
+        doc = "A list of extra args to pass directly to protoc, not as plugin options",
+    ),
 }
 
 proto_compile_aspect_attrs = {
@@ -323,7 +326,9 @@ def common_compile(ctx, proto_infos):
                 out_arg = "{}:{}".format(opts_str, out_arg)
         args.add("--{}_out={}".format(plugin_name, out_arg))
 
-        # Add any extra protoc args that the plugin has
+        # Add any extra protoc args that the rule or plugin has
+        if hasattr(ctx.attr, "extra_protoc_args") and ctx.attr.extra_protoc_args:  # TODO(4.0.0): Remove hasattr check
+            args.add_all(ctx.attr.extra_protoc_args)
         if plugin.extra_protoc_args:
             args.add_all(plugin.extra_protoc_args)
 
@@ -396,11 +401,14 @@ def proto_compile_impl(ctx):
     """
 
     # Check attrs make sense
-    if ctx.attr.protos and ctx.attr.deps:
+    if ctx.attr.protos and ctx.attr.deps:  # TODO(4.0.0): Remove
         fail("Inputs provided to both 'protos' and 'deps' attrs of target {}. Use exclusively 'protos' or 'deps'".format(ctx.label))
 
-    if ctx.attr.deps and ctx.attr.options:
+    if ctx.attr.deps and ctx.attr.options:  # TODO(4.0.0): Remove
         fail("Options cannot be provided in transitive compilation mode with 'deps' attr of target {}. Use 'protos' mode to pass 'options'".format(ctx.label))
+
+    if ctx.attr.deps and ctx.attr.extra_protoc_args:  # TODO(4.0.0): Remove
+        fail("Extra protoc args cannot be provided in transitive compilation mode with 'deps' attr of target {}. Use 'protos' mode to pass 'extra_protoc_args'".format(ctx.label))
 
     # Select mode
     if ctx.attr.protos:

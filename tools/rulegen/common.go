@@ -33,6 +33,13 @@ var compileRuleAttrs = []*Attr{
 		Doc:       "Path to prefix to the generated files in the output directory",
 		Mandatory: false,
 	},
+	&Attr{
+		Name:      "extra_protoc_args",
+		Type:      "list<string>",
+		Default:   "[]",
+		Doc:       "A list of extra args to pass directly to protoc, not as plugin options",
+		Mandatory: false,
+	},
 }
 
 
