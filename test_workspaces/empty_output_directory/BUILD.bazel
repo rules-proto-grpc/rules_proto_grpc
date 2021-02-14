@@ -14,7 +14,6 @@ proto_library(
 
 php_grpc_compile(
     name = "php_lib",
-    verbose = 4,
     protos = ["proto_lib"],
 )
 
