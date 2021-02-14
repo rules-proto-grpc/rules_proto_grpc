@@ -33,7 +33,8 @@ var libraryRuleAttrs = append(append([]*Attr(nil), compileRuleAttrs...), []*Attr
 }...)
 
 
-var aspectRuleTemplate = mustTemplate(`load(
+var aspectRuleTemplate = mustTemplate(`load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+load(
     "//:defs.bzl",
     "ProtoPluginInfo",
     "ProtoLibraryAspectNodeInfo",
