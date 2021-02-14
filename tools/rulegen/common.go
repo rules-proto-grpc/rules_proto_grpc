@@ -26,6 +26,13 @@ var compileRuleAttrs = []*Attr{
 		Doc:       "The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*",
 		Mandatory: false,
 	},
+	&Attr{
+		Name:      "prefix_path",
+		Type:      "string",
+		Default:   "",
+		Doc:       "Path to prefix to the generated files in the output directory",
+		Mandatory: false,
+	},
 }
 
 
