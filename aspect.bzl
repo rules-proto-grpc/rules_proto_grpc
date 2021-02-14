@@ -107,10 +107,7 @@ def proto_compile_impl(ctx):
         # Build copy command for directory outputs
         # Use cp {}/. rather than {}/* to allow for empty output directories from a plugin (e.g when no service exists,
         # so no files generated)
-        # We need to `mkdir` the new dir for the action work with remote execution when
-        # because the folder could possibly be empty: https://github.com/bazelbuild/bazel/issues/6393
-        command_parts = ["mkdir -p {} && cp -r {} '{}'".format(
-            new_dir.path,
+        command_parts = ["cp -r {} '{}'".format(
             " ".join(["'" + d.path + "/.'" for d in output_dirs.to_list()]),
             new_dir.path,
         )]
@@ -426,10 +423,7 @@ def proto_compile_aspect_impl(target, ctx):
         ###
 
         mnemonic = "ProtoCompile"
-        command = "mkdir -p '{}' && ".format(output_root)
-        if plugin.output_directory:
-            command = "mkdir -p '{}' && ".format(out_file) # Needed in case the folder is empty, see: https://github.com/bazelbuild/bazel/issues/6393
-        command = command + protoc.path + " $@"  # $@ is replaced with args list
+        command = ("mkdir -p '{}' && ".format(output_root)) + protoc.path + " $@"  # $@ is replaced with args list
         inputs = proto_info.transitive_descriptor_sets.to_list() + plugin_runfiles  # Proto files are not inputs, as they come via the descriptor sets
         tools = [protoc] + ([plugin_tool] if plugin_tool else [])
 
