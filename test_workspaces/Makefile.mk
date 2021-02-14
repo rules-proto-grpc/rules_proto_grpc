@@ -8,6 +8,11 @@ test_workspace_combined_strip_and_add_prefix:
 	cd test_workspaces/combined_strip_and_add_prefix; \
 	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...
 
+.PHONY: test_workspace_common_cpp_library
+test_workspace_common_cpp_library:
+	cd test_workspaces/common_cpp_library; \
+	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...
+
 .PHONY: test_workspace_empty_output_directory
 test_workspace_empty_output_directory:
 	cd test_workspaces/empty_output_directory; \
