@@ -534,7 +534,7 @@ http_archive(
     strip_prefix = "rules_proto_grpc-%s",
     urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/%s.tar.gz"],
 )
-`, ref, sha256, ref)
+`, sha256, ref, ref)
 	out.MustWrite(filepath.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
 }
 
