@@ -1,3 +1,5 @@
+"""Generated definition of ruby_grpc_compile."""
+
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
     "//:defs.bzl",

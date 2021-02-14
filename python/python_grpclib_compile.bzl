@@ -1,3 +1,5 @@
+"""Generated definition of python_grpclib_compile."""
+
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
     "//:defs.bzl",

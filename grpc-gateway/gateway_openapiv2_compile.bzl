@@ -1,3 +1,5 @@
+"""Generated definition of gateway_openapiv2_compile."""
+
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
     "//:defs.bzl",
