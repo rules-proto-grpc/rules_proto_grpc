@@ -8,7 +8,7 @@ rulegen:
 
 # Apply buildifier
 buildifier:
-	go run github.com/bazelbuild/buildtools/buildifier -r .
+	bazel run //tools:buildifier
 
 
 # Run cargo raze on the rust dependencies
