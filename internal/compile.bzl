@@ -424,7 +424,7 @@ def proto_compile_impl(ctx):
         # Transitive mode using aspect compilation. DEPRECATED
         # TODO(4.0.0): Remove
         # TODO: add link to below
-        print("Inputs provided to 'deps' attr of target {}. Consider replacing with 'protos' attr to avoid transitive compilation".format(ctx.label))  # buildifier: disable=print
+        fail("Inputs provided to 'deps' attr of target {}. Consider replacing with 'protos' attr to avoid transitive compilation".format(ctx.label))  # buildifier: disable=print
 
         # Aggregate all output files and dirs created by the aspect as it has walked the deps
         output_files_dicts = [dep[ProtoLibraryAspectNodeInfo].output_files for dep in ctx.attr.deps]
