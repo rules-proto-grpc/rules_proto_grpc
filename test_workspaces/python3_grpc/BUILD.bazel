@@ -14,7 +14,7 @@ proto_library(
 python_grpc_library(
     name = "py_lib",
     python_version = "PY3",
-    deps = ["proto_lib"],
+    protos = ["proto_lib"],
 )
 
 py_test(

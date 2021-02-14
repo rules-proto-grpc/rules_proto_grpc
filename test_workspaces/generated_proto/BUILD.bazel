@@ -20,7 +20,7 @@ proto_library(
 
 python_proto_library(
     name = "py_lib",
-    deps = ["proto_lib"],
+    protos = ["proto_lib"],
 )
 
 py_test(

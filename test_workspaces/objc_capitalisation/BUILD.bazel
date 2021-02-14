@@ -16,7 +16,7 @@ proto_library(
 
 objc_proto_compile(
     name = "objc_lib",
-    deps = ["proto_lib"],
+    protos = ["proto_lib"],
 )
 
 py_test(

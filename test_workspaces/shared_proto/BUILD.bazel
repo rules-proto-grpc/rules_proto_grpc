@@ -19,12 +19,12 @@ proto_library(
 
 python_proto_library(
     name = "py_lib_a",
-    deps = ["proto_lib_a"],
+    protos = ["proto_lib_a"],
 )
 
 python_proto_library(
     name = "py_lib_b",
-    deps = ["proto_lib_b"],
+    protos = ["proto_lib_b"],
 )
 
 py_test(
