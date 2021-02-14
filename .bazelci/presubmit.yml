@@ -1290,7 +1290,10 @@ tasks:
   test_workspace_common_cpp_library_macos:
     name: 'test workspace: common_cpp_library'
     platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
