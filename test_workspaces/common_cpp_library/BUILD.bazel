@@ -6,25 +6,38 @@ load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 # on each other and try to write the same file.
 
 proto_library(
-    name = "proto_lib_a",
+    name = "proto_common",
     srcs = ["common.proto"],
     deps = ["@com_google_protobuf//:descriptor_proto"],
 )
 
 proto_library(
+    name = "proto_lib_a",
+    srcs = ["demo.proto"],
+    deps = [":proto_common"],
+)
+
+proto_library(
     name = "proto_lib_b",
     srcs = ["demo.proto"],
-    deps = [":proto_lib_a"],
+    deps = [":proto_common"],
+)
+
+cpp_proto_library(
+    name = "cpp_common",
+    protos = ["proto_common"],
 )
 
 cpp_proto_library(
     name = "cpp_lib_a",
-    deps = ["proto_lib_a"],
+    protos = ["proto_lib_a"],
+    deps = ["cpp_common"],
 )
 
 cpp_proto_library(
     name = "cpp_lib_b",
-    deps = ["proto_lib_b"],
+    protos = ["proto_lib_b"],
+    deps = ["cpp_common"],
 )
 
 cc_test(
