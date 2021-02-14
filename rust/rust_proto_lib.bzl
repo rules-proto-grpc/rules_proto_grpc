@@ -1,6 +1,6 @@
 """Rule to build a RustProtoLibInfo and lib.rs for generated proto sources."""
 
-load("//defs.bzl", "ProtoCompileInfo")
+load("//:defs.bzl", "ProtoCompileInfo")
 
 RustProtoLibInfo = provider(fields = {
     "name": "rule name",
