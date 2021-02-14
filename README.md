@@ -330,19 +330,6 @@ Each language `{lang}` has a top-level subdirectory that contains:
    possible.
 
 
-The repository root directory contains the base rule defintions:
-
-* `plugin.bzl`: A build rule that defines the name, tool binary, and options for
-  a particular proto plugin.
-
-* `aspect.bzl`: Contains the implementation of the compilation aspect. This is
-  shared by all rules and is the heart of `rules_proto_grpc`; it calls `protoc`
-  with a given list of plugins and generates output files.
-
-Additional protoc plugins and their rules are scoped to the github repository
-name where the plugin resides.
-
-
 ### Rule Generation
 
 To help maintain consistency of the rule implementations and documentation, all
@@ -377,7 +364,7 @@ Briefly, here's how the rules work:
 Generally, follow the pattern seen in the multiple language examples in this
 repository.  The basic idea is:
 
-1. Load the plugin rule: `load("@rules_proto_grpc//:plugin.bzl", "proto_plugin")`.
+1. Load the plugin rule: `load("@rules_proto_grpc//:defs.bzl", "proto_plugin")`.
 2. Define the rule, giving it a `name`, `options` (not mandatory), `tool`, and
    `outputs`.
 3. `tool` is a label that refers to the binary executable for the plugin itself.
@@ -391,9 +378,9 @@ repository.  The basic idea is:
 5. Create a compilation rule and aspect using the following template:
 
 ```starlark
-load("@rules_proto_grpc//:plugin.bzl", "ProtoPluginInfo")
 load(
-    "@rules_proto_grpc//:aspect.bzl",
+    "@rules_proto_grpc//:defs.bzl",
+    "ProtoPluginInfo",
     "ProtoLibraryAspectNodeInfo",
     "proto_compile_aspect_attrs",
     "proto_compile_aspect_impl",

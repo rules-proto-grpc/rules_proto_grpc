@@ -1,7 +1,7 @@
-load("//:plugin.bzl", "ProtoPluginInfo")
 load(
-    "//:aspect.bzl",
+    "//:defs.bzl",
     "ProtoLibraryAspectNodeInfo",
+    "ProtoPluginInfo",
     "proto_compile_aspect_attrs",
     "proto_compile_aspect_impl",
     "proto_compile_attrs",

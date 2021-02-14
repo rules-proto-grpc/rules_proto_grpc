@@ -1,8 +1,6 @@
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")
-load("//:plugin.bzl", "ProtoPluginInfo")
 load(
     "//internal:common.bzl",
-    "ProtoCompileInfo",
     "copy_file",
     "descriptor_proto_path",
     "get_int_attr",
@@ -10,9 +8,35 @@ load(
     "get_package_root",
     "strip_path_prefix",
 )
+load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoLibraryAspectNodeInfo", "ProtoPluginInfo")
+
+proto_compile_attrs = {
+    # Deps and protos attrs are added per-rule, as it depends on aspect name
+    "verbose": attr.int(
+        doc = "The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*",
+    ),
+    "verbose_string": attr.string(
+        doc = "String version of the verbose string, used for aspect",
+        default = "0",
+    ),
+    "prefix_path": attr.string(
+        doc = "Path to prefix to the generated files in the output directory. Cannot be set when merge_directories == False",
+    ),
+    "merge_directories": attr.bool(
+        doc = "If true, all generated files are merged into a single directory with the name of current label and these new files returned as the outputs. If false, the original generated files are returned across multiple roots",
+        default = True,
+    ),
+}
+
+proto_compile_aspect_attrs = {
+    "verbose_string": attr.string(
+        doc = "String version of the verbose string, used for aspect",
+        values = ["", "None", "0", "1", "2", "3", "4"],
+        default = "0",
+    ),
+}
 
 def common_compile(ctx, proto_infos):
-    """Common implementation of invoking protoc"""
     ###
     ### Setup common state
     ###
@@ -296,3 +320,184 @@ def common_compile(ctx, proto_infos):
         output_files = output_files,
         output_dirs = output_dirs,
     )
+
+def proto_compile_impl(ctx):
+    if ctx.attr.protos and ctx.attr.deps:
+        fail("Inputs provided to both 'protos' and 'deps' attrs of target {}. Use exclusively 'protos' or 'deps'".format(ctx.label))
+
+    elif ctx.attr.protos:
+        # Aggregate output files and dirs created by the aspect from the direct dependencies
+        output_files_dicts = []
+        for dep in ctx.attr.protos:
+            aspect_node_info = dep[ProtoLibraryAspectNodeInfo]
+            output_files_dicts.append({aspect_node_info.output_root: aspect_node_info.direct_output_files})
+
+        output_dirs = depset(transitive = [
+            dep[ProtoLibraryAspectNodeInfo].direct_output_dirs
+            for dep in ctx.attr.protos
+        ])
+
+    elif ctx.attr.deps:
+        # TODO: add link to below
+        print("Inputs provided to 'deps' attr of target {}. Consider replacing with 'protos' attr to avoid transitive compilation".format(ctx.label))
+
+        # Aggregate all output files and dirs created by the aspect as it has walked the deps. Legacy behaviour
+        output_files_dicts = [dep[ProtoLibraryAspectNodeInfo].output_files for dep in ctx.attr.deps]
+        output_dirs = depset(transitive = [
+            dep[ProtoLibraryAspectNodeInfo].output_dirs
+            for dep in ctx.attr.deps
+        ])
+
+    else:
+        fail("No inputs provided to 'protos' attr of target {}".format(ctx.label))
+
+    # Check merge_directories and prefix_path
+    if not ctx.attr.merge_directories and ctx.attr.prefix_path:
+        fail("Attribute prefix_path cannot be set when merge_directories is false")
+
+    # Build outputs
+    final_output_files = {}
+    final_output_files_list = []
+    final_output_dirs = depset()
+    prefix_path = ctx.attr.prefix_path
+
+    if not ctx.attr.merge_directories:
+        # Pass on outputs directly when not merging
+        for output_files_dict in output_files_dicts:
+            final_output_files.update(**output_files_dict)
+            final_output_files_list = [f for files in final_output_files.values() for f in files.to_list()]
+        final_output_dirs = output_dirs
+
+    elif output_dirs:
+        # If we have any output dirs specified, we declare a single output
+        # directory and merge all files in one go. This is necessary to prevent
+        # path prefix conflicts
+
+        # Declare single output directory
+        dir_name = ctx.label.name
+        if prefix_path:
+            dir_name = dir_name + "/" + prefix_path
+        new_dir = ctx.actions.declare_directory(dir_name)
+        final_output_dirs = depset(direct = [new_dir])
+
+        # Build copy command for directory outputs
+        # Use cp {}/. rather than {}/* to allow for empty output directories from a plugin (e.g when no service exists,
+        # so no files generated)
+        command_parts = ["cp -r {} '{}'".format(
+            " ".join(["'" + d.path + "/.'" for d in output_dirs.to_list()]),
+            new_dir.path,
+        )]
+
+        # Extend copy command with file outputs
+        command_input_files = []
+        for output_files_dict in output_files_dicts:
+            for root, files in output_files_dict.items():
+                for file in files.to_list():
+                    # Strip root from file path
+                    path = strip_path_prefix(file.path, root)
+
+                    # Prefix path is contained in new_dir.path created above and
+                    # used below
+
+                    # Add command to copy file to output
+                    command_input_files.append(file)
+                    command_parts.append("cp '{}' '{}'".format(
+                        file.path,
+                        "{}/{}".format(new_dir.path, path),
+                    ))
+
+        # Add debug options
+        if ctx.attr.verbose > 1:
+            command_parts = command_parts + ["echo '\n##### SANDBOX AFTER MERGING DIRECTORIES'", "find . -type l"]
+        if ctx.attr.verbose > 2:
+            command_parts = ["echo '\n##### SANDBOX BEFORE MERGING DIRECTORIES'", "find . -type l"] + command_parts
+        if ctx.attr.verbose > 0:
+            print("Directory merge command: {}".format(" && ".join(command_parts)))
+
+        # Copy directories and files to shared output directory in one action
+        ctx.actions.run_shell(
+            mnemonic = "CopyDirs",
+            inputs = depset(direct = command_input_files, transitive = [output_dirs]),
+            outputs = [new_dir],
+            command = " && ".join(command_parts),
+            progress_message = "copying directories and files to {}".format(new_dir.path),
+        )
+
+    else:
+        # Otherwise, if we only have output files, build the output tree by
+        # aggregating files created by aspect into one directory
+
+        output_root = get_package_root(ctx) + "/" + ctx.label.name
+
+        for output_files_dict in output_files_dicts:
+            for root, files in output_files_dict.items():
+                for file in files.to_list():
+                    # Strip root from file path
+                    path = strip_path_prefix(file.path, root)
+
+                    # Prepend prefix path if given
+                    if prefix_path:
+                        path = prefix_path + "/" + path
+
+                    # Copy file to output
+                    final_output_files_list.append(copy_file(
+                        ctx,
+                        file,
+                        "{}/{}".format(ctx.label.name, path),
+                    ))
+
+        final_output_files[output_root] = depset(direct = final_output_files_list)
+
+    # Create depset containing all outputs
+    if ctx.attr.merge_directories:
+        # If we've merged directories, we have copied files/dirs that are now direct rather than
+        # transitive dependencies
+        all_outputs = depset(direct = final_output_files_list + final_output_dirs.to_list())
+    else:
+        # If we have not merged directories, all files/dirs are transitive
+        all_outputs = depset(
+            transitive = [depset(direct = final_output_files_list), final_output_dirs],
+        )
+
+    # Create default and proto compile providers
+    return [
+        ProtoCompileInfo(
+            label = ctx.label,
+            output_files = final_output_files,
+            output_dirs = final_output_dirs,
+        ),
+        DefaultInfo(
+            files = all_outputs,
+            data_runfiles = ctx.runfiles(transitive_files = all_outputs),
+        ),
+    ]
+
+def proto_compile_aspect_impl(target, ctx):
+    # Load ProtoInfo of the current node
+    if ProtoInfo not in target:  # Skip non-proto targets, which we may get intermingled prior to deps deprecation
+        return []
+    proto_info = target[ProtoInfo]
+
+    # Build protoc compile actions
+    compile_out = common_compile(ctx, [proto_info])
+
+    # Generate providers
+    transitive_infos = [dep[ProtoLibraryAspectNodeInfo] for dep in ctx.rule.attr.deps]
+    output_files_dict = {}
+    if compile_out.output_files:
+        output_files_dict[compile_out.output_root] = depset(direct = compile_out.output_files)
+
+    transitive_output_dirs = []
+    for transitive_info in transitive_infos:
+        output_files_dict.update(**transitive_info.output_files)
+        transitive_output_dirs.append(transitive_info.output_dirs)
+
+    return [
+        ProtoLibraryAspectNodeInfo(
+            output_root = compile_out.output_root,
+            direct_output_files = depset(direct = compile_out.output_files),
+            direct_output_dirs = depset(direct = compile_out.output_dirs),
+            output_files = output_files_dict,
+            output_dirs = depset(direct = compile_out.output_dirs, transitive = transitive_output_dirs),
+        ),
+    ]
