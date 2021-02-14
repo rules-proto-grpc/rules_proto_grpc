@@ -281,10 +281,17 @@ def common_compile(ctx, proto_infos):
         # Argument list for protoc execution
         args = ctx.actions.args()
 
-        # Add transitive descriptors
+        # Load all descriptors (direct and transitive) and remove dupes
+        descriptor_sets = depset([
+            descriptor
+            for proto_info in proto_infos
+            for descriptor in proto_info.transitive_descriptor_sets.to_list()
+        ]).to_list()
+
+        # Add descriptors
         pathsep = ctx.configuration.host_path_separator
         args.add("--descriptor_set_in={}".format(pathsep.join(
-            [f.path for f in proto_info.transitive_descriptor_sets.to_list() for proto_info in proto_infos],
+            [f.path for f in descriptor_sets],
         )))
 
         # Add --plugin if not a built-in plugin
@@ -330,11 +337,7 @@ def common_compile(ctx, proto_infos):
 
         mnemonic = "ProtoCompile"
         command = ("mkdir -p '{}' && ".format(output_root)) + protoc.path + " $@"  # $@ is replaced with args list
-        inputs = [
-            descriptor
-            for descriptor in proto_info.transitive_descriptor_sets.to_list()
-            for proto_info in proto_infos
-        ] + plugin_runfiles  # Proto files are not inputs, as they come via the descriptor sets
+        inputs = descriptor_sets + plugin_runfiles  # Proto files are not inputs, as they come via the descriptor sets
         tools = [protoc] + ([plugin_tool] if plugin_tool else [])
 
         # Amend command with debug options
