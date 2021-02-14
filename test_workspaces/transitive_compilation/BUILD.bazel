@@ -1,10 +1,10 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_python//python:defs.bzl", "py_test")
-load("@rules_proto_grpc//python:python_grpc_library.bzl", "python_grpc_library")
+load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library")
 
 package(default_visibility = ["//visibility:private"])
 
-# Test that python 3 dependencies protobuf and grpc are importable
+# Test that old style transitive compilation works
 
 proto_library(
     name = "proto_lib",
@@ -13,8 +13,7 @@ proto_library(
 
 python_grpc_library(
     name = "py_lib",
-    protos = ["proto_lib"],
-    python_version = "PY3",
+    deps = ["proto_lib"],
 )
 
 py_test(

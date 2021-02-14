@@ -2,6 +2,6 @@ syntax = "proto3";
 
 import "common.proto";
 
-message demo {
+message message_b {
     CommonProto field = 1;
 }

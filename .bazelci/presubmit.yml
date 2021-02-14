@@ -1606,3 +1606,30 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
+  test_workspace_transitive_compilation_ubuntu1804:
+    name: 'test workspace: transitive_compilation'
+    platform: ubuntu1804
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/transitive_compilation
+  test_workspace_transitive_compilation_windows:
+    name: 'test workspace: transitive_compilation'
+    platform: windows
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/transitive_compilation
+  test_workspace_transitive_compilation_macos:
+    name: 'test workspace: transitive_compilation'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/transitive_compilation

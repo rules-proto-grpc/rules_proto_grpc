@@ -15,13 +15,13 @@ proto_library(
 
 proto_library(
     name = "proto_lib_a",
-    srcs = ["demo.proto"],
+    srcs = ["a.proto"],
     deps = [":proto_common"],
 )
 
 proto_library(
     name = "proto_lib_b",
-    srcs = ["demo.proto"],
+    srcs = ["b.proto"],
     deps = [":proto_common"],
 )
 
