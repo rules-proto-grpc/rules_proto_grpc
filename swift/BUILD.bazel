@@ -5,9 +5,6 @@ proto_plugin(
     exclusions = [
         "google/protobuf",
     ],
-    options = [
-        "Visibility=Public",
-    ],
     outputs = ["{protopath}.pb.swift"],
     tool = "@com_github_apple_swift_protobuf//:ProtoCompilerPlugin",
     visibility = ["//visibility:public"],
@@ -18,9 +15,6 @@ proto_plugin(
     empty_template = "empty.template",
     exclusions = [
         "google/protobuf",
-    ],
-    options = [
-        "Visibility=Public",
     ],
     outputs = ["{protopath}.grpc.swift"],
     tool = "@com_github_grpc_grpc_swift//:protoc-gen-grpc-swift",
