@@ -76,9 +76,9 @@ def common_compile(ctx, proto_infos):
         rel_output_root = "{}/{}_verb{}".format(ctx.label.name, ctx.attr._prefix, verbose)
     else:
         # Direct compilation. The directory can be named exactly as the label of the rule, since
-        # there is no chance of overlap
-        # TODO(4.0.0): Remove _rpg_premerge_out subdir below
-        rel_output_root = ctx.label.name + "/_rpg_premerge_out"
+        # there is no chance of overlap. A temporary dir is used here to allow output directories
+        # that may need to be merged later
+        rel_output_root = "_rpg_premerge_" + ctx.label.name
         # TODO(4.0.0): Apply prefix root directly here:
         #if ctx.attr.prefix_path:
         #    rel_output_root += "/" + ctx.attr.prefix_path
