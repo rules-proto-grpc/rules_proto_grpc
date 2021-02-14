@@ -62,7 +62,7 @@ rust_library(
 )
 
 # Additional content from ../../third_party/BUILD.bazel.raze_grpc_sys
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library")  # buildifier: disable=load-on-top
 
 # Manually build the bindings and link to the Bazel built version of gPRC
 rust_library(

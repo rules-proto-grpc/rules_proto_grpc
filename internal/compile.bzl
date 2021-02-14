@@ -15,7 +15,7 @@ load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoLibraryAspectNodeInfo
 proto_compile_attrs = {
     # Deps and protos attrs are added per-rule, as it depends on aspect name
     "options": attr.string_list_dict(
-        doc='Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins',
+        doc = "Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins",
     ),
     "verbose": attr.int(
         doc = "The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*",
@@ -99,15 +99,15 @@ def common_compile(ctx, proto_infos):
         plugin_labels = [plugin.label for plugin in plugins]
         per_plugin_options = {
             Label(plugin_label): options
-            for plugin_label, options
-            in ctx.attr.options.items() if plugin_label != '*'
+            for plugin_label, options in ctx.attr.options.items()
+            if plugin_label != "*"
         }
 
         # Only allow '*' by itself
-        if '*' in ctx.attr.options:
+        if "*" in ctx.attr.options:
             if len(ctx.attr.options) > 1:
                 fail("The options attr on target {} cannot contain '*' and other labels. Use either '*' or labels".format(ctx.label))
-            all_plugin_options = ctx.attr.options['*']
+            all_plugin_options = ctx.attr.options["*"]
 
         # Check all labels match a plugin in use
         for plugin_label in per_plugin_options:
@@ -391,6 +391,7 @@ def proto_compile_impl(ctx):
             - DefaultInfo
 
     """
+
     # Check attrs make sense
     if ctx.attr.protos and ctx.attr.deps:
         fail("Inputs provided to both 'protos' and 'deps' attrs of target {}. Use exclusively 'protos' or 'deps'".format(ctx.label))
