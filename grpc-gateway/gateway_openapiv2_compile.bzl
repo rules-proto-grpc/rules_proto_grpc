@@ -20,7 +20,6 @@ gateway_openapiv2_compile_aspect = aspect(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//grpc-gateway:openapiv2_plugin"),
-                Label("//go:go_plugin"),
             ],
         ),
         _prefix = attr.string(

@@ -95,7 +95,7 @@ func makeGrpcGateway() *Language {
 				Name:              "gateway_openapiv2_compile",
 				Kind:              "grpc",
 				Implementation:    aspectRuleTemplate,
-				Plugins:           []string{"//grpc-gateway:openapiv2_plugin", "//go:go_plugin"},
+				Plugins:           []string{"//grpc-gateway:openapiv2_plugin"},
 				WorkspaceExample:  grpcGatewayWorkspaceTemplate,
 				BuildExample:      grpcGatewayCompileExampleTemplate,
 				Doc:               "Generates grpc-gateway OpenAPI v2 `.json` files",
