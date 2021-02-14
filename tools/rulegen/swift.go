@@ -108,7 +108,6 @@ func makeSwift() *Language {
 			Name:     "strategy=SwiftCompile",
 			Value:    "standalone",
 		}),
-		SkipDirectoriesMerge: true,
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{

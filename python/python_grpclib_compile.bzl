@@ -51,13 +51,21 @@ _rule = rule(
             aspects = [python_grpclib_compile_aspect],
             doc = "DEPRECATED: Use protos attr",
         ),
+        _plugins = attr.label_list(
+            doc = "List of protoc plugins to apply",
+            providers = [ProtoPluginInfo],
+            default = [
+                Label("//python:python_plugin"),
+                Label("//python:grpclib_python_plugin"),
+            ],
+        ),
     ),
+    toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
 # Create macro for converting attrs and passing to compile
 def python_grpclib_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
-        merge_directories = True,
-        **{k: v for k, v in kwargs.items() if k != "merge_directories"}
+        **kwargs
     )

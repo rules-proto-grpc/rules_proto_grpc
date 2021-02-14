@@ -50,13 +50,20 @@ _rule = rule(
             aspects = [android_proto_compile_aspect],
             doc = "DEPRECATED: Use protos attr",
         ),
+        _plugins = attr.label_list(
+            doc = "List of protoc plugins to apply",
+            providers = [ProtoPluginInfo],
+            default = [
+                Label("//android:javalite_plugin"),
+            ],
+        ),
     ),
+    toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
 # Create macro for converting attrs and passing to compile
 def android_proto_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
-        merge_directories = False,
-        **{k: v for k, v in kwargs.items() if k != "merge_directories"}
+        **kwargs
     )

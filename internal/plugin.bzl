@@ -6,6 +6,7 @@ def _proto_plugin_impl(ctx):
     return [
         ProtoPluginInfo(
             name = ctx.attr.name,
+            label = ctx.label,
             options = ctx.attr.options,
             extra_protoc_args = ctx.attr.extra_protoc_args,
             outputs = ctx.attr.outputs,

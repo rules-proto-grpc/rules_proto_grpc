@@ -13,6 +13,13 @@ var compileRuleAttrs = []*Attr{
 		Mandatory: true,
 	},
 	&Attr{
+		Name:      "options",
+		Type:      "dict<string, list(string)>",
+		Default:   "[]",
+		Doc:       "Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins",
+		Mandatory: false,
+	},
+	&Attr{
 		Name:      "verbose",
 		Type:      "int",
 		Default:   "0",
@@ -25,7 +32,7 @@ var compileRuleAttrs = []*Attr{
 var libraryRuleAttrs = append(append([]*Attr(nil), compileRuleAttrs...), []*Attr{
     &Attr{
 		Name:      "deps",
-		Type:      "list",
+		Type:      "list<Label/string>",
 		Default:   "[]",
 		Doc:       "List of labels to pass as deps attr to underlying lang_library rule",
 		Mandatory: false,
@@ -83,15 +90,22 @@ _rule = rule(
             aspects = [{{ .Rule.Name }}_aspect],
             doc = "DEPRECATED: Use protos attr",
         ),
+        _plugins = attr.label_list(
+            doc = "List of protoc plugins to apply",
+            providers = [ProtoPluginInfo],
+            default = [{{ range .Rule.Plugins }}
+                Label("{{ . }}"),{{ end }}
+            ],
+        ),
     ),
+    toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
 # Create macro for converting attrs and passing to compile
 def {{ .Rule.Name }}(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
-        merge_directories = {{ if .Lang.SkipDirectoriesMerge }}False{{else}}True{{end}},
-        **{k: v for k, v in kwargs.items() if k != "merge_directories"}
+        **kwargs
     )`)
 
 

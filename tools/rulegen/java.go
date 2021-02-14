@@ -94,7 +94,6 @@ func makeJava() *Language {
 		DisplayName:      "Java",
 		Notes: mustTemplate("Rules for generating Java protobuf and gRPC `.jar` files and libraries using standard Protocol Buffers and [gRPC-Java](https://github.com/grpc/grpc-java). Libraries are created with the Bazel native `java_library`"),
 		Flags:            commonLangFlags,
-		SkipDirectoriesMerge: true,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "java_proto_compile",

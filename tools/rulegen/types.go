@@ -31,9 +31,6 @@ type Language struct {
 	// Additional CI-specific env vars in the form "K=V"
 	PresubmitEnvVars map[string]string
 
-	// Flag indicating if the merge_directories flag should be set to false for the generated rule
-	SkipDirectoriesMerge bool
-
 	// Platforms for which to skip testing this lang
 	// The special value 'all' will skip app platforms
 	SkipTestPlatforms []string

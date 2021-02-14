@@ -88,7 +88,6 @@ func makeAndroid() *Language {
 		DisplayName: "Android",
 		Notes: mustTemplate("Rules for generating Android protobuf and gRPC `.jar` files and libraries using standard Protocol Buffers and [gRPC-Java](https://github.com/grpc/grpc-java). Libraries are created with `android_library` from [rules_android](https://github.com/bazelbuild/rules_android)"),
 		Flags: commonLangFlags,
-		SkipDirectoriesMerge: true, // Jar files are not needed to be in merged directory
 		SkipTestPlatforms: []string{"all"},
 		Rules: []*Rule{
 			&Rule{

@@ -14,6 +14,9 @@ load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoLibraryAspectNodeInfo
 
 proto_compile_attrs = {
     # Deps and protos attrs are added per-rule, as it depends on aspect name
+    "options": attr.string_list_dict(
+        doc='Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins',
+    ),
     "verbose": attr.int(
         doc = "The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*",
     ),
@@ -22,11 +25,7 @@ proto_compile_attrs = {
         default = "0",
     ),
     "prefix_path": attr.string(
-        doc = "Path to prefix to the generated files in the output directory. Cannot be set when merge_directories == False",
-    ),
-    "merge_directories": attr.bool(
-        doc = "If true, all generated files are merged into a single directory with the name of current label and these new files returned as the outputs. If false, the original generated files are returned across multiple roots",
-        default = True,
+        doc = "Path to prefix to the generated files in the output directory",
     ),
 }
 
@@ -67,10 +66,22 @@ def common_compile(ctx, proto_infos):
     protoc = protoc_toolchain_info.protoc_executable
     fixer = protoc_toolchain_info.fixer_executable
 
-    # The directory where the outputs will be generated, relative to the package. This contains the aspect _prefix attr
-    # to disambiguate different aspects that may share the same plugins and would otherwise try to touch the same file.
-    # The same is true for the verbose_string attr.
-    rel_output_root = "{}/{}_verb{}".format(ctx.label.name, ctx.attr._prefix, verbose)
+    # The directory where the outputs will be generated, relative to the package.
+    # TODO(4.0.0): Remove _prefix branch
+    if hasattr(ctx.attr, "_prefix"):
+        # Aspect driven compilation, we must put different rules in different subdirs, since
+        # a commonly used proto file may be hit by multiple aspects that may overlap with plugins
+        # and would otherwise try to touch the same file. This also contains verbose_string for the
+        # same reason.
+        rel_output_root = "{}/{}_verb{}".format(ctx.label.name, ctx.attr._prefix, verbose)
+    else:
+        # Direct compilation. The directory can be named exactly as the label of the rule, since
+        # there is no chance of overlap
+        # TODO(4.0.0): Remove _rpg_premerge_out subdir below
+        rel_output_root = ctx.label.name + "/_rpg_premerge_out"
+        # TODO(4.0.0): Apply prefix root directly here:
+        #if ctx.attr.prefix_path:
+        #    rel_output_root += "/" + ctx.attr.prefix_path
 
     # The full path to the output root, relative to the workspace
     output_root = get_package_root(ctx) + "/" + rel_output_root
@@ -78,6 +89,30 @@ def common_compile(ctx, proto_infos):
     # The lists of generated files and directories that we expect to be produced.
     output_files = []
     output_dirs = []
+
+    # If plugin options are provided, check they are only for the plugins available or *
+    # TODO(4.0.0): Remove check for options in attr, it should always be there when not aspect
+    per_plugin_options = {}  # Dict of plugin label to options string list
+    all_plugin_options = []  # Options applied to all plugins, from the '*' key
+    if hasattr(ctx.attr, "options"):
+        # Convert options dict to label keys
+        plugin_labels = [plugin.label for plugin in plugins]
+        per_plugin_options = {
+            Label(plugin_label): options
+            for plugin_label, options
+            in ctx.attr.options.items() if plugin_label != '*'
+        }
+
+        # Only allow '*' by itself
+        if '*' in ctx.attr.options:
+            if len(ctx.attr.options) > 1:
+                fail("The options attr on target {} cannot contain '*' and other labels. Use either '*' or labels".format(ctx.label))
+            all_plugin_options = ctx.attr.options['*']
+
+        # Check all labels match a plugin in use
+        for plugin_label in per_plugin_options:
+            if plugin_label not in plugin_labels:
+                fail("The options attr on target {} contains a plugin label {} for a plugin that does not exist on this rule. The available plugins are {} ".format(ctx.label, plugin_label, plugin_labels))
 
     ###
     ### Setup plugins
@@ -266,9 +301,14 @@ def common_compile(ctx, proto_infos):
             args.add("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
 
         # Add plugin --*_out/--*_opt args
-        if plugin.options:
+        plugin_options = list(plugin.options)
+        plugin_options.extend(all_plugin_options)
+        if plugin.label in per_plugin_options:
+            plugin_options.extend(per_plugin_options[plugin.label])
+
+        if plugin_options:
             opts_str = ",".join(
-                [option.replace("{name}", ctx.label.name) for option in plugin.options],
+                [option.replace("{name}", ctx.label.name) for option in plugin_options],
             )
             if plugin.separate_options_flag:
                 args.add("--{}_opt={}".format(plugin_name, opts_str))
@@ -351,27 +391,30 @@ def proto_compile_impl(ctx):
             - DefaultInfo
 
     """
-
+    # Check attrs make sense
     if ctx.attr.protos and ctx.attr.deps:
         fail("Inputs provided to both 'protos' and 'deps' attrs of target {}. Use exclusively 'protos' or 'deps'".format(ctx.label))
 
-    elif ctx.attr.protos:
-        # Aggregate output files and dirs created by the aspect from the direct dependencies
-        output_files_dicts = []
-        for dep in ctx.attr.protos:
-            aspect_node_info = dep[ProtoLibraryAspectNodeInfo]
-            output_files_dicts.append({aspect_node_info.output_root: aspect_node_info.direct_output_files})
+    if ctx.attr.deps and ctx.attr.options:
+        fail("Options cannot be provided in transitive compilation mode with 'deps' attr of target {}. Use 'protos' mode to pass 'options'".format(ctx.label))
 
-        output_dirs = depset(transitive = [
-            dep[ProtoLibraryAspectNodeInfo].direct_output_dirs
-            for dep in ctx.attr.protos
-        ])
+    # Select mode
+    if ctx.attr.protos:
+        # Direct compilation mode, build protoc actions here rather than in aspect
+        compile_out = common_compile(ctx, [dep[ProtoInfo] for dep in ctx.attr.protos])
+
+        # Spoof the outputs we'd get from aspect
+        # TODO(4.0.0): Remove
+        output_files_dicts = [{compile_out.output_root: depset(compile_out.output_files)}]
+        output_dirs = depset(compile_out.output_dirs)
 
     elif ctx.attr.deps:
+        # Transitive mode using aspect compilation. DEPRECATED
+        # TODO(4.0.0): Remove
         # TODO: add link to below
         print("Inputs provided to 'deps' attr of target {}. Consider replacing with 'protos' attr to avoid transitive compilation".format(ctx.label))  # buildifier: disable=print
 
-        # Aggregate all output files and dirs created by the aspect as it has walked the deps. Legacy behaviour
+        # Aggregate all output files and dirs created by the aspect as it has walked the deps
         output_files_dicts = [dep[ProtoLibraryAspectNodeInfo].output_files for dep in ctx.attr.deps]
         output_dirs = depset(transitive = [
             dep[ProtoLibraryAspectNodeInfo].output_dirs
@@ -379,11 +422,8 @@ def proto_compile_impl(ctx):
         ])
 
     else:
+        # Mode undetermined
         fail("No inputs provided to 'protos' attr of target {}".format(ctx.label))
-
-    # Check merge_directories and prefix_path
-    if not ctx.attr.merge_directories and ctx.attr.prefix_path:
-        fail("Attribute prefix_path cannot be set when merge_directories is false")
 
     # Build outputs
     final_output_files = {}
@@ -391,14 +431,8 @@ def proto_compile_impl(ctx):
     final_output_dirs = depset()
     prefix_path = ctx.attr.prefix_path
 
-    if not ctx.attr.merge_directories:
-        # Pass on outputs directly when not merging
-        for output_files_dict in output_files_dicts:
-            final_output_files.update(**output_files_dict)
-            final_output_files_list = [f for files in final_output_files.values() for f in files.to_list()]
-        final_output_dirs = output_dirs
-
-    elif output_dirs:
+    # TODO(4.0.0): The below can be simplified and prefix path applied directly to output root
+    if output_dirs:
         # If we have any output dirs specified, we declare a single output
         # directory and merge all files in one go. This is necessary to prevent
         # path prefix conflicts
@@ -479,15 +513,7 @@ def proto_compile_impl(ctx):
         final_output_files[output_root] = depset(direct = final_output_files_list)
 
     # Create depset containing all outputs
-    if ctx.attr.merge_directories:
-        # If we've merged directories, we have copied files/dirs that are now direct rather than
-        # transitive dependencies
-        all_outputs = depset(direct = final_output_files_list + final_output_dirs.to_list())
-    else:
-        # If we have not merged directories, all files/dirs are transitive
-        all_outputs = depset(
-            transitive = [depset(direct = final_output_files_list), final_output_dirs],
-        )
+    all_outputs = depset(direct = final_output_files_list + final_output_dirs.to_list())
 
     # Create default and proto compile providers
     return [

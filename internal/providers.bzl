@@ -2,6 +2,7 @@
 
 ProtoPluginInfo = provider(fields = {
     "name": "The proto plugin name",
+    "label": "The label used to define the plugin",
     "options": "A list of options to pass to the compiler for this plugin",
     "extra_protoc_args": "A list of extra args to pass directly to protoc, not as plugin options",
     "outputs": "Output filenames generated on a per-proto basis. Example: '{basename}_pb2.py",

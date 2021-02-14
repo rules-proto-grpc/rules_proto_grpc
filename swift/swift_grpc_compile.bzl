@@ -51,13 +51,21 @@ _rule = rule(
             aspects = [swift_grpc_compile_aspect],
             doc = "DEPRECATED: Use protos attr",
         ),
+        _plugins = attr.label_list(
+            doc = "List of protoc plugins to apply",
+            providers = [ProtoPluginInfo],
+            default = [
+                Label("//swift:swift_plugin"),
+                Label("//swift:grpc_swift_plugin"),
+            ],
+        ),
     ),
+    toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
 # Create macro for converting attrs and passing to compile
 def swift_grpc_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
-        merge_directories = False,
-        **{k: v for k, v in kwargs.items() if k != "merge_directories"}
+        **kwargs
     )
