@@ -1,3 +1,5 @@
+"""Generated definition of csharp_grpc_library."""
+
 load("//csharp:csharp_grpc_compile.bzl", "csharp_grpc_compile")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_library")
 

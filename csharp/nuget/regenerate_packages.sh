@@ -55,3 +55,6 @@ fi
 
 # Patch missing Grpc.Core runtimes into nuget_package
 cat "${OUTPUT_DIR}/${FILE_NAME}" | python3 -c "import sys; patch = open('${OUTPUT_DIR}/${FILE_NAME}.patch').read(); sys.stdout.write(sys.stdin.read().replace('Grpc.Core.xml\",', 'Grpc.Core.xml\",' + patch))" | sponge "${OUTPUT_DIR}/${FILE_NAME}"
+
+# Patch in buildifier fixes
+cat "${OUTPUT_DIR}/${FILE_NAME}" | python3 -c "import sys; sys.stdout.write('\"\"\"Generated nuget packages\"\"\"\n\n' + sys.stdin.read().replace('def nuget_rules_proto_grpc_packages():', 'def nuget_rules_proto_grpc_packages():\n    \"\"\"Nuget packages\"\"\"'))" | sponge "${OUTPUT_DIR}/${FILE_NAME}"

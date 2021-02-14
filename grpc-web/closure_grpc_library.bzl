@@ -1,8 +1,10 @@
+"""Generated definition of closure_grpc_library."""
+
 load("//grpc-web:closure_grpc_compile.bzl", "closure_grpc_compile")
 load("//closure:closure_proto_compile.bzl", "closure_proto_compile")
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")
 
-def closure_grpc_library(**kwargs):
+def closure_grpc_library(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     name_pb_grpc = kwargs.get("name") + "_pb_grpc"

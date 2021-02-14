@@ -16,7 +16,7 @@ var rustLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{
 load("//{{ .Lang.Dir }}:rust_proto_lib.bzl", "rust_proto_lib")
 load("@rules_rust//rust:rust.bzl", "rust_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     name_lib = kwargs.get("name") + "_lib"

@@ -1,6 +1,8 @@
-package(default_visibility = ["//visibility:private"])
-
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_python//python:defs.bzl", "py_test")
 load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
+
+package(default_visibility = ["//visibility:private"])
 
 # Use both strip_import_prefix and import_prefix attributes
 

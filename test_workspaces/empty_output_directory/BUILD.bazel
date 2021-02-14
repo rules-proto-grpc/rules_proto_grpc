@@ -1,6 +1,8 @@
-package(default_visibility = ["//visibility:private"])
-
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_python//python:defs.bzl", "py_test")
 load("@rules_proto_grpc//php:defs.bzl", "php_grpc_compile")
+
+package(default_visibility = ["//visibility:private"])
 
 # Test that plugins that use output_directory behave correctly when no files are written to the output directory
 # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/39

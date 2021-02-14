@@ -1,3 +1,5 @@
+"""Generated definition of nodejs_grpc_library."""
+
 load("//nodejs:nodejs_grpc_compile.bzl", "nodejs_grpc_compile")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 

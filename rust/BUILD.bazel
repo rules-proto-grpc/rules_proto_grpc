@@ -1,3 +1,4 @@
+load("@rules_cc//cc:defs.bzl", "cc_import")
 load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(

@@ -1,3 +1,6 @@
+"""Generated definition of cpp_proto_library."""
+
+load("@rules_cc//cc:defs.bzl", "cc_library")
 load("//cpp:cpp_proto_compile.bzl", "cpp_proto_compile")
 
 def cpp_proto_library(**kwargs):
@@ -9,7 +12,7 @@ def cpp_proto_library(**kwargs):
     )
 
     # Create cpp library
-    native.cc_library(
+    cc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),

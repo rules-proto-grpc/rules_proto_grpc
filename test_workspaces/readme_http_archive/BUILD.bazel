@@ -1,3 +1,5 @@
+load("@rules_python//python:defs.bzl", "py_test")
+
 package(default_visibility = ["//visibility:private"])
 
 # Test that the README example http_archive call works. The WORKSPACE for this

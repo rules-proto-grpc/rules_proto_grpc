@@ -1,8 +1,10 @@
+"""Generated definition of scala_proto_library."""
+
 load("//scala:scala_proto_compile.bzl", "scala_proto_compile")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
-load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")
+load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")  # buildifier: disable=load
 
-def scala_proto_library(**kwargs):
+def scala_proto_library(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     scala_proto_compile(

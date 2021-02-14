@@ -1,3 +1,5 @@
+"""Generated definition of go_proto_library."""
+
 load("//go:go_proto_compile.bzl", "go_proto_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 

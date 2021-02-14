@@ -1,8 +1,10 @@
+"""Generated definition of rust_grpc_library."""
+
 load("//rust:rust_grpc_compile.bzl", "rust_grpc_compile")
 load("//rust:rust_proto_lib.bzl", "rust_proto_lib")
 load("@rules_rust//rust:rust.bzl", "rust_library")
 
-def rust_grpc_library(**kwargs):
+def rust_grpc_library(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     name_lib = kwargs.get("name") + "_lib"

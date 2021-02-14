@@ -1,4 +1,4 @@
-load("//example/routeguide:routeguide_test.bzl", "routeguide_test", "routeguide_test_matrix")
+load("//example/routeguide:routeguide_test.bzl", "routeguide_test_matrix")
 
 #
 # This generates a set of routeguide_test rules, one for each combination of
@@ -10,6 +10,7 @@ load("//example/routeguide:routeguide_test.bzl", "routeguide_test", "routeguide_
 #
 
 routeguide_test_matrix(
+    name = "routeguide_matrix",
     clients = [
         "//cpp/example/routeguide:client",
         "//csharp/example/routeguide:client.exe",

@@ -1,16 +1,16 @@
 workspace(name = "rules_proto_grpc")
 
+load("//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
+
 #
 # Toolchains
 #
-load("//:repositories.bzl", "rules_proto_grpc_toolchains")
 
 rules_proto_grpc_toolchains()
 
 #
 # Core
 #
-load("//:repositories.bzl", "rules_proto_grpc_repos")
 
 rules_proto_grpc_repos()
 
@@ -28,8 +28,7 @@ load("//android:repositories.bzl", "android_repos")
 android_repos()
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
-load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS")
-load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS")
+load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
 
 maven_install(
     artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS,
@@ -43,8 +42,6 @@ maven_install(
 load("@maven//:compat.bzl", "compat_repositories")
 
 compat_repositories()
-
-load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 
 grpc_java_repositories()
 
@@ -75,7 +72,7 @@ rules_closure_toolchains()
 # Load rules_go before running grpc_deps in C++, since that depends on a very old version of
 # rules_go
 #
-load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
 
 io_bazel_rules_go()
 
@@ -330,7 +327,7 @@ swift_rules_dependencies()
 #
 # Misc
 #
-load("@bazel_gazelle//:deps.bzl", "go_repository")
+load("@bazel_gazelle//:deps.bzl", "go_repository")  # buildifier: disable=same-origin-load
 
 go_repository(
     name = "com_github_urfave_cli",

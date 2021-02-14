@@ -1,6 +1,6 @@
 package main
 
-var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
 
 io_bazel_rules_go()
 
@@ -28,7 +28,6 @@ go_repositories()`)
 
 var grpcGatewayLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:gateway_grpc_compile.bzl", "gateway_grpc_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
-load("//go:go_proto_library.bzl", "PROTO_DEPS")
 load("//go:go_grpc_library.bzl", "GRPC_DEPS")
 
 def {{ .Rule.Name }}(**kwargs):

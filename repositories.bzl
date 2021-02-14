@@ -1,3 +1,5 @@
+"""Common dependencies for rules_proto_grpc."""
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
@@ -299,9 +301,9 @@ def _generic_dependency(name, **kwargs):
         sha256 = kwargs.get(name + "_sha256", dep["sha256"])
 
         # Fix GitHub naming quirk in path
-        strippedRef = ref
-        if strippedRef.startswith("v"):
-            strippedRef = ref[1:]
+        stripped_ref = ref
+        if stripped_ref.startswith("v"):
+            stripped_ref = ref[1:]
 
         # Generate URLs
         urls = [
@@ -312,7 +314,7 @@ def _generic_dependency(name, **kwargs):
         if name not in existing_rules:
             http_archive(
                 name = name,
-                strip_prefix = dep["repo"] + "-" + strippedRef,
+                strip_prefix = dep["repo"] + "-" + stripped_ref,
                 urls = urls,
                 sha256 = sha256,
                 **{k: v for k, v in dep.items() if k in ["build_file", "patch_cmds"]}
@@ -322,14 +324,14 @@ def _generic_dependency(name, **kwargs):
                 print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
                     name,
                     existing_rules[name]["kind"],
-                ))
+                ))  # buildifier: disable=print
         elif existing_rules[name]["urls"] != tuple(urls):
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
                     name,
                     existing_rules[name]["urls"],
                     tuple(urls),
-                ))
+                ))  # buildifier: disable=print
 
     elif dep["type"] == "http":
         if name not in existing_rules:
@@ -340,14 +342,14 @@ def _generic_dependency(name, **kwargs):
                 print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
                     name,
                     existing_rules[name]["kind"],
-                ))
+                ))  # buildifier: disable=print
         elif existing_rules[name]["urls"] != tuple(dep["urls"]):
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
                     name,
                     existing_rules[name]["urls"],
                     tuple(dep["urls"]),
-                ))
+                ))  # buildifier: disable=print
 
     elif dep["type"] == "local":
         if name not in existing_rules:
@@ -358,14 +360,14 @@ def _generic_dependency(name, **kwargs):
                 print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected local_repository".format(
                     name,
                     existing_rules[name]["kind"],
-                ))
+                ))  # buildifier: disable=print
         elif existing_rules[name]["path"] != dep["path"]:
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different version. Found path={}, expected {}".format(
                     name,
                     existing_rules[name]["path"],
                     dep["urls"],
-                ))
+                ))  # buildifier: disable=print
 
     else:
         fail("Unknown dependency type {}".format(dep))
@@ -381,7 +383,8 @@ def _generic_dependency(name, **kwargs):
 #
 # Toolchains
 #
-def rules_proto_grpc_toolchains():
+def rules_proto_grpc_toolchains(name = ""):
+    """Register the rules_proto_grpc toolchains."""
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
     native.register_toolchains(str(Label("//protobuf:protoc_toolchain")))
 
@@ -389,6 +392,7 @@ def rules_proto_grpc_toolchains():
 # Core
 #
 def rules_proto_grpc_repos(**kwargs):
+    """Load the rules_proto_grpc common dependencies."""  # buildifier: disable=function-docstring-args
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
 
     rules_proto(**kwargs)

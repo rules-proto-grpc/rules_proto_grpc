@@ -16,7 +16,7 @@ var grpcWebGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:closu
 load("//closure:closure_proto_compile.bzl", "closure_proto_compile")
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     name_pb_grpc = kwargs.get("name") + "_pb_grpc"

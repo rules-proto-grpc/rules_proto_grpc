@@ -1,3 +1,6 @@
+"""Generated definition of objc_proto_library."""
+
+load("@rules_cc//cc:defs.bzl", "objc_library")
 load("//objc:objc_proto_compile.bzl", "objc_proto_compile")
 
 def objc_proto_library(**kwargs):
@@ -9,7 +12,7 @@ def objc_proto_library(**kwargs):
     )
 
     # Create objc library
-    native.objc_library(
+    objc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),

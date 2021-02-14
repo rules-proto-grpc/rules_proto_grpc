@@ -1,3 +1,5 @@
+"""Generated definition of closure_proto_library."""
+
 load("//closure:closure_proto_compile.bzl", "closure_proto_compile")
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")
 

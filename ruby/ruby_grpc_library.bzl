@@ -1,3 +1,5 @@
+"""Generated definition of ruby_grpc_library."""
+
 load("//ruby:ruby_grpc_compile.bzl", "ruby_grpc_compile")
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_library")
 
@@ -10,7 +12,6 @@ def ruby_grpc_library(**kwargs):
     )
 
     # Create ruby library
-    print(native.package_name())
     ruby_library(
         name = kwargs.get("name"),
         srcs = [name_pb],

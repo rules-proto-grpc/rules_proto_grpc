@@ -142,6 +142,8 @@ func mustWriteLanguageRules(dir string, lang *Language) {
 
 func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
+	out.t(mustTemplate(`"""Generated definition of {{ .Rule.Name }}."""`), &ruleData{lang, rule})
+	out.ln()
 	out.t(rule.Implementation, &ruleData{lang, rule})
 	out.ln()
 	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name+".bzl"))

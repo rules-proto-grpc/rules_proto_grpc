@@ -1,3 +1,5 @@
+"""Generated definition of python_proto_library."""
+
 load("//python:python_proto_compile.bzl", "python_proto_compile")
 load("@rules_python//python:defs.bzl", "py_library")
 

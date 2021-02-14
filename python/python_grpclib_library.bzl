@@ -1,3 +1,5 @@
+"""Generated definition of python_grpclib_library."""
+
 load("//python:python_grpclib_compile.bzl", "python_grpclib_compile")
 load("@rules_python//python:defs.bzl", "py_library")
 

@@ -1,3 +1,5 @@
+"""Generated definition of swift_grpc_library."""
+
 load("//swift:swift_grpc_compile.bzl", "swift_grpc_compile")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 

@@ -1,3 +1,5 @@
+"""Generated definition of csharp_proto_library."""
+
 load("//csharp:csharp_proto_compile.bzl", "csharp_proto_compile")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_library")
 

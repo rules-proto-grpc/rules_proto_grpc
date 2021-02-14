@@ -1,3 +1,5 @@
+"""Common dependencies for rules_proto_grpc Scala rules."""
+
 load(
     "//:repositories.bzl",
     "com_github_scalapb_scalapb",
@@ -6,7 +8,7 @@ load(
     "rules_proto_grpc_repos",
 )
 
-def scala_repos(**kwargs):
+def scala_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
     io_grpc_grpc_java(**kwargs)
     com_github_scalapb_scalapb(**kwargs)

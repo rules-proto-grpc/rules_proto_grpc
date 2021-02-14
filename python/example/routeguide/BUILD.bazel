@@ -1,3 +1,4 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library")
 load("//python:defs.bzl", "python_grpc_library")
 
 python_grpc_library(

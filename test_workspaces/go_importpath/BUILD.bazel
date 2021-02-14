@@ -1,7 +1,8 @@
-package(default_visibility = ["//visibility:private"])
-
+load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_proto_grpc//go:defs.bzl", "go_proto_library")
-load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_test")
+load("@io_bazel_rules_go//go:def.bzl", "go_test")
+
+package(default_visibility = ["//visibility:private"])
 
 # Test that importpath on go_proto_library works
 

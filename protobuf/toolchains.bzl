@@ -1,3 +1,5 @@
+"""Toolchain definitions for rules_proto_grpc."""
+
 def _protoc_toolchain_impl(ctx):
     return [platform_common.ToolchainInfo(
         protoc_target = ctx.attr.protoc,

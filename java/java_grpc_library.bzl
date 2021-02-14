@@ -1,3 +1,6 @@
+"""Generated definition of java_grpc_library."""
+
+load("@rules_java//java:defs.bzl", "java_library")
 load("//java:java_grpc_compile.bzl", "java_grpc_compile")
 
 def java_grpc_library(**kwargs):
@@ -9,7 +12,7 @@ def java_grpc_library(**kwargs):
     )
 
     # Create java library
-    native.java_library(
+    java_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),

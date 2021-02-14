@@ -1,3 +1,5 @@
+"""Generated definition of android_grpc_library."""
+
 load("//android:android_grpc_compile.bzl", "android_grpc_compile")
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 

@@ -1,3 +1,5 @@
+"""Generated definition of go_grpc_library."""
+
 load("//go:go_proto_library.bzl", "PROTO_DEPS")
 load("//go:go_grpc_compile.bzl", "go_grpc_compile")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")

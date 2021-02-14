@@ -1,3 +1,5 @@
+"""Plugin rules definition for rules_proto_grpc."""
+
 load("//internal:providers.bzl", "ProtoPluginInfo")
 
 def _proto_plugin_impl(ctx):

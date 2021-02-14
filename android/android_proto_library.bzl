@@ -1,3 +1,5 @@
+"""Generated definition of android_proto_library."""
+
 load("//android:android_proto_compile.bzl", "android_proto_compile")
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 

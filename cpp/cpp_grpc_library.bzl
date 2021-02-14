@@ -1,3 +1,6 @@
+"""Generated definition of cpp_grpc_library."""
+
+load("@rules_cc//cc:defs.bzl", "cc_library")
 load("//cpp:cpp_grpc_compile.bzl", "cpp_grpc_compile")
 
 def cpp_grpc_library(**kwargs):
@@ -9,7 +12,7 @@ def cpp_grpc_library(**kwargs):
     )
 
     # Create cpp library
-    native.cc_library(
+    cc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),

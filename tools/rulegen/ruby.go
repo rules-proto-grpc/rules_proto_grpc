@@ -52,7 +52,6 @@ def {{ .Rule.Name }}(**kwargs):
     )
 
     # Create {{ .Lang.Name }} library
-    print(native.package_name())
     ruby_library(
         name = kwargs.get("name"),
         srcs = [name_pb],

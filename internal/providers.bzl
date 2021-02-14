@@ -1,3 +1,5 @@
+"""Provider definitions for rules_proto_grpc."""
+
 ProtoPluginInfo = provider(fields = {
     "name": "The proto plugin name",
     "options": "A list of options to pass to the compiler for this plugin",

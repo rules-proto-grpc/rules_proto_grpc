@@ -1,6 +1,7 @@
 package main
 
-var cppLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+var cppLibraryRuleTemplateString = `load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
@@ -13,7 +14,7 @@ def {{ .Rule.Name }}(**kwargs):
 
 var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
-    native.cc_library(
+    cc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
@@ -28,7 +29,7 @@ PROTO_DEPS = [
 
 var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
-    native.cc_library(
+    cc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),

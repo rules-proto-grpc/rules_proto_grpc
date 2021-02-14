@@ -1,3 +1,5 @@
+"""Generated definition of nodejs_proto_library."""
+
 load("//nodejs:nodejs_proto_compile.bzl", "nodejs_proto_compile")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 

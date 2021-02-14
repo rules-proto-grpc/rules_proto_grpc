@@ -1,5 +1,5 @@
 load("//ruby:defs.bzl", "ruby_grpc_library")
-load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_binary", "ruby_library")
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_binary")
 
 ruby_grpc_library(
     name = "routeguide",

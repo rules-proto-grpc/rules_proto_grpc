@@ -1,3 +1,5 @@
+"""Generated definition of swift_proto_library."""
+
 load("//swift:swift_proto_compile.bzl", "swift_proto_compile")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 

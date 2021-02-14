@@ -1,3 +1,5 @@
+"""Common dependencies for rules_proto_grpc Go rules."""
+
 load(
     "//:repositories.bzl",
     "io_bazel_rules_go",
@@ -5,7 +7,7 @@ load(
 )
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
-def go_repos(**kwargs):
+def go_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
     io_bazel_rules_go(**kwargs)
 

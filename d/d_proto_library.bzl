@@ -1,3 +1,5 @@
+"""Generated definition of d_proto_library."""
+
 load("//d:d_proto_compile.bzl", "d_proto_compile")
 load("@io_bazel_rules_d//d:d.bzl", "d_library")
 
