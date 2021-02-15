@@ -137,8 +137,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.2.0",
-        "sha256": "4082a4872c16d9d833a16a87b0b3ee887249d0a1af0daa679d83b65f5c0fbeee",
+        "ref": "11e640b79ca3a51ef56a5f0e51931ebbc2815d6b",  # TODO: Non-merge PR: pending on https://github.com/grpc-ecosystem/grpc-gateway/pull/1972
+        "sha256": "94997b7144a2d256c665e2c167f3d8051c8e15feef81b941960c999b50f0e975",
     },
 
     # gRPC web
