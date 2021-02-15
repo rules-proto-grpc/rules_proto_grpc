@@ -123,8 +123,6 @@ nodejs_grpc_compile(
 
 ## `nodejs_proto_library`
 
-> NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
-
 Generates a Node.js protobuf library using `js_library` from `rules_nodejs`
 
 ### `WORKSPACE`
@@ -180,8 +178,6 @@ nodejs_proto_library(
 ---
 
 ## `nodejs_grpc_library`
-
-> NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
 
 Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`
 

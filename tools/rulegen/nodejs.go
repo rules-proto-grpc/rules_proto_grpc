@@ -95,7 +95,6 @@ func makeNode() *Language {
 				Doc:              "Generates a Node.js protobuf library using `js_library` from `rules_nodejs`",
 				Attrs:            libraryRuleAttrs,
 				SkipTestPlatforms: []string{},
-				Experimental:     true,
 			},
 			&Rule{
 				Name:             "nodejs_grpc_library",
@@ -106,7 +105,6 @@ func makeNode() *Language {
 				Doc:              "Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`",
 				Attrs:            libraryRuleAttrs,
 				SkipTestPlatforms: []string{},
-				Experimental:     true,
 			},
 		},
 	}
