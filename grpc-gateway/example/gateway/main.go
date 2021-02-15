@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/golang/glog"
-	gwruntime "grpc-gateway/v2/runtime"
+	gwruntime "github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 )
 
 // Endpoint describes a gRPC endpoint
@@ -21,11 +21,11 @@ type Options struct {
 	// GRPCServer defines an endpoint of a gRPC service
 	GRPCServer Endpoint
 
-	// SwaggerDir is a path to a directory from which the server
-	// serves swagger specs.
-	SwaggerDir string
+	// OpenAPIDir is a path to a directory from which the server
+	// serves OpenAPI specs.
+	OpenAPIDir string
 
-	// Mux is a list of options to be passed to the grpc-gateway multiplexer
+	// Mux is a list of options to be passed to the gRPC-Gateway multiplexer
 	Mux []gwruntime.ServeMuxOption
 }
 
@@ -47,7 +47,7 @@ func Run(ctx context.Context, opts Options) error {
 	}()
 
 	mux := http.NewServeMux()
-	mux.HandleFunc("/swagger/", swaggerServer(opts.SwaggerDir))
+	mux.HandleFunc("/openapiv2/", openAPIServer(opts.OpenAPIDir))
 	mux.HandleFunc("/healthz", healthzServer(conn))
 
 	gw, err := newGateway(ctx, conn, opts.Mux)
