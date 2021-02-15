@@ -10,7 +10,8 @@ def java_proto_library(**kwargs):
     java_proto_compile(
         name = name_pb,
         **{
-            k: v for (k, v) in kwargs.items()
+            k: v
+            for (k, v) in kwargs.items()
             if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
         }  # Forward args
     )

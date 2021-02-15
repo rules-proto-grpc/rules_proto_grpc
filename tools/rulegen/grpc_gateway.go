@@ -38,9 +38,12 @@ def {{ .Rule.Name }}(**kwargs):
         name = name_pb,
         prefix_path = kwargs.get("prefix_path", kwargs.get("importpath", "")),
         **{
-            k: v for (k, v) in kwargs.items()
+            k: v
+            for (k, v) in kwargs.items()
             if k in ["protos" if "protos" in kwargs else "deps"] + [
-                key for key in proto_compile_attrs.keys() if key != "prefix_path"
+                key
+                for key in proto_compile_attrs.keys()
+                if key != "prefix_path"
             ]
         }  # Forward args
     )
