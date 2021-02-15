@@ -33,15 +33,7 @@ def {{ .Rule.Name }}(**kwargs):
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
-        suppress = [
-            "JSC_LATE_PROVIDE_ERROR",
-            "JSC_UNDEFINED_VARIABLE",
-            "JSC_IMPLICITLY_NULLABLE_JSDOC",
-            "JSC_STRICT_INEXISTENT_PROPERTY",
-            "JSC_POSSIBLE_INEXISTENT_PROPERTY",
-            "JSC_UNRECOGNIZED_TYPE_ERROR",
-            "JSC_TYPE_MISMATCH",
-        ],
+        suppress = [],
     )
 
 PROTO_DEPS = [
