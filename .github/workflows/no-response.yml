@@ -1,7 +1,7 @@
 name: Close issues with no response
 on:
   schedule:
-    - cron: '30 19 * * *'
+    - cron: '00 20 * * *'
 
 jobs:
   mark:
@@ -13,6 +13,7 @@ jobs:
           only-labels: 'more-info-needed'
           stale-issue-label: stale
           skip-stale-issue-message: 'true'
+          stale-issue-message: 'nil'  # Not used, but if absent skip-stale-issue-message is not applied
           close-issue-message: >
             This issue has been automatically closed because there has been no response
             to our request for more information from the original author. With only the
