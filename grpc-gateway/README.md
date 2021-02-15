@@ -49,7 +49,7 @@ load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_compile")
 
 gateway_grpc_compile(
     name = "api_gateway_grpc",
-    deps = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
+    protos = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
 )
 ```
 
@@ -112,7 +112,7 @@ load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_openapiv2_compile")
 
 gateway_openapiv2_compile(
     name = "api_gateway_grpc",
-    deps = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
+    protos = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
 )
 ```
 
@@ -174,7 +174,7 @@ load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_library")
 gateway_grpc_library(
     name = "api_gateway_library",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api",
-    deps = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
+    protos = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
 )
 ```
 

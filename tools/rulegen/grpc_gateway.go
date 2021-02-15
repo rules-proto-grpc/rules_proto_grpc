@@ -68,7 +68,7 @@ var grpcGatewayCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{
 
 {{ .Rule.Name }}(
     name = "api_gateway_grpc",
-    deps = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
+    protos = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
 )`)
 
 var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
@@ -76,7 +76,7 @@ var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{
 {{ .Rule.Name }}(
     name = "api_gateway_library",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api",
-    deps = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
+    protos = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
 )`)
 
 func makeGrpcGateway() *Language {
