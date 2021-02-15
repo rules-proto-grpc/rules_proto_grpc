@@ -97,6 +97,8 @@ func action(c *cli.Context) error {
 		makeCsharp(),
 		makeD(),
 		makeGo(),
+		makeGrpcGateway(),
+		makeGrpcWeb(),
 		makeJava(),
 		makeNode(),
 		makeObjc(),
@@ -106,9 +108,6 @@ func action(c *cli.Context) error {
 		makeRust(),
 		makeScala(),
 		makeSwift(),
-
-		makeGrpcGateway(),
-		makeGrpcWeb(),
 	}
 
 	for _, lang := range languages {

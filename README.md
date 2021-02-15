@@ -152,6 +152,14 @@ required.
 | [Go](/go) | [go_grpc_compile](/go#go_grpc_compile) | Generates Go protobuf+gRPC `.go` artifacts ([example](/example/go/go_grpc_compile)) |
 | [Go](/go) | [go_proto_library](/go#go_proto_library) | Generates a Go protobuf library using `go_library` from `rules_go` ([example](/example/go/go_proto_library)) |
 | [Go](/go) | [go_grpc_library](/go#go_grpc_library) | Generates a Go protobuf+gRPC library using `go_library` from `rules_go` ([example](/example/go/go_grpc_library)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_grpc_compile](/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/grpc-gateway/gateway_grpc_compile)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_openapiv2_compile](/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/grpc-gateway/gateway_openapiv2_compile)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_grpc_library](/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/grpc-gateway/gateway_grpc_library)) |
+| [gRPC-Web](/grpc-web) | [closure_grpc_compile](/grpc-web#closure_grpc_compile) | Generates Closure *.js protobuf+gRPC files ([example](/example/grpc-web/closure_grpc_compile)) |
+| [gRPC-Web](/grpc-web) | [commonjs_grpc_compile](/grpc-web#commonjs_grpc_compile) | Generates CommonJS *.js protobuf+gRPC files ([example](/example/grpc-web/commonjs_grpc_compile)) |
+| [gRPC-Web](/grpc-web) | [commonjs_dts_grpc_compile](/grpc-web#commonjs_dts_grpc_compile) | Generates commonjs_dts *.js protobuf+gRPC files ([example](/example/grpc-web/commonjs_dts_grpc_compile)) |
+| [gRPC-Web](/grpc-web) | [ts_grpc_compile](/grpc-web#ts_grpc_compile) | Generates CommonJS *.ts protobuf+gRPC files ([example](/example/grpc-web/ts_grpc_compile)) |
+| [gRPC-Web](/grpc-web) | [closure_grpc_library](/grpc-web#closure_grpc_library) | Generates protobuf closure library *.js files ([example](/example/grpc-web/closure_grpc_library)) |
 | [Java](/java) | [java_proto_compile](/java#java_proto_compile) | Generates a Java protobuf srcjar artifact ([example](/example/java/java_proto_compile)) |
 | [Java](/java) | [java_grpc_compile](/java#java_grpc_compile) | Generates a Java protobuf+gRPC srcjar artifact ([example](/example/java/java_grpc_compile)) |
 | [Java](/java) | [java_proto_library](/java#java_proto_library) | Generates a Java protobuf library using `java_library` ([example](/example/java/java_proto_library)) |
@@ -187,14 +195,6 @@ required.
 | [Swift](/swift) | [swift_grpc_compile](/swift#swift_grpc_compile) | Generates Swift protobuf+gRPC `.swift` artifacts ([example](/example/swift/swift_grpc_compile)) |
 | [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library using `swift_library` from `rules_swift` ([example](/example/swift/swift_proto_library)) |
 | [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift` ([example](/example/swift/swift_grpc_library)) |
-| [grpc-gateway](/grpc-gateway) | [gateway_grpc_compile](/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/grpc-gateway/gateway_grpc_compile)) |
-| [grpc-gateway](/grpc-gateway) | [gateway_openapiv2_compile](/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/grpc-gateway/gateway_openapiv2_compile)) |
-| [grpc-gateway](/grpc-gateway) | [gateway_grpc_library](/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/grpc-gateway/gateway_grpc_library)) |
-| [gRPC-Web](/grpc-web) | [closure_grpc_compile](/grpc-web#closure_grpc_compile) | Generates Closure *.js protobuf+gRPC files ([example](/example/grpc-web/closure_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [commonjs_grpc_compile](/grpc-web#commonjs_grpc_compile) | Generates CommonJS *.js protobuf+gRPC files ([example](/example/grpc-web/commonjs_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [commonjs_dts_grpc_compile](/grpc-web#commonjs_dts_grpc_compile) | Generates commonjs_dts *.js protobuf+gRPC files ([example](/example/grpc-web/commonjs_dts_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [ts_grpc_compile](/grpc-web#ts_grpc_compile) | Generates CommonJS *.ts protobuf+gRPC files ([example](/example/grpc-web/ts_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [closure_grpc_library](/grpc-web#closure_grpc_library) | Generates protobuf closure library *.js files ([example](/example/grpc-web/closure_grpc_library)) |
 
 ## Example Usage
 
