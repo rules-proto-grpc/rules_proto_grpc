@@ -320,6 +320,15 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("| `%s` | `%s` | %t | `%s`    | %s          |", attr.Name, attr.Type, attr.Mandatory, attr.Default, attr.Doc)
 		}
 		out.ln()
+
+		if len(rule.Plugins) > 0 {
+			out.w("### Plugins")
+			out.ln()
+			for _, plugin := range rule.Plugins {
+				out.w("- `@rules_proto_grpc%s`", plugin)
+			}
+			out.ln()
+		}
 	}
 
 	out.MustWrite(filepath.Join(dir, lang.Dir, "README.md"))

@@ -54,6 +54,10 @@ cpp_proto_compile(
 | `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 
+### Plugins
+
+- `@rules_proto_grpc//cpp:cpp_plugin`
+
 ---
 
 ## `cpp_grpc_compile`
@@ -97,6 +101,11 @@ cpp_grpc_compile(
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+
+### Plugins
+
+- `@rules_proto_grpc//cpp:cpp_plugin`
+- `@rules_proto_grpc//cpp:grpc_cpp_plugin`
 
 ---
 
