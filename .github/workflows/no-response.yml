@@ -1,10 +1,10 @@
-name: 'Close issues with no response'
+name: Close issues with no response
 on:
   schedule:
-    - cron: '5 19 * * *'
+    - cron: '30 19 * * *'
 
 jobs:
-  stale:
+  mark:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v3
@@ -12,7 +12,7 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           only-labels: 'more-info-needed'
           stale-issue-label: stale
-          skip-stale-issue-message: true
+          skip-stale-issue-message: 'true'
           close-issue-message: >
             This issue has been automatically closed because there has been no response
             to our request for more information from the original author. With only the
@@ -23,5 +23,5 @@ jobs:
           days-before-close: 5
           days-before-pr-stale: -1  # Never mark PRs stale
           days-before-pr-close: -1  # Never close PRs
-          remove-stale-when-updated: true
-          debug-only: true
+          remove-stale-when-updated: 'true'
+          debug-only: 'true'
