@@ -126,7 +126,6 @@ func makeScala() *Language {
 				Doc:              "Generates Scala protobuf+gRPC `.jar` artifacts",
 				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
-				Experimental:     true,
 			},
 			&Rule{
 				Name:             "scala_proto_library",
@@ -147,7 +146,6 @@ func makeScala() *Language {
 				Doc:              "Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`",
 				Attrs:            javaLibraryRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
-				Experimental:     true,
 			},
 		},
 	}

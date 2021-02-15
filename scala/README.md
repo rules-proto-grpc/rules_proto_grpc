@@ -78,8 +78,6 @@ scala_proto_compile(
 
 ## `scala_grpc_compile`
 
-> NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
-
 Generates Scala protobuf+gRPC `.jar` artifacts
 
 ### `WORKSPACE`
@@ -208,8 +206,6 @@ scala_proto_library(
 ---
 
 ## `scala_grpc_library`
-
-> NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
 
 Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`
 
