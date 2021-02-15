@@ -12,6 +12,7 @@ load(
 swift_rules_dependencies()`)
 
 var swiftProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -19,7 +20,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -37,6 +38,7 @@ PROTO_DEPS = [
 ]`)
 
 var swiftGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -44,7 +46,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library

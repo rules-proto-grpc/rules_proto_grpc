@@ -27,6 +27,7 @@ load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
 go_repositories()`)
 
 var grpcGatewayLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:gateway_grpc_compile.bzl", "gateway_grpc_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("//go:go_grpc_library.bzl", "GRPC_DEPS")
 
@@ -35,8 +36,13 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     gateway_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        prefix_path = kwargs.get("importpath", ""),
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        prefix_path = kwargs.get("prefix_path", kwargs.get("importpath", "")),
+        **{
+            k: v for (k, v) in kwargs.items()
+            if k in ["protos" if "protos" in kwargs else "deps"] + [
+                key for key in proto_compile_attrs.keys() if key != "prefix_path"
+            ]
+        }  # Forward args
     )
 
     # Create go library

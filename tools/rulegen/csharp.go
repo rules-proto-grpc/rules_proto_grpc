@@ -54,6 +54,7 @@ load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packag
 nuget_rules_proto_grpc_packages()`)
 
 var csharpLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -61,7 +62,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 `
 

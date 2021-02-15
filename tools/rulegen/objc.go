@@ -1,14 +1,15 @@
 package main
 
-var objcLibraryRuleTemplateString = `load("@rules_cc//cc:defs.bzl", "objc_library")
-load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+var objcLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
+load("@rules_cc//cc:defs.bzl", "objc_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 `
 

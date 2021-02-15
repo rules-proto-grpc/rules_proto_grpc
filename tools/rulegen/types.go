@@ -97,7 +97,15 @@ type Attr struct {
 	Mandatory bool
 }
 
-type ruleData struct {
+// Templating types
+type CommonTemplatingFields struct {
+	ArgsForwardingSnippet string
+}
+
+var commonTemplatingFields = &CommonTemplatingFields{argsForwardingSnippet}
+
+type RuleTemplatingData struct {
 	Lang *Language
 	Rule *Rule
+	Common *CommonTemplatingFields
 }

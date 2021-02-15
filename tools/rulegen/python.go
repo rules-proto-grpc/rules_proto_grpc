@@ -25,6 +25,7 @@ pip_install(
 )`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -32,7 +33,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -50,6 +51,7 @@ PROTO_DEPS = [
 ]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -57,7 +59,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -76,6 +78,7 @@ GRPC_DEPS = [
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -83,7 +86,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_grpclib_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library

@@ -1,6 +1,7 @@
 """Generated definition of swift_proto_library."""
 
 load("//swift:swift_proto_compile.bzl", "swift_proto_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 def swift_proto_library(**kwargs):
@@ -8,7 +9,10 @@ def swift_proto_library(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     swift_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        **{
+            k: v for (k, v) in kwargs.items()
+            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+        }  # Forward args
     )
 
     # Create swift library

@@ -13,6 +13,7 @@ load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 rust_repositories()`)
 
 var rustLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("//{{ .Lang.Dir }}:rust_proto_lib.bzl", "rust_proto_lib")
 load("@rules_rust//rust:rust.bzl", "rust_library")
 
@@ -22,7 +23,7 @@ def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
     name_lib = kwargs.get("name") + "_lib"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 `
 

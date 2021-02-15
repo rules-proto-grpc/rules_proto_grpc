@@ -1,6 +1,7 @@
 """Generated definition of ruby_proto_library."""
 
 load("//ruby:ruby_proto_compile.bzl", "ruby_proto_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_library")
 
 def ruby_proto_library(**kwargs):
@@ -8,7 +9,10 @@ def ruby_proto_library(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     ruby_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        **{
+            k: v for (k, v) in kwargs.items()
+            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+        }  # Forward args
     )
 
     # Create ruby library

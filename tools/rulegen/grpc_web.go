@@ -13,6 +13,7 @@ rules_closure_dependencies(
 rules_closure_toolchains()`)
 
 var grpcWebGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:closure_grpc_compile.bzl", "closure_grpc_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("//closure:closure_proto_compile.bzl", "closure_proto_compile")
 load("@io_bazel_rules_closure//closure:defs.bzl", "closure_js_library")
 
@@ -22,12 +23,12 @@ def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
     name_pb_grpc = kwargs.get("name") + "_pb_grpc"
     closure_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     closure_grpc_compile(
         name = name_pb_grpc,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create closure library
