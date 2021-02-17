@@ -7,12 +7,12 @@ rules_proto_grpc_{{ .Lang.Name }}_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "nodejs_modules",
-    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+    name = "js_modules",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )`)
 
-var nodeLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+var nodeProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
@@ -23,9 +23,7 @@ def {{ .Rule.Name }}(**kwargs):
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
     )
-`
 
-var nodeProtoLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     js_library(
         name = kwargs.get("name"),
@@ -37,10 +35,21 @@ var nodeProtoLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + 
     )
 
 PROTO_DEPS = [
-    "@nodejs_modules//google-protobuf",
+    "@js_modules//google-protobuf",
 ]`)
 
-var nodeGrpcLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
+var nodeGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:nodejs_{{ .Rule.Kind }}_compile.bzl", "nodejs_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
+load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
+
+def {{ .Rule.Name }}(**kwargs):
+    # Compile protos
+    name_pb = kwargs.get("name") + "_pb"
+    nodejs_{{ .Rule.Kind }}_compile(
+        name = name_pb,
+        {{ .Common.ArgsForwardingSnippet }}
+    )
+
     # Create {{ .Lang.Name }} library
     js_library(
         name = kwargs.get("name"),
@@ -52,50 +61,50 @@ var nodeGrpcLibraryRuleTemplate = mustTemplate(nodeLibraryRuleTemplateString + `
     )
 
 GRPC_DEPS = [
-    "@nodejs_modules//google-protobuf",
-    "@nodejs_modules//@grpc/grpc-js",
+    "@js_modules//google-protobuf",
+    "@js_modules//@grpc/grpc-js",
 ]`)
 
-func makeNode() *Language {
+func makeJavaScript() *Language {
 	return &Language{
-		Dir:   "nodejs",
-		Name:  "nodejs",
-		DisplayName: "Node.js",
-		Notes: mustTemplate("Rules for generating Node.js protobuf and gRPC `.js` files using standard Protocol Buffers and gRPC."),
+		Dir:   "js",
+		Name:  "js",
+		DisplayName: "JavaScript",
+		Notes: mustTemplate("Rules for generating JavaScript protobuf and gRPC `.js` and `.d.ts` files using standard Protocol Buffers and gRPC."),
 		Flags: commonLangFlags,
-		SkipTestPlatforms: []string{},
+		Aliases: map[string]string{
+			"nodejs_proto_compile": "js_proto_compile",
+			"nodejs_proto_library": "js_proto_library",
+		},
 		Rules: []*Rule{
 			&Rule{
-				Name:             "nodejs_proto_compile",
+				Name:             "js_proto_compile",
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//nodejs:nodejs_plugin"},
+				Plugins:          []string{"//js:js_plugin"},
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Node.js protobuf `.js` artifacts",
+				Doc:              "Generates JavaScript protobuf `.js` and `.d.ts` artifacts",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{},
 			},
 			&Rule{
 				Name:             "nodejs_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//nodejs:nodejs_plugin", "//nodejs:grpc_nodejs_plugin"},
+				Plugins:          []string{"//js:js_plugin", "//js:grpc_nodejs_plugin"},
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Node.js protobuf+gRPC `.js` artifacts",
+				Doc:              "Generates JavaScript protobuf + Node.js gRPC `.js` and `.d.ts` artifacts",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{},
 			},
 			&Rule{
-				Name:             "nodejs_proto_library",
+				Name:             "js_proto_library",
 				Kind:             "proto",
 				Implementation:   nodeProtoLibraryRuleTemplate,
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a Node.js protobuf library using `js_library` from `rules_nodejs`",
+				Doc:              "Generates a JavaScript protobuf library using `js_library` from `rules_nodejs`",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{},
 			},
 			&Rule{
 				Name:             "nodejs_grpc_library",
@@ -105,7 +114,6 @@ func makeNode() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{},
 			},
 		},
 	}

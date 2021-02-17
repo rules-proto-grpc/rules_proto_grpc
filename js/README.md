@@ -1,53 +1,53 @@
-# Node.js rules
+# JavaScript rules
 
-Rules for generating Node.js protobuf and gRPC `.js` files using standard Protocol Buffers and gRPC.
+Rules for generating JavaScript protobuf and gRPC `.js` and `.d.ts` files using standard Protocol Buffers and gRPC.
 
 | Rule | Description |
 | ---: | :--- |
-| [nodejs_proto_compile](#nodejs_proto_compile) | Generates Node.js protobuf `.js` artifacts |
-| [nodejs_grpc_compile](#nodejs_grpc_compile) | Generates Node.js protobuf+gRPC `.js` artifacts |
-| [nodejs_proto_library](#nodejs_proto_library) | Generates a Node.js protobuf library using `js_library` from `rules_nodejs` |
+| [js_proto_compile](#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` artifacts |
+| [nodejs_grpc_compile](#nodejs_grpc_compile) | Generates JavaScript protobuf + Node.js gRPC `.js` and `.d.ts` artifacts |
+| [js_proto_library](#js_proto_library) | Generates a JavaScript protobuf library using `js_library` from `rules_nodejs` |
 | [nodejs_grpc_library](#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs` |
 
 ---
 
-## `nodejs_proto_compile`
+## `js_proto_compile`
 
-Generates Node.js protobuf `.js` artifacts
+Generates JavaScript protobuf `.js` and `.d.ts` artifacts
 
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos = "nodejs_repos")
+load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
 
-rules_proto_grpc_nodejs_repos()
+rules_proto_grpc_js_repos()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "nodejs_modules",
-    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+    name = "js_modules",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )
 ```
 
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_proto_compile")
+load("@rules_proto_grpc//js:defs.bzl", "js_proto_compile")
 
-nodejs_proto_compile(
-    name = "person_nodejs_proto",
+js_proto_compile(
+    name = "person_js_proto",
     protos = ["@rules_proto_grpc//example/proto:person_proto"],
 )
 
-nodejs_proto_compile(
-    name = "place_nodejs_proto",
+js_proto_compile(
+    name = "place_js_proto",
     protos = ["@rules_proto_grpc//example/proto:place_proto"],
 )
 
-nodejs_proto_compile(
-    name = "thing_nodejs_proto",
+js_proto_compile(
+    name = "thing_js_proto",
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
@@ -64,42 +64,42 @@ nodejs_proto_compile(
 
 ### Plugins
 
-- `@rules_proto_grpc//nodejs:nodejs_plugin`
+- `@rules_proto_grpc//js:js_plugin`
 
 ---
 
 ## `nodejs_grpc_compile`
 
-Generates Node.js protobuf+gRPC `.js` artifacts
+Generates JavaScript protobuf + Node.js gRPC `.js` and `.d.ts` artifacts
 
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos = "nodejs_repos")
+load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
 
-rules_proto_grpc_nodejs_repos()
+rules_proto_grpc_js_repos()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "nodejs_modules",
-    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+    name = "js_modules",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )
 ```
 
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_grpc_compile")
+load("@rules_proto_grpc//js:defs.bzl", "nodejs_grpc_compile")
 
 nodejs_grpc_compile(
-    name = "thing_nodejs_grpc",
+    name = "thing_js_grpc",
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 
 nodejs_grpc_compile(
-    name = "greeter_nodejs_grpc",
+    name = "greeter_js_grpc",
     protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
@@ -116,50 +116,50 @@ nodejs_grpc_compile(
 
 ### Plugins
 
-- `@rules_proto_grpc//nodejs:nodejs_plugin`
-- `@rules_proto_grpc//nodejs:grpc_nodejs_plugin`
+- `@rules_proto_grpc//js:js_plugin`
+- `@rules_proto_grpc//js:grpc_nodejs_plugin`
 
 ---
 
-## `nodejs_proto_library`
+## `js_proto_library`
 
-Generates a Node.js protobuf library using `js_library` from `rules_nodejs`
+Generates a JavaScript protobuf library using `js_library` from `rules_nodejs`
 
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos = "nodejs_repos")
+load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
 
-rules_proto_grpc_nodejs_repos()
+rules_proto_grpc_js_repos()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "nodejs_modules",
-    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+    name = "js_modules",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )
 ```
 
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_proto_library")
+load("@rules_proto_grpc//js:defs.bzl", "js_proto_library")
 
-nodejs_proto_library(
-    name = "person_nodejs_proto",
+js_proto_library(
+    name = "person_js_proto",
     protos = ["@rules_proto_grpc//example/proto:person_proto"],
-    deps = ["place_nodejs_proto"],
+    deps = ["place_js_proto"],
 )
 
-nodejs_proto_library(
-    name = "place_nodejs_proto",
+js_proto_library(
+    name = "place_js_proto",
     protos = ["@rules_proto_grpc//example/proto:place_proto"],
-    deps = ["thing_nodejs_proto"],
+    deps = ["thing_js_proto"],
 )
 
-nodejs_proto_library(
-    name = "thing_nodejs_proto",
+js_proto_library(
+    name = "thing_js_proto",
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
@@ -184,33 +184,33 @@ Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:repositories.bzl", rules_proto_grpc_nodejs_repos = "nodejs_repos")
+load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
 
-rules_proto_grpc_nodejs_repos()
+rules_proto_grpc_js_repos()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "nodejs_modules",
-    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+    name = "js_modules",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )
 ```
 
 ### `BUILD.bazel`
 
 ```starlark
-load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_grpc_library")
+load("@rules_proto_grpc//js:defs.bzl", "nodejs_grpc_library")
 
 nodejs_grpc_library(
-    name = "thing_nodejs_grpc",
+    name = "thing_js_grpc",
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 
 nodejs_grpc_library(
-    name = "greeter_nodejs_grpc",
+    name = "greeter_js_grpc",
     protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-    deps = ["thing_nodejs_grpc"],
+    deps = ["thing_js_grpc"],
 )
 ```
 

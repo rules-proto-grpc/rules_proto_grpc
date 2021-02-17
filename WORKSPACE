@@ -179,18 +179,18 @@ java_repos()
 # grpc_java_repositories already called above in android
 
 #
-# NodeJS
+# JavaScript
 #
-load("//nodejs:repositories.bzl", "nodejs_repos")
+load("//js:repositories.bzl", "js_repos")
 
-nodejs_repos()
+js_repos()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "nodejs_modules",
-    package_json = "@rules_proto_grpc//nodejs:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//nodejs:requirements/yarn.lock",
+    name = "js_modules",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )
 
 #

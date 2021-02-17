@@ -1,7 +1,7 @@
 load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "nodejs_plugin",
+    name = "js_plugin",
     exclusions = [
         "google/protobuf",
     ],
@@ -23,6 +23,6 @@ proto_plugin(
         "grpc_js",
     ],
     output_directory = True,
-    tool = "@nodejs_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
+    tool = "@js_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
     visibility = ["//visibility:public"],
 )

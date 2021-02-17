@@ -1,6 +1,6 @@
 """Generated definition of nodejs_grpc_library."""
 
-load("//nodejs:nodejs_grpc_compile.bzl", "nodejs_grpc_compile")
+load("//js:nodejs_grpc_compile.bzl", "nodejs_grpc_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
@@ -16,7 +16,7 @@ def nodejs_grpc_library(**kwargs):
         }  # Forward args
     )
 
-    # Create nodejs library
+    # Create js library
     js_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
@@ -27,6 +27,6 @@ def nodejs_grpc_library(**kwargs):
     )
 
 GRPC_DEPS = [
-    "@nodejs_modules//google-protobuf",
-    "@nodejs_modules//@grpc/grpc-js",
+    "@js_modules//google-protobuf",
+    "@js_modules//@grpc/grpc-js",
 ]

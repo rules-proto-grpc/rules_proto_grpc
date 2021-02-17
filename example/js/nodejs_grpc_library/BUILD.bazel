@@ -1,12 +1,12 @@
-load("@rules_proto_grpc//nodejs:defs.bzl", "nodejs_grpc_library")
+load("@rules_proto_grpc//js:defs.bzl", "nodejs_grpc_library")
 
 nodejs_grpc_library(
-    name = "thing_nodejs_grpc",
+    name = "thing_js_grpc",
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 
 nodejs_grpc_library(
-    name = "greeter_nodejs_grpc",
+    name = "greeter_js_grpc",
     protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-    deps = ["thing_nodejs_grpc"],
+    deps = ["thing_js_grpc"],
 )

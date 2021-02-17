@@ -37,7 +37,7 @@
     - [grpc-gateway](/grpc-gateway/README.md)
     - [gRPC-Web](/grpc-web/README.md)
     - [Java](/java/README.md)
-    - [Node.js](/nodejs/README.md)
+    - [JavaScript](/js/README.md)
     - [Objective-C](/objc/README.md)
     - [PHP](/php/README.md)
     - [Python](/python/README.md)

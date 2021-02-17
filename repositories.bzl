@@ -166,7 +166,7 @@ VERSIONS = {
         "sha256": "baa842cbc67aec78408aec3e480b2e94dbdd14d6b0170d3a3ee14a0e1a5bb95f",
     },
 
-    # NodeJS
+    # JavaScript
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
         "type": "http",
@@ -487,7 +487,7 @@ def rules_jvm_external(**kwargs):
     _generic_dependency("rules_jvm_external", **kwargs)
 
 #
-# NodeJS
+# JavaScript
 #
 def build_bazel_rules_nodejs(**kwargs):
     _generic_dependency("build_bazel_rules_nodejs", **kwargs)

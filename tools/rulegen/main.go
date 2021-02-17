@@ -100,7 +100,7 @@ func action(c *cli.Context) error {
 		makeGrpcGateway(),
 		makeGrpcWeb(),
 		makeJava(),
-		makeNode(),
+		makeJavaScript(),
 		makeObjc(),
 		makePhp(),
 		makePython(),

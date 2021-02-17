@@ -21,10 +21,10 @@ rust_raze:
 	sed -i -e 's/io_bazel_rules_rust/rules_rust/g' rust/raze/remote/*.bazel;
 
 
-# Run yarn to upgrade the nodejs dependencies
+# Run yarn to upgrade the js dependencies
 .PHONY: yarn_upgrade
 yarn_upgrade:
-	cd nodejs/requirements; \
+	cd js/requirements; \
 	yarn install; \
 
 
@@ -87,7 +87,7 @@ pending_clients:
 	bazel build \
 		//android/example/routeguide:client \
 		//closure/example/routeguide/client \
-		//nodejs/example/routeguide:client \
+		//js/example/routeguide:client \
 		//ruby/example/routeguide:client \
 		//grpc-web/example/routeguide/closure:bundle \
 		//rust/example/routeguide:client
@@ -95,7 +95,7 @@ pending_clients:
 .PHONY: pending_servers
 pending_servers:
 	bazel build \
-		//nodejs/example/routeguide:server \
+		//js/example/routeguide:server \
 		//ruby/example/routeguide:server \
 		//rust/example/routeguide:server
 

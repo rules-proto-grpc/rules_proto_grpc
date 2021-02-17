@@ -1,4 +1,4 @@
-load("//nodejs:defs.bzl", "nodejs_grpc_library")
+load("//js:defs.bzl", "nodejs_grpc_library")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
 nodejs_grpc_library(

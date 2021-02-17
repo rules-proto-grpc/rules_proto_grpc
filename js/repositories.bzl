@@ -1,4 +1,4 @@
-"""Common dependencies for rules_proto_grpc NodeJS rules."""
+"""Common dependencies for rules_proto_grpc JavaScript rules."""
 
 load(
     "//:repositories.bzl",
@@ -6,6 +6,6 @@ load(
     "rules_proto_grpc_repos",
 )
 
-def nodejs_repos(**kwargs):  # buildifier: disable=function-docstring
+def js_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
     build_bazel_rules_nodejs(**kwargs)

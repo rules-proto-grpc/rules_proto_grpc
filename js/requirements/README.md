@@ -1,4 +1,4 @@
-NodeJS protobuf and gRPC dependencies managed by yarn.
+JavaScript protobuf and gRPC dependencies managed by yarn.
 
 To update a dependency:
 

@@ -37,7 +37,7 @@
     - [grpc-gateway](/grpc-gateway/README.md)
     - [gRPC-Web](/grpc-web/README.md)
     - [Java](/java/README.md)
-    - [Node.js](/nodejs/README.md)
+    - [JavaScript](/js/README.md)
     - [Objective-C](/objc/README.md)
     - [PHP](/php/README.md)
     - [Python](/python/README.md)
@@ -164,10 +164,10 @@ required.
 | [Java](/java) | [java_grpc_compile](/java#java_grpc_compile) | Generates a Java protobuf+gRPC srcjar artifact ([example](/example/java/java_grpc_compile)) |
 | [Java](/java) | [java_proto_library](/java#java_proto_library) | Generates a Java protobuf library using `java_library` ([example](/example/java/java_proto_library)) |
 | [Java](/java) | [java_grpc_library](/java#java_grpc_library) | Generates a Java protobuf+gRPC library using `java_library` ([example](/example/java/java_grpc_library)) |
-| [Node.js](/nodejs) | [nodejs_proto_compile](/nodejs#nodejs_proto_compile) | Generates Node.js protobuf `.js` artifacts ([example](/example/nodejs/nodejs_proto_compile)) |
-| [Node.js](/nodejs) | [nodejs_grpc_compile](/nodejs#nodejs_grpc_compile) | Generates Node.js protobuf+gRPC `.js` artifacts ([example](/example/nodejs/nodejs_grpc_compile)) |
-| [Node.js](/nodejs) | [nodejs_proto_library](/nodejs#nodejs_proto_library) | Generates a Node.js protobuf library using `js_library` from `rules_nodejs` ([example](/example/nodejs/nodejs_proto_library)) |
-| [Node.js](/nodejs) | [nodejs_grpc_library](/nodejs#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs` ([example](/example/nodejs/nodejs_grpc_library)) |
+| [JavaScript](/js) | [js_proto_compile](/js#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` artifacts ([example](/example/js/js_proto_compile)) |
+| [JavaScript](/js) | [nodejs_grpc_compile](/js#nodejs_grpc_compile) | Generates JavaScript protobuf + Node.js gRPC `.js` and `.d.ts` artifacts ([example](/example/js/nodejs_grpc_compile)) |
+| [JavaScript](/js) | [js_proto_library](/js#js_proto_library) | Generates a JavaScript protobuf library using `js_library` from `rules_nodejs` ([example](/example/js/js_proto_library)) |
+| [JavaScript](/js) | [nodejs_grpc_library](/js#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs` ([example](/example/js/nodejs_grpc_library)) |
 | [Objective-C](/objc) | [objc_proto_compile](/objc#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` artifacts ([example](/example/objc/objc_proto_compile)) |
 | [Objective-C](/objc) | [objc_grpc_compile](/objc#objc_grpc_compile) | Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts ([example](/example/objc/objc_grpc_compile)) |
 | [Objective-C](/objc) | [objc_proto_library](/objc#objc_proto_library) | Generates an Objective-C protobuf library using `objc_library` ([example](/example/objc/objc_proto_library)) |
