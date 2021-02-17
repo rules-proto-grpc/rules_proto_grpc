@@ -23,8 +23,8 @@ nodejs_grpc_compile_aspect = aspect(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//js:js_plugin"),
-                Label("//js:ts_plugin"),
-                Label("//js:grpc_nodejs_plugin"),
+                Label("//js:grpc_node_plugin"),
+                Label("//js:grpc_node_ts_plugin"),
             ],
         ),
         _prefix = attr.string(
@@ -57,8 +57,8 @@ _rule = rule(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//js:js_plugin"),
-                Label("//js:ts_plugin"),
-                Label("//js:grpc_nodejs_plugin"),
+                Label("//js:grpc_node_plugin"),
+                Label("//js:grpc_node_ts_plugin"),
             ],
         ),
     ),

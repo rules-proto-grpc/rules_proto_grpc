@@ -22,7 +22,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_nodejs_plugin",
+    name = "grpc_node_plugin",
     exclusions = [
         "google/protobuf",
     ],
@@ -31,5 +31,15 @@ proto_plugin(
     ],
     output_directory = True,
     tool = "@js_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_node_ts_plugin",
+    options = [
+        "service=grpc-node",
+    ],
+    output_directory = True,
+    tool = "@js_modules//ts-protoc-gen/bin:protoc-gen-ts",
     visibility = ["//visibility:public"],
 )

@@ -91,7 +91,7 @@ func makeJavaScript() *Language {
 				Name:             "nodejs_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
-				Plugins:          []string{"//js:js_plugin", "//js:ts_plugin", "//js:grpc_nodejs_plugin"},
+				Plugins:          []string{"//js:js_plugin", "//js:grpc_node_plugin", "//js:grpc_node_ts_plugin"},  // Don't need ts_plugin here, as grpc_node_ts_plugin will do both proto and grpc
 				WorkspaceExample: nodeWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates JavaScript protobuf + Node.js gRPC `.js` and `.d.ts` artifacts",

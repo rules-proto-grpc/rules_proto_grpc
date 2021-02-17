@@ -118,8 +118,8 @@ nodejs_grpc_compile(
 ### Plugins
 
 - `@rules_proto_grpc//js:js_plugin`
-- `@rules_proto_grpc//js:ts_plugin`
-- `@rules_proto_grpc//js:grpc_nodejs_plugin`
+- `@rules_proto_grpc//js:grpc_node_plugin`
+- `@rules_proto_grpc//js:grpc_node_ts_plugin`
 
 ---
 
