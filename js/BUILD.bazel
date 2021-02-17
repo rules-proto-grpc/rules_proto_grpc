@@ -15,6 +15,13 @@ proto_plugin(
 )
 
 proto_plugin(
+    name = "ts_plugin",
+    outputs = ["{protopath}_pb.d.ts"],
+    tool = "@js_modules//ts-protoc-gen/bin:protoc-gen-ts",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
     name = "grpc_nodejs_plugin",
     exclusions = [
         "google/protobuf",

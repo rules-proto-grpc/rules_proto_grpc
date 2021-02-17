@@ -65,6 +65,7 @@ js_proto_compile(
 ### Plugins
 
 - `@rules_proto_grpc//js:js_plugin`
+- `@rules_proto_grpc//js:ts_plugin`
 
 ---
 
@@ -117,6 +118,7 @@ nodejs_grpc_compile(
 ### Plugins
 
 - `@rules_proto_grpc//js:js_plugin`
+- `@rules_proto_grpc//js:ts_plugin`
 - `@rules_proto_grpc//js:grpc_nodejs_plugin`
 
 ---

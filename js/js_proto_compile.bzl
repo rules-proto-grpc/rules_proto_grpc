@@ -23,6 +23,7 @@ js_proto_compile_aspect = aspect(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//js:js_plugin"),
+                Label("//js:ts_plugin"),
             ],
         ),
         _prefix = attr.string(
@@ -55,6 +56,7 @@ _rule = rule(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//js:js_plugin"),
+                Label("//js:ts_plugin"),
             ],
         ),
     ),
