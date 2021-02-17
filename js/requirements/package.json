@@ -1,7 +1,8 @@
 {
   "dependencies": {
+    "@grpc/grpc-js": "1.2.6",
     "google-protobuf": "3.14.0",
     "grpc-tools": "1.10.0",
-    "@grpc/grpc-js": "1.2.6"
+    "ts-protoc-gen": "0.14.0"
   }
 }
