@@ -35,7 +35,6 @@
     - [D](/d/README.md)
     - [Go](/go/README.md)
     - [grpc-gateway](/grpc-gateway/README.md)
-    - [gRPC-Web](/grpc-web/README.md)
     - [Java](/java/README.md)
     - [JavaScript](/js/README.md)
     - [Objective-C](/objc/README.md)

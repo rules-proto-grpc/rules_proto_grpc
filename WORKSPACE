@@ -163,13 +163,6 @@ load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
 go_repositories()
 
 #
-# gRPC web
-#
-load("//grpc-web:repositories.bzl", "grpc_web_repos")
-
-grpc_web_repos()
-
-#
 # Java
 #
 load("//java:repositories.bzl", "java_repos")

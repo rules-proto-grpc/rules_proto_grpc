@@ -15,14 +15,14 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
-load("@rules_proto_grpc//grpc-web:repositories.bzl", rules_proto_grpc_grpc_web_repos = "grpc_web_repos")
+load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
 
-rules_proto_grpc_grpc_web_repos()
+rules_proto_grpc_js_repos()
 
-load("@io_bazel_rules_closure//closure:repositories.bzl", "rules_closure_dependencies", "rules_closure_toolchains")
+load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
-rules_closure_dependencies(
-    omit_com_google_protobuf = True,
+yarn_install(
+    name = "js_modules",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )
-
-rules_closure_toolchains()

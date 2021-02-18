@@ -12,7 +12,6 @@ tasks:
     - "//d/..."
     - "//go/..."
     - "//grpc-gateway/..."
-    - "//grpc-web/..."
     - "//java/..."
     - "//js/..."
     - "//php/..."
@@ -110,7 +109,6 @@ tasks:
     - "//d/..."
     - "//go/..."
     - "//grpc-gateway/..."
-    - "//grpc-web/..."
     - "//java/..."
     - "//js/..."
     - "//objc/..."
@@ -599,106 +597,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_grpc_library
-  grpc-web_closure_grpc_compile_ubuntu1804:
-    name: 'grpc-web: closure_grpc_compile'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/closure_grpc_compile
-  grpc-web_closure_grpc_compile_windows:
-    name: 'grpc-web: closure_grpc_compile'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/closure_grpc_compile
-  grpc-web_closure_grpc_compile_macos:
-    name: 'grpc-web: closure_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/closure_grpc_compile
-  grpc-web_commonjs_grpc_compile_ubuntu1804:
-    name: 'grpc-web: commonjs_grpc_compile'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/commonjs_grpc_compile
-  grpc-web_commonjs_grpc_compile_windows:
-    name: 'grpc-web: commonjs_grpc_compile'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/commonjs_grpc_compile
-  grpc-web_commonjs_grpc_compile_macos:
-    name: 'grpc-web: commonjs_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/commonjs_grpc_compile
-  grpc-web_commonjs_dts_grpc_compile_ubuntu1804:
-    name: 'grpc-web: commonjs_dts_grpc_compile'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/commonjs_dts_grpc_compile
-  grpc-web_commonjs_dts_grpc_compile_windows:
-    name: 'grpc-web: commonjs_dts_grpc_compile'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/commonjs_dts_grpc_compile
-  grpc-web_commonjs_dts_grpc_compile_macos:
-    name: 'grpc-web: commonjs_dts_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/commonjs_dts_grpc_compile
-  grpc-web_ts_grpc_compile_ubuntu1804:
-    name: 'grpc-web: ts_grpc_compile'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/ts_grpc_compile
-  grpc-web_ts_grpc_compile_windows:
-    name: 'grpc-web: ts_grpc_compile'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/ts_grpc_compile
-  grpc-web_ts_grpc_compile_macos:
-    name: 'grpc-web: ts_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/ts_grpc_compile
-  grpc-web_closure_grpc_library_ubuntu1804:
-    name: 'grpc-web: closure_grpc_library'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/closure_grpc_library
-  grpc-web_closure_grpc_library_windows:
-    name: 'grpc-web: closure_grpc_library'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/closure_grpc_library
-  grpc-web_closure_grpc_library_macos:
-    name: 'grpc-web: closure_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-web/closure_grpc_library
   java_java_proto_compile_ubuntu1804:
     name: 'java: java_proto_compile'
     platform: ubuntu1804
@@ -799,26 +697,46 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_compile
-  js_nodejs_grpc_compile_ubuntu1804:
-    name: 'js: nodejs_grpc_compile'
+  js_js_grpc_node_compile_ubuntu1804:
+    name: 'js: js_grpc_node_compile'
     platform: ubuntu1804
     build_targets:
       - "//..."
-    working_directory: example/js/nodejs_grpc_compile
-  js_nodejs_grpc_compile_windows:
-    name: 'js: nodejs_grpc_compile'
+    working_directory: example/js/js_grpc_node_compile
+  js_js_grpc_node_compile_windows:
+    name: 'js: js_grpc_node_compile'
     platform: windows
     build_targets:
       - "//..."
-    working_directory: example/js/nodejs_grpc_compile
-  js_nodejs_grpc_compile_macos:
-    name: 'js: nodejs_grpc_compile'
+    working_directory: example/js/js_grpc_node_compile
+  js_js_grpc_node_compile_macos:
+    name: 'js: js_grpc_node_compile'
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
-    working_directory: example/js/nodejs_grpc_compile
+    working_directory: example/js/js_grpc_node_compile
+  js_js_grpc_web_compile_ubuntu1804:
+    name: 'js: js_grpc_web_compile'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/js/js_grpc_web_compile
+  js_js_grpc_web_compile_windows:
+    name: 'js: js_grpc_web_compile'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/js/js_grpc_web_compile
+  js_js_grpc_web_compile_macos:
+    name: 'js: js_grpc_web_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/js/js_grpc_web_compile
   js_js_proto_library_ubuntu1804:
     name: 'js: js_proto_library'
     platform: ubuntu1804
@@ -839,26 +757,46 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_library
-  js_nodejs_grpc_library_ubuntu1804:
-    name: 'js: nodejs_grpc_library'
+  js_js_grpc_node_library_ubuntu1804:
+    name: 'js: js_grpc_node_library'
     platform: ubuntu1804
     build_targets:
       - "//..."
-    working_directory: example/js/nodejs_grpc_library
-  js_nodejs_grpc_library_windows:
-    name: 'js: nodejs_grpc_library'
+    working_directory: example/js/js_grpc_node_library
+  js_js_grpc_node_library_windows:
+    name: 'js: js_grpc_node_library'
     platform: windows
     build_targets:
       - "//..."
-    working_directory: example/js/nodejs_grpc_library
-  js_nodejs_grpc_library_macos:
-    name: 'js: nodejs_grpc_library'
+    working_directory: example/js/js_grpc_node_library
+  js_js_grpc_node_library_macos:
+    name: 'js: js_grpc_node_library'
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
       - "//..."
-    working_directory: example/js/nodejs_grpc_library
+    working_directory: example/js/js_grpc_node_library
+  js_js_grpc_web_library_ubuntu1804:
+    name: 'js: js_grpc_web_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/js/js_grpc_web_library
+  js_js_grpc_web_library_windows:
+    name: 'js: js_grpc_web_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/js/js_grpc_web_library
+  js_js_grpc_web_library_macos:
+    name: 'js: js_grpc_web_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/js/js_grpc_web_library
   objc_objc_proto_compile_macos:
     name: 'objc: objc_proto_compile'
     platform: macos

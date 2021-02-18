@@ -1,5 +1,6 @@
 load("//:defs.bzl", "proto_plugin")
 
+# Proto
 proto_plugin(
     name = "js_plugin",
     exclusions = [
@@ -21,6 +22,7 @@ proto_plugin(
     visibility = ["//visibility:public"],
 )
 
+# grpc-node
 proto_plugin(
     name = "grpc_node_plugin",
     exclusions = [
@@ -41,5 +43,21 @@ proto_plugin(
     ],
     output_directory = True,
     tool = "@js_modules//ts-protoc-gen/bin:protoc-gen-ts",
+    visibility = ["//visibility:public"],
+)
+
+# grpc-web
+proto_plugin(
+    name = "grpc_web_js_plugin",
+    options = [
+        "import_style=commonjs+dts",
+        "mode=grpcweb",
+    ],
+    output_directory = True,
+    tool = select({
+        "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_web_plugin_darwin//file",
+        "@bazel_tools//src/conditions:linux_x86_64": "@grpc_web_plugin_linux//file",
+        "@bazel_tools//src/conditions:windows": "@grpc_web_plugin_windows//file",
+    }),
     visibility = ["//visibility:public"],
 )

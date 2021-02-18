@@ -1,4 +1,4 @@
-"""Generated definition of commonjs_dts_grpc_compile."""
+"""Generated definition of js_grpc_node_compile."""
 
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
@@ -11,8 +11,8 @@ load(
     "proto_compile_impl",
 )
 
-# Create aspect for commonjs_dts_grpc_compile
-commonjs_dts_grpc_compile_aspect = aspect(
+# Create aspect for js_grpc_node_compile
+js_grpc_node_compile_aspect = aspect(
     implementation = proto_compile_aspect_impl,
     provides = [ProtoLibraryAspectNodeInfo],
     attr_aspects = ["deps"],
@@ -22,12 +22,14 @@ commonjs_dts_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//grpc-web:commonjs_dts_plugin"),
+                Label("//js:js_plugin"),
+                Label("//js:grpc_node_plugin"),
+                Label("//js:grpc_node_ts_plugin"),
             ],
         ),
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
-            default = "commonjs_dts_grpc_compile_aspect",
+            default = "js_grpc_node_compile_aspect",
         ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
@@ -41,20 +43,22 @@ _rule = rule(
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [commonjs_dts_grpc_compile_aspect],
+            aspects = [js_grpc_node_compile_aspect],
             doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
         ),
         deps = attr.label_list(
             mandatory = False,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [commonjs_dts_grpc_compile_aspect],
+            aspects = [js_grpc_node_compile_aspect],
             doc = "DEPRECATED: Use protos attr",
         ),
         _plugins = attr.label_list(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//grpc-web:commonjs_dts_plugin"),
+                Label("//js:js_plugin"),
+                Label("//js:grpc_node_plugin"),
+                Label("//js:grpc_node_ts_plugin"),
             ],
         ),
     ),
@@ -62,7 +66,7 @@ _rule = rule(
 )
 
 # Create macro for converting attrs and passing to compile
-def commonjs_dts_grpc_compile(**kwargs):
+def js_grpc_node_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
         **kwargs

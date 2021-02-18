@@ -35,7 +35,6 @@
     - [D](/d/README.md)
     - [Go](/go/README.md)
     - [grpc-gateway](/grpc-gateway/README.md)
-    - [gRPC-Web](/grpc-web/README.md)
     - [Java](/java/README.md)
     - [JavaScript](/js/README.md)
     - [Objective-C](/objc/README.md)
@@ -155,19 +154,16 @@ required.
 | [grpc-gateway](/grpc-gateway) | [gateway_grpc_compile](/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/grpc-gateway/gateway_grpc_compile)) |
 | [grpc-gateway](/grpc-gateway) | [gateway_openapiv2_compile](/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/grpc-gateway/gateway_openapiv2_compile)) |
 | [grpc-gateway](/grpc-gateway) | [gateway_grpc_library](/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/grpc-gateway/gateway_grpc_library)) |
-| [gRPC-Web](/grpc-web) | [closure_grpc_compile](/grpc-web#closure_grpc_compile) | Generates Closure *.js protobuf+gRPC files ([example](/example/grpc-web/closure_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [commonjs_grpc_compile](/grpc-web#commonjs_grpc_compile) | Generates CommonJS *.js protobuf+gRPC files ([example](/example/grpc-web/commonjs_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [commonjs_dts_grpc_compile](/grpc-web#commonjs_dts_grpc_compile) | Generates commonjs_dts *.js protobuf+gRPC files ([example](/example/grpc-web/commonjs_dts_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [ts_grpc_compile](/grpc-web#ts_grpc_compile) | Generates CommonJS *.ts protobuf+gRPC files ([example](/example/grpc-web/ts_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [closure_grpc_library](/grpc-web#closure_grpc_library) | Generates protobuf closure library *.js files ([example](/example/grpc-web/closure_grpc_library)) |
 | [Java](/java) | [java_proto_compile](/java#java_proto_compile) | Generates a Java protobuf srcjar artifact ([example](/example/java/java_proto_compile)) |
 | [Java](/java) | [java_grpc_compile](/java#java_grpc_compile) | Generates a Java protobuf+gRPC srcjar artifact ([example](/example/java/java_grpc_compile)) |
 | [Java](/java) | [java_proto_library](/java#java_proto_library) | Generates a Java protobuf library using `java_library` ([example](/example/java/java_proto_library)) |
 | [Java](/java) | [java_grpc_library](/java#java_grpc_library) | Generates a Java protobuf+gRPC library using `java_library` ([example](/example/java/java_grpc_library)) |
 | [JavaScript](/js) | [js_proto_compile](/js#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` artifacts ([example](/example/js/js_proto_compile)) |
-| [JavaScript](/js) | [nodejs_grpc_compile](/js#nodejs_grpc_compile) | Generates JavaScript protobuf + Node.js gRPC `.js` and `.d.ts` artifacts ([example](/example/js/nodejs_grpc_compile)) |
+| [JavaScript](/js) | [js_grpc_node_compile](/js#js_grpc_node_compile) | Generates JavaScript protobuf + gRPC-node `.js` and `.d.ts` artifacts ([example](/example/js/js_grpc_node_compile)) |
+| [JavaScript](/js) | [js_grpc_web_compile](/js#js_grpc_web_compile) | Generates JavaScript protobuf + gRPC-Web `.js` and `.d.ts` artifacts ([example](/example/js/js_grpc_web_compile)) |
 | [JavaScript](/js) | [js_proto_library](/js#js_proto_library) | Generates a JavaScript protobuf library using `js_library` from `rules_nodejs` ([example](/example/js/js_proto_library)) |
-| [JavaScript](/js) | [nodejs_grpc_library](/js#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs` ([example](/example/js/nodejs_grpc_library)) |
+| [JavaScript](/js) | [js_grpc_node_library](/js#js_grpc_node_library) | Generates a Node.js protobuf + gRPC-node library using `js_library` from `rules_nodejs` ([example](/example/js/js_grpc_node_library)) |
+| [JavaScript](/js) | [js_grpc_web_library](/js#js_grpc_web_library) | Generates a JavaScript protobuf + gRPC-Web library using `js_library` from `rules_nodejs` ([example](/example/js/js_grpc_web_library)) |
 | [Objective-C](/objc) | [objc_proto_compile](/objc#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` artifacts ([example](/example/objc/objc_proto_compile)) |
 | [Objective-C](/objc) | [objc_grpc_compile](/objc#objc_grpc_compile) | Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts ([example](/example/objc/objc_grpc_compile)) |
 | [Objective-C](/objc) | [objc_proto_library](/objc#objc_proto_library) | Generates an Objective-C protobuf library using `objc_library` ([example](/example/objc/objc_proto_library)) |

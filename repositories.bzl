@@ -141,15 +141,6 @@ VERSIONS = {
         "sha256": "d3196737b591055679a676aca99610ccf640fdfe6bad0aa756b0725cab0d8c12",
     },
 
-    # gRPC web
-    "com_github_grpc_grpc_web": {
-        "type": "github",
-        "org": "grpc",
-        "repo": "grpc-web",
-        "ref": "1.2.1",
-        "sha256": "23cf98fbcb69743b8ba036728b56dfafb9e16b887a9735c12eafa7669862ec7b",
-    },
-
     # Java
     "io_grpc_grpc_java": {
         "type": "github",
@@ -470,12 +461,6 @@ def bazel_gazelle(**kwargs):
 #
 def grpc_ecosystem_grpc_gateway(**kwargs):
     _generic_dependency("grpc_ecosystem_grpc_gateway", **kwargs)
-
-#
-# gRPC web
-#
-def com_github_grpc_grpc_web(**kwargs):
-    _generic_dependency("com_github_grpc_grpc_web", **kwargs)
 
 #
 # Java

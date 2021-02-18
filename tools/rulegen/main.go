@@ -98,7 +98,6 @@ func action(c *cli.Context) error {
 		makeD(),
 		makeGo(),
 		makeGrpcGateway(),
-		makeGrpcWeb(),
 		makeJava(),
 		makeJavaScript(),
 		makeObjc(),
