@@ -29,7 +29,6 @@
 - [Installation](#installation)
 - [Rules](#rules)
     - [Android](/android/README.md)
-    - [Closure](/closure/README.md)
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
     - [D](/d/README.md)

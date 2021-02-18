@@ -6,7 +6,6 @@ tasks:
     environment:
       CC: clang
     build_targets:
-    - "//closure/..."
     - "//cpp/..."
     - "//csharp/..."
     - "//d/..."
@@ -86,7 +85,6 @@ tasks:
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     build_targets:
-    - "//closure/..."
     - "//cpp/..."
     - "//csharp/..."
     - "//d/..."
@@ -225,46 +223,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
-  closure_closure_proto_compile_ubuntu1804:
-    name: 'closure: closure_proto_compile'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/closure/closure_proto_compile
-  closure_closure_proto_compile_windows:
-    name: 'closure: closure_proto_compile'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/closure/closure_proto_compile
-  closure_closure_proto_compile_macos:
-    name: 'closure: closure_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/closure/closure_proto_compile
-  closure_closure_proto_library_ubuntu1804:
-    name: 'closure: closure_proto_library'
-    platform: ubuntu1804
-    build_targets:
-      - "//..."
-    working_directory: example/closure/closure_proto_library
-  closure_closure_proto_library_windows:
-    name: 'closure: closure_proto_library'
-    platform: windows
-    build_targets:
-      - "//..."
-    working_directory: example/closure/closure_proto_library
-  closure_closure_proto_library_macos:
-    name: 'closure: closure_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/closure/closure_proto_library
   cpp_cpp_proto_compile_ubuntu1804:
     name: 'cpp: cpp_proto_compile'
     platform: ubuntu1804

@@ -91,15 +91,6 @@ VERSIONS = {
         "sha256": "d2658766cb509dabde0e3bb70eb82dd107fcce640ce5813ac94bb2892f2efba9",
     },
 
-    # Closure
-    "io_bazel_rules_closure": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_closure",
-        "ref": "0.11.0",
-        "sha256": "d66deed38a0bb20581c15664f0ab62270af5940786855c7adc3087b27168b529",
-    },
-
     # D
     "io_bazel_rules_d": {
         "type": "github",
@@ -425,12 +416,6 @@ def bazel_skylib(**kwargs):
 #
 def build_bazel_rules_android(**kwargs):
     _generic_dependency("build_bazel_rules_android", **kwargs)
-
-#
-# Closure
-#
-def io_bazel_rules_closure(**kwargs):
-    _generic_dependency("io_bazel_rules_closure", **kwargs)
 
 #
 # C#

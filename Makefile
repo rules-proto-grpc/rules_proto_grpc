@@ -77,7 +77,6 @@ servers:
 .PHONY: tests
 tests:
 	bazel test \
-		//closure/example/routeguide/... \
 		//cpp/example/routeguide/... \
 		//java/example/routeguide/... \
 		//go/example/routeguide/... \
@@ -86,10 +85,8 @@ tests:
 pending_clients:
 	bazel build \
 		//android/example/routeguide:client \
-		//closure/example/routeguide/client \
 		//js/example/routeguide:client \
 		//ruby/example/routeguide:client \
-		//grpc-web/example/routeguide/closure:bundle \
 		//rust/example/routeguide:client
 
 .PHONY: pending_servers
