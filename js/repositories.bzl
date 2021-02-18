@@ -30,6 +30,6 @@ def js_repos(**kwargs):  # buildifier: disable=function-docstring
     http_file(
         name = "grpc_web_plugin_windows",
         executable = True,
-        urls = ["https://github.com/grpc/grpc-web/releases/download/{}/protoc-gen-grpc-web-{}-windows-x86_64".format(grpc_web_version, grpc_web_version)],
+        urls = ["https://github.com/grpc/grpc-web/releases/download/{}/protoc-gen-grpc-web-{}-windows-x86_64.exe".format(grpc_web_version, grpc_web_version)],
         sha256 = "5886b4c9886dfdbfd1c7c2f26a15c396c6662b9f1acf9b6d8efbd490bc3736db",
     )
