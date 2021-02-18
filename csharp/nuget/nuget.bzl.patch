@@ -4,5 +4,3 @@
                 # Can't use select() here, so must just specify all
                 "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
                 "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
