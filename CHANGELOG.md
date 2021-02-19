@@ -76,6 +76,8 @@ depend on it explicitly from the relevant top level binaries/libraries.
 ### C++
 - Non-transitive mode resolves issue where the same proto may be defined more than once
   [#25](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/25)
+- Header and source files are now correctly passed to the underlying `cc_library` rule
+  [#40](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/40)
 
 ### Closure
 - Closure rules have been removed. In practice these have been superceded by the Javascript rules, but if you are an
