@@ -41,7 +41,6 @@ _rule = rule(
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [swift_proto_compile_aspect],
             doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
         ),
         deps = attr.label_list(
