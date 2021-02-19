@@ -4,7 +4,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
-MINIMUM_BAZEL_VERSION = "1.0.0"
+MINIMUM_BAZEL_VERSION = "3.0.0"
 ENABLE_VERSION_NAGS = False
 VERSIONS = {
     # Core

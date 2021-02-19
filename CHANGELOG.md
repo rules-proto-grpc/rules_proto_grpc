@@ -64,6 +64,7 @@ depend on it explicitly from the relevant top level binaries/libraries.
   [#105](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/105)
 - Updated `rules_proto` to latest head
 - `aspect.bzl` and `plugin.bzl` have merged to a single top level `defs.bzl`
+- The minimum supported Bazel version is 3.0.0. Some language specific rules may require 4.0.0
 
 ### Android
 - **WORKSPACE update needed**: The WORKSPACE imports necessary for Android rules have been updated due to upstream
