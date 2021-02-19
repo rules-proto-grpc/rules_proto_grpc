@@ -535,7 +535,6 @@ def proto_compile_impl(ctx):
         ),
         DefaultInfo(
             files = all_outputs,
-            data_runfiles = ctx.runfiles(transitive_files = all_outputs),
         ),
     ]
 
