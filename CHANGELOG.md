@@ -59,12 +59,19 @@ depend on it explicitly from the relevant top level binaries/libraries.
 - Updated protobuf to 3.15.0
 - Updated gRPC to 1.35.0
 - All rules have new per-target `options` and `extra_protoc_args` attributes to control options to protoc
+  [#54](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/54)
+  [#68](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/68)
+  [#105](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/105)
 - Updated `rules_proto` to latest head
 - `aspect.bzl` and `plugin.bzl` have merged to a single top level `defs.bzl`
 
 ### Android
 - **WORKSPACE update needed**: The WORKSPACE imports necessary for Android rules have been updated due to upstream
   changes in `grpc-java`. Please see the examples for the latest WORKSPACE template for the Android rules
+
+### C++
+- Non-transitive mode resolves issue where the same proto may be defined more than once
+  [#25](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/25)
 
 ### Closure
 - Closure rules have been removed. In practice these have been superceded by the Javascript rules, but if you are an
@@ -82,6 +89,7 @@ depend on it explicitly from the relevant top level binaries/libraries.
 - Updated `rules_go` to 0.25.1
 - **WORKSPACE update needed**: It is now necessary to specify `version` to `go_register_toolchains`
 - The plugin used for compiling .proto files for Go has switched to the new google.golang.org/protobuf
+  [#85](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/85)
 - Updated `gazelle` to 0.22.3
 - Updated `org_golang_x_net` to v0.0.0-20210129194117-4acb7895a057
 - Updated `org_golang_x_text` to 0.3.5
@@ -91,12 +99,14 @@ depend on it explicitly from the relevant top level binaries/libraries.
 ### grpc-gateway
 - Updated `grpc-gateway` to 2.2.0
 - The `gateway_swagger_compile` rule has been replaced with `gateway_openapiv2_compile`
+  [#93](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/93)
 - The grpc-gateway rules have move to repo top level, meaning they are no longer under the `github.com/...` prefix. To
   Update your use of these rules find and replace `@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway` with
   `@rules_proto_grpc//grpc-gateway`
 
 ### gRPC-Web
 - The gRPC-Web rules have moved into `//js`
+- Text mode generation is now supported [#59](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/59)
 
 ### Java
 - **WORKSPACE update needed**: The WORKSPACE imports necessary for Java rules have been updated due to upstream
@@ -132,12 +142,14 @@ depend on it explicitly from the relevant top level binaries/libraries.
 - Updated `protobuf` to 2.20.0
 
 ### Scala
-- Update `rules_scala` to latest
+- Update `rules_scala` to latest [#108](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/108)
 - **WORKSPACE update needed**: The `scala_config` rule from `rules_scala` is now required in your WORKSPACE
 
 ### Swift
 - Updated `rules_swift` to 0.18.0
 - Updated `grpc-swift` to 1.0.0
+- Visibility of generated types is now configurable with `options`
+  [#111](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/111)
 
 ### Thanks
 Thanks to everyone who has contributed issues and patches for this release.
