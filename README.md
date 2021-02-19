@@ -127,7 +127,7 @@ repository.
 | [Android](/android) | [android_grpc_compile](/android#android_grpc_compile) | Generates Android protobuf+gRPC `.jar` artifacts ([example](/example/android/android_grpc_compile)) |
 | [Android](/android) | [android_proto_library](/android#android_proto_library) | Generates an Android protobuf library using `android_library` from `rules_android` ([example](/example/android/android_proto_library)) |
 | [Android](/android) | [android_grpc_library](/android#android_grpc_library) | Generates Android protobuf+gRPC library using `android_library` from `rules_android` ([example](/example/android/android_grpc_library)) |
-| [C](/c) | [c_proto_compile](/c#c_proto_compile) | Generates C protobuf `.h` & `.cc` artifacts ([example](/example/c/c_proto_compile)) |
+| [C](/c) | [c_proto_compile](/c#c_proto_compile) | Generates C protobuf `.h` & `.c` artifacts ([example](/example/c/c_proto_compile)) |
 | [C](/c) | [c_proto_library](/c#c_proto_library) | Generates a C protobuf library using `cc_library`, with dependencies linked ([example](/example/c/c_proto_library)) |
 | [C++](/cpp) | [cpp_proto_compile](/cpp#cpp_proto_compile) | Generates C++ protobuf `.h` & `.cc` artifacts ([example](/example/cpp/cpp_proto_compile)) |
 | [C++](/cpp) | [cpp_grpc_compile](/cpp#cpp_grpc_compile) | Generates C++ protobuf+gRPC `.h` & `.cc` artifacts ([example](/example/cpp/cpp_grpc_compile)) |
