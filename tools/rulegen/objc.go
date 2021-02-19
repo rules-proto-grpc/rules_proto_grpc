@@ -2,6 +2,7 @@ package main
 
 var objcLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
+load("//internal:filter_files.bzl", "filter_files")
 load("@rules_cc//cc:defs.bzl", "objc_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -11,14 +12,28 @@ def {{ .Rule.Name }}(**kwargs):
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
     )
+
+    # Filter files to sources and headers
+    filter_files(
+        name = name_pb + "_srcs",
+        target = name_pb,
+        extensions = ["cc"],
+    )
+
+    filter_files(
+        name = name_pb + "_hdrs",
+        target = name_pb,
+        extensions = ["h"],
+    )
 `
 
 var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     objc_library(
         name = kwargs.get("name"),
-        srcs = [name_pb],
+        srcs = [name_pb + "_srcs"],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         copts = kwargs.get("copts"),
         visibility = kwargs.get("visibility"),

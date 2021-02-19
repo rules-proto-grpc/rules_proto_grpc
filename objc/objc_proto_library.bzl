@@ -2,6 +2,7 @@
 
 load("//objc:objc_proto_compile.bzl", "objc_proto_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
+load("//internal:filter_files.bzl", "filter_files")
 load("@rules_cc//cc:defs.bzl", "objc_library")
 
 def objc_proto_library(**kwargs):
@@ -16,11 +17,25 @@ def objc_proto_library(**kwargs):
         }  # Forward args
     )
 
+    # Filter files to sources and headers
+    filter_files(
+        name = name_pb + "_srcs",
+        target = name_pb,
+        extensions = ["cc"],
+    )
+
+    filter_files(
+        name = name_pb + "_hdrs",
+        target = name_pb,
+        extensions = ["h"],
+    )
+
     # Create objc library
     objc_library(
         name = kwargs.get("name"),
-        srcs = [name_pb],
+        srcs = [name_pb + "_srcs"],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         copts = kwargs.get("copts"),
         visibility = kwargs.get("visibility"),

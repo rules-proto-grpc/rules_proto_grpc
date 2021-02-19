@@ -127,6 +127,8 @@ depend on it explicitly from the relevant top level binaries/libraries.
 
 ### Objective-C
 - Added `copt` argument pass-through for Obj-C library rules.
+- Header and source files are now correctly passed to the underlying `cc_library` rule
+  [#40](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/40)
 
 ### Python
 - Updated `rules_python` to latest
