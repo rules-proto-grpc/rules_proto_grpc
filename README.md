@@ -23,7 +23,7 @@
   [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new).
 
 
-## Contents:
+## Contents
 
 - [Overview](#overview)
 - [Installation](#installation)
