@@ -92,6 +92,7 @@ func action(c *cli.Context) error {
 
 	languages := []*Language{
 		makeAndroid(),
+		makeC(),
 		makeCpp(),
 		makeCsharp(),
 		makeD(),

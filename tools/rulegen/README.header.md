@@ -35,6 +35,7 @@ Bazel 4.0 compatibility and updated dependencies are in progress.
 - [Installation](#installation)
 - [Rules](#rules)
     - [Android](/android/README.md)
+    - [C](/c/README.md)
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
     - [D](/d/README.md)

@@ -82,6 +82,15 @@ VERSIONS = {
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
     },
 
+    # C
+    "upb": {
+        "type": "github",
+        "org": "protocolbuffers",
+        "repo": "upb",
+        "ref": "eb0fdda14b7b211872507a66f7d988f7c24a44c9",
+        "sha256": "843d0729a0cb53fa2afb46b1c262438beb7477696f31e2fbfd84de97a710f2f1",
+    },
+
     # C#
     "io_bazel_rules_dotnet": {
         "type": "github",
@@ -416,6 +425,12 @@ def bazel_skylib(**kwargs):
 #
 def build_bazel_rules_android(**kwargs):
     _generic_dependency("build_bazel_rules_android", **kwargs)
+
+#
+# C
+#
+def upb(**kwargs):
+    _generic_dependency("upb", **kwargs)
 
 #
 # C#

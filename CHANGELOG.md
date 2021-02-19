@@ -70,6 +70,9 @@ depend on it explicitly from the relevant top level binaries/libraries.
 - **WORKSPACE update needed**: The WORKSPACE imports necessary for Android rules have been updated due to upstream
   changes in `grpc-java`. Please see the examples for the latest WORKSPACE template for the Android rules
 
+### C
+- Added experimental rules for C using upb [#20](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/20)
+
 ### C++
 - Non-transitive mode resolves issue where the same proto may be defined more than once
   [#25](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/25)
