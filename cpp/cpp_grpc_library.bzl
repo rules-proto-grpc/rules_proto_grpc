@@ -2,9 +2,10 @@
 
 load("//cpp:cpp_grpc_compile.bzl", "cpp_grpc_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
+load("//internal:filter_files.bzl", "filter_files")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-def cpp_grpc_library(**kwargs):
+def cpp_grpc_library(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     cpp_grpc_compile(
@@ -14,6 +15,19 @@ def cpp_grpc_library(**kwargs):
             for (k, v) in kwargs.items()
             if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
         }  # Forward args
+    )
+
+    # Filter files to sources and headers
+    filter_files(
+        name = name_pb + "_srcs",
+        target = name_pb,
+        extensions = ["cc"],
+    )
+
+    filter_files(
+        name = name_pb + "_hdrs",
+        target = name_pb,
+        extensions = ["h"],
     )
 
     # Create cpp library
