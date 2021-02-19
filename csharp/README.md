@@ -18,7 +18,7 @@ Generates C# protobuf `.cs` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
 
 rules_proto_grpc_csharp_repos()
 
@@ -33,6 +33,7 @@ load(
 )
 
 dotnet_register_toolchains()
+
 dotnet_repositories_nugets()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
@@ -66,7 +67,14 @@ csharp_proto_compile(
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
 | `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+
+### Plugins
+
+- `@rules_proto_grpc//csharp:csharp_plugin`
 
 ---
 
@@ -77,12 +85,11 @@ Generates C# protobuf+gRPC `.cs` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
 
 rules_proto_grpc_csharp_repos()
 
 load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
-
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
@@ -96,6 +103,7 @@ load(
 )
 
 dotnet_register_toolchains()
+
 dotnet_repositories_nugets()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
@@ -124,7 +132,15 @@ csharp_grpc_compile(
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
 | `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+
+### Plugins
+
+- `@rules_proto_grpc//csharp:csharp_plugin`
+- `@rules_proto_grpc//csharp:grpc_csharp_plugin`
 
 ---
 
@@ -135,7 +151,7 @@ Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
 
 rules_proto_grpc_csharp_repos()
 
@@ -150,6 +166,7 @@ load(
 )
 
 dotnet_register_toolchains()
+
 dotnet_repositories_nugets()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
@@ -185,8 +202,11 @@ csharp_proto_library(
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
 | `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
-| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
 
 ---
 
@@ -197,12 +217,11 @@ Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`.
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos="csharp_repos")
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
 
 rules_proto_grpc_csharp_repos()
 
 load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
-
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
@@ -216,6 +235,7 @@ load(
 )
 
 dotnet_register_toolchains()
+
 dotnet_repositories_nugets()
 
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
@@ -245,5 +265,8 @@ csharp_grpc_library(
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
 | `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
-| `deps` | `list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |

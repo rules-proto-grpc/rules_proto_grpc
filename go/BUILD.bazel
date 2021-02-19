@@ -1,28 +1,28 @@
-load("//:plugin.bzl", "proto_plugin")
+load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
     name = "go_plugin",
-    options = ["paths=source_relative"],
-    outputs = ["{protopath}.pb.go"],
-    tool = "@org_golang_google_protobuf//cmd/protoc-gen-go",
     exclusions = [
         "google/api",
         "google/protobuf",
     ],
+    options = ["paths=source_relative"],
+    outputs = ["{protopath}.pb.go"],
+    tool = "@org_golang_google_protobuf//cmd/protoc-gen-go",
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
     name = "grpc_go_plugin",
-    options = [
-        "paths=source_relative",
-    ],
-    outputs = ["{protopath}_grpc.pb.go"],
     empty_template = "empty.template",
-    tool = "@org_golang_google_grpc_cmd_protoc_gen_go_grpc//:protoc-gen-go-grpc",
     exclusions = [
         "google/api",
         "google/protobuf",
     ],
+    options = [
+        "paths=source_relative",
+    ],
+    outputs = ["{protopath}_grpc.pb.go"],
+    tool = "@org_golang_google_grpc_cmd_protoc_gen_go_grpc//:protoc-gen-go-grpc",
     visibility = ["//visibility:public"],
 )

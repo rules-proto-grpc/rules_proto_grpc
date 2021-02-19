@@ -1,6 +1,6 @@
 package main
 
-var goWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+var goWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
 
 io_bazel_rules_go()
 
@@ -18,11 +18,12 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
 var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -30,8 +31,16 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Rule.Base}}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        prefix_path = kwargs.get("importpath", ""),
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        prefix_path = kwargs.get("prefix_path", kwargs.get("importpath", "")),
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in ["protos" if "protos" in kwargs else "deps"] + [
+                key
+                for key in proto_compile_attrs.keys()
+                if key != "prefix_path"
+            ]
+        }  # Forward args
     )
 `
 
@@ -102,8 +111,8 @@ var goGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .La
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
     protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )`)
 

@@ -1,11 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library", "cc_test")
 load("//cpp:defs.bzl", "cpp_grpc_library")
+
+package(default_visibility = ["//visibility:public"])
 
 cpp_grpc_library(
     name = "routeguide",
     protos = ["//example/proto:routeguide_proto"],
 )
-
-package(default_visibility = ["//visibility:public"])
 
 cc_test(
     name = "feature_test",

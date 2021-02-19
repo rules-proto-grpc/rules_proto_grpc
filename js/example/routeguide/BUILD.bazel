@@ -1,0 +1,31 @@
+load("//js:defs.bzl", "nodejs_grpc_library")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+
+nodejs_grpc_library(
+    name = "routeguide",
+    protos = ["//example/proto:routeguide_proto"],
+)
+
+nodejs_binary(
+    name = "client",
+    data = [
+        "client.js",
+        ":routeguide",
+        "//example/proto:routeguide_features",
+    ],
+    entry_point = "client.js",
+    link_workspace_root = True,  # Required to load routeguide_features
+    visibility = ["//example/routeguide:__pkg__"],
+)
+
+nodejs_binary(
+    name = "server",
+    data = [
+        "server.js",
+        ":routeguide",
+        "//example/proto:routeguide_features",
+    ],
+    entry_point = "server.js",
+    link_workspace_root = True,  # Required to load routeguide_features
+    visibility = ["//example/routeguide:__pkg__"],
+)

@@ -1,5 +1,5 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
 load("//grpc-gateway:defs.bzl", "gateway_grpc_library", "gateway_openapiv2_compile")
-load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
 
 proto_library(
     name = "api_proto",
@@ -13,8 +13,8 @@ proto_library(
 gateway_grpc_library(
     name = "go_default_library",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api",
-    visibility = ["//visibility:public"],
     protos = ["api_proto"],
+    visibility = ["//visibility:public"],
 )
 
 gateway_openapiv2_compile(

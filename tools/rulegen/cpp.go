@@ -1,19 +1,21 @@
 package main
 
 var cppLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
+load("@rules_cc//cc:defs.bzl", "cc_library")
 
 def {{ .Rule.Name }}(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 `
 
 var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
-    native.cc_library(
+    cc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
@@ -28,7 +30,7 @@ PROTO_DEPS = [
 
 var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
-    native.cc_library(
+    cc_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),

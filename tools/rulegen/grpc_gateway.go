@@ -1,6 +1,6 @@
 package main
 
-var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")
+var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
 
 io_bazel_rules_go()
 
@@ -18,7 +18,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
 
-load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_gateway_repos="gateway_repos")
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_gateway_repos = "gateway_repos")
 
 rules_proto_grpc_gateway_repos()
 
@@ -27,8 +27,8 @@ load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
 go_repositories()`)
 
 var grpcGatewayLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:gateway_grpc_compile.bzl", "gateway_grpc_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
-load("//go:go_proto_library.bzl", "PROTO_DEPS")
 load("//go:go_grpc_library.bzl", "GRPC_DEPS")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -36,8 +36,16 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     gateway_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        prefix_path = kwargs.get("importpath", ""),
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        prefix_path = kwargs.get("prefix_path", kwargs.get("importpath", "")),
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in ["protos" if "protos" in kwargs else "deps"] + [
+                key
+                for key in proto_compile_attrs.keys()
+                if key != "prefix_path"
+            ]
+        }  # Forward args
     )
 
     # Create go library
@@ -63,7 +71,7 @@ var grpcGatewayCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{
 
 {{ .Rule.Name }}(
     name = "api_gateway_grpc",
-    deps = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
+    protos = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
 )`)
 
 var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
@@ -71,7 +79,7 @@ var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{
 {{ .Rule.Name }}(
     name = "api_gateway_library",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api",
-    deps = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
+    protos = ["@rules_proto_grpc//{{ .Lang.Dir }}/example/api:api_proto"],
 )`)
 
 func makeGrpcGateway() *Language {
@@ -95,7 +103,7 @@ func makeGrpcGateway() *Language {
 				Name:              "gateway_openapiv2_compile",
 				Kind:              "grpc",
 				Implementation:    aspectRuleTemplate,
-				Plugins:           []string{"//grpc-gateway:openapiv2_plugin", "//go:go_plugin"},
+				Plugins:           []string{"//grpc-gateway:openapiv2_plugin"},
 				WorkspaceExample:  grpcGatewayWorkspaceTemplate,
 				BuildExample:      grpcGatewayCompileExampleTemplate,
 				Doc:               "Generates grpc-gateway OpenAPI v2 `.json` files",

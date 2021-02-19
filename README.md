@@ -29,15 +29,13 @@
 - [Installation](#installation)
 - [Rules](#rules)
     - [Android](/android/README.md)
-    - [Closure](/closure/README.md)
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
     - [D](/d/README.md)
     - [Go](/go/README.md)
     - [grpc-gateway](/grpc-gateway/README.md)
-    - [gRPC-Web](/grpc-web/README.md)
     - [Java](/java/README.md)
-    - [Node.js](/nodejs/README.md)
+    - [JavaScript](/js/README.md)
     - [Objective-C](/objc/README.md)
     - [PHP](/php/README.md)
     - [Python](/python/README.md)
@@ -58,46 +56,34 @@
 
 ## Overview
 
-These rules provide [Protocol Buffers (Protobuf)](https://developers.google.com/protocol-buffers/)
-and [gRPC](https://grpc.io/) rules for a range of languages and services.
+These rules provide [Protocol Buffers (Protobuf)](https://developers.google.com/protocol-buffers/) and
+[gRPC](https://grpc.io/) rules for a range of languages and services.
 
-Each supported language (`{lang}` below) is generally split into four rule
-flavours:
+Each supported language (`{lang}` below) is generally split into four rule flavours:
 
-- `{lang}_proto_compile`: Provides generated files from the Protobuf `protoc`
-  plugin for the language. e.g for C++ this provides the generated `*.pb.cc`
-  and `*.pb.h` files.
+- `{lang}_proto_compile`: Provides generated files from the Protobuf `protoc` plugin for the language. e.g for C++ this
+  provides the generated `*.pb.cc` and `*.pb.h` files.
 
-- `{lang}_proto_library`: Provides a language-specific library from the
-  generated Protobuf `protoc` plugin outputs, along with necessary
-  dependencies. e.g for C++ this provides a Bazel native `cpp_library` created
-  from the generated `*.pb.cc` and `*pb.h` files, with the Protobuf library
-  linked. For languages that do not have a 'library' concept, this rule may not
-  exist.
+- `{lang}_proto_library`: Provides a language-specific library from the generated Protobuf `protoc` plugin outputs,
+  along with necessary dependencies. e.g for C++ this provides a Bazel native `cpp_library` created  from the generated
+  `*.pb.cc` and `*pb.h` files, with the Protobuf library linked. For languages that do not have a 'library' concept,
+  this rule may not exist.
 
-- `{lang}_grpc_compile`: Provides generated files from both the Protobuf and
-  gRPC `protoc` plugins for the language. e.g for C++ this provides the
-  generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files.
+- `{lang}_grpc_compile`: Provides generated files from both the Protobuf and gRPC `protoc` plugins for the language.
+  e.g for C++ this provides the generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files.
 
-- `{lang}_grpc_library`: Provides a language-specific library from the
-  generated Protobuf and gRPC `protoc` plugins outputs, along with necessary
-  dependencies. e.g for C++ this provides a Bazel native `cpp_library` created
-  from the generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h`
-  files, with the Protobuf and gRPC libraries linked. For languages that do not
-  have a 'library' concept, this rule may not exist.
+- `{lang}_grpc_library`: Provides a language-specific library from the generated Protobuf and gRPC `protoc` plugins
+  outputs, along with necessary dependencies. e.g for C++ this provides a Bazel native `cpp_library` created from the
+  generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files, with the Protobuf and gRPC libraries linked.
+  For languages that do not have a 'library' concept, this rule may not exist.
 
-Therefore, if you are solely interested in the generated source code artifacts,
-use the `{lang}_{proto|grpc}_compile` rules. Otherwise, if you want a
-ready-to-go library, use the `{lang}_{proto|grpc}_library` rules.
-
-These rules are derived from the excellent [stackb/rules_proto](https://github.com/stackb/rules_proto)
-and add aspect-based compilation to all languages, allowing for all
-`proto_library` options to be expressed in user code.
+Therefore, if you are solely interested in the generated source code artifacts, use the `{lang}_{proto|grpc}_compile`
+rules. Otherwise, if you want a ready-to-go library, use the `{lang}_{proto|grpc}_library` rules.
 
 
 ## Installation
 
-Add `rules_proto_grpc` your `WORKSPACE` file:
+Add `rules_proto_grpc` to your `WORKSPACE` file and then look at the language specific examples linked below:
 
 ```starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -118,14 +104,12 @@ rules_proto_dependencies()
 rules_proto_toolchains()
 ```
 
-It is recommended that you use the tagged releases for stable rules. Master is
-intended to be 'ready-to-use', but may be unstable at certain periods. To be
-notified of new releases, you can use GitHub's 'Watch Releases Only' on the
+It is recommended that you use the tagged releases for stable rules. Master is intended to be 'ready-to-use', but may be
+unstable at certain periods. To be notified of new releases, you can use GitHub's 'Watch Releases Only' on the
 repository.
 
-**Important**: You will also need to follow instructions in the
-language-specific `README.md` for additional workspace dependencies that may be
-required.
+> **Important**: You will also need to follow instructions in the language-specific `README.md` for additional workspace
+> dependencies that may be required.
 
 
 ## Rules
@@ -136,8 +120,6 @@ required.
 | [Android](/android) | [android_grpc_compile](/android#android_grpc_compile) | Generates Android protobuf+gRPC `.jar` artifacts ([example](/example/android/android_grpc_compile)) |
 | [Android](/android) | [android_proto_library](/android#android_proto_library) | Generates an Android protobuf library using `android_library` from `rules_android` ([example](/example/android/android_proto_library)) |
 | [Android](/android) | [android_grpc_library](/android#android_grpc_library) | Generates Android protobuf+gRPC library using `android_library` from `rules_android` ([example](/example/android/android_grpc_library)) |
-| [Closure](/closure) | [closure_proto_compile](/closure#closure_proto_compile) | Generates Closure protobuf `.js` files ([example](/example/closure/closure_proto_compile)) |
-| [Closure](/closure) | [closure_proto_library](/closure#closure_proto_library) | Generates a Closure library with compiled protobuf `.js` files using `closure_js_library` from `rules_closure` ([example](/example/closure/closure_proto_library)) |
 | [C++](/cpp) | [cpp_proto_compile](/cpp#cpp_proto_compile) | Generates C++ protobuf `.h` & `.cc` artifacts ([example](/example/cpp/cpp_proto_compile)) |
 | [C++](/cpp) | [cpp_grpc_compile](/cpp#cpp_grpc_compile) | Generates C++ protobuf+gRPC `.h` & `.cc` artifacts ([example](/example/cpp/cpp_grpc_compile)) |
 | [C++](/cpp) | [cpp_proto_library](/cpp#cpp_proto_library) | Generates a C++ protobuf library using `cc_library`, with dependencies linked ([example](/example/cpp/cpp_proto_library)) |
@@ -152,14 +134,19 @@ required.
 | [Go](/go) | [go_grpc_compile](/go#go_grpc_compile) | Generates Go protobuf+gRPC `.go` artifacts ([example](/example/go/go_grpc_compile)) |
 | [Go](/go) | [go_proto_library](/go#go_proto_library) | Generates a Go protobuf library using `go_library` from `rules_go` ([example](/example/go/go_proto_library)) |
 | [Go](/go) | [go_grpc_library](/go#go_grpc_library) | Generates a Go protobuf+gRPC library using `go_library` from `rules_go` ([example](/example/go/go_grpc_library)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_grpc_compile](/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/grpc-gateway/gateway_grpc_compile)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_openapiv2_compile](/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/grpc-gateway/gateway_openapiv2_compile)) |
+| [grpc-gateway](/grpc-gateway) | [gateway_grpc_library](/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/grpc-gateway/gateway_grpc_library)) |
 | [Java](/java) | [java_proto_compile](/java#java_proto_compile) | Generates a Java protobuf srcjar artifact ([example](/example/java/java_proto_compile)) |
 | [Java](/java) | [java_grpc_compile](/java#java_grpc_compile) | Generates a Java protobuf+gRPC srcjar artifact ([example](/example/java/java_grpc_compile)) |
 | [Java](/java) | [java_proto_library](/java#java_proto_library) | Generates a Java protobuf library using `java_library` ([example](/example/java/java_proto_library)) |
 | [Java](/java) | [java_grpc_library](/java#java_grpc_library) | Generates a Java protobuf+gRPC library using `java_library` ([example](/example/java/java_grpc_library)) |
-| [Node.js](/nodejs) | [nodejs_proto_compile](/nodejs#nodejs_proto_compile) | Generates Node.js protobuf `.js` artifacts ([example](/example/nodejs/nodejs_proto_compile)) |
-| [Node.js](/nodejs) | [nodejs_grpc_compile](/nodejs#nodejs_grpc_compile) | Generates Node.js protobuf+gRPC `.js` artifacts ([example](/example/nodejs/nodejs_grpc_compile)) |
-| [Node.js](/nodejs) | [nodejs_proto_library](/nodejs#nodejs_proto_library) | Generates a Node.js protobuf library using `js_library` from `rules_nodejs` ([example](/example/nodejs/nodejs_proto_library)) |
-| [Node.js](/nodejs) | [nodejs_grpc_library](/nodejs#nodejs_grpc_library) | Generates a Node.js protobuf+gRPC library using `js_library` from `rules_nodejs` ([example](/example/nodejs/nodejs_grpc_library)) |
+| [JavaScript](/js) | [js_proto_compile](/js#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` artifacts ([example](/example/js/js_proto_compile)) |
+| [JavaScript](/js) | [js_grpc_node_compile](/js#js_grpc_node_compile) | Generates JavaScript protobuf + gRPC-node `.js` and `.d.ts` artifacts ([example](/example/js/js_grpc_node_compile)) |
+| [JavaScript](/js) | [js_grpc_web_compile](/js#js_grpc_web_compile) | Generates JavaScript protobuf + gRPC-Web `.js` and `.d.ts` artifacts ([example](/example/js/js_grpc_web_compile)) |
+| [JavaScript](/js) | [js_proto_library](/js#js_proto_library) | Generates a JavaScript protobuf library using `js_library` from `rules_nodejs` ([example](/example/js/js_proto_library)) |
+| [JavaScript](/js) | [js_grpc_node_library](/js#js_grpc_node_library) | Generates a Node.js protobuf + gRPC-node library using `js_library` from `rules_nodejs` ([example](/example/js/js_grpc_node_library)) |
+| [JavaScript](/js) | [js_grpc_web_library](/js#js_grpc_web_library) | Generates a JavaScript protobuf + gRPC-Web library using `js_library` from `rules_nodejs` ([example](/example/js/js_grpc_web_library)) |
 | [Objective-C](/objc) | [objc_proto_compile](/objc#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` artifacts ([example](/example/objc/objc_proto_compile)) |
 | [Objective-C](/objc) | [objc_grpc_compile](/objc#objc_grpc_compile) | Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts ([example](/example/objc/objc_grpc_compile)) |
 | [Objective-C](/objc) | [objc_proto_library](/objc#objc_proto_library) | Generates an Objective-C protobuf library using `objc_library` ([example](/example/objc/objc_proto_library)) |
@@ -187,22 +174,13 @@ required.
 | [Swift](/swift) | [swift_grpc_compile](/swift#swift_grpc_compile) | Generates Swift protobuf+gRPC `.swift` artifacts ([example](/example/swift/swift_grpc_compile)) |
 | [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library using `swift_library` from `rules_swift` ([example](/example/swift/swift_proto_library)) |
 | [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift` ([example](/example/swift/swift_grpc_library)) |
-| [grpc-gateway](/grpc-gateway) | [gateway_grpc_compile](/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/grpc-gateway/gateway_grpc_compile)) |
-| [grpc-gateway](/grpc-gateway) | [gateway_openapiv2_compile](/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/grpc-gateway/gateway_openapiv2_compile)) |
-| [grpc-gateway](/grpc-gateway) | [gateway_grpc_library](/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/grpc-gateway/gateway_grpc_library)) |
-| [gRPC-Web](/grpc-web) | [closure_grpc_compile](/grpc-web#closure_grpc_compile) | Generates Closure *.js protobuf+gRPC files ([example](/example/grpc-web/closure_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [commonjs_grpc_compile](/grpc-web#commonjs_grpc_compile) | Generates CommonJS *.js protobuf+gRPC files ([example](/example/grpc-web/commonjs_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [commonjs_dts_grpc_compile](/grpc-web#commonjs_dts_grpc_compile) | Generates commonjs_dts *.js protobuf+gRPC files ([example](/example/grpc-web/commonjs_dts_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [ts_grpc_compile](/grpc-web#ts_grpc_compile) | Generates CommonJS *.ts protobuf+gRPC files ([example](/example/grpc-web/ts_grpc_compile)) |
-| [gRPC-Web](/grpc-web) | [closure_grpc_library](/grpc-web#closure_grpc_library) | Generates protobuf closure library *.js files ([example](/example/grpc-web/closure_grpc_library)) |
 
 ## Example Usage
 
-These steps walk through the steps to go from a raw `.proto` file to a C++
-library:
+These steps walk through the actions required to go from a raw `.proto` file to a C++ library. Other languages will have
+a similar high-level layout.
 
-
-**Step 1**: Write a Protocol Buffer file (example: `thing.proto`):
+**Step 1**: Write a Protocol Buffer .proto file (example: `thing.proto`):
 
 ```proto
 syntax = "proto3";
@@ -217,9 +195,8 @@ message Thing {
 }
 ```
 
-
-**Step 2**: Write a `BAZEL.build` file with a [`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library)
-target:
+**Step 2**: Write a `BAZEL.build` file with a
+[`proto_library`](https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library) target:
 
 ```starlark
 proto_library(
@@ -229,15 +206,13 @@ proto_library(
 )
 ```
 
-In this example we have a dependency on a well-known type `any.proto`, hence the
-`proto_library` to `proto_library` dependency (`"@com_google_protobuf//:any_proto"`)
+In this example we have a dependency on a well-known type `any.proto`, hence the `proto_library` to `proto_library`
+dependency (`"@com_google_protobuf//:any_proto"`)
 
+**Step 3**: Add a `cpp_proto_compile` target
 
-**Step 3**: Add a `cpp_proto_compile` target (substitute `cpp_` for the language
-of your choice).
-
-> NOTE: In this example `thing.proto` does not include service definitions
-(gRPC).  For protos with services, use the `cpp_grpc_compile` rule instead.
+> NOTE: In this example `thing.proto` does not include service definitions (gRPC). For protos with services, use the
+> `cpp_grpc_compile` rule instead.
 
 ```starlark
 # BUILD.bazel
@@ -245,13 +220,12 @@ load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
 
 cpp_proto_compile(
     name = "cpp_thing_proto",
-    deps = [":thing_proto"],
+    protos = [":thing_proto"],
 )
 ```
 
-But wait, before we can build this, we need to load the dependencies necessary
-for this rule (from [cpp/README.md](/cpp/README.md)):
-
+But wait, before we can build this, we need to load the dependencies necessary for this rule
+(see [cpp/README.md](/cpp/README.md)):
 
 **Step 4**: Load the workspace macro corresponding to the build rule.
 
@@ -264,7 +238,6 @@ cpp_repos()
 
 We're now ready to build the target:
 
-
 **Step 5**: Build it!
 
 ```sh
@@ -274,10 +247,9 @@ Target //example/proto:cpp_thing_proto up-to-date:
   bazel-genfiles/example/proto/cpp_thing_proto/example/proto/thing.pb.cc
 ```
 
-If we were only interested in the generated file artifacts, the
-`cpp_grpc_compile` rule would be fine. However, for convenience we'd rather
-have the outputs compiled into an `*.so` file. To do that, let's change the
-rule from `cpp_proto_compile` to `cpp_proto_library`:
+If we were only interested in the generated file artifacts, the `cpp_grpc_compile` rule would be fine. However, for
+convenience we'd rather have the outputs compiled into a C++ library. To do that, let's change the  rule from
+`cpp_proto_compile` to `cpp_proto_library`:
 
 ```starlark
 # BUILD.bazel
@@ -285,7 +257,7 @@ load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
 
 cpp_proto_library(
     name = "cpp_thing_proto",
-    deps = [":thing_proto"],
+    protos = [":thing_proto"],
 )
 ```
 
@@ -297,12 +269,11 @@ Target //example/proto:cpp_thing_proto up-to-date:
   bazel-genfiles/example/proto/cpp_thing_proto/example/proto/thing.pb.cc
 ```
 
-This way, we can use `//example/proto:cpp_thing_proto` as a dependency of any
-other `cc_library` or `cc_binary` target as per normal.
+This way, we can use `//example/proto:cpp_thing_proto` as a dependency of any other `cc_library` or `cc_binary` target
+as per normal.
 
-> NOTE: the `cpp_proto_library` target implicitly calls `cpp_proto_compile`, and we can
-access that rule's by adding `_pb` at the end of the target name, like `bazel build
-//example/proto:cpp_thing_proto_pb`.
+> NOTE: The `cpp_proto_library` target implicitly calls `cpp_proto_compile`, and we can access that rule's by adding
+> `_pb` at the end of the target name, like `bazel build //example/proto:cpp_thing_proto_pb`
 
 
 ## Developers
@@ -311,65 +282,26 @@ access that rule's by adding `_pb` at the end of the target name, like `bazel bu
 
 Each language `{lang}` has a top-level subdirectory that contains:
 
-1. `{lang}/README.md`: Generated documentation for the language rules.
+1. `{lang}/README.md`: Generated documentation for the language rules
 
-1. `{lang}/repositories.bzl`: Macro functions that declare repository rule
-   dependencies for that language.
+1. `{lang}/repositories.bzl`: Macro functions that declare repository rule dependencies for that language
 
-2. `{lang}/{rule}.bzl`: Rule implementations of the form
-   `{lang}_{kind}_{type}`, where `kind` is one of `proto|grpc` and `type` is one
-   of `compile|library`.
+2. `{lang}/{rule}.bzl`: Rule implementations of the form `{lang}_{kind}_{type}`, where `kind` is one of `proto|grpc` and
+   `type` is one of `compile|library`
 
-3. `{lang}/BUILD.bazel`: `proto_plugin()` declarations for the available
-   plugins for the language.
+3. `{lang}/BUILD.bazel`: `proto_plugin()` declarations for the available plugins for the language
 
-4. `example/{lang}/{rule}/`: Generated `WORKSPACE` and `BUILD.bazel`
-   demonstrating standalone usage of the rules.
+4. `example/{lang}/{rule}/`: Generated `WORKSPACE` and `BUILD.bazel` demonstrating standalone usage of the rules
 
-5. `{lang}/example/routeguide/`: Example routeguide example implementation, if
-   possible.
-
-
-The repository root directory contains the base rule defintions:
-
-* `plugin.bzl`: A build rule that defines the name, tool binary, and options for
-  a particular proto plugin.
-
-* `aspect.bzl`: Contains the implementation of the compilation aspect. This is
-  shared by all rules and is the heart of `rules_proto_grpc`; it calls `protoc`
-  with a given list of plugins and generates output files.
-
-Additional protoc plugins and their rules are scoped to the github repository
-name where the plugin resides.
+5. `{lang}/example/routeguide/`: Example routeguide example implementation, if possible
 
 
 ### Rule Generation
 
-To help maintain consistency of the rule implementations and documentation, all
-of the rule implementations are generated by the tool `//tools/rulegen`. Changes
-in the main `README.md` should be placed in `tools/rulegen/README.header.md` or
-`tools/rulegen/README.footer.md`. Changes to generated rules should be put in
-the source files (example: `tools/rulegen/java.go`).
-
-
-### How-it-works
-
-Briefly, here's how the rules work:
-
-1. Using the `proto_library` graph, an aspect walks through the [`ProtoInfo`](https://docs.bazel.build/versions/master/skylark/lib/ProtoInfo.html)
-   providers on the `deps` attribute to `{lang}_{proto|grpc}_compile`. This
-   finds all the directly and transitively required proto files, along with
-   their options.
-
-2. At each node visited by the aspect, `protoc` is invoked with the relevant
-   plugins and options to generate the desired outputs. The aspect uses only
-   the generated proto descriptors from the `ProtoInfo` providers.
-
-3. Once the aspect stage is complete, all generated outputs are optionally
-   gathered into a final output tree.
-
-4. For `{lang}_{proto|grpc}_library` rules, the generated outputs are then
-   aggregated into a language-specific library. e.g a `.so` file for C++.
+To help maintain consistency of the rule implementations and documentation, all of the rule implementations are
+generated by the tool `//tools/rulegen`. Changes in the main `README.md` should be placed in
+`tools/rulegen/README.header.md` or `tools/rulegen/README.footer.md`. Changes to generated rules should be put in the
+source files (example: `tools/rulegen/java.go`).
 
 
 ### Developing Custom Plugins
@@ -377,24 +309,23 @@ Briefly, here's how the rules work:
 Generally, follow the pattern seen in the multiple language examples in this
 repository.  The basic idea is:
 
-1. Load the plugin rule: `load("@rules_proto_grpc//:plugin.bzl", "proto_plugin")`.
-2. Define the rule, giving it a `name`, `options` (not mandatory), `tool`, and
-   `outputs`.
-3. `tool` is a label that refers to the binary executable for the plugin itself.
-4. Choose your output type (pick one!):
-    - `outputs`: a list of strings patterns that predicts the pattern of files
-      generated by the plugin. For plugins that produce one output file per
-      input proto file
-    - `out`: the name of a single output file generated by the plugin.
-    - `output_directory`: Set to true if your plugin generates files in a
-      non-predictable way. e.g. if the output paths depend on the service names.
-5. Create a compilation rule and aspect using the following template:
+1. Load the plugin rule: `load("@rules_proto_grpc//:defs.bzl", "proto_plugin")`
+2. Define the rule, giving it a `name`, `options` (not mandatory), `tool` and `outputs`. `tool` is a label that refers
+   to the binary executable for the plugin itself
+3. Choose your output type (pick one!):
+    - `outputs`: A list of strings patterns that predicts the pattern of files generated by the plugin. For plugins that
+      produce one output file per input proto file
+    - `out`: The name of a single output file generated by the plugin
+    - `output_directory`: Set to true if your plugin generates files in a non-predictable way. e.g. if the output paths
+      depend on the service names within the files
+4. Create a compilation rule and aspect using the following template:
 
 ```starlark
-load("@rules_proto_grpc//:plugin.bzl", "ProtoPluginInfo")
+load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
-    "@rules_proto_grpc//:aspect.bzl",
+    "@rules_proto_grpc//:defs.bzl",
     "ProtoLibraryAspectNodeInfo",
+    "ProtoPluginInfo",
     "proto_compile_aspect_attrs",
     "proto_compile_aspect_impl",
     "proto_compile_attrs",
@@ -418,7 +349,7 @@ example_aspect = aspect(
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
             default = "example_aspect",
-        )
+        ),
     ),
     toolchains = ["@rules_proto_grpc//protobuf:toolchain_type"],
 )
@@ -428,34 +359,47 @@ _rule = rule(
     implementation = proto_compile_impl,
     attrs = dict(
         proto_compile_attrs,
-        deps = attr.label_list(
-            mandatory = True,
+        protos = attr.label_list(
+            mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
             aspects = [example_aspect],
+            doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
+        ),
+        deps = attr.label_list(
+            mandatory = False,
+            providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
+            aspects = [example_aspect],
+            doc = "DEPRECATED: Use protos attr",
+        ),
+        _plugins = attr.label_list(
+            doc = "List of protoc plugins to apply",
+            providers = [ProtoPluginInfo],
+            default = [
+                Label("//<LABEL OF YOUR PLUGIN>"),
+            ],
         ),
     ),
+    toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
 # Create macro for converting attrs and passing to compile
 def example_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
-        merge_directories = True,
-        **{k: v for k, v in kwargs.items() if k != "merge_directories"}
+        **kwargs
     )
+
 
 ```
 
 
 ## License
 
-This project is derived from [stackb/rules_proto](https://github.com/stackb/rules_proto)
-under the [Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license and
-this project therefore maintains the terms of that license. An overview of the
-changes can be found at [MIGRATION.md](/docs/MIGRATION.md).
+This project is derived from [stackb/rules_proto](https://github.com/stackb/rules_proto) under the
+[Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) license and  this project therefore maintains the terms of that
+license
 
 
 ## Contributing
 
-Contributions are very welcome. Please see [CONTRIBUTING.md](/docs/CONTRIBUTING.md)
-for further details.
+Contributions are very welcome. Please see [CONTRIBUTING.md](/docs/CONTRIBUTING.md) for further details.

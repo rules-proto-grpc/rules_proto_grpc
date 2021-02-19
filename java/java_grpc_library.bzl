@@ -1,15 +1,23 @@
+"""Generated definition of java_grpc_library."""
+
 load("//java:java_grpc_compile.bzl", "java_grpc_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
+load("@rules_java//java:defs.bzl", "java_library")
 
 def java_grpc_library(**kwargs):
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     java_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+        }  # Forward args
     )
 
     # Create java library
-    native.java_library(
+    java_library(
         name = kwargs.get("name"),
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
@@ -19,7 +27,8 @@ def java_grpc_library(**kwargs):
         tags = kwargs.get("tags"),
     )
 
-GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/f6c2d221e2b6c975c6cf465d68fe11ab12dabe55/BUILD.bazel#L32-L38
+GRPC_DEPS = [
+    # From https://github.com/grpc/grpc-java/blob/f6c2d221e2b6c975c6cf465d68fe11ab12dabe55/BUILD.bazel#L32-L38
     "@io_grpc_grpc_java//api",
     "@io_grpc_grpc_java//protobuf",
     "@io_grpc_grpc_java//stub",

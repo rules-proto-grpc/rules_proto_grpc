@@ -92,13 +92,13 @@ func action(c *cli.Context) error {
 
 	languages := []*Language{
 		makeAndroid(),
-		makeClosure(),
 		makeCpp(),
 		makeCsharp(),
 		makeD(),
 		makeGo(),
+		makeGrpcGateway(),
 		makeJava(),
-		makeNode(),
+		makeJavaScript(),
 		makeObjc(),
 		makePhp(),
 		makePython(),
@@ -106,9 +106,6 @@ func action(c *cli.Context) error {
 		makeRust(),
 		makeScala(),
 		makeSwift(),
-
-		makeGrpcGateway(),
-		makeGrpcWeb(),
 	}
 
 	for _, lang := range languages {
@@ -142,7 +139,9 @@ func mustWriteLanguageRules(dir string, lang *Language) {
 
 func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
-	out.t(rule.Implementation, &ruleData{lang, rule})
+	out.t(mustTemplate(`"""Generated definition of {{ .Rule.Name }}."""`), &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.ln()
+	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields})
 	out.ln()
 	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name+".bzl"))
 }
@@ -171,23 +170,27 @@ func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
     path = "%s",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
+
 rules_proto_grpc_toolchains()
+
 rules_proto_grpc_repos()
 
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+
 rules_proto_dependencies()
+
 rules_proto_toolchains()`, relpath)
 
 	out.ln()
-	out.t(rule.WorkspaceExample, &ruleData{lang, rule})
+	out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
 }
 
 func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
-	out.t(rule.BuildExample, &ruleData{lang, rule})
+	out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "BUILD.bazel"))
 }
@@ -216,15 +219,20 @@ func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule)
 
 func mustWriteLanguageDefs(dir string, lang *Language) {
 	out := &LineWriter{}
-	out.w("# Aggregate all `%s` rules to one loadable file", lang.Name)
+	out.w("\"\"\"%s protobuf and grpc rules.\"\"\"", lang.Name)
+	out.ln()
+
 	for _, rule := range lang.Rules {
-		out.w(`load(":%s.bzl", _%s="%s")`, rule.Name, rule.Name, rule.Name)
+		out.w(`load(":%s.bzl", _%s = "%s")`, rule.Name, rule.Name, rule.Name)
 	}
 	out.ln()
+
+	out.w("# Export %s rules", lang.Name)
 	for _, rule := range lang.Rules {
 		out.w(`%s = _%s`, rule.Name, rule.Name)
 	}
 	out.ln()
+
 	if len(lang.Aliases) > 0 {
 		out.w(`# Aliases`)
 
@@ -278,7 +286,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 
 		out.w("```starlark")
-		out.t(rule.WorkspaceExample, &ruleData{lang, rule})
+		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
 		out.w("```")
 		out.ln()
 
@@ -286,7 +294,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 
 		out.w("```starlark")
-		out.t(rule.BuildExample, &ruleData{lang, rule})
+		out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
 		out.w("```")
 		out.ln()
 
@@ -310,6 +318,15 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("| `%s` | `%s` | %t | `%s`    | %s          |", attr.Name, attr.Type, attr.Mandatory, attr.Default, attr.Doc)
 		}
 		out.ln()
+
+		if len(rule.Plugins) > 0 {
+			out.w("### Plugins")
+			out.ln()
+			for _, plugin := range rule.Plugins {
+				out.w("- `@rules_proto_grpc%s`", plugin)
+			}
+			out.ln()
+		}
 	}
 
 	out.MustWrite(filepath.Join(dir, lang.Dir, "README.md"))
@@ -526,11 +543,23 @@ func mustWriteHttpArchiveTestWorkspace(dir, ref, sha256 string) {
 
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/%s.tar.gz"],
     sha256 = "%s",
     strip_prefix = "rules_proto_grpc-%s",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/%s.tar.gz"],
 )
-`, ref, sha256, ref)
+
+load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
+
+rules_proto_grpc_toolchains()
+
+rules_proto_grpc_repos()
+
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+
+rules_proto_dependencies()
+
+rules_proto_toolchains()
+`, sha256, ref, ref)
 	out.MustWrite(filepath.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
 }
 

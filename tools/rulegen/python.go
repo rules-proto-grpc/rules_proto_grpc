@@ -1,6 +1,6 @@
 package main
 
-var pythonGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var pythonGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
@@ -8,7 +8,7 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()`)
 
-var pythonGrpclibLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var pythonGrpclibLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
@@ -17,6 +17,7 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 grpc_deps()
 
 load("@rules_python//python:pip.bzl", "pip_install")
+
 pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
@@ -24,6 +25,7 @@ pip_install(
 )`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -31,7 +33,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -49,6 +51,7 @@ PROTO_DEPS = [
 ]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -56,7 +59,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_grpc_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -75,6 +78,7 @@ GRPC_DEPS = [
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -82,7 +86,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     python_grpclib_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -148,7 +152,7 @@ func makePython() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only)",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows"},
+				SkipTestPlatforms: []string{"windows", "macos"},
 			},
 			&Rule{
 				Name:             "python_proto_library",
@@ -177,7 +181,7 @@ func makePython() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf+grpclib library using `py_library` from `rules_python` (supports Python 3 only)",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows"},
+				SkipTestPlatforms: []string{"windows", "macos"},
 			},
 		},
 	}

@@ -1,3 +1,5 @@
+"""Common dependencies for rules_proto_grpc grpc-gateway rules."""
+
 load(
     "//:repositories.bzl",
     "bazel_gazelle",
@@ -7,7 +9,7 @@ load(
 )
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
-def gateway_repos(**kwargs):
+def gateway_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
     io_bazel_rules_go(**kwargs)
     bazel_gazelle(**kwargs)

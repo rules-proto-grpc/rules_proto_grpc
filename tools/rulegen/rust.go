@@ -1,6 +1,6 @@
 package main
 
-var rustWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var rustWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
@@ -13,16 +13,17 @@ load("@rules_rust//rust:repositories.bzl", "rust_repositories")
 rust_repositories()`)
 
 var rustLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("//{{ .Lang.Dir }}:rust_proto_lib.bzl", "rust_proto_lib")
 load("@rules_rust//rust:rust.bzl", "rust_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     name_lib = kwargs.get("name") + "_lib"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 `
 
@@ -89,8 +90,8 @@ var rustGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .
 {{ .Rule.Name }}(
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
     protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )`)
 

@@ -1,13 +1,20 @@
-load("//scala:scala_proto_compile.bzl", "scala_proto_compile")
-load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
-load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")
+"""Generated definition of scala_proto_library."""
 
-def scala_proto_library(**kwargs):
+load("//scala:scala_proto_compile.bzl", "scala_proto_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
+load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
+load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")  # buildifier: disable=load
+
+def scala_proto_library(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     scala_proto_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+        }  # Forward args
     )
 
     # Create scala library

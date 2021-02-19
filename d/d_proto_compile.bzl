@@ -1,7 +1,10 @@
-load("//:plugin.bzl", "ProtoPluginInfo")
+"""Generated definition of d_proto_compile."""
+
+load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
-    "//:aspect.bzl",
+    "//:defs.bzl",
     "ProtoLibraryAspectNodeInfo",
+    "ProtoPluginInfo",
     "proto_compile_aspect_attrs",
     "proto_compile_aspect_impl",
     "proto_compile_attrs",
@@ -25,7 +28,7 @@ d_proto_compile_aspect = aspect(
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
             default = "d_proto_compile_aspect",
-        )
+        ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
@@ -45,15 +48,22 @@ _rule = rule(
             mandatory = False,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
             aspects = [d_proto_compile_aspect],
-            doc = "DEPRECATED: Use protos attr"
+            doc = "DEPRECATED: Use protos attr",
+        ),
+        _plugins = attr.label_list(
+            doc = "List of protoc plugins to apply",
+            providers = [ProtoPluginInfo],
+            default = [
+                Label("//d:d_plugin"),
+            ],
         ),
     ),
+    toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
 # Create macro for converting attrs and passing to compile
 def d_proto_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
-        merge_directories = True,
-        **{k: v for k, v in kwargs.items() if k != "merge_directories"}
+        **kwargs
     )

@@ -1,4 +1,4 @@
-load("//example/routeguide:routeguide_test.bzl", "routeguide_test", "routeguide_test_matrix")
+load("//example/routeguide:routeguide_test.bzl", "routeguide_test_matrix")
 
 #
 # This generates a set of routeguide_test rules, one for each combination of
@@ -10,12 +10,13 @@ load("//example/routeguide:routeguide_test.bzl", "routeguide_test", "routeguide_
 #
 
 routeguide_test_matrix(
+    name = "routeguide_matrix",
     clients = [
         "//cpp/example/routeguide:client",
         "//csharp/example/routeguide:client.exe",
         "//go/example/routeguide/client",
         "//java/example/routeguide:client",
-        "//nodejs/example/routeguide:client",
+        "//js/example/routeguide:client",
         "//python/example/routeguide:client",
         "//ruby/example/routeguide:client",
         "//rust/example/routeguide:client",
@@ -26,7 +27,7 @@ routeguide_test_matrix(
         "//csharp/example/routeguide:server.exe",
         "//go/example/routeguide/server",
         "//java/example/routeguide:server",
-        "//nodejs/example/routeguide:server",
+        "//js/example/routeguide:server",
         "//python/example/routeguide:server",
         "//ruby/example/routeguide:server",
         "//rust/example/routeguide:server",

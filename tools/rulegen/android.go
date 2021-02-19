@@ -1,12 +1,11 @@
 package main
 
-var androidLibraryWorkspaceTemplateString = `load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var androidLibraryWorkspaceTemplateString = `load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
-load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS")
-load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS")
+load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
 
 maven_install(
     artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS,
@@ -21,8 +20,6 @@ load("@maven//:compat.bzl", "compat_repositories")
 
 compat_repositories()
 
-load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
-
 grpc_java_repositories()
 
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
@@ -34,6 +31,7 @@ var androidGrpcLibraryWorkspaceTemplate = mustTemplate(androidLibraryWorkspaceTe
 var androidProtoLibraryWorkspaceTemplate = mustTemplate("# The set of dependencies loaded here is excessive for android proto alone\n# (but simplifies our setup)\n" + androidLibraryWorkspaceTemplateString)
 
 var androidLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 
 def {{ .Rule.Name }}(**kwargs):
@@ -41,7 +39,7 @@ def {{ .Rule.Name }}(**kwargs):
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("protos" if "protos" in kwargs else "deps", "verbose")}  # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 `
 
@@ -58,6 +56,7 @@ var androidProtoLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStr
 
 PROTO_DEPS = [
     "@com_google_protobuf//:protobuf_javalite",
+    Label("//android:well_known_protos"),  # Lite is missing gen_well_known_protos_java from protobuf, compile them manually
 ]`)
 
 var androidGrpcLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateString + `
@@ -80,6 +79,7 @@ GRPC_DEPS = [
     "@com_google_guava_guava//jar",
     "@com_google_protobuf//:protobuf_javalite",
     "@com_google_protobuf//:protobuf_java_util",
+    Label("//android:well_known_protos"),  # Lite is missing gen_well_known_protos_java from protobuf, compile them manually
 ]`)
 
 func makeAndroid() *Language {
@@ -89,7 +89,6 @@ func makeAndroid() *Language {
 		DisplayName: "Android",
 		Notes: mustTemplate("Rules for generating Android protobuf and gRPC `.jar` files and libraries using standard Protocol Buffers and [gRPC-Java](https://github.com/grpc/grpc-java). Libraries are created with `android_library` from [rules_android](https://github.com/bazelbuild/rules_android)"),
 		Flags: commonLangFlags,
-		SkipDirectoriesMerge: true, // Jar files are not needed to be in merged directory
 		SkipTestPlatforms: []string{"all"},
 		Rules: []*Rule{
 			&Rule{

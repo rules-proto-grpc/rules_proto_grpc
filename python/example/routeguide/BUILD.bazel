@@ -1,3 +1,4 @@
+load("@rules_python//python:defs.bzl", "py_binary", "py_library")
 load("//python:defs.bzl", "python_grpc_library")
 
 python_grpc_library(
@@ -22,12 +23,12 @@ py_binary(
     ],
     data = ["//example/proto:routeguide_features"],
     imports = ["."],
+    python_version = "PY3",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":resources",
         ":routeguide",
     ],
-    python_version = "PY3",
 )
 
 py_binary(
@@ -37,10 +38,10 @@ py_binary(
     ],
     data = ["//example/proto:routeguide_features"],
     imports = ["."],
+    python_version = "PY3",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":resources",
         ":routeguide",
     ],
-    python_version = "PY3",
 )

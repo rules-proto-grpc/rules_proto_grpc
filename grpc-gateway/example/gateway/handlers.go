@@ -3,7 +3,7 @@ package gateway
 import (
 	"fmt"
 	"net/http"
-	"path/filepath"
+	"path"
 	"strings"
 
 	"github.com/golang/glog"
@@ -11,7 +11,8 @@ import (
 	"google.golang.org/grpc/connectivity"
 )
 
-func swaggerServer(dir string) http.HandlerFunc {
+// openAPIServer returns OpenAPI specification files located under "/openapiv2/"
+func openAPIServer(dir string) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		if !strings.HasSuffix(r.URL.Path, ".swagger.json") {
 			glog.Errorf("Not Found: %s", r.URL.Path)
@@ -20,8 +21,8 @@ func swaggerServer(dir string) http.HandlerFunc {
 		}
 
 		glog.Infof("Serving %s", r.URL.Path)
-		p := strings.TrimPrefix(r.URL.Path, "/swagger/")
-		p = filepath.Join(dir, p)
+		p := strings.TrimPrefix(r.URL.Path, "/openapiv2/")
+		p = path.Join(dir, p)
 		http.ServeFile(w, r, p)
 	}
 }
@@ -41,14 +42,18 @@ func allowCORS(h http.Handler) http.Handler {
 	})
 }
 
+// preflightHandler adds the necessary headers in order to serve
+// CORS from any origin using the methods "GET", "HEAD", "POST", "PUT", "DELETE"
+// We insist, don't do this without consideration in production systems.
 func preflightHandler(w http.ResponseWriter, r *http.Request) {
-	headers := []string{"Content-Type", "Accept"}
+	headers := []string{"Content-Type", "Accept", "Authorization"}
 	w.Header().Set("Access-Control-Allow-Headers", strings.Join(headers, ","))
 	methods := []string{"GET", "HEAD", "POST", "PUT", "DELETE"}
 	w.Header().Set("Access-Control-Allow-Methods", strings.Join(methods, ","))
 	glog.Infof("preflight request for %s", r.URL.Path)
 }
 
+// healthzServer returns a simple health handler which returns ok.
 func healthzServer(conn *grpc.ClientConn) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "text/plain")

@@ -2,5 +2,5 @@ load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_compile")
 
 gateway_grpc_compile(
     name = "api_gateway_grpc",
-    deps = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
+    protos = ["@rules_proto_grpc//grpc-gateway/example/api:api_proto"],
 )
