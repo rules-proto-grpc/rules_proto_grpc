@@ -302,6 +302,6 @@ Thanks to everyone who has contributed issues and patches for this release.
 
 ---
 
-# 0.1.0
+## 0.1.0
 
 Initial release of `rules_proto_grpc`. For changes from predecessor `rules_proto`, please see [MIGRATION.md](https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/docs/MIGRATION.md)
