@@ -41,10 +41,10 @@ var cProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .La
     name = "proto_{{ .Lang.Name }}_{{ .Rule.Kind }}",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
     protos = [
+        "@com_google_protobuf//:any_proto",
         "@rules_proto_grpc//example/proto:person_proto",
         "@rules_proto_grpc//example/proto:place_proto",
         "@rules_proto_grpc//example/proto:thing_proto",
-        "@com_google_protobuf//:any_proto",
     ],
 )`)
 
