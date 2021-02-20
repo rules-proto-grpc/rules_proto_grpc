@@ -22,16 +22,6 @@ VERSIONS = {
         "repo": "protobuf",
         "ref": "v3.15.1",
         "sha256": "f18a40816260a9a3190a94efb0fc26270b244a2436681602f0a944739095d632",
-        "binds": [
-            {
-                "name": "protobuf_clib",
-                "actual": "@com_google_protobuf//:protoc_lib",
-            },
-            {
-                "name": "protobuf_headers",
-                "actual": "@com_google_protobuf//:protobuf_headers",
-            },
-        ],
     },
     "com_github_grpc_grpc": {
         # When updating, also update Go repositories.bzl, Node.js requirements, Ruby requirements and C# requirements
