@@ -56,7 +56,7 @@ now fail. In such cases, you should add a `lang_{proto|grpc}_{compile|library}` 
 depend on it explicitly from the relevant top level binaries/libraries.
 
 ### General Changes
-- Updated protobuf to 3.15.0
+- Updated protobuf to 3.15.1
 - Updated gRPC to 1.35.0
 - All rules have new per-target `options` and `extra_protoc_args` attributes to control options to protoc
   [#54](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/54)

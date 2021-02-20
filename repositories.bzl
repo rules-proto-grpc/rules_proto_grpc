@@ -16,12 +16,12 @@ VERSIONS = {
         "sha256": "3bce0e2fcf502619119c7cac03613fb52ce3034b2159dd3ae9d35f7339558aa3",
     },
     "com_google_protobuf": {
-        # When updating, also update Node.js requirements, Ruby requirements and C# requirements
+        # When updating, also update JS requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.15.0",
-        "sha256": "6aff9834fd7c540875e1836967c8d14c6897e3785a2efac629f69860fb7834ff",
+        "ref": "v3.15.1",
+        "sha256": "f18a40816260a9a3190a94efb0fc26270b244a2436681602f0a944739095d632",
         "binds": [
             {
                 "name": "protobuf_clib",

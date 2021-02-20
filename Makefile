@@ -25,6 +25,7 @@ rust_raze:
 .PHONY: yarn_upgrade
 yarn_upgrade:
 	cd js/requirements; \
+	rm yarn.lock; \
 	yarn install; \
 
 
@@ -32,6 +33,7 @@ yarn_upgrade:
 .PHONY: ruby_bundle_upgrade
 ruby_bundle_upgrade:
 	cd ruby; \
+	rm Gemfile.lock; \
 	bundle install --path /tmp/ruby-bundle; \
 
 
