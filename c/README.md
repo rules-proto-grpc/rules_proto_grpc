@@ -55,7 +55,7 @@ c_proto_compile(
 | `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
-| `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
+| `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 
 ### Plugins
@@ -106,15 +106,15 @@ c_proto_library(
 | `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
 | `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
-| `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
+| `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 | `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
-| `alwayslink` | `bool` | false | ``    | Passed to the `alwayslink` attribute of `cc_library`.          |
-| `copts` | `list<string>` | false | ``    | Passed to the `opts` attribute of `cc_library`.          |
-| `defines` | `list<string>` | false | ``    | Passed to the `defines` attribute of `cc_library`.          |
-| `include_prefix` | `string` | false | ``    | Passed to the `include_prefix` attribute of `cc_library`.          |
-| `linkopts` | `list<string>` | false | ``    | Passed to the `linkopts` attribute of `cc_library`.          |
-| `linkstatic` | `bool` | false | ``    | Passed to the `linkstatic` attribute of `cc_library`.          |
-| `local_defines` | `list<string>` | false | ``    | Passed to the `local_defines` attribute of `cc_library`.          |
-| `nocopts` | `string` | false | ``    | Passed to the `nocopts` attribute of `cc_library`.          |
-| `strip_include_prefix` | `string` | false | ``    | Passed to the `strip_include_prefix` attribute of `cc_library`.          |
+| `alwayslink` | `bool` | false | `None`    | Passed to the `alwayslink` attribute of `cc_library`.          |
+| `copts` | `list<string>` | false | `None`    | Passed to the `opts` attribute of `cc_library`.          |
+| `defines` | `list<string>` | false | `None`    | Passed to the `defines` attribute of `cc_library`.          |
+| `include_prefix` | `string` | false | `None`    | Passed to the `include_prefix` attribute of `cc_library`.          |
+| `linkopts` | `list<string>` | false | `None`    | Passed to the `linkopts` attribute of `cc_library`.          |
+| `linkstatic` | `bool` | false | `None`    | Passed to the `linkstatic` attribute of `cc_library`.          |
+| `local_defines` | `list<string>` | false | `None`    | Passed to the `local_defines` attribute of `cc_library`.          |
+| `nocopts` | `string` | false | `None`    | Passed to the `nocopts` attribute of `cc_library`.          |
+| `strip_include_prefix` | `string` | false | `None`    | Passed to the `strip_include_prefix` attribute of `cc_library`.          |

@@ -29,7 +29,7 @@ var compileRuleAttrs = []*Attr{
 	&Attr{
 		Name:      "prefix_path",
 		Type:      "string",
-		Default:   "",
+		Default:   "\"\"",
 		Doc:       "Path to prefix to the generated files in the output directory",
 		Mandatory: false,
 	},
