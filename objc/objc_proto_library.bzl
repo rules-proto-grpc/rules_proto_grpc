@@ -21,7 +21,7 @@ def objc_proto_library(**kwargs):  # buildifier: disable=function-docstring
     filter_files(
         name = name_pb + "_srcs",
         target = name_pb,
-        extensions = ["cc"],
+        extensions = ["m"],
     )
 
     filter_files(
