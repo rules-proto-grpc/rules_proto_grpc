@@ -35,6 +35,15 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
+        alwayslink = kwargs.get("alwayslink"),
+        copts = kwargs.get("copts"),
+        defines = kwargs.get("defines"),
+        include_prefix = kwargs.get("include_prefix"),
+        linkopts = kwargs.get("linkopts"),
+        linkstatic = kwargs.get("linkstatic"),
+        local_defines = kwargs.get("local_defines"),
+        nocopts = kwargs.get("nocopts"),
+        strip_include_prefix = kwargs.get("strip_include_prefix"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -50,6 +59,15 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb],
+        alwayslink = kwargs.get("alwayslink"),
+        copts = kwargs.get("copts"),
+        defines = kwargs.get("defines"),
+        include_prefix = kwargs.get("include_prefix"),
+        linkopts = kwargs.get("linkopts"),
+        linkstatic = kwargs.get("linkstatic"),
+        local_defines = kwargs.get("local_defines"),
+        nocopts = kwargs.get("nocopts"),
+        strip_include_prefix = kwargs.get("strip_include_prefix"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -59,6 +77,72 @@ GRPC_DEPS = [
     "@com_github_grpc_grpc//:grpc++",
     "@com_github_grpc_grpc//:grpc++_reflection",
 ]`)
+
+var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
+	&Attr{
+		Name:      "alwayslink",
+		Type:      "bool",
+		Default:   "",
+		Doc:       "Passed to the `alwayslink` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "copts",
+		Type:      "list<string>",
+		Default:   "",
+		Doc:       "Passed to the `opts` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "defines",
+		Type:      "list<string>",
+		Default:   "",
+		Doc:       "Passed to the `defines` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "include_prefix",
+		Type:      "string",
+		Default:   "",
+		Doc:       "Passed to the `include_prefix` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "linkopts",
+		Type:      "list<string>",
+		Default:   "",
+		Doc:       "Passed to the `linkopts` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "linkstatic",
+		Type:      "bool",
+		Default:   "",
+		Doc:       "Passed to the `linkstatic` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "local_defines",
+		Type:      "list<string>",
+		Default:   "",
+		Doc:       "Passed to the `local_defines` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "nocopts",
+		Type:      "string",
+		Default:   "",
+		Doc:       "Passed to the `nocopts` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "strip_include_prefix",
+		Type:      "string",
+		Default:   "",
+		Doc:       "Passed to the `strip_include_prefix` attribute of `cc_library`.",
+		Mandatory: false,
+	},
+}...)
 
 func makeCpp() *Language {
 	return &Language{
@@ -101,7 +185,7 @@ func makeCpp() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a C++ protobuf library using `cc_library`, with dependencies linked",
-				Attrs:            libraryRuleAttrs,
+				Attrs:            cppLibraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "cpp_grpc_library",
@@ -110,7 +194,7 @@ func makeCpp() *Language {
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies linked",
-				Attrs:            libraryRuleAttrs,
+				Attrs:            cppLibraryRuleAttrs,
 			},
 		},
 	}

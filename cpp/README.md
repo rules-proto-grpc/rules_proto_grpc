@@ -154,6 +154,15 @@ cpp_proto_library(
 | `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 | `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `alwayslink` | `bool` | false | ``    | Passed to the `alwayslink` attribute of `cc_library`.          |
+| `copts` | `list<string>` | false | ``    | Passed to the `opts` attribute of `cc_library`.          |
+| `defines` | `list<string>` | false | ``    | Passed to the `defines` attribute of `cc_library`.          |
+| `include_prefix` | `string` | false | ``    | Passed to the `include_prefix` attribute of `cc_library`.          |
+| `linkopts` | `list<string>` | false | ``    | Passed to the `linkopts` attribute of `cc_library`.          |
+| `linkstatic` | `bool` | false | ``    | Passed to the `linkstatic` attribute of `cc_library`.          |
+| `local_defines` | `list<string>` | false | ``    | Passed to the `local_defines` attribute of `cc_library`.          |
+| `nocopts` | `string` | false | ``    | Passed to the `nocopts` attribute of `cc_library`.          |
+| `strip_include_prefix` | `string` | false | ``    | Passed to the `strip_include_prefix` attribute of `cc_library`.          |
 
 ---
 
@@ -200,3 +209,12 @@ cpp_grpc_library(
 | `prefix_path` | `string` | false | ``    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 | `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `alwayslink` | `bool` | false | ``    | Passed to the `alwayslink` attribute of `cc_library`.          |
+| `copts` | `list<string>` | false | ``    | Passed to the `opts` attribute of `cc_library`.          |
+| `defines` | `list<string>` | false | ``    | Passed to the `defines` attribute of `cc_library`.          |
+| `include_prefix` | `string` | false | ``    | Passed to the `include_prefix` attribute of `cc_library`.          |
+| `linkopts` | `list<string>` | false | ``    | Passed to the `linkopts` attribute of `cc_library`.          |
+| `linkstatic` | `bool` | false | ``    | Passed to the `linkstatic` attribute of `cc_library`.          |
+| `local_defines` | `list<string>` | false | ``    | Passed to the `local_defines` attribute of `cc_library`.          |
+| `nocopts` | `string` | false | ``    | Passed to the `nocopts` attribute of `cc_library`.          |
+| `strip_include_prefix` | `string` | false | ``    | Passed to the `strip_include_prefix` attribute of `cc_library`.          |

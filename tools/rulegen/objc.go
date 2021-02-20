@@ -5,7 +5,7 @@ load("//internal:compile.bzl", "proto_compile_attrs")
 load("//internal:filter_files.bzl", "filter_files")
 load("@rules_cc//cc:defs.bzl", "objc_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
@@ -35,7 +35,15 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
+        alwayslink = kwargs.get("alwayslink"),
         copts = kwargs.get("copts"),
+        defines = kwargs.get("defines"),
+        include_prefix = kwargs.get("include_prefix"),
+        linkopts = kwargs.get("linkopts"),
+        linkstatic = kwargs.get("linkstatic"),
+        local_defines = kwargs.get("local_defines"),
+        nocopts = kwargs.get("nocopts"),
+        strip_include_prefix = kwargs.get("strip_include_prefix"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -51,7 +59,15 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb],
+        alwayslink = kwargs.get("alwayslink"),
         copts = kwargs.get("copts"),
+        defines = kwargs.get("defines"),
+        include_prefix = kwargs.get("include_prefix"),
+        linkopts = kwargs.get("linkopts"),
+        linkstatic = kwargs.get("linkstatic"),
+        local_defines = kwargs.get("local_defines"),
+        nocopts = kwargs.get("nocopts"),
+        strip_include_prefix = kwargs.get("strip_include_prefix"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -98,7 +114,7 @@ func makeObjc() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates an Objective-C protobuf library using `objc_library`",
-				Attrs:            libraryRuleAttrs,
+				Attrs:            cppLibraryRuleAttrs,
 			},
 // 			&Rule{ // Disabled due to issues fetching gRPC dependencies
 // 				Name:             "objc_grpc_library",
@@ -107,7 +123,7 @@ func makeObjc() *Language {
 // 				WorkspaceExample: grpcWorkspaceTemplate,
 // 				BuildExample:     grpcLibraryExampleTemplate,
 // 				Doc:              "Generates an Objective-C protobuf+gRPC library using `objc_library`",
-// 				Attrs:            libraryRuleAttrs,
+// 				Attrs:            cppLibraryRuleAttrs,
 // 			},
 		},
 	}

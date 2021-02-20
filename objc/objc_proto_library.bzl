@@ -5,7 +5,7 @@ load("//internal:compile.bzl", "proto_compile_attrs")
 load("//internal:filter_files.bzl", "filter_files")
 load("@rules_cc//cc:defs.bzl", "objc_library")
 
-def objc_proto_library(**kwargs):
+def objc_proto_library(**kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = kwargs.get("name") + "_pb"
     objc_proto_compile(
@@ -37,7 +37,15 @@ def objc_proto_library(**kwargs):
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
+        alwayslink = kwargs.get("alwayslink"),
         copts = kwargs.get("copts"),
+        defines = kwargs.get("defines"),
+        include_prefix = kwargs.get("include_prefix"),
+        linkopts = kwargs.get("linkopts"),
+        linkstatic = kwargs.get("linkstatic"),
+        local_defines = kwargs.get("local_defines"),
+        nocopts = kwargs.get("nocopts"),
+        strip_include_prefix = kwargs.get("strip_include_prefix"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
