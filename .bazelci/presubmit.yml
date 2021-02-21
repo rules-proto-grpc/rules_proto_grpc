@@ -22,10 +22,7 @@ tasks:
     - "//rust/..."
     - "//scala/..."
     - "//swift/..."
-    test_flags:
     - "--test_output=errors"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -106,11 +103,7 @@ tasks:
     - "//python/..."
     - "//scala/..."
     - "//swift/..."
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -157,12 +150,14 @@ tasks:
   android_android_proto_compile_ubuntu1804:
     name: 'android: android_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_compile
   android_android_proto_compile_windows:
     name: 'android: android_proto_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_compile
@@ -177,12 +172,14 @@ tasks:
   android_android_grpc_compile_ubuntu1804:
     name: 'android: android_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_compile
   android_android_grpc_compile_windows:
     name: 'android: android_grpc_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_compile
@@ -197,12 +194,14 @@ tasks:
   android_android_proto_library_ubuntu1804:
     name: 'android: android_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_library
   android_android_proto_library_windows:
     name: 'android: android_proto_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_library
@@ -217,12 +216,14 @@ tasks:
   android_android_grpc_library_ubuntu1804:
     name: 'android: android_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
   android_android_grpc_library_windows:
     name: 'android: android_grpc_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
@@ -237,12 +238,14 @@ tasks:
   c_c_proto_compile_ubuntu1804:
     name: 'c: c_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/c/c_proto_compile
   c_c_proto_compile_windows:
     name: 'c: c_proto_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/c/c_proto_compile
@@ -257,12 +260,14 @@ tasks:
   c_c_proto_library_ubuntu1804:
     name: 'c: c_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/c/c_proto_library
   c_c_proto_library_windows:
     name: 'c: c_proto_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/c/c_proto_library
@@ -277,12 +282,14 @@ tasks:
   cpp_cpp_proto_compile_ubuntu1804:
     name: 'cpp: cpp_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_compile
   cpp_cpp_proto_compile_windows:
     name: 'cpp: cpp_proto_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_compile
@@ -297,12 +304,14 @@ tasks:
   cpp_cpp_grpc_compile_ubuntu1804:
     name: 'cpp: cpp_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_compile
   cpp_cpp_grpc_compile_windows:
     name: 'cpp: cpp_grpc_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_compile
@@ -317,12 +326,14 @@ tasks:
   cpp_cpp_proto_library_ubuntu1804:
     name: 'cpp: cpp_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_library
   cpp_cpp_proto_library_windows:
     name: 'cpp: cpp_proto_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_library
@@ -337,12 +348,14 @@ tasks:
   cpp_cpp_grpc_library_ubuntu1804:
     name: 'cpp: cpp_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_library
   cpp_cpp_grpc_library_windows:
     name: 'cpp: cpp_grpc_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_library
@@ -469,24 +482,28 @@ tasks:
   d_d_proto_compile_ubuntu1804:
     name: 'd: d_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/d/d_proto_compile
   d_d_proto_library_ubuntu1804:
     name: 'd: d_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/d/d_proto_library
   go_go_proto_compile_ubuntu1804:
     name: 'go: go_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_compile
   go_go_proto_compile_windows:
     name: 'go: go_proto_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_compile
@@ -501,12 +518,14 @@ tasks:
   go_go_grpc_compile_ubuntu1804:
     name: 'go: go_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
   go_go_grpc_compile_windows:
     name: 'go: go_grpc_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
@@ -521,12 +540,14 @@ tasks:
   go_go_proto_library_ubuntu1804:
     name: 'go: go_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_library
   go_go_proto_library_windows:
     name: 'go: go_proto_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_library
@@ -541,12 +562,14 @@ tasks:
   go_go_grpc_library_ubuntu1804:
     name: 'go: go_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
   go_go_grpc_library_windows:
     name: 'go: go_grpc_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
@@ -561,12 +584,14 @@ tasks:
   grpc-gateway_gateway_grpc_compile_ubuntu1804:
     name: 'grpc-gateway: gateway_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_grpc_compile
   grpc-gateway_gateway_grpc_compile_windows:
     name: 'grpc-gateway: gateway_grpc_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_grpc_compile
@@ -581,6 +606,7 @@ tasks:
   grpc-gateway_gateway_openapiv2_compile_ubuntu1804:
     name: 'grpc-gateway: gateway_openapiv2_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_openapiv2_compile
@@ -595,6 +621,7 @@ tasks:
   grpc-gateway_gateway_grpc_library_ubuntu1804:
     name: 'grpc-gateway: gateway_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_grpc_library
@@ -609,12 +636,14 @@ tasks:
   java_java_proto_compile_ubuntu1804:
     name: 'java: java_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_compile
   java_java_proto_compile_windows:
     name: 'java: java_proto_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_compile
@@ -629,12 +658,14 @@ tasks:
   java_java_grpc_compile_ubuntu1804:
     name: 'java: java_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_compile
   java_java_grpc_compile_windows:
     name: 'java: java_grpc_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_compile
@@ -649,12 +680,14 @@ tasks:
   java_java_proto_library_ubuntu1804:
     name: 'java: java_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_library
   java_java_proto_library_windows:
     name: 'java: java_proto_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_library
@@ -669,12 +702,14 @@ tasks:
   java_java_grpc_library_ubuntu1804:
     name: 'java: java_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_library
   java_java_grpc_library_windows:
     name: 'java: java_grpc_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_library
@@ -689,12 +724,14 @@ tasks:
   js_js_proto_compile_ubuntu1804:
     name: 'js: js_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_compile
   js_js_proto_compile_windows:
     name: 'js: js_proto_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_compile
@@ -709,12 +746,14 @@ tasks:
   js_js_grpc_node_compile_ubuntu1804:
     name: 'js: js_grpc_node_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_node_compile
   js_js_grpc_node_compile_windows:
     name: 'js: js_grpc_node_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_node_compile
@@ -729,12 +768,14 @@ tasks:
   js_js_grpc_web_compile_ubuntu1804:
     name: 'js: js_grpc_web_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_web_compile
   js_js_grpc_web_compile_windows:
     name: 'js: js_grpc_web_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_web_compile
@@ -749,12 +790,14 @@ tasks:
   js_js_proto_library_ubuntu1804:
     name: 'js: js_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_library
   js_js_proto_library_windows:
     name: 'js: js_proto_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_library
@@ -769,12 +812,14 @@ tasks:
   js_js_grpc_node_library_ubuntu1804:
     name: 'js: js_grpc_node_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_node_library
   js_js_grpc_node_library_windows:
     name: 'js: js_grpc_node_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_node_library
@@ -789,12 +834,14 @@ tasks:
   js_js_grpc_web_library_ubuntu1804:
     name: 'js: js_grpc_web_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_web_library
   js_js_grpc_web_library_windows:
     name: 'js: js_grpc_web_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_web_library
@@ -833,12 +880,14 @@ tasks:
   php_php_proto_compile_ubuntu1804:
     name: 'php: php_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/php/php_proto_compile
   php_php_proto_compile_windows:
     name: 'php: php_proto_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/php/php_proto_compile
@@ -853,12 +902,14 @@ tasks:
   php_php_grpc_compile_ubuntu1804:
     name: 'php: php_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/php/php_grpc_compile
   php_php_grpc_compile_windows:
     name: 'php: php_grpc_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/php/php_grpc_compile
@@ -873,12 +924,14 @@ tasks:
   python_python_proto_compile_ubuntu1804:
     name: 'python: python_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_compile
   python_python_proto_compile_windows:
     name: 'python: python_proto_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_compile
@@ -893,12 +946,14 @@ tasks:
   python_python_grpc_compile_ubuntu1804:
     name: 'python: python_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
   python_python_grpc_compile_windows:
     name: 'python: python_grpc_compile'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
@@ -913,18 +968,21 @@ tasks:
   python_python_grpclib_compile_ubuntu1804:
     name: 'python: python_grpclib_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_compile
   python_python_proto_library_ubuntu1804:
     name: 'python: python_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_library
   python_python_proto_library_windows:
     name: 'python: python_proto_library'
     platform: windows
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_library
@@ -939,6 +997,7 @@ tasks:
   python_python_grpc_library_ubuntu1804:
     name: 'python: python_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_library
@@ -953,36 +1012,42 @@ tasks:
   python_python_grpclib_library_ubuntu1804:
     name: 'python: python_grpclib_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_library
   rust_rust_proto_compile_ubuntu1804:
     name: 'rust: rust_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/rust/rust_proto_compile
   rust_rust_grpc_compile_ubuntu1804:
     name: 'rust: rust_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/rust/rust_grpc_compile
   rust_rust_proto_library_ubuntu1804:
     name: 'rust: rust_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/rust/rust_proto_library
   rust_rust_grpc_library_ubuntu1804:
     name: 'rust: rust_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/rust/rust_grpc_library
   scala_scala_proto_compile_ubuntu1804:
     name: 'scala: scala_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_compile
@@ -997,6 +1062,7 @@ tasks:
   scala_scala_grpc_compile_ubuntu1804:
     name: 'scala: scala_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_compile
@@ -1011,6 +1077,7 @@ tasks:
   scala_scala_proto_library_ubuntu1804:
     name: 'scala: scala_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_library
@@ -1025,6 +1092,7 @@ tasks:
   scala_scala_grpc_library_ubuntu1804:
     name: 'scala: scala_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_library
@@ -1039,6 +1107,7 @@ tasks:
   swift_swift_proto_compile_ubuntu1804:
     name: 'swift: swift_proto_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/swift/swift_proto_compile
@@ -1057,6 +1126,7 @@ tasks:
   swift_swift_grpc_compile_ubuntu1804:
     name: 'swift: swift_grpc_compile'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/swift/swift_grpc_compile
@@ -1075,6 +1145,7 @@ tasks:
   swift_swift_proto_library_ubuntu1804:
     name: 'swift: swift_proto_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/swift/swift_proto_library
@@ -1093,6 +1164,7 @@ tasks:
   swift_swift_grpc_library_ubuntu1804:
     name: 'swift: swift_grpc_library'
     platform: ubuntu1804
+    build_flags:
     build_targets:
       - "//..."
     working_directory: example/swift/swift_grpc_library
@@ -1111,7 +1183,7 @@ tasks:
   test_workspace_absolute_strip_import_prefix_ubuntu1804:
     name: 'test workspace: absolute_strip_import_prefix'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1119,7 +1191,7 @@ tasks:
   test_workspace_absolute_strip_import_prefix_windows:
     name: 'test workspace: absolute_strip_import_prefix'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1129,8 +1201,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1138,7 +1208,7 @@ tasks:
   test_workspace_combined_strip_and_add_prefix_ubuntu1804:
     name: 'test workspace: combined_strip_and_add_prefix'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1146,7 +1216,7 @@ tasks:
   test_workspace_combined_strip_and_add_prefix_windows:
     name: 'test workspace: combined_strip_and_add_prefix'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1156,8 +1226,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1165,7 +1233,7 @@ tasks:
   test_workspace_common_cpp_library_ubuntu1804:
     name: 'test workspace: common_cpp_library'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1173,7 +1241,7 @@ tasks:
   test_workspace_common_cpp_library_windows:
     name: 'test workspace: common_cpp_library'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1183,8 +1251,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1192,7 +1258,7 @@ tasks:
   test_workspace_empty_output_directory_ubuntu1804:
     name: 'test workspace: empty_output_directory'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1200,7 +1266,7 @@ tasks:
   test_workspace_empty_output_directory_windows:
     name: 'test workspace: empty_output_directory'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1210,8 +1276,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1219,7 +1283,7 @@ tasks:
   test_workspace_exclusions_ubuntu1804:
     name: 'test workspace: exclusions'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1227,7 +1291,7 @@ tasks:
   test_workspace_exclusions_windows:
     name: 'test workspace: exclusions'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1237,8 +1301,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1246,7 +1308,7 @@ tasks:
   test_workspace_generated_proto_ubuntu1804:
     name: 'test workspace: generated_proto'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1254,7 +1316,7 @@ tasks:
   test_workspace_generated_proto_windows:
     name: 'test workspace: generated_proto'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1264,8 +1326,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1273,7 +1333,7 @@ tasks:
   test_workspace_go_importpath_ubuntu1804:
     name: 'test workspace: go_importpath'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1281,7 +1341,7 @@ tasks:
   test_workspace_go_importpath_windows:
     name: 'test workspace: go_importpath'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1291,8 +1351,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1300,7 +1358,7 @@ tasks:
   test_workspace_import_prefix_ubuntu1804:
     name: 'test workspace: import_prefix'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1308,7 +1366,7 @@ tasks:
   test_workspace_import_prefix_windows:
     name: 'test workspace: import_prefix'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1318,8 +1376,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1327,7 +1383,7 @@ tasks:
   test_workspace_objc_capitalisation_ubuntu1804:
     name: 'test workspace: objc_capitalisation'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1335,7 +1391,7 @@ tasks:
   test_workspace_objc_capitalisation_windows:
     name: 'test workspace: objc_capitalisation'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1345,8 +1401,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1354,7 +1408,7 @@ tasks:
   test_workspace_python3_grpc_ubuntu1804:
     name: 'test workspace: python3_grpc'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1364,8 +1418,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1373,7 +1425,7 @@ tasks:
   test_workspace_python_dashes_ubuntu1804:
     name: 'test workspace: python_dashes'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1381,7 +1433,7 @@ tasks:
   test_workspace_python_dashes_windows:
     name: 'test workspace: python_dashes'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1391,8 +1443,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1400,7 +1450,7 @@ tasks:
   test_workspace_python_deps_ubuntu1804:
     name: 'test workspace: python_deps'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1410,8 +1460,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1419,7 +1467,7 @@ tasks:
   test_workspace_readme_http_archive_ubuntu1804:
     name: 'test workspace: readme_http_archive'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1427,7 +1475,7 @@ tasks:
   test_workspace_readme_http_archive_windows:
     name: 'test workspace: readme_http_archive'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1437,8 +1485,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1446,7 +1492,7 @@ tasks:
   test_workspace_relative_strip_import_prefix_ubuntu1804:
     name: 'test workspace: relative_strip_import_prefix'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1454,7 +1500,7 @@ tasks:
   test_workspace_relative_strip_import_prefix_windows:
     name: 'test workspace: relative_strip_import_prefix'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1464,8 +1510,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1473,7 +1517,7 @@ tasks:
   test_workspace_shared_proto_ubuntu1804:
     name: 'test workspace: shared_proto'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1481,7 +1525,7 @@ tasks:
   test_workspace_shared_proto_windows:
     name: 'test workspace: shared_proto'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1491,8 +1535,6 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1500,7 +1542,7 @@ tasks:
   test_workspace_transitive_compilation_ubuntu1804:
     name: 'test workspace: transitive_compilation'
     platform: ubuntu1804
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1508,7 +1550,7 @@ tasks:
   test_workspace_transitive_compilation_windows:
     name: 'test workspace: transitive_compilation'
     platform: windows
-    test_flags:
+    build_flags:
     - "--test_output=errors"
     test_targets:
       - "//..."
@@ -1517,8 +1559,6 @@ tasks:
     name: 'test workspace: transitive_compilation'
     platform: macos
     build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
     - "--test_output=errors"
     test_targets:
