@@ -5,9 +5,9 @@ load("//internal:compile.bzl", "proto_compile_attrs")
 load("//internal:filter_files.bzl", "filter_files")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-def cpp_grpc_library(**kwargs):  # buildifier: disable=function-docstring
+def cpp_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     cpp_grpc_compile(
         name = name_pb,
         **{
@@ -32,7 +32,7 @@ def cpp_grpc_library(**kwargs):  # buildifier: disable=function-docstring
 
     # Create cpp library
     cc_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb],

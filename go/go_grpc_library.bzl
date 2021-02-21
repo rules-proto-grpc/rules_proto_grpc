@@ -5,9 +5,9 @@ load("//go:go_grpc_compile.bzl", "go_grpc_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
-def go_grpc_library(**kwargs):
+def go_grpc_library(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     go_grpc_compile(
         name = name_pb,
         prefix_path = kwargs.get("prefix_path", kwargs.get("importpath", "")),
@@ -24,7 +24,7 @@ def go_grpc_library(**kwargs):
 
     # Create go library
     go_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         importpath = kwargs.get("importpath"),

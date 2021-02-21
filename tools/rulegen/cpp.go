@@ -5,9 +5,9 @@ load("//internal:compile.bzl", "proto_compile_attrs")
 load("//internal:filter_files.bzl", "filter_files")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
-def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
+def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -30,7 +30,7 @@ def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
 var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     cc_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb + "_srcs"],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         hdrs = [name_pb + "_hdrs"],
@@ -55,7 +55,7 @@ PROTO_DEPS = [
 var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     cc_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [name_pb],

@@ -4,9 +4,9 @@ load("//swift:swift_grpc_compile.bzl", "swift_grpc_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-def swift_grpc_library(**kwargs):
+def swift_grpc_library(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     swift_grpc_compile(
         name = name_pb,
         **{
@@ -18,7 +18,7 @@ def swift_grpc_library(**kwargs):
 
     # Create swift library
     swift_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         module_name = kwargs.get("module_name"),

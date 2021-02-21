@@ -4,9 +4,9 @@ load("//python:python_grpclib_compile.bzl", "python_grpclib_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
-def python_grpclib_library(**kwargs):
+def python_grpclib_library(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     python_grpclib_compile(
         name = name_pb,
         **{
@@ -18,7 +18,7 @@ def python_grpclib_library(**kwargs):
 
     # Create python library
     py_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = [
             "@com_google_protobuf//:protobuf_python",

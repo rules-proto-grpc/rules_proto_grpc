@@ -28,9 +28,9 @@ var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .L
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     python_proto_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -38,7 +38,7 @@ def {{ .Rule.Name }}(**kwargs):
 
     # Create {{ .Lang.Name }} library
     py_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         imports = [name_pb],
@@ -54,9 +54,9 @@ var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .La
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     python_grpc_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -64,7 +64,7 @@ def {{ .Rule.Name }}(**kwargs):
 
     # Create {{ .Lang.Name }} library
     py_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         imports = [name_pb],
@@ -81,9 +81,9 @@ var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ 
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     python_grpclib_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -91,7 +91,7 @@ def {{ .Rule.Name }}(**kwargs):
 
     # Create {{ .Lang.Name }} library
     py_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = [
             "@com_google_protobuf//:protobuf_python",

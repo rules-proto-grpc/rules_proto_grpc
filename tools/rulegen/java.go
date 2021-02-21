@@ -30,9 +30,9 @@ var javaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_java//java:defs.bzl", "java_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -42,7 +42,7 @@ def {{ .Rule.Name }}(**kwargs):
 var javaProtoLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     java_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         exports = PROTO_DEPS + kwargs.get("exports", []),
@@ -57,7 +57,7 @@ PROTO_DEPS = [
 var javaGrpcLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     java_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         runtime_deps = ["@io_grpc_grpc_java//netty"],

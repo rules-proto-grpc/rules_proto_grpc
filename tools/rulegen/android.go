@@ -34,9 +34,9 @@ var androidLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -46,7 +46,7 @@ def {{ .Rule.Name }}(**kwargs):
 var androidProtoLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     android_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         exports = PROTO_DEPS + kwargs.get("exports", []),
@@ -62,7 +62,7 @@ PROTO_DEPS = [
 var androidGrpcLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     android_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         exports = GRPC_DEPS + kwargs.get("exports", []),

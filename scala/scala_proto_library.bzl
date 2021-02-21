@@ -5,9 +5,9 @@ load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
 load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")  # buildifier: disable=load
 
-def scala_proto_library(**kwargs):  # buildifier: disable=function-docstring
+def scala_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     scala_proto_compile(
         name = name_pb,
         **{
@@ -19,7 +19,7 @@ def scala_proto_library(**kwargs):  # buildifier: disable=function-docstring
 
     # Create scala library
     scala_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         exports = PROTO_DEPS + kwargs.get("exports", []),

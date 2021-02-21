@@ -26,9 +26,9 @@ var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .R
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Rule.Base}}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         prefix_path = kwargs.get("prefix_path", kwargs.get("importpath", "")),
@@ -47,7 +47,7 @@ def {{ .Rule.Name }}(**kwargs):
 var goProtoLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     go_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         importpath = kwargs.get("importpath"),
@@ -78,7 +78,7 @@ var goGrpcLibraryRuleTemplate = mustTemplate(
 ` + goLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     go_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         importpath = kwargs.get("importpath"),
