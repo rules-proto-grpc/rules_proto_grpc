@@ -1,29 +1,30 @@
-load("//:plugin.bzl", "proto_plugin")
+load("@rules_cc//cc:defs.bzl", "cc_import")
+load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
     name = "rust_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
     # Use the proto basename and pipe the value to the rust_keyword function.
     # Ths function will append '_pb' if the basename is a rust keyword.
     outputs = ["{basename|rust_keyword}.rs"],
     tool = "//rust/raze:cargo_bin_protoc_gen_rust",
-    exclusions = [
-        "google/protobuf",
-    ],
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
     name = "grpc_rust_plugin",
+    empty_template = "empty.template",
+    exclusions = [
+        "google/protobuf",
+    ],
     # Use the proto basename and pipe the value to the rust_keyword function.
     # Ths function will append '_pb' if the basename is a rust keyword.
     outputs = ["{basename|rust_keyword}_grpc.rs"],
     tool = "//rust/raze:cargo_bin_grpc_rust_plugin",
-    exclusions = [
-        "google/protobuf",
-    ],
     visibility = ["//visibility:public"],
 )
-
 
 # Bodge to allow linking against c-ares.
 # The @com_github_cares_cares//:ares rule will output a .lo file that the rust rules don't know how
@@ -38,5 +39,19 @@ genrule(
 cc_import(
     name = "ares",
     static_library = ":copy_ares",
+    visibility = ["//visibility:public"],
+)
+
+# Do the same for @upb libdescriptor_proto.upb.a, which again fails to be taken as a valid static lib by rules_rust
+genrule(
+    name = "copy_upb_libdescriptor_proto",
+    srcs = ["@upb//:descriptor_upb_proto"],
+    outs = ["libdescriptor_proto.a"],
+    cmd = "cp $(locations @upb//:descriptor_upb_proto) \"$(@D)\" && mv \"$(@D)/libdescriptor_proto.upb.a\" \"$(@D)/libdescriptor_proto.a\"",
+)
+
+cc_import(
+    name = "upb_libdescriptor_proto",
+    static_library = ":copy_upb_libdescriptor_proto",
     visibility = ["//visibility:public"],
 )

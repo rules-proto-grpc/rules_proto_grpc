@@ -22,7 +22,7 @@ Generates Python protobuf `.py` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 ```
@@ -34,7 +34,17 @@ load("@rules_proto_grpc//python:defs.bzl", "python_proto_compile")
 
 python_proto_compile(
     name = "person_python_proto",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+python_proto_compile(
+    name = "place_python_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+python_proto_compile(
+    name = "thing_python_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -42,8 +52,15 @@ python_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+
+### Plugins
+
+- `@rules_proto_grpc//python:python_plugin`
 
 ---
 
@@ -54,7 +71,7 @@ Generates Python protobuf+gRPC `.py` artifacts
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 
@@ -69,8 +86,13 @@ grpc_deps()
 load("@rules_proto_grpc//python:defs.bzl", "python_grpc_compile")
 
 python_grpc_compile(
+    name = "thing_python_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+python_grpc_compile(
     name = "greeter_python_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -78,8 +100,16 @@ python_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+
+### Plugins
+
+- `@rules_proto_grpc//python:python_plugin`
+- `@rules_proto_grpc//python:grpc_python_plugin`
 
 ---
 
@@ -90,7 +120,7 @@ Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only)
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 
@@ -98,10 +128,8 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@rules_python//python:repositories.bzl", "py_repositories")
-py_repositories()
-
 load("@rules_python//python:pip.bzl", "pip_install")
+
 pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
@@ -115,8 +143,13 @@ pip_install(
 load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_compile")
 
 python_grpclib_compile(
+    name = "thing_python_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+python_grpclib_compile(
     name = "greeter_python_grpc",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
 )
 ```
 
@@ -124,8 +157,16 @@ python_grpclib_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+
+### Plugins
+
+- `@rules_proto_grpc//python:python_plugin`
+- `@rules_proto_grpc//python:grpclib_python_plugin`
 
 ---
 
@@ -136,7 +177,7 @@ Generates a Python protobuf library using `py_library` from `rules_python`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 ```
@@ -147,8 +188,20 @@ rules_proto_grpc_python_repos()
 load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
 
 python_proto_library(
-    name = "person_python_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "person_python_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_python_proto"],
+)
+
+python_proto_library(
+    name = "place_python_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_python_proto"],
+)
+
+python_proto_library(
+    name = "thing_python_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
 
@@ -156,8 +209,12 @@ python_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
 
 ---
 
@@ -168,7 +225,7 @@ Generates a Python protobuf+gRPC library using `py_library` from `rules_python`
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 
@@ -183,8 +240,14 @@ grpc_deps()
 load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library")
 
 python_grpc_library(
-    name = "greeter_python_library",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "thing_python_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+python_grpc_library(
+    name = "greeter_python_grpc",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    deps = ["thing_python_grpc"],
 )
 ```
 
@@ -192,8 +255,12 @@ python_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
 
 ---
 
@@ -204,7 +271,7 @@ Generates a Python protobuf+grpclib library using `py_library` from `rules_pytho
 ### `WORKSPACE`
 
 ```starlark
-load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos="python_repos")
+load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
 
 rules_proto_grpc_python_repos()
 
@@ -212,10 +279,8 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@rules_python//python:repositories.bzl", "py_repositories")
-py_repositories()
-
 load("@rules_python//python:pip.bzl", "pip_install")
+
 pip_install(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
@@ -229,8 +294,14 @@ pip_install(
 load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_library")
 
 python_grpclib_library(
-    name = "greeter_python_library",
-    deps = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    name = "thing_python_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+python_grpclib_library(
+    name = "greeter_python_grpc",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    deps = ["thing_python_grpc"],
 )
 ```
 
@@ -238,5 +309,9 @@ python_grpclib_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `deps` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `native.proto_library`)          |
+| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
+| `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
+| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |

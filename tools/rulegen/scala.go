@@ -1,8 +1,12 @@
 package main
 
-var scalaProtoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var scalaProtoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
+
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
+scala_config()
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
@@ -16,9 +20,13 @@ load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()`)
 
-var scalaGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var scalaGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
+
+load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+
+scala_config()
 
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
 
@@ -37,47 +45,56 @@ load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
 grpc_java_repositories()`)
 
 var scalaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
+load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")  # buildifier: disable=load
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 `
 
 var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     scala_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS,
-        exports = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        exports = PROTO_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
-    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
+    # One dependency in this list is not valid outside of rules_scala workspace, fix up. The '//external' check is for
+    # older rules_scala prior to
+    # https://github.com/bazelbuild/rules_scala/commit/e9dfbe39fa44a8dc7ab0b9aef46488f215646d9c
+    "@io_bazel_rules_scala" + dep if not dep.startswith("//external") and not dep.startswith("@") else dep
+    for dep in DEFAULT_SCALAPB_COMPILE_DEPS
 ]`)
 
 var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     scala_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS,
-        exports = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        exports = GRPC_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
-    "@io_bazel_rules_scala//scala_proto:default_scalapb_compile_dependencies",
-    "@io_bazel_rules_scala//scala_proto:default_scalapb_grpc_dependencies",
-]`)
+    # One dependency in this list is not valid outside of rules_scala workspace, fix up. The '//external' check is for
+    # older rules_scala prior to
+    # https://github.com/bazelbuild/rules_scala/commit/e9dfbe39fa44a8dc7ab0b9aef46488f215646d9c
+    "@io_bazel_rules_scala" + dep if not dep.startswith("//external") and not dep.startswith("@") else dep
+    for dep in DEFAULT_SCALAPB_COMPILE_DEPS
+] + DEFAULT_SCALAPB_GRPC_DEPS`)
 
 func makeScala() *Language {
 	return &Language{
@@ -86,7 +103,6 @@ func makeScala() *Language {
 		DisplayName: "Scala",
 		Notes: mustTemplate("Rules for generating Scala protobuf and gRPC `.jar` files and libraries using [ScalaPB](https://github.com/scalapb/ScalaPB). Libraries are created with `scala_library` from [rules_scala](https://github.com/bazelbuild/rules_scala)"),
 		Flags: commonLangFlags,
-		SkipDirectoriesMerge: true,
 		SkipTestPlatforms: []string{},
 		Rules: []*Rule{
 			&Rule{
@@ -97,7 +113,7 @@ func makeScala() *Language {
 				WorkspaceExample: scalaProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates a Scala protobuf `.jar` artifact",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
@@ -108,9 +124,8 @@ func makeScala() *Language {
 				WorkspaceExample: scalaGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Scala protobuf+gRPC `.jar` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
-				Experimental:     true,
 			},
 			&Rule{
 				Name:             "scala_proto_library",
@@ -119,7 +134,7 @@ func makeScala() *Language {
 				WorkspaceExample: scalaProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Scala protobuf library using `scala_library` from `rules_scala`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            javaLibraryRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
@@ -129,9 +144,8 @@ func makeScala() *Language {
 				WorkspaceExample: scalaGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            javaLibraryRuleAttrs,
 				SkipTestPlatforms: []string{"windows"},
-				Experimental:     true,
 			},
 		},
 	}

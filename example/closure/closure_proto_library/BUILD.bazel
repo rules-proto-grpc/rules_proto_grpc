@@ -1,6 +1,0 @@
-load("@rules_proto_grpc//closure:defs.bzl", "closure_proto_library")
-
-closure_proto_library(
-    name = "person_closure_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
-)

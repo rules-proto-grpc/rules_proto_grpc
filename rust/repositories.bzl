@@ -1,14 +1,16 @@
+"""Common dependencies for rules_proto_grpc Rust rules."""
+
 load(
     "//:repositories.bzl",
-    "io_bazel_rules_rust",
     "rules_proto_grpc_repos",
+    "rules_rust",
 )
 load(
     "//rust/raze:crates.bzl",
-    "raze_fetch_remote_crates"
+    "raze_fetch_remote_crates",
 )
 
-def rust_repos(**kwargs):
+def rust_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
-    io_bazel_rules_rust(**kwargs)
+    rules_rust(**kwargs)
     raze_fetch_remote_crates()

@@ -1,9 +1,9 @@
-load("//:plugin.bzl", "proto_plugin")
+load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
     name = "java_plugin",
-    protoc_plugin_name = "java",
     out = "{name}.jar",
+    protoc_plugin_name = "java",
     visibility = ["//visibility:public"],
 )
 

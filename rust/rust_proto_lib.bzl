@@ -1,4 +1,6 @@
-load("//internal:common.bzl", "ProtoCompileInfo")
+"""Rule to build a RustProtoLibInfo and lib.rs for generated proto sources."""
+
+load("//:defs.bzl", "ProtoCompileInfo")
 
 RustProtoLibInfo = provider(fields = {
     "name": "rule name",
@@ -18,10 +20,10 @@ def _rust_proto_lib_impl(ctx):
     if ctx.attr.grpc:
         content.append("extern crate grpcio;")
         content.append("extern crate futures;")
-    content.append("") # Newline
+    content.append("")  # Newline
 
     # List each output
-    srcs = [f for files in compilation.output_files.values() for f in files]
+    srcs = [f for files in compilation.output_files.values() for f in files.to_list()]
     for f in srcs:
         content.append("pub mod %s;" % _strip_extension(f))
         content.append("pub use %s::*;" % _strip_extension(f))

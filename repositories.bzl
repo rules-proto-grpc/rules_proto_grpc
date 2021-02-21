@@ -1,8 +1,10 @@
+"""Common dependencies for rules_proto_grpc."""
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
-MINIMUM_BAZEL_VERSION = "1.0.0"
+MINIMUM_BAZEL_VERSION = "3.0.0"
 ENABLE_VERSION_NAGS = False
 VERSIONS = {
     # Core
@@ -10,32 +12,24 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_proto",
-        "ref": "97d8af4dc474595af3900dd85cb3a29ad28cc313",
-        "sha256": "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+        "ref": "84ba6ec814eebbf5312b2cc029256097ae0042c3",
+        "sha256": "3bce0e2fcf502619119c7cac03613fb52ce3034b2159dd3ae9d35f7339558aa3",
     },
-    "com_google_protobuf": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
+    "com_google_protobuf": {
+        # When updating, also update JS requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.13.0",
-        "sha256": "9b4ee22c250fe31b16f1a24d61467e40780a3fbb9b91c3b65be2a376ed913a1a",
-        "binds": [
-            {
-                "name": "protobuf_clib",
-                "actual": "@com_google_protobuf//:protoc_lib",
-            },
-            {
-                "name": "protobuf_headers",
-                "actual": "@com_google_protobuf//:protobuf_headers",
-            },
-        ],
+        "ref": "v3.15.1",
+        "sha256": "f18a40816260a9a3190a94efb0fc26270b244a2436681602f0a944739095d632",
     },
-    "com_github_grpc_grpc": { # When updating, also update Node.js requirements, Ruby requirements and C# requirements
+    "com_github_grpc_grpc": {
+        # When updating, also update Go repositories.bzl, Node.js requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.32.0",
-        "sha256": "f880ebeb2ccf0e47721526c10dd97469200e40b5f101a0d9774eb69efa0bd07a",
+        "ref": "v1.35.0",
+        "sha256": "27dd2fc5c9809ddcde8eb6fa1fa278a3486566dfc28335fca13eb8df8bd3b958",
     },
     "zlib": {
         "type": "http",
@@ -51,22 +45,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "c064f7008a30f307ea7516cf52358a653011f82b",
-        "sha256": "b9cf39396181e8d4434625a3533240469ca21242442745bd0b672731555823b8",
+        "ref": "c7e068d38e2fec1d899e1c150e372f205c220e27",
+        "sha256": "8cc0ad31c8fc699a49ad31628273529ef8929ded0a0859a3d841ce711a9a90d5",
     },
     "build_bazel_rules_swift": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "0.14.0",
-        "sha256": "fa746a50f442ea4bcce78b747182107b4f0041f868b285714364ce4508d19979",
-    },
-    "build_bazel_apple_support": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "apple_support",
-        "ref": "0.7.2",
-        "sha256": "519a3bc32132f7b5780e82c2fc6ad2a78d4b28b81561e6fd7b7e0b14ea110074",
+        "ref": "0.18.0",
+        "sha256": "3da7a2e1b6bf002e1ee47b0d10d889a67ec5cab42b13cf52b08b6e2f77ca3acf",
     },
     "bazel_skylib": {
         "type": "github",
@@ -75,7 +62,6 @@ VERSIONS = {
         "ref": "1.0.3",
         "sha256": "7ac0fa88c0c4ad6f5b9ffb5e09ef81e235492c873659e6bb99efb89d11246bcb",
     },
-
 
     # Android
     "build_bazel_rules_android": {
@@ -86,22 +72,22 @@ VERSIONS = {
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
     },
 
+    # C
+    "upb": {
+        "type": "github",
+        "org": "protocolbuffers",
+        "repo": "upb",
+        "ref": "eb0fdda14b7b211872507a66f7d988f7c24a44c9",
+        "sha256": "843d0729a0cb53fa2afb46b1c262438beb7477696f31e2fbfd84de97a710f2f1",
+    },
+
     # C#
     "io_bazel_rules_dotnet": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_dotnet",
-        "ref": "98cc58708e0ea150a8737e7f83a74f0f41ececf8",
-        "sha256": "1b61f931391cd449fa60bb823c511db30d0567ecc2c6ef9d393bfba391c9a2da",
-    },
-
-    # Closure
-    "io_bazel_rules_closure": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_closure",
-        "ref": "0.11.0",
-        "sha256": "d66deed38a0bb20581c15664f0ab62270af5940786855c7adc3087b27168b529",
+        "ref": "0.0.7",
+        "sha256": "322d341066165267d3f411fe9e4f5c3e6630a3cab9c41eafd4197a2e798bbf2a",
     },
 
     # D
@@ -109,8 +95,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_d",
-        "ref": "064206527421aa6d1a4c11fbee5c93fd1619d99e",
-        "sha256": "e514c8be2d029563fec81eb1ecf3a931491cc5a02960cb3ab4331ac5c9124893",
+        "ref": "40c63a7bd74036be3edaf782d34269c2debed5fd",
+        "sha256": "e9a1368f0bb3a513b839f14df8d753d42ae81b437ff107526ad62eebd2b24332",
     },
     "com_github_dcarp_protobuf_d": {
         "type": "http",
@@ -125,15 +111,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.24.3",
-        "sha256": "e37e7937141a1deea40ee2f06a7850fc520e2272de7aacd85ad8a2ace11d2e83",
+        "ref": "v0.25.1",
+        "sha256": "aa301ab560203bf740d07456a505730bf1ee20f4c471f77357cd31e7e11f5170",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.21.1",
-        "sha256": "2423201f91471ea87925b81962258e27a22cd8ebb4fe355bf033dcf2ad668541",
+        "ref": "v0.22.3",
+        "sha256": "112ceace31ac48a9dde28f1f1ad98e76fc7f901ef088b944a84e55bc93cd198a",
     },
 
     # grpc-gateway
@@ -141,17 +127,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v1.15.0",
-        "sha256": "0630c364e47aa7f813dd92f1874c778e496251304719c65e959675b15f7c7f15",
-    },
-
-    # gRPC web
-    "com_github_grpc_grpc_web": {
-        "type": "github",
-        "org": "grpc",
-        "repo": "grpc-web",
-        "ref": "1.2.1",
-        "sha256": "23cf98fbcb69743b8ba036728b56dfafb9e16b887a9735c12eafa7669862ec7b",
+        "ref": "40d8c9e39c25c9e9e7fc9e06e769072191298e48",  # TODO: Pre-release, due to https://github.com/grpc-ecosystem/grpc-gateway/pull/1972
+        "sha256": "d3196737b591055679a676aca99610ccf640fdfe6bad0aa756b0725cab0d8c12",
     },
 
     # Java
@@ -159,16 +136,23 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "v1.32.1",  # Bug in 1.32.0 release means 1.32.1 should be used
-        "sha256": "e5d691f80e7388035c34616a17830ec2687fb2ef5c5d9c9b79c605a7addb78ab",
+        "ref": "v1.35.0",
+        "sha256": "537d01bdc5ae2bdb267853a75578d671db3075b33e3a00a93f5a572191d3a7b3",
+    },
+    "rules_jvm_external": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "rules_jvm_external",
+        "ref": "3.0",
+        "sha256": "baa842cbc67aec78408aec3e480b2e94dbdd14d6b0170d3a3ee14a0e1a5bb95f",
     },
 
-    # NodeJS
+    # JavaScript
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
         "type": "http",
-        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/2.2.0/rules_nodejs-2.2.0.tar.gz"],
-        "sha256": "4952ef879704ab4ad6729a29007e7094aef213ea79e9f2e94cbe1c9a753e63ef",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/3.1.0/rules_nodejs-3.1.0.tar.gz"],
+        "sha256": "dd4dc46066e2ce034cba0c81aa3e862b27e8e8d95871f567359f7a534cccb666",
     },
 
     # Python
@@ -188,21 +172,21 @@ VERSIONS = {
     },
 
     # Ruby
-    "com_github_yugui_rules_ruby": {
+    "bazelruby_rules_ruby": {
         "type": "github",
-        "org": "yugui",
+        "org": "bazelruby",
         "repo": "rules_ruby",
-        "ref": "73479cdc6a34a8d940cc3c904badf7a2ae6bdc6d", # PR#8
-        "sha256": "bd88b1aa144f70bb3f069ff3ddc5ddba032311ce27fb40b7276db694dcb63490",
+        "ref": "v0.4.1",
+        "sha256": "5a9660a2ef8dc115b192aa89c94e624378078988e2e9bff6792e61b02b390320",
     },
 
     # Rust
-    "io_bazel_rules_rust": {
+    "rules_rust": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "e64700dc9b8b3869bce4f77b78c33cb9d088cc4b",
-        "sha256": "eb384450d3b89332b386173233daa66a71e13cf63fe6d9ee51bd09fba0eb41f2",
+        "ref": "3b02397bde43b1eeee1528227ceb3da6c6bdadd6",
+        "sha256": "f2d9f804e1a8042a41ad41e1aeeca55ad0fc2d294ecd52e34ef8c63f7ce350fd",
     },
 
     # Scala
@@ -210,8 +194,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "6280cdbdb03bbace36e5458ca73745b80a9fe467",
-        "sha256": "723ac4c2eda86c6a5d9cbe64bde36f17185e7205acf8064a2b8bb1aea2fbf831",
+        "ref": "de13a82f65af1e3c7047afd369e505bb3b2e1c64",
+        "sha256": "072687e2eef1a3506fae83ab8bb447bbe06fa5aace8fc25eb4b6106ac5374e6f",
     },
     "com_github_scalapb_scalapb": {
         "type": "http",
@@ -222,20 +206,69 @@ VERSIONS = {
     },
 
     # Swift
-    "com_github_grpc_grpc_swift_patched": {
+    "com_github_grpc_grpc_swift": {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-swift",
-        "ref": "0.11.0",
-        "sha256": "82e0a3d8fe2b9ee813b918e1a674f5a7c6dc024abe08109a347b686db6e57432",
-        "build_file": "@build_bazel_rules_swift//third_party:com_github_grpc_grpc_swift/BUILD.overlay",
-        "patch_cmds": [
-            "sed -i.bak -e 's/if fileDescriptor.services.count > 0/if true/g' Sources/protoc-gen-swiftgrpc/main.swift",  # Make grpc plugin always output files
-            "rm Sources/protoc-gen-swiftgrpc/main.swift.bak",  # Remove .bak file we had to create above due to mac OS sed weirdness
-        ],
+        "ref": "1.0.0",
+        "sha256": "5e0258437538bdfa26ca0e023649d97baa138d91881b949b2b344ef84cc2082a",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_grpc_grpc_swift",
+    },
+    "com_github_apple_swift_log": {
+        # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-log",
+        "ref": "1.4.0",
+        "sha256": "057fb5fd7e7f60a368c0cd4a93cd5ecce701031d8ccafb7973b3635415d2e368",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_log",
+    },
+    "com_github_apple_swift_nio": {
+        # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio",
+        "ref": "2.25.1",
+        "sha256": "ddaeaba8f94d4480a4607ce8f262aa654649632bdf51d280beebf053c8f37b2c",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio",
+    },
+    "com_github_apple_swift_nio_extras": {
+        # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio-extras",
+        "ref": "1.7.0",
+        "sha256": "b718ee9fb24c1f0fa77a54747eba472e50067b90d5df6f2b67cfdea2036b0ee0",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio_extras",
+    },
+    "com_github_apple_swift_nio_http2": {
+        # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio-http2",
+        "ref": "1.16.2",
+        "sha256": "af65870424c6e0eb643365278886d0c5358f6700eae2255f11dbf5b10f90b567",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio_http2",
+    },
+    "com_github_apple_swift_nio_ssl": {
+        # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio-ssl",
+        "ref": "2.10.2",
+        "sha256": "700c69f5496ae473164a338677e07f826eb24d7d3808d6e0fdcf50f27df0614d",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio_ssl",
+    },
+    "com_github_apple_swift_nio_transport_services": {
+        # Dependency of com_github_grpc_grpc_swift
+        "type": "github",
+        "org": "apple",
+        "repo": "swift-nio-transport-services",
+        "ref": "1.9.1",
+        "sha256": "2f0283647d8e17dcea6d4b6454c915d10c4c0106c7025d233aec0aaf4a3f2255",
+        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_apple_swift_nio_transport_services",
     },
 }
-
 
 def _generic_dependency(name, **kwargs):
     if name not in VERSIONS:
@@ -249,9 +282,9 @@ def _generic_dependency(name, **kwargs):
         sha256 = kwargs.get(name + "_sha256", dep["sha256"])
 
         # Fix GitHub naming quirk in path
-        strippedRef = ref
-        if strippedRef.startswith("v"):
-            strippedRef = ref[1:]
+        stripped_ref = ref
+        if stripped_ref.startswith("v"):
+            stripped_ref = ref[1:]
 
         # Generate URLs
         urls = [
@@ -262,7 +295,7 @@ def _generic_dependency(name, **kwargs):
         if name not in existing_rules:
             http_archive(
                 name = name,
-                strip_prefix = dep["repo"] + "-" + strippedRef,
+                strip_prefix = dep["repo"] + "-" + stripped_ref,
                 urls = urls,
                 sha256 = sha256,
                 **{k: v for k, v in dep.items() if k in ["build_file", "patch_cmds"]}
@@ -270,13 +303,16 @@ def _generic_dependency(name, **kwargs):
         elif existing_rules[name]["kind"] != "http_archive":
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
-                    name, existing_rules[name]["kind"],
-                ))
+                    name,
+                    existing_rules[name]["kind"],
+                ))  # buildifier: disable=print
         elif existing_rules[name]["urls"] != tuple(urls):
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
-                    name, existing_rules[name]["urls"], tuple(urls)
-                ))
+                    name,
+                    existing_rules[name]["urls"],
+                    tuple(urls),
+                ))  # buildifier: disable=print
 
     elif dep["type"] == "http":
         if name not in existing_rules:
@@ -285,13 +321,16 @@ def _generic_dependency(name, **kwargs):
         elif existing_rules[name]["kind"] != "http_archive":
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
-                    name, existing_rules[name]["kind"],
-                ))
+                    name,
+                    existing_rules[name]["kind"],
+                ))  # buildifier: disable=print
         elif existing_rules[name]["urls"] != tuple(dep["urls"]):
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
-                    name, existing_rules[name]["urls"], tuple(dep["urls"])
-                ))
+                    name,
+                    existing_rules[name]["urls"],
+                    tuple(dep["urls"]),
+                ))  # buildifier: disable=print
 
     elif dep["type"] == "local":
         if name not in existing_rules:
@@ -300,13 +339,16 @@ def _generic_dependency(name, **kwargs):
         elif existing_rules[name]["kind"] != "local_repository":
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected local_repository".format(
-                    name, existing_rules[name]["kind"],
-                ))
+                    name,
+                    existing_rules[name]["kind"],
+                ))  # buildifier: disable=print
         elif existing_rules[name]["path"] != dep["path"]:
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different version. Found path={}, expected {}".format(
-                    name, existing_rules[name]["path"], dep["urls"]
-                ))
+                    name,
+                    existing_rules[name]["path"],
+                    dep["urls"],
+                ))  # buildifier: disable=print
 
     else:
         fail("Unknown dependency type {}".format(dep))
@@ -319,38 +361,24 @@ def _generic_dependency(name, **kwargs):
                     actual = bind["actual"],
                 )
 
-
-# Write version data. Required for both upb and rules_rust
-def _store_bazel_version(repository_ctx):
-    repository_ctx.file("BUILD", "exports_files(['def.bzl'])")
-    repository_ctx.file("bazel_version.bzl", "bazel_version = \"{}\"".format(native.bazel_version))
-    repository_ctx.file("def.bzl", "BAZEL_VERSION='{}'".format(native.bazel_version))
-
-bazel_version_repository = repository_rule(
-    implementation = _store_bazel_version,
-)
-
-
 #
 # Toolchains
 #
-def rules_proto_grpc_toolchains():
+def rules_proto_grpc_toolchains(name = ""):
+    """Register the rules_proto_grpc toolchains."""
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
     native.register_toolchains(str(Label("//protobuf:protoc_toolchain")))
-
 
 #
 # Core
 #
 def rules_proto_grpc_repos(**kwargs):
+    """Load the rules_proto_grpc common dependencies."""  # buildifier: disable=function-docstring-args
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
-
-    bazel_version_repository(name = "bazel_version")
 
     rules_proto(**kwargs)
     rules_python(**kwargs)
     build_bazel_rules_swift(**kwargs)
-    build_bazel_apple_support(**kwargs)
     bazel_skylib(**kwargs)
 
     six(**kwargs)
@@ -367,9 +395,6 @@ def rules_python(**kwargs):
 def build_bazel_rules_swift(**kwargs):
     _generic_dependency("build_bazel_rules_swift", **kwargs)
 
-def build_bazel_apple_support(**kwargs):
-    _generic_dependency("build_bazel_apple_support", **kwargs)
-
 def com_google_protobuf(**kwargs):
     _generic_dependency("com_google_protobuf", **kwargs)
 
@@ -379,14 +404,11 @@ def com_github_grpc_grpc(**kwargs):
 def external_zlib(**kwargs):
     _generic_dependency("zlib", **kwargs)
 
-
-
 #
 # Misc
 #
 def bazel_skylib(**kwargs):
     _generic_dependency("bazel_skylib", **kwargs)
-
 
 #
 # Android
@@ -394,20 +416,17 @@ def bazel_skylib(**kwargs):
 def build_bazel_rules_android(**kwargs):
     _generic_dependency("build_bazel_rules_android", **kwargs)
 
-
 #
-# Closure
+# C
 #
-def io_bazel_rules_closure(**kwargs):
-    _generic_dependency("io_bazel_rules_closure", **kwargs)
-
+def upb(**kwargs):
+    _generic_dependency("upb", **kwargs)
 
 #
 # C#
 #
 def io_bazel_rules_dotnet(**kwargs):
     _generic_dependency("io_bazel_rules_dotnet", **kwargs)
-
 
 #
 # D
@@ -418,7 +437,6 @@ def io_bazel_rules_d(**kwargs):
 def com_github_dcarp_protobuf_d(**kwargs):
     _generic_dependency("com_github_dcarp_protobuf_d", **kwargs)
 
-
 #
 # Go
 #
@@ -428,20 +446,11 @@ def io_bazel_rules_go(**kwargs):
 def bazel_gazelle(**kwargs):
     _generic_dependency("bazel_gazelle", **kwargs)
 
-
 #
 # gRPC gateway
 #
 def grpc_ecosystem_grpc_gateway(**kwargs):
     _generic_dependency("grpc_ecosystem_grpc_gateway", **kwargs)
-
-
-#
-# gRPC web
-#
-def com_github_grpc_grpc_web(**kwargs):
-    _generic_dependency("com_github_grpc_grpc_web", **kwargs)
-
 
 #
 # Java
@@ -449,13 +458,14 @@ def com_github_grpc_grpc_web(**kwargs):
 def io_grpc_grpc_java(**kwargs):
     _generic_dependency("io_grpc_grpc_java", **kwargs)
 
+def rules_jvm_external(**kwargs):
+    _generic_dependency("rules_jvm_external", **kwargs)
 
 #
-# NodeJS
+# JavaScript
 #
 def build_bazel_rules_nodejs(**kwargs):
     _generic_dependency("build_bazel_rules_nodejs", **kwargs)
-
 
 #
 # Python
@@ -466,20 +476,17 @@ def subpar(**kwargs):
 def six(**kwargs):
     _generic_dependency("six", **kwargs)
 
-
 #
 # Ruby
 #
-def com_github_yugui_rules_ruby(**kwargs):
-    _generic_dependency("com_github_yugui_rules_ruby", **kwargs)
-
+def bazelruby_rules_ruby(**kwargs):
+    _generic_dependency("bazelruby_rules_ruby", **kwargs)
 
 #
 # Rust
 #
-def io_bazel_rules_rust(**kwargs):
-    _generic_dependency("io_bazel_rules_rust", **kwargs)
-
+def rules_rust(**kwargs):
+    _generic_dependency("rules_rust", **kwargs)
 
 #
 # Scala
@@ -490,9 +497,26 @@ def io_bazel_rules_scala(**kwargs):
 def com_github_scalapb_scalapb(**kwargs):
     _generic_dependency("com_github_scalapb_scalapb", **kwargs)
 
-
 #
 # Swift
 #
-def com_github_grpc_grpc_swift_patched(**kwargs):
-    _generic_dependency("com_github_grpc_grpc_swift_patched", **kwargs)
+def com_github_grpc_grpc_swift(**kwargs):
+    _generic_dependency("com_github_grpc_grpc_swift", **kwargs)
+
+def com_github_apple_swift_log(**kwargs):
+    _generic_dependency("com_github_apple_swift_log", **kwargs)
+
+def com_github_apple_swift_nio(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio", **kwargs)
+
+def com_github_apple_swift_nio_extras(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio_extras", **kwargs)
+
+def com_github_apple_swift_nio_http2(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio_http2", **kwargs)
+
+def com_github_apple_swift_nio_ssl(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio_ssl", **kwargs)
+
+def com_github_apple_swift_nio_transport_services(**kwargs):
+    _generic_dependency("com_github_apple_swift_nio_transport_services", **kwargs)

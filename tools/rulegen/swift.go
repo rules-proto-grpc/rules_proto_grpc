@@ -1,6 +1,6 @@
 package main
 
-var swiftWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var swiftWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
@@ -9,31 +9,26 @@ load(
     "swift_rules_dependencies",
 )
 
-swift_rules_dependencies()
-
-load(
-    "@build_bazel_apple_support//lib:repositories.bzl",
-    "apple_support_dependencies",
-)
-
-apple_support_dependencies()`)
+swift_rules_dependencies()`)
 
 var swiftProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
     swift_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        module_name = kwargs.get("module_name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -43,29 +38,63 @@ PROTO_DEPS = [
 ]`)
 
 var swiftGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
     swift_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        module_name = kwargs.get("module_name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
     "@com_github_apple_swift_protobuf//:SwiftProtobuf",
-    "@com_github_grpc_grpc_swift//:SwiftGRPC",
+    "@com_github_grpc_grpc_swift//:GRPC",
 ]`)
+
+// For swift, produce one library for all protos, since they are all in the same module
+var swiftProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "proto_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = [
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+        "@rules_proto_grpc//example/proto:thing_proto",
+    ],
+)`)
+
+var swiftGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    protos = [
+        "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
+    ],
+)`)
+
+var swiftLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
+	&Attr{
+		Name:      "module_name",
+		Type:      "string",
+		Default:   "",
+		Doc:       "The name of the Swift module being built.",
+		Mandatory: false,
+	},
+}...)
 
 func makeSwift() *Language {
 	return &Language{
@@ -76,12 +105,7 @@ func makeSwift() *Language {
 		PresubmitEnvVars: map[string]string{
 			"CC": "clang",
 		},
-		Flags: append(commonLangFlags, &Flag{
-			Category: "build",
-			Name:     "strategy=SwiftCompile",
-			Value:    "standalone",
-		}),
-		SkipDirectoriesMerge: true,
+		Flags: commonLangFlags,
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{
@@ -92,7 +116,7 @@ func makeSwift() *Language {
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf `.swift` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "swift_grpc_compile",
@@ -102,27 +126,25 @@ func makeSwift() *Language {
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Swift protobuf+gRPC `.swift` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "swift_proto_library",
 				Kind:             "proto",
 				Implementation:   swiftProtoLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
-				BuildExample:     protoLibraryExampleTemplate,
+				BuildExample:     swiftProtoLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf library using `swift_library` from `rules_swift`",
-				Attrs:            aspectProtoCompileAttrs,
-				Experimental:     true,
+				Attrs:            swiftLibraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "swift_grpc_library",
 				Kind:             "grpc",
 				Implementation:   swiftGrpcLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
-				BuildExample:     protoLibraryExampleTemplate,
+				BuildExample:     swiftGrpcLibraryExampleTemplate,
 				Doc:              "Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`",
-				Attrs:            aspectProtoCompileAttrs,
-				Experimental:     true,
+				Attrs:            swiftLibraryRuleAttrs,
 			},
 		},
 	}

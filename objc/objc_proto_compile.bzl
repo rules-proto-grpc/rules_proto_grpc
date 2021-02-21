@@ -1,7 +1,10 @@
-load("//:plugin.bzl", "ProtoPluginInfo")
+"""Generated definition of objc_proto_compile."""
+
+load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
-    "//:aspect.bzl",
+    "//:defs.bzl",
     "ProtoLibraryAspectNodeInfo",
+    "ProtoPluginInfo",
     "proto_compile_aspect_attrs",
     "proto_compile_aspect_impl",
     "proto_compile_attrs",
@@ -25,7 +28,7 @@ objc_proto_compile_aspect = aspect(
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
             default = "objc_proto_compile_aspect",
-        )
+        ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
@@ -35,18 +38,31 @@ _rule = rule(
     implementation = proto_compile_impl,
     attrs = dict(
         proto_compile_attrs,
+        protos = attr.label_list(
+            mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
+            providers = [ProtoInfo],
+            doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
+        ),
         deps = attr.label_list(
-            mandatory = True,
+            mandatory = False,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
             aspects = [objc_proto_compile_aspect],
+            doc = "DEPRECATED: Use protos attr",
+        ),
+        _plugins = attr.label_list(
+            doc = "List of protoc plugins to apply",
+            providers = [ProtoPluginInfo],
+            default = [
+                Label("//objc:objc_plugin"),
+            ],
         ),
     ),
+    toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
 # Create macro for converting attrs and passing to compile
 def objc_proto_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
-        merge_directories = True,
-        **{k: v for k, v in kwargs.items() if k != "merge_directories"}
+        **kwargs
     )

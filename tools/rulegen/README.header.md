@@ -13,30 +13,36 @@
 
 ## Announcements 📣
 
-- **2020/10/11**: [Version 2.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/2.0.0)
-  with updated Protobuf and gRPC versions. For some languages this may not be a drop-in replacement
-  and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
-  the above linked release notes for details or the language specific rules pages. If you discover
-  any problems with the new release, please
-  [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new).
+#### 2021/02/21 - Version 3.0.0
+
+[Version 3.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/3.0.0)
+with updated Protobuf and gRPC versions and a number of major improvements. For some languages this may not be a
+drop-in replacement and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
+the above linked release notes for details or the language specific rules pages. If you discover any problems with the
+new release, please [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new),
+[create a discussion](https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new) or otherwise check in the
+[#proto channel](https://bazelbuild.slack.com/archives/CKU1D04RM) on Bazel Slack.
+
+#### 2021/02/09 - Bazel Version 4
+
+Version 4.0 of Bazel has been released recently and is supported without update for most languages. Changes for full
+Bazel 4.0 compatibility and updated dependencies are in progress.
 
 
-## Contents:
+## Contents
 
 - [Overview](#overview)
 - [Installation](#installation)
 - [Rules](#rules)
     - [Android](/android/README.md)
-    - [Closure](/closure/README.md)
+    - [C](/c/README.md)
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
     - [D](/d/README.md)
     - [Go](/go/README.md)
-    - [Go (gogoprotobuf)](/github.com/gogo/protobuf/README.md)
-    - [grpc-gateway](/github.com/grpc-ecosystem/grpc-gateway/README.md)
-    - [gRPC-Web](/github.com/grpc/grpc-web/README.md)
+    - [grpc-gateway](/grpc-gateway/README.md)
     - [Java](/java/README.md)
-    - [Node.js](/nodejs/README.md)
+    - [JavaScript](/js/README.md)
     - [Objective-C](/objc/README.md)
     - [PHP](/php/README.md)
     - [Python](/python/README.md)
@@ -57,46 +63,34 @@
 
 ## Overview
 
-These rules provide [Protocol Buffers (Protobuf)](https://developers.google.com/protocol-buffers/)
-and [gRPC](https://grpc.io/) rules for a range of languages and services.
+These rules provide [Protocol Buffers (Protobuf)](https://developers.google.com/protocol-buffers/) and
+[gRPC](https://grpc.io/) rules for a range of languages and services.
 
-Each supported language (`{lang}` below) is generally split into four rule
-flavours:
+Each supported language (`{lang}` below) is generally split into four rule flavours:
 
-- `{lang}_proto_compile`: Provides generated files from the Protobuf `protoc`
-  plugin for the language. e.g for C++ this provides the generated `*.pb.cc`
-  and `*.pb.h` files.
+- `{lang}_proto_compile`: Provides generated files from the Protobuf `protoc` plugin for the language. e.g for C++ this
+  provides the generated `*.pb.cc` and `*.pb.h` files.
 
-- `{lang}_proto_library`: Provides a language-specific library from the
-  generated Protobuf `protoc` plugin outputs, along with necessary
-  dependencies. e.g for C++ this provides a Bazel native `cpp_library` created
-  from the generated `*.pb.cc` and `*pb.h` files, with the Protobuf library
-  linked. For languages that do not have a 'library' concept, this rule may not
-  exist.
+- `{lang}_proto_library`: Provides a language-specific library from the generated Protobuf `protoc` plugin outputs,
+  along with necessary dependencies. e.g for C++ this provides a Bazel native `cpp_library` created  from the generated
+  `*.pb.cc` and `*pb.h` files, with the Protobuf library linked. For languages that do not have a 'library' concept,
+  this rule may not exist.
 
-- `{lang}_grpc_compile`: Provides generated files from both the Protobuf and
-  gRPC `protoc` plugins for the language. e.g for C++ this provides the
-  generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files.
+- `{lang}_grpc_compile`: Provides generated files from both the Protobuf and gRPC `protoc` plugins for the language.
+  e.g for C++ this provides the generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files.
 
-- `{lang}_grpc_library`: Provides a language-specific library from the
-  generated Protobuf and gRPC `protoc` plugins outputs, along with necessary
-  dependencies. e.g for C++ this provides a Bazel native `cpp_library` created
-  from the generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h`
-  files, with the Protobuf and gRPC libraries linked. For languages that do not
-  have a 'library' concept, this rule may not exist.
+- `{lang}_grpc_library`: Provides a language-specific library from the generated Protobuf and gRPC `protoc` plugins
+  outputs, along with necessary dependencies. e.g for C++ this provides a Bazel native `cpp_library` created from the
+  generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files, with the Protobuf and gRPC libraries linked.
+  For languages that do not have a 'library' concept, this rule may not exist.
 
-Therefore, if you are solely interested in the generated source code artifacts,
-use the `{lang}_{proto|grpc}_compile` rules. Otherwise, if you want a
-ready-to-go library, use the `{lang}_{proto|grpc}_library` rules.
-
-These rules are derived from the excellent [stackb/rules_proto](https://github.com/stackb/rules_proto)
-and add aspect-based compilation to all languages, allowing for all
-`proto_library` options to be expressed in user code.
+Therefore, if you are solely interested in the generated source code artifacts, use the `{lang}_{proto|grpc}_compile`
+rules. Otherwise, if you want a ready-to-go library, use the `{lang}_{proto|grpc}_library` rules.
 
 
 ## Installation
 
-Add `rules_proto_grpc` your `WORKSPACE` file:
+Add `rules_proto_grpc` to your `WORKSPACE` file and then look at the language specific examples linked below:
 
 ```starlark
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
@@ -117,11 +111,9 @@ rules_proto_dependencies()
 rules_proto_toolchains()
 ```
 
-It is recommended that you use the tagged releases for stable rules. Master is
-intended to be 'ready-to-use', but may be unstable at certain periods. To be
-notified of new releases, you can use GitHub's 'Watch Releases Only' on the
+It is recommended that you use the tagged releases for stable rules. Master is intended to be 'ready-to-use', but may be
+unstable at certain periods. To be notified of new releases, you can use GitHub's 'Watch Releases Only' on the
 repository.
 
-**Important**: You will also need to follow instructions in the
-language-specific `README.md` for additional workspace dependencies that may be
-required.
+> **Important**: You will also need to follow instructions in the language-specific `README.md` for additional workspace
+> dependencies that may be required.

@@ -1,0 +1,37 @@
+load("//:defs.bzl", "proto_plugin")
+
+proto_plugin(
+    name = "grpc_gateway_plugin",
+    exclusions = [
+        "google/api",
+        "google/protobuf",
+    ],
+    outputs = [
+        "{protopath}.pb.gw.go",
+    ],
+    # Show options:
+    # $ bazel run @grpc_ecosystem_grpc_gateway//protoc-gen-grpc-gateway -- --help
+    # options = [
+    #     "logtostderr=true",
+    # ],
+    tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-grpc-gateway",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "openapiv2_plugin",
+    exclusions = [
+        "google/api",
+        "google/protobuf",
+    ],
+    outputs = [
+        "{protopath}.swagger.json",
+    ],
+    # Show options:
+    # $ bazel run @grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2 -- --help
+    # options = [
+    #     "json_names_for_fields",
+    # ],
+    tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2",
+    visibility = ["//visibility:public"],
+)

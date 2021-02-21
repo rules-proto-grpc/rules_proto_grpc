@@ -1,9 +1,11 @@
+"""Common dependencies for rules_proto_grpc Ruby rules."""
+
 load(
     "//:repositories.bzl",
-    "com_github_yugui_rules_ruby",
+    "bazelruby_rules_ruby",
     "rules_proto_grpc_repos",
 )
 
-def ruby_repos(**kwargs):
+def ruby_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
-    com_github_yugui_rules_ruby(**kwargs)
+    bazelruby_rules_ruby(**kwargs)

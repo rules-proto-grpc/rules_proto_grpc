@@ -1,58 +1,63 @@
 package main
 
-var rubyProtoLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var rubyProtoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
-load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
+load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
 
-ruby_register_toolchains()
+rules_ruby_dependencies()
 
-load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
+rules_ruby_select_sdk(version = "2.7.1")
 
-bundle_install(
-    name = "rules_proto_grpc_gems",
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+
+ruby_bundle(
+    name = "rules_proto_grpc_bundle",
     gemfile = "@rules_proto_grpc//ruby:Gemfile",
     gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )`)
 
-var rubyGrpcLibraryWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var rubyGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
-load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_register_toolchains")
+load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
 
-ruby_register_toolchains()
+rules_ruby_dependencies()
+
+rules_ruby_select_sdk(version = "2.7.1")
 
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@com_github_yugui_rules_ruby//ruby/private:bundle.bzl", "bundle_install")
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
 
-bundle_install(
-    name = "rules_proto_grpc_gems",
+ruby_bundle(
+    name = "rules_proto_grpc_bundle",
     gemfile = "@rules_proto_grpc//ruby:Gemfile",
     gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
 )`)
 
 var rubyLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("@com_github_yugui_rules_ruby//ruby:def.bzl", "ruby_library")
+load("//internal:compile.bzl", "proto_compile_attrs")
+load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
     ruby_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
-        deps = ["@rules_proto_grpc_gems//:libs"],
-        includes = [name_pb], # This does not presently work as expected, as it is workspace relative. See https://github.com/yugui/rules_ruby/pull/8
+        deps = ["@rules_proto_grpc_bundle//:gems"] + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        includes = [native.package_name() + "/" + name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )`)
@@ -62,49 +67,48 @@ func makeRuby() *Language {
 		Dir:   "ruby",
 		Name:  "ruby",
 		DisplayName: "Ruby",
-		Notes: mustTemplate("Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/yugui/rules_ruby). Note, the Ruby library rules presently cannot set the `includes` attribute correctly, requiring users to set this manually. See https://github.com/yugui/rules_ruby/pull/8"),
+		Notes: mustTemplate("Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/bazelruby/rules_ruby)"),
 		Flags: commonLangFlags,
-		SkipTestPlatforms: []string{"windows"}, // CI has no Ruby available for windows
+		//SkipTestPlatforms: []string{"windows"}, // CI has no Ruby available for windows
+		SkipTestPlatforms: []string{"all"}, // https://github.com/rules-proto-grpc/rules_proto_grpc/issues/65
 		Rules: []*Rule{
 			&Rule{
 				Name:             "ruby_proto_compile",
 				Kind:             "proto",
 				Implementation:   aspectRuleTemplate,
 				Plugins:          []string{"//ruby:ruby_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				WorkspaceExample: rubyProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf `.rb` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"}, // CI has no Ruby available for windows, but this rule can be tested
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "ruby_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   aspectRuleTemplate,
 				Plugins:          []string{"//ruby:ruby_plugin", "//ruby:grpc_ruby_plugin"},
-				WorkspaceExample: grpcWorkspaceTemplate,
+				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf+gRPC `.rb` artifacts",
-				Attrs:            aspectProtoCompileAttrs,
-				SkipTestPlatforms: []string{"none"}, // CI has no Ruby available for windows, but this rule can be tested
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "ruby_proto_library",
 				Kind:             "proto",
 				Implementation:   rubyLibraryRuleTemplate,
-				WorkspaceExample: rubyProtoLibraryWorkspaceTemplate,
+				WorkspaceExample: rubyProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "ruby_grpc_library",
 				Kind:             "grpc",
 				Implementation:   rubyLibraryRuleTemplate,
-				WorkspaceExample: rubyGrpcLibraryWorkspaceTemplate,
+				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            libraryRuleAttrs,
 			},
 		},
 	}

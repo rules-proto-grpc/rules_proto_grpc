@@ -2,5 +2,5 @@ load("//swift:defs.bzl", "swift_proto_library")
 
 swift_proto_library(
     name = "routeguide",
-    deps = ["//example/proto:routeguide_proto"],
+    protos = ["//example/proto:routeguide_proto"],
 )

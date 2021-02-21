@@ -25,5 +25,6 @@ jobs:
         "${GITHUB_WORKSPACE}/bin/bazel" run --run_under="cd $PWD && " //tools/rulegen -- --ref=`git describe --abbrev=0 --tags`
         rm available_tests.txt
         git checkout -- README.md
+        make buildifier
         git diff
         git diff-files --quiet

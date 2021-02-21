@@ -1,6 +1,6 @@
 """
 @generated
-cargo-raze workspace build file.
+cargo-raze generated Bazel file.
 
 DO NOT EDIT! Replaced on runs of cargo-raze
 """
@@ -14,7 +14,7 @@ licenses([
 # Aliased targets
 alias(
     name = "futures",
-    actual = "@raze__futures__0_3_6//:futures",
+    actual = "@raze__futures__0_3_12//:futures",
     tags = [
         "cargo-raze",
         "manual",
@@ -23,7 +23,7 @@ alias(
 
 alias(
     name = "grpcio",
-    actual = "@raze__grpcio__0_6_0//:grpcio",
+    actual = "@raze__grpcio__0_7_1//:grpcio",
     tags = [
         "cargo-raze",
         "manual",
@@ -32,7 +32,7 @@ alias(
 
 alias(
     name = "grpcio_compiler",
-    actual = "@raze__grpcio_compiler__0_6_0//:grpcio_compiler",
+    actual = "@raze__grpcio_compiler__0_7_0//:grpcio_compiler",
     tags = [
         "cargo-raze",
         "manual",
@@ -43,7 +43,7 @@ alias(
     # Extra aliased target, from raze configuration
     # N.B.: The exact form of this is subject to change.
     name = "cargo_bin_grpc_rust_plugin",
-    actual = "@raze__grpcio_compiler__0_6_0//:cargo_bin_grpc_rust_plugin",
+    actual = "@raze__grpcio_compiler__0_7_0//:cargo_bin_grpc_rust_plugin",
     tags = [
         "cargo-raze",
         "manual",
@@ -61,7 +61,7 @@ alias(
 
 alias(
     name = "protobuf",
-    actual = "@raze__protobuf__2_17_0//:protobuf",
+    actual = "@raze__protobuf__2_20_0//:protobuf",
     tags = [
         "cargo-raze",
         "manual",
@@ -70,7 +70,7 @@ alias(
 
 alias(
     name = "protobuf_codegen",
-    actual = "@raze__protobuf_codegen__2_17_0//:protobuf_codegen",
+    actual = "@raze__protobuf_codegen__2_20_0//:protobuf_codegen",
     tags = [
         "cargo-raze",
         "manual",
@@ -81,7 +81,7 @@ alias(
     # Extra aliased target, from raze configuration
     # N.B.: The exact form of this is subject to change.
     name = "cargo_bin_protoc_gen_rust",
-    actual = "@raze__protobuf_codegen__2_17_0//:cargo_bin_protoc_gen_rust",
+    actual = "@raze__protobuf_codegen__2_20_0//:cargo_bin_protoc_gen_rust",
     tags = [
         "cargo-raze",
         "manual",
@@ -90,7 +90,7 @@ alias(
 
 alias(
     name = "serde_json",
-    actual = "@raze__serde_json__1_0_58//:serde_json",
+    actual = "@raze__serde_json__1_0_62//:serde_json",
     tags = [
         "cargo-raze",
         "manual",

@@ -18,8 +18,13 @@ option java_multiple_files = true;
 option java_package = "io.grpc.examples.Greeter";
 option java_outer_classname = "GreeterProto";
 option objc_class_prefix = "GTR";
+option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto";
 
 package greeter;
+
+import "google/protobuf/any.proto";
+import "example/proto/thing.proto";
+
 
 // The greeting service definition.
 service Greeter {
@@ -35,4 +40,6 @@ message HelloRequest {
 // The response message containing the greetings
 message HelloReply {
   string message = 1;
+  google.protobuf.Any payload = 2;
+  example.proto.Thing thing = 3;
 }

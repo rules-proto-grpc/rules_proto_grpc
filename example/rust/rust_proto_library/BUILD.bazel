@@ -1,6 +1,10 @@
 load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_library")
 
 rust_proto_library(
-    name = "person_rust_library",
-    deps = ["@rules_proto_grpc//example/proto:person_proto"],
+    name = "proto_rust_proto",
+    protos = [
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+        "@rules_proto_grpc//example/proto:thing_proto",
+    ],
 )

@@ -6,19 +6,26 @@ rulegen:
 	rm available_tests.txt; \
 
 
+# Apply buildifier
+buildifier:
+	bazel run //tools:buildifier
+
+
 # Run cargo raze on the rust dependencies
 .PHONY: rust_raze
 rust_raze:
 	cd rust/raze; \
 	rm Cargo.lock; \
 	rm -r remote; \
-	cargo raze;
+	cargo raze; \
+	sed -i -e 's/io_bazel_rules_rust/rules_rust/g' rust/raze/remote/*.bazel;
 
 
-# Run yarn to upgrade the nodejs dependencies
+# Run yarn to upgrade the js dependencies
 .PHONY: yarn_upgrade
 yarn_upgrade:
-	cd nodejs/requirements; \
+	cd js/requirements; \
+	rm yarn.lock; \
 	yarn install; \
 
 
@@ -26,6 +33,7 @@ yarn_upgrade:
 .PHONY: ruby_bundle_upgrade
 ruby_bundle_upgrade:
 	cd ruby; \
+	rm Gemfile.lock; \
 	bundle install --path /tmp/ruby-bundle; \
 
 
@@ -71,7 +79,6 @@ servers:
 .PHONY: tests
 tests:
 	bazel test \
-		//closure/example/routeguide/... \
 		//cpp/example/routeguide/... \
 		//java/example/routeguide/... \
 		//go/example/routeguide/... \
@@ -80,16 +87,14 @@ tests:
 pending_clients:
 	bazel build \
 		//android/example/routeguide:client \
-		//closure/example/routeguide/client \
-		//nodejs/example/routeguide:client \
+		//js/example/routeguide:client \
 		//ruby/example/routeguide:client \
-		//github.com/grpc/grpc-web/example/routeguide/closure:bundle \
 		//rust/example/routeguide:client
 
 .PHONY: pending_servers
 pending_servers:
 	bazel build \
-		//nodejs/example/routeguide:server \
+		//js/example/routeguide:server \
 		//ruby/example/routeguide:server \
 		//rust/example/routeguide:server
 

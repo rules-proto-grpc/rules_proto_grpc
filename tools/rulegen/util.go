@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"os"
 	"strings"
 	"text/template"
 )
@@ -115,4 +116,9 @@ func doTestOnPlatform(lang *Language, rule *Rule, ciPlatform string) bool {
 	}
 
 	return true
+}
+
+func fileExists(name string) bool {
+    _, err := os.Stat(name)
+    return !os.IsNotExist(err)
 }

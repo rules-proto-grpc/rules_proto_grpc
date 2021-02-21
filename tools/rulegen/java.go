@@ -1,35 +1,51 @@
 package main
 
-var javaProtoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var javaProtoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()`)
 
-var javaGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos="{{ .Lang.Name }}_repos")
+var javaGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
-load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
+
+maven_install(
+    artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS,
+    generate_compat_repositories = True,
+    override_targets = IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS,
+    repositories = [
+        "https://repo.maven.apache.org/maven2/",
+    ],
+)
+
+load("@maven//:compat.bzl", "compat_repositories")
+
+compat_repositories()
 
 grpc_java_repositories()`)
 
 var javaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("//internal:compile.bzl", "proto_compile_attrs")
+load("@rules_java//java:defs.bzl", "java_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        **{k: v for (k, v) in kwargs.items() if k in ("deps", "verbose")} # Forward args
+        {{ .Common.ArgsForwardingSnippet }}
     )
 `
 
 var javaProtoLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
-    native.java_library(
-        name = kwargs.get("name"),
+    java_library(
+        name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS,
-        exports = PROTO_DEPS,
+        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        exports = PROTO_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -40,17 +56,18 @@ PROTO_DEPS = [
 
 var javaGrpcLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
-    native.java_library(
-        name = kwargs.get("name"),
+    java_library(
+        name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS,
+        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         runtime_deps = ["@io_grpc_grpc_java//netty"],
-        exports = GRPC_DEPS,
+        exports = GRPC_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
-GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/3ce5df3f78e8fd4a619a791914087dd4c0562835/compiler/BUILD.bazel#L21-L27
+GRPC_DEPS = [
+    # From https://github.com/grpc/grpc-java/blob/f6c2d221e2b6c975c6cf465d68fe11ab12dabe55/BUILD.bazel#L32-L38
     "@io_grpc_grpc_java//api",
     "@io_grpc_grpc_java//protobuf",
     "@io_grpc_grpc_java//stub",
@@ -61,6 +78,16 @@ GRPC_DEPS = [  # From https://github.com/grpc/grpc-java/blob/3ce5df3f78e8fd4a619
     "@com_google_protobuf//:protobuf_java_util",
 ]`)
 
+var javaLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
+	&Attr{
+		Name:      "exports",
+		Type:      "list",
+		Default:   "[]",
+		Doc:       "List of labels to pass as exports attr to underlying lang_library rule",
+		Mandatory: false,
+	},
+}...)
+
 func makeJava() *Language {
 	return &Language{
 		Dir:              "java",
@@ -68,7 +95,6 @@ func makeJava() *Language {
 		DisplayName:      "Java",
 		Notes: mustTemplate("Rules for generating Java protobuf and gRPC `.jar` files and libraries using standard Protocol Buffers and [gRPC-Java](https://github.com/grpc/grpc-java). Libraries are created with the Bazel native `java_library`"),
 		Flags:            commonLangFlags,
-		SkipDirectoriesMerge: true,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "java_proto_compile",
@@ -78,7 +104,7 @@ func makeJava() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates a Java protobuf srcjar artifact",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "java_grpc_compile",
@@ -88,7 +114,7 @@ func makeJava() *Language {
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates a Java protobuf+gRPC srcjar artifact",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "java_proto_library",
@@ -97,7 +123,7 @@ func makeJava() *Language {
 				WorkspaceExample: javaProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Java protobuf library using `java_library`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            javaLibraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "java_grpc_library",
@@ -106,7 +132,7 @@ func makeJava() *Language {
 				WorkspaceExample: javaGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Java protobuf+gRPC library using `java_library`",
-				Attrs:            aspectProtoCompileAttrs,
+				Attrs:            javaLibraryRuleAttrs,
 			},
 		},
 	}

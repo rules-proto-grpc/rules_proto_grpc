@@ -1,3 +1,7 @@
+"""Definition of the routeguide test and matrix rules."""
+
+load("//internal:common.bzl", "get_parent_dirname")
+
 def _routeguide_test_impl(ctx):
     # Build test execution script
     ctx.actions.write(ctx.outputs.executable, """set -x # Print commands
@@ -40,7 +44,6 @@ echo '---- DONE ----'
         runfiles = runfiles,
     )]
 
-
 routeguide_test = rule(
     implementation = _routeguide_test_impl,
     attrs = {
@@ -69,15 +72,21 @@ routeguide_test = rule(
     test = True,
 )
 
+def routeguide_test_matrix(name = "", clients = [], servers = [], database = "//example/proto:routeguide_features", tagmap = {}):
+    """
+    Build a matrix of tests that checks every client against every server.
 
-def get_parent_dirname(label):
-    if label.startswith("//"):
-        label = label[2:]
-    return label.partition("/")[0]
+    Args:
+        name: The rule name, unused.
+        clients: The list of available routeguide clients.
+        servers: The list of available routeguide servers.
+        database: The features list to provide to the test.
+        tagmap: The dict of tags to apply to specific languages or tests ("lang" or "lang_lang").
 
+    Returns:
+        Nothing.
 
-def routeguide_test_matrix(clients = [], servers = [], database = "//example/proto:routeguide_features", tagmap = {}):
-    """Build a matrix of tests that checks every client against every server"""
+    """
     port = 50051
     for server in servers:
         server_name = get_parent_dirname(server)

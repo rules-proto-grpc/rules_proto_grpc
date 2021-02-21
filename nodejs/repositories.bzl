@@ -1,9 +1,11 @@
+"""Backwards compat aliases for rules_proto_grpc Node.js repo rules."""
+
+# TODO(4.0.0): Remove this folder
 load(
-    "//:repositories.bzl",
-    "build_bazel_rules_nodejs",
-    "rules_proto_grpc_repos",
+    "//js:repositories.bzl",
+    "js_repos",
 )
 
-def nodejs_repos(**kwargs):
-    rules_proto_grpc_repos(**kwargs)
-    build_bazel_rules_nodejs(**kwargs)
+def nodejs_repos(**kwargs):  # buildifier: disable=function-docstring
+    print("Loading Javascript rules from @rules_proto_grpc//nodejs:repositories.bzl has been deprecated, please use @rules_proto_grpc//js:repositories.bzl instead")  # buildifier: disable=print
+    js_repos(**kwargs)

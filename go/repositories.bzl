@@ -1,3 +1,5 @@
+"""Common dependencies for rules_proto_grpc Go rules."""
+
 load(
     "//:repositories.bzl",
     "io_bazel_rules_go",
@@ -5,7 +7,7 @@ load(
 )
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
-def go_repos(**kwargs):
+def go_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
     io_bazel_rules_go(**kwargs)
 
@@ -13,20 +15,29 @@ def go_repos(**kwargs):
         name = "org_golang_google_grpc",
         build_file_proto_mode = "disable",
         importpath = "google.golang.org/grpc",
-        sum = "h1:zWTV+LMdc3kaiJMSTOFz2UgSBgx8RNQoTGiZu3fR9S0=",
-        version = "v1.32.0",
+        sum = "h1:TwIQcH3es+MojMVojxxfQ3l3OF2KzlRxML2xZq0kRo8=",
+        version = "v1.35.0",
     )
 
+    # Required for org_golang_google_grpc
     go_repository(
         name = "org_golang_x_net",
         importpath = "golang.org/x/net",
-        sum = "h1:YfxMZzv3PjGonQYNUaeU2+DhAdqOxerQ30JFB6WgAXo=",
-        version = "v0.0.0-20200930145003-4acb6c075d10",
+        sum = "h1:HThQeV5c0Ab/Puir+q6mC97b7+3dfZdsLWMLoBrzo68=",
+        version = "v0.0.0-20210129194117-4acb7895a057",
     )
 
+    # Required for org_golang_google_grpc
     go_repository(
         name = "org_golang_x_text",
         importpath = "golang.org/x/text",
-        sum = "h1:cokOdA+Jmi5PJGXLlLllQSgYigAEfHXJAERHVMaCc2k=",
-        version = "v0.3.3",
+        sum = "h1:i6eZZ+zk0SOf0xgBpEpPD18qWcJda6q1sxt3S0kzyUQ=",
+        version = "v0.3.5",
+    )
+
+    go_repository(
+        name = "org_golang_google_grpc_cmd_protoc_gen_go_grpc",
+        importpath = "google.golang.org/grpc/cmd/protoc-gen-go-grpc",
+        sum = "h1:M1YKkFIboKNieVO5DLUEVzQfGwJD30Nv2jfUgzb5UcE=",
+        version = "v1.1.0",
     )
