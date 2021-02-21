@@ -84,8 +84,9 @@ depend on it explicitly from the relevant top level binaries/libraries.
   active user of these rules please open a discussion.
 
 ### C#
-- Updated `rules_dotnet` to latest. Note that the new versions of `rules_dotnet` drop support for .Net Framework and
-  Mono
+- Updated `rules_dotnet` to 0.0.7. Note that the new versions of `rules_dotnet` drop support for .Net Framework and
+  Mono and require use of alternate platforms. Please see the examples for the latest WORKSPACE template for the
+  C# rules
 - Updated `Grpc` to 2.35.0
 
 ### D
