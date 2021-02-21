@@ -180,19 +180,19 @@ nuget_rules_proto_grpc_packages()
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_library")
 
 csharp_proto_library(
-    name = "person_csharp_proto",
+    name = "person_csharp_proto.dll",
     protos = ["@rules_proto_grpc//example/proto:person_proto"],
-    deps = ["place_csharp_proto"],
+    deps = ["place_csharp_proto.dll"],
 )
 
 csharp_proto_library(
-    name = "place_csharp_proto",
+    name = "place_csharp_proto.dll",
     protos = ["@rules_proto_grpc//example/proto:place_proto"],
-    deps = ["thing_csharp_proto"],
+    deps = ["thing_csharp_proto.dll"],
 )
 
 csharp_proto_library(
-    name = "thing_csharp_proto",
+    name = "thing_csharp_proto.dll",
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 ```
@@ -249,14 +249,14 @@ nuget_rules_proto_grpc_packages()
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library")
 
 csharp_grpc_library(
-    name = "thing_csharp_grpc",
+    name = "thing_csharp_grpc.dll",
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )
 
 csharp_grpc_library(
-    name = "greeter_csharp_grpc",
+    name = "greeter_csharp_grpc.dll",
     protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-    deps = ["thing_csharp_grpc"],
+    deps = ["thing_csharp_grpc.dll"],
 )
 ```
 
