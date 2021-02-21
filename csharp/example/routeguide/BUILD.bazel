@@ -1,12 +1,12 @@
 load("//csharp:defs.bzl", "csharp_grpc_library")
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_binary", "core_library")
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "csharp_binary", "csharp_library")
 
 csharp_grpc_library(
     name = "routeguide.dll",
     protos = ["//example/proto:routeguide_proto"],
 )
 
-core_library(
+csharp_library(
     name = "util.dll",
     srcs = [
         "RouteGuideUtil.cs",
@@ -17,7 +17,7 @@ core_library(
     ],
 )
 
-core_binary(
+csharp_binary(
     name = "client.exe",
     srcs = [
         "Client.cs",
@@ -32,7 +32,7 @@ core_binary(
     ],
 )
 
-core_binary(
+csharp_binary(
     name = "server.exe",
     srcs = [
         "Server.cs",

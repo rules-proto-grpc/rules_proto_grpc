@@ -135,8 +135,8 @@ repository.
 | [C++](/cpp) | [cpp_grpc_library](/cpp#cpp_grpc_library) | Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies linked ([example](/example/cpp/cpp_grpc_library)) |
 | [C#](/csharp) | [csharp_proto_compile](/csharp#csharp_proto_compile) | Generates C# protobuf `.cs` artifacts ([example](/example/csharp/csharp_proto_compile)) |
 | [C#](/csharp) | [csharp_grpc_compile](/csharp#csharp_grpc_compile) | Generates C# protobuf+gRPC `.cs` artifacts ([example](/example/csharp/csharp_grpc_compile)) |
-| [C#](/csharp) | [csharp_proto_library](/csharp#csharp_proto_library) | Generates a C# protobuf library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_proto_library)) |
-| [C#](/csharp) | [csharp_grpc_library](/csharp#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `core_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_grpc_library)) |
+| [C#](/csharp) | [csharp_proto_library](/csharp#csharp_proto_library) | Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_proto_library)) |
+| [C#](/csharp) | [csharp_grpc_library](/csharp#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_grpc_library)) |
 | [D](/d) | [d_proto_compile](/d#d_proto_compile) | Generates D protobuf `.d` artifacts ([example](/example/d/d_proto_compile)) |
 | [D](/d) | [d_proto_library](/d#d_proto_library) | Generates a D protobuf library using `d_library` from `rules_d` ([example](/example/d/d_proto_library)) |
 | [Go](/go) | [go_proto_compile](/go#go_proto_compile) | Generates Go protobuf `.go` artifacts ([example](/example/go/go_proto_compile)) |
