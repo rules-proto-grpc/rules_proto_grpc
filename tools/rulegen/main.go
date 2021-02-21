@@ -417,6 +417,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				out.w(`    - "//%s/..."`, lang.Dir)
 			}
 		}
+		out.w("    test_flags:")
 		out.w(`    - "--test_output=errors"`)
 		out.w("    test_targets:")
 		for _, clientLang := range languages {
