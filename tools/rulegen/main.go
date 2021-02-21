@@ -221,9 +221,11 @@ func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule)
 	if len(out.lines) > 0 {
 		out.MustWrite(filepath.Join(dir, ".bazelrc"))
 	} else {
-		e := os.Remove(filepath.Join(dir, ".bazelrc"))
-		if e != nil {
-			log.Fatal(e)
+		if fileExists(filepath.Join(dir, ".bazelrc")) {
+			e := os.Remove(filepath.Join(dir, ".bazelrc"))
+			if e != nil {
+				log.Fatal(e)
+			}
 		}
 	}
 }
