@@ -109,7 +109,6 @@ dotnet_register_toolchains()
 
 dotnet_repositories_nugets()
 
-
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 
 nuget_rules_proto_grpc_packages()

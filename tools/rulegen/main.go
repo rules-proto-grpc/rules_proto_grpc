@@ -1,5 +1,3 @@
-// Wsifier, a tool to parse BUILD files and bzl files, generate tests cases and
-// documentation.
 package main
 
 import (
