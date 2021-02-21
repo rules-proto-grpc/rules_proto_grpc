@@ -24,6 +24,8 @@ tasks:
     - "//swift/..."
     test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -106,6 +108,9 @@ tasks:
     - "//swift/..."
     test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -1186,7 +1191,10 @@ tasks:
     name: 'test workspace: absolute_strip_import_prefix'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
@@ -1194,7 +1202,10 @@ tasks:
     name: 'test workspace: absolute_strip_import_prefix'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
@@ -1203,7 +1214,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
@@ -1211,7 +1226,10 @@ tasks:
     name: 'test workspace: combined_strip_and_add_prefix'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
@@ -1219,7 +1237,10 @@ tasks:
     name: 'test workspace: combined_strip_and_add_prefix'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
@@ -1228,7 +1249,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
@@ -1236,7 +1261,10 @@ tasks:
     name: 'test workspace: common_cpp_library'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/common_cpp_library
@@ -1244,7 +1272,10 @@ tasks:
     name: 'test workspace: common_cpp_library'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/common_cpp_library
@@ -1253,7 +1284,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/common_cpp_library
@@ -1261,7 +1296,10 @@ tasks:
     name: 'test workspace: empty_output_directory'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/empty_output_directory
@@ -1269,7 +1307,10 @@ tasks:
     name: 'test workspace: empty_output_directory'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/empty_output_directory
@@ -1278,7 +1319,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/empty_output_directory
@@ -1286,7 +1331,10 @@ tasks:
     name: 'test workspace: exclusions'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/exclusions
@@ -1294,7 +1342,10 @@ tasks:
     name: 'test workspace: exclusions'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/exclusions
@@ -1303,7 +1354,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/exclusions
@@ -1311,7 +1366,10 @@ tasks:
     name: 'test workspace: generated_proto'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
@@ -1319,7 +1377,10 @@ tasks:
     name: 'test workspace: generated_proto'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
@@ -1328,7 +1389,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
@@ -1336,7 +1401,10 @@ tasks:
     name: 'test workspace: go_importpath'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
@@ -1344,7 +1412,10 @@ tasks:
     name: 'test workspace: go_importpath'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
@@ -1353,7 +1424,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
@@ -1361,7 +1436,10 @@ tasks:
     name: 'test workspace: import_prefix'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/import_prefix
@@ -1369,7 +1447,10 @@ tasks:
     name: 'test workspace: import_prefix'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/import_prefix
@@ -1378,7 +1459,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/import_prefix
@@ -1386,7 +1471,10 @@ tasks:
     name: 'test workspace: objc_capitalisation'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
@@ -1394,7 +1482,10 @@ tasks:
     name: 'test workspace: objc_capitalisation'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
@@ -1403,7 +1494,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
@@ -1411,7 +1506,10 @@ tasks:
     name: 'test workspace: python3_grpc'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python3_grpc
@@ -1420,7 +1518,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python3_grpc
@@ -1428,7 +1530,10 @@ tasks:
     name: 'test workspace: python_dashes'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_dashes
@@ -1436,7 +1541,10 @@ tasks:
     name: 'test workspace: python_dashes'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_dashes
@@ -1445,7 +1553,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_dashes
@@ -1453,7 +1565,10 @@ tasks:
     name: 'test workspace: python_deps'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_deps
@@ -1462,7 +1577,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_deps
@@ -1470,7 +1589,10 @@ tasks:
     name: 'test workspace: readme_http_archive'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/readme_http_archive
@@ -1478,7 +1600,10 @@ tasks:
     name: 'test workspace: readme_http_archive'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/readme_http_archive
@@ -1487,7 +1612,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/readme_http_archive
@@ -1495,7 +1624,10 @@ tasks:
     name: 'test workspace: relative_strip_import_prefix'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/relative_strip_import_prefix
@@ -1503,7 +1635,10 @@ tasks:
     name: 'test workspace: relative_strip_import_prefix'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/relative_strip_import_prefix
@@ -1512,7 +1647,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/relative_strip_import_prefix
@@ -1520,7 +1659,10 @@ tasks:
     name: 'test workspace: shared_proto'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
@@ -1528,7 +1670,10 @@ tasks:
     name: 'test workspace: shared_proto'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
@@ -1537,7 +1682,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
@@ -1545,7 +1694,10 @@ tasks:
     name: 'test workspace: transitive_compilation'
     platform: ubuntu1804
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/transitive_compilation
@@ -1553,7 +1705,10 @@ tasks:
     name: 'test workspace: transitive_compilation'
     platform: windows
     build_flags:
+    test_flags:
     - "--test_output=errors"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/transitive_compilation
@@ -1562,7 +1717,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
     - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     test_targets:
       - "//..."
     working_directory: test_workspaces/transitive_compilation
