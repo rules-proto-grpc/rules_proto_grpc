@@ -1,5 +1,3 @@
-// Wsifier, a tool to parse BUILD files and bzl files, generate tests cases and
-// documentation.
 package main
 
 import (
@@ -22,6 +20,14 @@ var ciPlatformsMap = map[string][]string{
 	"linux":   []string{"ubuntu1604", "ubuntu1804", "rbe_ubuntu1604", "rbe_ubuntu1804"},
 	"windows": []string{"windows"},
 	"macos":   []string{"macos"},
+}
+
+// https://github.com/bazelbuild/rules_dotnet/issues/225
+// TODO: Remove if becomes unnecessary
+var ciPlatformFlags = map[string][]string{
+	"ubuntu1804":   []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"},
+	"windows": []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"},
+	"macos":   []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"},
 }
 
 func main() {
@@ -397,9 +403,12 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		out.w("    platform: %s", ciPlatform)
 		out.w("    environment:")
 		out.w(`      CC: clang`)
+		out.w("    build_flags:")
 		if ciPlatform == "macos" {
-			out.w("    build_flags:")
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+		}
+		for _, flag := range ciPlatformFlags[ciPlatform] {
+			out.w(`    - "%s"`, flag)
 		}
 		out.w("    build_targets:")
 		for _, lang := range languages {
@@ -409,10 +418,13 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 			}
 		}
 		out.w("    test_flags:")
+		out.w(`    - "--test_output=errors"`)
 		if ciPlatform == "macos" {
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 		}
-		out.w(`    - "--test_output=errors"`)
+		for _, flag := range ciPlatformFlags[ciPlatform] {
+			out.w(`    - "%s"`, flag)
+		}
 		out.w("    test_targets:")
 		for _, clientLang := range languages {
 			for _, serverLang := range languages {
@@ -438,9 +450,14 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				out.w("  %s_%s_%s:", lang.Name, rule.Name, ciPlatform)
 				out.w("    name: '%s: %s'", lang.Name, rule.Name)
 				out.w("    platform: %s", ciPlatform)
+				out.w("    build_flags:")
 				if ciPlatform == "macos" {
-					out.w("    build_flags:")
 					out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+				}
+				if lang.Name == "csharp" {  // https://github.com/bazelbuild/rules_dotnet/issues/225
+					for _, flag := range ciPlatformFlags[ciPlatform] {
+						out.w(`    - "%s"`, flag)
+					}
 				}
 				out.w("    build_targets:")
 				out.w(`      - "//..."`)
@@ -468,15 +485,15 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 			out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
 			out.w("    name: 'test workspace: %s'", testWorkspace)
 			out.w("    platform: %s", ciPlatform)
+			out.w("    build_flags:")
 			if ciPlatform == "macos" {
-				out.w("    build_flags:")
 				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 			}
 			out.w("    test_flags:")
+			out.w(`    - "--test_output=errors"`)
 			if ciPlatform == "macos" {
 				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 			}
-			out.w(`    - "--test_output=errors"`)
 			out.w("    test_targets:")
 			out.w(`      - "//..."`)
 			out.w("    working_directory: %s", path.Join(dir, "test_workspaces", testWorkspace))
