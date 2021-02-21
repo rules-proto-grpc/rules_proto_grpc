@@ -1,2 +1,0 @@
-build --strategy=CoreCompile=standalone
-build --strategy=SwiftCompile=standalone

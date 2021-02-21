@@ -1,4 +1,4 @@
-"""Generated definition of nodejs_grpc_compile."""
+"""Generated definition of c_proto_compile."""
 
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
@@ -11,8 +11,8 @@ load(
     "proto_compile_impl",
 )
 
-# Create aspect for nodejs_grpc_compile
-nodejs_grpc_compile_aspect = aspect(
+# Create aspect for c_proto_compile
+c_proto_compile_aspect = aspect(
     implementation = proto_compile_aspect_impl,
     provides = [ProtoLibraryAspectNodeInfo],
     attr_aspects = ["deps"],
@@ -22,14 +22,12 @@ nodejs_grpc_compile_aspect = aspect(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//js:js_plugin"),
-                Label("//js:grpc_node_plugin"),
-                Label("//js:grpc_node_ts_plugin"),
+                Label("//c:upb_plugin"),
             ],
         ),
         _prefix = attr.string(
             doc = "String used to disambiguate aspects when generating outputs",
-            default = "nodejs_grpc_compile_aspect",
+            default = "c_proto_compile_aspect",
         ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],
@@ -42,23 +40,20 @@ _rule = rule(
         proto_compile_attrs,
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
-            providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [nodejs_grpc_compile_aspect],
+            providers = [ProtoInfo],
             doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
         ),
         deps = attr.label_list(
             mandatory = False,
             providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [nodejs_grpc_compile_aspect],
+            aspects = [c_proto_compile_aspect],
             doc = "DEPRECATED: Use protos attr",
         ),
         _plugins = attr.label_list(
             doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
-                Label("//js:js_plugin"),
-                Label("//js:grpc_node_plugin"),
-                Label("//js:grpc_node_ts_plugin"),
+                Label("//c:upb_plugin"),
             ],
         ),
     ),
@@ -66,7 +61,7 @@ _rule = rule(
 )
 
 # Create macro for converting attrs and passing to compile
-def nodejs_grpc_compile(**kwargs):
+def c_proto_compile(**kwargs):
     _rule(
         verbose_string = "{}".format(kwargs.get("verbose", 0)),
         **kwargs

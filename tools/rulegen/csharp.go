@@ -51,9 +51,9 @@ var csharpLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "csharp_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -63,7 +63,7 @@ def {{ .Rule.Name }}(**kwargs):
 var csharpProtoLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     csharp_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
@@ -78,7 +78,7 @@ PROTO_DEPS = [
 var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     csharp_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),

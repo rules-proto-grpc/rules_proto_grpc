@@ -56,7 +56,7 @@ now fail. In such cases, you should add a `lang_{proto|grpc}_{compile|library}` 
 depend on it explicitly from the relevant top level binaries/libraries.
 
 ### General Changes
-- Updated protobuf to 3.15.0
+- Updated protobuf to 3.15.1
 - Updated gRPC to 1.35.0
 - All rules have new per-target `options` and `extra_protoc_args` attributes to control options to protoc
   [#54](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/54)
@@ -64,14 +64,20 @@ depend on it explicitly from the relevant top level binaries/libraries.
   [#105](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/105)
 - Updated `rules_proto` to latest head
 - `aspect.bzl` and `plugin.bzl` have merged to a single top level `defs.bzl`
+- The minimum supported Bazel version is 3.0.0. Some language specific rules may require 4.0.0
 
 ### Android
 - **WORKSPACE update needed**: The WORKSPACE imports necessary for Android rules have been updated due to upstream
   changes in `grpc-java`. Please see the examples for the latest WORKSPACE template for the Android rules
 
+### C
+- Added experimental rules for C using upb [#20](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/20)
+
 ### C++
 - Non-transitive mode resolves issue where the same proto may be defined more than once
   [#25](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/25)
+- Header and source files are now correctly passed to the underlying `cc_library` rule
+  [#40](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/40)
 
 ### Closure
 - Closure rules have been removed. In practice these have been superceded by the Javascript rules, but if you are an
@@ -121,6 +127,8 @@ depend on it explicitly from the relevant top level binaries/libraries.
 
 ### Objective-C
 - Added `copt` argument pass-through for Obj-C library rules.
+- Header and source files are now correctly passed to the underlying `cc_library` rule
+  [#40](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/40)
 
 ### Python
 - Updated `rules_python` to latest

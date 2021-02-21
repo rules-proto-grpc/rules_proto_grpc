@@ -4,7 +4,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
-MINIMUM_BAZEL_VERSION = "1.0.0"
+MINIMUM_BAZEL_VERSION = "3.0.0"
 ENABLE_VERSION_NAGS = False
 VERSIONS = {
     # Core
@@ -16,22 +16,12 @@ VERSIONS = {
         "sha256": "3bce0e2fcf502619119c7cac03613fb52ce3034b2159dd3ae9d35f7339558aa3",
     },
     "com_google_protobuf": {
-        # When updating, also update Node.js requirements, Ruby requirements and C# requirements
+        # When updating, also update JS requirements, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.15.0",
-        "sha256": "6aff9834fd7c540875e1836967c8d14c6897e3785a2efac629f69860fb7834ff",
-        "binds": [
-            {
-                "name": "protobuf_clib",
-                "actual": "@com_google_protobuf//:protoc_lib",
-            },
-            {
-                "name": "protobuf_headers",
-                "actual": "@com_google_protobuf//:protobuf_headers",
-            },
-        ],
+        "ref": "v3.15.1",
+        "sha256": "f18a40816260a9a3190a94efb0fc26270b244a2436681602f0a944739095d632",
     },
     "com_github_grpc_grpc": {
         # When updating, also update Go repositories.bzl, Node.js requirements, Ruby requirements and C# requirements
@@ -80,6 +70,15 @@ VERSIONS = {
         "repo": "rules_android",
         "ref": "9ab1134546364c6de84fc6c80b4202fdbebbbb35",
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
+    },
+
+    # C
+    "upb": {
+        "type": "github",
+        "org": "protocolbuffers",
+        "repo": "upb",
+        "ref": "eb0fdda14b7b211872507a66f7d988f7c24a44c9",
+        "sha256": "843d0729a0cb53fa2afb46b1c262438beb7477696f31e2fbfd84de97a710f2f1",
     },
 
     # C#
@@ -416,6 +415,12 @@ def bazel_skylib(**kwargs):
 #
 def build_bazel_rules_android(**kwargs):
     _generic_dependency("build_bazel_rules_android", **kwargs)
+
+#
+# C
+#
+def upb(**kwargs):
+    _generic_dependency("upb", **kwargs)
 
 #
 # C#

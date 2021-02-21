@@ -13,22 +13,29 @@
 
 ## Announcements 📣
 
-- **2021/02/09**: Version 4.0 of Bazel has been released recently and is supported without update for most languages.
-  Changes for full Bazel 4.0 compatibility and updated dependencies are in progress.
-- **2020/10/11**: [Version 2.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/2.0.0)
-  with updated Protobuf and gRPC versions. For some languages this may not be a drop-in replacement
-  and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
-  the above linked release notes for details or the language specific rules pages. If you discover
-  any problems with the new release, please
-  [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new).
+#### 2021/02/20 - Version 3.0.0
+
+[Version 3.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/3.0.0)
+with updated Protobuf and gRPC versions and a number of major improvements. For some languages this may not be a
+drop-in replacement and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
+the above linked release notes for details or the language specific rules pages. If you discover any problems with the
+new release, please [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new),
+[create a discussion](https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new) or otherwise check in the
+[#proto channel](https://bazelbuild.slack.com/archives/CKU1D04RM) on Bazel Slack.
+
+#### 2021/02/09 - Bazel Version 4
+
+Version 4.0 of Bazel has been released recently and is supported without update for most languages. Changes for full
+Bazel 4.0 compatibility and updated dependencies are in progress.
 
 
-## Contents:
+## Contents
 
 - [Overview](#overview)
 - [Installation](#installation)
 - [Rules](#rules)
     - [Android](/android/README.md)
+    - [C](/c/README.md)
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
     - [D](/d/README.md)
@@ -120,6 +127,8 @@ repository.
 | [Android](/android) | [android_grpc_compile](/android#android_grpc_compile) | Generates Android protobuf+gRPC `.jar` artifacts ([example](/example/android/android_grpc_compile)) |
 | [Android](/android) | [android_proto_library](/android#android_proto_library) | Generates an Android protobuf library using `android_library` from `rules_android` ([example](/example/android/android_proto_library)) |
 | [Android](/android) | [android_grpc_library](/android#android_grpc_library) | Generates Android protobuf+gRPC library using `android_library` from `rules_android` ([example](/example/android/android_grpc_library)) |
+| [C](/c) | [c_proto_compile](/c#c_proto_compile) | Generates C protobuf `.h` & `.c` artifacts ([example](/example/c/c_proto_compile)) |
+| [C](/c) | [c_proto_library](/c#c_proto_library) | Generates a C protobuf library using `cc_library`, with dependencies linked ([example](/example/c/c_proto_library)) |
 | [C++](/cpp) | [cpp_proto_compile](/cpp#cpp_proto_compile) | Generates C++ protobuf `.h` & `.cc` artifacts ([example](/example/cpp/cpp_proto_compile)) |
 | [C++](/cpp) | [cpp_grpc_compile](/cpp#cpp_grpc_compile) | Generates C++ protobuf+gRPC `.h` & `.cc` artifacts ([example](/example/cpp/cpp_grpc_compile)) |
 | [C++](/cpp) | [cpp_proto_library](/cpp#cpp_proto_library) | Generates a C++ protobuf library using `cc_library`, with dependencies linked ([example](/example/cpp/cpp_proto_library)) |
@@ -361,8 +370,7 @@ _rule = rule(
         proto_compile_attrs,
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
-            providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [example_aspect],
+            providers = [ProtoInfo],
             doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
         ),
         deps = attr.label_list(

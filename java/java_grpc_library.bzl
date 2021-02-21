@@ -4,9 +4,9 @@ load("//java:java_grpc_compile.bzl", "java_grpc_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@rules_java//java:defs.bzl", "java_library")
 
-def java_grpc_library(**kwargs):
+def java_grpc_library(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     java_grpc_compile(
         name = name_pb,
         **{
@@ -18,7 +18,7 @@ def java_grpc_library(**kwargs):
 
     # Create java library
     java_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         runtime_deps = ["@io_grpc_grpc_java//netty"],

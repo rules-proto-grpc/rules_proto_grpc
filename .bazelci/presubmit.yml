@@ -9,6 +9,7 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     build_targets:
+    - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
     - "//d/..."
@@ -92,6 +93,7 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     build_targets:
+    - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
     - "//d/..."
@@ -232,6 +234,46 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
+  c_c_proto_compile_ubuntu1804:
+    name: 'c: c_proto_compile'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/c/c_proto_compile
+  c_c_proto_compile_windows:
+    name: 'c: c_proto_compile'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/c/c_proto_compile
+  c_c_proto_compile_macos:
+    name: 'c: c_proto_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/c/c_proto_compile
+  c_c_proto_library_ubuntu1804:
+    name: 'c: c_proto_library'
+    platform: ubuntu1804
+    build_targets:
+      - "//..."
+    working_directory: example/c/c_proto_library
+  c_c_proto_library_windows:
+    name: 'c: c_proto_library'
+    platform: windows
+    build_targets:
+      - "//..."
+    working_directory: example/c/c_proto_library
+  c_c_proto_library_macos:
+    name: 'c: c_proto_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/c/c_proto_library
   cpp_cpp_proto_compile_ubuntu1804:
     name: 'cpp: cpp_proto_compile'
     platform: ubuntu1804

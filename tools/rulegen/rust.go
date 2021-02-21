@@ -17,10 +17,10 @@ load("//internal:compile.bzl", "proto_compile_attrs")
 load("//{{ .Lang.Dir }}:rust_proto_lib.bzl", "rust_proto_lib")
 load("@rules_rust//rust:rust.bzl", "rust_library")
 
-def {{ .Rule.Name }}(**kwargs):  # buildifier: disable=function-docstring
+def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
-    name_lib = kwargs.get("name") + "_lib"
+    name_pb = name + "_pb"
+    name_lib = name + "_lib"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -37,7 +37,7 @@ var rustProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + 
 
     # Create {{ .Lang.Name }} library
     rust_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb, name_lib],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),
@@ -58,7 +58,7 @@ var rustGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
 
     # Create {{ .Lang.Name }} library
     rust_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb, name_lib],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),

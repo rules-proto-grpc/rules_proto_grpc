@@ -13,22 +13,29 @@
 
 ## Announcements 📣
 
-- **2021/02/09**: Version 4.0 of Bazel has been released recently and is supported without update for most languages.
-  Changes for full Bazel 4.0 compatibility and updated dependencies are in progress.
-- **2020/10/11**: [Version 2.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/2.0.0)
-  with updated Protobuf and gRPC versions. For some languages this may not be a drop-in replacement
-  and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
-  the above linked release notes for details or the language specific rules pages. If you discover
-  any problems with the new release, please
-  [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new).
+#### 2021/02/20 - Version 3.0.0
+
+[Version 3.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/3.0.0)
+with updated Protobuf and gRPC versions and a number of major improvements. For some languages this may not be a
+drop-in replacement and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
+the above linked release notes for details or the language specific rules pages. If you discover any problems with the
+new release, please [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new),
+[create a discussion](https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new) or otherwise check in the
+[#proto channel](https://bazelbuild.slack.com/archives/CKU1D04RM) on Bazel Slack.
+
+#### 2021/02/09 - Bazel Version 4
+
+Version 4.0 of Bazel has been released recently and is supported without update for most languages. Changes for full
+Bazel 4.0 compatibility and updated dependencies are in progress.
 
 
-## Contents:
+## Contents
 
 - [Overview](#overview)
 - [Installation](#installation)
 - [Rules](#rules)
     - [Android](/android/README.md)
+    - [C](/c/README.md)
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
     - [D](/d/README.md)

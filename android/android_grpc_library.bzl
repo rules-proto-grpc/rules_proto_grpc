@@ -4,9 +4,9 @@ load("//android:android_grpc_compile.bzl", "android_grpc_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 
-def android_grpc_library(**kwargs):
+def android_grpc_library(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     android_grpc_compile(
         name = name_pb,
         **{
@@ -18,7 +18,7 @@ def android_grpc_library(**kwargs):
 
     # Create android library
     android_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         exports = GRPC_DEPS + kwargs.get("exports", []),

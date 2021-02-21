@@ -29,7 +29,7 @@ var compileRuleAttrs = []*Attr{
 	&Attr{
 		Name:      "prefix_path",
 		Type:      "string",
-		Default:   "",
+		Default:   "\"\"",
 		Doc:       "Path to prefix to the generated files in the output directory",
 		Mandatory: false,
 	},
@@ -94,8 +94,7 @@ _rule = rule(
         proto_compile_attrs,
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
-            providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [{{ .Rule.Name }}_aspect],
+            providers = [ProtoInfo],
             doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
         ),
         deps = attr.label_list(

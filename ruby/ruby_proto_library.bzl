@@ -4,9 +4,9 @@ load("//ruby:ruby_proto_compile.bzl", "ruby_proto_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_library")
 
-def ruby_proto_library(**kwargs):
+def ruby_proto_library(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     ruby_proto_compile(
         name = name_pb,
         **{
@@ -18,7 +18,7 @@ def ruby_proto_library(**kwargs):
 
     # Create ruby library
     ruby_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = ["@rules_proto_grpc_bundle//:gems"] + (kwargs.get("deps", []) if "protos" in kwargs else []),
         includes = [native.package_name() + "/" + name_pb],

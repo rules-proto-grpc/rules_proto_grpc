@@ -92,6 +92,7 @@ func action(c *cli.Context) error {
 
 	languages := []*Language{
 		makeAndroid(),
+		makeC(),
 		makeCpp(),
 		makeCsharp(),
 		makeD(),
@@ -204,6 +205,7 @@ func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule)
 			out.w("#")
 		}
 		out.w("%s --%s=%s", f.Category, f.Name, f.Value)
+		out.ln()
 	}
 	for _, f := range rule.Flags {
 		if f.Description != "" {
@@ -212,9 +214,20 @@ func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule)
 			out.w("#")
 		}
 		out.w("%s --%s=%s", f.Category, f.Name, f.Value)
+		out.ln()
 	}
-	out.ln()
-	out.MustWrite(filepath.Join(dir, ".bazelrc"))
+
+	// Only write a .bazelrc if it's not empty
+	if len(out.lines) > 0 {
+		out.MustWrite(filepath.Join(dir, ".bazelrc"))
+	} else {
+		if fileExists(filepath.Join(dir, ".bazelrc")) {
+			e := os.Remove(filepath.Join(dir, ".bazelrc"))
+			if e != nil {
+				log.Fatal(e)
+			}
+		}
+	}
 }
 
 func mustWriteLanguageDefs(dir string, lang *Language) {

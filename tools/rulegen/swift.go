@@ -15,9 +15,9 @@ var swiftProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .La
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -25,7 +25,7 @@ def {{ .Rule.Name }}(**kwargs):
 
     # Create {{ .Lang.Name }} library
     swift_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         module_name = kwargs.get("module_name"),
@@ -41,9 +41,9 @@ var swiftGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lan
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -51,7 +51,7 @@ def {{ .Rule.Name }}(**kwargs):
 
     # Create {{ .Lang.Name }} library
     swift_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         module_name = kwargs.get("module_name"),
@@ -105,11 +105,7 @@ func makeSwift() *Language {
 		PresubmitEnvVars: map[string]string{
 			"CC": "clang",
 		},
-		Flags: append(commonLangFlags, &Flag{
-			Category: "build",
-			Name:     "strategy=SwiftCompile",
-			Value:    "standalone",
-		}),
+		Flags: commonLangFlags,
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{

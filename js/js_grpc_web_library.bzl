@@ -4,9 +4,9 @@ load("//js:js_grpc_web_compile.bzl", "js_grpc_web_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
-def js_grpc_web_library(**kwargs):
+def js_grpc_web_library(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     js_grpc_web_compile(
         name = name_pb,
         **{
@@ -18,10 +18,10 @@ def js_grpc_web_library(**kwargs):
 
     # Create js library
     js_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = kwargs.get("name"),
+        package_name = name,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )

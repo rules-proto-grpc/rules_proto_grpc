@@ -40,8 +40,7 @@ _rule = rule(
         proto_compile_attrs,
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
-            providers = [ProtoInfo, ProtoLibraryAspectNodeInfo],
-            aspects = [python_proto_compile_aspect],
+            providers = [ProtoInfo],
             doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
         ),
         deps = attr.label_list(

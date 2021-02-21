@@ -4,9 +4,9 @@ load("//csharp:csharp_proto_compile.bzl", "csharp_proto_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "csharp_library")
 
-def csharp_proto_library(**kwargs):
+def csharp_proto_library(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     csharp_proto_compile(
         name = name_pb,
         **{
@@ -18,7 +18,7 @@ def csharp_proto_library(**kwargs):
 
     # Create csharp library
     csharp_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
         visibility = kwargs.get("visibility"),

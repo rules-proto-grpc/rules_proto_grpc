@@ -16,9 +16,9 @@ var jsProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -26,10 +26,10 @@ def {{ .Rule.Name }}(**kwargs):
 
     # Create {{ .Lang.Name }} library
     js_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = kwargs.get("name"),
+        package_name = name,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -42,9 +42,9 @@ var nodeGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:js_grpc_
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     js_grpc_node_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -52,10 +52,10 @@ def {{ .Rule.Name }}(**kwargs):
 
     # Create {{ .Lang.Name }} library
     js_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = kwargs.get("name"),
+        package_name = name,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -69,9 +69,9 @@ var jsGrpcWebLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:js_grpc
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
-def {{ .Rule.Name }}(**kwargs):
+def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
-    name_pb = kwargs.get("name") + "_pb"
+    name_pb = name + "_pb"
     js_grpc_web_compile(
         name = name_pb,
         {{ .Common.ArgsForwardingSnippet }}
@@ -79,10 +79,10 @@ def {{ .Rule.Name }}(**kwargs):
 
     # Create {{ .Lang.Name }} library
     js_library(
-        name = kwargs.get("name"),
+        name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = kwargs.get("name"),
+        package_name = name,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
