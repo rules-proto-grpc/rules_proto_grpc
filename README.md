@@ -13,7 +13,7 @@
 
 ## Announcements 📣
 
-#### 2021/02/20 - Version 3.0.0
+#### 2021/02/21 - Version 3.0.0
 
 [Version 3.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/3.0.0)
 with updated Protobuf and gRPC versions and a number of major improvements. For some languages this may not be a
