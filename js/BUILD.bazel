@@ -25,23 +25,25 @@ proto_plugin(
 # grpc-node
 proto_plugin(
     name = "grpc_node_plugin",
+    empty_template = "empty.template",
     exclusions = [
         "google/protobuf",
     ],
     options = [
         "grpc_js",
     ],
-    output_directory = True,
+    outputs = ["{protopath}_grpc_pb.js"],
     tool = "@js_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
     visibility = ["//visibility:public"],
 )
 
 proto_plugin(
     name = "grpc_node_ts_plugin",
+    empty_template = "empty.template",
     options = [
         "service=grpc-node",
     ],
-    output_directory = True,
+    outputs = ["{protopath}_grpc_pb.d.ts"],
     tool = "@js_modules//ts-protoc-gen/bin:protoc-gen-ts",
     visibility = ["//visibility:public"],
 )
@@ -49,11 +51,12 @@ proto_plugin(
 # grpc-web
 proto_plugin(
     name = "grpc_web_js_plugin",
+    empty_template = "empty.template",
     options = [
         "import_style=commonjs+dts",
         "mode=grpcweb",
     ],
-    output_directory = True,
+    outputs = ["{protopath}_grpc_web_pb.js", "{protopath}_grpc_web_pb.d.ts"],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_web_plugin_darwin//file",
         "@bazel_tools//src/conditions:linux_x86_64": "@grpc_web_plugin_linux//file",

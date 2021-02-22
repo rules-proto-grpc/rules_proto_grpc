@@ -1,18 +1,12 @@
 load("@rules_proto_grpc//js:defs.bzl", "js_grpc_web_library")
 
 js_grpc_web_library(
-    name = "person_js_grpc",
-    protos = ["@rules_proto_grpc//example/proto:person_proto"],
-    deps = ["place_js_grpc"],
-)
-
-js_grpc_web_library(
-    name = "place_js_grpc",
-    protos = ["@rules_proto_grpc//example/proto:place_proto"],
-    deps = ["thing_js_grpc"],
-)
-
-js_grpc_web_library(
     name = "thing_js_grpc",
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+js_grpc_web_library(
+    name = "greeter_js_grpc",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    deps = ["thing_js_grpc"],
 )
