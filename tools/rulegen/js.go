@@ -159,7 +159,7 @@ func makeJavaScript() *Language {
 				Kind:             "grpc",
 				Implementation:   jsGrpcWebLibraryRuleTemplate,
 				WorkspaceExample: jsWorkspaceTemplate,
-				BuildExample:     protoLibraryExampleTemplate,
+				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a JavaScript protobuf + gRPC-Web library using `js_library` from `rules_nodejs`",
 				Attrs:            libraryRuleAttrs,
 			},
