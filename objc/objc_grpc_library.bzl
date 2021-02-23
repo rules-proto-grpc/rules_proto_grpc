@@ -51,5 +51,5 @@ def objc_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
 
 GRPC_DEPS = [
     "@com_google_protobuf//:protobuf_objc",
-    "@com_github_grpc_grpc//:grpc++",
+    "@com_github_grpc_grpc//src/objective-c:proto_objc_rpc",
 ]
