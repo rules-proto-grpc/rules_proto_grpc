@@ -157,6 +157,7 @@ repository.
 | [Objective-C](/objc) | [objc_proto_compile](/objc#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` artifacts ([example](/example/objc/objc_proto_compile)) |
 | [Objective-C](/objc) | [objc_grpc_compile](/objc#objc_grpc_compile) | Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts ([example](/example/objc/objc_grpc_compile)) |
 | [Objective-C](/objc) | [objc_proto_library](/objc#objc_proto_library) | Generates an Objective-C protobuf library using `objc_library` ([example](/example/objc/objc_proto_library)) |
+| [Objective-C](/objc) | [objc_grpc_library](/objc#objc_grpc_library) | Generates an Objective-C protobuf+gRPC library using `objc_library` ([example](/example/objc/objc_grpc_library)) |
 | [PHP](/php) | [php_proto_compile](/php#php_proto_compile) | Generates PHP protobuf `.php` artifacts ([example](/example/php/php_proto_compile)) |
 | [PHP](/php) | [php_grpc_compile](/php#php_grpc_compile) | Generates PHP protobuf+gRPC `.php` artifacts ([example](/example/php/php_grpc_compile)) |
 | [Python](/python) | [python_proto_compile](/python#python_proto_compile) | Generates Python protobuf `.py` artifacts ([example](/example/python/python_proto_compile)) |

@@ -74,8 +74,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
 
 GRPC_DEPS = [
     "@com_google_protobuf//:protobuf_objc",
-    "@com_github_grpc_grpc//:grpc++",
-    "@rules_proto_grpc//objc:grpc_lib",
+    "@com_github_grpc_grpc//src/objective-c:proto_objc_rpc",
 ]`)
 
 func makeObjc() *Language {
@@ -116,15 +115,16 @@ func makeObjc() *Language {
 				Doc:              "Generates an Objective-C protobuf library using `objc_library`",
 				Attrs:            cppLibraryRuleAttrs,
 			},
-// 			&Rule{ // Disabled due to issues fetching gRPC dependencies
-// 				Name:             "objc_grpc_library",
-// 				Kind:             "grpc",
-// 				Implementation:   objcGrpcLibraryRuleTemplate,
-// 				WorkspaceExample: grpcWorkspaceTemplate,
-// 				BuildExample:     grpcLibraryExampleTemplate,
-// 				Doc:              "Generates an Objective-C protobuf+gRPC library using `objc_library`",
-// 				Attrs:            cppLibraryRuleAttrs,
-// 			},
+			&Rule{
+				Name:             "objc_grpc_library",
+				Kind:             "grpc",
+				Implementation:   objcGrpcLibraryRuleTemplate,
+				WorkspaceExample: grpcWorkspaceTemplate,
+				BuildExample:     grpcLibraryExampleTemplate,
+				Doc:              "Generates an Objective-C protobuf+gRPC library using `objc_library`",
+				Attrs:            cppLibraryRuleAttrs,
+				Experimental:     true,
+			},
 		},
 	}
 }
