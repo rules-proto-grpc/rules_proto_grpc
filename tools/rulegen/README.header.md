@@ -71,7 +71,7 @@ Each supported language (`{lang}` below) is generally split into four rule flavo
 
 - `{lang}_proto_library`: Provides a language-specific library from the generated Protobuf `protoc` plugin outputs,
   along with necessary dependencies. e.g for C++ this provides a Bazel native `cpp_library` created  from the generated
-  `*.pb.cc` and `*pb.h` files, with the Protobuf library linked. For languages that do not have a 'library' concept,
+  `*.pb.cc` and `*.pb.h` files, with the Protobuf library linked. For languages that do not have a 'library' concept,
   this rule may not exist.
 
 - `{lang}_grpc_compile`: Provides generated files from both the Protobuf and gRPC `protoc` plugins for the language.
