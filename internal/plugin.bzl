@@ -20,6 +20,7 @@ def _proto_plugin_impl(ctx):
             data = ctx.files.data,
             separate_options_flag = ctx.attr.separate_options_flag,
             empty_template = ctx.file.empty_template,
+            quirks = ctx.attr.quirks,
         ),
     ]
 
@@ -69,6 +70,9 @@ proto_plugin = rule(
         "empty_template": attr.label(
             doc = "Template file to use to fill missing outputs. If not provided, the fixer is not run",
             allow_single_file = True,
+        ),
+        "quirks": attr.string_list(
+            doc = "List of plugin quirks that toggle behaviours in compilation",
         ),
     },
 )

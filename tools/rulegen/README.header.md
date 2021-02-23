@@ -39,6 +39,7 @@ Bazel 4.0 compatibility and updated dependencies are in progress.
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
     - [D](/d/README.md)
+    - [Documentation](/doc/README.md)
     - [Go](/go/README.md)
     - [grpc-gateway](/grpc-gateway/README.md)
     - [Java](/java/README.md)

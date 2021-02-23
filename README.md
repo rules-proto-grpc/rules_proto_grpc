@@ -39,6 +39,7 @@ Bazel 4.0 compatibility and updated dependencies are in progress.
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
     - [D](/d/README.md)
+    - [Documentation](/doc/README.md)
     - [Go](/go/README.md)
     - [grpc-gateway](/grpc-gateway/README.md)
     - [Java](/java/README.md)
@@ -137,6 +138,10 @@ repository.
 | [C#](/csharp) | [csharp_grpc_library](/csharp#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_grpc_library)) |
 | [D](/d) | [d_proto_compile](/d#d_proto_compile) | Generates D protobuf `.d` artifacts ([example](/example/d/d_proto_compile)) |
 | [D](/d) | [d_proto_library](/d#d_proto_library) | Generates a D protobuf library using `d_library` from `rules_d` ([example](/example/d/d_proto_library)) |
+| [Documentation](/doc) | [doc_docbook_compile](/doc#doc_docbook_compile) | Generates DocBook `.xml` documentation artifact ([example](/example/doc/doc_docbook_compile)) |
+| [Documentation](/doc) | [doc_html_compile](/doc#doc_html_compile) | Generates `.html` documentation artifact ([example](/example/doc/doc_html_compile)) |
+| [Documentation](/doc) | [doc_json_compile](/doc#doc_json_compile) | Generates `.json` documentation artifact ([example](/example/doc/doc_json_compile)) |
+| [Documentation](/doc) | [doc_markdown_compile](/doc#doc_markdown_compile) | Generates `.md` documentation artifact ([example](/example/doc/doc_markdown_compile)) |
 | [Go](/go) | [go_proto_compile](/go#go_proto_compile) | Generates Go protobuf `.go` artifacts ([example](/example/go/go_proto_compile)) |
 | [Go](/go) | [go_grpc_compile](/go#go_grpc_compile) | Generates Go protobuf+gRPC `.go` artifacts ([example](/example/go/go_grpc_compile)) |
 | [Go](/go) | [go_proto_library](/go#go_proto_library) | Generates a Go protobuf library using `go_library` from `rules_go` ([example](/example/go/go_proto_library)) |

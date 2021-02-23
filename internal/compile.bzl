@@ -278,7 +278,12 @@ def common_compile(ctx, proto_infos):
 
         else:
             # No fixer, protoc writes files directly
-            out_arg = out_file.path if out_file else output_root
+            if out_file and "QUIRK_OUT_PASS_ROOT" not in plugin.quirks:
+                # Single output file, pass the full file name to out arg, unless QUIRK_OUT_PASS_ROOT quirk is in use
+                    out_arg = out_file.path
+            else:
+                # No single output (or QUIRK_OUT_PASS_ROOT enabled), pass root dir
+                out_arg = output_root
             plugin_protoc_outputs = plugin_outputs
 
         # Argument list for protoc execution

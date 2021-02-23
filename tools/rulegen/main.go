@@ -102,6 +102,7 @@ func action(c *cli.Context) error {
 		makeCpp(),
 		makeCsharp(),
 		makeD(),
+		makeDoc(),
 		makeGo(),
 		makeGrpcGateway(),
 		makeJava(),
