@@ -246,10 +246,10 @@ google-p12-pem@^3.0.3:
   dependencies:
     node-forge "^0.10.0"
 
-google-protobuf@3.15.1, google-protobuf@^3.6.1:
-  version "3.15.1"
-  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.15.1.tgz#b45d42ece48973a9e5e3366b4cbcf85ee6314f94"
-  integrity sha512-Ss2fADC0TpZXn6bqGgPJMUWoD1y9J7BTtJRVvf+quNxXRtQnrpubiFCdgoown+OetNsU4H3YbJgnpxYY/3kH6g==
+google-protobuf@3.15.2, google-protobuf@^3.6.1:
+  version "3.15.2"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.15.2.tgz#b00155245dc5c8805168cb79a42ff81725de89d2"
+  integrity sha512-HU67XsVFarxjHceJgrX0K75zzUFS+95LTArAncQ1BI156oEZR+fWXgk6Fxn4fNIpmrB0fwklwjXhMB0DQe0YNg==
 
 grpc-tools@1.10.0:
   version "1.10.0"

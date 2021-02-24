@@ -20,8 +20,8 @@ VERSIONS = {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.15.1",
-        "sha256": "f18a40816260a9a3190a94efb0fc26270b244a2436681602f0a944739095d632",
+        "ref": "v3.15.2",
+        "sha256": "3c85fdac243dab1f6cd725eb58e361cdbb3ec4480052ac90b1ab55c608112cd0",
     },
     "com_github_grpc_grpc": {
         # When updating, also update Go repositories.bzl, Node.js requirements, Ruby requirements and C# requirements
