@@ -11,7 +11,7 @@ func makePhp() *Language {
 			&Rule{
 				Name:             "php_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//php:php_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -21,7 +21,7 @@ func makePhp() *Language {
 			&Rule{
 				Name:             "php_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//php:php_plugin", "//php:grpc_php_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

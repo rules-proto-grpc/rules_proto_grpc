@@ -111,7 +111,7 @@ func makeSwift() *Language {
 			&Rule{
 				Name:             "swift_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//swift:swift_plugin"},
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -121,7 +121,7 @@ func makeSwift() *Language {
 			&Rule{
 				Name:             "swift_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//swift:swift_plugin", "//swift:grpc_swift_plugin"},
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

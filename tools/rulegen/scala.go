@@ -108,7 +108,7 @@ func makeScala() *Language {
 			&Rule{
 				Name:             "scala_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//scala:scala_plugin"},
 				WorkspaceExample: scalaProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -119,7 +119,7 @@ func makeScala() *Language {
 			&Rule{
 				Name:             "scala_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//scala:grpc_scala_plugin"},
 				WorkspaceExample: scalaGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

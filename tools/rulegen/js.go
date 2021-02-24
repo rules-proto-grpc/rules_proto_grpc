@@ -109,7 +109,7 @@ func makeJavaScript() *Language {
 			&Rule{
 				Name:             "js_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//js:js_plugin", "//js:ts_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -119,7 +119,7 @@ func makeJavaScript() *Language {
 			&Rule{
 				Name:             "js_grpc_node_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//js:js_plugin", "//js:grpc_node_plugin", "//js:grpc_node_ts_plugin"},  // Don't need ts_plugin here, as grpc_node_ts_plugin will do both proto and grpc
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
@@ -129,7 +129,7 @@ func makeJavaScript() *Language {
 			&Rule{
 				Name:             "js_grpc_web_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//js:js_plugin", "//js:grpc_web_js_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

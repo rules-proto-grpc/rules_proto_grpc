@@ -107,7 +107,7 @@ func makeRust() *Language {
 			&Rule{
 				Name:             "rust_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//rust:rust_plugin"},
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -117,7 +117,7 @@ func makeRust() *Language {
 			&Rule{
 				Name:             "rust_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//rust:rust_plugin", "//rust:grpc_rust_plugin"},
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

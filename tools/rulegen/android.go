@@ -94,7 +94,7 @@ func makeAndroid() *Language {
 			&Rule{
 				Name:             "android_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//android:javalite_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -105,7 +105,7 @@ func makeAndroid() *Language {
 			&Rule{
 				Name:             "android_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//android:javalite_plugin", "//android:grpc_javalite_plugin"},
 				WorkspaceExample: javaGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

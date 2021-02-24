@@ -161,7 +161,7 @@ func makeCpp() *Language {
 			&Rule{
 				Name:             "cpp_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//cpp:cpp_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -171,7 +171,7 @@ func makeCpp() *Language {
 			&Rule{
 				Name:             "cpp_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//cpp:cpp_plugin", "//cpp:grpc_cpp_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

@@ -136,7 +136,7 @@ func makeCsharp() *Language {
 			&Rule{
 				Name:             "csharp_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//csharp:csharp_plugin"},
 				WorkspaceExample: csharpProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -146,7 +146,7 @@ func makeCsharp() *Language {
 			&Rule{
 				Name:             "csharp_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//csharp:csharp_plugin", "//csharp:grpc_csharp_plugin"},
 				WorkspaceExample: csharpGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

@@ -47,7 +47,7 @@ func makeD() *Language {
 			&Rule{
 				Name:             "d_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//d:d_plugin"},
 				WorkspaceExample: dWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -58,7 +58,7 @@ func makeD() *Language {
 // 			&Rule{
 // 				Name:             "d_grpc_compile",
 // 				Kind:             "grpc",
-// 				Implementation:   aspectRuleTemplate,
+// 				Implementation:   compileRuleTemplate,
 // 				Plugins:          []string{"//d:grpc_d"}, # TODO: Try https://github.com/huntlabs/grpc-dlang
 // 				WorkspaceExample: dWorkspaceTemplate,
 // 				BuildExample:     grpcCompileExampleTemplate,

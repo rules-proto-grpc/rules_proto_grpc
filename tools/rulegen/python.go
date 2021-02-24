@@ -126,7 +126,7 @@ func makePython() *Language {
 			&Rule{
 				Name:             "python_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//python:python_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -136,7 +136,7 @@ func makePython() *Language {
 			&Rule{
 				Name:             "python_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//python:python_plugin", "//python:grpc_python_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
@@ -146,7 +146,7 @@ func makePython() *Language {
 			&Rule{
 				Name:             "python_grpclib_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//python:python_plugin", "//python:grpclib_python_plugin"},
 				WorkspaceExample: pythonGrpclibLibraryWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

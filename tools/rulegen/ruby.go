@@ -75,7 +75,7 @@ func makeRuby() *Language {
 			&Rule{
 				Name:             "ruby_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//ruby:ruby_plugin"},
 				WorkspaceExample: rubyProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -85,7 +85,7 @@ func makeRuby() *Language {
 			&Rule{
 				Name:             "ruby_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//ruby:ruby_plugin", "//ruby:grpc_ruby_plugin"},
 				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

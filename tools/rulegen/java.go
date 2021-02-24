@@ -99,7 +99,7 @@ func makeJava() *Language {
 			&Rule{
 				Name:             "java_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//java:java_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
@@ -109,7 +109,7 @@ func makeJava() *Language {
 			&Rule{
 				Name:             "java_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//java:java_plugin", "//java:grpc_java_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,

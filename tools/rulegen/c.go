@@ -83,7 +83,7 @@ func makeC() *Language {
 			&Rule{
 				Name:             "c_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//c:upb_plugin"},
 				WorkspaceExample: cWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
