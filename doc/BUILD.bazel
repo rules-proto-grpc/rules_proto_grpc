@@ -11,7 +11,7 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )
@@ -27,7 +27,7 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )
@@ -43,7 +43,7 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )
@@ -59,7 +59,7 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )
