@@ -4,16 +4,16 @@ Rules for generating Java protobuf and gRPC `.jar` files and libraries using sta
 
 | Rule | Description |
 | ---: | :--- |
-| [java_proto_compile](#java_proto_compile) | Generates a Java protobuf srcjar artifact |
-| [java_grpc_compile](#java_grpc_compile) | Generates a Java protobuf+gRPC srcjar artifact |
+| [java_proto_compile](#java_proto_compile) | Generates a Java protobuf srcjar file |
+| [java_grpc_compile](#java_grpc_compile) | Generates a Java protobuf and gRPC srcjar file |
 | [java_proto_library](#java_proto_library) | Generates a Java protobuf library using `java_library` |
-| [java_grpc_library](#java_grpc_library) | Generates a Java protobuf+gRPC library using `java_library` |
+| [java_grpc_library](#java_grpc_library) | Generates a Java protobuf and gRPC library using `java_library` |
 
 ---
 
 ## `java_proto_compile`
 
-Generates a Java protobuf srcjar artifact
+Generates a Java protobuf srcjar file
 
 ### `WORKSPACE`
 
@@ -62,7 +62,7 @@ java_proto_compile(
 
 ## `java_grpc_compile`
 
-Generates a Java protobuf+gRPC srcjar artifact
+Generates a Java protobuf and gRPC srcjar file
 
 ### `WORKSPACE`
 
@@ -156,7 +156,7 @@ java_proto_library(
 
 ## `java_grpc_library`
 
-Generates a Java protobuf+gRPC library using `java_library`
+Generates a Java protobuf and gRPC library using `java_library`
 
 ### `WORKSPACE`
 

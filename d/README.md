@@ -6,14 +6,14 @@ Rules for generating D protobuf `.d` files and libraries using [protobuf-d](http
 
 | Rule | Description |
 | ---: | :--- |
-| [d_proto_compile](#d_proto_compile) | Generates D protobuf `.d` artifacts |
+| [d_proto_compile](#d_proto_compile) | Generates D protobuf `.d` files |
 | [d_proto_library](#d_proto_library) | Generates a D protobuf library using `d_library` from `rules_d` |
 
 ---
 
 ## `d_proto_compile`
 
-Generates D protobuf `.d` artifacts
+Generates D protobuf `.d` files
 
 ### `WORKSPACE`
 

@@ -113,7 +113,7 @@ func makeJavaScript() *Language {
 				Plugins:          []string{"//js:js_plugin", "//js:ts_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf `.js` and `.d.ts` artifacts",
+				Doc:              "Generates JavaScript protobuf `.js` and `.d.ts` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -123,7 +123,7 @@ func makeJavaScript() *Language {
 				Plugins:          []string{"//js:js_plugin", "//js:grpc_node_plugin", "//js:grpc_node_ts_plugin"},  // Don't need ts_plugin here, as grpc_node_ts_plugin will do both proto and grpc
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf + gRPC-node `.js` and `.d.ts` artifacts",
+				Doc:              "Generates JavaScript protobuf and gRPC-node `.js` and `.d.ts` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -133,7 +133,7 @@ func makeJavaScript() *Language {
 				Plugins:          []string{"//js:js_plugin", "//js:grpc_web_js_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf + gRPC-Web `.js` and `.d.ts` artifacts",
+				Doc:              "Generates JavaScript protobuf and gRPC-Web `.js` and `.d.ts` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{

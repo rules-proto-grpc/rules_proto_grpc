@@ -4,16 +4,16 @@ Rules for generating Swift protobuf and gRPC `.swift` files and libraries using 
 
 | Rule | Description |
 | ---: | :--- |
-| [swift_proto_compile](#swift_proto_compile) | Generates Swift protobuf `.swift` artifacts |
-| [swift_grpc_compile](#swift_grpc_compile) | Generates Swift protobuf+gRPC `.swift` artifacts |
+| [swift_proto_compile](#swift_proto_compile) | Generates Swift protobuf `.swift` files |
+| [swift_grpc_compile](#swift_grpc_compile) | Generates Swift protobuf and gRPC `.swift` files |
 | [swift_proto_library](#swift_proto_library) | Generates a Swift protobuf library using `swift_library` from `rules_swift` |
-| [swift_grpc_library](#swift_grpc_library) | Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift` |
+| [swift_grpc_library](#swift_grpc_library) | Generates a Swift protobuf and gRPC library using `swift_library` from `rules_swift` |
 
 ---
 
 ## `swift_proto_compile`
 
-Generates Swift protobuf `.swift` artifacts
+Generates Swift protobuf `.swift` files
 
 ### `WORKSPACE`
 
@@ -69,7 +69,7 @@ swift_proto_compile(
 
 ## `swift_grpc_compile`
 
-Generates Swift protobuf+gRPC `.swift` artifacts
+Generates Swift protobuf and gRPC `.swift` files
 
 ### `WORKSPACE`
 
@@ -169,7 +169,7 @@ swift_proto_library(
 
 ## `swift_grpc_library`
 
-Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift`
+Generates a Swift protobuf and gRPC library using `swift_library` from `rules_swift`
 
 ### `WORKSPACE`
 

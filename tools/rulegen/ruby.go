@@ -79,7 +79,7 @@ func makeRuby() *Language {
 				Plugins:          []string{"//ruby:ruby_plugin"},
 				WorkspaceExample: rubyProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Ruby protobuf `.rb` artifacts",
+				Doc:              "Generates Ruby protobuf `.rb` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -89,7 +89,7 @@ func makeRuby() *Language {
 				Plugins:          []string{"//ruby:ruby_plugin", "//ruby:grpc_ruby_plugin"},
 				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Ruby protobuf+gRPC `.rb` artifacts",
+				Doc:              "Generates Ruby protobuf and gRPC `.rb` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -107,7 +107,7 @@ func makeRuby() *Language {
 				Implementation:   rubyLibraryRuleTemplate,
 				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby`",
+				Doc:              "Generates a Ruby protobuf and gRPC library using `ruby_library` from `rules_ruby`",
 				Attrs:            libraryRuleAttrs,
 			},
 		},

@@ -93,7 +93,7 @@ func makeObjc() *Language {
 				Plugins:          []string{"//objc:objc_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Objective-C protobuf `.m` & `.h` artifacts",
+				Doc:              "Generates Objective-C protobuf `.m` & `.h` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -103,7 +103,7 @@ func makeObjc() *Language {
 				Plugins:          []string{"//objc:objc_plugin", "//objc:grpc_objc_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts",
+				Doc:              "Generates Objective-C protobuf and gRPC `.m` & `.h` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -121,7 +121,7 @@ func makeObjc() *Language {
 				Implementation:   objcGrpcLibraryRuleTemplate,
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates an Objective-C protobuf+gRPC library using `objc_library`",
+				Doc:              "Generates an Objective-C protobuf and gRPC library using `objc_library`",
 				Attrs:            cppLibraryRuleAttrs,
 				Experimental:     true,
 			},

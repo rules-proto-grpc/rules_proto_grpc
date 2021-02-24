@@ -103,7 +103,7 @@ func makeJava() *Language {
 				Plugins:          []string{"//java:java_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates a Java protobuf srcjar artifact",
+				Doc:              "Generates a Java protobuf srcjar file",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -113,7 +113,7 @@ func makeJava() *Language {
 				Plugins:          []string{"//java:java_plugin", "//java:grpc_java_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates a Java protobuf+gRPC srcjar artifact",
+				Doc:              "Generates a Java protobuf and gRPC srcjar file",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -131,7 +131,7 @@ func makeJava() *Language {
 				Implementation:   javaGrpcLibraryRuleTemplate,
 				WorkspaceExample: javaGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Java protobuf+gRPC library using `java_library`",
+				Doc:              "Generates a Java protobuf and gRPC library using `java_library`",
 				Attrs:            javaLibraryRuleAttrs,
 			},
 		},

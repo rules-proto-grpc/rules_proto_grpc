@@ -4,16 +4,16 @@ Rules for generating Objective-C protobuf and gRPC `.m` & `.h` files and librari
 
 | Rule | Description |
 | ---: | :--- |
-| [objc_proto_compile](#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` artifacts |
-| [objc_grpc_compile](#objc_grpc_compile) | Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts |
+| [objc_proto_compile](#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` files |
+| [objc_grpc_compile](#objc_grpc_compile) | Generates Objective-C protobuf and gRPC `.m` & `.h` files |
 | [objc_proto_library](#objc_proto_library) | Generates an Objective-C protobuf library using `objc_library` |
-| [objc_grpc_library](#objc_grpc_library) | Generates an Objective-C protobuf+gRPC library using `objc_library` |
+| [objc_grpc_library](#objc_grpc_library) | Generates an Objective-C protobuf and gRPC library using `objc_library` |
 
 ---
 
 ## `objc_proto_compile`
 
-Generates Objective-C protobuf `.m` & `.h` artifacts
+Generates Objective-C protobuf `.m` & `.h` files
 
 ### `WORKSPACE`
 
@@ -62,7 +62,7 @@ objc_proto_compile(
 
 ## `objc_grpc_compile`
 
-Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts
+Generates Objective-C protobuf and gRPC `.m` & `.h` files
 
 ### `WORKSPACE`
 
@@ -170,7 +170,7 @@ objc_proto_library(
 
 > NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
 
-Generates an Objective-C protobuf+gRPC library using `objc_library`
+Generates an Objective-C protobuf and gRPC library using `objc_library`
 
 ### `WORKSPACE`
 

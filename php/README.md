@@ -4,14 +4,14 @@ Rules for generating PHP protobuf and gRPC `.php` files and libraries using stan
 
 | Rule | Description |
 | ---: | :--- |
-| [php_proto_compile](#php_proto_compile) | Generates PHP protobuf `.php` artifacts |
-| [php_grpc_compile](#php_grpc_compile) | Generates PHP protobuf+gRPC `.php` artifacts |
+| [php_proto_compile](#php_proto_compile) | Generates PHP protobuf `.php` files |
+| [php_grpc_compile](#php_grpc_compile) | Generates PHP protobuf and gRPC `.php` files |
 
 ---
 
 ## `php_proto_compile`
 
-Generates PHP protobuf `.php` artifacts
+Generates PHP protobuf `.php` files
 
 ### `WORKSPACE`
 
@@ -60,7 +60,7 @@ php_proto_compile(
 
 ## `php_grpc_compile`
 
-Generates PHP protobuf+gRPC `.php` artifacts
+Generates PHP protobuf and gRPC `.php` files
 
 ### `WORKSPACE`
 

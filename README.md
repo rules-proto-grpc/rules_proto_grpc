@@ -83,7 +83,7 @@ Each supported language (`{lang}` below) is generally split into four rule flavo
   generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files, with the Protobuf and gRPC libraries linked.
   For languages that do not have a 'library' concept, this rule may not exist.
 
-Therefore, if you are solely interested in the generated source code artifacts, use the `{lang}_{proto|grpc}_compile`
+Therefore, if you are solely interested in the generated source code files, use the `{lang}_{proto|grpc}_compile`
 rules. Otherwise, if you want a ready-to-go library, use the `{lang}_{proto|grpc}_library` rules.
 
 
@@ -122,71 +122,71 @@ repository.
 
 | Language | Rule | Description
 | ---: | :--- | :--- |
-| [Android](/android) | [android_proto_compile](/android#android_proto_compile) | Generates an Android protobuf `.jar` artifact ([example](/example/android/android_proto_compile)) |
-| [Android](/android) | [android_grpc_compile](/android#android_grpc_compile) | Generates Android protobuf+gRPC `.jar` artifacts ([example](/example/android/android_grpc_compile)) |
+| [Android](/android) | [android_proto_compile](/android#android_proto_compile) | Generates an Android protobuf `.jar` file ([example](/example/android/android_proto_compile)) |
+| [Android](/android) | [android_grpc_compile](/android#android_grpc_compile) | Generates Android protobuf and gRPC `.jar` files ([example](/example/android/android_grpc_compile)) |
 | [Android](/android) | [android_proto_library](/android#android_proto_library) | Generates an Android protobuf library using `android_library` from `rules_android` ([example](/example/android/android_proto_library)) |
-| [Android](/android) | [android_grpc_library](/android#android_grpc_library) | Generates Android protobuf+gRPC library using `android_library` from `rules_android` ([example](/example/android/android_grpc_library)) |
-| [C](/c) | [c_proto_compile](/c#c_proto_compile) | Generates C protobuf `.h` & `.c` artifacts ([example](/example/c/c_proto_compile)) |
+| [Android](/android) | [android_grpc_library](/android#android_grpc_library) | Generates Android protobuf and gRPC library using `android_library` from `rules_android` ([example](/example/android/android_grpc_library)) |
+| [C](/c) | [c_proto_compile](/c#c_proto_compile) | Generates C protobuf `.h` & `.c` files ([example](/example/c/c_proto_compile)) |
 | [C](/c) | [c_proto_library](/c#c_proto_library) | Generates a C protobuf library using `cc_library`, with dependencies linked ([example](/example/c/c_proto_library)) |
-| [C++](/cpp) | [cpp_proto_compile](/cpp#cpp_proto_compile) | Generates C++ protobuf `.h` & `.cc` artifacts ([example](/example/cpp/cpp_proto_compile)) |
-| [C++](/cpp) | [cpp_grpc_compile](/cpp#cpp_grpc_compile) | Generates C++ protobuf+gRPC `.h` & `.cc` artifacts ([example](/example/cpp/cpp_grpc_compile)) |
+| [C++](/cpp) | [cpp_proto_compile](/cpp#cpp_proto_compile) | Generates C++ protobuf `.h` & `.cc` files ([example](/example/cpp/cpp_proto_compile)) |
+| [C++](/cpp) | [cpp_grpc_compile](/cpp#cpp_grpc_compile) | Generates C++ protobuf and gRPC `.h` & `.cc` files ([example](/example/cpp/cpp_grpc_compile)) |
 | [C++](/cpp) | [cpp_proto_library](/cpp#cpp_proto_library) | Generates a C++ protobuf library using `cc_library`, with dependencies linked ([example](/example/cpp/cpp_proto_library)) |
-| [C++](/cpp) | [cpp_grpc_library](/cpp#cpp_grpc_library) | Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies linked ([example](/example/cpp/cpp_grpc_library)) |
-| [C#](/csharp) | [csharp_proto_compile](/csharp#csharp_proto_compile) | Generates C# protobuf `.cs` artifacts ([example](/example/csharp/csharp_proto_compile)) |
-| [C#](/csharp) | [csharp_grpc_compile](/csharp#csharp_grpc_compile) | Generates C# protobuf+gRPC `.cs` artifacts ([example](/example/csharp/csharp_grpc_compile)) |
+| [C++](/cpp) | [cpp_grpc_library](/cpp#cpp_grpc_library) | Generates a C++ protobuf and gRPC library using `cc_library`, with dependencies linked ([example](/example/cpp/cpp_grpc_library)) |
+| [C#](/csharp) | [csharp_proto_compile](/csharp#csharp_proto_compile) | Generates C# protobuf `.cs` files ([example](/example/csharp/csharp_proto_compile)) |
+| [C#](/csharp) | [csharp_grpc_compile](/csharp#csharp_grpc_compile) | Generates C# protobuf and gRPC `.cs` files ([example](/example/csharp/csharp_grpc_compile)) |
 | [C#](/csharp) | [csharp_proto_library](/csharp#csharp_proto_library) | Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_proto_library)) |
-| [C#](/csharp) | [csharp_grpc_library](/csharp#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_grpc_library)) |
-| [D](/d) | [d_proto_compile](/d#d_proto_compile) | Generates D protobuf `.d` artifacts ([example](/example/d/d_proto_compile)) |
+| [C#](/csharp) | [csharp_grpc_library](/csharp#csharp_grpc_library) | Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` ([example](/example/csharp/csharp_grpc_library)) |
+| [D](/d) | [d_proto_compile](/d#d_proto_compile) | Generates D protobuf `.d` files ([example](/example/d/d_proto_compile)) |
 | [D](/d) | [d_proto_library](/d#d_proto_library) | Generates a D protobuf library using `d_library` from `rules_d` ([example](/example/d/d_proto_library)) |
-| [Documentation](/doc) | [doc_docbook_compile](/doc#doc_docbook_compile) | Generates DocBook `.xml` documentation artifact ([example](/example/doc/doc_docbook_compile)) |
-| [Documentation](/doc) | [doc_html_compile](/doc#doc_html_compile) | Generates `.html` documentation artifact ([example](/example/doc/doc_html_compile)) |
-| [Documentation](/doc) | [doc_json_compile](/doc#doc_json_compile) | Generates `.json` documentation artifact ([example](/example/doc/doc_json_compile)) |
-| [Documentation](/doc) | [doc_markdown_compile](/doc#doc_markdown_compile) | Generates `.md` documentation artifact ([example](/example/doc/doc_markdown_compile)) |
-| [Go](/go) | [go_proto_compile](/go#go_proto_compile) | Generates Go protobuf `.go` artifacts ([example](/example/go/go_proto_compile)) |
-| [Go](/go) | [go_grpc_compile](/go#go_grpc_compile) | Generates Go protobuf+gRPC `.go` artifacts ([example](/example/go/go_grpc_compile)) |
+| [Documentation](/doc) | [doc_docbook_compile](/doc#doc_docbook_compile) | Generates DocBook `.xml` documentation file ([example](/example/doc/doc_docbook_compile)) |
+| [Documentation](/doc) | [doc_html_compile](/doc#doc_html_compile) | Generates `.html` documentation file ([example](/example/doc/doc_html_compile)) |
+| [Documentation](/doc) | [doc_json_compile](/doc#doc_json_compile) | Generates `.json` documentation file ([example](/example/doc/doc_json_compile)) |
+| [Documentation](/doc) | [doc_markdown_compile](/doc#doc_markdown_compile) | Generates Markdown `.md` documentation file ([example](/example/doc/doc_markdown_compile)) |
+| [Go](/go) | [go_proto_compile](/go#go_proto_compile) | Generates Go protobuf `.go` files ([example](/example/go/go_proto_compile)) |
+| [Go](/go) | [go_grpc_compile](/go#go_grpc_compile) | Generates Go protobuf and gRPC `.go` files ([example](/example/go/go_grpc_compile)) |
 | [Go](/go) | [go_proto_library](/go#go_proto_library) | Generates a Go protobuf library using `go_library` from `rules_go` ([example](/example/go/go_proto_library)) |
-| [Go](/go) | [go_grpc_library](/go#go_grpc_library) | Generates a Go protobuf+gRPC library using `go_library` from `rules_go` ([example](/example/go/go_grpc_library)) |
+| [Go](/go) | [go_grpc_library](/go#go_grpc_library) | Generates a Go protobuf and gRPC library using `go_library` from `rules_go` ([example](/example/go/go_grpc_library)) |
 | [grpc-gateway](/grpc-gateway) | [gateway_grpc_compile](/grpc-gateway#gateway_grpc_compile) | Generates grpc-gateway `.go` files ([example](/example/grpc-gateway/gateway_grpc_compile)) |
 | [grpc-gateway](/grpc-gateway) | [gateway_openapiv2_compile](/grpc-gateway#gateway_openapiv2_compile) | Generates grpc-gateway OpenAPI v2 `.json` files ([example](/example/grpc-gateway/gateway_openapiv2_compile)) |
 | [grpc-gateway](/grpc-gateway) | [gateway_grpc_library](/grpc-gateway#gateway_grpc_library) | Generates grpc-gateway library files ([example](/example/grpc-gateway/gateway_grpc_library)) |
-| [Java](/java) | [java_proto_compile](/java#java_proto_compile) | Generates a Java protobuf srcjar artifact ([example](/example/java/java_proto_compile)) |
-| [Java](/java) | [java_grpc_compile](/java#java_grpc_compile) | Generates a Java protobuf+gRPC srcjar artifact ([example](/example/java/java_grpc_compile)) |
+| [Java](/java) | [java_proto_compile](/java#java_proto_compile) | Generates a Java protobuf srcjar file ([example](/example/java/java_proto_compile)) |
+| [Java](/java) | [java_grpc_compile](/java#java_grpc_compile) | Generates a Java protobuf and gRPC srcjar file ([example](/example/java/java_grpc_compile)) |
 | [Java](/java) | [java_proto_library](/java#java_proto_library) | Generates a Java protobuf library using `java_library` ([example](/example/java/java_proto_library)) |
-| [Java](/java) | [java_grpc_library](/java#java_grpc_library) | Generates a Java protobuf+gRPC library using `java_library` ([example](/example/java/java_grpc_library)) |
-| [JavaScript](/js) | [js_proto_compile](/js#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` artifacts ([example](/example/js/js_proto_compile)) |
-| [JavaScript](/js) | [js_grpc_node_compile](/js#js_grpc_node_compile) | Generates JavaScript protobuf + gRPC-node `.js` and `.d.ts` artifacts ([example](/example/js/js_grpc_node_compile)) |
-| [JavaScript](/js) | [js_grpc_web_compile](/js#js_grpc_web_compile) | Generates JavaScript protobuf + gRPC-Web `.js` and `.d.ts` artifacts ([example](/example/js/js_grpc_web_compile)) |
+| [Java](/java) | [java_grpc_library](/java#java_grpc_library) | Generates a Java protobuf and gRPC library using `java_library` ([example](/example/java/java_grpc_library)) |
+| [JavaScript](/js) | [js_proto_compile](/js#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` files ([example](/example/js/js_proto_compile)) |
+| [JavaScript](/js) | [js_grpc_node_compile](/js#js_grpc_node_compile) | Generates JavaScript protobuf and gRPC-node `.js` and `.d.ts` files ([example](/example/js/js_grpc_node_compile)) |
+| [JavaScript](/js) | [js_grpc_web_compile](/js#js_grpc_web_compile) | Generates JavaScript protobuf and gRPC-Web `.js` and `.d.ts` files ([example](/example/js/js_grpc_web_compile)) |
 | [JavaScript](/js) | [js_proto_library](/js#js_proto_library) | Generates a JavaScript protobuf library using `js_library` from `rules_nodejs` ([example](/example/js/js_proto_library)) |
 | [JavaScript](/js) | [js_grpc_node_library](/js#js_grpc_node_library) | Generates a Node.js protobuf + gRPC-node library using `js_library` from `rules_nodejs` ([example](/example/js/js_grpc_node_library)) |
 | [JavaScript](/js) | [js_grpc_web_library](/js#js_grpc_web_library) | Generates a JavaScript protobuf + gRPC-Web library using `js_library` from `rules_nodejs` ([example](/example/js/js_grpc_web_library)) |
-| [Objective-C](/objc) | [objc_proto_compile](/objc#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` artifacts ([example](/example/objc/objc_proto_compile)) |
-| [Objective-C](/objc) | [objc_grpc_compile](/objc#objc_grpc_compile) | Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts ([example](/example/objc/objc_grpc_compile)) |
+| [Objective-C](/objc) | [objc_proto_compile](/objc#objc_proto_compile) | Generates Objective-C protobuf `.m` & `.h` files ([example](/example/objc/objc_proto_compile)) |
+| [Objective-C](/objc) | [objc_grpc_compile](/objc#objc_grpc_compile) | Generates Objective-C protobuf and gRPC `.m` & `.h` files ([example](/example/objc/objc_grpc_compile)) |
 | [Objective-C](/objc) | [objc_proto_library](/objc#objc_proto_library) | Generates an Objective-C protobuf library using `objc_library` ([example](/example/objc/objc_proto_library)) |
-| [Objective-C](/objc) | [objc_grpc_library](/objc#objc_grpc_library) | Generates an Objective-C protobuf+gRPC library using `objc_library` ([example](/example/objc/objc_grpc_library)) |
-| [PHP](/php) | [php_proto_compile](/php#php_proto_compile) | Generates PHP protobuf `.php` artifacts ([example](/example/php/php_proto_compile)) |
-| [PHP](/php) | [php_grpc_compile](/php#php_grpc_compile) | Generates PHP protobuf+gRPC `.php` artifacts ([example](/example/php/php_grpc_compile)) |
-| [Python](/python) | [python_proto_compile](/python#python_proto_compile) | Generates Python protobuf `.py` artifacts ([example](/example/python/python_proto_compile)) |
-| [Python](/python) | [python_grpc_compile](/python#python_grpc_compile) | Generates Python protobuf+gRPC `.py` artifacts ([example](/example/python/python_grpc_compile)) |
-| [Python](/python) | [python_grpclib_compile](/python#python_grpclib_compile) | Generates Python protobuf+grpclib `.py` artifacts (supports Python 3 only) ([example](/example/python/python_grpclib_compile)) |
+| [Objective-C](/objc) | [objc_grpc_library](/objc#objc_grpc_library) | Generates an Objective-C protobuf and gRPC library using `objc_library` ([example](/example/objc/objc_grpc_library)) |
+| [PHP](/php) | [php_proto_compile](/php#php_proto_compile) | Generates PHP protobuf `.php` files ([example](/example/php/php_proto_compile)) |
+| [PHP](/php) | [php_grpc_compile](/php#php_grpc_compile) | Generates PHP protobuf and gRPC `.php` files ([example](/example/php/php_grpc_compile)) |
+| [Python](/python) | [python_proto_compile](/python#python_proto_compile) | Generates Python protobuf `.py` files ([example](/example/python/python_proto_compile)) |
+| [Python](/python) | [python_grpc_compile](/python#python_grpc_compile) | Generates Python protobuf and gRPC `.py` files ([example](/example/python/python_grpc_compile)) |
+| [Python](/python) | [python_grpclib_compile](/python#python_grpclib_compile) | Generates Python protobuf and grpclib `.py` files (supports Python 3 only) ([example](/example/python/python_grpclib_compile)) |
 | [Python](/python) | [python_proto_library](/python#python_proto_library) | Generates a Python protobuf library using `py_library` from `rules_python` ([example](/example/python/python_proto_library)) |
-| [Python](/python) | [python_grpc_library](/python#python_grpc_library) | Generates a Python protobuf+gRPC library using `py_library` from `rules_python` ([example](/example/python/python_grpc_library)) |
-| [Python](/python) | [python_grpclib_library](/python#python_grpclib_library) | Generates a Python protobuf+grpclib library using `py_library` from `rules_python` (supports Python 3 only) ([example](/example/python/python_grpclib_library)) |
-| [Ruby](/ruby) | [ruby_proto_compile](/ruby#ruby_proto_compile) | Generates Ruby protobuf `.rb` artifacts ([example](/example/ruby/ruby_proto_compile)) |
-| [Ruby](/ruby) | [ruby_grpc_compile](/ruby#ruby_grpc_compile) | Generates Ruby protobuf+gRPC `.rb` artifacts ([example](/example/ruby/ruby_grpc_compile)) |
+| [Python](/python) | [python_grpc_library](/python#python_grpc_library) | Generates a Python protobuf and gRPC library using `py_library` from `rules_python` ([example](/example/python/python_grpc_library)) |
+| [Python](/python) | [python_grpclib_library](/python#python_grpclib_library) | Generates a Python protobuf and grpclib library using `py_library` from `rules_python` (supports Python 3 only) ([example](/example/python/python_grpclib_library)) |
+| [Ruby](/ruby) | [ruby_proto_compile](/ruby#ruby_proto_compile) | Generates Ruby protobuf `.rb` files ([example](/example/ruby/ruby_proto_compile)) |
+| [Ruby](/ruby) | [ruby_grpc_compile](/ruby#ruby_grpc_compile) | Generates Ruby protobuf and gRPC `.rb` files ([example](/example/ruby/ruby_grpc_compile)) |
 | [Ruby](/ruby) | [ruby_proto_library](/ruby#ruby_proto_library) | Generates a Ruby protobuf library using `ruby_library` from `rules_ruby` ([example](/example/ruby/ruby_proto_library)) |
-| [Ruby](/ruby) | [ruby_grpc_library](/ruby#ruby_grpc_library) | Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby` ([example](/example/ruby/ruby_grpc_library)) |
-| [Rust](/rust) | [rust_proto_compile](/rust#rust_proto_compile) | Generates Rust protobuf `.rs` artifacts ([example](/example/rust/rust_proto_compile)) |
-| [Rust](/rust) | [rust_grpc_compile](/rust#rust_grpc_compile) | Generates Rust protobuf+gRPC `.rs` artifacts ([example](/example/rust/rust_grpc_compile)) |
+| [Ruby](/ruby) | [ruby_grpc_library](/ruby#ruby_grpc_library) | Generates a Ruby protobuf and gRPC library using `ruby_library` from `rules_ruby` ([example](/example/ruby/ruby_grpc_library)) |
+| [Rust](/rust) | [rust_proto_compile](/rust#rust_proto_compile) | Generates Rust protobuf `.rs` files ([example](/example/rust/rust_proto_compile)) |
+| [Rust](/rust) | [rust_grpc_compile](/rust#rust_grpc_compile) | Generates Rust protobuf and gRPC `.rs` files ([example](/example/rust/rust_grpc_compile)) |
 | [Rust](/rust) | [rust_proto_library](/rust#rust_proto_library) | Generates a Rust protobuf library using `rust_library` from `rules_rust` ([example](/example/rust/rust_proto_library)) |
-| [Rust](/rust) | [rust_grpc_library](/rust#rust_grpc_library) | Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust` ([example](/example/rust/rust_grpc_library)) |
-| [Scala](/scala) | [scala_proto_compile](/scala#scala_proto_compile) | Generates a Scala protobuf `.jar` artifact ([example](/example/scala/scala_proto_compile)) |
-| [Scala](/scala) | [scala_grpc_compile](/scala#scala_grpc_compile) | Generates Scala protobuf+gRPC `.jar` artifacts ([example](/example/scala/scala_grpc_compile)) |
+| [Rust](/rust) | [rust_grpc_library](/rust#rust_grpc_library) | Generates a Rust protobuf and gRPC library using `rust_library` from `rules_rust` ([example](/example/rust/rust_grpc_library)) |
+| [Scala](/scala) | [scala_proto_compile](/scala#scala_proto_compile) | Generates a Scala protobuf `.jar` file ([example](/example/scala/scala_proto_compile)) |
+| [Scala](/scala) | [scala_grpc_compile](/scala#scala_grpc_compile) | Generates Scala protobuf and gRPC `.jar` file ([example](/example/scala/scala_grpc_compile)) |
 | [Scala](/scala) | [scala_proto_library](/scala#scala_proto_library) | Generates a Scala protobuf library using `scala_library` from `rules_scala` ([example](/example/scala/scala_proto_library)) |
-| [Scala](/scala) | [scala_grpc_library](/scala#scala_grpc_library) | Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala` ([example](/example/scala/scala_grpc_library)) |
-| [Swift](/swift) | [swift_proto_compile](/swift#swift_proto_compile) | Generates Swift protobuf `.swift` artifacts ([example](/example/swift/swift_proto_compile)) |
-| [Swift](/swift) | [swift_grpc_compile](/swift#swift_grpc_compile) | Generates Swift protobuf+gRPC `.swift` artifacts ([example](/example/swift/swift_grpc_compile)) |
+| [Scala](/scala) | [scala_grpc_library](/scala#scala_grpc_library) | Generates a Scala protobuf and gRPC library using `scala_library` from `rules_scala` ([example](/example/scala/scala_grpc_library)) |
+| [Swift](/swift) | [swift_proto_compile](/swift#swift_proto_compile) | Generates Swift protobuf `.swift` files ([example](/example/swift/swift_proto_compile)) |
+| [Swift](/swift) | [swift_grpc_compile](/swift#swift_grpc_compile) | Generates Swift protobuf and gRPC `.swift` files ([example](/example/swift/swift_grpc_compile)) |
 | [Swift](/swift) | [swift_proto_library](/swift#swift_proto_library) | Generates a Swift protobuf library using `swift_library` from `rules_swift` ([example](/example/swift/swift_proto_library)) |
-| [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf+gRPC library using `swift_library` from `rules_swift` ([example](/example/swift/swift_grpc_library)) |
+| [Swift](/swift) | [swift_grpc_library](/swift#swift_grpc_library) | Generates a Swift protobuf and gRPC library using `swift_library` from `rules_swift` ([example](/example/swift/swift_grpc_library)) |
 
 ## Example Usage
 
@@ -260,7 +260,7 @@ Target //example/proto:cpp_thing_proto up-to-date:
   bazel-genfiles/example/proto/cpp_thing_proto/example/proto/thing.pb.cc
 ```
 
-If we were only interested in the generated file artifacts, the `cpp_grpc_compile` rule would be fine. However, for
+If we were only interested in the generated files, the `cpp_grpc_compile` rule would be fine. However, for
 convenience we'd rather have the outputs compiled into a C++ library. To do that, let's change the  rule from
 `cpp_proto_compile` to `cpp_proto_library`:
 

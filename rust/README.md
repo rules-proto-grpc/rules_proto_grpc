@@ -4,16 +4,16 @@ Rules for generating Rust protobuf and gRPC `.rs` files and libraries using [rus
 
 | Rule | Description |
 | ---: | :--- |
-| [rust_proto_compile](#rust_proto_compile) | Generates Rust protobuf `.rs` artifacts |
-| [rust_grpc_compile](#rust_grpc_compile) | Generates Rust protobuf+gRPC `.rs` artifacts |
+| [rust_proto_compile](#rust_proto_compile) | Generates Rust protobuf `.rs` files |
+| [rust_grpc_compile](#rust_grpc_compile) | Generates Rust protobuf and gRPC `.rs` files |
 | [rust_proto_library](#rust_proto_library) | Generates a Rust protobuf library using `rust_library` from `rules_rust` |
-| [rust_grpc_library](#rust_grpc_library) | Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust` |
+| [rust_grpc_library](#rust_grpc_library) | Generates a Rust protobuf and gRPC library using `rust_library` from `rules_rust` |
 
 ---
 
 ## `rust_proto_compile`
 
-Generates Rust protobuf `.rs` artifacts
+Generates Rust protobuf `.rs` files
 
 ### `WORKSPACE`
 
@@ -70,7 +70,7 @@ rust_proto_compile(
 
 ## `rust_grpc_compile`
 
-Generates Rust protobuf+gRPC `.rs` artifacts
+Generates Rust protobuf and gRPC `.rs` files
 
 ### `WORKSPACE`
 
@@ -171,7 +171,7 @@ rust_proto_library(
 
 ## `rust_grpc_library`
 
-Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`
+Generates a Rust protobuf and gRPC library using `rust_library` from `rules_rust`
 
 ### `WORKSPACE`
 

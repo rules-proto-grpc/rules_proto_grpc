@@ -15,7 +15,7 @@ func makePhp() *Language {
 				Plugins:          []string{"//php:php_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates PHP protobuf `.php` artifacts",
+				Doc:              "Generates PHP protobuf `.php` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -25,7 +25,7 @@ func makePhp() *Language {
 				Plugins:          []string{"//php:php_plugin", "//php:grpc_php_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates PHP protobuf+gRPC `.php` artifacts",
+				Doc:              "Generates PHP protobuf and gRPC `.php` files",
 				Attrs:            compileRuleAttrs,
 			},
 		},

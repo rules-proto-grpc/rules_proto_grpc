@@ -4,16 +4,16 @@ Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with
 
 | Rule | Description |
 | ---: | :--- |
-| [doc_docbook_compile](#doc_docbook_compile) | Generates DocBook `.xml` documentation artifact |
-| [doc_html_compile](#doc_html_compile) | Generates `.html` documentation artifact |
-| [doc_json_compile](#doc_json_compile) | Generates `.json` documentation artifact |
-| [doc_markdown_compile](#doc_markdown_compile) | Generates `.md` documentation artifact |
+| [doc_docbook_compile](#doc_docbook_compile) | Generates DocBook `.xml` documentation file |
+| [doc_html_compile](#doc_html_compile) | Generates `.html` documentation file |
+| [doc_json_compile](#doc_json_compile) | Generates `.json` documentation file |
+| [doc_markdown_compile](#doc_markdown_compile) | Generates Markdown `.md` documentation file |
 
 ---
 
 ## `doc_docbook_compile`
 
-Generates DocBook `.xml` documentation artifact
+Generates DocBook `.xml` documentation file
 
 ### `WORKSPACE`
 
@@ -62,7 +62,7 @@ doc_docbook_compile(
 
 ## `doc_html_compile`
 
-Generates `.html` documentation artifact
+Generates `.html` documentation file
 
 ### `WORKSPACE`
 
@@ -111,7 +111,7 @@ doc_html_compile(
 
 ## `doc_json_compile`
 
-Generates `.json` documentation artifact
+Generates `.json` documentation file
 
 ### `WORKSPACE`
 
@@ -160,7 +160,7 @@ doc_json_compile(
 
 ## `doc_markdown_compile`
 
-Generates `.md` documentation artifact
+Generates Markdown `.md` documentation file
 
 ### `WORKSPACE`
 

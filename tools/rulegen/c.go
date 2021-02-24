@@ -87,7 +87,7 @@ func makeC() *Language {
 				Plugins:          []string{"//c:upb_plugin"},
 				WorkspaceExample: cWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates C protobuf `.h` & `.c` artifacts",
+				Doc:              "Generates C protobuf `.h` & `.c` files",
 				Attrs:            compileRuleAttrs,
 				Experimental:     true,
 			},

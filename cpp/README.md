@@ -4,16 +4,16 @@ Rules for generating C++ protobuf and gRPC `.cc` & `.h` files and libraries usin
 
 | Rule | Description |
 | ---: | :--- |
-| [cpp_proto_compile](#cpp_proto_compile) | Generates C++ protobuf `.h` & `.cc` artifacts |
-| [cpp_grpc_compile](#cpp_grpc_compile) | Generates C++ protobuf+gRPC `.h` & `.cc` artifacts |
+| [cpp_proto_compile](#cpp_proto_compile) | Generates C++ protobuf `.h` & `.cc` files |
+| [cpp_grpc_compile](#cpp_grpc_compile) | Generates C++ protobuf and gRPC `.h` & `.cc` files |
 | [cpp_proto_library](#cpp_proto_library) | Generates a C++ protobuf library using `cc_library`, with dependencies linked |
-| [cpp_grpc_library](#cpp_grpc_library) | Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies linked |
+| [cpp_grpc_library](#cpp_grpc_library) | Generates a C++ protobuf and gRPC library using `cc_library`, with dependencies linked |
 
 ---
 
 ## `cpp_proto_compile`
 
-Generates C++ protobuf `.h` & `.cc` artifacts
+Generates C++ protobuf `.h` & `.cc` files
 
 ### `WORKSPACE`
 
@@ -62,7 +62,7 @@ cpp_proto_compile(
 
 ## `cpp_grpc_compile`
 
-Generates C++ protobuf+gRPC `.h` & `.cc` artifacts
+Generates C++ protobuf and gRPC `.h` & `.cc` files
 
 ### `WORKSPACE`
 
@@ -168,7 +168,7 @@ cpp_proto_library(
 
 ## `cpp_grpc_library`
 
-Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies linked
+Generates a C++ protobuf and gRPC library using `cc_library`, with dependencies linked
 
 ### `WORKSPACE`
 

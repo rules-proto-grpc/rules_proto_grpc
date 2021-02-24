@@ -4,16 +4,16 @@ Rules for generating Scala protobuf and gRPC `.jar` files and libraries using [S
 
 | Rule | Description |
 | ---: | :--- |
-| [scala_proto_compile](#scala_proto_compile) | Generates a Scala protobuf `.jar` artifact |
-| [scala_grpc_compile](#scala_grpc_compile) | Generates Scala protobuf+gRPC `.jar` artifacts |
+| [scala_proto_compile](#scala_proto_compile) | Generates a Scala protobuf `.jar` file |
+| [scala_grpc_compile](#scala_grpc_compile) | Generates Scala protobuf and gRPC `.jar` file |
 | [scala_proto_library](#scala_proto_library) | Generates a Scala protobuf library using `scala_library` from `rules_scala` |
-| [scala_grpc_library](#scala_grpc_library) | Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala` |
+| [scala_grpc_library](#scala_grpc_library) | Generates a Scala protobuf and gRPC library using `scala_library` from `rules_scala` |
 
 ---
 
 ## `scala_proto_compile`
 
-Generates a Scala protobuf `.jar` artifact
+Generates a Scala protobuf `.jar` file
 
 ### `WORKSPACE`
 
@@ -78,7 +78,7 @@ scala_proto_compile(
 
 ## `scala_grpc_compile`
 
-Generates Scala protobuf+gRPC `.jar` artifacts
+Generates Scala protobuf and gRPC `.jar` file
 
 ### `WORKSPACE`
 
@@ -207,7 +207,7 @@ scala_proto_library(
 
 ## `scala_grpc_library`
 
-Generates a Scala protobuf+gRPC library using `scala_library` from `rules_scala`
+Generates a Scala protobuf and gRPC library using `scala_library` from `rules_scala`
 
 ### `WORKSPACE`
 

@@ -70,7 +70,7 @@ Target //example/proto:cpp_thing_proto up-to-date:
   bazel-genfiles/example/proto/cpp_thing_proto/example/proto/thing.pb.cc
 ```
 
-If we were only interested in the generated file artifacts, the `cpp_grpc_compile` rule would be fine. However, for
+If we were only interested in the generated files, the `cpp_grpc_compile` rule would be fine. However, for
 convenience we'd rather have the outputs compiled into a C++ library. To do that, let's change the  rule from
 `cpp_proto_compile` to `cpp_proto_library`:
 

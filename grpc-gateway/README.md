@@ -188,4 +188,4 @@ gateway_grpc_library(
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 | `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
-| `importpath` | `string` | false | `None`    | Importpath for the generated artifacts          |
+| `importpath` | `string` | false | `None`    | Importpath for the generated files          |

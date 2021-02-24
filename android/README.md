@@ -4,16 +4,16 @@ Rules for generating Android protobuf and gRPC `.jar` files and libraries using 
 
 | Rule | Description |
 | ---: | :--- |
-| [android_proto_compile](#android_proto_compile) | Generates an Android protobuf `.jar` artifact |
-| [android_grpc_compile](#android_grpc_compile) | Generates Android protobuf+gRPC `.jar` artifacts |
+| [android_proto_compile](#android_proto_compile) | Generates an Android protobuf `.jar` file |
+| [android_grpc_compile](#android_grpc_compile) | Generates Android protobuf and gRPC `.jar` files |
 | [android_proto_library](#android_proto_library) | Generates an Android protobuf library using `android_library` from `rules_android` |
-| [android_grpc_library](#android_grpc_library) | Generates Android protobuf+gRPC library using `android_library` from `rules_android` |
+| [android_grpc_library](#android_grpc_library) | Generates Android protobuf and gRPC library using `android_library` from `rules_android` |
 
 ---
 
 ## `android_proto_compile`
 
-Generates an Android protobuf `.jar` artifact
+Generates an Android protobuf `.jar` file
 
 ### `WORKSPACE`
 
@@ -62,7 +62,7 @@ android_proto_compile(
 
 ## `android_grpc_compile`
 
-Generates Android protobuf+gRPC `.jar` artifacts
+Generates Android protobuf and gRPC `.jar` files
 
 ### `WORKSPACE`
 
@@ -198,7 +198,7 @@ android_proto_library(
 
 ## `android_grpc_library`
 
-Generates Android protobuf+gRPC library using `android_library` from `rules_android`
+Generates Android protobuf and gRPC library using `android_library` from `rules_android`
 
 ### `WORKSPACE`
 

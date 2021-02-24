@@ -121,7 +121,7 @@ var goLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*At
 		Name:      "importpath",
 		Type:      "string",
 		Default:   "None",
-		Doc:       "Importpath for the generated artifacts",
+		Doc:       "Importpath for the generated files",
 		Mandatory: false,
 	},
 }...)
@@ -142,7 +142,7 @@ func makeGo() *Language {
 				Plugins:          []string{"//go:go_plugin"},
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Go protobuf `.go` artifacts",
+				Doc:              "Generates Go protobuf `.go` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -153,7 +153,7 @@ func makeGo() *Language {
 				Plugins:          []string{"//go:go_plugin", "//go:grpc_go_plugin"},
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Go protobuf+gRPC `.go` artifacts",
+				Doc:              "Generates Go protobuf and gRPC `.go` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -173,7 +173,7 @@ func makeGo() *Language {
 				Implementation:   goGrpcLibraryRuleTemplate,
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     goGrpcLibraryExampleTemplate,
-				Doc:              "Generates a Go protobuf+gRPC library using `go_library` from `rules_go`",
+				Doc:              "Generates a Go protobuf and gRPC library using `go_library` from `rules_go`",
 				Attrs:            goLibraryRuleAttrs,
 			},
 		},

@@ -4,9 +4,9 @@ Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web `.js` and `.d.t
 
 | Rule | Description |
 | ---: | :--- |
-| [js_proto_compile](#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` artifacts |
-| [js_grpc_node_compile](#js_grpc_node_compile) | Generates JavaScript protobuf + gRPC-node `.js` and `.d.ts` artifacts |
-| [js_grpc_web_compile](#js_grpc_web_compile) | Generates JavaScript protobuf + gRPC-Web `.js` and `.d.ts` artifacts |
+| [js_proto_compile](#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` files |
+| [js_grpc_node_compile](#js_grpc_node_compile) | Generates JavaScript protobuf and gRPC-node `.js` and `.d.ts` files |
+| [js_grpc_web_compile](#js_grpc_web_compile) | Generates JavaScript protobuf and gRPC-Web `.js` and `.d.ts` files |
 | [js_proto_library](#js_proto_library) | Generates a JavaScript protobuf library using `js_library` from `rules_nodejs` |
 | [js_grpc_node_library](#js_grpc_node_library) | Generates a Node.js protobuf + gRPC-node library using `js_library` from `rules_nodejs` |
 | [js_grpc_web_library](#js_grpc_web_library) | Generates a JavaScript protobuf + gRPC-Web library using `js_library` from `rules_nodejs` |
@@ -15,7 +15,7 @@ Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web `.js` and `.d.t
 
 ## `js_proto_compile`
 
-Generates JavaScript protobuf `.js` and `.d.ts` artifacts
+Generates JavaScript protobuf `.js` and `.d.ts` files
 
 ### `WORKSPACE`
 
@@ -73,7 +73,7 @@ js_proto_compile(
 
 ## `js_grpc_node_compile`
 
-Generates JavaScript protobuf + gRPC-node `.js` and `.d.ts` artifacts
+Generates JavaScript protobuf and gRPC-node `.js` and `.d.ts` files
 
 ### `WORKSPACE`
 
@@ -127,7 +127,7 @@ js_grpc_node_compile(
 
 ## `js_grpc_web_compile`
 
-Generates JavaScript protobuf + gRPC-Web `.js` and `.d.ts` artifacts
+Generates JavaScript protobuf and gRPC-Web `.js` and `.d.ts` files
 
 ### `WORKSPACE`
 

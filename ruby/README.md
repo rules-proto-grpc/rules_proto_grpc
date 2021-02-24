@@ -4,16 +4,16 @@ Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using stan
 
 | Rule | Description |
 | ---: | :--- |
-| [ruby_proto_compile](#ruby_proto_compile) | Generates Ruby protobuf `.rb` artifacts |
-| [ruby_grpc_compile](#ruby_grpc_compile) | Generates Ruby protobuf+gRPC `.rb` artifacts |
+| [ruby_proto_compile](#ruby_proto_compile) | Generates Ruby protobuf `.rb` files |
+| [ruby_grpc_compile](#ruby_grpc_compile) | Generates Ruby protobuf and gRPC `.rb` files |
 | [ruby_proto_library](#ruby_proto_library) | Generates a Ruby protobuf library using `ruby_library` from `rules_ruby` |
-| [ruby_grpc_library](#ruby_grpc_library) | Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby` |
+| [ruby_grpc_library](#ruby_grpc_library) | Generates a Ruby protobuf and gRPC library using `ruby_library` from `rules_ruby` |
 
 ---
 
 ## `ruby_proto_compile`
 
-Generates Ruby protobuf `.rb` artifacts
+Generates Ruby protobuf `.rb` files
 
 ### `WORKSPACE`
 
@@ -76,7 +76,7 @@ ruby_proto_compile(
 
 ## `ruby_grpc_compile`
 
-Generates Ruby protobuf+gRPC `.rb` artifacts
+Generates Ruby protobuf and gRPC `.rb` files
 
 ### `WORKSPACE`
 
@@ -201,7 +201,7 @@ ruby_proto_library(
 
 ## `ruby_grpc_library`
 
-Generates a Ruby protobuf+gRPC library using `ruby_library` from `rules_ruby`
+Generates a Ruby protobuf and gRPC library using `ruby_library` from `rules_ruby`
 
 ### `WORKSPACE`
 

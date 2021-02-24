@@ -4,7 +4,7 @@ Rules for generating C protobuf `.c` & `.h` files and libraries using [upb](http
 
 | Rule | Description |
 | ---: | :--- |
-| [c_proto_compile](#c_proto_compile) | Generates C protobuf `.h` & `.c` artifacts |
+| [c_proto_compile](#c_proto_compile) | Generates C protobuf `.h` & `.c` files |
 | [c_proto_library](#c_proto_library) | Generates a C protobuf library using `cc_library`, with dependencies linked |
 
 ---
@@ -13,7 +13,7 @@ Rules for generating C protobuf `.c` & `.h` files and libraries using [upb](http
 
 > NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!
 
-Generates C protobuf `.h` & `.c` artifacts
+Generates C protobuf `.h` & `.c` files
 
 ### `WORKSPACE`
 

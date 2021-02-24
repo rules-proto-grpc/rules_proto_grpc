@@ -4,16 +4,16 @@ Rules for generating C# protobuf and gRPC `.cs` files and libraries using standa
 
 | Rule | Description |
 | ---: | :--- |
-| [csharp_proto_compile](#csharp_proto_compile) | Generates C# protobuf `.cs` artifacts |
-| [csharp_grpc_compile](#csharp_grpc_compile) | Generates C# protobuf+gRPC `.cs` artifacts |
+| [csharp_proto_compile](#csharp_proto_compile) | Generates C# protobuf `.cs` files |
+| [csharp_grpc_compile](#csharp_grpc_compile) | Generates C# protobuf and gRPC `.cs` files |
 | [csharp_proto_library](#csharp_proto_library) | Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
-| [csharp_grpc_library](#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
+| [csharp_grpc_library](#csharp_grpc_library) | Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
 
 ---
 
 ## `csharp_proto_compile`
 
-Generates C# protobuf `.cs` artifacts
+Generates C# protobuf `.cs` files
 
 ### `WORKSPACE`
 
@@ -80,7 +80,7 @@ csharp_proto_compile(
 
 ## `csharp_grpc_compile`
 
-Generates C# protobuf+gRPC `.cs` artifacts
+Generates C# protobuf and gRPC `.cs` files
 
 ### `WORKSPACE`
 
@@ -212,7 +212,7 @@ csharp_proto_library(
 
 ## `csharp_grpc_library`
 
-Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
+Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
 
 ### `WORKSPACE`
 

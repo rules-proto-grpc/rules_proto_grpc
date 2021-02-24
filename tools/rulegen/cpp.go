@@ -165,7 +165,7 @@ func makeCpp() *Language {
 				Plugins:          []string{"//cpp:cpp_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates C++ protobuf `.h` & `.cc` artifacts",
+				Doc:              "Generates C++ protobuf `.h` & `.cc` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -175,7 +175,7 @@ func makeCpp() *Language {
 				Plugins:          []string{"//cpp:cpp_plugin", "//cpp:grpc_cpp_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates C++ protobuf+gRPC `.h` & `.cc` artifacts",
+				Doc:              "Generates C++ protobuf and gRPC `.h` & `.cc` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -193,7 +193,7 @@ func makeCpp() *Language {
 				Implementation:   cppGrpcLibraryRuleTemplate,
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a C++ protobuf+gRPC library using `cc_library`, with dependencies linked",
+				Doc:              "Generates a C++ protobuf and gRPC library using `cc_library`, with dependencies linked",
 				Attrs:            cppLibraryRuleAttrs,
 			},
 		},

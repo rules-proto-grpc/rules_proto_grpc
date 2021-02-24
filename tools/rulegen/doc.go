@@ -15,7 +15,7 @@ func makeDoc() *Language {
 				Plugins:          []string{"//doc:docbook_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates DocBook `.xml` documentation artifact",
+				Doc:              "Generates DocBook `.xml` documentation file",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -25,7 +25,7 @@ func makeDoc() *Language {
 				Plugins:          []string{"//doc:html_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates `.html` documentation artifact",
+				Doc:              "Generates `.html` documentation file",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -35,7 +35,7 @@ func makeDoc() *Language {
 				Plugins:          []string{"//doc:json_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates `.json` documentation artifact",
+				Doc:              "Generates `.json` documentation file",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -45,7 +45,7 @@ func makeDoc() *Language {
 				Plugins:          []string{"//doc:markdown_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates `.md` documentation artifact",
+				Doc:              "Generates Markdown `.md` documentation file",
 				Attrs:            compileRuleAttrs,
 			},
 		},

@@ -83,7 +83,7 @@ Each supported language (`{lang}` below) is generally split into four rule flavo
   generated `*.pb.cc`, `*.grpc.pb.cc`, `*.pb.h` and `*.grpc.pb.h` files, with the Protobuf and gRPC libraries linked.
   For languages that do not have a 'library' concept, this rule may not exist.
 
-Therefore, if you are solely interested in the generated source code artifacts, use the `{lang}_{proto|grpc}_compile`
+Therefore, if you are solely interested in the generated source code files, use the `{lang}_{proto|grpc}_compile`
 rules. Otherwise, if you want a ready-to-go library, use the `{lang}_{proto|grpc}_library` rules.
 
 

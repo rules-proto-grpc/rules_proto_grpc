@@ -111,7 +111,7 @@ func makeRust() *Language {
 				Plugins:          []string{"//rust:rust_plugin"},
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Rust protobuf `.rs` artifacts",
+				Doc:              "Generates Rust protobuf `.rs` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -121,7 +121,7 @@ func makeRust() *Language {
 				Plugins:          []string{"//rust:rust_plugin", "//rust:grpc_rust_plugin"},
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Rust protobuf+gRPC `.rs` artifacts",
+				Doc:              "Generates Rust protobuf and gRPC `.rs` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -139,7 +139,7 @@ func makeRust() *Language {
 				Implementation:   rustGrpcLibraryRuleTemplate,
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     rustGrpcLibraryExampleTemplate,
-				Doc:              "Generates a Rust protobuf+gRPC library using `rust_library` from `rules_rust`",
+				Doc:              "Generates a Rust protobuf and gRPC library using `rust_library` from `rules_rust`",
 				Attrs:            libraryRuleAttrs,
 			},
 		},
