@@ -56,7 +56,10 @@ proto_plugin(
         "import_style=commonjs+dts",
         "mode=grpcweb",
     ],
-    outputs = ["{protopath}_grpc_web_pb.js", "{protopath}_grpc_web_pb.d.ts"],
+    outputs = [
+        "{protopath}_grpc_web_pb.js",
+        "{protopath}_grpc_web_pb.d.ts",
+    ],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_web_plugin_darwin//file",
         "@bazel_tools//src/conditions:linux_x86_64": "@grpc_web_plugin_linux//file",

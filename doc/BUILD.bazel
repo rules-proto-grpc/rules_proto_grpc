@@ -2,64 +2,64 @@ load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
     name = "docbook_plugin",
+    out = "{name}.xml",
     options = [
         "docbook",
         "{name}.xml",
     ],
-    out = "{name}.xml",
+    quirks = ["QUIRK_OUT_PASS_ROOT"],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc",
     }),
     visibility = ["//visibility:public"],
-    quirks = ["QUIRK_OUT_PASS_ROOT"],
 )
 
 proto_plugin(
     name = "html_plugin",
+    out = "{name}.html",
     options = [
         "html",
         "{name}.html",
     ],
-    out = "{name}.html",
+    quirks = ["QUIRK_OUT_PASS_ROOT"],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc",
     }),
     visibility = ["//visibility:public"],
-    quirks = ["QUIRK_OUT_PASS_ROOT"],
 )
 
 proto_plugin(
     name = "json_plugin",
+    out = "{name}.json",
     options = [
         "json",
         "{name}.json",
     ],
-    out = "{name}.json",
+    quirks = ["QUIRK_OUT_PASS_ROOT"],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc",
     }),
     visibility = ["//visibility:public"],
-    quirks = ["QUIRK_OUT_PASS_ROOT"],
 )
 
 proto_plugin(
     name = "markdown_plugin",
+    out = "{name}.md",
     options = [
         "markdown",
         "{name}.md",
     ],
-    out = "{name}.md",
+    quirks = ["QUIRK_OUT_PASS_ROOT"],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows//:protoc-gen-doc",
     }),
     visibility = ["//visibility:public"],
-    quirks = ["QUIRK_OUT_PASS_ROOT"],
 )
