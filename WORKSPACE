@@ -125,6 +125,13 @@ load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
 d_repositories()
 
 #
+# Doc
+#
+load("//doc:repositories.bzl", "doc_repos")
+
+doc_repos()
+
+#
 # Go
 #
 # Moved to above C++
