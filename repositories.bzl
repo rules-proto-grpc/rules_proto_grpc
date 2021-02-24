@@ -28,8 +28,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.35.0",
-        "sha256": "27dd2fc5c9809ddcde8eb6fa1fa278a3486566dfc28335fca13eb8df8bd3b958",
+        "ref": "v1.36.0",
+        "sha256": "1a5127c81487f4e3e57973bb332f04b9159f94d860c207e096d8a587d371edbd",
     },
     "zlib": {
         "type": "http",
