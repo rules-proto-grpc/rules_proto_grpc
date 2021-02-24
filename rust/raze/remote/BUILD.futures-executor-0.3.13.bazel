@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -25,17 +25,18 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # Apache-2.0 from expression "Apache-2.0 OR MIT"
+    "notice",  # MIT from expression "MIT OR Apache-2.0"
 ])
 
 # Generated Targets
 
-# Unsupported target "thread_local" with type "bench" omitted
+# Unsupported target "thread_notify" with type "bench" omitted
 
 rust_library(
-    name = "thread_local",
+    name = "futures_executor",
     srcs = glob(["**/*.rs"]),
     crate_features = [
+        "std",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -48,9 +49,13 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "1.1.3",
+    version = "0.3.13",
     # buildifier: leave-alone
     deps = [
-        "@raze__once_cell__1_5_2//:once_cell",
+        "@raze__futures_core__0_3_13//:futures_core",
+        "@raze__futures_task__0_3_13//:futures_task",
+        "@raze__futures_util__0_3_13//:futures_util",
     ],
 )
+
+# Unsupported target "local_pool" with type "test" omitted

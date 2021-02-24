@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -25,10 +25,11 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # ISC from expression "ISC"
+    "notice",  # MIT from expression "MIT OR Apache-2.0"
 ])
 
 # Generated Targets
+# buildifier: disable=out-of-order-load
 # buildifier: disable=load-on-top
 load(
     "@rules_rust//cargo:cargo_build_script.bzl",
@@ -36,11 +37,13 @@ load(
 )
 
 cargo_build_script(
-    name = "libloading_build_script",
+    name = "libc_build_script",
     srcs = glob(["**/*.rs"]),
     build_script_env = {
     },
     crate_features = [
+        "default",
+        "std",
     ],
     crate_root = "build.rs",
     data = glob(["**"]),
@@ -52,27 +55,18 @@ cargo_build_script(
         "cargo-raze",
         "manual",
     ],
-    version = "0.5.2",
+    version = "0.2.86",
     visibility = ["//visibility:private"],
     deps = [
-        "@raze__cc__1_0_66//:cc",
-    ] + selects.with_or({
-        # cfg(windows)
-        (
-            "@rules_rust//rust/platform:i686-pc-windows-msvc",
-            "@rules_rust//rust/platform:x86_64-pc-windows-msvc",
-        ): [
-        ],
-        "//conditions:default": [],
-    }),
+    ],
 )
 
 rust_library(
-    name = "libloading",
+    name = "libc",
     srcs = glob(["**/*.rs"]),
-    aliases = {
-    },
     crate_features = [
+        "default",
+        "std",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -85,24 +79,11 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.5.2",
+    version = "0.2.86",
     # buildifier: leave-alone
     deps = [
-        ":libloading_build_script",
-    ] + selects.with_or({
-        # cfg(windows)
-        (
-            "@rules_rust//rust/platform:i686-pc-windows-msvc",
-            "@rules_rust//rust/platform:x86_64-pc-windows-msvc",
-        ): [
-            "@raze__winapi__0_3_9//:winapi",
-        ],
-        "//conditions:default": [],
-    }),
+        ":libc_build_script",
+    ],
 )
 
-# Unsupported target "functions" with type "test" omitted
-
-# Unsupported target "markers" with type "test" omitted
-
-# Unsupported target "windows" with type "test" omitted
+# Unsupported target "const_fn" with type "test" omitted

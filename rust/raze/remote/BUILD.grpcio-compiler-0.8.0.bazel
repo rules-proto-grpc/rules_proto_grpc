@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -25,7 +25,7 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "notice",  # Apache-2.0 from expression "Apache-2.0"
 ])
 
 # Generated Targets
@@ -33,11 +33,14 @@ licenses([
 rust_binary(
     # Prefix bin name to disambiguate from (probable) collision with lib name
     # N.B.: The exact form of this is subject to change.
-    name = "cargo_bin_gcc_shim",
+    name = "cargo_bin_grpc_rust_plugin",
     srcs = glob(["**/*.rs"]),
     crate_features = [
+        "default",
+        "protobuf",
+        "protobuf-codec",
     ],
-    crate_root = "src/bin/gcc-shim.rs",
+    crate_root = "src/bin/grpc_rust_plugin.rs",
     data = [],
     edition = "2018",
     rustc_flags = [
@@ -47,18 +50,21 @@ rust_binary(
         "cargo-raze",
         "manual",
     ],
-    version = "1.0.66",
+    version = "0.8.0",
     # buildifier: leave-alone
     deps = [
-        # Binaries get an implicit dependency on their crate's lib
-        ":cc",
+        ":grpcio_compiler",
+        "@raze__protobuf__2_22_0//:protobuf",
     ],
 )
 
 rust_library(
-    name = "cc",
+    name = "grpcio_compiler",
     srcs = glob(["**/*.rs"]),
     crate_features = [
+        "default",
+        "protobuf",
+        "protobuf-codec",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -71,16 +77,9 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "1.0.66",
+    version = "0.8.0",
     # buildifier: leave-alone
     deps = [
+        "@raze__protobuf__2_22_0//:protobuf",
     ],
 )
-
-# Unsupported target "cc_env" with type "test" omitted
-
-# Unsupported target "cflags" with type "test" omitted
-
-# Unsupported target "cxxflags" with type "test" omitted
-
-# Unsupported target "test" with type "test" omitted

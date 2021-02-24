@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -29,6 +29,7 @@ licenses([
 ])
 
 # Generated Targets
+# buildifier: disable=out-of-order-load
 # buildifier: disable=load-on-top
 load(
     "@rules_rust//cargo:cargo_build_script.bzl",
@@ -42,13 +43,11 @@ cargo_build_script(
     },
     crate_features = [
         "alloc",
-        "default",
         "std",
-        "verbose-errors",
     ],
     crate_root = "build.rs",
     data = glob(["**"]),
-    edition = "2015",
+    edition = "2018",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -56,26 +55,42 @@ cargo_build_script(
         "cargo-raze",
         "manual",
     ],
-    version = "4.2.3",
+    version = "5.1.2",
     visibility = ["//visibility:private"],
     deps = [
-        "@raze__version_check__0_1_5//:version_check",
+        "@raze__version_check__0_9_2//:version_check",
     ],
 )
+
+# Unsupported target "arithmetic" with type "bench" omitted
+
+# Unsupported target "http" with type "bench" omitted
+
+# Unsupported target "ini" with type "bench" omitted
+
+# Unsupported target "ini_complete" with type "bench" omitted
+
+# Unsupported target "ini_str" with type "bench" omitted
+
+# Unsupported target "json" with type "bench" omitted
+
+# Unsupported target "json" with type "example" omitted
+
+# Unsupported target "s_expression" with type "example" omitted
+
+# Unsupported target "string" with type "example" omitted
 
 rust_library(
     name = "nom",
     srcs = glob(["**/*.rs"]),
     crate_features = [
         "alloc",
-        "default",
         "std",
-        "verbose-errors",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
     data = [],
-    edition = "2015",
+    edition = "2018",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -83,7 +98,7 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "4.2.3",
+    version = "5.1.2",
     # buildifier: leave-alone
     deps = [
         ":nom_build_script",
@@ -97,13 +112,11 @@ rust_library(
 
 # Unsupported target "blockbuf-arithmetic" with type "test" omitted
 
-# Unsupported target "complete_arithmetic" with type "test" omitted
-
-# Unsupported target "complete_float" with type "test" omitted
-
 # Unsupported target "css" with type "test" omitted
 
 # Unsupported target "custom_errors" with type "test" omitted
+
+# Unsupported target "escaped" with type "test" omitted
 
 # Unsupported target "float" with type "test" omitted
 

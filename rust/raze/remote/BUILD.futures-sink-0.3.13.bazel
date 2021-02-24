@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -31,11 +31,10 @@ licenses([
 # Generated Targets
 
 rust_library(
-    name = "futures_task",
+    name = "futures_sink",
     srcs = glob(["**/*.rs"]),
     crate_features = [
         "alloc",
-        "once_cell",
         "std",
     ],
     crate_root = "src/lib.rs",
@@ -49,9 +48,8 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.3.12",
+    version = "0.3.13",
     # buildifier: leave-alone
     deps = [
-        "@raze__once_cell__1_5_2//:once_cell",
     ],
 )

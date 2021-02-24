@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -25,7 +25,7 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # Apache-2.0 from expression "Apache-2.0"
+    "notice",  # MIT from expression "MIT"
 ])
 
 # Generated Targets
@@ -33,16 +33,13 @@ licenses([
 rust_binary(
     # Prefix bin name to disambiguate from (probable) collision with lib name
     # N.B.: The exact form of this is subject to change.
-    name = "cargo_bin_grpc_rust_plugin",
+    name = "cargo_bin_protobuf_bin_gen_rust_do_not_use",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "default",
-        "protobuf",
-        "protobuf-codec",
     ],
-    crate_root = "src/bin/grpc_rust_plugin.rs",
+    crate_root = "src/bin/protobuf-bin-gen-rust-do-not-use.rs",
     data = [],
-    edition = "2018",
+    edition = "2015",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -50,27 +47,48 @@ rust_binary(
         "cargo-raze",
         "manual",
     ],
-    version = "0.7.0",
+    version = "2.22.0",
     # buildifier: leave-alone
     deps = [
-        # Binaries get an implicit dependency on their crate's lib
-        ":grpcio_compiler",
-        "@raze__protobuf__2_20_0//:protobuf",
+        ":protobuf_codegen",
+        "@raze__protobuf__2_22_0//:protobuf",
+    ],
+)
+
+rust_binary(
+    # Prefix bin name to disambiguate from (probable) collision with lib name
+    # N.B.: The exact form of this is subject to change.
+    name = "cargo_bin_protoc_gen_rust",
+    srcs = glob(["**/*.rs"]),
+    crate_features = [
+    ],
+    crate_root = "src/bin/protoc-gen-rust.rs",
+    data = [],
+    edition = "2015",
+    rustc_flags = [
+        "--cap-lints=allow",
+    ],
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+    version = "2.22.0",
+    # buildifier: leave-alone
+    deps = [
+        ":protobuf_codegen",
+        "@raze__protobuf__2_22_0//:protobuf",
     ],
 )
 
 rust_library(
-    name = "grpcio_compiler",
+    name = "protobuf_codegen",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "default",
-        "protobuf",
-        "protobuf-codec",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
     data = [],
-    edition = "2018",
+    edition = "2015",
     rustc_flags = [
         "--cap-lints=allow",
     ],
@@ -78,9 +96,9 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.7.0",
+    version = "2.22.0",
     # buildifier: leave-alone
     deps = [
-        "@raze__protobuf__2_20_0//:protobuf",
+        "@raze__protobuf__2_22_0//:protobuf",
     ],
 )

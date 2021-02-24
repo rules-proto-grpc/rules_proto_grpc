@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -25,19 +25,24 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # Apache-2.0 from expression "Apache-2.0"
+    "notice",  # MIT from expression "MIT"
 ])
 
 # Generated Targets
 
+alias(
+    name = "redox_syscall",
+    actual = ":syscall",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
 rust_library(
-    name = "grpcio",
+    name = "syscall",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "default",
-        "protobuf",
-        "protobuf-codec",
-        "secure",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -50,14 +55,9 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.7.1",
+    version = "0.2.5",
     # buildifier: leave-alone
     deps = [
-        "@raze__futures__0_3_12//:futures",
-        "@raze__grpcio_sys__0_7_2//:grpcio_sys",
-        "@raze__libc__0_2_85//:libc",
-        "@raze__log__0_4_6//:log",
-        "@raze__parking_lot__0_11_1//:parking_lot",
-        "@raze__protobuf__2_20_0//:protobuf",
+        "@raze__bitflags__1_2_1//:bitflags",
     ],
 )

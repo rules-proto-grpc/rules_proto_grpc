@@ -15,10 +15,9 @@ buildifier:
 .PHONY: rust_raze
 rust_raze:
 	cd rust/raze; \
-	rm Cargo.lock; \
+	rm Cargo.raze.lock || true; \
 	rm -r remote; \
-	cargo raze; \
-	sed -i -e 's/io_bazel_rules_rust/rules_rust/g' rust/raze/remote/*.bazel;
+	cargo raze;
 
 
 # Run yarn to upgrade the js dependencies

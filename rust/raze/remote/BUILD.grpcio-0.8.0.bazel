@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -25,18 +25,20 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "notice",  # Apache-2.0 from expression "Apache-2.0"
 ])
 
 # Generated Targets
 
-# Unsupported target "thread_notify" with type "bench" omitted
-
 rust_library(
-    name = "futures_executor",
+    name = "grpcio",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "std",
+        "default",
+        "protobuf",
+        "protobuf-codec",
+        "secure",
+        "use-bindgen",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -49,13 +51,14 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.3.12",
+    version = "0.8.0",
     # buildifier: leave-alone
     deps = [
-        "@raze__futures_core__0_3_12//:futures_core",
-        "@raze__futures_task__0_3_12//:futures_task",
-        "@raze__futures_util__0_3_12//:futures_util",
+        "@raze__futures__0_3_12//:futures",
+        "@raze__grpcio_sys__0_8_0//:grpcio_sys",
+        "@raze__libc__0_2_86//:libc",
+        "@raze__log__0_4_6//:log",
+        "@raze__parking_lot__0_11_1//:parking_lot",
+        "@raze__protobuf__2_22_0//:protobuf",
     ],
 )
-
-# Unsupported target "local_pool" with type "test" omitted

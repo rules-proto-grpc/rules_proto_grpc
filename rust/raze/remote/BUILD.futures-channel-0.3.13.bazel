@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -30,10 +30,16 @@ licenses([
 
 # Generated Targets
 
+# Unsupported target "sync_mpsc" with type "bench" omitted
+
 rust_library(
-    name = "boringssl_src",
+    name = "futures_channel",
     srcs = glob(["**/*.rs"]),
     crate_features = [
+        "alloc",
+        "futures-sink",
+        "sink",
+        "std",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -46,9 +52,18 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.1.0",
+    version = "0.3.13",
     # buildifier: leave-alone
     deps = [
-        "@raze__cmake__0_1_45//:cmake",
+        "@raze__futures_core__0_3_13//:futures_core",
+        "@raze__futures_sink__0_3_13//:futures_sink",
     ],
 )
+
+# Unsupported target "channel" with type "test" omitted
+
+# Unsupported target "mpsc" with type "test" omitted
+
+# Unsupported target "mpsc-close" with type "test" omitted
+
+# Unsupported target "oneshot" with type "test" omitted
