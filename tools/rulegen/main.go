@@ -17,7 +17,7 @@ import (
 var defaultPlatforms = []string{"linux", "windows", "macos"}
 var ciPlatforms = []string{"ubuntu1804", "windows", "macos"}
 var ciPlatformsMap = map[string][]string{
-	"linux":   []string{"ubuntu1604", "ubuntu1804", "rbe_ubuntu1604", "rbe_ubuntu1804"},
+	"linux":   []string{"ubuntu1804", "rbe_ubuntu1804"},
 	"windows": []string{"windows"},
 	"macos":   []string{"macos"},
 }
