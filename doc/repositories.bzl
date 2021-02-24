@@ -12,7 +12,7 @@ def doc_repos(**kwargs):  # buildifier: disable=function-docstring
     # protoc-gen-doc plugin
     protoc_gen_doc_version = "1.4.1"
     go_version = "1.15.2"
-    build_file_content = """exports_files(["protoc-gen-doc"])"""
+    build_file_content = """exports_files(glob(["protoc-gen-doc*"]))"""
     http_archive(
         name = "protoc_gen_doc_darwin",
         urls = ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v{}/protoc-gen-doc-{}.darwin-amd64.go{}.tar.gz".format(protoc_gen_doc_version, protoc_gen_doc_version, go_version)],
@@ -31,7 +31,7 @@ def doc_repos(**kwargs):  # buildifier: disable=function-docstring
 
     http_archive(
         name = "protoc_gen_doc_windows",
-        urls = ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v{}/protoc-gen-doc-{}.windows-amd64.go{}tar.gz".format(protoc_gen_doc_version, protoc_gen_doc_version, go_version)],
+        urls = ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v{}/protoc-gen-doc-{}.windows-amd64.go{}.tar.gz".format(protoc_gen_doc_version, protoc_gen_doc_version, go_version)],
         sha256 = "6ac742671b81d339768a683dfb9a4c03ea5eaa0b6880d47df46819ea1ddb2653",
         strip_prefix = "protoc-gen-doc-{}.windows-amd64.go{}".format(protoc_gen_doc_version, go_version),
         build_file_content = build_file_content,
