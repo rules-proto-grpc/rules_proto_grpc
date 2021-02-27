@@ -2,6 +2,17 @@
 
 Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web `.js` and `.d.ts` files using standard Protocol Buffers and gRPC.
 
+> Note that you must add the required dependencies to your package.json file:
+> ```json
+> "dependencies": {
+>   "@grpc/grpc-js": "1.2.6",
+>   "google-protobuf": "3.15.2",
+>   "grpc-tools": "1.10.0",
+>   "grpc-web": "1.2.1",
+>   "ts-protoc-gen": "0.14.0"
+> }
+> ```
+
 | Rule | Description |
 | ---: | :--- |
 | [js_proto_compile](#js_proto_compile) | Generates JavaScript protobuf `.js` and `.d.ts` files |
@@ -27,9 +38,9 @@ rules_proto_grpc_js_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "js_modules",
-    package_json = "@rules_proto_grpc//js:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
+    name = "npm",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",        # which should contain the dependencies required
 )
 ```
 
@@ -85,9 +96,9 @@ rules_proto_grpc_js_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "js_modules",
-    package_json = "@rules_proto_grpc//js:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
+    name = "npm",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",        # which should contain the dependencies required
 )
 ```
 
@@ -139,9 +150,9 @@ rules_proto_grpc_js_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "js_modules",
-    package_json = "@rules_proto_grpc//js:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
+    name = "npm",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",        # which should contain the dependencies required
 )
 ```
 
@@ -192,9 +203,9 @@ rules_proto_grpc_js_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "js_modules",
-    package_json = "@rules_proto_grpc//js:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
+    name = "npm",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",        # which should contain the dependencies required
 )
 ```
 
@@ -231,6 +242,7 @@ js_proto_library(
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 | `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `deps_repo` | `string` | false | `@npm`    | The repository to load the dependencies from, if you don't use @npm          |
 
 ---
 
@@ -248,9 +260,9 @@ rules_proto_grpc_js_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "js_modules",
-    package_json = "@rules_proto_grpc//js:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
+    name = "npm",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",        # which should contain the dependencies required
 )
 ```
 
@@ -281,6 +293,7 @@ js_grpc_node_library(
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 | `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `deps_repo` | `string` | false | `@npm`    | The repository to load the dependencies from, if you don't use @npm          |
 
 ---
 
@@ -298,9 +311,9 @@ rules_proto_grpc_js_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "js_modules",
-    package_json = "@rules_proto_grpc//js:requirements/package.json",
-    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
+    name = "npm",
+    package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",        # which should contain the dependencies required
 )
 ```
 
@@ -331,3 +344,4 @@ js_grpc_web_library(
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
 | `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 | `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `deps_repo` | `string` | false | `@npm`    | The repository to load the dependencies from, if you don't use @npm          |

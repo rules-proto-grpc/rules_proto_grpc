@@ -16,7 +16,7 @@ VERSIONS = {
         "sha256": "3bce0e2fcf502619119c7cac03613fb52ce3034b2159dd3ae9d35f7339558aa3",
     },
     "com_google_protobuf": {
-        # When updating, also update JS requirements, Ruby requirements and C# requirements
+        # When updating, also update JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
@@ -24,7 +24,7 @@ VERSIONS = {
         "sha256": "3c85fdac243dab1f6cd725eb58e361cdbb3ec4480052ac90b1ab55c608112cd0",
     },
     "com_github_grpc_grpc": {
-        # When updating, also update Go repositories.bzl, Node.js requirements, Ruby requirements and C# requirements
+        # When updating, also update Go repositories.bzl, JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
@@ -281,10 +281,11 @@ def _generic_dependency(name, **kwargs):
         ref = kwargs.get(name + "_ref", dep["ref"])
         sha256 = kwargs.get(name + "_sha256", dep["sha256"])
 
-        # Fix GitHub naming quirk in path
+        # Fix GitHub naming normalisation in path
         stripped_ref = ref
         if stripped_ref.startswith("v"):
             stripped_ref = ref[1:]
+        stripped_ref = stripped_ref.replace("@", "-")
 
         # Generate URLs
         urls = [

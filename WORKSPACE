@@ -168,7 +168,7 @@ js_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "js_modules",
+    name = "npm",
     package_json = "@rules_proto_grpc//js:requirements/package.json",
     yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )

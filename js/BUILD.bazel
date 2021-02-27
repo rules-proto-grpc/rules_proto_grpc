@@ -18,7 +18,7 @@ proto_plugin(
 proto_plugin(
     name = "ts_plugin",
     outputs = ["{protopath}_pb.d.ts"],
-    tool = "@js_modules//ts-protoc-gen/bin:protoc-gen-ts",
+    tool = "@npm//ts-protoc-gen/bin:protoc-gen-ts",
     visibility = ["//visibility:public"],
 )
 
@@ -33,7 +33,7 @@ proto_plugin(
         "grpc_js",
     ],
     outputs = ["{protopath}_grpc_pb.js"],
-    tool = "@js_modules//grpc-tools/bin:grpc_tools_node_protoc_plugin",
+    tool = "@npm//grpc-tools/bin:grpc_tools_node_protoc_plugin",
     visibility = ["//visibility:public"],
 )
 
@@ -44,7 +44,7 @@ proto_plugin(
         "service=grpc-node",
     ],
     outputs = ["{protopath}_grpc_pb.d.ts"],
-    tool = "@js_modules//ts-protoc-gen/bin:protoc-gen-ts",
+    tool = "@npm//ts-protoc-gen/bin:protoc-gen-ts",
     visibility = ["//visibility:public"],
 )
 

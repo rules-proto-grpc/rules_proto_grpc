@@ -16,16 +16,21 @@ def js_proto_library(name, **kwargs):
         }  # Forward args
     )
 
+    # Resolve deps
+    deps = [
+        dep.replace("@npm", kwargs.get("deps_repo", "@npm")) for dep in PROTO_DEPS
+    ]
+
     # Create js library
     js_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
         package_name = name,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 PROTO_DEPS = [
-    "@js_modules//google-protobuf",
+    "@npm//google-protobuf",
 ]
