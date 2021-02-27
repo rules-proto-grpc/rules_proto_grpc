@@ -8,7 +8,10 @@ package(default_visibility = ["//visibility:private"])
 
 proto_library(
     name = "proto_lib",
-    srcs = ["no_service.proto", "service.proto"],
+    srcs = [
+        "no_service.proto",
+        "service.proto",
+    ],
 )
 
 python_grpc_library(

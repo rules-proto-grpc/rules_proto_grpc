@@ -10,7 +10,10 @@ package(default_visibility = ["//visibility:private"])
 
 proto_library(
     name = "proto_lib",
-    srcs = ["service.proto", "no_service.proto"],
+    srcs = [
+        "no_service.proto",
+        "service.proto",
+    ],
 )
 
 go_grpc_library(
@@ -30,6 +33,7 @@ go_test(
     srcs = ["main.go"],
     visibility = ["//visibility:public"],
     deps = [
-        "go_lib", "grpc_gateway_lib",
+        "go_lib",
+        "grpc_gateway_lib",
     ],
 )
