@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+option go_package = "test_proto_path";
+
+import "no_service.proto";
+
+service Demo {
+    rpc Demo (demo) returns (demo);
+}

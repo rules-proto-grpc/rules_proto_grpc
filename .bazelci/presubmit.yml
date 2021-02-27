@@ -1459,6 +1459,35 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
+  test_workspace_go_fixer_ubuntu1804:
+    name: 'test workspace: go_fixer'
+    platform: ubuntu1804
+    build_flags:
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/go_fixer
+  test_workspace_go_fixer_windows:
+    name: 'test workspace: go_fixer'
+    platform: windows
+    build_flags:
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/go_fixer
+  test_workspace_go_fixer_macos:
+    name: 'test workspace: go_fixer'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
+    - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/go_fixer
   test_workspace_go_importpath_ubuntu1804:
     name: 'test workspace: go_importpath'
     platform: ubuntu1804
