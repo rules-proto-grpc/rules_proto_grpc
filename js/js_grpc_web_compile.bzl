@@ -23,6 +23,7 @@ js_grpc_web_compile_aspect = aspect(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//js:js_plugin"),
+                Label("//js:ts_plugin"),
                 Label("//js:grpc_web_js_plugin"),
             ],
         ),
@@ -55,6 +56,7 @@ _rule = rule(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//js:js_plugin"),
+                Label("//js:ts_plugin"),
                 Label("//js:grpc_web_js_plugin"),
             ],
         ),

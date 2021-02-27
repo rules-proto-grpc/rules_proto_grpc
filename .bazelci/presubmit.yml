@@ -1731,3 +1731,32 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/transitive_compilation
+  test_workspace_typescript_ubuntu1804:
+    name: 'test workspace: typescript'
+    platform: ubuntu1804
+    build_flags:
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/typescript
+  test_workspace_typescript_windows:
+    name: 'test workspace: typescript'
+    platform: windows
+    build_flags:
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/typescript
+  test_workspace_typescript_macos:
+    name: 'test workspace: typescript'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
+    - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/typescript

@@ -1,0 +1,35 @@
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_test")
+load("@rules_proto_grpc//js:defs.bzl", "js_grpc_node_library")
+load("@npm//@bazel/typescript:index.bzl", "ts_library")
+
+package(default_visibility = ["//visibility:private"])
+
+proto_library(
+    name = "proto_lib",
+    srcs = ["demo.proto"],
+)
+
+js_grpc_node_library(
+    name = "js_lib",
+    protos = ["proto_lib"],
+)
+
+ts_library(
+    name = "main_ts",
+    srcs = [
+        "main.ts",
+    ],
+    deps = [
+        ":js_lib",
+        "@npm//@grpc/grpc-js",
+    ],
+)
+
+nodejs_test(
+    name = "test_main",
+    data = [
+        ":main_ts",
+    ],
+    entry_point = ":main.ts",
+)

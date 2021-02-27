@@ -161,7 +161,7 @@ func makeJavaScript() *Language {
 				Name:             "js_grpc_node_compile",
 				Kind:             "grpc",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//js:js_plugin", "//js:grpc_node_plugin", "//js:grpc_node_ts_plugin"},  // Don't need ts_plugin here, as grpc_node_ts_plugin will do both proto and grpc
+				Plugins:          []string{"//js:js_plugin", "//js:ts_plugin", "//js:grpc_node_plugin", "//js:grpc_node_ts_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates JavaScript protobuf and gRPC-node `.js` and `.d.ts` files",
@@ -171,7 +171,7 @@ func makeJavaScript() *Language {
 				Name:             "js_grpc_web_compile",
 				Kind:             "grpc",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//js:js_plugin", "//js:grpc_web_js_plugin"},
+				Plugins:          []string{"//js:js_plugin", "//js:ts_plugin", "//js:grpc_web_js_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates JavaScript protobuf and gRPC-Web `.js` and `.d.ts` files",

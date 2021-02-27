@@ -131,6 +131,7 @@ js_grpc_node_compile(
 ### Plugins
 
 - `@rules_proto_grpc//js:js_plugin`
+- `@rules_proto_grpc//js:ts_plugin`
 - `@rules_proto_grpc//js:grpc_node_plugin`
 - `@rules_proto_grpc//js:grpc_node_ts_plugin`
 
@@ -185,6 +186,7 @@ js_grpc_web_compile(
 ### Plugins
 
 - `@rules_proto_grpc//js:js_plugin`
+- `@rules_proto_grpc//js:ts_plugin`
 - `@rules_proto_grpc//js:grpc_web_js_plugin`
 
 ---
