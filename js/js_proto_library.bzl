@@ -18,7 +18,8 @@ def js_proto_library(name, **kwargs):
 
     # Resolve deps
     deps = [
-        dep.replace("@npm", kwargs.get("deps_repo", "@npm")) for dep in PROTO_DEPS
+        dep.replace("@npm", kwargs.get("deps_repo", "@npm"))
+        for dep in PROTO_DEPS
     ]
 
     # Create js library

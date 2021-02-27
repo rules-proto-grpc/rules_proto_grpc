@@ -18,7 +18,8 @@ def js_grpc_node_library(name, **kwargs):
 
     # Resolve deps
     deps = [
-        dep.replace("@npm", kwargs.get("deps_repo", "@npm")) for dep in GRPC_DEPS
+        dep.replace("@npm", kwargs.get("deps_repo", "@npm"))
+        for dep in GRPC_DEPS
     ]
 
     # Create js library

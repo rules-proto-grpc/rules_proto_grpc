@@ -8,8 +8,8 @@ load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
     name = "npm",
-    package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json
-    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",        # which should contain the dependencies required
+    package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json which should contain the dependencies required
+    yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )`)
 
 var jsProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
@@ -26,7 +26,8 @@ def {{ .Rule.Name }}(name, **kwargs):
 
     # Resolve deps
     deps = [
-        dep.replace("@npm", kwargs.get("deps_repo", "@npm")) for dep in PROTO_DEPS
+        dep.replace("@npm", kwargs.get("deps_repo", "@npm"))
+        for dep in PROTO_DEPS
     ]
 
     # Create {{ .Lang.Name }} library
@@ -57,7 +58,8 @@ def {{ .Rule.Name }}(name, **kwargs):
 
     # Resolve deps
     deps = [
-        dep.replace("@npm", kwargs.get("deps_repo", "@npm")) for dep in GRPC_DEPS
+        dep.replace("@npm", kwargs.get("deps_repo", "@npm"))
+        for dep in GRPC_DEPS
     ]
 
     # Create {{ .Lang.Name }} library
@@ -89,7 +91,8 @@ def {{ .Rule.Name }}(name, **kwargs):
 
     # Resolve deps
     deps = [
-        dep.replace("@npm", kwargs.get("deps_repo", "@npm")) for dep in GRPC_DEPS
+        dep.replace("@npm", kwargs.get("deps_repo", "@npm"))
+        for dep in GRPC_DEPS
     ]
 
     # Create {{ .Lang.Name }} library
