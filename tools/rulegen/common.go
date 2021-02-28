@@ -7,9 +7,9 @@ var commonLangFlags = []*Flag{}
 var compileRuleAttrs = []*Attr{
     &Attr{
 		Name:      "protos",
-		Type:      "list<ProtoInfo>",
+		Type:      "list<Label[ProtoInfo]>",
 		Default:   "[]",
-		Doc:       "List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)",
+		Doc:       "List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)",
 		Mandatory: true,
 	},
 	&Attr{

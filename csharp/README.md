@@ -66,7 +66,7 @@ csharp_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `protos` | `list<Label[ProtoInfo]>` | true | `[]`    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
 | `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
@@ -131,7 +131,7 @@ csharp_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `protos` | `list<Label[ProtoInfo]>` | true | `[]`    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
 | `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
@@ -201,7 +201,7 @@ csharp_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `protos` | `list<Label[ProtoInfo]>` | true | `[]`    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
 | `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
@@ -264,7 +264,7 @@ csharp_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
+| `protos` | `list<Label[ProtoInfo]>` | true | `[]`    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
 | `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |

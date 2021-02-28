@@ -115,7 +115,7 @@ var jsLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*At
 		Name:      "deps_repo",
 		Type:      "string",
 		Default:   "@npm",
-		Doc:       "The repository to load the dependencies from, if you don't use @npm",
+		Doc:       "The repository to load the dependencies from, if you don't use `@npm`",
 		Mandatory: false,
 	},
 }...)
