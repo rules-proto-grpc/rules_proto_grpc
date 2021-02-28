@@ -251,14 +251,14 @@ def common_compile(ctx, proto_infos):
         # direct the plugin outputs to a temporary folder, then use the fixer executable to write to the final targets.
         if plugin.empty_template:
             # Create path list for fixer
-            fixer_paths_file = ctx.actions.declare_file(rel_output_root + "/" + "_plugin_unfixed_" + plugin.name + ".txt")
+            fixer_paths_file = ctx.actions.declare_file(rel_output_root + "/" + "_plugin_fixer_manifest_" + plugin.name + ".txt")
             ctx.actions.write(fixer_paths_file, "\n".join([
                 file.path.partition(output_root + "/")[2]  # Path of the file relative to the output root
                 for file in plugin_outputs
             ]))
 
             # Create output directory for protoc to write into
-            fixer_dir = ctx.actions.declare_directory(rel_output_root + "/" + "_plugin_unfixed_" + plugin.name)
+            fixer_dir = ctx.actions.declare_directory(rel_output_root + "/" + "_plugin_fixed_" + plugin.name)
             out_arg = fixer_dir.path
             plugin_protoc_outputs = [fixer_dir]
 
