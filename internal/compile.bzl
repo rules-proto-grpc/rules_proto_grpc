@@ -83,7 +83,7 @@ def common_compile(ctx, proto_infos):
         # there is no chance of overlap. A temporary dir is used here to allow output directories
         # that may need to be merged later
         rel_output_root = "_rpg_premerge_" + ctx.label.name
-        # TODO(4.0.0): Apply prefix root directly here:
+        # TODO(4.0.0): Apply prefix root directly here?
         #if ctx.attr.prefix_path:
         #    rel_output_root += "/" + ctx.attr.prefix_path
 
@@ -265,7 +265,7 @@ def common_compile(ctx, proto_infos):
             plugin_protoc_outputs = plugin_outputs
 
         # Build argument list for protoc execution
-        args, cmd_inputs, cmd_input_manifests = build_protoc_args(
+        args_list, cmd_inputs, cmd_input_manifests = build_protoc_args(
             ctx,
             plugin,
             proto_infos,
@@ -273,6 +273,8 @@ def common_compile(ctx, proto_infos):
             extra_options = all_plugin_options + per_plugin_options.get(plugin.label, []),
             extra_protoc_args = getattr(ctx.attr, "extra_protoc_args", []),
         )
+        args = ctx.actions.args()
+        args.add_all(args_list)
 
         # Add source proto files as descriptor paths
         for proto_path in proto_paths:

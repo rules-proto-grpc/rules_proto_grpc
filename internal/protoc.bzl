@@ -15,7 +15,7 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
         extra_protoc_args: An optional list of extra args to add to the command.
 
     Returns:
-        - The args object.
+        - The list of args.
         - The inputs required for the command.
         - The input manifests required for the command.
 
@@ -37,8 +37,8 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
     if plugin.protoc_plugin_name:
         plugin_name = plugin.protoc_plugin_name
 
-    # Build args object
-    args = ctx.actions.args()
+    # Build args
+    args_list = []
 
     # Load all descriptors (direct and transitive) and remove dupes
     descriptor_sets = depset([
@@ -50,7 +50,7 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
 
     # Add descriptors
     pathsep = ctx.configuration.host_path_separator
-    args.add("--descriptor_set_in={}".format(pathsep.join(
+    args_list.append("--descriptor_set_in={}".format(pathsep.join(
         [f.path for f in descriptor_sets],
     )))
 
@@ -64,7 +64,7 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
         else:
             plugin_tool_path = plugin.tool_executable.path
 
-        args.add("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
+        args_list.append("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
 
     # Add plugin --*_out/--*_opt args
     plugin_options = list(plugin.options)
@@ -75,14 +75,14 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
             [option.replace("{name}", ctx.label.name) for option in plugin_options],
         )
         if plugin.separate_options_flag:
-            args.add("--{}_opt={}".format(plugin_name, opts_str))
+            args_list.append("--{}_opt={}".format(plugin_name, opts_str))
         else:
             out_arg = "{}:{}".format(opts_str, out_arg)
-    args.add("--{}_out={}".format(plugin_name, out_arg))
+    args_list.append("--{}_out={}".format(plugin_name, out_arg))
 
     # Add any extra protoc args provided or that plugin has
-    args.add_all(extra_protoc_args)
+    args_list.extend(extra_protoc_args)
     if plugin.extra_protoc_args:
-        args.add_all(plugin.extra_protoc_args)
+        args_list.extend(plugin.extra_protoc_args)
 
-    return args, inputs, input_manifests
+    return args_list, inputs, input_manifests
