@@ -19,7 +19,6 @@ proto_plugin(
         "google/api",
         "google/protobuf",
     ],
-    options = ["paths=source_relative"],
     outputs = ["{protopath}.swagger.json"],
     tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2",
     visibility = ["//visibility:public"],
