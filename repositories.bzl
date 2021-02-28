@@ -1,6 +1,6 @@
 """Common dependencies for rules_proto_grpc."""
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
@@ -106,6 +106,29 @@ VERSIONS = {
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_dcarp_protobuf_d",
     },
 
+    # Doc
+    "protoc_gen_doc_darwin": {
+        "type": "http",
+        "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.4.1/protoc-gen-doc-1.4.1.darwin-amd64.go1.15.2.tar.gz"],
+        "sha256": "a5f7ad62d495b5a97a907b5445c23524a9cc312eeab486a79299819286a3f6b0",
+        "strip_prefix": "protoc-gen-doc-1.4.1.darwin-amd64.go1.15.2",
+        "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
+    },
+    "protoc_gen_doc_linux": {
+        "type": "http",
+        "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.4.1/protoc-gen-doc-1.4.1.linux-amd64.go1.15.2.tar.gz"],
+        "sha256": "2e476c67063af55a5608f7ef876260eb4ca400b330b762a4f59096db501c5c8c",
+        "strip_prefix": "protoc-gen-doc-1.4.1.linux-amd64.go1.15.2",
+        "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
+    },
+    "protoc_gen_doc_windows": {
+        "type": "http",
+        "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.4.1/protoc-gen-doc-1.4.1.windows-amd64.go1.15.2.tar.gz"],
+        "sha256": "6ac742671b81d339768a683dfb9a4c03ea5eaa0b6880d47df46819ea1ddb2653",
+        "strip_prefix": "protoc-gen-doc-1.4.1.windows-amd64.go1.15.2",
+        "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
+    },
+
     # Go
     "io_bazel_rules_go": {
         "type": "github",
@@ -153,6 +176,24 @@ VERSIONS = {
         "type": "http",
         "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/3.2.1/rules_nodejs-3.2.1.tar.gz"],
         "sha256": "bfacf15161d96a6a39510e7b3d3b522cf61cb8b82a31e79400a84c5abcab5347",
+    },
+    "grpc_web_plugin_darwin": {
+        "type": "http_file",  # When updating, also update in package.json and vice-versa
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-darwin-x86_64"],
+        "sha256": "81bb5d4d3ae0340568fd0739402c052f32476dd520b44355e5032b556a3bc0da",
+        "executable": True,
+    },
+    "grpc_web_plugin_linux": {
+        "type": "http_file",  # When updating, also update in package.json and vice-versa
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-linux-x86_64"],
+        "sha256": "6ce1625db7902d38d38d83690ec578c182e9cf2abaeb58d3fba1dae0c299c597",
+        "executable": True,
+    },
+    "grpc_web_plugin_windows": {
+        "type": "http_file",  # When updating, also update in package.json and vice-versa
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-windows-x86_64.exe"],
+        "sha256": "5886b4c9886dfdbfd1c7c2f26a15c396c6662b9f1acf9b6d8efbd490bc3736db",
+        "executable": True,
     },
 
     # Python
@@ -333,6 +374,24 @@ def _generic_dependency(name, **kwargs):
                     tuple(dep["urls"]),
                 ))  # buildifier: disable=print
 
+    elif dep["type"] == "http_file":
+        if name not in existing_rules:
+            args = {k: v for k, v in dep.items() if k in ["urls", "sha256", "strip_prefix", "build_file", "build_file_content"]}
+            http_file(name = name, **args)
+        elif existing_rules[name]["kind"] != "http_file":
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_file".format(
+                    name,
+                    existing_rules[name]["kind"],
+                ))  # buildifier: disable=print
+        elif existing_rules[name]["urls"] != tuple(dep["urls"]):
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
+                    name,
+                    existing_rules[name]["urls"],
+                    tuple(dep["urls"]),
+                ))  # buildifier: disable=print
+
     elif dep["type"] == "local":
         if name not in existing_rules:
             args = {k: v for k, v in dep.items() if k in ["path"]}
@@ -439,6 +498,18 @@ def com_github_dcarp_protobuf_d(**kwargs):
     _generic_dependency("com_github_dcarp_protobuf_d", **kwargs)
 
 #
+# Doc
+#
+def protoc_gen_doc_darwin(**kwargs):
+    _generic_dependency("protoc_gen_doc_darwin", **kwargs)
+
+def protoc_gen_doc_linux(**kwargs):
+    _generic_dependency("protoc_gen_doc_linux", **kwargs)
+
+def protoc_gen_doc_windows(**kwargs):
+    _generic_dependency("protoc_gen_doc_windows", **kwargs)
+
+#
 # Go
 #
 def io_bazel_rules_go(**kwargs):
@@ -467,6 +538,15 @@ def rules_jvm_external(**kwargs):
 #
 def build_bazel_rules_nodejs(**kwargs):
     _generic_dependency("build_bazel_rules_nodejs", **kwargs)
+
+def grpc_web_plugin_darwin(**kwargs):
+    _generic_dependency("grpc_web_plugin_darwin", **kwargs)
+
+def grpc_web_plugin_linux(**kwargs):
+    _generic_dependency("grpc_web_plugin_linux", **kwargs)
+
+def grpc_web_plugin_windows(**kwargs):
+    _generic_dependency("grpc_web_plugin_windows", **kwargs)
 
 #
 # Python
