@@ -1,6 +1,14 @@
 """Protoc helper rules definition for rules_proto_grpc."""
 
-def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], extra_protoc_args = []):
+def _path(file):
+    return file.path
+
+def _short_path(file):
+    return file.short_path
+
+def build_protoc_args(
+    ctx, plugin, proto_infos, out_arg, extra_options = [], extra_protoc_args = [], short_paths = False
+):
     """
     Build the args for a protoc invocation.
 
@@ -13,23 +21,20 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
         out_arg: The path to provide as the output arg to protoc, usually the generation root dir.
         extra_options: An optional list of extra options to pass to the plugin.
         extra_protoc_args: An optional list of extra args to add to the command.
+        short_paths: Whether to use the .short_path instead of .path when creating paths. The short_path is used when
+            making a test/executable and referencing the runfiles.
 
     Returns:
         - The list of args.
         - The inputs required for the command.
-        - The input manifests required for the command.
 
     """
 
-    # Build inputs and manifests list
+    # Specify path getter
+    get_path = _short_path if short_paths else _path
+
+    # Build inputs
     inputs = []
-    input_manifests = []
-
-    if plugin.tool:
-        plugin_runfiles, plugin_input_manifests = ctx.resolve_tools(tools = [plugin.tool])
-        inputs += plugin_runfiles.to_list()
-        input_manifests += plugin_input_manifests
-
     inputs += plugin.data
 
     # Get plugin name
@@ -51,7 +56,7 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
     # Add descriptors
     pathsep = ctx.configuration.host_path_separator
     args_list.append("--descriptor_set_in={}".format(pathsep.join(
-        [f.path for f in descriptor_sets],
+        [get_path(f) for f in descriptor_sets],
     )))
 
     # Add --plugin if not a built-in plugin
@@ -60,9 +65,9 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
         # `host_path_seprator` as there is no simple way to figure out what's
         # the current OS.
         if ctx.configuration.host_path_separator == ";":
-            plugin_tool_path = plugin.tool_executable.path.replace("/", "\\")
+            plugin_tool_path = get_path(plugin.tool_executable).replace("/", "\\")
         else:
-            plugin_tool_path = plugin.tool_executable.path
+            plugin_tool_path = get_path(plugin.tool_executable)
 
         args_list.append("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
 
@@ -85,4 +90,4 @@ def build_protoc_args(ctx, plugin, proto_infos, out_arg, extra_options = [], ext
     if plugin.extra_protoc_args:
         args_list.extend(plugin.extra_protoc_args)
 
-    return args_list, inputs, input_manifests
+    return args_list, inputs
