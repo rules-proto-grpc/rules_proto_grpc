@@ -7,7 +7,7 @@ set -eu
 set -o pipefail
 set -x
 
-PROTOBUF_VERSION="3.15.2"
+PROTOBUF_VERSION="3.15.3"
 GRPC_VERSION="2.35.0"
 
 OUTPUT_DIR="$(pwd)/csharp/nuget"
