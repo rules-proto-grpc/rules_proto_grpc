@@ -14,17 +14,23 @@ proto_library(
         "no_service.proto",
         "service.proto",
     ],
+    deps = [
+        "@go_googleapis//google/api:annotations_proto",
+    ],
 )
 
 go_grpc_library(
     name = "go_lib",
-    importpath = "test_import_path",
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/test_workspaces/go_fixer",
     protos = ["proto_lib"],
+    deps = [
+        "@go_googleapis//google/api:annotations_go_proto",
+    ],
 )
 
 gateway_grpc_library(
     name = "grpc_gateway_lib",
-    importpath = "test_import_path",
+    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/test_workspaces/go_fixer",
     protos = ["proto_lib"],
 )
 
