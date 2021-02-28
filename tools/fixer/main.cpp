@@ -90,8 +90,7 @@ int main(int argc, char **argv, char **envp) {
     }
 
     if (found_go_files && common_template_vars["go_package"] == "") {
-        std::cerr << "Failed to find go package for templating go files";
-        std::exit(6);
+        std::cerr << "Warning: failed to find go package for templating go files, falling back to parent dir name";
     }
 
     // Copy or create each file in the target directory
@@ -128,6 +127,9 @@ int main(int argc, char **argv, char **envp) {
 
             std::string parent_path = target_path.substr(0, target_path.rfind("/"));
             file_template_vars["parent_directory_name"] = parent_path.substr(parent_path.rfind("/") + 1);
+            if (file_template_vars["go_package"] == "") {
+                file_template_vars["go_package"] = file_template_vars["parent_directory_name"];
+            }
 
             // Replace template variables
             std::string file_template_str = std::string(template_str);
