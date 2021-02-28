@@ -376,7 +376,7 @@ def _generic_dependency(name, **kwargs):
 
     elif dep["type"] == "http_file":
         if name not in existing_rules:
-            args = {k: v for k, v in dep.items() if k in ["urls", "sha256", "strip_prefix", "build_file", "build_file_content"]}
+            args = {k: v for k, v in dep.items() if k in ["urls", "sha256", "executable"]}
             http_file(name = name, **args)
         elif existing_rules[name]["kind"] != "http_file":
             if ENABLE_VERSION_NAGS:
