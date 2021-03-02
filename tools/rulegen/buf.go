@@ -108,6 +108,7 @@ Note that these rules behave differently from the other rules in this repo, sinc
 
 Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 		Flags: commonLangFlags,
+		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "buf_proto_breaking_test",

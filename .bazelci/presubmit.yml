@@ -255,15 +255,6 @@ tasks:
     test_targets:
       - "//..."
     working_directory: example/buf/buf_proto_breaking_test
-  buf_buf_proto_breaking_test_windows:
-    name: 'buf: buf_proto_breaking_test'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    test_targets:
-      - "//..."
-    working_directory: example/buf/buf_proto_breaking_test
   buf_buf_proto_breaking_test_macos:
     name: 'buf: buf_proto_breaking_test'
     platform: macos
@@ -277,15 +268,6 @@ tasks:
   buf_buf_proto_lint_test_ubuntu1804:
     name: 'buf: buf_proto_lint_test'
     platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    test_targets:
-      - "//..."
-    working_directory: example/buf/buf_proto_lint_test
-  buf_buf_proto_lint_test_windows:
-    name: 'buf: buf_proto_lint_test'
-    platform: windows
     build_flags:
     build_targets:
       - "//..."
