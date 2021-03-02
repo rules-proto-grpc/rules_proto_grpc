@@ -32,14 +32,22 @@ def build_protoc_args(
     Returns:
         - The list of args.
         - The inputs required for the command.
+        - The input manifests required for the command.
 
     """
 
     # Specify path getter
     get_path = _short_path if short_paths else _path
 
-    # Build inputs
+    # Build inputs and manifests list
     inputs = []
+    input_manifests = []
+
+    if plugin.tool:
+        plugin_runfiles, plugin_input_manifests = ctx.resolve_tools(tools = [plugin.tool])
+        inputs += plugin_runfiles.to_list()
+        input_manifests += plugin_input_manifests
+
     inputs += plugin.data
 
     # Get plugin name
@@ -95,4 +103,4 @@ def build_protoc_args(
     if plugin.extra_protoc_args:
         args_list.extend(plugin.extra_protoc_args)
 
-    return args_list, inputs
+    return args_list, inputs, input_manifests

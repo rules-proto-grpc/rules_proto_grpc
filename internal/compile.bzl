@@ -265,7 +265,7 @@ def common_compile(ctx, proto_infos):
             plugin_protoc_outputs = plugin_outputs
 
         # Build argument list for protoc execution
-        args_list, cmd_inputs = build_protoc_args(
+        args_list, cmd_inputs, cmd_input_manifests = build_protoc_args(
             ctx,
             plugin,
             proto_infos,
@@ -326,6 +326,7 @@ def common_compile(ctx, proto_infos):
             tools = tools,
             outputs = plugin_protoc_outputs,
             use_default_shell_env = plugin.use_built_in_shell_environment,
+            input_manifests = cmd_input_manifests,
             progress_message = "Compiling protoc outputs for {} plugin on target {}".format(plugin.name, ctx.label),
         )
 
