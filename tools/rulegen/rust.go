@@ -69,7 +69,6 @@ GRPC_DEPS = [
     Label("//rust/raze:futures"),
     Label("//rust/raze:grpcio"),
     Label("//rust/raze:protobuf"),
-    Label("//rust:ares"),
     Label("//rust:upb_libdescriptor_proto"),
 ]`)
 
