@@ -13,7 +13,8 @@ def build_protoc_args(
         out_arg,
         extra_options = [],
         extra_protoc_args = [],
-        short_paths = False):
+        short_paths = False,
+        resolve_tools = True):
     """
     Build the args for a protoc invocation.
 
@@ -28,6 +29,7 @@ def build_protoc_args(
         extra_protoc_args: An optional list of extra args to add to the command.
         short_paths: Whether to use the .short_path instead of .path when creating paths. The short_path is used when
             making a test/executable and referencing the runfiles.
+        resolve_tools: Whether to resolve and add the tools to returned inputs.
 
     Returns:
         - The list of args.
@@ -43,7 +45,7 @@ def build_protoc_args(
     inputs = []
     input_manifests = []
 
-    if plugin.tool:
+    if plugin.tool and resolve_tools:
         plugin_runfiles, plugin_input_manifests = ctx.resolve_tools(tools = [plugin.tool])
         inputs += plugin_runfiles.to_list()
         input_manifests += plugin_input_manifests
