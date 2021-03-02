@@ -50,6 +50,13 @@ load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repo
 android_sdk_repository(name = "androidsdk")
 
 #
+# Buf
+#
+load("//buf:repositories.bzl", "buf_repos")
+
+buf_repos()
+
+#
 # Go
 #
 # Load rules_go before running grpc_deps in C++, since that depends on a very old version of
