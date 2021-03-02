@@ -276,6 +276,13 @@ def common_compile(ctx, proto_infos):
         args = ctx.actions.args()
         args.add_all(args_list)
 
+        # Add import roots and files if required by plugin
+        # By default we pass just the descriptors and the proto paths, but these may not contain all of the comments
+        # etc from the source files
+        if "QUIRK_DIRECT_MODE" in plugin.quirks:
+            args.add_all(["--proto_path=" + proto_info.proto_source_root for proto_info in proto_infos])
+            cmd_inputs += protos
+
         # Add source proto files as descriptor paths
         for proto_path in proto_paths:
             args.add(proto_path)
@@ -286,7 +293,7 @@ def common_compile(ctx, proto_infos):
 
         mnemonic = "ProtoCompile"
         command = ("mkdir -p '{}' && ".format(output_root)) + protoc.path + " $@"  # $@ is replaced with args list
-        inputs = cmd_inputs  # Proto files are not inputs, as they come via the descriptor sets
+        inputs = cmd_inputs
         tools = [protoc] + ([plugin.tool_executable] if plugin.tool_executable else [])
 
         # Amend command with debug options

@@ -7,14 +7,14 @@ var commonLangFlags = []*Flag{}
 var compileRuleAttrs = []*Attr{
     &Attr{
 		Name:      "protos",
-		Type:      "list<Label[ProtoInfo]>",
-		Default:   "[]",
+		Type:      "label_list",
 		Doc:       "List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)",
 		Mandatory: true,
+		Providers: []string{"ProtoInfo"},
 	},
 	&Attr{
 		Name:      "options",
-		Type:      "dict<string, list(string)>",
+		Type:      "string_list_dict",
 		Default:   "[]",
 		Doc:       "Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins",
 		Mandatory: false,
@@ -35,7 +35,7 @@ var compileRuleAttrs = []*Attr{
 	},
 	&Attr{
 		Name:      "extra_protoc_args",
-		Type:      "list<string>",
+		Type:      "string_list",
 		Default:   "[]",
 		Doc:       "A list of extra args to pass directly to protoc, not as plugin options",
 		Mandatory: false,
@@ -46,7 +46,7 @@ var compileRuleAttrs = []*Attr{
 var libraryRuleAttrs = append(append([]*Attr(nil), compileRuleAttrs...), []*Attr{
     &Attr{
 		Name:      "deps",
-		Type:      "list<Label/string>",
+		Type:      "label_list",
 		Default:   "[]",
 		Doc:       "List of labels to pass as deps attr to underlying lang_library rule",
 		Mandatory: false,
@@ -87,7 +87,7 @@ load(
     toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
-# Create compile rule to apply aspect
+# Create compile rule
 _rule = rule(
     implementation = proto_compile_impl,
     attrs = dict(
@@ -95,7 +95,7 @@ _rule = rule(
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
             providers = [ProtoInfo],
-            doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
+            doc = "List of labels that provide the ProtoInfo provider (such as proto_library from rules_proto)",
         ),
         deps = attr.label_list(
             mandatory = False,
@@ -104,11 +104,11 @@ _rule = rule(
             doc = "DEPRECATED: Use protos attr",
         ),
         _plugins = attr.label_list(
-            doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [{{ range .Rule.Plugins }}
                 Label("{{ . }}"),{{ end }}
             ],
+            doc = "List of protoc plugins to apply",
         ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],

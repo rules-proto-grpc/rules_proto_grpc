@@ -72,6 +72,32 @@ VERSIONS = {
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
     },
 
+    # Buf
+    "protoc_gen_buf_breaking_darwin": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-breaking-Darwin-x86_64"],
+        "sha256": "639f57ade58f16996c861df9de7d819e6443f58b8087b44af81863eb9e781ba8",
+        "executable": True,
+    },
+    "protoc_gen_buf_breaking_linux": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-breaking-Linux-x86_64"],
+        "sha256": "298f56d527c8acea7cb51929bf1ebc75a96fd2f0c294248db68d3ba479086c53",
+        "executable": True,
+    },
+    "protoc_gen_buf_lint_darwin": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-lint-Darwin-x86_64"],
+        "sha256": "83884b667e33d2ba52f3d2976ad6d1a02333f93f73f719600d5e612f7d58c2a8",
+        "executable": True,
+    },
+    "protoc_gen_buf_lint_linux": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-lint-Linux-x86_64"],
+        "sha256": "ded760a019da3b5da89feecde1eb831649a70cc2305f1b82675a4080d12acddc",
+        "executable": True,
+    },
+
     # C
     "upb": {
         "type": "github",
@@ -475,6 +501,21 @@ def bazel_skylib(**kwargs):
 #
 def build_bazel_rules_android(**kwargs):
     _generic_dependency("build_bazel_rules_android", **kwargs)
+
+#
+# Buf
+#
+def protoc_gen_buf_breaking_darwin(**kwargs):
+    _generic_dependency("protoc_gen_buf_breaking_darwin", **kwargs)
+
+def protoc_gen_buf_breaking_linux(**kwargs):
+    _generic_dependency("protoc_gen_buf_breaking_linux", **kwargs)
+
+def protoc_gen_buf_lint_darwin(**kwargs):
+    _generic_dependency("protoc_gen_buf_lint_darwin", **kwargs)
+
+def protoc_gen_buf_lint_linux(**kwargs):
+    _generic_dependency("protoc_gen_buf_lint_linux", **kwargs)
 
 #
 # C

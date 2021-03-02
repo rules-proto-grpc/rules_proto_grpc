@@ -7,7 +7,10 @@ proto_plugin(
         "docbook",
         "{name}.xml",
     ],
-    quirks = ["QUIRK_OUT_PASS_ROOT"],
+    quirks = [
+        "QUIRK_OUT_PASS_ROOT",
+        "QUIRK_DIRECT_MODE",
+    ],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
@@ -23,7 +26,10 @@ proto_plugin(
         "html",
         "{name}.html",
     ],
-    quirks = ["QUIRK_OUT_PASS_ROOT"],
+    quirks = [
+        "QUIRK_OUT_PASS_ROOT",
+        "QUIRK_DIRECT_MODE",
+    ],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
@@ -39,7 +45,10 @@ proto_plugin(
         "json",
         "{name}.json",
     ],
-    quirks = ["QUIRK_OUT_PASS_ROOT"],
+    quirks = [
+        "QUIRK_OUT_PASS_ROOT",
+        "QUIRK_DIRECT_MODE",
+    ],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",
@@ -55,7 +64,10 @@ proto_plugin(
         "markdown",
         "{name}.md",
     ],
-    quirks = ["QUIRK_OUT_PASS_ROOT"],
+    quirks = [
+        "QUIRK_OUT_PASS_ROOT",
+        "QUIRK_DIRECT_MODE",
+    ],
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux//:protoc-gen-doc",

@@ -35,6 +35,7 @@ Bazel 4.0 compatibility and updated dependencies are in progress.
 - [Installation](#installation)
 - [Rules](#rules)
     - [Android](/android/README.md)
+    - [Buf](/buf/README.md)
     - [C](/c/README.md)
     - [C++](/cpp/README.md)
     - [C#](/csharp/README.md)
@@ -126,6 +127,8 @@ repository.
 | [Android](/android) | [android_grpc_compile](/android#android_grpc_compile) | Generates Android protobuf and gRPC `.jar` files ([example](/example/android/android_grpc_compile)) |
 | [Android](/android) | [android_proto_library](/android#android_proto_library) | Generates an Android protobuf library using `android_library` from `rules_android` ([example](/example/android/android_proto_library)) |
 | [Android](/android) | [android_grpc_library](/android#android_grpc_library) | Generates Android protobuf and gRPC library using `android_library` from `rules_android` ([example](/example/android/android_grpc_library)) |
+| [Buf](/buf) | [buf_proto_breaking_test](/buf#buf_proto_breaking_test) | Checks .proto files for breaking changes ([example](/example/buf/buf_proto_breaking_test)) |
+| [Buf](/buf) | [buf_proto_lint_test](/buf#buf_proto_lint_test) | Lints .proto files ([example](/example/buf/buf_proto_lint_test)) |
 | [C](/c) | [c_proto_compile](/c#c_proto_compile) | Generates C protobuf `.h` & `.c` files ([example](/example/c/c_proto_compile)) |
 | [C](/c) | [c_proto_library](/c#c_proto_library) | Generates a C protobuf library using `cc_library`, with dependencies linked ([example](/example/c/c_proto_library)) |
 | [C++](/cpp) | [cpp_proto_compile](/cpp#cpp_proto_compile) | Generates C++ protobuf `.h` & `.cc` files ([example](/example/cpp/cpp_proto_compile)) |
@@ -375,7 +378,7 @@ _rule = rule(
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
             providers = [ProtoInfo],
-            doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
+            doc = "List of labels that provide the ProtoInfo provider (such as proto_library from rules_proto)",
         ),
         deps = attr.label_list(
             mandatory = False,
@@ -384,11 +387,11 @@ _rule = rule(
             doc = "DEPRECATED: Use protos attr",
         ),
         _plugins = attr.label_list(
-            doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
                 Label("//<LABEL OF YOUR PLUGIN>"),
             ],
+            doc = "List of protoc plugins to apply",
         ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],

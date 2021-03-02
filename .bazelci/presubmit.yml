@@ -9,6 +9,7 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     build_targets:
+    - "//buf/..."
     - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
@@ -94,6 +95,7 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     build_targets:
+    - "//buf/..."
     - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
@@ -244,6 +246,62 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
+  buf_buf_proto_breaking_test_ubuntu1804:
+    name: 'buf: buf_proto_breaking_test'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_breaking_test
+  buf_buf_proto_breaking_test_windows:
+    name: 'buf: buf_proto_breaking_test'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_breaking_test
+  buf_buf_proto_breaking_test_macos:
+    name: 'buf: buf_proto_breaking_test'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_breaking_test
+  buf_buf_proto_lint_test_ubuntu1804:
+    name: 'buf: buf_proto_lint_test'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_lint_test
+  buf_buf_proto_lint_test_windows:
+    name: 'buf: buf_proto_lint_test'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_lint_test
+  buf_buf_proto_lint_test_macos:
+    name: 'buf: buf_proto_lint_test'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_lint_test
   c_c_proto_compile_ubuntu1804:
     name: 'c: c_proto_compile'
     platform: ubuntu1804

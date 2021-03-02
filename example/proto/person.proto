@@ -7,6 +7,9 @@ package example.proto;
 import "example/proto/place.proto";
 
 message Person {
+    // The person's name
     string name = 1;
+
+    // The person's place
     example.proto.Place place = 3;
 }

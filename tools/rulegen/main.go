@@ -98,6 +98,7 @@ func action(c *cli.Context) error {
 
 	languages := []*Language{
 		makeAndroid(),
+		makeBuf(),
 		makeC(),
 		makeCpp(),
 		makeCsharp(),
@@ -296,7 +297,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 
 		if rule.Experimental {
-			out.w(`> NOTE: this rule is EXPERIMENTAL.  It may not work correctly or even compile!`)
+			out.w(`> NOTE: This rule is experimental. It may not work correctly!`)
 			out.ln()
 		}
 		out.w(rule.Doc)
@@ -462,6 +463,10 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				}
 				out.w("    build_targets:")
 				out.w(`      - "//..."`)
+				if rule.IsTest {
+					out.w("    test_targets:")
+					out.w(`      - "//..."`)
+				}
 				out.w("    working_directory: %s", exampleDir)
 
 				if len(lang.PresubmitEnvVars) > 0 || len(rule.PresubmitEnvVars) > 0 {
@@ -526,7 +531,11 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			out.w(".PHONY: %s", name)
 			out.w("%s:", name)
 			out.w("	cd %s; \\", exampleDir)
-			out.w("	bazel --batch build --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+			if rule.IsTest {
+				out.w("	bazel --batch test --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+			} else {
+				out.w("	bazel --batch build --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+			}
 			out.ln()
 		}
 

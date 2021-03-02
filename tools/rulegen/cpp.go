@@ -88,14 +88,14 @@ var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*A
 	},
 	&Attr{
 		Name:      "copts",
-		Type:      "list<string>",
+		Type:      "string_list",
 		Default:   "None",
 		Doc:       "Passed to the `opts` attribute of `cc_library`.",
 		Mandatory: false,
 	},
 	&Attr{
 		Name:      "defines",
-		Type:      "list<string>",
+		Type:      "string_list",
 		Default:   "None",
 		Doc:       "Passed to the `defines` attribute of `cc_library`.",
 		Mandatory: false,
@@ -109,7 +109,7 @@ var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*A
 	},
 	&Attr{
 		Name:      "linkopts",
-		Type:      "list<string>",
+		Type:      "string_list",
 		Default:   "None",
 		Doc:       "Passed to the `linkopts` attribute of `cc_library`.",
 		Mandatory: false,
@@ -123,7 +123,7 @@ var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*A
 	},
 	&Attr{
 		Name:      "local_defines",
-		Type:      "list<string>",
+		Type:      "string_list",
 		Default:   "None",
 		Doc:       "Passed to the `local_defines` attribute of `cc_library`.",
 		Mandatory: false,

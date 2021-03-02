@@ -8,7 +8,7 @@ func makeDoc() *Language {
 		Notes: mustTemplate("Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc)"),
 		Flags: commonLangFlags,
 		Rules: []*Rule{
-		    &Rule{
+			&Rule{
 				Name:             "doc_docbook_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
@@ -17,6 +17,7 @@ func makeDoc() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates DocBook `.xml` documentation file",
 				Attrs:            compileRuleAttrs,
+				Experimental:     true,
 			},
 			&Rule{
 				Name:             "doc_html_compile",
@@ -27,6 +28,7 @@ func makeDoc() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates `.html` documentation file",
 				Attrs:            compileRuleAttrs,
+				Experimental:     true,
 			},
 			&Rule{
 				Name:             "doc_json_compile",
@@ -37,6 +39,7 @@ func makeDoc() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates `.json` documentation file",
 				Attrs:            compileRuleAttrs,
+				Experimental:     true,
 			},
 			&Rule{
 				Name:             "doc_markdown_compile",
@@ -47,6 +50,7 @@ func makeDoc() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Markdown `.md` documentation file",
 				Attrs:            compileRuleAttrs,
+				Experimental:     true,
 			},
 		},
 	}

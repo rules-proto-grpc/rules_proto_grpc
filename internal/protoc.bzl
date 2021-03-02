@@ -7,8 +7,13 @@ def _short_path(file):
     return file.short_path
 
 def build_protoc_args(
-    ctx, plugin, proto_infos, out_arg, extra_options = [], extra_protoc_args = [], short_paths = False
-):
+        ctx,
+        plugin,
+        proto_infos,
+        out_arg,
+        extra_options = [],
+        extra_protoc_args = [],
+        short_paths = False):
     """
     Build the args for a protoc invocation.
 

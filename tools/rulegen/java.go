@@ -81,7 +81,7 @@ GRPC_DEPS = [
 var javaLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{
 		Name:      "exports",
-		Type:      "list",
+		Type:      "label_list",
 		Default:   "[]",
 		Doc:       "List of labels to pass as exports attr to underlying lang_library rule",
 		Mandatory: false,
