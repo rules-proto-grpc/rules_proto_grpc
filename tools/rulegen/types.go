@@ -79,6 +79,9 @@ type Rule struct {
 	// Platforms for which to skip testing this rule, overrides language level
 	// The special value 'all' will skip app platforms
 	SkipTestPlatforms []string
+
+	// If the rule is a test rule
+	IsTest bool
 }
 
 // Flag captures information about a bazel build flag.
@@ -95,6 +98,7 @@ type Attr struct {
 	Default   string
 	Doc       string
 	Mandatory bool
+	Providers []string
 }
 
 // Templating types

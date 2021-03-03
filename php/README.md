@@ -4,14 +4,14 @@ Rules for generating PHP protobuf and gRPC `.php` files and libraries using stan
 
 | Rule | Description |
 | ---: | :--- |
-| [php_proto_compile](#php_proto_compile) | Generates PHP protobuf `.php` artifacts |
-| [php_grpc_compile](#php_grpc_compile) | Generates PHP protobuf+gRPC `.php` artifacts |
+| [php_proto_compile](#php_proto_compile) | Generates PHP protobuf `.php` files |
+| [php_grpc_compile](#php_grpc_compile) | Generates PHP protobuf and gRPC `.php` files |
 
 ---
 
 ## `php_proto_compile`
 
-Generates PHP protobuf `.php` artifacts
+Generates PHP protobuf `.php` files
 
 ### `WORKSPACE`
 
@@ -46,11 +46,11 @@ php_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 
 ### Plugins
 
@@ -60,7 +60,7 @@ php_proto_compile(
 
 ## `php_grpc_compile`
 
-Generates PHP protobuf+gRPC `.php` artifacts
+Generates PHP protobuf and gRPC `.php` files
 
 ### `WORKSPACE`
 
@@ -94,11 +94,11 @@ php_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 
 ### Plugins
 

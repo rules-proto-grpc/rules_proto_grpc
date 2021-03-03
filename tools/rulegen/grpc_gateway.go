@@ -92,7 +92,7 @@ func makeGrpcGateway() *Language {
 			&Rule{
 				Name:             "gateway_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//grpc-gateway:grpc_gateway_plugin", "//go:grpc_go_plugin", "//go:go_plugin"},
 				WorkspaceExample: grpcGatewayWorkspaceTemplate,
 				BuildExample:     grpcGatewayCompileExampleTemplate,
@@ -102,7 +102,7 @@ func makeGrpcGateway() *Language {
 			&Rule{
 				Name:              "gateway_openapiv2_compile",
 				Kind:              "grpc",
-				Implementation:    aspectRuleTemplate,
+				Implementation:    compileRuleTemplate,
 				Plugins:           []string{"//grpc-gateway:openapiv2_plugin"},
 				WorkspaceExample:  grpcGatewayWorkspaceTemplate,
 				BuildExample:      grpcGatewayCompileExampleTemplate,

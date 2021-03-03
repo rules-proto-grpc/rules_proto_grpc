@@ -1,5 +1,46 @@
 # Changelog
 
+## 3.1.0
+
+This update mostly brings fixes to the JavaScript rules, along with new rules for generating Markdown, JSON, HTML or
+DocBook documentation from .proto files using [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc).
+Additionally, new `buf_proto_lint` and `buf_proto_breaking` rules have been added to support linting .proto files and
+checking for breaking changes using [Buf](https://buf.build).
+
+### General
+- Updated protobuf to 3.15.3
+
+### Buf
+- Added linting and breaking change detection rules using [Buf](https://buf.build)
+
+### Doc
+- Added documentation rules to generate Markdown, JSON, HTML or DocBook files using
+  [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc)
+
+### grpc-gateway
+- Updated grpc-gateway to 2.3.0
+- Fixed issue with mixing .proto files that do and do not contain services
+  [#72](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/72)
+
+### JavaScript
+- Updated `rules_nodejs` to 3.2.1
+- **WORKSPACE update needed**: The dependencies for JavaScript rules must now be loaded into your local `packge.json`,
+  which defaults to the name `@npm`. The `yarn_install` for `js_modules` in your WORKSPACE can now also be removed
+- Updated `@grpc/grpc-js` to 1.2.8
+- Fixed missing `DeclarationInfo` when using the `js_grpc_node_library` or `js_grpc_web_library` rules
+  [#113](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/113)
+- Added a TypeScript test workspace
+
+### Objective-C
+- Added the `objc_grpc_library` experimental rule
+
+### Rust
+- Updated `rules_rust` to latest
+- Updated `grpcio` to 0.8.0
+- Updated `protobuf` to 2.22.0
+
+---
+
 ## 3.0.0
 
 This update brings some major improvements to rules_proto_grpc and solves many of the longstanding issues that have been

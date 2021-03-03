@@ -1,0 +1,23 @@
+load("//:defs.bzl", "proto_plugin")
+
+proto_plugin(
+    name = "breaking_plugin",
+    quirks = ["QUIRK_DIRECT_MODE"],
+    separate_options_flag = True,
+    tool = select({
+        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_buf_breaking_darwin//file",
+        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_buf_breaking_linux//file",
+    }),
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "lint_plugin",
+    quirks = ["QUIRK_DIRECT_MODE"],
+    separate_options_flag = True,
+    tool = select({
+        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_buf_lint_darwin//file",
+        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_buf_lint_linux//file",
+    }),
+    visibility = ["//visibility:public"],
+)

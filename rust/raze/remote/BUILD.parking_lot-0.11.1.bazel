@@ -6,15 +6,15 @@ DO NOT EDIT! Replaced on runs of cargo-raze
 """
 
 # buildifier: disable=load
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+# buildifier: disable=load
 load(
     "@rules_rust//rust:rust.bzl",
     "rust_binary",
     "rust_library",
     "rust_test",
 )
-
-# buildifier: disable=load
-load("@bazel_skylib//lib:selects.bzl", "selects")
 
 package(default_visibility = [
     # Public for visibility by "@raze__crate__version//" targets.
@@ -52,7 +52,7 @@ rust_library(
     deps = [
         "@raze__instant__0_1_9//:instant",
         "@raze__lock_api__0_4_2//:lock_api",
-        "@raze__parking_lot_core__0_8_2//:parking_lot_core",
+        "@raze__parking_lot_core__0_8_3//:parking_lot_core",
     ],
 )
 

@@ -33,7 +33,7 @@ swift_proto_compile_aspect = aspect(
     toolchains = [str(Label("//protobuf:toolchain_type"))],
 )
 
-# Create compile rule to apply aspect
+# Create compile rule
 _rule = rule(
     implementation = proto_compile_impl,
     attrs = dict(
@@ -41,7 +41,7 @@ _rule = rule(
         protos = attr.label_list(
             mandatory = False,  # TODO: set to true in 4.0.0 when deps removed below
             providers = [ProtoInfo],
-            doc = "List of labels that provide a ProtoInfo (such as rules_proto proto_library)",
+            doc = "List of labels that provide the ProtoInfo provider (such as proto_library from rules_proto)",
         ),
         deps = attr.label_list(
             mandatory = False,
@@ -50,11 +50,11 @@ _rule = rule(
             doc = "DEPRECATED: Use protos attr",
         ),
         _plugins = attr.label_list(
-            doc = "List of protoc plugins to apply",
             providers = [ProtoPluginInfo],
             default = [
                 Label("//swift:swift_plugin"),
             ],
+            doc = "List of protoc plugins to apply",
         ),
     ),
     toolchains = [str(Label("//protobuf:toolchain_type"))],

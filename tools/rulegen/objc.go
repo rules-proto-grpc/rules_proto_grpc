@@ -74,8 +74,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
 
 GRPC_DEPS = [
     "@com_google_protobuf//:protobuf_objc",
-    "@com_github_grpc_grpc//:grpc++",
-    "@rules_proto_grpc//objc:grpc_lib",
+    "@com_github_grpc_grpc//src/objective-c:proto_objc_rpc",
 ]`)
 
 func makeObjc() *Language {
@@ -90,21 +89,21 @@ func makeObjc() *Language {
 			&Rule{
 				Name:             "objc_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//objc:objc_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Objective-C protobuf `.m` & `.h` artifacts",
+				Doc:              "Generates Objective-C protobuf `.m` & `.h` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "objc_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//objc:objc_plugin", "//objc:grpc_objc_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Objective-C protobuf+gRPC `.m` & `.h` artifacts",
+				Doc:              "Generates Objective-C protobuf and gRPC `.m` & `.h` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -116,15 +115,16 @@ func makeObjc() *Language {
 				Doc:              "Generates an Objective-C protobuf library using `objc_library`",
 				Attrs:            cppLibraryRuleAttrs,
 			},
-// 			&Rule{ // Disabled due to issues fetching gRPC dependencies
-// 				Name:             "objc_grpc_library",
-// 				Kind:             "grpc",
-// 				Implementation:   objcGrpcLibraryRuleTemplate,
-// 				WorkspaceExample: grpcWorkspaceTemplate,
-// 				BuildExample:     grpcLibraryExampleTemplate,
-// 				Doc:              "Generates an Objective-C protobuf+gRPC library using `objc_library`",
-// 				Attrs:            cppLibraryRuleAttrs,
-// 			},
+			&Rule{
+				Name:             "objc_grpc_library",
+				Kind:             "grpc",
+				Implementation:   objcGrpcLibraryRuleTemplate,
+				WorkspaceExample: grpcWorkspaceTemplate,
+				BuildExample:     grpcLibraryExampleTemplate,
+				Doc:              "Generates an Objective-C protobuf and gRPC library using `objc_library`",
+				Attrs:            cppLibraryRuleAttrs,
+				Experimental:     true,
+			},
 		},
 	}
 }

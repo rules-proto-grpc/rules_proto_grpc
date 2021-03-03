@@ -16,6 +16,7 @@ ProtoPluginInfo = provider(fields = {
     "data": "Additional files required for running the plugin",
     "separate_options_flag": "Flag to indicate if plugin options should be sent via the --{lang}_opts flag",
     "empty_template": "Template file to use to fill missing outputs",
+    "quirks": "List of plugin quirks that toggle behaviours in compilation",
 })
 
 ProtoLibraryAspectNodeInfo = provider(

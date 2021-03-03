@@ -26,23 +26,9 @@ proto_plugin(
     visibility = ["//visibility:public"],
 )
 
-# Bodge to allow linking against c-ares.
-# The @com_github_cares_cares//:ares rule will output a .lo file that the rust rules don't know how
-# to handle and therefore fails to link. See https://github.com/bazelbuild/rules_rust/issues/325
-genrule(
-    name = "copy_ares",
-    srcs = ["@com_github_cares_cares//:ares"],
-    outs = ["libares.a"],
-    cmd = "cp $(location @com_github_cares_cares//:ares) \"$@\"",
-)
-
-cc_import(
-    name = "ares",
-    static_library = ":copy_ares",
-    visibility = ["//visibility:public"],
-)
-
-# Do the same for @upb libdescriptor_proto.upb.a, which again fails to be taken as a valid static lib by rules_rust
+# Bodge to fix missing missing descriptors
+# Trying to use @upb//:descriptor_upb_proto directly does not work, but renaming to remove the 'upb.a' extenstion does
+# work
 genrule(
     name = "copy_upb_libdescriptor_proto",
     srcs = ["@upb//:descriptor_upb_proto"],

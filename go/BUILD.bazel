@@ -19,9 +19,7 @@ proto_plugin(
         "google/api",
         "google/protobuf",
     ],
-    options = [
-        "paths=source_relative",
-    ],
+    options = ["paths=source_relative"],
     outputs = ["{protopath}_grpc.pb.go"],
     tool = "@org_golang_google_grpc_cmd_protoc_gen_go_grpc//:protoc-gen-go-grpc",
     visibility = ["//visibility:public"],

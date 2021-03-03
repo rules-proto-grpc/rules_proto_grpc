@@ -11,6 +11,7 @@ load(
     "strip_path_prefix",
 )
 load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoLibraryAspectNodeInfo", "ProtoPluginInfo")
+load("//internal:protoc.bzl", "build_protoc_args")
 
 proto_compile_attrs = {
     # Deps and protos attrs are added per-rule, as it depends on aspect name
@@ -82,7 +83,7 @@ def common_compile(ctx, proto_infos):
         # there is no chance of overlap. A temporary dir is used here to allow output directories
         # that may need to be merged later
         rel_output_root = "_rpg_premerge_" + ctx.label.name
-        # TODO(4.0.0): Apply prefix root directly here:
+        # TODO(4.0.0): Apply prefix root directly here?
         #if ctx.attr.prefix_path:
         #    rel_output_root += "/" + ctx.attr.prefix_path
 
@@ -126,32 +127,8 @@ def common_compile(ctx, proto_infos):
 
     for plugin in plugins:
         ###
-        ### Fetch plugin tool and runfiles
+        ### Check plugin
         ###
-
-        # Files required for running the plugin
-        plugin_runfiles = []
-
-        # Plugin input manifests
-        plugin_input_manifests = None
-
-        # Get plugin name
-        plugin_name = plugin.name
-        if plugin.protoc_plugin_name:
-            plugin_name = plugin.protoc_plugin_name
-
-        # Add plugin executable if not a built-in plugin
-        plugin_tool = None
-        if plugin.tool_executable:
-            plugin_tool = plugin.tool_executable
-
-        # Add plugin runfiles if plugin has a tool
-        if plugin.tool:
-            plugin_runfiles, plugin_input_manifests = ctx.resolve_tools(tools = [plugin.tool])
-            plugin_runfiles = plugin_runfiles.to_list()
-
-        # Add extra plugin data files to runfiles
-        plugin_runfiles += plugin.data
 
         # Check plugin outputs
         if plugin.output_directory and (plugin.out or plugin.outputs or plugin.empty_template):
@@ -172,7 +149,8 @@ def common_compile(ctx, proto_infos):
                     for exclusion in plugin.exclusions
                 ]) or proto in protos:
                     # When using import_prefix, the ProtoInfo.direct_sources list appears to contain duplicate records,
-                    # the final check 'proto in protos' removes these. See https://github.com/bazelbuild/bazel/issues/9127
+                    # the final check 'proto in protos' removes these. See
+                    # https://github.com/bazelbuild/bazel/issues/9127
                     continue
 
                 # Proto not excluded
@@ -251,14 +229,14 @@ def common_compile(ctx, proto_infos):
         # direct the plugin outputs to a temporary folder, then use the fixer executable to write to the final targets.
         if plugin.empty_template:
             # Create path list for fixer
-            fixer_paths_file = ctx.actions.declare_file(rel_output_root + "/" + "_plugin_ef_" + plugin.name + ".txt")
+            fixer_paths_file = ctx.actions.declare_file(rel_output_root + "/" + "_plugin_fixer_manifest_" + plugin.name + ".txt")
             ctx.actions.write(fixer_paths_file, "\n".join([
-                file.path.partition(output_root + "/")[2]
+                file.path.partition(output_root + "/")[2]  # Path of the file relative to the output root
                 for file in plugin_outputs
             ]))
 
             # Create output directory for protoc to write into
-            fixer_dir = ctx.actions.declare_directory(rel_output_root + "/" + "_plugin_ef_" + plugin.name)
+            fixer_dir = ctx.actions.declare_directory(rel_output_root + "/" + "_plugin_fixed_" + plugin.name)
             out_arg = fixer_dir.path
             plugin_protoc_outputs = [fixer_dir]
 
@@ -278,59 +256,32 @@ def common_compile(ctx, proto_infos):
 
         else:
             # No fixer, protoc writes files directly
-            out_arg = out_file.path if out_file else output_root
+            if out_file and "QUIRK_OUT_PASS_ROOT" not in plugin.quirks:
+                # Single output file, pass the full file name to out arg, unless QUIRK_OUT_PASS_ROOT quirk is in use
+                out_arg = out_file.path
+            else:
+                # No single output (or QUIRK_OUT_PASS_ROOT enabled), pass root dir
+                out_arg = output_root
             plugin_protoc_outputs = plugin_outputs
 
-        # Argument list for protoc execution
+        # Build argument list for protoc execution
+        args_list, cmd_inputs, cmd_input_manifests = build_protoc_args(
+            ctx,
+            plugin,
+            proto_infos,
+            out_arg,
+            extra_options = all_plugin_options + per_plugin_options.get(plugin.label, []),
+            extra_protoc_args = getattr(ctx.attr, "extra_protoc_args", []),
+        )
         args = ctx.actions.args()
+        args.add_all(args_list)
 
-        # Load all descriptors (direct and transitive) and remove dupes
-        descriptor_sets = depset([
-            descriptor
-            for proto_info in proto_infos
-            for descriptor in proto_info.transitive_descriptor_sets.to_list()
-        ]).to_list()
-
-        # Add descriptors
-        pathsep = ctx.configuration.host_path_separator
-        args.add("--descriptor_set_in={}".format(pathsep.join(
-            [f.path for f in descriptor_sets],
-        )))
-
-        # Add --plugin if not a built-in plugin
-        if plugin_tool:
-            # If Windows, mangle the path. It's done a bit awkwardly with
-            # `host_path_seprator` as there is no simple way to figure out what's
-            # the current OS.
-            plugin_tool_path = None
-            if ctx.configuration.host_path_separator == ";":
-                plugin_tool_path = plugin_tool.path.replace("/", "\\")
-            else:
-                plugin_tool_path = plugin_tool.path
-
-            args.add("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
-
-        # Add plugin --*_out/--*_opt args
-        plugin_options = list(plugin.options)
-        plugin_options.extend(all_plugin_options)
-        if plugin.label in per_plugin_options:
-            plugin_options.extend(per_plugin_options[plugin.label])
-
-        if plugin_options:
-            opts_str = ",".join(
-                [option.replace("{name}", ctx.label.name) for option in plugin_options],
-            )
-            if plugin.separate_options_flag:
-                args.add("--{}_opt={}".format(plugin_name, opts_str))
-            else:
-                out_arg = "{}:{}".format(opts_str, out_arg)
-        args.add("--{}_out={}".format(plugin_name, out_arg))
-
-        # Add any extra protoc args that the rule or plugin has
-        if hasattr(ctx.attr, "extra_protoc_args") and ctx.attr.extra_protoc_args:  # TODO(4.0.0): Remove hasattr check
-            args.add_all(ctx.attr.extra_protoc_args)
-        if plugin.extra_protoc_args:
-            args.add_all(plugin.extra_protoc_args)
+        # Add import roots and files if required by plugin
+        # By default we pass just the descriptors and the proto paths, but these may not contain all of the comments
+        # etc from the source files
+        if "QUIRK_DIRECT_MODE" in plugin.quirks:
+            args.add_all(["--proto_path=" + proto_info.proto_source_root for proto_info in proto_infos])
+            cmd_inputs += protos
 
         # Add source proto files as descriptor paths
         for proto_path in proto_paths:
@@ -342,8 +293,8 @@ def common_compile(ctx, proto_infos):
 
         mnemonic = "ProtoCompile"
         command = ("mkdir -p '{}' && ".format(output_root)) + protoc.path + " $@"  # $@ is replaced with args list
-        inputs = descriptor_sets + plugin_runfiles  # Proto files are not inputs, as they come via the descriptor sets
-        tools = [protoc] + ([plugin_tool] if plugin_tool else [])
+        inputs = cmd_inputs
+        tools = [protoc] + ([plugin.tool_executable] if plugin.tool_executable else [])
 
         # Amend command with debug options
         if verbose > 0:
@@ -375,7 +326,7 @@ def common_compile(ctx, proto_infos):
             tools = tools,
             outputs = plugin_protoc_outputs,
             use_default_shell_env = plugin.use_built_in_shell_environment,
-            input_manifests = plugin_input_manifests if plugin_input_manifests else [],
+            input_manifests = cmd_input_manifests,
             progress_message = "Compiling protoc outputs for {} plugin on target {}".format(plugin.name, ctx.label),
         )
 

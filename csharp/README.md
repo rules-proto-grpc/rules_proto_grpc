@@ -4,16 +4,16 @@ Rules for generating C# protobuf and gRPC `.cs` files and libraries using standa
 
 | Rule | Description |
 | ---: | :--- |
-| [csharp_proto_compile](#csharp_proto_compile) | Generates C# protobuf `.cs` artifacts |
-| [csharp_grpc_compile](#csharp_grpc_compile) | Generates C# protobuf+gRPC `.cs` artifacts |
+| [csharp_proto_compile](#csharp_proto_compile) | Generates C# protobuf `.cs` files |
+| [csharp_grpc_compile](#csharp_grpc_compile) | Generates C# protobuf and gRPC `.cs` files |
 | [csharp_proto_library](#csharp_proto_library) | Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
-| [csharp_grpc_library](#csharp_grpc_library) | Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
+| [csharp_grpc_library](#csharp_grpc_library) | Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll` |
 
 ---
 
 ## `csharp_proto_compile`
 
-Generates C# protobuf `.cs` artifacts
+Generates C# protobuf `.cs` files
 
 ### `WORKSPACE`
 
@@ -66,11 +66,11 @@ csharp_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 
 ### Plugins
 
@@ -80,7 +80,7 @@ csharp_proto_compile(
 
 ## `csharp_grpc_compile`
 
-Generates C# protobuf+gRPC `.cs` artifacts
+Generates C# protobuf and gRPC `.cs` files
 
 ### `WORKSPACE`
 
@@ -131,11 +131,11 @@ csharp_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 
 ### Plugins
 
@@ -201,18 +201,18 @@ csharp_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
-| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `label_list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
 
 ---
 
 ## `csharp_grpc_library`
 
-Generates a C# protobuf+gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
+Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
 
 ### `WORKSPACE`
 
@@ -264,9 +264,9 @@ csharp_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
-| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `label_list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |

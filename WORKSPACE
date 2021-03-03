@@ -50,6 +50,13 @@ load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repo
 android_sdk_repository(name = "androidsdk")
 
 #
+# Buf
+#
+load("//buf:repositories.bzl", "buf_repos")
+
+buf_repos()
+
+#
 # Go
 #
 # Load rules_go before running grpc_deps in C++, since that depends on a very old version of
@@ -125,6 +132,13 @@ load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
 d_repositories()
 
 #
+# Doc
+#
+load("//doc:repositories.bzl", "doc_repos")
+
+doc_repos()
+
+#
 # Go
 #
 # Moved to above C++
@@ -161,7 +175,7 @@ js_repos()
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
-    name = "js_modules",
+    name = "npm",
     package_json = "@rules_proto_grpc//js:requirements/package.json",
     yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )

@@ -4,16 +4,16 @@ Rules for generating Go protobuf and gRPC `.go` files and libraries using [golan
 
 | Rule | Description |
 | ---: | :--- |
-| [go_proto_compile](#go_proto_compile) | Generates Go protobuf `.go` artifacts |
-| [go_grpc_compile](#go_grpc_compile) | Generates Go protobuf+gRPC `.go` artifacts |
+| [go_proto_compile](#go_proto_compile) | Generates Go protobuf `.go` files |
+| [go_grpc_compile](#go_grpc_compile) | Generates Go protobuf and gRPC `.go` files |
 | [go_proto_library](#go_proto_library) | Generates a Go protobuf library using `go_library` from `rules_go` |
-| [go_grpc_library](#go_grpc_library) | Generates a Go protobuf+gRPC library using `go_library` from `rules_go` |
+| [go_grpc_library](#go_grpc_library) | Generates a Go protobuf and gRPC library using `go_library` from `rules_go` |
 
 ---
 
 ## `go_proto_compile`
 
-Generates Go protobuf `.go` artifacts
+Generates Go protobuf `.go` files
 
 ### `WORKSPACE`
 
@@ -66,11 +66,11 @@ go_proto_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 
 ### Plugins
 
@@ -80,7 +80,7 @@ go_proto_compile(
 
 ## `go_grpc_compile`
 
-Generates Go protobuf+gRPC `.go` artifacts
+Generates Go protobuf and gRPC `.go` files
 
 ### `WORKSPACE`
 
@@ -128,11 +128,11 @@ go_grpc_compile(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
 
 ### Plugins
 
@@ -191,19 +191,19 @@ go_proto_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
-| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
-| `importpath` | `string` | false | `None`    | Importpath for the generated artifacts          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `label_list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `importpath` | `string` | false | `None`    | Importpath for the generated files          |
 
 ---
 
 ## `go_grpc_library`
 
-Generates a Go protobuf+gRPC library using `go_library` from `rules_go`
+Generates a Go protobuf and gRPC library using `go_library` from `rules_go`
 
 ### `WORKSPACE`
 
@@ -250,10 +250,10 @@ go_grpc_library(
 
 | Name | Type | Mandatory | Default | Description |
 | ---: | :--- | --------- | ------- | ----------- |
-| `protos` | `list<ProtoInfo>` | true | `[]`    | List of labels that provide a `ProtoInfo` (such as `rules_proto` `proto_library`)          |
-| `options` | `dict<string, list(string)>` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
+| `protos` | `label_list` | true | ``    | List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)          |
+| `options` | `string_list_dict` | false | `[]`    | Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins          |
 | `verbose` | `int` | false | `0`    | The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*          |
 | `prefix_path` | `string` | false | `""`    | Path to prefix to the generated files in the output directory          |
-| `extra_protoc_args` | `list<string>` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
-| `deps` | `list<Label/string>` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
-| `importpath` | `string` | false | `None`    | Importpath for the generated artifacts          |
+| `extra_protoc_args` | `string_list` | false | `[]`    | A list of extra args to pass directly to protoc, not as plugin options          |
+| `deps` | `label_list` | false | `[]`    | List of labels to pass as deps attr to underlying lang_library rule          |
+| `importpath` | `string` | false | `None`    | Importpath for the generated files          |

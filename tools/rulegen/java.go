@@ -81,7 +81,7 @@ GRPC_DEPS = [
 var javaLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{
 		Name:      "exports",
-		Type:      "list",
+		Type:      "label_list",
 		Default:   "[]",
 		Doc:       "List of labels to pass as exports attr to underlying lang_library rule",
 		Mandatory: false,
@@ -99,21 +99,21 @@ func makeJava() *Language {
 			&Rule{
 				Name:             "java_proto_compile",
 				Kind:             "proto",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//java:java_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates a Java protobuf srcjar artifact",
+				Doc:              "Generates a Java protobuf srcjar file",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "java_grpc_compile",
 				Kind:             "grpc",
-				Implementation:   aspectRuleTemplate,
+				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//java:java_plugin", "//java:grpc_java_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates a Java protobuf+gRPC srcjar artifact",
+				Doc:              "Generates a Java protobuf and gRPC srcjar file",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -131,7 +131,7 @@ func makeJava() *Language {
 				Implementation:   javaGrpcLibraryRuleTemplate,
 				WorkspaceExample: javaGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Java protobuf+gRPC library using `java_library`",
+				Doc:              "Generates a Java protobuf and gRPC library using `java_library`",
 				Attrs:            javaLibraryRuleAttrs,
 			},
 		},

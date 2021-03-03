@@ -9,10 +9,12 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
     build_targets:
+    - "//buf/..."
     - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
     - "//d/..."
+    - "//doc/..."
     - "//go/..."
     - "//grpc-gateway/..."
     - "//java/..."
@@ -93,10 +95,12 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
     build_targets:
+    - "//buf/..."
     - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
     - "//d/..."
+    - "//doc/..."
     - "//go/..."
     - "//grpc-gateway/..."
     - "//java/..."
@@ -242,6 +246,44 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
+  buf_buf_proto_breaking_test_ubuntu1804:
+    name: 'buf: buf_proto_breaking_test'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_breaking_test
+  buf_buf_proto_breaking_test_macos:
+    name: 'buf: buf_proto_breaking_test'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_breaking_test
+  buf_buf_proto_lint_test_ubuntu1804:
+    name: 'buf: buf_proto_lint_test'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_lint_test
+  buf_buf_proto_lint_test_macos:
+    name: 'buf: buf_proto_lint_test'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    test_targets:
+      - "//..."
+    working_directory: example/buf/buf_proto_lint_test
   c_c_proto_compile_ubuntu1804:
     name: 'c: c_proto_compile'
     platform: ubuntu1804
@@ -500,6 +542,94 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/d/d_proto_library
+  doc_doc_docbook_compile_ubuntu1804:
+    name: 'doc: doc_docbook_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_docbook_compile
+  doc_doc_docbook_compile_windows:
+    name: 'doc: doc_docbook_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_docbook_compile
+  doc_doc_docbook_compile_macos:
+    name: 'doc: doc_docbook_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_docbook_compile
+  doc_doc_html_compile_ubuntu1804:
+    name: 'doc: doc_html_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_html_compile
+  doc_doc_html_compile_windows:
+    name: 'doc: doc_html_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_html_compile
+  doc_doc_html_compile_macos:
+    name: 'doc: doc_html_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_html_compile
+  doc_doc_json_compile_ubuntu1804:
+    name: 'doc: doc_json_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_json_compile
+  doc_doc_json_compile_windows:
+    name: 'doc: doc_json_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_json_compile
+  doc_doc_json_compile_macos:
+    name: 'doc: doc_json_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_json_compile
+  doc_doc_markdown_compile_ubuntu1804:
+    name: 'doc: doc_markdown_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_markdown_compile
+  doc_doc_markdown_compile_windows:
+    name: 'doc: doc_markdown_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_markdown_compile
+  doc_doc_markdown_compile_macos:
+    name: 'doc: doc_markdown_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_markdown_compile
   go_go_proto_compile_ubuntu1804:
     name: 'go: go_proto_compile'
     platform: ubuntu1804
@@ -884,6 +1014,14 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/objc/objc_proto_library
+  objc_objc_grpc_library_macos:
+    name: 'objc: objc_grpc_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/objc/objc_grpc_library
   php_php_proto_compile_ubuntu1804:
     name: 'php: php_proto_compile'
     platform: ubuntu1804
@@ -1361,6 +1499,35 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
+  test_workspace_go_fixer_ubuntu1804:
+    name: 'test workspace: go_fixer'
+    platform: ubuntu1804
+    build_flags:
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/go_fixer
+  test_workspace_go_fixer_windows:
+    name: 'test workspace: go_fixer'
+    platform: windows
+    build_flags:
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/go_fixer
+  test_workspace_go_fixer_macos:
+    name: 'test workspace: go_fixer'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
+    - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/go_fixer
   test_workspace_go_importpath_ubuntu1804:
     name: 'test workspace: go_importpath'
     platform: ubuntu1804
@@ -1633,3 +1800,32 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/transitive_compilation
+  test_workspace_typescript_ubuntu1804:
+    name: 'test workspace: typescript'
+    platform: ubuntu1804
+    build_flags:
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/typescript
+  test_workspace_typescript_windows:
+    name: 'test workspace: typescript'
+    platform: windows
+    build_flags:
+    test_flags:
+    - "--test_output=errors"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/typescript
+  test_workspace_typescript_macos:
+    name: 'test workspace: typescript'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_flags:
+    - "--test_output=errors"
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    test_targets:
+      - "//..."
+    working_directory: test_workspaces/typescript

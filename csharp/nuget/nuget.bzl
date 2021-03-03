@@ -96,8 +96,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "google.protobuf",
         package = "google.protobuf",
-        version = "3.15.1",
-        sha256 = "79d727cd4174a8d85f4ae8c8c0c1309c007db9414d012b408e1b7f70dd5f93d0",
+        version = "3.15.3",
+        sha256 = "62caf0a9974f774cf52810aff86758921ec5c7c5edc178bf7671c982f2592471",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Google.Protobuf.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Google.Protobuf.dll",

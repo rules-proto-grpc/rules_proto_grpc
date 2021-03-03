@@ -1,6 +1,6 @@
 """Common dependencies for rules_proto_grpc."""
 
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
 load("//internal:common.bzl", "check_bazel_minimum_version")
 
 # Versions
@@ -16,15 +16,15 @@ VERSIONS = {
         "sha256": "3bce0e2fcf502619119c7cac03613fb52ce3034b2159dd3ae9d35f7339558aa3",
     },
     "com_google_protobuf": {
-        # When updating, also update JS requirements, Ruby requirements and C# requirements
+        # When updating, also update JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.15.1",
-        "sha256": "f18a40816260a9a3190a94efb0fc26270b244a2436681602f0a944739095d632",
+        "ref": "v3.15.3",
+        "sha256": "b10bf4e2d1a7586f54e64a5d9e7837e5188fc75ae69e36f215eb01def4f9721b",
     },
     "com_github_grpc_grpc": {
-        # When updating, also update Go repositories.bzl, Node.js requirements, Ruby requirements and C# requirements
+        # When updating, also update Go repositories.bzl, JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
@@ -72,6 +72,32 @@ VERSIONS = {
         "sha256": "f329928c62ade05ceda72c4e145fd300722e6e592627d43580dd0a8211c14612",
     },
 
+    # Buf
+    "protoc_gen_buf_breaking_darwin": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-breaking-Darwin-x86_64"],
+        "sha256": "639f57ade58f16996c861df9de7d819e6443f58b8087b44af81863eb9e781ba8",
+        "executable": True,
+    },
+    "protoc_gen_buf_breaking_linux": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-breaking-Linux-x86_64"],
+        "sha256": "298f56d527c8acea7cb51929bf1ebc75a96fd2f0c294248db68d3ba479086c53",
+        "executable": True,
+    },
+    "protoc_gen_buf_lint_darwin": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-lint-Darwin-x86_64"],
+        "sha256": "83884b667e33d2ba52f3d2976ad6d1a02333f93f73f719600d5e612f7d58c2a8",
+        "executable": True,
+    },
+    "protoc_gen_buf_lint_linux": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-lint-Linux-x86_64"],
+        "sha256": "ded760a019da3b5da89feecde1eb831649a70cc2305f1b82675a4080d12acddc",
+        "executable": True,
+    },
+
     # C
     "upb": {
         "type": "github",
@@ -106,6 +132,29 @@ VERSIONS = {
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_dcarp_protobuf_d",
     },
 
+    # Doc
+    "protoc_gen_doc_darwin": {
+        "type": "http",
+        "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.4.1/protoc-gen-doc-1.4.1.darwin-amd64.go1.15.2.tar.gz"],
+        "sha256": "a5f7ad62d495b5a97a907b5445c23524a9cc312eeab486a79299819286a3f6b0",
+        "strip_prefix": "protoc-gen-doc-1.4.1.darwin-amd64.go1.15.2",
+        "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
+    },
+    "protoc_gen_doc_linux": {
+        "type": "http",
+        "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.4.1/protoc-gen-doc-1.4.1.linux-amd64.go1.15.2.tar.gz"],
+        "sha256": "2e476c67063af55a5608f7ef876260eb4ca400b330b762a4f59096db501c5c8c",
+        "strip_prefix": "protoc-gen-doc-1.4.1.linux-amd64.go1.15.2",
+        "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
+    },
+    "protoc_gen_doc_windows": {
+        "type": "http",
+        "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.4.1/protoc-gen-doc-1.4.1.windows-amd64.go1.15.2.tar.gz"],
+        "sha256": "6ac742671b81d339768a683dfb9a4c03ea5eaa0b6880d47df46819ea1ddb2653",
+        "strip_prefix": "protoc-gen-doc-1.4.1.windows-amd64.go1.15.2",
+        "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
+    },
+
     # Go
     "io_bazel_rules_go": {
         "type": "github",
@@ -127,8 +176,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "40d8c9e39c25c9e9e7fc9e06e769072191298e48",  # TODO: Pre-release, due to https://github.com/grpc-ecosystem/grpc-gateway/pull/1972
-        "sha256": "d3196737b591055679a676aca99610ccf640fdfe6bad0aa756b0725cab0d8c12",
+        "ref": "v2.3.0",
+        "sha256": "91fc784b828cad7138ac89451b3e3c0c2342826f2e4d04a1c051add74391270a",
     },
 
     # Java
@@ -151,8 +200,26 @@ VERSIONS = {
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
         "type": "http",
-        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/3.1.0/rules_nodejs-3.1.0.tar.gz"],
-        "sha256": "dd4dc46066e2ce034cba0c81aa3e862b27e8e8d95871f567359f7a534cccb666",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/3.2.1/rules_nodejs-3.2.1.tar.gz"],
+        "sha256": "bfacf15161d96a6a39510e7b3d3b522cf61cb8b82a31e79400a84c5abcab5347",
+    },
+    "grpc_web_plugin_darwin": {
+        "type": "http_file",  # When updating, also update in package.json and vice-versa
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-darwin-x86_64"],
+        "sha256": "81bb5d4d3ae0340568fd0739402c052f32476dd520b44355e5032b556a3bc0da",
+        "executable": True,
+    },
+    "grpc_web_plugin_linux": {
+        "type": "http_file",  # When updating, also update in package.json and vice-versa
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-linux-x86_64"],
+        "sha256": "6ce1625db7902d38d38d83690ec578c182e9cf2abaeb58d3fba1dae0c299c597",
+        "executable": True,
+    },
+    "grpc_web_plugin_windows": {
+        "type": "http_file",  # When updating, also update in package.json and vice-versa
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-windows-x86_64.exe"],
+        "sha256": "5886b4c9886dfdbfd1c7c2f26a15c396c6662b9f1acf9b6d8efbd490bc3736db",
+        "executable": True,
     },
 
     # Python
@@ -185,8 +252,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "3b02397bde43b1eeee1528227ceb3da6c6bdadd6",
-        "sha256": "f2d9f804e1a8042a41ad41e1aeeca55ad0fc2d294ecd52e34ef8c63f7ce350fd",
+        "ref": "1b7885acf0574d2f52e7c011ce8e03ad3aed25ae",
+        "sha256": "056e506c00847d085f99ff311a3bcea08a31e180f233fb020b6b9ed1898fe5b3",
     },
 
     # Scala
@@ -281,10 +348,11 @@ def _generic_dependency(name, **kwargs):
         ref = kwargs.get(name + "_ref", dep["ref"])
         sha256 = kwargs.get(name + "_sha256", dep["sha256"])
 
-        # Fix GitHub naming quirk in path
+        # Fix GitHub naming normalisation in path
         stripped_ref = ref
         if stripped_ref.startswith("v"):
             stripped_ref = ref[1:]
+        stripped_ref = stripped_ref.replace("@", "-")
 
         # Generate URLs
         urls = [
@@ -321,6 +389,24 @@ def _generic_dependency(name, **kwargs):
         elif existing_rules[name]["kind"] != "http_archive":
             if ENABLE_VERSION_NAGS:
                 print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_archive".format(
+                    name,
+                    existing_rules[name]["kind"],
+                ))  # buildifier: disable=print
+        elif existing_rules[name]["urls"] != tuple(dep["urls"]):
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different version. Found urls={}, expected {}".format(
+                    name,
+                    existing_rules[name]["urls"],
+                    tuple(dep["urls"]),
+                ))  # buildifier: disable=print
+
+    elif dep["type"] == "http_file":
+        if name not in existing_rules:
+            args = {k: v for k, v in dep.items() if k in ["urls", "sha256", "executable"]}
+            http_file(name = name, **args)
+        elif existing_rules[name]["kind"] != "http_file":
+            if ENABLE_VERSION_NAGS:
+                print("Dependency '{}' has already been declared with a different rule kind. Found {}, expected http_file".format(
                     name,
                     existing_rules[name]["kind"],
                 ))  # buildifier: disable=print
@@ -417,6 +503,21 @@ def build_bazel_rules_android(**kwargs):
     _generic_dependency("build_bazel_rules_android", **kwargs)
 
 #
+# Buf
+#
+def protoc_gen_buf_breaking_darwin(**kwargs):
+    _generic_dependency("protoc_gen_buf_breaking_darwin", **kwargs)
+
+def protoc_gen_buf_breaking_linux(**kwargs):
+    _generic_dependency("protoc_gen_buf_breaking_linux", **kwargs)
+
+def protoc_gen_buf_lint_darwin(**kwargs):
+    _generic_dependency("protoc_gen_buf_lint_darwin", **kwargs)
+
+def protoc_gen_buf_lint_linux(**kwargs):
+    _generic_dependency("protoc_gen_buf_lint_linux", **kwargs)
+
+#
 # C
 #
 def upb(**kwargs):
@@ -436,6 +537,18 @@ def io_bazel_rules_d(**kwargs):
 
 def com_github_dcarp_protobuf_d(**kwargs):
     _generic_dependency("com_github_dcarp_protobuf_d", **kwargs)
+
+#
+# Doc
+#
+def protoc_gen_doc_darwin(**kwargs):
+    _generic_dependency("protoc_gen_doc_darwin", **kwargs)
+
+def protoc_gen_doc_linux(**kwargs):
+    _generic_dependency("protoc_gen_doc_linux", **kwargs)
+
+def protoc_gen_doc_windows(**kwargs):
+    _generic_dependency("protoc_gen_doc_windows", **kwargs)
 
 #
 # Go
@@ -466,6 +579,15 @@ def rules_jvm_external(**kwargs):
 #
 def build_bazel_rules_nodejs(**kwargs):
     _generic_dependency("build_bazel_rules_nodejs", **kwargs)
+
+def grpc_web_plugin_darwin(**kwargs):
+    _generic_dependency("grpc_web_plugin_darwin", **kwargs)
+
+def grpc_web_plugin_linux(**kwargs):
+    _generic_dependency("grpc_web_plugin_linux", **kwargs)
+
+def grpc_web_plugin_windows(**kwargs):
+    _generic_dependency("grpc_web_plugin_windows", **kwargs)
 
 #
 # Python
