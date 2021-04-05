@@ -148,9 +148,9 @@ func mustWriteLanguageRules(dir string, lang *Language) {
 
 func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
-	out.t(mustTemplate(`"""Generated definition of {{ .Rule.Name }}."""`), &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.t(mustTemplate(`"""Generated definition of {{ .Rule.Name }}."""`), &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
-	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
 	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name+".bzl"))
 }
@@ -192,14 +192,14 @@ rules_proto_dependencies()
 rules_proto_toolchains()`, relpath)
 
 	out.ln()
-	out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
 }
 
 func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
-	out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "BUILD.bazel"))
 }
@@ -275,82 +275,110 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 func mustWriteLanguageReadme(dir string, lang *Language) {
 	out := &LineWriter{}
 
-	out.w("# %s rules", lang.DisplayName)
+	out.w("%s rules", lang.DisplayName)
+	out.w("%s======", strings.Repeat("=", len(lang.DisplayName)))
 	out.ln()
 
 	if lang.Notes != nil {
-		out.t(lang.Notes, lang)
+		out.t(lang.Notes, lang, "")
 		out.ln()
 	}
 
-	out.w("| Rule | Description |")
-	out.w("| ---: | :--- |")
+	out.w(".. list-table:: Rules")
+	out.w("   :widths: 1 1")
+	out.w("   :header-rows: 1")
+	out.ln()
+	out.w("   * - Rule")
+	out.w("     - Description")
 	for _, rule := range lang.Rules {
-		out.w("| [%s](#%s) | %s |", rule.Name, rule.Name, rule.Doc)
+		out.w("   * - `%s <%s>`_", rule.Name, rule.Name)
+		out.w("     - %s", rule.Doc)
 	}
 	out.ln()
 
 	for _, rule := range lang.Rules {
-		out.w(`---`)
-		out.ln()
-		out.w("## `%s`", rule.Name)
+		out.w("``%s``", rule.Name)
+		out.w("--%s--", strings.Repeat("-", len(rule.Name)))
 		out.ln()
 
 		if rule.Experimental {
-			out.w(`> NOTE: This rule is experimental. It may not work correctly!`)
+			out.w(".. note:: This rule is experimental. It may not work correctly!")
 			out.ln()
 		}
 		out.w(rule.Doc)
 		out.ln()
 
-		out.w("### `WORKSPACE`")
+		out.w("``WORKSPACE``")
+		out.w("*************")
 		out.ln()
 
-		out.w("```starlark")
-		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
-		out.w("```")
+		out.w(".. code-block:: starlark")
+		out.ln()
+		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
 
-		out.w("### `BUILD.bazel`")
+		out.w("``BUILD.bazel``")
+		out.w("***************")
 		out.ln()
 
-		out.w("```starlark")
-		out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
-		out.w("```")
+		out.w(".. code-block:: starlark")
+		out.ln()
+		out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
 
 		if len(rule.Flags) > 0 {
-			out.w("### `Flags`")
+			out.w("Flags")
+			out.w("*****")
 			out.ln()
 
-			out.w("| Category | Flag | Value | Description |")
-			out.w("| --- | --- | --- | --- |")
+			out.w(".. list-table:: Rules")
+			out.w("   :header-rows: 1")
+			out.ln()
+			out.w("   * - Category")
+			out.w("     - Flag")
+			out.w("     - Value")
+			out.w("     - Description")
 			for _, f := range rule.Flags {
-				out.w("| %s | %s | %s | %s |", f.Category, f.Name, f.Value, f.Description)
+				out.w("   * - %s", f.Category)
+				out.w("     - %s", f.Name)
+				out.w("     - %s", f.Value)
+				out.w("     - %s", f.Description)
 			}
 			out.ln()
 		}
 
-		out.w("### Attributes")
+		out.w("Attributes")
+		out.w("**********")
 		out.ln()
-		out.w("| Name | Type | Mandatory | Default | Description |")
-		out.w("| ---: | :--- | --------- | ------- | ----------- |")
+		out.w(".. list-table:: Rules")
+		out.w("   :header-rows: 1")
+		out.ln()
+		out.w("   * - Name")
+		out.w("     - Type")
+		out.w("     - Mandatory")
+		out.w("     - Default")
+		out.w("     - Description")
 		for _, attr := range rule.Attrs {
-			out.w("| `%s` | `%s` | %t | `%s`    | %s          |", attr.Name, attr.Type, attr.Mandatory, attr.Default, attr.Doc)
+			out.w("   * - `%s`", attr.Name)
+			out.w("     - `%s`", attr.Type)
+			out.w("     - %t", attr.Mandatory)
+			out.w("     - `%s`", attr.Default)
+			out.w("     - %s", attr.Doc)
 		}
 		out.ln()
 
 		if len(rule.Plugins) > 0 {
-			out.w("### Plugins")
+			out.w("Plugins")
+			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- `@rules_proto_grpc%s`", plugin)
+				out.w("- ``@rules_proto_grpc%s``", plugin)
 			}
 			out.ln()
 		}
 	}
 
-	out.MustWrite(filepath.Join(dir, lang.Dir, "README.md"))
+	out.MustWrite(filepath.Join(dir, lang.Dir, "README.rst"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
