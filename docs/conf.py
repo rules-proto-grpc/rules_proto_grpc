@@ -39,7 +39,7 @@ html_theme = 'furo'
 
 # Logo and favicon
 html_logo = '_static/logo.svg'
-html_favicon = '_static/logo-400.png'
+html_favicon = '_static/logo.png'
 
 # Extra vars to provide to templating
 html_context = {
