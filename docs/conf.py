@@ -16,13 +16,7 @@ version = release
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    # Internal
-    'sphinx.ext.githubpages',
-
-    # External
-    'sphinx_sitemap',
-]
+extensions = []
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['templates']
@@ -82,9 +76,4 @@ html_show_sphinx = False
 html_css_files = []
 
 # Extra files to include
-html_extra_path = [
-    'src/robots.txt',
-]
-
-# Sitemap options
-sitemap_url_scheme = '{lang}{link}'
+html_extra_path = []

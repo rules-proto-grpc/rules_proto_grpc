@@ -1,3 +1,2 @@
 furo==2021.3.20b30
 Sphinx==3.5.3
-sphinx-sitemap==2.2.0
