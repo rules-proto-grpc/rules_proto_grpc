@@ -40,23 +40,28 @@ func main() {
 			Value: ".",
 		},
 		&cli.StringFlag{
-			Name:  "header",
+			Name:  "readme_header_template",
 			Usage: "Template for the main readme header",
-			Value: "tools/rulegen/README.header.rst",
+			Value: "tools/rulegen/README.header.md",
 		},
 		&cli.StringFlag{
-			Name:  "footer",
+			Name:  "readme_footer_template",
 			Usage: "Template for the main readme footer",
-			Value: "tools/rulegen/README.footer.rst",
+			Value: "tools/rulegen/README.footer.md",
+		},
+		&cli.StringFlag{
+			Name:  "index_template",
+			Usage: "Template for the index.rst file",
+			Value: "tools/rulegen/index.rst",
 		},
 		&cli.StringFlag{
 			Name:  "ref",
-			Usage: "Version ref to use for main readme",
+			Usage: "Version ref to use for main readme and index.rst",
 			Value: "{GIT_COMMIT_ID}",
 		},
 		&cli.StringFlag{
 			Name:  "sha256",
-			Usage: "Sha256 value to use for main readme",
+			Usage: "Sha256 value to use for main readme and index.rst",
 			Value: "{ARCHIVE_TAR_GZ_SHA256}",
 		},
 		&cli.StringFlag{
@@ -124,12 +129,19 @@ func action(c *cli.Context) error {
 		mustWriteLanguageExamples(dir, lang)
 	}
 
-	mustWriteReadme(dir, c.String("header"), c.String("footer"), struct {
+	mustWriteReadme(dir, c.String("readme_header_template"), c.String("readme_footer_template"), struct {
 		Ref, Sha256 string
 	}{
 		Ref:    ref,
 		Sha256: sha256,
 	}, languages)
+
+	mustWriteIndexRst(dir, c.String("index_template"), struct {
+		Ref, Sha256 string
+	}{
+		Ref:    ref,
+		Sha256: sha256,
+	})
 
 	mustWriteBazelciPresubmitYml(dir, languages, []string{}, c.String("available_tests"))
 
@@ -427,6 +439,12 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	out.tpl(footer, data)
 
 	out.MustWrite(filepath.Join(dir, "README.rst"))
+}
+
+func mustWriteIndexRst(dir, template string, data interface{}) {
+	out := &LineWriter{}
+	out.tpl(template, data)
+	out.MustWrite(filepath.Join(dir, "docs", "index.rst"))
 }
 
 func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []string, availableTestsPath string) {
