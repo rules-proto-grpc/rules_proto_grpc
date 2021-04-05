@@ -291,7 +291,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 	out.w("   * - Rule")
 	out.w("     - Description")
 	for _, rule := range lang.Rules {
-		out.w("   * - `%s <%s>`_", rule.Name, rule.Name)
+		out.w("   * - `%s <#%s>`_", rule.Name, rule.Name)
 		out.w("     - %s", rule.Doc)
 	}
 	out.ln()
@@ -302,7 +302,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 
 		if rule.Experimental {
-			out.w(".. note:: This rule is experimental. It may not work correctly!")
+			out.w("**Note**: This rule is experimental. It may not work correctly!")
 			out.ln()
 		}
 		out.w(rule.Doc)
@@ -331,7 +331,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("*****")
 			out.ln()
 
-			out.w(".. list-table:: Rules")
+			out.w(".. list-table:: Flags for %s", rule.Name)
 			out.w("   :header-rows: 1")
 			out.ln()
 			out.w("   * - Category")
@@ -350,7 +350,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("Attributes")
 		out.w("**********")
 		out.ln()
-		out.w(".. list-table:: Rules")
+		out.w(".. list-table:: Attributes for %s", rule.Name)
 		out.w("   :header-rows: 1")
 		out.ln()
 		out.w("   * - Name")
@@ -359,10 +359,10 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("     - Default")
 		out.w("     - Description")
 		for _, attr := range rule.Attrs {
-			out.w("   * - `%s`", attr.Name)
-			out.w("     - `%s`", attr.Type)
+			out.w("   * - ``%s``", attr.Name)
+			out.w("     - ``%s``", attr.Type)
 			out.w("     - %t", attr.Mandatory)
-			out.w("     - `%s`", attr.Default)
+			out.w("     - ``%s``", attr.Default)
 			out.w("     - %s", attr.Doc)
 		}
 		out.ln()

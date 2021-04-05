@@ -5,7 +5,7 @@ func makePhp() *Language {
 		Dir:   "php",
 		Name:  "php",
 		DisplayName: "PHP",
-		Notes: mustTemplate("Rules for generating PHP protobuf and gRPC `.php` files and libraries using standard Protocol Buffers and gRPC"),
+		Notes: mustTemplate("Rules for generating PHP protobuf and gRPC ``.php`` files and libraries using standard Protocol Buffers and gRPC"),
 		Flags: commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
@@ -15,7 +15,7 @@ func makePhp() *Language {
 				Plugins:          []string{"//php:php_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates PHP protobuf `.php` files",
+				Doc:              "Generates PHP protobuf ``.php`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -25,7 +25,7 @@ func makePhp() *Language {
 				Plugins:          []string{"//php:php_plugin", "//php:grpc_php_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates PHP protobuf and gRPC `.php` files",
+				Doc:              "Generates PHP protobuf and gRPC ``.php`` files",
 				Attrs:            compileRuleAttrs,
 			},
 		},

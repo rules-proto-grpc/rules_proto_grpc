@@ -1,7 +1,7 @@
 Buf rules
 =========
 
-Rules for linting and detecting breaking changes in .proto files with [Buf](https://buf.build).
+Rules for linting and detecting breaking changes in .proto files with `Buf <https://buf.build>`_.
 
 Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.
 
@@ -13,15 +13,15 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.
 
    * - Rule
      - Description
-   * - `buf_proto_breaking_test <buf_proto_breaking_test>`_
+   * - `buf_proto_breaking_test <#buf_proto_breaking_test>`_
      - Checks .proto files for breaking changes
-   * - `buf_proto_lint_test <buf_proto_lint_test>`_
+   * - `buf_proto_lint_test <#buf_proto_lint_test>`_
      - Lints .proto files
 
 ``buf_proto_breaking_test``
 ---------------------------
 
-.. note:: This rule is experimental. It may not work correctly!
+**Note**: This rule is experimental. It may not work correctly!
 
 Checks .proto files for breaking changes
 
@@ -55,7 +55,7 @@ Checks .proto files for breaking changes
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for buf_proto_breaking_test
    :header-rows: 1
 
    * - Name
@@ -63,30 +63,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - `[]`
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `against_input`
-     - `label`
+     - ``[]``
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``against_input``
+     - ``label``
      - true
-     - ``
+     - ````
      - Label of an existing input image file to check against (.json or .bin)
-   * - `use_rules`
-     - `string_list`
+   * - ``use_rules``
+     - ``string_list``
      - false
-     - `["FILE"]`
+     - ``["FILE"]``
      - List of Buf breaking rule IDs or categories to use
-   * - `except_rules`
-     - `string_list`
+   * - ``except_rules``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - List of Buf breaking rule IDs or categories to drop
-   * - `ignore_unstable_packages`
-     - `bool`
+   * - ``ignore_unstable_packages``
+     - ``bool``
      - false
-     - `False`
+     - ``False``
      - Whether to ignore breaking changes in unstable package versions
 
 Plugins
@@ -97,7 +97,7 @@ Plugins
 ``buf_proto_lint_test``
 -----------------------
 
-.. note:: This rule is experimental. It may not work correctly!
+**Note**: This rule is experimental. It may not work correctly!
 
 Lints .proto files
 
@@ -167,7 +167,7 @@ Lints .proto files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for buf_proto_lint_test
    :header-rows: 1
 
    * - Name
@@ -175,45 +175,45 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `use_rules`
-     - `string_list`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``use_rules``
+     - ``string_list``
      - false
-     - `["DEFAULT"]`
+     - ``["DEFAULT"]``
      - List of Buf lint rule IDs or categories to use
-   * - `except_rules`
-     - `string_list`
+   * - ``except_rules``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - List of Buf lint rule IDs or categories to drop
-   * - `enum_zero_value_suffix`
-     - `string`
+   * - ``enum_zero_value_suffix``
+     - ``string``
      - false
-     - `"_UNSPECIFIED"`
+     - ``"_UNSPECIFIED"``
      - Specify the allowed suffix for the zero enum value
-   * - `rpc_allow_same_request_response`
-     - `bool`
+   * - ``rpc_allow_same_request_response``
+     - ``bool``
      - false
-     - `False`
+     - ``False``
      - Allow request and response message to be reused in a single RPC
-   * - `rpc_allow_google_protobuf_empty_requests`
-     - `bool`
+   * - ``rpc_allow_google_protobuf_empty_requests``
+     - ``bool``
      - false
-     - `False`
-     - Allow request message to be `google.protobuf.Empty`
-   * - `rpc_allow_google_protobuf_empty_responses`
-     - `bool`
+     - ``False``
+     - Allow request message to be ``google.protobuf.Empty``
+   * - ``rpc_allow_google_protobuf_empty_responses``
+     - ``bool``
      - false
-     - `False`
-     - Allow response message to be `google.protobuf.Empty`
-   * - `service_suffix`
-     - `string`
+     - ``False``
+     - Allow response message to be ``google.protobuf.Empty``
+   * - ``service_suffix``
+     - ``string``
      - false
-     - `"Service"`
+     - ``"Service"``
      - The suffix to allow for services
 
 Plugins

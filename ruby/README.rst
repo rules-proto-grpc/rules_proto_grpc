@@ -1,7 +1,7 @@
 Ruby rules
 ==========
 
-Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/bazelruby/rules_ruby)
+Rules for generating Ruby protobuf and gRPC ``.rb`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``ruby_library`` from `rules_ruby <https://github.com/bazelruby/rules_ruby>`_
 
 .. list-table:: Rules
    :widths: 1 1
@@ -9,19 +9,19 @@ Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using stan
 
    * - Rule
      - Description
-   * - `ruby_proto_compile <ruby_proto_compile>`_
-     - Generates Ruby protobuf `.rb` files
-   * - `ruby_grpc_compile <ruby_grpc_compile>`_
-     - Generates Ruby protobuf and gRPC `.rb` files
-   * - `ruby_proto_library <ruby_proto_library>`_
-     - Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`
-   * - `ruby_grpc_library <ruby_grpc_library>`_
-     - Generates a Ruby protobuf and gRPC library using `ruby_library` from `rules_ruby`
+   * - `ruby_proto_compile <#ruby_proto_compile>`_
+     - Generates Ruby protobuf ``.rb`` files
+   * - `ruby_grpc_compile <#ruby_grpc_compile>`_
+     - Generates Ruby protobuf and gRPC ``.rb`` files
+   * - `ruby_proto_library <#ruby_proto_library>`_
+     - Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
+   * - `ruby_grpc_library <#ruby_grpc_library>`_
+     - Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``
 
 ``ruby_proto_compile``
 ----------------------
 
-Generates Ruby protobuf `.rb` files
+Generates Ruby protobuf ``.rb`` files
 
 ``WORKSPACE``
 *************
@@ -71,7 +71,7 @@ Generates Ruby protobuf `.rb` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for ruby_proto_compile
    :header-rows: 1
 
    * - Name
@@ -79,30 +79,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -113,7 +113,7 @@ Plugins
 ``ruby_grpc_compile``
 ---------------------
 
-Generates Ruby protobuf and gRPC `.rb` files
+Generates Ruby protobuf and gRPC ``.rb`` files
 
 ``WORKSPACE``
 *************
@@ -162,7 +162,7 @@ Generates Ruby protobuf and gRPC `.rb` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for ruby_grpc_compile
    :header-rows: 1
 
    * - Name
@@ -170,30 +170,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -205,7 +205,7 @@ Plugins
 ``ruby_proto_library``
 ----------------------
 
-Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`
+Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
 
 ``WORKSPACE``
 *************
@@ -257,7 +257,7 @@ Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for ruby_proto_library
    :header-rows: 1
 
    * - Name
@@ -265,41 +265,41 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - `deps`
-     - `label_list`
+   * - ``deps``
+     - ``label_list``
      - false
-     - `[]`
+     - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
 
 ``ruby_grpc_library``
 ---------------------
 
-Generates a Ruby protobuf and gRPC library using `ruby_library` from `rules_ruby`
+Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``
 
 ``WORKSPACE``
 *************
@@ -349,7 +349,7 @@ Generates a Ruby protobuf and gRPC library using `ruby_library` from `rules_ruby
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for ruby_grpc_library
    :header-rows: 1
 
    * - Name
@@ -357,33 +357,33 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - `deps`
-     - `label_list`
+   * - ``deps``
+     - ``label_list``
      - false
-     - `[]`
+     - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule

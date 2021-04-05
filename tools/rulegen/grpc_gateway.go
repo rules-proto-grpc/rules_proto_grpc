@@ -96,7 +96,7 @@ func makeGrpcGateway() *Language {
 				Plugins:          []string{"//grpc-gateway:grpc_gateway_plugin", "//go:grpc_go_plugin", "//go:go_plugin"},
 				WorkspaceExample: grpcGatewayWorkspaceTemplate,
 				BuildExample:     grpcGatewayCompileExampleTemplate,
-				Doc:              "Generates grpc-gateway `.go` files",
+				Doc:              "Generates grpc-gateway ``.go`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -106,7 +106,7 @@ func makeGrpcGateway() *Language {
 				Plugins:           []string{"//grpc-gateway:openapiv2_plugin"},
 				WorkspaceExample:  grpcGatewayWorkspaceTemplate,
 				BuildExample:      grpcGatewayCompileExampleTemplate,
-				Doc:               "Generates grpc-gateway OpenAPI v2 `.json` files",
+				Doc:               "Generates grpc-gateway OpenAPI v2 ``.json`` files",
 				Attrs:             compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows"}, // gRPC go lib rules fail on windows due to bad path
 			},

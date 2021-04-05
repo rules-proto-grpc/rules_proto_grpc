@@ -1,7 +1,7 @@
 Swift rules
 ===========
 
-Rules for generating Swift protobuf and gRPC `.swift` files and libraries using [Swift Protobuf](https://github.com/apple/swift-protobuf) and [Swift gRPC](https://github.com/grpc/grpc-swift)
+Rules for generating Swift protobuf and gRPC ``.swift`` files and libraries using `Swift Protobuf <https://github.com/apple/swift-protobuf>`_ and `Swift gRPC <https://github.com/grpc/grpc-swift>`_
 
 .. list-table:: Rules
    :widths: 1 1
@@ -9,19 +9,19 @@ Rules for generating Swift protobuf and gRPC `.swift` files and libraries using 
 
    * - Rule
      - Description
-   * - `swift_proto_compile <swift_proto_compile>`_
-     - Generates Swift protobuf `.swift` files
-   * - `swift_grpc_compile <swift_grpc_compile>`_
-     - Generates Swift protobuf and gRPC `.swift` files
-   * - `swift_proto_library <swift_proto_library>`_
-     - Generates a Swift protobuf library using `swift_library` from `rules_swift`
-   * - `swift_grpc_library <swift_grpc_library>`_
-     - Generates a Swift protobuf and gRPC library using `swift_library` from `rules_swift`
+   * - `swift_proto_compile <#swift_proto_compile>`_
+     - Generates Swift protobuf ``.swift`` files
+   * - `swift_grpc_compile <#swift_grpc_compile>`_
+     - Generates Swift protobuf and gRPC ``.swift`` files
+   * - `swift_proto_library <#swift_proto_library>`_
+     - Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
+   * - `swift_grpc_library <#swift_grpc_library>`_
+     - Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``
 
 ``swift_proto_compile``
 -----------------------
 
-Generates Swift protobuf `.swift` files
+Generates Swift protobuf ``.swift`` files
 
 ``WORKSPACE``
 *************
@@ -64,7 +64,7 @@ Generates Swift protobuf `.swift` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for swift_proto_compile
    :header-rows: 1
 
    * - Name
@@ -72,30 +72,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -106,7 +106,7 @@ Plugins
 ``swift_grpc_compile``
 ----------------------
 
-Generates Swift protobuf and gRPC `.swift` files
+Generates Swift protobuf and gRPC ``.swift`` files
 
 ``WORKSPACE``
 *************
@@ -144,7 +144,7 @@ Generates Swift protobuf and gRPC `.swift` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for swift_grpc_compile
    :header-rows: 1
 
    * - Name
@@ -152,30 +152,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -187,7 +187,7 @@ Plugins
 ``swift_proto_library``
 -----------------------
 
-Generates a Swift protobuf library using `swift_library` from `rules_swift`
+Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
 
 ``WORKSPACE``
 *************
@@ -224,7 +224,7 @@ Generates a Swift protobuf library using `swift_library` from `rules_swift`
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for swift_proto_library
    :header-rows: 1
 
    * - Name
@@ -232,46 +232,46 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - `deps`
-     - `label_list`
+   * - ``deps``
+     - ``label_list``
      - false
-     - `[]`
+     - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - `module_name`
-     - `string`
+   * - ``module_name``
+     - ``string``
      - false
-     - ``
+     - ````
      - The name of the Swift module being built.
 
 ``swift_grpc_library``
 ----------------------
 
-Generates a Swift protobuf and gRPC library using `swift_library` from `rules_swift`
+Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``
 
 ``WORKSPACE``
 *************
@@ -307,7 +307,7 @@ Generates a Swift protobuf and gRPC library using `swift_library` from `rules_sw
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for swift_grpc_library
    :header-rows: 1
 
    * - Name
@@ -315,38 +315,38 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - `deps`
-     - `label_list`
+   * - ``deps``
+     - ``label_list``
      - false
-     - `[]`
+     - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - `module_name`
-     - `string`
+   * - ``module_name``
+     - ``string``
      - false
-     - ``
+     - ````
      - The name of the Swift module being built.

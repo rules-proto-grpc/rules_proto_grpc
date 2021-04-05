@@ -101,7 +101,7 @@ func makeSwift() *Language {
 		Dir:  "swift",
 		Name: "swift",
 		DisplayName: "Swift",
-		Notes: mustTemplate("Rules for generating Swift protobuf and gRPC `.swift` files and libraries using [Swift Protobuf](https://github.com/apple/swift-protobuf) and [Swift gRPC](https://github.com/grpc/grpc-swift)"),
+		Notes: mustTemplate("Rules for generating Swift protobuf and gRPC ``.swift`` files and libraries using `Swift Protobuf <https://github.com/apple/swift-protobuf>`_ and `Swift gRPC <https://github.com/grpc/grpc-swift>`_"),
 		PresubmitEnvVars: map[string]string{
 			"CC": "clang",
 		},
@@ -115,7 +115,7 @@ func makeSwift() *Language {
 				Plugins:          []string{"//swift:swift_plugin"},
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Swift protobuf `.swift` files",
+				Doc:              "Generates Swift protobuf ``.swift`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -125,7 +125,7 @@ func makeSwift() *Language {
 				Plugins:          []string{"//swift:swift_plugin", "//swift:grpc_swift_plugin"},
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Swift protobuf and gRPC `.swift` files",
+				Doc:              "Generates Swift protobuf and gRPC ``.swift`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -134,7 +134,7 @@ func makeSwift() *Language {
 				Implementation:   swiftProtoLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     swiftProtoLibraryExampleTemplate,
-				Doc:              "Generates a Swift protobuf library using `swift_library` from `rules_swift`",
+				Doc:              "Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``",
 				Attrs:            swiftLibraryRuleAttrs,
 			},
 			&Rule{
@@ -143,7 +143,7 @@ func makeSwift() *Language {
 				Implementation:   swiftGrpcLibraryRuleTemplate,
 				WorkspaceExample: swiftWorkspaceTemplate,
 				BuildExample:     swiftGrpcLibraryExampleTemplate,
-				Doc:              "Generates a Swift protobuf and gRPC library using `swift_library` from `rules_swift`",
+				Doc:              "Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``",
 				Attrs:            swiftLibraryRuleAttrs,
 			},
 		},

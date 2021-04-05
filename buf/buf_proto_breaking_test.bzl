@@ -17,7 +17,7 @@ buf_proto_breaking_test = rule(
             providers = [ProtoInfo],
             default = [],
             mandatory = True,
-            doc = "List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)",
+            doc = "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
         ),
         against_input = attr.label(
             allow_single_file = [".bin", ".json"],

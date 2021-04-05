@@ -1,7 +1,7 @@
 Documentation rules
 ===================
 
-Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with [protoc-gen-doc](https://github.com/pseudomuto/protoc-gen-doc)
+Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with `protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`_
 
 .. list-table:: Rules
    :widths: 1 1
@@ -9,21 +9,21 @@ Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with
 
    * - Rule
      - Description
-   * - `doc_docbook_compile <doc_docbook_compile>`_
-     - Generates DocBook `.xml` documentation file
-   * - `doc_html_compile <doc_html_compile>`_
-     - Generates `.html` documentation file
-   * - `doc_json_compile <doc_json_compile>`_
-     - Generates `.json` documentation file
-   * - `doc_markdown_compile <doc_markdown_compile>`_
-     - Generates Markdown `.md` documentation file
+   * - `doc_docbook_compile <#doc_docbook_compile>`_
+     - Generates DocBook ``.xml`` documentation file
+   * - `doc_html_compile <#doc_html_compile>`_
+     - Generates ``.html`` documentation file
+   * - `doc_json_compile <#doc_json_compile>`_
+     - Generates ``.json`` documentation file
+   * - `doc_markdown_compile <#doc_markdown_compile>`_
+     - Generates Markdown ``.md`` documentation file
 
 ``doc_docbook_compile``
 -----------------------
 
-.. note:: This rule is experimental. It may not work correctly!
+**Note**: This rule is experimental. It may not work correctly!
 
-Generates DocBook `.xml` documentation file
+Generates DocBook ``.xml`` documentation file
 
 ``WORKSPACE``
 *************
@@ -59,7 +59,7 @@ Generates DocBook `.xml` documentation file
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for doc_docbook_compile
    :header-rows: 1
 
    * - Name
@@ -67,30 +67,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -101,9 +101,9 @@ Plugins
 ``doc_html_compile``
 --------------------
 
-.. note:: This rule is experimental. It may not work correctly!
+**Note**: This rule is experimental. It may not work correctly!
 
-Generates `.html` documentation file
+Generates ``.html`` documentation file
 
 ``WORKSPACE``
 *************
@@ -139,7 +139,7 @@ Generates `.html` documentation file
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for doc_html_compile
    :header-rows: 1
 
    * - Name
@@ -147,30 +147,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -181,9 +181,9 @@ Plugins
 ``doc_json_compile``
 --------------------
 
-.. note:: This rule is experimental. It may not work correctly!
+**Note**: This rule is experimental. It may not work correctly!
 
-Generates `.json` documentation file
+Generates ``.json`` documentation file
 
 ``WORKSPACE``
 *************
@@ -219,7 +219,7 @@ Generates `.json` documentation file
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for doc_json_compile
    :header-rows: 1
 
    * - Name
@@ -227,30 +227,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -261,9 +261,9 @@ Plugins
 ``doc_markdown_compile``
 ------------------------
 
-.. note:: This rule is experimental. It may not work correctly!
+**Note**: This rule is experimental. It may not work correctly!
 
-Generates Markdown `.md` documentation file
+Generates Markdown ``.md`` documentation file
 
 ``WORKSPACE``
 *************
@@ -299,7 +299,7 @@ Generates Markdown `.md` documentation file
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for doc_markdown_compile
    :header-rows: 1
 
    * - Name
@@ -307,30 +307,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins

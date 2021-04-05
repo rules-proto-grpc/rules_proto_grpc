@@ -1,7 +1,7 @@
 D rules
 =======
 
-Rules for generating D protobuf `.d` files and libraries using [protobuf-d](https://github.com/dcarp/protobuf-d). Libraries are created with `d_library` from [rules_d](https://github.com/bazelbuild/rules_d)
+Rules for generating D protobuf ``.d`` files and libraries using `protobuf-d <https://github.com/dcarp/protobuf-d>`_. Libraries are created with ``d_library`` from `rules_d <https://github.com/bazelbuild/rules_d>`_
 
 **NOTE**: These rules use the protoc-gen-d plugin, which only supports proto3 .proto files.
 
@@ -11,15 +11,15 @@ Rules for generating D protobuf `.d` files and libraries using [protobuf-d](http
 
    * - Rule
      - Description
-   * - `d_proto_compile <d_proto_compile>`_
-     - Generates D protobuf `.d` files
-   * - `d_proto_library <d_proto_library>`_
-     - Generates a D protobuf library using `d_library` from `rules_d`
+   * - `d_proto_compile <#d_proto_compile>`_
+     - Generates D protobuf ``.d`` files
+   * - `d_proto_library <#d_proto_library>`_
+     - Generates a D protobuf library using ``d_library`` from ``rules_d``
 
 ``d_proto_compile``
 -------------------
 
-Generates D protobuf `.d` files
+Generates D protobuf ``.d`` files
 
 ``WORKSPACE``
 *************
@@ -59,7 +59,7 @@ Generates D protobuf `.d` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for d_proto_compile
    :header-rows: 1
 
    * - Name
@@ -67,30 +67,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -101,7 +101,7 @@ Plugins
 ``d_proto_library``
 -------------------
 
-Generates a D protobuf library using `d_library` from `rules_d`
+Generates a D protobuf library using ``d_library`` from ``rules_d``
 
 ``WORKSPACE``
 *************
@@ -143,7 +143,7 @@ Generates a D protobuf library using `d_library` from `rules_d`
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for d_proto_library
    :header-rows: 1
 
    * - Name
@@ -151,28 +151,28 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options

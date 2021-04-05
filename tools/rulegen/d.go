@@ -39,7 +39,7 @@ func makeD() *Language {
 		Dir:   "d",
 		Name:  "d",
 		DisplayName: "D",
-		Notes: mustTemplate(`Rules for generating D protobuf ` + "`.d`" + ` files and libraries using [protobuf-d](https://github.com/dcarp/protobuf-d). Libraries are created with ` + "`d_library`" + ` from [rules_d](https://github.com/bazelbuild/rules_d)
+		Notes: mustTemplate("Rules for generating D protobuf ``.d`` files and libraries using `protobuf-d <https://github.com/dcarp/protobuf-d>`_. Libraries are created with ``d_library`` from `rules_d <https://github.com/bazelbuild/rules_d>`_" + `
 
 **NOTE**: These rules use the protoc-gen-d plugin, which only supports proto3 .proto files.`),
 		Flags: commonLangFlags,
@@ -51,7 +51,7 @@ func makeD() *Language {
 				Plugins:          []string{"//d:d_plugin"},
 				WorkspaceExample: dWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates D protobuf `.d` files",
+				Doc:              "Generates D protobuf ``.d`` files",
 				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows", "macos"},
 			},
@@ -62,7 +62,7 @@ func makeD() *Language {
 // 				Plugins:          []string{"//d:grpc_d"}, # TODO: Try https://github.com/huntlabs/grpc-dlang
 // 				WorkspaceExample: dWorkspaceTemplate,
 // 				BuildExample:     grpcCompileExampleTemplate,
-// 				Doc:              "Generates D protobuf and gRPC `.d` files",
+// 				Doc:              "Generates D protobuf and gRPC ``.d`` files",
 // 				Attrs:            libraryRuleAttrs,
 // 				SkipTestPlatforms: []string{"windows", "macos"},
 // 			},
@@ -72,7 +72,7 @@ func makeD() *Language {
 				Implementation:   dProtoLibraryRuleTemplate,
 				WorkspaceExample: dWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a D protobuf library using `d_library` from `rules_d`",
+				Doc:              "Generates a D protobuf library using ``d_library`` from ``rules_d``",
 				Attrs:            compileRuleAttrs,
 				SkipTestPlatforms: []string{"windows", "macos"},
 			},
@@ -82,7 +82,7 @@ func makeD() *Language {
 // 				Implementation:   dGrpcLibraryRuleTemplate,
 // 				WorkspaceExample: dWorkspaceTemplate,
 // 				BuildExample:     grpcLibraryExampleTemplate,
-// 				Doc:              "Generates a D protobuf and gRPC library using `d_library` from `rules_d`",
+// 				Doc:              "Generates a D protobuf and gRPC library using ``d_library`` from ``rules_d``",
 // 				Attrs:            libraryRuleAttrs,
 // 				SkipTestPlatforms: []string{"windows", "macos"},
 // 			},

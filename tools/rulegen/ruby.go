@@ -67,7 +67,7 @@ func makeRuby() *Language {
 		Dir:   "ruby",
 		Name:  "ruby",
 		DisplayName: "Ruby",
-		Notes: mustTemplate("Rules for generating Ruby protobuf and gRPC `.rb` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `ruby_library` from [rules_ruby](https://github.com/bazelruby/rules_ruby)"),
+		Notes: mustTemplate("Rules for generating Ruby protobuf and gRPC ``.rb`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``ruby_library`` from `rules_ruby <https://github.com/bazelruby/rules_ruby>`_"),
 		Flags: commonLangFlags,
 		//SkipTestPlatforms: []string{"windows"}, // CI has no Ruby available for windows
 		SkipTestPlatforms: []string{"all"}, // https://github.com/rules-proto-grpc/rules_proto_grpc/issues/65
@@ -79,7 +79,7 @@ func makeRuby() *Language {
 				Plugins:          []string{"//ruby:ruby_plugin"},
 				WorkspaceExample: rubyProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Ruby protobuf `.rb` files",
+				Doc:              "Generates Ruby protobuf ``.rb`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -89,7 +89,7 @@ func makeRuby() *Language {
 				Plugins:          []string{"//ruby:ruby_plugin", "//ruby:grpc_ruby_plugin"},
 				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Ruby protobuf and gRPC `.rb` files",
+				Doc:              "Generates Ruby protobuf and gRPC ``.rb`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -98,7 +98,7 @@ func makeRuby() *Language {
 				Implementation:   rubyLibraryRuleTemplate,
 				WorkspaceExample: rubyProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a Ruby protobuf library using `ruby_library` from `rules_ruby`",
+				Doc:              "Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``",
 				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
@@ -107,7 +107,7 @@ func makeRuby() *Language {
 				Implementation:   rubyLibraryRuleTemplate,
 				WorkspaceExample: rubyGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Ruby protobuf and gRPC library using `ruby_library` from `rules_ruby`",
+				Doc:              "Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``",
 				Attrs:            libraryRuleAttrs,
 			},
 		},

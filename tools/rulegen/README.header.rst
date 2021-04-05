@@ -139,7 +139,5 @@ It is recommended that you use the tagged releases for stable rules. Master is i
 unstable at certain periods. To be notified of new releases, you can use GitHub's 'Watch Releases Only' on the
 repository.
 
-.. note::
-
-   You will also need to follow instructions in the language-specific `README.md` for additional workspace
-   dependencies that may be required.
+**Note**: You will also need to follow instructions in the language-specific pages for additional workspace
+dependencies that may be required.

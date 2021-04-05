@@ -7,17 +7,17 @@ grpc-gateway rules
 
    * - Rule
      - Description
-   * - `gateway_grpc_compile <gateway_grpc_compile>`_
-     - Generates grpc-gateway `.go` files
-   * - `gateway_openapiv2_compile <gateway_openapiv2_compile>`_
-     - Generates grpc-gateway OpenAPI v2 `.json` files
-   * - `gateway_grpc_library <gateway_grpc_library>`_
+   * - `gateway_grpc_compile <#gateway_grpc_compile>`_
+     - Generates grpc-gateway ``.go`` files
+   * - `gateway_openapiv2_compile <#gateway_openapiv2_compile>`_
+     - Generates grpc-gateway OpenAPI v2 ``.json`` files
+   * - `gateway_grpc_library <#gateway_grpc_library>`_
      - Generates grpc-gateway library files
 
 ``gateway_grpc_compile``
 ------------------------
 
-Generates grpc-gateway `.go` files
+Generates grpc-gateway ``.go`` files
 
 ``WORKSPACE``
 *************
@@ -65,7 +65,7 @@ Generates grpc-gateway `.go` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for gateway_grpc_compile
    :header-rows: 1
 
    * - Name
@@ -73,30 +73,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -109,7 +109,7 @@ Plugins
 ``gateway_openapiv2_compile``
 -----------------------------
 
-Generates grpc-gateway OpenAPI v2 `.json` files
+Generates grpc-gateway OpenAPI v2 ``.json`` files
 
 ``WORKSPACE``
 *************
@@ -157,7 +157,7 @@ Generates grpc-gateway OpenAPI v2 `.json` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for gateway_openapiv2_compile
    :header-rows: 1
 
    * - Name
@@ -165,30 +165,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -248,7 +248,7 @@ Generates grpc-gateway library files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for gateway_grpc_library
    :header-rows: 1
 
    * - Name
@@ -256,38 +256,38 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - `deps`
-     - `label_list`
+   * - ``deps``
+     - ``label_list``
      - false
-     - `[]`
+     - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - `importpath`
-     - `string`
+   * - ``importpath``
+     - ``string``
      - false
-     - `None`
+     - ``None``
      - Importpath for the generated files

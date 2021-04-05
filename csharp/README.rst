@@ -1,7 +1,7 @@
 C# rules
 ========
 
-Rules for generating C# protobuf and gRPC `.cs` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with `csharp_library` from [rules_dotnet](https://github.com/bazelbuild/rules_dotnet)
+Rules for generating C# protobuf and gRPC ``.cs`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``csharp_library`` from `rules_dotnet <https://github.com/bazelbuild/rules_dotnet>`_
 
 .. list-table:: Rules
    :widths: 1 1
@@ -9,19 +9,19 @@ Rules for generating C# protobuf and gRPC `.cs` files and libraries using standa
 
    * - Rule
      - Description
-   * - `csharp_proto_compile <csharp_proto_compile>`_
-     - Generates C# protobuf `.cs` files
-   * - `csharp_grpc_compile <csharp_grpc_compile>`_
-     - Generates C# protobuf and gRPC `.cs` files
-   * - `csharp_proto_library <csharp_proto_library>`_
-     - Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
-   * - `csharp_grpc_library <csharp_grpc_library>`_
-     - Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
+   * - `csharp_proto_compile <#csharp_proto_compile>`_
+     - Generates C# protobuf ``.cs`` files
+   * - `csharp_grpc_compile <#csharp_grpc_compile>`_
+     - Generates C# protobuf and gRPC ``.cs`` files
+   * - `csharp_proto_library <#csharp_proto_library>`_
+     - Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+   * - `csharp_grpc_library <#csharp_grpc_library>`_
+     - Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
 
 ``csharp_proto_compile``
 ------------------------
 
-Generates C# protobuf `.cs` files
+Generates C# protobuf ``.cs`` files
 
 ``WORKSPACE``
 *************
@@ -75,7 +75,7 @@ Generates C# protobuf `.cs` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for csharp_proto_compile
    :header-rows: 1
 
    * - Name
@@ -83,30 +83,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -117,7 +117,7 @@ Plugins
 ``csharp_grpc_compile``
 -----------------------
 
-Generates C# protobuf and gRPC `.cs` files
+Generates C# protobuf and gRPC ``.cs`` files
 
 ``WORKSPACE``
 *************
@@ -169,7 +169,7 @@ Generates C# protobuf and gRPC `.cs` files
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for csharp_grpc_compile
    :header-rows: 1
 
    * - Name
@@ -177,30 +177,30 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
 
 Plugins
@@ -212,7 +212,7 @@ Plugins
 ``csharp_proto_library``
 ------------------------
 
-Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
+Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
 
 ``WORKSPACE``
 *************
@@ -268,7 +268,7 @@ Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for csharp_proto_library
    :header-rows: 1
 
    * - Name
@@ -276,41 +276,41 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - `deps`
-     - `label_list`
+   * - ``deps``
+     - ``label_list``
      - false
-     - `[]`
+     - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
 
 ``csharp_grpc_library``
 -----------------------
 
-Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`
+Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
 
 ``WORKSPACE``
 *************
@@ -363,7 +363,7 @@ Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotn
 Attributes
 **********
 
-.. list-table:: Rules
+.. list-table:: Attributes for csharp_grpc_library
    :header-rows: 1
 
    * - Name
@@ -371,33 +371,33 @@ Attributes
      - Mandatory
      - Default
      - Description
-   * - `protos`
-     - `label_list`
+   * - ``protos``
+     - ``label_list``
      - true
-     - ``
-     - List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)
-   * - `options`
-     - `string_list_dict`
+     - ````
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+   * - ``options``
+     - ``string_list_dict``
      - false
-     - `[]`
+     - ``[]``
      - Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins
-   * - `verbose`
-     - `int`
+   * - ``verbose``
+     - ``int``
      - false
-     - `0`
+     - ``0``
      - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
-   * - `prefix_path`
-     - `string`
+   * - ``prefix_path``
+     - ``string``
      - false
-     - `""`
+     - ``""``
      - Path to prefix to the generated files in the output directory
-   * - `extra_protoc_args`
-     - `string_list`
+   * - ``extra_protoc_args``
+     - ``string_list``
      - false
-     - `[]`
+     - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - `deps`
-     - `label_list`
+   * - ``deps``
+     - ``label_list``
      - false
-     - `[]`
+     - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule

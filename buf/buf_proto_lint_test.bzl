@@ -16,7 +16,7 @@ buf_proto_lint_test = rule(
         protos = attr.label_list(
             providers = [ProtoInfo],
             mandatory = True,
-            doc = "List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)",
+            doc = "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
         ),
         use_rules = attr.string_list(
             default = ["DEFAULT"],
@@ -41,12 +41,12 @@ buf_proto_lint_test = rule(
         rpc_allow_google_protobuf_empty_requests = attr.bool(
             default = False,
             mandatory = False,
-            doc = "Allow request message to be `google.protobuf.Empty`",
+            doc = "Allow request message to be ``google.protobuf.Empty``",
         ),
         rpc_allow_google_protobuf_empty_responses = attr.bool(
             default = False,
             mandatory = False,
-            doc = "Allow response message to be `google.protobuf.Empty`",
+            doc = "Allow response message to be ``google.protobuf.Empty``",
         ),
         service_suffix = attr.string(
             default = "Service",

@@ -77,7 +77,7 @@ func makeC() *Language {
 		Dir:   "c",
 		Name:  "c",
 		DisplayName: "C",
-		Notes: mustTemplate("Rules for generating C protobuf `.c` & `.h` files and libraries using [upb](https://github.com/protocolbuffers/upb). Libraries are created with the Bazel native `cc_library`"),
+		Notes: mustTemplate("Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <https://github.com/protocolbuffers/upb>`_. Libraries are created with the Bazel native ``cc_library``"),
 		Flags: commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
@@ -87,7 +87,7 @@ func makeC() *Language {
 				Plugins:          []string{"//c:upb_plugin"},
 				WorkspaceExample: cWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates C protobuf `.h` & `.c` files",
+				Doc:              "Generates C protobuf ``.h`` & ``.c`` files",
 				Attrs:            compileRuleAttrs,
 				Experimental:     true,
 			},
@@ -97,7 +97,7 @@ func makeC() *Language {
 				Implementation:   cProtoLibraryRuleTemplate,
 				WorkspaceExample: cWorkspaceTemplate,
 				BuildExample:     cProtoLibraryExampleTemplate,
-				Doc:              "Generates a C protobuf library using `cc_library`, with dependencies linked",
+				Doc:              "Generates a C protobuf library using ``cc_library``, with dependencies linked",
 				Attrs:            cppLibraryRuleAttrs,
 				Experimental:     true,
 			},
