@@ -7,3 +7,4 @@ available_tests.txt
 csharp/nuget/nuget2config.json
 ruby/.bundle
 js/requirements/yarn-error.log
+.vscode
