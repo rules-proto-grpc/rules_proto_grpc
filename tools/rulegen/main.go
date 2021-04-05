@@ -412,33 +412,24 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	out.tpl(header, data)
 	out.ln()
 
-	out.w("Rules")
-	out.w("=====")
+	out.w("## Rules")
 	out.ln()
 
-	out.w(".. list-table:: Rules")
-	out.w("   :widths: 1 1 2")
-	out.w("   :header-rows: 1")
-	out.ln()
-	out.w("   * - Language")
-	out.w("     - Rule")
-	out.w("     - Description")
-
+	out.w("| Language | Rule | Description")
+	out.w("| ---: | :--- | :--- |")
 	for _, lang := range languages {
 		for _, rule := range lang.Rules {
-			dirLink := fmt.Sprintf("`%s <%s>`_", lang.DisplayName, lang.Dir)
-			ruleLink := fmt.Sprintf("`%s <%s#%s>`_", rule.Name, lang.Dir, rule.Name)
-			exampleLink := fmt.Sprintf("`example <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/%s/%s>`__", lang.Dir, rule.Name)
-			out.w("   * - %s", dirLink)
-			out.w("     - %s", ruleLink)
-			out.w("     - %s (%s)", rule.Doc, exampleLink)
+			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/stable/lang/%s.html)", lang.DisplayName, lang.Name)
+			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/stable/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
+			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
+			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
 		}
 	}
 	out.ln()
 
 	out.tpl(footer, data)
 
-	out.MustWrite(filepath.Join(dir, "README.rst"))
+	out.MustWrite(filepath.Join(dir, "README.md"))
 }
 
 func mustWriteIndexRst(dir, template string, data interface{}) {
