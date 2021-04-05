@@ -14,14 +14,16 @@ Rules for generating Ruby protobuf and gRPC ``.rb`` files and libraries using st
 
    * - Rule
      - Description
-   * - `ruby_proto_compile <#ruby_proto_compile>`_
+   * - `ruby_proto_compile`_
      - Generates Ruby protobuf ``.rb`` files
-   * - `ruby_grpc_compile <#ruby_grpc_compile>`_
+   * - `ruby_grpc_compile`_
      - Generates Ruby protobuf and gRPC ``.rb`` files
-   * - `ruby_proto_library <#ruby_proto_library>`_
+   * - `ruby_proto_library`_
      - Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
-   * - `ruby_grpc_library <#ruby_grpc_library>`_
+   * - `ruby_grpc_library`_
      - Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``
+
+.. _ruby_proto_compile:
 
 ruby_proto_compile
 ------------------
@@ -116,6 +118,8 @@ Plugins
 
 - ``@rules_proto_grpc//ruby:ruby_plugin``
 
+.. _ruby_grpc_compile:
+
 ruby_grpc_compile
 -----------------
 
@@ -208,6 +212,8 @@ Plugins
 
 - ``@rules_proto_grpc//ruby:ruby_plugin``
 - ``@rules_proto_grpc//ruby:grpc_ruby_plugin``
+
+.. _ruby_proto_library:
 
 ruby_proto_library
 ------------------
@@ -303,6 +309,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+
+.. _ruby_grpc_library:
 
 ruby_grpc_library
 -----------------

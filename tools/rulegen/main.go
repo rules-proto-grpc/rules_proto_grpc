@@ -297,14 +297,16 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 	out.w("   * - Rule")
 	out.w("     - Description")
 	for _, rule := range lang.Rules {
-		out.w("   * - `%s <#%s>`_", rule.Name, rule.Name)
+		out.w("   * - `%s`_", rule.Name)
 		out.w("     - %s", rule.Doc)
 	}
 	out.ln()
 
 	for _, rule := range lang.Rules {
-		out.w("``%s``", rule.Name)
-		out.w("--%s--", strings.Repeat("-", len(rule.Name)))
+		out.w(".. _%s:", rule.Name)
+		out.ln()
+		out.w("%s", rule.Name)
+		out.w("%s", strings.Repeat("-", len(rule.Name)))
 		out.ln()
 
 		if rule.Experimental {

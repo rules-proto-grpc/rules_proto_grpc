@@ -16,18 +16,20 @@ Rules for generating Python protobuf and gRPC ``.py`` files and libraries using 
 
    * - Rule
      - Description
-   * - `python_proto_compile <#python_proto_compile>`_
+   * - `python_proto_compile`_
      - Generates Python protobuf ``.py`` files
-   * - `python_grpc_compile <#python_grpc_compile>`_
+   * - `python_grpc_compile`_
      - Generates Python protobuf and gRPC ``.py`` files
-   * - `python_grpclib_compile <#python_grpclib_compile>`_
+   * - `python_grpclib_compile`_
      - Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)
-   * - `python_proto_library <#python_proto_library>`_
+   * - `python_proto_library`_
      - Generates a Python protobuf library using ``py_library`` from ``rules_python``
-   * - `python_grpc_library <#python_grpc_library>`_
+   * - `python_grpc_library`_
      - Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_python``
-   * - `python_grpclib_library <#python_grpclib_library>`_
+   * - `python_grpclib_library`_
      - Generates a Python protobuf and grpclib library using ``py_library`` from ``rules_python`` (supports Python 3 only)
+
+.. _python_proto_compile:
 
 python_proto_compile
 --------------------
@@ -108,6 +110,8 @@ Plugins
 
 - ``@rules_proto_grpc//python:python_plugin``
 
+.. _python_grpc_compile:
+
 python_grpc_compile
 -------------------
 
@@ -186,6 +190,8 @@ Plugins
 
 - ``@rules_proto_grpc//python:python_plugin``
 - ``@rules_proto_grpc//python:grpc_python_plugin``
+
+.. _python_grpclib_compile:
 
 python_grpclib_compile
 ----------------------
@@ -274,6 +280,8 @@ Plugins
 - ``@rules_proto_grpc//python:python_plugin``
 - ``@rules_proto_grpc//python:grpclib_python_plugin``
 
+.. _python_proto_library:
+
 python_proto_library
 --------------------
 
@@ -355,6 +363,8 @@ Attributes
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
 
+.. _python_grpc_library:
+
 python_grpc_library
 -------------------
 
@@ -433,6 +443,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+
+.. _python_grpclib_library:
 
 python_grpclib_library
 ----------------------

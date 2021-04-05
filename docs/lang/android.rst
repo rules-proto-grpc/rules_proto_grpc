@@ -14,14 +14,16 @@ Rules for generating Android protobuf and gRPC ``.jar`` files and libraries usin
 
    * - Rule
      - Description
-   * - `android_proto_compile <#android_proto_compile>`_
+   * - `android_proto_compile`_
      - Generates an Android protobuf ``.jar`` file
-   * - `android_grpc_compile <#android_grpc_compile>`_
+   * - `android_grpc_compile`_
      - Generates Android protobuf and gRPC ``.jar`` files
-   * - `android_proto_library <#android_proto_library>`_
+   * - `android_proto_library`_
      - Generates an Android protobuf library using ``android_library`` from ``rules_android``
-   * - `android_grpc_library <#android_grpc_library>`_
+   * - `android_grpc_library`_
      - Generates Android protobuf and gRPC library using ``android_library`` from ``rules_android``
+
+.. _android_proto_compile:
 
 android_proto_compile
 ---------------------
@@ -101,6 +103,8 @@ Plugins
 *******
 
 - ``@rules_proto_grpc//android:javalite_plugin``
+
+.. _android_grpc_compile:
 
 android_grpc_compile
 --------------------
@@ -194,6 +198,8 @@ Plugins
 
 - ``@rules_proto_grpc//android:javalite_plugin``
 - ``@rules_proto_grpc//android:grpc_javalite_plugin``
+
+.. _android_proto_library:
 
 android_proto_library
 ---------------------
@@ -304,6 +310,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as exports attr to underlying lang_library rule
+
+.. _android_grpc_library:
 
 android_grpc_library
 --------------------

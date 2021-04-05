@@ -16,10 +16,12 @@ Rules for generating D protobuf ``.d`` files and libraries using `protobuf-d <ht
 
    * - Rule
      - Description
-   * - `d_proto_compile <#d_proto_compile>`_
+   * - `d_proto_compile`_
      - Generates D protobuf ``.d`` files
-   * - `d_proto_library <#d_proto_library>`_
+   * - `d_proto_library`_
      - Generates a D protobuf library using ``d_library`` from ``rules_d``
+
+.. _d_proto_compile:
 
 d_proto_compile
 ---------------
@@ -103,6 +105,8 @@ Plugins
 *******
 
 - ``@rules_proto_grpc//d:d_plugin``
+
+.. _d_proto_library:
 
 d_proto_library
 ---------------

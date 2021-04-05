@@ -14,14 +14,16 @@ Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and lib
 
    * - Rule
      - Description
-   * - `objc_proto_compile <#objc_proto_compile>`_
+   * - `objc_proto_compile`_
      - Generates Objective-C protobuf ``.m`` & ``.h`` files
-   * - `objc_grpc_compile <#objc_grpc_compile>`_
+   * - `objc_grpc_compile`_
      - Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files
-   * - `objc_proto_library <#objc_proto_library>`_
+   * - `objc_proto_library`_
      - Generates an Objective-C protobuf library using ``objc_library``
-   * - `objc_grpc_library <#objc_grpc_library>`_
+   * - `objc_grpc_library`_
      - Generates an Objective-C protobuf and gRPC library using ``objc_library``
+
+.. _objc_proto_compile:
 
 objc_proto_compile
 ------------------
@@ -102,6 +104,8 @@ Plugins
 
 - ``@rules_proto_grpc//objc:objc_plugin``
 
+.. _objc_grpc_compile:
+
 objc_grpc_compile
 -----------------
 
@@ -180,6 +184,8 @@ Plugins
 
 - ``@rules_proto_grpc//objc:objc_plugin``
 - ``@rules_proto_grpc//objc:grpc_objc_plugin``
+
+.. _objc_proto_library:
 
 objc_proto_library
 ------------------
@@ -306,6 +312,8 @@ Attributes
      - false
      - ``None``
      - Passed to the ``strip_include_prefix`` attribute of ``cc_library``.
+
+.. _objc_grpc_library:
 
 objc_grpc_library
 -----------------

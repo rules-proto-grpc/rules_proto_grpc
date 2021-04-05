@@ -14,14 +14,16 @@ Rules for generating C# protobuf and gRPC ``.cs`` files and libraries using stan
 
    * - Rule
      - Description
-   * - `csharp_proto_compile <#csharp_proto_compile>`_
+   * - `csharp_proto_compile`_
      - Generates C# protobuf ``.cs`` files
-   * - `csharp_grpc_compile <#csharp_grpc_compile>`_
+   * - `csharp_grpc_compile`_
      - Generates C# protobuf and gRPC ``.cs`` files
-   * - `csharp_proto_library <#csharp_proto_library>`_
+   * - `csharp_proto_library`_
      - Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
-   * - `csharp_grpc_library <#csharp_grpc_library>`_
+   * - `csharp_grpc_library`_
      - Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+
+.. _csharp_proto_compile:
 
 csharp_proto_compile
 --------------------
@@ -120,6 +122,8 @@ Plugins
 
 - ``@rules_proto_grpc//csharp:csharp_plugin``
 
+.. _csharp_grpc_compile:
+
 csharp_grpc_compile
 -------------------
 
@@ -215,6 +219,8 @@ Plugins
 
 - ``@rules_proto_grpc//csharp:csharp_plugin``
 - ``@rules_proto_grpc//csharp:grpc_csharp_plugin``
+
+.. _csharp_proto_library:
 
 csharp_proto_library
 --------------------
@@ -314,6 +320,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+
+.. _csharp_grpc_library:
 
 csharp_grpc_library
 -------------------

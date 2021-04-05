@@ -14,14 +14,16 @@ Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `r
 
    * - Rule
      - Description
-   * - `rust_proto_compile <#rust_proto_compile>`_
+   * - `rust_proto_compile`_
      - Generates Rust protobuf ``.rs`` files
-   * - `rust_grpc_compile <#rust_grpc_compile>`_
+   * - `rust_grpc_compile`_
      - Generates Rust protobuf and gRPC ``.rs`` files
-   * - `rust_proto_library <#rust_proto_library>`_
+   * - `rust_proto_library`_
      - Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
-   * - `rust_grpc_library <#rust_grpc_library>`_
+   * - `rust_grpc_library`_
      - Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``
+
+.. _rust_proto_compile:
 
 rust_proto_compile
 ------------------
@@ -110,6 +112,8 @@ Plugins
 
 - ``@rules_proto_grpc//rust:rust_plugin``
 
+.. _rust_grpc_compile:
+
 rust_grpc_compile
 -----------------
 
@@ -193,6 +197,8 @@ Plugins
 - ``@rules_proto_grpc//rust:rust_plugin``
 - ``@rules_proto_grpc//rust:grpc_rust_plugin``
 
+.. _rust_proto_library:
+
 rust_proto_library
 ------------------
 
@@ -273,6 +279,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+
+.. _rust_grpc_library:
 
 rust_grpc_library
 -----------------

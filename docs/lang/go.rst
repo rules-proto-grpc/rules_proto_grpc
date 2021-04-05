@@ -14,14 +14,16 @@ Rules for generating Go protobuf and gRPC ``.go`` files and libraries using `gol
 
    * - Rule
      - Description
-   * - `go_proto_compile <#go_proto_compile>`_
+   * - `go_proto_compile`_
      - Generates Go protobuf ``.go`` files
-   * - `go_grpc_compile <#go_grpc_compile>`_
+   * - `go_grpc_compile`_
      - Generates Go protobuf and gRPC ``.go`` files
-   * - `go_proto_library <#go_proto_library>`_
+   * - `go_proto_library`_
      - Generates a Go protobuf library using ``go_library`` from ``rules_go``
-   * - `go_grpc_library <#go_grpc_library>`_
+   * - `go_grpc_library`_
      - Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go``
+
+.. _go_proto_compile:
 
 go_proto_compile
 ----------------
@@ -120,6 +122,8 @@ Plugins
 
 - ``@rules_proto_grpc//go:go_plugin``
 
+.. _go_grpc_compile:
+
 go_grpc_compile
 ---------------
 
@@ -212,6 +216,8 @@ Plugins
 
 - ``@rules_proto_grpc//go:go_plugin``
 - ``@rules_proto_grpc//go:grpc_go_plugin``
+
+.. _go_proto_library:
 
 go_proto_library
 ----------------
@@ -309,6 +315,8 @@ Attributes
      - false
      - ``None``
      - Importpath for the generated files
+
+.. _go_grpc_library:
 
 go_grpc_library
 ---------------

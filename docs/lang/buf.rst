@@ -18,10 +18,12 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.
 
    * - Rule
      - Description
-   * - `buf_proto_breaking_test <#buf_proto_breaking_test>`_
+   * - `buf_proto_breaking_test`_
      - Checks .proto files for breaking changes
-   * - `buf_proto_lint_test <#buf_proto_lint_test>`_
+   * - `buf_proto_lint_test`_
      - Lints .proto files
+
+.. _buf_proto_breaking_test:
 
 buf_proto_breaking_test
 -----------------------
@@ -99,6 +101,8 @@ Plugins
 *******
 
 - ``@rules_proto_grpc//buf:breaking_plugin``
+
+.. _buf_proto_lint_test:
 
 buf_proto_lint_test
 -------------------

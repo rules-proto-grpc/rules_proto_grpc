@@ -14,10 +14,12 @@ Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <
 
    * - Rule
      - Description
-   * - `c_proto_compile <#c_proto_compile>`_
+   * - `c_proto_compile`_
      - Generates C protobuf ``.h`` & ``.c`` files
-   * - `c_proto_library <#c_proto_library>`_
+   * - `c_proto_library`_
      - Generates a C protobuf library using ``cc_library``, with dependencies linked
+
+.. _c_proto_compile:
 
 c_proto_compile
 ---------------
@@ -103,6 +105,8 @@ Plugins
 *******
 
 - ``@rules_proto_grpc//c:upb_plugin``
+
+.. _c_proto_library:
 
 c_proto_library
 ---------------

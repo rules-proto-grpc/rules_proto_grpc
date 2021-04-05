@@ -14,14 +14,16 @@ Rules for generating Swift protobuf and gRPC ``.swift`` files and libraries usin
 
    * - Rule
      - Description
-   * - `swift_proto_compile <#swift_proto_compile>`_
+   * - `swift_proto_compile`_
      - Generates Swift protobuf ``.swift`` files
-   * - `swift_grpc_compile <#swift_grpc_compile>`_
+   * - `swift_grpc_compile`_
      - Generates Swift protobuf and gRPC ``.swift`` files
-   * - `swift_proto_library <#swift_proto_library>`_
+   * - `swift_proto_library`_
      - Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
-   * - `swift_grpc_library <#swift_grpc_library>`_
+   * - `swift_grpc_library`_
      - Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``
+
+.. _swift_proto_compile:
 
 swift_proto_compile
 -------------------
@@ -109,6 +111,8 @@ Plugins
 
 - ``@rules_proto_grpc//swift:swift_plugin``
 
+.. _swift_grpc_compile:
+
 swift_grpc_compile
 ------------------
 
@@ -190,6 +194,8 @@ Plugins
 
 - ``@rules_proto_grpc//swift:swift_plugin``
 - ``@rules_proto_grpc//swift:grpc_swift_plugin``
+
+.. _swift_proto_library:
 
 swift_proto_library
 -------------------
@@ -275,6 +281,8 @@ Attributes
      - false
      - 
      - The name of the Swift module being built.
+
+.. _swift_grpc_library:
 
 swift_grpc_library
 ------------------

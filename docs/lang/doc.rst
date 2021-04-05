@@ -14,14 +14,16 @@ Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with
 
    * - Rule
      - Description
-   * - `doc_docbook_compile <#doc_docbook_compile>`_
+   * - `doc_docbook_compile`_
      - Generates DocBook ``.xml`` documentation file
-   * - `doc_html_compile <#doc_html_compile>`_
+   * - `doc_html_compile`_
      - Generates ``.html`` documentation file
-   * - `doc_json_compile <#doc_json_compile>`_
+   * - `doc_json_compile`_
      - Generates ``.json`` documentation file
-   * - `doc_markdown_compile <#doc_markdown_compile>`_
+   * - `doc_markdown_compile`_
      - Generates Markdown ``.md`` documentation file
+
+.. _doc_docbook_compile:
 
 doc_docbook_compile
 -------------------
@@ -104,6 +106,8 @@ Plugins
 
 - ``@rules_proto_grpc//doc:docbook_plugin``
 
+.. _doc_html_compile:
+
 doc_html_compile
 ----------------
 
@@ -185,6 +189,8 @@ Plugins
 
 - ``@rules_proto_grpc//doc:html_plugin``
 
+.. _doc_json_compile:
+
 doc_json_compile
 ----------------
 
@@ -265,6 +271,8 @@ Plugins
 *******
 
 - ``@rules_proto_grpc//doc:json_plugin``
+
+.. _doc_markdown_compile:
 
 doc_markdown_compile
 --------------------

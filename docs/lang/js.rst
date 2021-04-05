@@ -27,18 +27,20 @@ Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.
 
    * - Rule
      - Description
-   * - `js_proto_compile <#js_proto_compile>`_
+   * - `js_proto_compile`_
      - Generates JavaScript protobuf ``.js`` and ``.d.ts`` files
-   * - `js_grpc_node_compile <#js_grpc_node_compile>`_
+   * - `js_grpc_node_compile`_
      - Generates JavaScript protobuf and gRPC-node ``.js`` and ``.d.ts`` files
-   * - `js_grpc_web_compile <#js_grpc_web_compile>`_
+   * - `js_grpc_web_compile`_
      - Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files
-   * - `js_proto_library <#js_proto_library>`_
+   * - `js_proto_library`_
      - Generates a JavaScript protobuf library using ``js_library`` from ``rules_nodejs``
-   * - `js_grpc_node_library <#js_grpc_node_library>`_
+   * - `js_grpc_node_library`_
      - Generates a Node.js protobuf + gRPC-node library using ``js_library`` from ``rules_nodejs``
-   * - `js_grpc_web_library <#js_grpc_web_library>`_
+   * - `js_grpc_web_library`_
      - Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``rules_nodejs``
+
+.. _js_proto_compile:
 
 js_proto_compile
 ----------------
@@ -128,6 +130,8 @@ Plugins
 - ``@rules_proto_grpc//js:js_plugin``
 - ``@rules_proto_grpc//js:ts_plugin``
 
+.. _js_grpc_node_compile:
+
 js_grpc_node_compile
 --------------------
 
@@ -213,6 +217,8 @@ Plugins
 - ``@rules_proto_grpc//js:grpc_node_plugin``
 - ``@rules_proto_grpc//js:grpc_node_ts_plugin``
 
+.. _js_grpc_web_compile:
+
 js_grpc_web_compile
 -------------------
 
@@ -296,6 +302,8 @@ Plugins
 - ``@rules_proto_grpc//js:js_plugin``
 - ``@rules_proto_grpc//js:ts_plugin``
 - ``@rules_proto_grpc//js:grpc_web_js_plugin``
+
+.. _js_proto_library:
 
 js_proto_library
 ----------------
@@ -391,6 +399,8 @@ Attributes
      - ``@npm``
      - The repository to load the dependencies from, if you don't use ``@npm``
 
+.. _js_grpc_node_library:
+
 js_grpc_node_library
 --------------------
 
@@ -478,6 +488,8 @@ Attributes
      - false
      - ``@npm``
      - The repository to load the dependencies from, if you don't use ``@npm``
+
+.. _js_grpc_web_library:
 
 js_grpc_web_library
 -------------------

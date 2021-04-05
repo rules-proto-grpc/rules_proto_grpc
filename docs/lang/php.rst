@@ -14,10 +14,12 @@ Rules for generating PHP protobuf and gRPC ``.php`` files and libraries using st
 
    * - Rule
      - Description
-   * - `php_proto_compile <#php_proto_compile>`_
+   * - `php_proto_compile`_
      - Generates PHP protobuf ``.php`` files
-   * - `php_grpc_compile <#php_grpc_compile>`_
+   * - `php_grpc_compile`_
      - Generates PHP protobuf and gRPC ``.php`` files
+
+.. _php_proto_compile:
 
 php_proto_compile
 -----------------
@@ -97,6 +99,8 @@ Plugins
 *******
 
 - ``@rules_proto_grpc//php:php_plugin``
+
+.. _php_grpc_compile:
 
 php_grpc_compile
 ----------------

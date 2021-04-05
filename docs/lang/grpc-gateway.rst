@@ -12,12 +12,14 @@ grpc-gateway
 
    * - Rule
      - Description
-   * - `gateway_grpc_compile <#gateway_grpc_compile>`_
+   * - `gateway_grpc_compile`_
      - Generates grpc-gateway ``.go`` files
-   * - `gateway_openapiv2_compile <#gateway_openapiv2_compile>`_
+   * - `gateway_openapiv2_compile`_
      - Generates grpc-gateway OpenAPI v2 ``.json`` files
-   * - `gateway_grpc_library <#gateway_grpc_library>`_
+   * - `gateway_grpc_library`_
      - Generates grpc-gateway library files
+
+.. _gateway_grpc_compile:
 
 gateway_grpc_compile
 --------------------
@@ -112,6 +114,8 @@ Plugins
 - ``@rules_proto_grpc//go:grpc_go_plugin``
 - ``@rules_proto_grpc//go:go_plugin``
 
+.. _gateway_openapiv2_compile:
+
 gateway_openapiv2_compile
 -------------------------
 
@@ -202,6 +206,8 @@ Plugins
 *******
 
 - ``@rules_proto_grpc//grpc-gateway:openapiv2_plugin``
+
+.. _gateway_grpc_library:
 
 gateway_grpc_library
 --------------------

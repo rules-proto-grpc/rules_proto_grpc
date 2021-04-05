@@ -14,14 +14,16 @@ Rules for generating Scala protobuf and gRPC ``.jar`` files and libraries using 
 
    * - Rule
      - Description
-   * - `scala_proto_compile <#scala_proto_compile>`_
+   * - `scala_proto_compile`_
      - Generates a Scala protobuf ``.jar`` file
-   * - `scala_grpc_compile <#scala_grpc_compile>`_
+   * - `scala_grpc_compile`_
      - Generates Scala protobuf and gRPC ``.jar`` file
-   * - `scala_proto_library <#scala_proto_library>`_
+   * - `scala_proto_library`_
      - Generates a Scala protobuf library using ``scala_library`` from ``rules_scala``
-   * - `scala_grpc_library <#scala_grpc_library>`_
+   * - `scala_grpc_library`_
      - Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala``
+
+.. _scala_proto_compile:
 
 scala_proto_compile
 -------------------
@@ -118,6 +120,8 @@ Plugins
 
 - ``@rules_proto_grpc//scala:scala_plugin``
 
+.. _scala_grpc_compile:
+
 scala_grpc_compile
 ------------------
 
@@ -211,6 +215,8 @@ Plugins
 *******
 
 - ``@rules_proto_grpc//scala:grpc_scala_plugin``
+
+.. _scala_proto_library:
 
 scala_proto_library
 -------------------
@@ -313,6 +319,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as exports attr to underlying lang_library rule
+
+.. _scala_grpc_library:
 
 scala_grpc_library
 ------------------

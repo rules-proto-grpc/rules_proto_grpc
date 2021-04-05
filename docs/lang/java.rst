@@ -14,14 +14,16 @@ Rules for generating Java protobuf and gRPC ``.jar`` files and libraries using s
 
    * - Rule
      - Description
-   * - `java_proto_compile <#java_proto_compile>`_
+   * - `java_proto_compile`_
      - Generates a Java protobuf srcjar file
-   * - `java_grpc_compile <#java_grpc_compile>`_
+   * - `java_grpc_compile`_
      - Generates a Java protobuf and gRPC srcjar file
-   * - `java_proto_library <#java_proto_library>`_
+   * - `java_proto_library`_
      - Generates a Java protobuf library using ``java_library``
-   * - `java_grpc_library <#java_grpc_library>`_
+   * - `java_grpc_library`_
      - Generates a Java protobuf and gRPC library using ``java_library``
+
+.. _java_proto_compile:
 
 java_proto_compile
 ------------------
@@ -102,6 +104,8 @@ Plugins
 
 - ``@rules_proto_grpc//java:java_plugin``
 
+.. _java_grpc_compile:
+
 java_grpc_compile
 -----------------
 
@@ -176,6 +180,8 @@ Plugins
 
 - ``@rules_proto_grpc//java:java_plugin``
 - ``@rules_proto_grpc//java:grpc_java_plugin``
+
+.. _java_proto_library:
 
 java_proto_library
 ------------------
@@ -262,6 +268,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as exports attr to underlying lang_library rule
+
+.. _java_grpc_library:
 
 java_grpc_library
 -----------------
