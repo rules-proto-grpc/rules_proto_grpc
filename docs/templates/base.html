@@ -19,17 +19,17 @@
     {%- endif %}
 
     <!-- Canonical URL -->
-    {%- if canonical_url %}
-    <link rel="canonical" href="{{ canonical_url.rstrip('/')|e }}/{{ pagename|e }}.html"/>
+    {%- if pageurl %}
+    <link rel="canonical" href="{{ pageurl|e }}"/>
     {%- endif %}
 
     <!-- Open Graph -->
-    {%- if canonical_url %}
-    <meta property="og:url" content="{{ canonical_url.rstrip('/')|e }}/{{ pagename|e }}.html" />
+    {%- if pageurl %}
+    <meta property="og:url" content="{{ pageurl|e }}" />
     {%- endif %}
     <meta property="og:title" content="{{ title|striptags|e }}{{ titlesuffix }}" />
-    {%- if canonical_url and icon_png %}
-    <meta property="og:image" content="{{ (canonical_url.rstrip('/') + '/_static/' + icon_png)|e }}" />
+    {%- if absolute_icon_png %}
+    <meta property="og:image" content="{{ absolute_icon_png|e }}" />
     {%- endif %}
     <meta property="og:type" content="website">
     {%- if meta and 'description' in meta %}
