@@ -21,13 +21,13 @@ func (w *LineWriter) w(s string, args ...interface{}) {
 	w.lines = append(w.lines, fmt.Sprintf(s, args...))
 }
 
-func (w *LineWriter) t(t *template.Template, data interface{}) {
+func (w *LineWriter) t(t *template.Template, data interface{}, indent string) {
 	var buf bytes.Buffer
 	err := t.Execute(&buf, data)
 	if err != nil {
 		log.Fatalf("%v", err)
 	}
-	w.lines = append(w.lines, buf.String())
+	w.lines = append(w.lines, indent + strings.ReplaceAll(buf.String(), "\n", "\n" + indent))
 }
 
 func (w *LineWriter) tpl(filename string, data interface{}) {
@@ -35,7 +35,7 @@ func (w *LineWriter) tpl(filename string, data interface{}) {
 	if err != nil {
 		log.Fatalf("Failed to parse %s: %v", filename, err)
 	}
-	w.t(tpl, data)
+	w.t(tpl, data, "")
 }
 
 func (w *LineWriter) ln() {

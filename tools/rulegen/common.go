@@ -8,7 +8,7 @@ var compileRuleAttrs = []*Attr{
     &Attr{
 		Name:      "protos",
 		Type:      "label_list",
-		Doc:       "List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)",
+		Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
 		Mandatory: true,
 		Providers: []string{"ProtoInfo"},
 	},
@@ -29,7 +29,7 @@ var compileRuleAttrs = []*Attr{
 	&Attr{
 		Name:      "prefix_path",
 		Type:      "string",
-		Default:   "\"\"",
+		Default:   `""`,
 		Doc:       "Path to prefix to the generated files in the output directory",
 		Mandatory: false,
 	},

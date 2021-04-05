@@ -40,23 +40,28 @@ func main() {
 			Value: ".",
 		},
 		&cli.StringFlag{
-			Name:  "header",
+			Name:  "readme_header_template",
 			Usage: "Template for the main readme header",
 			Value: "tools/rulegen/README.header.md",
 		},
 		&cli.StringFlag{
-			Name:  "footer",
+			Name:  "readme_footer_template",
 			Usage: "Template for the main readme footer",
 			Value: "tools/rulegen/README.footer.md",
 		},
 		&cli.StringFlag{
+			Name:  "index_template",
+			Usage: "Template for the index.rst file",
+			Value: "tools/rulegen/index.rst",
+		},
+		&cli.StringFlag{
 			Name:  "ref",
-			Usage: "Version ref to use for main readme",
+			Usage: "Version ref to use for main readme and index.rst",
 			Value: "{GIT_COMMIT_ID}",
 		},
 		&cli.StringFlag{
 			Name:  "sha256",
-			Usage: "Sha256 value to use for main readme",
+			Usage: "Sha256 value to use for main readme and index.rst",
 			Value: "{ARCHIVE_TAR_GZ_SHA256}",
 		},
 		&cli.StringFlag{
@@ -124,12 +129,19 @@ func action(c *cli.Context) error {
 		mustWriteLanguageExamples(dir, lang)
 	}
 
-	mustWriteReadme(dir, c.String("header"), c.String("footer"), struct {
+	mustWriteReadme(dir, c.String("readme_header_template"), c.String("readme_footer_template"), struct {
 		Ref, Sha256 string
 	}{
 		Ref:    ref,
 		Sha256: sha256,
 	}, languages)
+
+	mustWriteIndexRst(dir, c.String("index_template"), struct {
+		Ref, Sha256 string
+	}{
+		Ref:    ref,
+		Sha256: sha256,
+	})
 
 	mustWriteBazelciPresubmitYml(dir, languages, []string{}, c.String("available_tests"))
 
@@ -148,9 +160,9 @@ func mustWriteLanguageRules(dir string, lang *Language) {
 
 func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
-	out.t(mustTemplate(`"""Generated definition of {{ .Rule.Name }}."""`), &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.t(mustTemplate(`"""Generated definition of {{ .Rule.Name }}."""`), &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
-	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
 	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name+".bzl"))
 }
@@ -192,14 +204,14 @@ rules_proto_dependencies()
 rules_proto_toolchains()`, relpath)
 
 	out.ln()
-	out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
 }
 
 func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
-	out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
+	out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "BUILD.bazel"))
 }
@@ -275,82 +287,130 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 func mustWriteLanguageReadme(dir string, lang *Language) {
 	out := &LineWriter{}
 
-	out.w("# %s rules", lang.DisplayName)
+	out.w(":author: rules_proto_grpc")
+	out.w(":description: rules_proto_grpc Bazel rules for %s", lang.DisplayName)
+	out.w(":keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, %s", lang.DisplayName)
+	out.ln()
+	out.ln()
+
+	out.w("%s", lang.DisplayName)
+	out.w("%s", strings.Repeat("=", len(lang.DisplayName)))
 	out.ln()
 
 	if lang.Notes != nil {
-		out.t(lang.Notes, lang)
+		out.t(lang.Notes, lang, "")
 		out.ln()
 	}
 
-	out.w("| Rule | Description |")
-	out.w("| ---: | :--- |")
+	out.w(".. list-table:: Rules")
+	out.w("   :widths: 1 2")
+	out.w("   :header-rows: 1")
+	out.ln()
+	out.w("   * - Rule")
+	out.w("     - Description")
 	for _, rule := range lang.Rules {
-		out.w("| [%s](#%s) | %s |", rule.Name, rule.Name, rule.Doc)
+		out.w("   * - `%s`_", rule.Name)
+		out.w("     - %s", rule.Doc)
 	}
 	out.ln()
 
 	for _, rule := range lang.Rules {
-		out.w(`---`)
+		out.w(".. _%s:", rule.Name)
 		out.ln()
-		out.w("## `%s`", rule.Name)
+		out.w("%s", rule.Name)
+		out.w("%s", strings.Repeat("-", len(rule.Name)))
 		out.ln()
 
 		if rule.Experimental {
-			out.w(`> NOTE: This rule is experimental. It may not work correctly!`)
+			out.w("**Note**: This rule is experimental. It may not work correctly!")
 			out.ln()
 		}
 		out.w(rule.Doc)
 		out.ln()
 
-		out.w("### `WORKSPACE`")
+		out.w("Example")
+		out.w("*******")
 		out.ln()
 
-		out.w("```starlark")
-		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
-		out.w("```")
+		out.w("Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/%s/%s>`__", lang.Dir, rule.Name)
 		out.ln()
 
-		out.w("### `BUILD.bazel`")
+		out.w("``WORKSPACE``")
+		out.w("^^^^^^^^^^^^^")
 		out.ln()
 
-		out.w("```starlark")
-		out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields})
-		out.w("```")
+		out.w(".. code-block:: python")  // Treat starlark as python, as pygments needs this
+		out.ln()
+		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
+		out.ln()
+
+		out.w("``BUILD.bazel``")
+		out.w("^^^^^^^^^^^^^^^")
+		out.ln()
+
+		out.w(".. code-block:: python")
+		out.ln()
+		out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
 
 		if len(rule.Flags) > 0 {
-			out.w("### `Flags`")
+			out.w("Flags")
+			out.w("*****")
 			out.ln()
 
-			out.w("| Category | Flag | Value | Description |")
-			out.w("| --- | --- | --- | --- |")
+			out.w(".. list-table:: Flags for %s", rule.Name)
+			out.w("   :header-rows: 1")
+			out.ln()
+			out.w("   * - Category")
+			out.w("     - Flag")
+			out.w("     - Value")
+			out.w("     - Description")
 			for _, f := range rule.Flags {
-				out.w("| %s | %s | %s | %s |", f.Category, f.Name, f.Value, f.Description)
+				out.w("   * - %s", f.Category)
+				out.w("     - %s", f.Name)
+				out.w("     - %s", f.Value)
+				out.w("     - %s", f.Description)
 			}
 			out.ln()
 		}
 
-		out.w("### Attributes")
+		out.w("Attributes")
+		out.w("**********")
 		out.ln()
-		out.w("| Name | Type | Mandatory | Default | Description |")
-		out.w("| ---: | :--- | --------- | ------- | ----------- |")
+		out.w(".. list-table:: Attributes for %s", rule.Name)
+		out.w("   :widths: 1 1 1 1 4")
+		out.w("   :header-rows: 1")
+		out.ln()
+		out.w("   * - Name")
+		out.w("     - Type")
+		out.w("     - Mandatory")
+		out.w("     - Default")
+		out.w("     - Description")
 		for _, attr := range rule.Attrs {
-			out.w("| `%s` | `%s` | %t | `%s`    | %s          |", attr.Name, attr.Type, attr.Mandatory, attr.Default, attr.Doc)
+			out.w("   * - ``%s``", attr.Name)
+			out.w("     - ``%s``", attr.Type)
+			out.w("     - %t", attr.Mandatory)
+			if len(attr.Default) > 0 {
+				out.w("     - ``%s``", attr.Default)
+			} else {
+				out.w("     - ")
+			}
+			out.w("     - %s", attr.Doc)
 		}
 		out.ln()
 
 		if len(rule.Plugins) > 0 {
-			out.w("### Plugins")
+			out.w("Plugins")
+			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- `@rules_proto_grpc%s`", plugin)
+				out.w("- ``@rules_proto_grpc%s``", plugin)
 			}
 			out.ln()
 		}
 	}
 
-	out.MustWrite(filepath.Join(dir, lang.Dir, "README.md"))
+	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name + ".rst"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
@@ -366,8 +426,8 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	out.w("| ---: | :--- | :--- |")
 	for _, lang := range languages {
 		for _, rule := range lang.Rules {
-			dirLink := fmt.Sprintf("[%s](/%s)", lang.DisplayName, lang.Dir)
-			ruleLink := fmt.Sprintf("[%s](/%s#%s)", rule.Name, lang.Dir, rule.Name)
+			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/latest/lang/%s.html)", lang.DisplayName, lang.Name)
+			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/latest/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
 			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
 			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
 		}
@@ -377,6 +437,12 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	out.tpl(footer, data)
 
 	out.MustWrite(filepath.Join(dir, "README.md"))
+}
+
+func mustWriteIndexRst(dir, template string, data interface{}) {
+	out := &LineWriter{}
+	out.tpl(template, data)
+	out.MustWrite(filepath.Join(dir, "docs", "index.rst"))
 }
 
 func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []string, availableTestsPath string) {

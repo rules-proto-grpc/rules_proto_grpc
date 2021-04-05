@@ -93,7 +93,7 @@ func makeJava() *Language {
 		Dir:              "java",
 		Name:             "java",
 		DisplayName:      "Java",
-		Notes: mustTemplate("Rules for generating Java protobuf and gRPC `.jar` files and libraries using standard Protocol Buffers and [gRPC-Java](https://github.com/grpc/grpc-java). Libraries are created with the Bazel native `java_library`"),
+		Notes: mustTemplate("Rules for generating Java protobuf and gRPC ``.jar`` files and libraries using standard Protocol Buffers and `gRPC-Java <https://github.com/grpc/grpc-java>`_. Libraries are created with the Bazel native ``java_library``"),
 		Flags:            commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
@@ -122,7 +122,7 @@ func makeJava() *Language {
 				Implementation:   javaProtoLibraryRuleTemplate,
 				WorkspaceExample: javaProtoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a Java protobuf library using `java_library`",
+				Doc:              "Generates a Java protobuf library using ``java_library``",
 				Attrs:            javaLibraryRuleAttrs,
 			},
 			&Rule{
@@ -131,7 +131,7 @@ func makeJava() *Language {
 				Implementation:   javaGrpcLibraryRuleTemplate,
 				WorkspaceExample: javaGrpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Java protobuf and gRPC library using `java_library`",
+				Doc:              "Generates a Java protobuf and gRPC library using ``java_library``",
 				Attrs:            javaLibraryRuleAttrs,
 			},
 		},

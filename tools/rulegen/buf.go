@@ -102,7 +102,7 @@ func makeBuf() *Language {
 		Dir:   "buf",
 		Name:  "buf",
 		DisplayName: "Buf",
-		Notes: mustTemplate(`Rules for linting and detecting breaking changes in .proto files with [Buf](https://buf.build).
+		Notes: mustTemplate("Rules for linting and detecting breaking changes in .proto files with `Buf <https://buf.build>`_." + `
 
 Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.
 
@@ -123,7 +123,7 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 						Name:      "protos",
 						Type:      "label_list",
 						Default:   "[]",
-						Doc:       "List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)",
+						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
 						Mandatory: true,
 						Providers: []string{"ProtoInfo"},
 					},
@@ -170,7 +170,7 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 					&Attr{
 						Name:      "protos",
 						Type:      "label_list",
-						Doc:       "List of labels that provide the `ProtoInfo` provider (such as `proto_library` from `rules_proto`)",
+						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
 						Mandatory: true,
 						Providers: []string{"ProtoInfo"},
 					},
@@ -206,14 +206,14 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 						Name:      "rpc_allow_google_protobuf_empty_requests",
 						Type:      "bool",
 						Default:   "False",
-						Doc:       "Allow request message to be `google.protobuf.Empty`",
+						Doc:       "Allow request message to be ``google.protobuf.Empty``",
 						Mandatory: false,
 					},
 					&Attr{
 						Name:      "rpc_allow_google_protobuf_empty_responses",
 						Type:      "bool",
 						Default:   "False",
-						Doc:       "Allow response message to be `google.protobuf.Empty`",
+						Doc:       "Allow response message to be ``google.protobuf.Empty``",
 						Mandatory: false,
 					},
 					&Attr{

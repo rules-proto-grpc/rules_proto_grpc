@@ -131,7 +131,7 @@ func makeCsharp() *Language {
 		Name:  "csharp",
 		DisplayName: "C#",
 		Flags: commonLangFlags,
-		Notes: mustTemplate(`Rules for generating C# protobuf and gRPC ` + "`.cs`" + ` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ` + "`csharp_library`" + ` from [rules_dotnet](https://github.com/bazelbuild/rules_dotnet)`),
+		Notes: mustTemplate("Rules for generating C# protobuf and gRPC ``.cs`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``csharp_library`` from `rules_dotnet <https://github.com/bazelbuild/rules_dotnet>`_"),
 		Rules: []*Rule{
 			&Rule{
 				Name:             "csharp_proto_compile",
@@ -140,7 +140,7 @@ func makeCsharp() *Language {
 				Plugins:          []string{"//csharp:csharp_plugin"},
 				WorkspaceExample: csharpProtoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates C# protobuf `.cs` files",
+				Doc:              "Generates C# protobuf ``.cs`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -150,7 +150,7 @@ func makeCsharp() *Language {
 				Plugins:          []string{"//csharp:csharp_plugin", "//csharp:grpc_csharp_plugin"},
 				WorkspaceExample: csharpGrpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates C# protobuf and gRPC `.cs` files",
+				Doc:              "Generates C# protobuf and gRPC ``.cs`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -159,7 +159,7 @@ func makeCsharp() *Language {
 				Implementation:   csharpProtoLibraryRuleTemplate,
 				WorkspaceExample: csharpProtoWorkspaceTemplate,
 				BuildExample:     csharpProtoLibraryExampleTemplate,
-				Doc:              "Generates a C# protobuf library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`",
+				Doc:              "Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``",
 				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
@@ -168,7 +168,7 @@ func makeCsharp() *Language {
 				Implementation:   csharpGrpcLibraryRuleTemplate,
 				WorkspaceExample: csharpGrpcWorkspaceTemplate,
 				BuildExample:     csharpGrpcLibraryExampleTemplate,
-				Doc:              "Generates a C# protobuf and gRPC library using `csharp_library` from `rules_dotnet`. Note that the library name must end in `.dll`",
+				Doc:              "Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``",
 				Attrs:            libraryRuleAttrs,
 			},
 		},

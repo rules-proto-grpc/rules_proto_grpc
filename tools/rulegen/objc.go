@@ -82,7 +82,7 @@ func makeObjc() *Language {
 		Dir:   "objc",
 		Name:  "objc",
 		DisplayName: "Objective-C",
-		Notes: mustTemplate("Rules for generating Objective-C protobuf and gRPC `.m` & `.h` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native `objc_library`"),
+		Notes: mustTemplate("Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``objc_library``"),
 		Flags: commonLangFlags,
 		SkipTestPlatforms: []string{"linux", "windows"},
 		Rules: []*Rule{
@@ -93,7 +93,7 @@ func makeObjc() *Language {
 				Plugins:          []string{"//objc:objc_plugin"},
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Objective-C protobuf `.m` & `.h` files",
+				Doc:              "Generates Objective-C protobuf ``.m`` & ``.h`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -103,7 +103,7 @@ func makeObjc() *Language {
 				Plugins:          []string{"//objc:objc_plugin", "//objc:grpc_objc_plugin"},
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Objective-C protobuf and gRPC `.m` & `.h` files",
+				Doc:              "Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -112,7 +112,7 @@ func makeObjc() *Language {
 				Implementation:   objcProtoLibraryRuleTemplate,
 				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates an Objective-C protobuf library using `objc_library`",
+				Doc:              "Generates an Objective-C protobuf library using ``objc_library``",
 				Attrs:            cppLibraryRuleAttrs,
 			},
 			&Rule{
@@ -121,7 +121,7 @@ func makeObjc() *Language {
 				Implementation:   objcGrpcLibraryRuleTemplate,
 				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates an Objective-C protobuf and gRPC library using `objc_library`",
+				Doc:              "Generates an Objective-C protobuf and gRPC library using ``objc_library``",
 				Attrs:            cppLibraryRuleAttrs,
 				Experimental:     true,
 			},

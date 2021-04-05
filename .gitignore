@@ -1,5 +1,8 @@
 __pycache__
+/venv
+
 bazel-*
+
 node_modules
 .idea
 available_tests.txt
@@ -7,3 +10,6 @@ available_tests.txt
 csharp/nuget/nuget2config.json
 ruby/.bundle
 js/requirements/yarn-error.log
+.vscode
+
+/docs/build

@@ -131,7 +131,7 @@ func makeGo() *Language {
 		Dir:         "go",
 		Name:        "go",
 		DisplayName: "Go",
-		Notes:       mustTemplate("Rules for generating Go protobuf and gRPC `.go` files and libraries using [golang/protobuf](https://github.com/golang/protobuf). Libraries are created with `go_library` from [rules_go](https://github.com/bazelbuild/rules_go)"),
+		Notes:       mustTemplate("Rules for generating Go protobuf and gRPC ``.go`` files and libraries using `golang/protobuf <https://github.com/golang/protobuf>`_. Libraries are created with ``go_library`` from `rules_go <https://github.com/bazelbuild/rules_go>`_"),
 		Flags:       commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
@@ -142,7 +142,7 @@ func makeGo() *Language {
 				Plugins:          []string{"//go:go_plugin"},
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Go protobuf `.go` files",
+				Doc:              "Generates Go protobuf ``.go`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -153,7 +153,7 @@ func makeGo() *Language {
 				Plugins:          []string{"//go:go_plugin", "//go:grpc_go_plugin"},
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Go protobuf and gRPC `.go` files",
+				Doc:              "Generates Go protobuf and gRPC ``.go`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -163,7 +163,7 @@ func makeGo() *Language {
 				Implementation:   goProtoLibraryRuleTemplate,
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     goProtoLibraryExampleTemplate,
-				Doc:              "Generates a Go protobuf library using `go_library` from `rules_go`",
+				Doc:              "Generates a Go protobuf library using ``go_library`` from ``rules_go``",
 				Attrs:            goLibraryRuleAttrs,
 			},
 			&Rule{
@@ -173,7 +173,7 @@ func makeGo() *Language {
 				Implementation:   goGrpcLibraryRuleTemplate,
 				WorkspaceExample: goWorkspaceTemplate,
 				BuildExample:     goGrpcLibraryExampleTemplate,
-				Doc:              "Generates a Go protobuf and gRPC library using `go_library` from `rules_go`",
+				Doc:              "Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go``",
 				Attrs:            goLibraryRuleAttrs,
 			},
 		},

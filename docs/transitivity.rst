@@ -1,4 +1,10 @@
-# Transitivity
+:author: rules_proto_grpc
+:description: Transitivity changes for rules_proto_grpc Bazel rules
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Transitivity, Aspect
+
+
+Transitivity
+============
 
 In previous versions of rules_proto_grpc, the compilation aspect would compile and aggregate all dependent .proto files
 from any top level target. In hindsight, this was not the correct behaviour and led to many bugs, since you may end up
@@ -12,32 +18,33 @@ duplicate files in the output binaries.
 
 Therefore, in this release of rules_proto_grpc, there is now a recommedned option to bundle only the direct proto
 dependencies into  the libraries, without including the compiled transitive proto files. This is done by replacing the
-`deps` attr on `lang_{proto|grpc}_{compile|library}` with the `protos` attr. Since this would be a substantial breaking
+``deps`` attr on ``lang_{proto|grpc}_{compile|library}`` with the ``protos`` attr. Since this would be a substantial breaking
 change to drop at once on a large project, the new behaviour is opt-in in 3.0.0 and the old method continues to work
 throughout the 3.x.x release cycle. Rules using the previous deps attr will have a warning written to console to signify
 that your library may be bundling more than expect and should switch attr.
 
 As an additional benefit of this change, we can now support passing arbitrary per-target rules to protoc through the new
-`options` attr of the rules, which was a much sought after change that was impossible in the aspect based compilation.
+``options`` attr of the rules, which was a much sought after change that was impossible in the aspect based compilation.
 
-### Switching to non-transitive compilation
+Switching to non-transitive compilation
+---------------------------------------
 
-In short, replace `deps` with `protos` on your targets:
+In short, replace ``deps`` with ``protos`` on your targets:
 
-```starlark
-# Old
-python_grpc_library(
-    name = "routeguide",
-    deps = ["//example/proto:routeguide_proto"],
-)
+.. code-block:: python
 
-# New
-python_grpc_library(
-    name = "routeguide",
-    protos = ["//example/proto:routeguide_proto"],
-)
-```
+   # Old
+   python_grpc_library(
+       name = "routeguide",
+       deps = ["//example/proto:routeguide_proto"],
+   )
+
+   # New
+   python_grpc_library(
+       name = "routeguide",
+       protos = ["//example/proto:routeguide_proto"],
+   )
 
 In applying the above change, you may discover that you were inheriting dependencies transitively and that your builds
-now fail. In such cases, you should add a `lang_{proto|grpc}_{compile|library}` target for those proto files and
+now fail. In such cases, you should add a ``lang_{proto|grpc}_{compile|library}`` target for those proto files and
 depend on it explicitly from the relevant top level binaries/libraries.

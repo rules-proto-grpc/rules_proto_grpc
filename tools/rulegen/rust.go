@@ -99,7 +99,7 @@ func makeRust() *Language {
 		Dir:  "rust",
 		Name: "rust",
 		DisplayName: "Rust",
-		Notes: mustTemplate("Rules for generating Rust protobuf and gRPC `.rs` files and libraries using [rust-protobuf](https://github.com/stepancheg/rust-protobuf) and [grpc-rs](https://github.com/tikv/grpc-rs). Libraries are created with `rust_library` from [rules_rust](https://github.com/bazelbuild/rules_rust)."),
+		Notes: mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `rust-protobuf <https://github.com/stepancheg/rust-protobuf> and `grpc-rs <https://github.com/tikv/grpc-rs>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_."),
 		Flags: commonLangFlags,
 		SkipTestPlatforms: []string{"windows", "macos"}, // CI has no rust toolchain for windows and is broken on mac
 		Rules: []*Rule{
@@ -110,7 +110,7 @@ func makeRust() *Language {
 				Plugins:          []string{"//rust:rust_plugin"},
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Rust protobuf `.rs` files",
+				Doc:              "Generates Rust protobuf ``.rs`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -120,7 +120,7 @@ func makeRust() *Language {
 				Plugins:          []string{"//rust:rust_plugin", "//rust:grpc_rust_plugin"},
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Rust protobuf and gRPC `.rs` files",
+				Doc:              "Generates Rust protobuf and gRPC ``.rs`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -129,7 +129,7 @@ func makeRust() *Language {
 				Implementation:   rustProtoLibraryRuleTemplate,
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     rustProtoLibraryExampleTemplate,
-				Doc:              "Generates a Rust protobuf library using `rust_library` from `rules_rust`",
+				Doc:              "Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``",
 				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
@@ -138,7 +138,7 @@ func makeRust() *Language {
 				Implementation:   rustGrpcLibraryRuleTemplate,
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     rustGrpcLibraryExampleTemplate,
-				Doc:              "Generates a Rust protobuf and gRPC library using `rust_library` from `rules_rust`",
+				Doc:              "Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``",
 				Attrs:            libraryRuleAttrs,
 			},
 		},

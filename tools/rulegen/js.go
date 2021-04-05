@@ -115,30 +115,32 @@ var jsLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*At
 		Name:      "deps_repo",
 		Type:      "string",
 		Default:   "@npm",
-		Doc:       "The repository to load the dependencies from, if you don't use `@npm`",
+		Doc:       "The repository to load the dependencies from, if you don't use ``@npm``",
 		Mandatory: false,
 	},
 }...)
 
 var jsDependencyNote = `
 
-> Note that you must add the required dependencies to your package.json file:
-> ` + "```json" + `
-> "dependencies": {
->   "@grpc/grpc-js": "1.2.6",
->   "google-protobuf": "3.15.3",
->   "grpc-tools": "1.10.0",
->   "grpc-web": "1.2.1",
->   "ts-protoc-gen": "0.14.0"
-> }
-> ` + "```"
+**Note**: You must add the required dependencies to your package.json file:
+
+.. code-block:: json
+
+   "dependencies": {
+     "@grpc/grpc-js": "1.2.6",
+     "google-protobuf": "3.15.3",
+     "grpc-tools": "1.10.0",
+     "grpc-web": "1.2.1",
+     "ts-protoc-gen": "0.14.0"
+   }
+`
 
 func makeJavaScript() *Language {
 	return &Language{
 		Dir:   "js",
 		Name:  "js",
 		DisplayName: "JavaScript",
-		Notes: mustTemplate("Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web `.js` and `.d.ts` files using standard Protocol Buffers and gRPC." + jsDependencyNote),
+		Notes: mustTemplate("Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.d.ts`` files using standard Protocol Buffers and gRPC." + jsDependencyNote),
 		Flags: commonLangFlags,
 		Aliases: map[string]string{
 			"nodejs_proto_compile": "js_proto_compile",
@@ -154,7 +156,7 @@ func makeJavaScript() *Language {
 				Plugins:          []string{"//js:js_plugin", "//js:ts_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf `.js` and `.d.ts` files",
+				Doc:              "Generates JavaScript protobuf ``.js`` and ``.d.ts`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -164,7 +166,7 @@ func makeJavaScript() *Language {
 				Plugins:          []string{"//js:js_plugin", "//js:ts_plugin", "//js:grpc_node_plugin", "//js:grpc_node_ts_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf and gRPC-node `.js` and `.d.ts` files",
+				Doc:              "Generates JavaScript protobuf and gRPC-node ``.js`` and ``.d.ts`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -174,7 +176,7 @@ func makeJavaScript() *Language {
 				Plugins:          []string{"//js:js_plugin", "//js:ts_plugin", "//js:grpc_web_js_plugin"},
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf and gRPC-Web `.js` and `.d.ts` files",
+				Doc:              "Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files",
 				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
@@ -183,7 +185,7 @@ func makeJavaScript() *Language {
 				Implementation:   jsProtoLibraryRuleTemplate,
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates a JavaScript protobuf library using `js_library` from `rules_nodejs`",
+				Doc:              "Generates a JavaScript protobuf library using ``js_library`` from ``rules_nodejs``",
 				Attrs:            jsLibraryRuleAttrs,
 			},
 			&Rule{
@@ -192,7 +194,7 @@ func makeJavaScript() *Language {
 				Implementation:   nodeGrpcLibraryRuleTemplate,
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a Node.js protobuf + gRPC-node library using `js_library` from `rules_nodejs`",
+				Doc:              "Generates a Node.js protobuf + gRPC-node library using ``js_library`` from ``rules_nodejs``",
 				Attrs:            jsLibraryRuleAttrs,
 			},
 			&Rule{
@@ -201,7 +203,7 @@ func makeJavaScript() *Language {
 				Implementation:   jsGrpcWebLibraryRuleTemplate,
 				WorkspaceExample: jsWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates a JavaScript protobuf + gRPC-Web library using `js_library` from `rules_nodejs`",
+				Doc:              "Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``rules_nodejs``",
 				Attrs:            jsLibraryRuleAttrs,
 			},
 		},
