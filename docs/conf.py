@@ -43,7 +43,7 @@ html_favicon = '_static/logo-400.png'
 
 # Base URL for docs
 # Used to generate CNAME file
-html_baseurl = 'https://rules_proto_grpc.aliddell.com'
+html_baseurl = 'https://rules-proto-grpc.aliddell.com'
 
 # Extra vars to provide to templating
 html_context = {
