@@ -80,7 +80,6 @@ Contents
     - `Rule Generation`_
     - `Developing Custom Plugins`_
 - `License`_
-- `Contributing`_
 
 
 Overview
