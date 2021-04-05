@@ -1,10 +1,15 @@
-Android rules
-=============
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Android
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Android
+
+
+Android
+=======
 
 Rules for generating Android protobuf and gRPC ``.jar`` files and libraries using standard Protocol Buffers and `gRPC-Java <https://github.com/grpc/grpc-java>`_. Libraries are created with ``android_library`` from `rules_android <https://github.com/bazelbuild/rules_android>`_
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
@@ -18,15 +23,15 @@ Rules for generating Android protobuf and gRPC ``.jar`` files and libraries usin
    * - `android_grpc_library <#android_grpc_library>`_
      - Generates Android protobuf and gRPC library using ``android_library`` from ``rules_android``
 
-``android_proto_compile``
--------------------------
+android_proto_compile
+---------------------
 
 Generates an Android protobuf ``.jar`` file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos = "android_repos")
    
@@ -35,7 +40,7 @@ Generates an Android protobuf ``.jar`` file
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//android:defs.bzl", "android_proto_compile")
    
@@ -58,6 +63,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for android_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -68,7 +74,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -96,15 +102,15 @@ Plugins
 
 - ``@rules_proto_grpc//android:javalite_plugin``
 
-``android_grpc_compile``
-------------------------
+android_grpc_compile
+--------------------
 
 Generates Android protobuf and gRPC ``.jar`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos = "android_repos")
    
@@ -131,7 +137,7 @@ Generates Android protobuf and gRPC ``.jar`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//android:defs.bzl", "android_grpc_compile")
    
@@ -149,6 +155,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for android_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -159,7 +166,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -188,15 +195,15 @@ Plugins
 - ``@rules_proto_grpc//android:javalite_plugin``
 - ``@rules_proto_grpc//android:grpc_javalite_plugin``
 
-``android_proto_library``
--------------------------
+android_proto_library
+---------------------
 
 Generates an Android protobuf library using ``android_library`` from ``rules_android``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    # The set of dependencies loaded here is excessive for android proto alone
    # (but simplifies our setup)
@@ -229,7 +236,7 @@ Generates an Android protobuf library using ``android_library`` from ``rules_and
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//android:defs.bzl", "android_proto_library")
    
@@ -254,6 +261,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for android_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -264,7 +272,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -297,15 +305,15 @@ Attributes
      - ``[]``
      - List of labels to pass as exports attr to underlying lang_library rule
 
-``android_grpc_library``
-------------------------
+android_grpc_library
+--------------------
 
 Generates Android protobuf and gRPC library using ``android_library`` from ``rules_android``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//android:repositories.bzl", rules_proto_grpc_android_repos = "android_repos")
    
@@ -336,7 +344,7 @@ Generates Android protobuf and gRPC library using ``android_library`` from ``rul
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//android:defs.bzl", "android_grpc_library")
    
@@ -355,6 +363,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for android_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -365,7 +374,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``

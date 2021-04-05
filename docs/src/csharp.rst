@@ -1,77 +1,87 @@
-Ruby rules
-==========
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for C#
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, C#
 
-Rules for generating Ruby protobuf and gRPC ``.rb`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``ruby_library`` from `rules_ruby <https://github.com/bazelruby/rules_ruby>`_
+
+C#
+==
+
+Rules for generating C# protobuf and gRPC ``.cs`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``csharp_library`` from `rules_dotnet <https://github.com/bazelbuild/rules_dotnet>`_
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `ruby_proto_compile <#ruby_proto_compile>`_
-     - Generates Ruby protobuf ``.rb`` files
-   * - `ruby_grpc_compile <#ruby_grpc_compile>`_
-     - Generates Ruby protobuf and gRPC ``.rb`` files
-   * - `ruby_proto_library <#ruby_proto_library>`_
-     - Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
-   * - `ruby_grpc_library <#ruby_grpc_library>`_
-     - Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``
+   * - `csharp_proto_compile <#csharp_proto_compile>`_
+     - Generates C# protobuf ``.cs`` files
+   * - `csharp_grpc_compile <#csharp_grpc_compile>`_
+     - Generates C# protobuf and gRPC ``.cs`` files
+   * - `csharp_proto_library <#csharp_proto_library>`_
+     - Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+   * - `csharp_grpc_library <#csharp_grpc_library>`_
+     - Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
 
-``ruby_proto_compile``
-----------------------
+csharp_proto_compile
+--------------------
 
-Generates Ruby protobuf ``.rb`` files
+Generates C# protobuf ``.cs`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
+   load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
    
-   rules_proto_grpc_ruby_repos()
+   rules_proto_grpc_csharp_repos()
    
-   load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
+   load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
    
-   rules_ruby_dependencies()
+   dotnet_repositories()
    
-   rules_ruby_select_sdk(version = "2.7.1")
-   
-   load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
-   
-   ruby_bundle(
-       name = "rules_proto_grpc_bundle",
-       gemfile = "@rules_proto_grpc//ruby:Gemfile",
-       gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+   load(
+       "@io_bazel_rules_dotnet//dotnet:defs.bzl",
+       "dotnet_register_toolchains",
+       "dotnet_repositories_nugets",
    )
+   
+   dotnet_register_toolchains()
+   
+   dotnet_repositories_nugets()
+   
+   load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
+   
+   nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//ruby:defs.bzl", "ruby_proto_compile")
+   load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_compile")
    
-   ruby_proto_compile(
-       name = "person_ruby_proto",
+   csharp_proto_compile(
+       name = "person_csharp_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   ruby_proto_compile(
-       name = "place_ruby_proto",
+   csharp_proto_compile(
+       name = "place_csharp_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   ruby_proto_compile(
-       name = "thing_ruby_proto",
+   csharp_proto_compile(
+       name = "thing_csharp_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for ruby_proto_compile
+.. list-table:: Attributes for csharp_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -82,7 +92,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -108,61 +118,65 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//ruby:ruby_plugin``
+- ``@rules_proto_grpc//csharp:csharp_plugin``
 
-``ruby_grpc_compile``
----------------------
+csharp_grpc_compile
+-------------------
 
-Generates Ruby protobuf and gRPC ``.rb`` files
+Generates C# protobuf and gRPC ``.cs`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
+   load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
    
-   rules_proto_grpc_ruby_repos()
+   rules_proto_grpc_csharp_repos()
    
-   load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
-   
-   rules_ruby_dependencies()
-   
-   rules_ruby_select_sdk(version = "2.7.1")
-   
+   load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
    grpc_deps()
    
-   load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+   dotnet_repositories()
    
-   ruby_bundle(
-       name = "rules_proto_grpc_bundle",
-       gemfile = "@rules_proto_grpc//ruby:Gemfile",
-       gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+   load(
+       "@io_bazel_rules_dotnet//dotnet:defs.bzl",
+       "dotnet_register_toolchains",
+       "dotnet_repositories_nugets",
    )
+   
+   dotnet_register_toolchains()
+   
+   dotnet_repositories_nugets()
+   
+   load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
+   
+   nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//ruby:defs.bzl", "ruby_grpc_compile")
+   load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_compile")
    
-   ruby_grpc_compile(
-       name = "thing_ruby_grpc",
+   csharp_grpc_compile(
+       name = "thing_csharp_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   ruby_grpc_compile(
-       name = "greeter_ruby_grpc",
+   csharp_grpc_compile(
+       name = "greeter_csharp_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for ruby_grpc_compile
+.. list-table:: Attributes for csharp_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -173,7 +187,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -199,65 +213,70 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//ruby:ruby_plugin``
-- ``@rules_proto_grpc//ruby:grpc_ruby_plugin``
+- ``@rules_proto_grpc//csharp:csharp_plugin``
+- ``@rules_proto_grpc//csharp:grpc_csharp_plugin``
 
-``ruby_proto_library``
-----------------------
+csharp_proto_library
+--------------------
 
-Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
+Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
+   load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
    
-   rules_proto_grpc_ruby_repos()
+   rules_proto_grpc_csharp_repos()
    
-   load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
+   load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
    
-   rules_ruby_dependencies()
+   dotnet_repositories()
    
-   rules_ruby_select_sdk(version = "2.7.1")
-   
-   load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
-   
-   ruby_bundle(
-       name = "rules_proto_grpc_bundle",
-       gemfile = "@rules_proto_grpc//ruby:Gemfile",
-       gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+   load(
+       "@io_bazel_rules_dotnet//dotnet:defs.bzl",
+       "dotnet_register_toolchains",
+       "dotnet_repositories_nugets",
    )
+   
+   dotnet_register_toolchains()
+   
+   dotnet_repositories_nugets()
+   
+   load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
+   
+   nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//ruby:defs.bzl", "ruby_proto_library")
+   load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_library")
    
-   ruby_proto_library(
-       name = "person_ruby_proto",
+   csharp_proto_library(
+       name = "person_csharp_proto.dll",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
-       deps = ["place_ruby_proto"],
+       deps = ["place_csharp_proto.dll"],
    )
    
-   ruby_proto_library(
-       name = "place_ruby_proto",
+   csharp_proto_library(
+       name = "place_csharp_proto.dll",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
-       deps = ["thing_ruby_proto"],
+       deps = ["thing_csharp_proto.dll"],
    )
    
-   ruby_proto_library(
-       name = "thing_ruby_proto",
+   csharp_proto_library(
+       name = "thing_csharp_proto.dll",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for ruby_proto_library
+.. list-table:: Attributes for csharp_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -268,7 +287,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -296,60 +315,64 @@ Attributes
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
 
-``ruby_grpc_library``
----------------------
+csharp_grpc_library
+-------------------
 
-Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``
+Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
+   load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
    
-   rules_proto_grpc_ruby_repos()
+   rules_proto_grpc_csharp_repos()
    
-   load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
-   
-   rules_ruby_dependencies()
-   
-   rules_ruby_select_sdk(version = "2.7.1")
-   
+   load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
    grpc_deps()
    
-   load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+   dotnet_repositories()
    
-   ruby_bundle(
-       name = "rules_proto_grpc_bundle",
-       gemfile = "@rules_proto_grpc//ruby:Gemfile",
-       gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+   load(
+       "@io_bazel_rules_dotnet//dotnet:defs.bzl",
+       "dotnet_register_toolchains",
+       "dotnet_repositories_nugets",
    )
+   
+   dotnet_register_toolchains()
+   
+   dotnet_repositories_nugets()
+   
+   load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
+   
+   nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//ruby:defs.bzl", "ruby_grpc_library")
+   load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library")
    
-   ruby_grpc_library(
-       name = "thing_ruby_grpc",
+   csharp_grpc_library(
+       name = "thing_csharp_grpc.dll",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   ruby_grpc_library(
-       name = "greeter_ruby_grpc",
+   csharp_grpc_library(
+       name = "greeter_csharp_grpc.dll",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-       deps = ["thing_ruby_grpc"],
+       deps = ["thing_csharp_grpc.dll"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for ruby_grpc_library
+.. list-table:: Attributes for csharp_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -360,7 +383,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``

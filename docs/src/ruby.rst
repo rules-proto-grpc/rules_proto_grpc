@@ -1,63 +1,83 @@
-Objective-C rules
-=================
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Ruby
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Ruby
 
-Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``objc_library``
+
+Ruby
+====
+
+Rules for generating Ruby protobuf and gRPC ``.rb`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``ruby_library`` from `rules_ruby <https://github.com/bazelruby/rules_ruby>`_
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `objc_proto_compile <#objc_proto_compile>`_
-     - Generates Objective-C protobuf ``.m`` & ``.h`` files
-   * - `objc_grpc_compile <#objc_grpc_compile>`_
-     - Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files
-   * - `objc_proto_library <#objc_proto_library>`_
-     - Generates an Objective-C protobuf library using ``objc_library``
-   * - `objc_grpc_library <#objc_grpc_library>`_
-     - Generates an Objective-C protobuf and gRPC library using ``objc_library``
+   * - `ruby_proto_compile <#ruby_proto_compile>`_
+     - Generates Ruby protobuf ``.rb`` files
+   * - `ruby_grpc_compile <#ruby_grpc_compile>`_
+     - Generates Ruby protobuf and gRPC ``.rb`` files
+   * - `ruby_proto_library <#ruby_proto_library>`_
+     - Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
+   * - `ruby_grpc_library <#ruby_grpc_library>`_
+     - Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``
 
-``objc_proto_compile``
-----------------------
+ruby_proto_compile
+------------------
 
-Generates Objective-C protobuf ``.m`` & ``.h`` files
+Generates Ruby protobuf ``.rb`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
+   load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
    
-   rules_proto_grpc_objc_repos()
+   rules_proto_grpc_ruby_repos()
+   
+   load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
+   
+   rules_ruby_dependencies()
+   
+   rules_ruby_select_sdk(version = "2.7.1")
+   
+   load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+   
+   ruby_bundle(
+       name = "rules_proto_grpc_bundle",
+       gemfile = "@rules_proto_grpc//ruby:Gemfile",
+       gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+   )
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_compile")
+   load("@rules_proto_grpc//ruby:defs.bzl", "ruby_proto_compile")
    
-   objc_proto_compile(
-       name = "person_objc_proto",
+   ruby_proto_compile(
+       name = "person_ruby_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   objc_proto_compile(
-       name = "place_objc_proto",
+   ruby_proto_compile(
+       name = "place_ruby_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   objc_proto_compile(
-       name = "thing_objc_proto",
+   ruby_proto_compile(
+       name = "thing_ruby_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for objc_proto_compile
+.. list-table:: Attributes for ruby_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -68,7 +88,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -94,47 +114,62 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//objc:objc_plugin``
+- ``@rules_proto_grpc//ruby:ruby_plugin``
 
-``objc_grpc_compile``
----------------------
+ruby_grpc_compile
+-----------------
 
-Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files
+Generates Ruby protobuf and gRPC ``.rb`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
+   load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
    
-   rules_proto_grpc_objc_repos()
+   rules_proto_grpc_ruby_repos()
+   
+   load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
+   
+   rules_ruby_dependencies()
+   
+   rules_ruby_select_sdk(version = "2.7.1")
    
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
    grpc_deps()
+   
+   load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+   
+   ruby_bundle(
+       name = "rules_proto_grpc_bundle",
+       gemfile = "@rules_proto_grpc//ruby:Gemfile",
+       gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+   )
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//objc:defs.bzl", "objc_grpc_compile")
+   load("@rules_proto_grpc//ruby:defs.bzl", "ruby_grpc_compile")
    
-   objc_grpc_compile(
-       name = "thing_objc_grpc",
+   ruby_grpc_compile(
+       name = "thing_ruby_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   objc_grpc_compile(
-       name = "greeter_objc_grpc",
+   ruby_grpc_compile(
+       name = "greeter_ruby_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for objc_grpc_compile
+.. list-table:: Attributes for ruby_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -145,7 +180,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -171,51 +206,66 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//objc:objc_plugin``
-- ``@rules_proto_grpc//objc:grpc_objc_plugin``
+- ``@rules_proto_grpc//ruby:ruby_plugin``
+- ``@rules_proto_grpc//ruby:grpc_ruby_plugin``
 
-``objc_proto_library``
-----------------------
+ruby_proto_library
+------------------
 
-Generates an Objective-C protobuf library using ``objc_library``
+Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
+   load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
    
-   rules_proto_grpc_objc_repos()
+   rules_proto_grpc_ruby_repos()
+   
+   load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
+   
+   rules_ruby_dependencies()
+   
+   rules_ruby_select_sdk(version = "2.7.1")
+   
+   load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+   
+   ruby_bundle(
+       name = "rules_proto_grpc_bundle",
+       gemfile = "@rules_proto_grpc//ruby:Gemfile",
+       gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+   )
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_library")
+   load("@rules_proto_grpc//ruby:defs.bzl", "ruby_proto_library")
    
-   objc_proto_library(
-       name = "person_objc_proto",
+   ruby_proto_library(
+       name = "person_ruby_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
-       deps = ["place_objc_proto"],
+       deps = ["place_ruby_proto"],
    )
    
-   objc_proto_library(
-       name = "place_objc_proto",
+   ruby_proto_library(
+       name = "place_ruby_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
-       deps = ["thing_objc_proto"],
+       deps = ["thing_ruby_proto"],
    )
    
-   objc_proto_library(
-       name = "thing_objc_proto",
+   ruby_proto_library(
+       name = "thing_ruby_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for objc_proto_library
+.. list-table:: Attributes for ruby_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -226,7 +276,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -253,94 +303,62 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``alwayslink``
-     - ``bool``
-     - false
-     - ``None``
-     - Passed to the ``alwayslink`` attribute of ``cc_library``.
-   * - ``copts``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``opts`` attribute of ``cc_library``.
-   * - ``defines``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``defines`` attribute of ``cc_library``.
-   * - ``include_prefix``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``include_prefix`` attribute of ``cc_library``.
-   * - ``linkopts``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``linkopts`` attribute of ``cc_library``.
-   * - ``linkstatic``
-     - ``bool``
-     - false
-     - ``None``
-     - Passed to the ``linkstatic`` attribute of ``cc_library``.
-   * - ``local_defines``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``local_defines`` attribute of ``cc_library``.
-   * - ``nocopts``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``nocopts`` attribute of ``cc_library``.
-   * - ``strip_include_prefix``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``strip_include_prefix`` attribute of ``cc_library``.
 
-``objc_grpc_library``
----------------------
+ruby_grpc_library
+-----------------
 
-**Note**: This rule is experimental. It may not work correctly!
-
-Generates an Objective-C protobuf and gRPC library using ``objc_library``
+Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
+   load("@rules_proto_grpc//ruby:repositories.bzl", rules_proto_grpc_ruby_repos = "ruby_repos")
    
-   rules_proto_grpc_objc_repos()
+   rules_proto_grpc_ruby_repos()
+   
+   load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_ruby_select_sdk")
+   
+   rules_ruby_dependencies()
+   
+   rules_ruby_select_sdk(version = "2.7.1")
    
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
    grpc_deps()
+   
+   load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
+   
+   ruby_bundle(
+       name = "rules_proto_grpc_bundle",
+       gemfile = "@rules_proto_grpc//ruby:Gemfile",
+       gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+   )
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//objc:defs.bzl", "objc_grpc_library")
+   load("@rules_proto_grpc//ruby:defs.bzl", "ruby_grpc_library")
    
-   objc_grpc_library(
-       name = "thing_objc_grpc",
+   ruby_grpc_library(
+       name = "thing_ruby_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   objc_grpc_library(
-       name = "greeter_objc_grpc",
+   ruby_grpc_library(
+       name = "greeter_ruby_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-       deps = ["thing_objc_grpc"],
+       deps = ["thing_ruby_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for objc_grpc_library
+.. list-table:: Attributes for ruby_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -351,7 +369,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -378,48 +396,3 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``alwayslink``
-     - ``bool``
-     - false
-     - ``None``
-     - Passed to the ``alwayslink`` attribute of ``cc_library``.
-   * - ``copts``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``opts`` attribute of ``cc_library``.
-   * - ``defines``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``defines`` attribute of ``cc_library``.
-   * - ``include_prefix``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``include_prefix`` attribute of ``cc_library``.
-   * - ``linkopts``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``linkopts`` attribute of ``cc_library``.
-   * - ``linkstatic``
-     - ``bool``
-     - false
-     - ``None``
-     - Passed to the ``linkstatic`` attribute of ``cc_library``.
-   * - ``local_defines``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``local_defines`` attribute of ``cc_library``.
-   * - ``nocopts``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``nocopts`` attribute of ``cc_library``.
-   * - ``strip_include_prefix``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``strip_include_prefix`` attribute of ``cc_library``.

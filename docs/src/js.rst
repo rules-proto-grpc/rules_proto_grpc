@@ -1,5 +1,10 @@
-JavaScript rules
-================
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for JavaScript
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, JavaScript
+
+
+JavaScript
+==========
 
 Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.d.ts`` files using standard Protocol Buffers and gRPC.
 
@@ -17,7 +22,7 @@ Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.
 
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
@@ -35,15 +40,15 @@ Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.
    * - `js_grpc_web_library <#js_grpc_web_library>`_
      - Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``rules_nodejs``
 
-``js_proto_compile``
---------------------
+js_proto_compile
+----------------
 
 Generates JavaScript protobuf ``.js`` and ``.d.ts`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
    
@@ -60,7 +65,7 @@ Generates JavaScript protobuf ``.js`` and ``.d.ts`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:defs.bzl", "js_proto_compile")
    
@@ -83,6 +88,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for js_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -93,7 +99,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -122,15 +128,15 @@ Plugins
 - ``@rules_proto_grpc//js:js_plugin``
 - ``@rules_proto_grpc//js:ts_plugin``
 
-``js_grpc_node_compile``
-------------------------
+js_grpc_node_compile
+--------------------
 
 Generates JavaScript protobuf and gRPC-node ``.js`` and ``.d.ts`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
    
@@ -147,7 +153,7 @@ Generates JavaScript protobuf and gRPC-node ``.js`` and ``.d.ts`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:defs.bzl", "js_grpc_node_compile")
    
@@ -165,6 +171,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for js_grpc_node_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -175,7 +182,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -206,15 +213,15 @@ Plugins
 - ``@rules_proto_grpc//js:grpc_node_plugin``
 - ``@rules_proto_grpc//js:grpc_node_ts_plugin``
 
-``js_grpc_web_compile``
------------------------
+js_grpc_web_compile
+-------------------
 
 Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
    
@@ -231,7 +238,7 @@ Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:defs.bzl", "js_grpc_web_compile")
    
@@ -249,6 +256,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for js_grpc_web_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -259,7 +267,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -289,15 +297,15 @@ Plugins
 - ``@rules_proto_grpc//js:ts_plugin``
 - ``@rules_proto_grpc//js:grpc_web_js_plugin``
 
-``js_proto_library``
---------------------
+js_proto_library
+----------------
 
 Generates a JavaScript protobuf library using ``js_library`` from ``rules_nodejs``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
    
@@ -314,7 +322,7 @@ Generates a JavaScript protobuf library using ``js_library`` from ``rules_nodejs
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:defs.bzl", "js_proto_library")
    
@@ -339,6 +347,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for js_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -349,7 +358,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -382,15 +391,15 @@ Attributes
      - ``@npm``
      - The repository to load the dependencies from, if you don't use ``@npm``
 
-``js_grpc_node_library``
-------------------------
+js_grpc_node_library
+--------------------
 
 Generates a Node.js protobuf + gRPC-node library using ``js_library`` from ``rules_nodejs``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
    
@@ -407,7 +416,7 @@ Generates a Node.js protobuf + gRPC-node library using ``js_library`` from ``rul
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:defs.bzl", "js_grpc_node_library")
    
@@ -426,6 +435,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for js_grpc_node_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -436,7 +446,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -469,15 +479,15 @@ Attributes
      - ``@npm``
      - The repository to load the dependencies from, if you don't use ``@npm``
 
-``js_grpc_web_library``
------------------------
+js_grpc_web_library
+-------------------
 
 Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``rules_nodejs``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:repositories.bzl", rules_proto_grpc_js_repos = "js_repos")
    
@@ -494,7 +504,7 @@ Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``r
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//js:defs.bzl", "js_grpc_web_library")
    
@@ -513,6 +523,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for js_grpc_web_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -523,7 +534,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``

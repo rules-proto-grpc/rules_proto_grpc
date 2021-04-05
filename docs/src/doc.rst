@@ -1,70 +1,71 @@
-Swift rules
-===========
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Documentation
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Documentation
 
-Rules for generating Swift protobuf and gRPC ``.swift`` files and libraries using `Swift Protobuf <https://github.com/apple/swift-protobuf>`_ and `Swift gRPC <https://github.com/grpc/grpc-swift>`_
+
+Documentation
+=============
+
+Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with `protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`_
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `swift_proto_compile <#swift_proto_compile>`_
-     - Generates Swift protobuf ``.swift`` files
-   * - `swift_grpc_compile <#swift_grpc_compile>`_
-     - Generates Swift protobuf and gRPC ``.swift`` files
-   * - `swift_proto_library <#swift_proto_library>`_
-     - Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
-   * - `swift_grpc_library <#swift_grpc_library>`_
-     - Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``
+   * - `doc_docbook_compile <#doc_docbook_compile>`_
+     - Generates DocBook ``.xml`` documentation file
+   * - `doc_html_compile <#doc_html_compile>`_
+     - Generates ``.html`` documentation file
+   * - `doc_json_compile <#doc_json_compile>`_
+     - Generates ``.json`` documentation file
+   * - `doc_markdown_compile <#doc_markdown_compile>`_
+     - Generates Markdown ``.md`` documentation file
 
-``swift_proto_compile``
------------------------
+doc_docbook_compile
+-------------------
 
-Generates Swift protobuf ``.swift`` files
+**Note**: This rule is experimental. It may not work correctly!
+
+Generates DocBook ``.xml`` documentation file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
+   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
    
-   rules_proto_grpc_swift_repos()
-   
-   load(
-       "@build_bazel_rules_swift//swift:repositories.bzl",
-       "swift_rules_dependencies",
-   )
-   
-   swift_rules_dependencies()
+   rules_proto_grpc_doc_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_compile")
+   load("@rules_proto_grpc//doc:defs.bzl", "doc_docbook_compile")
    
-   swift_proto_compile(
-       name = "person_swift_proto",
+   doc_docbook_compile(
+       name = "person_doc_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   swift_proto_compile(
-       name = "place_swift_proto",
+   doc_docbook_compile(
+       name = "place_doc_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   swift_proto_compile(
-       name = "thing_swift_proto",
+   doc_docbook_compile(
+       name = "thing_doc_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for swift_proto_compile
+.. list-table:: Attributes for doc_docbook_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -75,7 +76,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -101,50 +102,51 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//swift:swift_plugin``
+- ``@rules_proto_grpc//doc:docbook_plugin``
 
-``swift_grpc_compile``
-----------------------
+doc_html_compile
+----------------
 
-Generates Swift protobuf and gRPC ``.swift`` files
+**Note**: This rule is experimental. It may not work correctly!
+
+Generates ``.html`` documentation file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
+   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
    
-   rules_proto_grpc_swift_repos()
-   
-   load(
-       "@build_bazel_rules_swift//swift:repositories.bzl",
-       "swift_rules_dependencies",
-   )
-   
-   swift_rules_dependencies()
+   rules_proto_grpc_doc_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_compile")
+   load("@rules_proto_grpc//doc:defs.bzl", "doc_html_compile")
    
-   swift_grpc_compile(
-       name = "thing_swift_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+   doc_html_compile(
+       name = "person_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   swift_grpc_compile(
-       name = "greeter_swift_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+   doc_html_compile(
+       name = "place_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+   )
+   
+   doc_html_compile(
+       name = "thing_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for swift_grpc_compile
+.. list-table:: Attributes for doc_html_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -155,7 +157,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -181,50 +183,51 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//swift:swift_plugin``
-- ``@rules_proto_grpc//swift:grpc_swift_plugin``
+- ``@rules_proto_grpc//doc:html_plugin``
 
-``swift_proto_library``
------------------------
+doc_json_compile
+----------------
 
-Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
+**Note**: This rule is experimental. It may not work correctly!
+
+Generates ``.json`` documentation file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
+   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
    
-   rules_proto_grpc_swift_repos()
-   
-   load(
-       "@build_bazel_rules_swift//swift:repositories.bzl",
-       "swift_rules_dependencies",
-   )
-   
-   swift_rules_dependencies()
+   rules_proto_grpc_doc_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_library")
+   load("@rules_proto_grpc//doc:defs.bzl", "doc_json_compile")
    
-   swift_proto_library(
-       name = "proto_swift_proto",
-       protos = [
-           "@rules_proto_grpc//example/proto:person_proto",
-           "@rules_proto_grpc//example/proto:place_proto",
-           "@rules_proto_grpc//example/proto:thing_proto",
-       ],
+   doc_json_compile(
+       name = "person_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+   )
+   
+   doc_json_compile(
+       name = "place_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+   )
+   
+   doc_json_compile(
+       name = "thing_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for swift_proto_library
+.. list-table:: Attributes for doc_json_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -235,7 +238,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -257,57 +260,55 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - ``deps``
-     - ``label_list``
-     - false
-     - ``[]``
-     - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``module_name``
-     - ``string``
-     - false
-     - ````
-     - The name of the Swift module being built.
 
-``swift_grpc_library``
-----------------------
+Plugins
+*******
 
-Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``
+- ``@rules_proto_grpc//doc:json_plugin``
+
+doc_markdown_compile
+--------------------
+
+**Note**: This rule is experimental. It may not work correctly!
+
+Generates Markdown ``.md`` documentation file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
+   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
    
-   rules_proto_grpc_swift_repos()
-   
-   load(
-       "@build_bazel_rules_swift//swift:repositories.bzl",
-       "swift_rules_dependencies",
-   )
-   
-   swift_rules_dependencies()
+   rules_proto_grpc_doc_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_library")
+   load("@rules_proto_grpc//doc:defs.bzl", "doc_markdown_compile")
    
-   swift_grpc_library(
-       name = "greeter_swift_grpc",
-       protos = [
-           "@rules_proto_grpc//example/proto:greeter_grpc",
-           "@rules_proto_grpc//example/proto:thing_proto",
-       ],
+   doc_markdown_compile(
+       name = "person_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+   )
+   
+   doc_markdown_compile(
+       name = "place_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+   )
+   
+   doc_markdown_compile(
+       name = "thing_doc_proto",
+       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for swift_grpc_library
+.. list-table:: Attributes for doc_markdown_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -318,7 +319,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -340,13 +341,8 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
-   * - ``deps``
-     - ``label_list``
-     - false
-     - ``[]``
-     - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``module_name``
-     - ``string``
-     - false
-     - ````
-     - The name of the Swift module being built.
+
+Plugins
+*******
+
+- ``@rules_proto_grpc//doc:markdown_plugin``

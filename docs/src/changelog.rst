@@ -1,3 +1,8 @@
+:author: rules_proto_grpc
+:description: Changelog for the rules_proto_grpc Bazel rules
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Changelog, Changes, History
+
+
 Changelog
 =========
 
@@ -95,7 +100,7 @@ Switching to non-transitive compilation
 
 In short, replace ``deps`` with ``protos`` on your targets:
 
-.. code-block:: starlark
+.. code-block:: python
 
    # Old
    python_grpc_library(

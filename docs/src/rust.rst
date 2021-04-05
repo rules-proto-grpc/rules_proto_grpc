@@ -1,81 +1,77 @@
-Go rules
-========
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Rust
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Rust
 
-Rules for generating Go protobuf and gRPC ``.go`` files and libraries using `golang/protobuf <https://github.com/golang/protobuf>`_. Libraries are created with ``go_library`` from `rules_go <https://github.com/bazelbuild/rules_go>`_
+
+Rust
+====
+
+Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `rust-protobuf <https://github.com/stepancheg/rust-protobuf> and `grpc-rs <https://github.com/tikv/grpc-rs>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_.
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `go_proto_compile <#go_proto_compile>`_
-     - Generates Go protobuf ``.go`` files
-   * - `go_grpc_compile <#go_grpc_compile>`_
-     - Generates Go protobuf and gRPC ``.go`` files
-   * - `go_proto_library <#go_proto_library>`_
-     - Generates a Go protobuf library using ``go_library`` from ``rules_go``
-   * - `go_grpc_library <#go_grpc_library>`_
-     - Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go``
+   * - `rust_proto_compile <#rust_proto_compile>`_
+     - Generates Rust protobuf ``.rs`` files
+   * - `rust_grpc_compile <#rust_grpc_compile>`_
+     - Generates Rust protobuf and gRPC ``.rs`` files
+   * - `rust_proto_library <#rust_proto_library>`_
+     - Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
+   * - `rust_grpc_library <#rust_grpc_library>`_
+     - Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``
 
-``go_proto_compile``
---------------------
+rust_proto_compile
+------------------
 
-Generates Go protobuf ``.go`` files
+Generates Rust protobuf ``.rs`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
+   load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
    
-   io_bazel_rules_go()
+   rules_proto_grpc_rust_repos()
    
-   load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
-   go_rules_dependencies()
+   grpc_deps()
    
-   go_register_toolchains(
-       version = "1.15.8",
-   )
+   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
    
-   bazel_gazelle()
-   
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
-   load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
-   
-   rules_proto_grpc_go_repos()
+   rust_repositories()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//go:defs.bzl", "go_proto_compile")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_compile")
    
-   go_proto_compile(
-       name = "person_go_proto",
+   rust_proto_compile(
+       name = "person_rust_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   go_proto_compile(
-       name = "place_go_proto",
+   rust_proto_compile(
+       name = "place_rust_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   go_proto_compile(
-       name = "thing_go_proto",
+   rust_proto_compile(
+       name = "thing_rust_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for go_proto_compile
+.. list-table:: Attributes for rust_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -86,7 +82,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -112,61 +108,52 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//go:go_plugin``
+- ``@rules_proto_grpc//rust:rust_plugin``
 
-``go_grpc_compile``
--------------------
+rust_grpc_compile
+-----------------
 
-Generates Go protobuf and gRPC ``.go`` files
+Generates Rust protobuf and gRPC ``.rs`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
+   load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
    
-   io_bazel_rules_go()
+   rules_proto_grpc_rust_repos()
    
-   load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
-   go_rules_dependencies()
+   grpc_deps()
    
-   go_register_toolchains(
-       version = "1.15.8",
-   )
+   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
    
-   bazel_gazelle()
-   
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
-   load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
-   
-   rules_proto_grpc_go_repos()
+   rust_repositories()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//go:defs.bzl", "go_grpc_compile")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_compile")
    
-   go_grpc_compile(
-       name = "thing_go_grpc",
+   rust_grpc_compile(
+       name = "thing_rust_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   go_grpc_compile(
-       name = "greeter_go_grpc",
+   rust_grpc_compile(
+       name = "greeter_rust_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for go_grpc_compile
+.. list-table:: Attributes for rust_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -177,7 +164,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -203,51 +190,40 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//go:go_plugin``
-- ``@rules_proto_grpc//go:grpc_go_plugin``
+- ``@rules_proto_grpc//rust:rust_plugin``
+- ``@rules_proto_grpc//rust:grpc_rust_plugin``
 
-``go_proto_library``
---------------------
+rust_proto_library
+------------------
 
-Generates a Go protobuf library using ``go_library`` from ``rules_go``
+Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
+   load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
    
-   io_bazel_rules_go()
+   rules_proto_grpc_rust_repos()
    
-   load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
-   go_rules_dependencies()
+   grpc_deps()
    
-   go_register_toolchains(
-       version = "1.15.8",
-   )
+   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
    
-   bazel_gazelle()
-   
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
-   load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
-   
-   rules_proto_grpc_go_repos()
+   rust_repositories()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//go:defs.bzl", "go_proto_library")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_library")
    
-   go_proto_library(
-       name = "proto_go_proto",
-       importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
+   rust_proto_library(
+       name = "proto_rust_proto",
        protos = [
            "@rules_proto_grpc//example/proto:person_proto",
            "@rules_proto_grpc//example/proto:place_proto",
@@ -258,7 +234,8 @@ Generates a Go protobuf library using ``go_library`` from ``rules_go``
 Attributes
 **********
 
-.. list-table:: Attributes for go_proto_library
+.. list-table:: Attributes for rust_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -269,7 +246,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -296,54 +273,38 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``importpath``
-     - ``string``
-     - false
-     - ``None``
-     - Importpath for the generated files
 
-``go_grpc_library``
--------------------
+rust_grpc_library
+-----------------
 
-Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go``
+Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
+   load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
    
-   io_bazel_rules_go()
+   rules_proto_grpc_rust_repos()
    
-   load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
-   go_rules_dependencies()
+   grpc_deps()
    
-   go_register_toolchains(
-       version = "1.15.8",
-   )
+   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
    
-   bazel_gazelle()
-   
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
-   load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
-   
-   rules_proto_grpc_go_repos()
+   rust_repositories()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//go:defs.bzl", "go_grpc_library")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_library")
    
-   go_grpc_library(
-       name = "greeter_go_grpc",
-       importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
+   rust_grpc_library(
+       name = "greeter_rust_grpc",
        protos = [
            "@rules_proto_grpc//example/proto:greeter_grpc",
            "@rules_proto_grpc//example/proto:thing_proto",
@@ -353,7 +314,8 @@ Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go``
 Attributes
 **********
 
-.. list-table:: Attributes for go_grpc_library
+.. list-table:: Attributes for rust_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -364,7 +326,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -391,8 +353,3 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``importpath``
-     - ``string``
-     - false
-     - ``None``
-     - Importpath for the generated files

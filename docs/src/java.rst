@@ -1,79 +1,69 @@
-Scala rules
-===========
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Java
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Java
 
-Rules for generating Scala protobuf and gRPC ``.jar`` files and libraries using `ScalaPB <https://github.com/scalapb/ScalaPB>`_. Libraries are created with ``scala_library`` from `rules_scala <https://github.com/bazelbuild/rules_scala>`_
+
+Java
+====
+
+Rules for generating Java protobuf and gRPC ``.jar`` files and libraries using standard Protocol Buffers and `gRPC-Java <https://github.com/grpc/grpc-java>`_. Libraries are created with the Bazel native ``java_library``
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `scala_proto_compile <#scala_proto_compile>`_
-     - Generates a Scala protobuf ``.jar`` file
-   * - `scala_grpc_compile <#scala_grpc_compile>`_
-     - Generates Scala protobuf and gRPC ``.jar`` file
-   * - `scala_proto_library <#scala_proto_library>`_
-     - Generates a Scala protobuf library using ``scala_library`` from ``rules_scala``
-   * - `scala_grpc_library <#scala_grpc_library>`_
-     - Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala``
+   * - `java_proto_compile <#java_proto_compile>`_
+     - Generates a Java protobuf srcjar file
+   * - `java_grpc_compile <#java_grpc_compile>`_
+     - Generates a Java protobuf and gRPC srcjar file
+   * - `java_proto_library <#java_proto_library>`_
+     - Generates a Java protobuf library using ``java_library``
+   * - `java_grpc_library <#java_grpc_library>`_
+     - Generates a Java protobuf and gRPC library using ``java_library``
 
-``scala_proto_compile``
------------------------
+java_proto_compile
+------------------
 
-Generates a Scala protobuf ``.jar`` file
+Generates a Java protobuf srcjar file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos = "java_repos")
    
-   rules_proto_grpc_scala_repos()
-   
-   load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
-   
-   scala_config()
-   
-   load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
-   
-   scala_repositories()
-   
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
-   load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-   
-   scala_register_toolchains()
+   rules_proto_grpc_java_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//scala:defs.bzl", "scala_proto_compile")
+   load("@rules_proto_grpc//java:defs.bzl", "java_proto_compile")
    
-   scala_proto_compile(
-       name = "person_scala_proto",
+   java_proto_compile(
+       name = "person_java_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   scala_proto_compile(
-       name = "place_scala_proto",
+   java_proto_compile(
+       name = "place_java_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   scala_proto_compile(
-       name = "thing_scala_proto",
+   java_proto_compile(
+       name = "thing_java_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for scala_proto_compile
+.. list-table:: Attributes for java_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -84,7 +74,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -110,63 +100,44 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//scala:scala_plugin``
+- ``@rules_proto_grpc//java:java_plugin``
 
-``scala_grpc_compile``
-----------------------
+java_grpc_compile
+-----------------
 
-Generates Scala protobuf and gRPC ``.jar`` file
+Generates a Java protobuf and gRPC srcjar file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos = "java_repos")
    
-   rules_proto_grpc_scala_repos()
-   
-   load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
-   
-   scala_config()
-   
-   load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
-   
-   scala_repositories()
-   
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
-   load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-   
-   scala_register_toolchains()
-   
-   load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
-   
-   grpc_java_repositories()
+   rules_proto_grpc_java_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_compile")
+   load("@rules_proto_grpc//java:defs.bzl", "java_grpc_compile")
    
-   scala_grpc_compile(
-       name = "thing_scala_grpc",
+   java_grpc_compile(
+       name = "thing_java_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   scala_grpc_compile(
-       name = "greeter_scala_grpc",
+   java_grpc_compile(
+       name = "greeter_java_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for scala_grpc_compile
+.. list-table:: Attributes for java_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -177,7 +148,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -203,66 +174,52 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//scala:grpc_scala_plugin``
+- ``@rules_proto_grpc//java:java_plugin``
+- ``@rules_proto_grpc//java:grpc_java_plugin``
 
-``scala_proto_library``
------------------------
+java_proto_library
+------------------
 
-Generates a Scala protobuf library using ``scala_library`` from ``rules_scala``
+Generates a Java protobuf library using ``java_library``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos = "java_repos")
    
-   rules_proto_grpc_scala_repos()
-   
-   load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
-   
-   scala_config()
-   
-   load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
-   
-   scala_repositories()
-   
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
-   load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-   
-   scala_register_toolchains()
+   rules_proto_grpc_java_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//scala:defs.bzl", "scala_proto_library")
+   load("@rules_proto_grpc//java:defs.bzl", "java_proto_library")
    
-   scala_proto_library(
-       name = "person_scala_proto",
+   java_proto_library(
+       name = "person_java_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
-       deps = ["place_scala_proto"],
+       deps = ["place_java_proto"],
    )
    
-   scala_proto_library(
-       name = "place_scala_proto",
+   java_proto_library(
+       name = "place_java_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
-       deps = ["thing_scala_proto"],
+       deps = ["thing_java_proto"],
    )
    
-   scala_proto_library(
-       name = "thing_scala_proto",
+   java_proto_library(
+       name = "thing_java_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for scala_proto_library
+.. list-table:: Attributes for java_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -273,7 +230,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -306,62 +263,61 @@ Attributes
      - ``[]``
      - List of labels to pass as exports attr to underlying lang_library rule
 
-``scala_grpc_library``
-----------------------
+java_grpc_library
+-----------------
 
-Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala``
+Generates a Java protobuf and gRPC library using ``java_library``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//java:repositories.bzl", rules_proto_grpc_java_repos = "java_repos")
    
-   rules_proto_grpc_scala_repos()
+   rules_proto_grpc_java_repos()
    
-   load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
    
-   scala_config()
+   maven_install(
+       artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS,
+       generate_compat_repositories = True,
+       override_targets = IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS,
+       repositories = [
+           "https://repo.maven.apache.org/maven2/",
+       ],
+   )
    
-   load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+   load("@maven//:compat.bzl", "compat_repositories")
    
-   scala_repositories()
-   
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
-   load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
-   
-   scala_register_toolchains()
-   
-   load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
+   compat_repositories()
    
    grpc_java_repositories()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_library")
+   load("@rules_proto_grpc//java:defs.bzl", "java_grpc_library")
    
-   scala_grpc_library(
-       name = "thing_scala_grpc",
+   java_grpc_library(
+       name = "thing_java_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   scala_grpc_library(
-       name = "greeter_scala_grpc",
+   java_grpc_library(
+       name = "greeter_java_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-       deps = ["thing_scala_grpc"],
+       deps = ["thing_java_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for scala_grpc_library
+.. list-table:: Attributes for java_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -372,7 +328,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``

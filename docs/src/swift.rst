@@ -1,71 +1,76 @@
-Rust rules
-==========
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Swift
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Swift
 
-Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `rust-protobuf <https://github.com/stepancheg/rust-protobuf> and `grpc-rs <https://github.com/tikv/grpc-rs>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_.
+
+Swift
+=====
+
+Rules for generating Swift protobuf and gRPC ``.swift`` files and libraries using `Swift Protobuf <https://github.com/apple/swift-protobuf>`_ and `Swift gRPC <https://github.com/grpc/grpc-swift>`_
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `rust_proto_compile <#rust_proto_compile>`_
-     - Generates Rust protobuf ``.rs`` files
-   * - `rust_grpc_compile <#rust_grpc_compile>`_
-     - Generates Rust protobuf and gRPC ``.rs`` files
-   * - `rust_proto_library <#rust_proto_library>`_
-     - Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
-   * - `rust_grpc_library <#rust_grpc_library>`_
-     - Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``
+   * - `swift_proto_compile <#swift_proto_compile>`_
+     - Generates Swift protobuf ``.swift`` files
+   * - `swift_grpc_compile <#swift_grpc_compile>`_
+     - Generates Swift protobuf and gRPC ``.swift`` files
+   * - `swift_proto_library <#swift_proto_library>`_
+     - Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
+   * - `swift_grpc_library <#swift_grpc_library>`_
+     - Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``
 
-``rust_proto_compile``
-----------------------
+swift_proto_compile
+-------------------
 
-Generates Rust protobuf ``.rs`` files
+Generates Swift protobuf ``.swift`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
+   load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
    
-   rules_proto_grpc_rust_repos()
+   rules_proto_grpc_swift_repos()
    
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+   load(
+       "@build_bazel_rules_swift//swift:repositories.bzl",
+       "swift_rules_dependencies",
+   )
    
-   grpc_deps()
-   
-   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
-   
-   rust_repositories()
+   swift_rules_dependencies()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_compile")
+   load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_compile")
    
-   rust_proto_compile(
-       name = "person_rust_proto",
+   swift_proto_compile(
+       name = "person_swift_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   rust_proto_compile(
-       name = "place_rust_proto",
+   swift_proto_compile(
+       name = "place_swift_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   rust_proto_compile(
-       name = "thing_rust_proto",
+   swift_proto_compile(
+       name = "thing_swift_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for rust_proto_compile
+.. list-table:: Attributes for swift_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -76,7 +81,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -102,51 +107,51 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//rust:rust_plugin``
+- ``@rules_proto_grpc//swift:swift_plugin``
 
-``rust_grpc_compile``
----------------------
+swift_grpc_compile
+------------------
 
-Generates Rust protobuf and gRPC ``.rs`` files
+Generates Swift protobuf and gRPC ``.swift`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
+   load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
    
-   rules_proto_grpc_rust_repos()
+   rules_proto_grpc_swift_repos()
    
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+   load(
+       "@build_bazel_rules_swift//swift:repositories.bzl",
+       "swift_rules_dependencies",
+   )
    
-   grpc_deps()
-   
-   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
-   
-   rust_repositories()
+   swift_rules_dependencies()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_compile")
+   load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_compile")
    
-   rust_grpc_compile(
-       name = "thing_rust_grpc",
+   swift_grpc_compile(
+       name = "thing_swift_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   rust_grpc_compile(
-       name = "greeter_rust_grpc",
+   swift_grpc_compile(
+       name = "greeter_swift_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for rust_grpc_compile
+.. list-table:: Attributes for swift_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -157,7 +162,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -183,40 +188,39 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//rust:rust_plugin``
-- ``@rules_proto_grpc//rust:grpc_rust_plugin``
+- ``@rules_proto_grpc//swift:swift_plugin``
+- ``@rules_proto_grpc//swift:grpc_swift_plugin``
 
-``rust_proto_library``
-----------------------
+swift_proto_library
+-------------------
 
-Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
+Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
+   load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
    
-   rules_proto_grpc_rust_repos()
+   rules_proto_grpc_swift_repos()
    
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+   load(
+       "@build_bazel_rules_swift//swift:repositories.bzl",
+       "swift_rules_dependencies",
+   )
    
-   grpc_deps()
-   
-   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
-   
-   rust_repositories()
+   swift_rules_dependencies()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_library")
+   load("@rules_proto_grpc//swift:defs.bzl", "swift_proto_library")
    
-   rust_proto_library(
-       name = "proto_rust_proto",
+   swift_proto_library(
+       name = "proto_swift_proto",
        protos = [
            "@rules_proto_grpc//example/proto:person_proto",
            "@rules_proto_grpc//example/proto:place_proto",
@@ -227,7 +231,8 @@ Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
 Attributes
 **********
 
-.. list-table:: Attributes for rust_proto_library
+.. list-table:: Attributes for swift_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -238,7 +243,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -265,38 +270,42 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``module_name``
+     - ``string``
+     - false
+     - 
+     - The name of the Swift module being built.
 
-``rust_grpc_library``
----------------------
+swift_grpc_library
+------------------
 
-Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``
+Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//rust:repositories.bzl", rules_proto_grpc_rust_repos = "rust_repos")
+   load("@rules_proto_grpc//swift:repositories.bzl", rules_proto_grpc_swift_repos = "swift_repos")
    
-   rules_proto_grpc_rust_repos()
+   rules_proto_grpc_swift_repos()
    
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+   load(
+       "@build_bazel_rules_swift//swift:repositories.bzl",
+       "swift_rules_dependencies",
+   )
    
-   grpc_deps()
-   
-   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
-   
-   rust_repositories()
+   swift_rules_dependencies()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_library")
+   load("@rules_proto_grpc//swift:defs.bzl", "swift_grpc_library")
    
-   rust_grpc_library(
-       name = "greeter_rust_grpc",
+   swift_grpc_library(
+       name = "greeter_swift_grpc",
        protos = [
            "@rules_proto_grpc//example/proto:greeter_grpc",
            "@rules_proto_grpc//example/proto:thing_proto",
@@ -306,7 +315,8 @@ Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_r
 Attributes
 **********
 
-.. list-table:: Attributes for rust_grpc_library
+.. list-table:: Attributes for swift_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -317,7 +327,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -344,3 +354,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``module_name``
+     - ``string``
+     - false
+     - 
+     - The name of the Swift module being built.

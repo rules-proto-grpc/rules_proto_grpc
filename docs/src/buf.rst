@@ -1,5 +1,10 @@
-Buf rules
-=========
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Buf
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Buf
+
+
+Buf
+===
 
 Rules for linting and detecting breaking changes in .proto files with `Buf <https://buf.build>`_.
 
@@ -8,7 +13,7 @@ Note that these rules behave differently from the other rules in this repo, sinc
 Only Linux and Darwin (MacOS) is currently supported by Buf.
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
@@ -18,8 +23,8 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.
    * - `buf_proto_lint_test <#buf_proto_lint_test>`_
      - Lints .proto files
 
-``buf_proto_breaking_test``
----------------------------
+buf_proto_breaking_test
+-----------------------
 
 **Note**: This rule is experimental. It may not work correctly!
 
@@ -28,7 +33,7 @@ Checks .proto files for breaking changes
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//buf:repositories.bzl", rules_proto_grpc_buf_repos = "buf_repos")
    
@@ -37,7 +42,7 @@ Checks .proto files for breaking changes
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//buf:defs.bzl", "buf_proto_breaking_test")
    
@@ -56,6 +61,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for buf_proto_breaking_test
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -71,7 +77,7 @@ Attributes
    * - ``against_input``
      - ``label``
      - true
-     - ````
+     - 
      - Label of an existing input image file to check against (.json or .bin)
    * - ``use_rules``
      - ``string_list``
@@ -94,8 +100,8 @@ Plugins
 
 - ``@rules_proto_grpc//buf:breaking_plugin``
 
-``buf_proto_lint_test``
------------------------
+buf_proto_lint_test
+-------------------
 
 **Note**: This rule is experimental. It may not work correctly!
 
@@ -104,7 +110,7 @@ Lints .proto files
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//buf:repositories.bzl", rules_proto_grpc_buf_repos = "buf_repos")
    
@@ -113,7 +119,7 @@ Lints .proto files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//buf:defs.bzl", "buf_proto_lint_test")
    
@@ -168,6 +174,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for buf_proto_lint_test
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -178,7 +185,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``use_rules``
      - ``string_list``

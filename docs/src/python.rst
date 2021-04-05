@@ -1,12 +1,17 @@
-Python rules
-============
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Python
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Python
+
+
+Python
+======
 
 Rules for generating Python protobuf and gRPC ``.py`` files and libraries using standard Protocol Buffers and gRPC or `grpclib <https://github.com/vmagamedov/grpclib>`_. Libraries are created with ``py_library`` from ``rules_python``. To use the fast C++ Protobuf implementation, you can add ``--define=use_fast_cpp_protos=true`` to your build, but this requires you setup the path to your Python headers.
 
 **Note**: On Windows, the path to Python for ``pip_install`` may need updating to ``Python.exe``, depending on your install.
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
@@ -24,15 +29,15 @@ Rules for generating Python protobuf and gRPC ``.py`` files and libraries using 
    * - `python_grpclib_library <#python_grpclib_library>`_
      - Generates a Python protobuf and grpclib library using ``py_library`` from ``rules_python`` (supports Python 3 only)
 
-``python_proto_compile``
-------------------------
+python_proto_compile
+--------------------
 
 Generates Python protobuf ``.py`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
    
@@ -41,7 +46,7 @@ Generates Python protobuf ``.py`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:defs.bzl", "python_proto_compile")
    
@@ -64,6 +69,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for python_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -74,7 +80,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -102,15 +108,15 @@ Plugins
 
 - ``@rules_proto_grpc//python:python_plugin``
 
-``python_grpc_compile``
------------------------
+python_grpc_compile
+-------------------
 
 Generates Python protobuf and gRPC ``.py`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
    
@@ -123,7 +129,7 @@ Generates Python protobuf and gRPC ``.py`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:defs.bzl", "python_grpc_compile")
    
@@ -141,6 +147,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for python_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -151,7 +158,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -180,15 +187,15 @@ Plugins
 - ``@rules_proto_grpc//python:python_plugin``
 - ``@rules_proto_grpc//python:grpc_python_plugin``
 
-``python_grpclib_compile``
---------------------------
+python_grpclib_compile
+----------------------
 
 Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
    
@@ -209,7 +216,7 @@ Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_compile")
    
@@ -227,6 +234,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for python_grpclib_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -237,7 +245,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -266,15 +274,15 @@ Plugins
 - ``@rules_proto_grpc//python:python_plugin``
 - ``@rules_proto_grpc//python:grpclib_python_plugin``
 
-``python_proto_library``
-------------------------
+python_proto_library
+--------------------
 
 Generates a Python protobuf library using ``py_library`` from ``rules_python``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
    
@@ -283,7 +291,7 @@ Generates a Python protobuf library using ``py_library`` from ``rules_python``
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
    
@@ -308,6 +316,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for python_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -318,7 +327,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -346,15 +355,15 @@ Attributes
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
 
-``python_grpc_library``
------------------------
+python_grpc_library
+-------------------
 
 Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_python``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
    
@@ -367,7 +376,7 @@ Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_p
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library")
    
@@ -386,6 +395,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for python_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -396,7 +406,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -424,15 +434,15 @@ Attributes
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
 
-``python_grpclib_library``
---------------------------
+python_grpclib_library
+----------------------
 
 Generates a Python protobuf and grpclib library using ``py_library`` from ``rules_python`` (supports Python 3 only)
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:repositories.bzl", rules_proto_grpc_python_repos = "python_repos")
    
@@ -453,7 +463,7 @@ Generates a Python protobuf and grpclib library using ``py_library`` from ``rule
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_library")
    
@@ -472,6 +482,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for python_grpclib_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -482,7 +493,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``

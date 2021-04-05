@@ -1,63 +1,85 @@
-C++ rules
-=========
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Scala
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Scala
 
-Rules for generating C++ protobuf and gRPC ``.cc`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``cc_library``
+
+Scala
+=====
+
+Rules for generating Scala protobuf and gRPC ``.jar`` files and libraries using `ScalaPB <https://github.com/scalapb/ScalaPB>`_. Libraries are created with ``scala_library`` from `rules_scala <https://github.com/bazelbuild/rules_scala>`_
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `cpp_proto_compile <#cpp_proto_compile>`_
-     - Generates C++ protobuf ``.h`` & ``.cc`` files
-   * - `cpp_grpc_compile <#cpp_grpc_compile>`_
-     - Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files
-   * - `cpp_proto_library <#cpp_proto_library>`_
-     - Generates a C++ protobuf library using ``cc_library``, with dependencies linked
-   * - `cpp_grpc_library <#cpp_grpc_library>`_
-     - Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencies linked
+   * - `scala_proto_compile <#scala_proto_compile>`_
+     - Generates a Scala protobuf ``.jar`` file
+   * - `scala_grpc_compile <#scala_grpc_compile>`_
+     - Generates Scala protobuf and gRPC ``.jar`` file
+   * - `scala_proto_library <#scala_proto_library>`_
+     - Generates a Scala protobuf library using ``scala_library`` from ``rules_scala``
+   * - `scala_grpc_library <#scala_grpc_library>`_
+     - Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala``
 
-``cpp_proto_compile``
----------------------
+scala_proto_compile
+-------------------
 
-Generates C++ protobuf ``.h`` & ``.cc`` files
+Generates a Scala protobuf ``.jar`` file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
    
-   rules_proto_grpc_cpp_repos()
+   rules_proto_grpc_scala_repos()
+   
+   load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+   
+   scala_config()
+   
+   load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+   
+   scala_repositories()
+   
+   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+   
+   scala_proto_repositories()
+   
+   load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+   
+   scala_register_toolchains()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
+   load("@rules_proto_grpc//scala:defs.bzl", "scala_proto_compile")
    
-   cpp_proto_compile(
-       name = "person_cpp_proto",
+   scala_proto_compile(
+       name = "person_scala_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   cpp_proto_compile(
-       name = "place_cpp_proto",
+   scala_proto_compile(
+       name = "place_scala_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   cpp_proto_compile(
-       name = "thing_cpp_proto",
+   scala_proto_compile(
+       name = "thing_scala_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for cpp_proto_compile
+.. list-table:: Attributes for scala_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -68,7 +90,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -94,47 +116,64 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//cpp:cpp_plugin``
+- ``@rules_proto_grpc//scala:scala_plugin``
 
-``cpp_grpc_compile``
---------------------
+scala_grpc_compile
+------------------
 
-Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files
+Generates Scala protobuf and gRPC ``.jar`` file
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
    
-   rules_proto_grpc_cpp_repos()
+   rules_proto_grpc_scala_repos()
    
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+   load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
    
-   grpc_deps()
+   scala_config()
+   
+   load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+   
+   scala_repositories()
+   
+   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+   
+   scala_proto_repositories()
+   
+   load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+   
+   scala_register_toolchains()
+   
+   load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
+   
+   grpc_java_repositories()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_compile")
+   load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_compile")
    
-   cpp_grpc_compile(
-       name = "thing_cpp_grpc",
+   scala_grpc_compile(
+       name = "thing_scala_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   cpp_grpc_compile(
-       name = "greeter_cpp_grpc",
+   scala_grpc_compile(
+       name = "greeter_scala_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for cpp_grpc_compile
+.. list-table:: Attributes for scala_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -145,7 +184,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -171,51 +210,67 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//cpp:cpp_plugin``
-- ``@rules_proto_grpc//cpp:grpc_cpp_plugin``
+- ``@rules_proto_grpc//scala:grpc_scala_plugin``
 
-``cpp_proto_library``
----------------------
+scala_proto_library
+-------------------
 
-Generates a C++ protobuf library using ``cc_library``, with dependencies linked
+Generates a Scala protobuf library using ``scala_library`` from ``rules_scala``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
    
-   rules_proto_grpc_cpp_repos()
+   rules_proto_grpc_scala_repos()
+   
+   load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
+   
+   scala_config()
+   
+   load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+   
+   scala_repositories()
+   
+   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+   
+   scala_proto_repositories()
+   
+   load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+   
+   scala_register_toolchains()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
+   load("@rules_proto_grpc//scala:defs.bzl", "scala_proto_library")
    
-   cpp_proto_library(
-       name = "person_cpp_proto",
+   scala_proto_library(
+       name = "person_scala_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
-       deps = ["place_cpp_proto"],
+       deps = ["place_scala_proto"],
    )
    
-   cpp_proto_library(
-       name = "place_cpp_proto",
+   scala_proto_library(
+       name = "place_scala_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
-       deps = ["thing_cpp_proto"],
+       deps = ["thing_scala_proto"],
    )
    
-   cpp_proto_library(
-       name = "thing_cpp_proto",
+   scala_proto_library(
+       name = "thing_scala_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for cpp_proto_library
+.. list-table:: Attributes for scala_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -226,7 +281,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -253,92 +308,69 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``alwayslink``
-     - ``bool``
+   * - ``exports``
+     - ``label_list``
      - false
-     - ``None``
-     - Passed to the ``alwayslink`` attribute of ``cc_library``.
-   * - ``copts``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``opts`` attribute of ``cc_library``.
-   * - ``defines``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``defines`` attribute of ``cc_library``.
-   * - ``include_prefix``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``include_prefix`` attribute of ``cc_library``.
-   * - ``linkopts``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``linkopts`` attribute of ``cc_library``.
-   * - ``linkstatic``
-     - ``bool``
-     - false
-     - ``None``
-     - Passed to the ``linkstatic`` attribute of ``cc_library``.
-   * - ``local_defines``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``local_defines`` attribute of ``cc_library``.
-   * - ``nocopts``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``nocopts`` attribute of ``cc_library``.
-   * - ``strip_include_prefix``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``strip_include_prefix`` attribute of ``cc_library``.
+     - ``[]``
+     - List of labels to pass as exports attr to underlying lang_library rule
 
-``cpp_grpc_library``
---------------------
+scala_grpc_library
+------------------
 
-Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencies linked
+Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
    
-   rules_proto_grpc_cpp_repos()
+   rules_proto_grpc_scala_repos()
    
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+   load("@io_bazel_rules_scala//:scala_config.bzl", "scala_config")
    
-   grpc_deps()
+   scala_config()
+   
+   load("@io_bazel_rules_scala//scala:scala.bzl", "scala_repositories")
+   
+   scala_repositories()
+   
+   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+   
+   scala_proto_repositories()
+   
+   load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
+   
+   scala_register_toolchains()
+   
+   load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
+   
+   grpc_java_repositories()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_library")
+   load("@rules_proto_grpc//scala:defs.bzl", "scala_grpc_library")
    
-   cpp_grpc_library(
-       name = "thing_cpp_grpc",
+   scala_grpc_library(
+       name = "thing_scala_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   cpp_grpc_library(
-       name = "greeter_cpp_grpc",
+   scala_grpc_library(
+       name = "greeter_scala_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-       deps = ["thing_cpp_grpc"],
+       deps = ["thing_scala_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for cpp_grpc_library
+.. list-table:: Attributes for scala_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -349,7 +381,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -376,48 +408,8 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``alwayslink``
-     - ``bool``
+   * - ``exports``
+     - ``label_list``
      - false
-     - ``None``
-     - Passed to the ``alwayslink`` attribute of ``cc_library``.
-   * - ``copts``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``opts`` attribute of ``cc_library``.
-   * - ``defines``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``defines`` attribute of ``cc_library``.
-   * - ``include_prefix``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``include_prefix`` attribute of ``cc_library``.
-   * - ``linkopts``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``linkopts`` attribute of ``cc_library``.
-   * - ``linkstatic``
-     - ``bool``
-     - false
-     - ``None``
-     - Passed to the ``linkstatic`` attribute of ``cc_library``.
-   * - ``local_defines``
-     - ``string_list``
-     - false
-     - ``None``
-     - Passed to the ``local_defines`` attribute of ``cc_library``.
-   * - ``nocopts``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``nocopts`` attribute of ``cc_library``.
-   * - ``strip_include_prefix``
-     - ``string``
-     - false
-     - ``None``
-     - Passed to the ``strip_include_prefix`` attribute of ``cc_library``.
+     - ``[]``
+     - List of labels to pass as exports attr to underlying lang_library rule

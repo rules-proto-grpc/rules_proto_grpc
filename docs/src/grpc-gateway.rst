@@ -1,8 +1,13 @@
-grpc-gateway rules
-==================
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for grpc-gateway
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, grpc-gateway
+
+
+grpc-gateway
+============
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
@@ -14,15 +19,15 @@ grpc-gateway rules
    * - `gateway_grpc_library <#gateway_grpc_library>`_
      - Generates grpc-gateway library files
 
-``gateway_grpc_compile``
-------------------------
+gateway_grpc_compile
+--------------------
 
 Generates grpc-gateway ``.go`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
    
@@ -53,7 +58,7 @@ Generates grpc-gateway ``.go`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_compile")
    
@@ -66,6 +71,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for gateway_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -76,7 +82,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -106,15 +112,15 @@ Plugins
 - ``@rules_proto_grpc//go:grpc_go_plugin``
 - ``@rules_proto_grpc//go:go_plugin``
 
-``gateway_openapiv2_compile``
------------------------------
+gateway_openapiv2_compile
+-------------------------
 
 Generates grpc-gateway OpenAPI v2 ``.json`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
    
@@ -145,7 +151,7 @@ Generates grpc-gateway OpenAPI v2 ``.json`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_openapiv2_compile")
    
@@ -158,6 +164,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for gateway_openapiv2_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -168,7 +175,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -196,15 +203,15 @@ Plugins
 
 - ``@rules_proto_grpc//grpc-gateway:openapiv2_plugin``
 
-``gateway_grpc_library``
-------------------------
+gateway_grpc_library
+--------------------
 
 Generates grpc-gateway library files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
    
@@ -235,7 +242,7 @@ Generates grpc-gateway library files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_library")
    
@@ -249,6 +256,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for gateway_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -259,7 +267,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``

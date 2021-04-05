@@ -275,8 +275,14 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 func mustWriteLanguageReadme(dir string, lang *Language) {
 	out := &LineWriter{}
 
-	out.w("%s rules", lang.DisplayName)
-	out.w("%s======", strings.Repeat("=", len(lang.DisplayName)))
+	out.w(":author: rules_proto_grpc")
+	out.w(":description: rules_proto_grpc Bazel rules for %s", lang.DisplayName)
+	out.w(":keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, %s", lang.DisplayName)
+	out.ln()
+	out.ln()
+
+	out.w("%s", lang.DisplayName)
+	out.w("%s", strings.Repeat("=", len(lang.DisplayName)))
 	out.ln()
 
 	if lang.Notes != nil {
@@ -285,7 +291,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 	}
 
 	out.w(".. list-table:: Rules")
-	out.w("   :widths: 1 1")
+	out.w("   :widths: 1 2")
 	out.w("   :header-rows: 1")
 	out.ln()
 	out.w("   * - Rule")
@@ -312,7 +318,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("*************")
 		out.ln()
 
-		out.w(".. code-block:: starlark")
+		out.w(".. code-block:: python")  // Treat starlark as python, as pygments needs this
 		out.ln()
 		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
@@ -321,7 +327,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("***************")
 		out.ln()
 
-		out.w(".. code-block:: starlark")
+		out.w(".. code-block:: python")
 		out.ln()
 		out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
@@ -351,6 +357,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("**********")
 		out.ln()
 		out.w(".. list-table:: Attributes for %s", rule.Name)
+		out.w("   :widths: 1 1 1 1 4")
 		out.w("   :header-rows: 1")
 		out.ln()
 		out.w("   * - Name")
@@ -362,7 +369,11 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("   * - ``%s``", attr.Name)
 			out.w("     - ``%s``", attr.Type)
 			out.w("     - %t", attr.Mandatory)
-			out.w("     - ``%s``", attr.Default)
+			if len(attr.Default) > 0 {
+				out.w("     - ``%s``", attr.Default)
+			} else {
+				out.w("     - ")
+			}
 			out.w("     - %s", attr.Doc)
 		}
 		out.ln()
@@ -378,7 +389,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		}
 	}
 
-	out.MustWrite(filepath.Join(dir, lang.Dir, "README.rst"))
+	out.MustWrite(filepath.Join(dir, "docs", "src", lang.Name + ".rst"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
@@ -401,9 +412,9 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 
 	for _, lang := range languages {
 		for _, rule := range lang.Rules {
-			dirLink := fmt.Sprintf("`%s </%s>`_", lang.DisplayName, lang.Dir)
-			ruleLink := fmt.Sprintf("`%s </%s#%s>`_", rule.Name, lang.Dir, rule.Name)
-			exampleLink := fmt.Sprintf("`example </example/%s/%s>`_", lang.Dir, rule.Name)
+			dirLink := fmt.Sprintf("`%s <%s>`_", lang.DisplayName, lang.Dir)
+			ruleLink := fmt.Sprintf("`%s <%s#%s>`_", rule.Name, lang.Dir, rule.Name)
+			exampleLink := fmt.Sprintf("`example <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/%s/%s>`__", lang.Dir, rule.Name)
 			out.w("   * - %s", dirLink)
 			out.w("     - %s", ruleLink)
 			out.w("     - %s (%s)", rule.Doc, exampleLink)

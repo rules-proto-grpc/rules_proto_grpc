@@ -1,10 +1,15 @@
-C rules
-=======
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for C
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, C
+
+
+C
+=
 
 Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <https://github.com/protocolbuffers/upb>`_. Libraries are created with the Bazel native ``cc_library``
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
@@ -14,8 +19,8 @@ Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <
    * - `c_proto_library <#c_proto_library>`_
      - Generates a C protobuf library using ``cc_library``, with dependencies linked
 
-``c_proto_compile``
--------------------
+c_proto_compile
+---------------
 
 **Note**: This rule is experimental. It may not work correctly!
 
@@ -24,7 +29,7 @@ Generates C protobuf ``.h`` & ``.c`` files
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//c:repositories.bzl", rules_proto_grpc_c_repos = "c_repos")
    
@@ -37,7 +42,7 @@ Generates C protobuf ``.h`` & ``.c`` files
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//c:defs.bzl", "c_proto_compile")
    
@@ -60,6 +65,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for c_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -70,7 +76,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -98,8 +104,8 @@ Plugins
 
 - ``@rules_proto_grpc//c:upb_plugin``
 
-``c_proto_library``
--------------------
+c_proto_library
+---------------
 
 **Note**: This rule is experimental. It may not work correctly!
 
@@ -108,7 +114,7 @@ Generates a C protobuf library using ``cc_library``, with dependencies linked
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//c:repositories.bzl", rules_proto_grpc_c_repos = "c_repos")
    
@@ -121,7 +127,7 @@ Generates a C protobuf library using ``cc_library``, with dependencies linked
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@rules_proto_grpc//c:defs.bzl", "c_proto_library")
    
@@ -140,6 +146,7 @@ Attributes
 **********
 
 .. list-table:: Attributes for c_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -150,7 +157,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``

@@ -3,10 +3,17 @@
 rulegen:
 	bazel query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt; \
 	bazel run --run_under="cd $$PWD && " //tools/rulegen -- --ref=$$(git describe --abbrev=0 --tags); \
-	rm available_tests.txt; \
+	rm available_tests.txt;
+
+
+# Build docs locally
+.PHONY: docs
+docs:
+	python3 -m sphinx -c docs -a -E -T -W --keep-going docs/src docs/build
 
 
 # Apply buildifier
+.PHONY: buildifier
 buildifier:
 	bazel run //tools:buildifier
 

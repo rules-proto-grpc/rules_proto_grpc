@@ -11,6 +11,8 @@ Protobuf and gRPC rules for `Bazel <https://bazel.build>`_
 and `gRPC <https://grpc.io>`_ code and libraries from
 `proto_library <https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library>`_ targets
 
+`Docs <https://rules_proto_grpc.aliddell.com>`__ | `GitHub <https://github.com/rules-proto-grpc/rules_proto_grpc>`__
+
 .. image:: https://img.shields.io/github/v/tag/rules-proto-grpc/rules_proto_grpc?label=release&sort=semver&color=38a3a5
    :alt: Latest Release
    :target: https://github.com/rules-proto-grpc/rules_proto_grpc/releases
@@ -56,24 +58,24 @@ Contents
 - `Overview`_
 - `Installation`_
 - `Rules`_
-    - `Android </android>`_
-    - `Buf </buf>`_
-    - `C </c>`_
-    - `C++ </cpp>`_
-    - `C# </csharp>`_
-    - `D </d>`_
-    - `Documentation </doc>`_
-    - `Go </go>`_
-    - `grpc-gateway </grpc-gateway>`_
-    - `Java </java>`_
-    - `JavaScript </js>`_
-    - `Objective-C </objc>`_
-    - `PHP </php>`_
-    - `Python </python>`_
-    - `Ruby </ruby>`_
-    - `Rust </rust>`_
-    - `Scala </scala>`_
-    - `Swift </swift>`_
+    - `Android <android>`_
+    - `Buf <buf>`_
+    - `C <c>`_
+    - `C++ <cpp>`_
+    - `C# <csharp>`_
+    - `D <d>`_
+    - `Documentation <doc>`_
+    - `Go <go>`_
+    - `grpc-gateway <grpc-gateway>`_
+    - `Java <java>`_
+    - `JavaScript <js>`_
+    - `Objective-C <objc>`_
+    - `PHP <php>`_
+    - `Python <python>`_
+    - `Ruby <ruby>`_
+    - `Rust <rust>`_
+    - `Scala <scala>`_
+    - `Swift <swift>`_
 - `Example Usage`_
 - `Developers`_
     - `Code Layout`_
@@ -115,7 +117,7 @@ Installation
 
 Add ``rules_proto_grpc`` to your ``WORKSPACE`` file and then look at the language specific examples linked below:
 
-.. code-block:: starlark
+.. code-block:: python
 
    load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 

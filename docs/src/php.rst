@@ -1,65 +1,65 @@
-D rules
-=======
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for PHP
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, PHP
 
-Rules for generating D protobuf ``.d`` files and libraries using `protobuf-d <https://github.com/dcarp/protobuf-d>`_. Libraries are created with ``d_library`` from `rules_d <https://github.com/bazelbuild/rules_d>`_
 
-**NOTE**: These rules use the protoc-gen-d plugin, which only supports proto3 .proto files.
+PHP
+===
+
+Rules for generating PHP protobuf and gRPC ``.php`` files and libraries using standard Protocol Buffers and gRPC
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `d_proto_compile <#d_proto_compile>`_
-     - Generates D protobuf ``.d`` files
-   * - `d_proto_library <#d_proto_library>`_
-     - Generates a D protobuf library using ``d_library`` from ``rules_d``
+   * - `php_proto_compile <#php_proto_compile>`_
+     - Generates PHP protobuf ``.php`` files
+   * - `php_grpc_compile <#php_grpc_compile>`_
+     - Generates PHP protobuf and gRPC ``.php`` files
 
-``d_proto_compile``
--------------------
+php_proto_compile
+-----------------
 
-Generates D protobuf ``.d`` files
+Generates PHP protobuf ``.php`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//d:repositories.bzl", rules_proto_grpc_d_repos = "d_repos")
+   load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos = "php_repos")
    
-   rules_proto_grpc_d_repos()
-   
-   load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
-   
-   d_repositories()
+   rules_proto_grpc_php_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//d:defs.bzl", "d_proto_compile")
+   load("@rules_proto_grpc//php:defs.bzl", "php_proto_compile")
    
-   d_proto_compile(
-       name = "person_d_proto",
+   php_proto_compile(
+       name = "person_php_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   d_proto_compile(
-       name = "place_d_proto",
+   php_proto_compile(
+       name = "place_php_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   d_proto_compile(
-       name = "thing_d_proto",
+   php_proto_compile(
+       name = "thing_php_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for d_proto_compile
+.. list-table:: Attributes for php_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -70,7 +70,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -96,54 +96,48 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//d:d_plugin``
+- ``@rules_proto_grpc//php:php_plugin``
 
-``d_proto_library``
--------------------
+php_grpc_compile
+----------------
 
-Generates a D protobuf library using ``d_library`` from ``rules_d``
+Generates PHP protobuf and gRPC ``.php`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//d:repositories.bzl", rules_proto_grpc_d_repos = "d_repos")
+   load("@rules_proto_grpc//php:repositories.bzl", rules_proto_grpc_php_repos = "php_repos")
    
-   rules_proto_grpc_d_repos()
+   rules_proto_grpc_php_repos()
    
-   load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
+   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
-   d_repositories()
+   grpc_deps()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//d:defs.bzl", "d_proto_library")
+   load("@rules_proto_grpc//php:defs.bzl", "php_grpc_compile")
    
-   d_proto_library(
-       name = "person_d_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
-       deps = ["place_d_proto"],
-   )
-   
-   d_proto_library(
-       name = "place_d_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
-       deps = ["thing_d_proto"],
-   )
-   
-   d_proto_library(
-       name = "thing_d_proto",
+   php_grpc_compile(
+       name = "thing_php_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+   )
+   
+   php_grpc_compile(
+       name = "greeter_php_grpc",
+       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for d_proto_library
+.. list-table:: Attributes for php_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -154,7 +148,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -176,3 +170,9 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+
+Plugins
+*******
+
+- ``@rules_proto_grpc//php:php_plugin``
+- ``@rules_proto_grpc//php:grpc_php_plugin``

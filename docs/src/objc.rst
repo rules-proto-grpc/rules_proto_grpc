@@ -1,81 +1,69 @@
-C# rules
-========
+:author: rules_proto_grpc
+:description: rules_proto_grpc Bazel rules for Objective-C
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Objective-C
 
-Rules for generating C# protobuf and gRPC ``.cs`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``csharp_library`` from `rules_dotnet <https://github.com/bazelbuild/rules_dotnet>`_
+
+Objective-C
+===========
+
+Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``objc_library``
 
 .. list-table:: Rules
-   :widths: 1 1
+   :widths: 1 2
    :header-rows: 1
 
    * - Rule
      - Description
-   * - `csharp_proto_compile <#csharp_proto_compile>`_
-     - Generates C# protobuf ``.cs`` files
-   * - `csharp_grpc_compile <#csharp_grpc_compile>`_
-     - Generates C# protobuf and gRPC ``.cs`` files
-   * - `csharp_proto_library <#csharp_proto_library>`_
-     - Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
-   * - `csharp_grpc_library <#csharp_grpc_library>`_
-     - Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+   * - `objc_proto_compile <#objc_proto_compile>`_
+     - Generates Objective-C protobuf ``.m`` & ``.h`` files
+   * - `objc_grpc_compile <#objc_grpc_compile>`_
+     - Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files
+   * - `objc_proto_library <#objc_proto_library>`_
+     - Generates an Objective-C protobuf library using ``objc_library``
+   * - `objc_grpc_library <#objc_grpc_library>`_
+     - Generates an Objective-C protobuf and gRPC library using ``objc_library``
 
-``csharp_proto_compile``
-------------------------
+objc_proto_compile
+------------------
 
-Generates C# protobuf ``.cs`` files
+Generates Objective-C protobuf ``.m`` & ``.h`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
+   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
    
-   rules_proto_grpc_csharp_repos()
-   
-   load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
-   
-   dotnet_repositories()
-   
-   load(
-       "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-       "dotnet_register_toolchains",
-       "dotnet_repositories_nugets",
-   )
-   
-   dotnet_register_toolchains()
-   
-   dotnet_repositories_nugets()
-   
-   load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
-   
-   nuget_rules_proto_grpc_packages()
+   rules_proto_grpc_objc_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_compile")
+   load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_compile")
    
-   csharp_proto_compile(
-       name = "person_csharp_proto",
+   objc_proto_compile(
+       name = "person_objc_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   csharp_proto_compile(
-       name = "place_csharp_proto",
+   objc_proto_compile(
+       name = "place_objc_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   csharp_proto_compile(
-       name = "thing_csharp_proto",
+   objc_proto_compile(
+       name = "thing_objc_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for csharp_proto_compile
+.. list-table:: Attributes for objc_proto_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -86,7 +74,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -112,64 +100,48 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//csharp:csharp_plugin``
+- ``@rules_proto_grpc//objc:objc_plugin``
 
-``csharp_grpc_compile``
------------------------
+objc_grpc_compile
+-----------------
 
-Generates C# protobuf and gRPC ``.cs`` files
+Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
+   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
    
-   rules_proto_grpc_csharp_repos()
+   rules_proto_grpc_objc_repos()
    
-   load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
    grpc_deps()
-   
-   dotnet_repositories()
-   
-   load(
-       "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-       "dotnet_register_toolchains",
-       "dotnet_repositories_nugets",
-   )
-   
-   dotnet_register_toolchains()
-   
-   dotnet_repositories_nugets()
-   
-   load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
-   
-   nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_compile")
+   load("@rules_proto_grpc//objc:defs.bzl", "objc_grpc_compile")
    
-   csharp_grpc_compile(
-       name = "thing_csharp_grpc",
+   objc_grpc_compile(
+       name = "thing_objc_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   csharp_grpc_compile(
-       name = "greeter_csharp_grpc",
+   objc_grpc_compile(
+       name = "greeter_objc_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for csharp_grpc_compile
+.. list-table:: Attributes for objc_grpc_compile
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -180,7 +152,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -206,69 +178,52 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//csharp:csharp_plugin``
-- ``@rules_proto_grpc//csharp:grpc_csharp_plugin``
+- ``@rules_proto_grpc//objc:objc_plugin``
+- ``@rules_proto_grpc//objc:grpc_objc_plugin``
 
-``csharp_proto_library``
-------------------------
+objc_proto_library
+------------------
 
-Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+Generates an Objective-C protobuf library using ``objc_library``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
+   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
    
-   rules_proto_grpc_csharp_repos()
-   
-   load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
-   
-   dotnet_repositories()
-   
-   load(
-       "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-       "dotnet_register_toolchains",
-       "dotnet_repositories_nugets",
-   )
-   
-   dotnet_register_toolchains()
-   
-   dotnet_repositories_nugets()
-   
-   load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
-   
-   nuget_rules_proto_grpc_packages()
+   rules_proto_grpc_objc_repos()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//csharp:defs.bzl", "csharp_proto_library")
+   load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_library")
    
-   csharp_proto_library(
-       name = "person_csharp_proto.dll",
+   objc_proto_library(
+       name = "person_objc_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
-       deps = ["place_csharp_proto.dll"],
+       deps = ["place_objc_proto"],
    )
    
-   csharp_proto_library(
-       name = "place_csharp_proto.dll",
+   objc_proto_library(
+       name = "place_objc_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
-       deps = ["thing_csharp_proto.dll"],
+       deps = ["thing_objc_proto"],
    )
    
-   csharp_proto_library(
-       name = "thing_csharp_proto.dll",
+   objc_proto_library(
+       name = "thing_objc_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for csharp_proto_library
+.. list-table:: Attributes for objc_proto_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -279,7 +234,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -306,64 +261,95 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``alwayslink``
+     - ``bool``
+     - false
+     - ``None``
+     - Passed to the ``alwayslink`` attribute of ``cc_library``.
+   * - ``copts``
+     - ``string_list``
+     - false
+     - ``None``
+     - Passed to the ``opts`` attribute of ``cc_library``.
+   * - ``defines``
+     - ``string_list``
+     - false
+     - ``None``
+     - Passed to the ``defines`` attribute of ``cc_library``.
+   * - ``include_prefix``
+     - ``string``
+     - false
+     - ``None``
+     - Passed to the ``include_prefix`` attribute of ``cc_library``.
+   * - ``linkopts``
+     - ``string_list``
+     - false
+     - ``None``
+     - Passed to the ``linkopts`` attribute of ``cc_library``.
+   * - ``linkstatic``
+     - ``bool``
+     - false
+     - ``None``
+     - Passed to the ``linkstatic`` attribute of ``cc_library``.
+   * - ``local_defines``
+     - ``string_list``
+     - false
+     - ``None``
+     - Passed to the ``local_defines`` attribute of ``cc_library``.
+   * - ``nocopts``
+     - ``string``
+     - false
+     - ``None``
+     - Passed to the ``nocopts`` attribute of ``cc_library``.
+   * - ``strip_include_prefix``
+     - ``string``
+     - false
+     - ``None``
+     - Passed to the ``strip_include_prefix`` attribute of ``cc_library``.
 
-``csharp_grpc_library``
------------------------
+objc_grpc_library
+-----------------
 
-Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+**Note**: This rule is experimental. It may not work correctly!
+
+Generates an Objective-C protobuf and gRPC library using ``objc_library``
 
 ``WORKSPACE``
 *************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
+   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
    
-   rules_proto_grpc_csharp_repos()
+   rules_proto_grpc_objc_repos()
    
-   load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
    grpc_deps()
-   
-   dotnet_repositories()
-   
-   load(
-       "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-       "dotnet_register_toolchains",
-       "dotnet_repositories_nugets",
-   )
-   
-   dotnet_register_toolchains()
-   
-   dotnet_repositories_nugets()
-   
-   load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
-   
-   nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
 ***************
 
-.. code-block:: starlark
+.. code-block:: python
 
-   load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library")
+   load("@rules_proto_grpc//objc:defs.bzl", "objc_grpc_library")
    
-   csharp_grpc_library(
-       name = "thing_csharp_grpc.dll",
+   objc_grpc_library(
+       name = "thing_objc_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   csharp_grpc_library(
-       name = "greeter_csharp_grpc.dll",
+   objc_grpc_library(
+       name = "greeter_objc_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
-       deps = ["thing_csharp_grpc.dll"],
+       deps = ["thing_objc_grpc"],
    )
 
 Attributes
 **********
 
-.. list-table:: Attributes for csharp_grpc_library
+.. list-table:: Attributes for objc_grpc_library
+   :widths: 1 1 1 1 4
    :header-rows: 1
 
    * - Name
@@ -374,7 +360,7 @@ Attributes
    * - ``protos``
      - ``label_list``
      - true
-     - ````
+     - 
      - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
    * - ``options``
      - ``string_list_dict``
@@ -401,3 +387,48 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``alwayslink``
+     - ``bool``
+     - false
+     - ``None``
+     - Passed to the ``alwayslink`` attribute of ``cc_library``.
+   * - ``copts``
+     - ``string_list``
+     - false
+     - ``None``
+     - Passed to the ``opts`` attribute of ``cc_library``.
+   * - ``defines``
+     - ``string_list``
+     - false
+     - ``None``
+     - Passed to the ``defines`` attribute of ``cc_library``.
+   * - ``include_prefix``
+     - ``string``
+     - false
+     - ``None``
+     - Passed to the ``include_prefix`` attribute of ``cc_library``.
+   * - ``linkopts``
+     - ``string_list``
+     - false
+     - ``None``
+     - Passed to the ``linkopts`` attribute of ``cc_library``.
+   * - ``linkstatic``
+     - ``bool``
+     - false
+     - ``None``
+     - Passed to the ``linkstatic`` attribute of ``cc_library``.
+   * - ``local_defines``
+     - ``string_list``
+     - false
+     - ``None``
+     - Passed to the ``local_defines`` attribute of ``cc_library``.
+   * - ``nocopts``
+     - ``string``
+     - false
+     - ``None``
+     - Passed to the ``nocopts`` attribute of ``cc_library``.
+   * - ``strip_include_prefix``
+     - ``string``
+     - false
+     - ``None``
+     - Passed to the ``strip_include_prefix`` attribute of ``cc_library``.
