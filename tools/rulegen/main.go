@@ -42,12 +42,12 @@ func main() {
 		&cli.StringFlag{
 			Name:  "header",
 			Usage: "Template for the main readme header",
-			Value: "tools/rulegen/README.header.md",
+			Value: "tools/rulegen/README.header.rst",
 		},
 		&cli.StringFlag{
 			Name:  "footer",
 			Usage: "Template for the main readme footer",
-			Value: "tools/rulegen/README.footer.md",
+			Value: "tools/rulegen/README.footer.rst",
 		},
 		&cli.StringFlag{
 			Name:  "ref",
@@ -359,24 +359,33 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	out.tpl(header, data)
 	out.ln()
 
-	out.w("## Rules")
+	out.w("Rules")
+	out.w("=====")
 	out.ln()
 
-	out.w("| Language | Rule | Description")
-	out.w("| ---: | :--- | :--- |")
+	out.w(".. list-table:: Rules")
+	out.w("   :widths: 1 1 2")
+	out.w("   :header-rows: 1")
+	out.ln()
+	out.w("   * - Language")
+	out.w("     - Rule")
+	out.w("     - Description")
+
 	for _, lang := range languages {
 		for _, rule := range lang.Rules {
-			dirLink := fmt.Sprintf("[%s](/%s)", lang.DisplayName, lang.Dir)
-			ruleLink := fmt.Sprintf("[%s](/%s#%s)", rule.Name, lang.Dir, rule.Name)
-			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
-			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
+			dirLink := fmt.Sprintf("`%s </%s>`_", lang.DisplayName, lang.Dir)
+			ruleLink := fmt.Sprintf("`%s </%s#%s>`_", rule.Name, lang.Dir, rule.Name)
+			exampleLink := fmt.Sprintf("`example </example/%s/%s>`_", lang.Dir, rule.Name)
+			out.w("   * - %s", dirLink)
+			out.w("     - %s", ruleLink)
+			out.w("     - %s (%s)", rule.Doc, exampleLink)
 		}
 	}
 	out.ln()
 
 	out.tpl(footer, data)
 
-	out.MustWrite(filepath.Join(dir, "README.md"))
+	out.MustWrite(filepath.Join(dir, "README.rst"))
 }
 
 func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []string, availableTestsPath string) {
