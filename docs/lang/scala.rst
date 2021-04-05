@@ -30,8 +30,13 @@ scala_proto_compile
 
 Generates a Scala protobuf ``.jar`` file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/scala/scala_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -56,7 +61,7 @@ Generates a Scala protobuf ``.jar`` file
    scala_register_toolchains()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -127,8 +132,13 @@ scala_grpc_compile
 
 Generates Scala protobuf and gRPC ``.jar`` file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/scala/scala_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -157,7 +167,7 @@ Generates Scala protobuf and gRPC ``.jar`` file
    grpc_java_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -223,8 +233,13 @@ scala_proto_library
 
 Generates a Scala protobuf library using ``scala_library`` from ``rules_scala``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/scala/scala_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -249,7 +264,7 @@ Generates a Scala protobuf library using ``scala_library`` from ``rules_scala``
    scala_register_toolchains()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -327,8 +342,13 @@ scala_grpc_library
 
 Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/scala/scala_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -357,7 +377,7 @@ Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules
    grpc_java_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

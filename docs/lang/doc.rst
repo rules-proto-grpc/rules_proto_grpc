@@ -32,8 +32,13 @@ doc_docbook_compile
 
 Generates DocBook ``.xml`` documentation file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_docbook_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -42,7 +47,7 @@ Generates DocBook ``.xml`` documentation file
    rules_proto_grpc_doc_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -115,8 +120,13 @@ doc_html_compile
 
 Generates ``.html`` documentation file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_html_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -125,7 +135,7 @@ Generates ``.html`` documentation file
    rules_proto_grpc_doc_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -198,8 +208,13 @@ doc_json_compile
 
 Generates ``.json`` documentation file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_json_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -208,7 +223,7 @@ Generates ``.json`` documentation file
    rules_proto_grpc_doc_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -281,8 +296,13 @@ doc_markdown_compile
 
 Generates Markdown ``.md`` documentation file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_markdown_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -291,7 +311,7 @@ Generates Markdown ``.md`` documentation file
    rules_proto_grpc_doc_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

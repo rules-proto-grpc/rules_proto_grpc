@@ -28,8 +28,13 @@ c_proto_compile
 
 Generates C protobuf ``.h`` & ``.c`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/c/c_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -42,7 +47,7 @@ Generates C protobuf ``.h`` & ``.c`` files
    upb_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -115,8 +120,13 @@ c_proto_library
 
 Generates a C protobuf library using ``cc_library``, with dependencies linked
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/c/c_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -129,7 +139,7 @@ Generates a C protobuf library using ``cc_library``, with dependencies linked
    upb_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

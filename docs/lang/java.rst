@@ -30,8 +30,13 @@ java_proto_compile
 
 Generates a Java protobuf srcjar file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/java/java_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -40,7 +45,7 @@ Generates a Java protobuf srcjar file
    rules_proto_grpc_java_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -111,8 +116,13 @@ java_grpc_compile
 
 Generates a Java protobuf and gRPC srcjar file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/java/java_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -121,7 +131,7 @@ Generates a Java protobuf and gRPC srcjar file
    rules_proto_grpc_java_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -188,8 +198,13 @@ java_proto_library
 
 Generates a Java protobuf library using ``java_library``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/java/java_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -198,7 +213,7 @@ Generates a Java protobuf library using ``java_library``
    rules_proto_grpc_java_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -276,8 +291,13 @@ java_grpc_library
 
 Generates a Java protobuf and gRPC library using ``java_library``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/java/java_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -304,7 +324,7 @@ Generates a Java protobuf and gRPC library using ``java_library``
    grpc_java_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

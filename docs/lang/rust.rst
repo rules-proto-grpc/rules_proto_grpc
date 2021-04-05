@@ -30,8 +30,13 @@ rust_proto_compile
 
 Generates Rust protobuf ``.rs`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -48,7 +53,7 @@ Generates Rust protobuf ``.rs`` files
    rust_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -119,8 +124,13 @@ rust_grpc_compile
 
 Generates Rust protobuf and gRPC ``.rs`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -137,7 +147,7 @@ Generates Rust protobuf and gRPC ``.rs`` files
    rust_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -204,8 +214,13 @@ rust_proto_library
 
 Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -222,7 +237,7 @@ Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
    rust_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -287,8 +302,13 @@ rust_grpc_library
 
 Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -305,7 +325,7 @@ Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_r
    rust_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

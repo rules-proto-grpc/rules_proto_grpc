@@ -30,8 +30,13 @@ objc_proto_compile
 
 Generates Objective-C protobuf ``.m`` & ``.h`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/objc/objc_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -40,7 +45,7 @@ Generates Objective-C protobuf ``.m`` & ``.h`` files
    rules_proto_grpc_objc_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -111,8 +116,13 @@ objc_grpc_compile
 
 Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/objc/objc_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -125,7 +135,7 @@ Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files
    grpc_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -192,8 +202,13 @@ objc_proto_library
 
 Generates an Objective-C protobuf library using ``objc_library``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/objc/objc_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -202,7 +217,7 @@ Generates an Objective-C protobuf library using ``objc_library``
    rules_proto_grpc_objc_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -322,8 +337,13 @@ objc_grpc_library
 
 Generates an Objective-C protobuf and gRPC library using ``objc_library``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/objc/objc_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -336,7 +356,7 @@ Generates an Objective-C protobuf and gRPC library using ``objc_library``
    grpc_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

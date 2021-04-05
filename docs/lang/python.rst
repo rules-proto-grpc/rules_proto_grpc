@@ -36,8 +36,13 @@ python_proto_compile
 
 Generates Python protobuf ``.py`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -46,7 +51,7 @@ Generates Python protobuf ``.py`` files
    rules_proto_grpc_python_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -117,8 +122,13 @@ python_grpc_compile
 
 Generates Python protobuf and gRPC ``.py`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -131,7 +141,7 @@ Generates Python protobuf and gRPC ``.py`` files
    grpc_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -198,8 +208,13 @@ python_grpclib_compile
 
 Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_grpclib_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -220,7 +235,7 @@ Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -287,8 +302,13 @@ python_proto_library
 
 Generates a Python protobuf library using ``py_library`` from ``rules_python``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -297,7 +317,7 @@ Generates a Python protobuf library using ``py_library`` from ``rules_python``
    rules_proto_grpc_python_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -370,8 +390,13 @@ python_grpc_library
 
 Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_python``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -384,7 +409,7 @@ Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_p
    grpc_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -451,8 +476,13 @@ python_grpclib_library
 
 Generates a Python protobuf and grpclib library using ``py_library`` from ``rules_python`` (supports Python 3 only)
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_grpclib_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -473,7 +503,7 @@ Generates a Python protobuf and grpclib library using ``py_library`` from ``rule
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

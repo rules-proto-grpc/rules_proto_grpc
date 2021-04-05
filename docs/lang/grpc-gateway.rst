@@ -26,8 +26,13 @@ gateway_grpc_compile
 
 Generates grpc-gateway ``.go`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/grpc-gateway/gateway_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -58,7 +63,7 @@ Generates grpc-gateway ``.go`` files
    go_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -121,8 +126,13 @@ gateway_openapiv2_compile
 
 Generates grpc-gateway OpenAPI v2 ``.json`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/grpc-gateway/gateway_openapiv2_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -153,7 +163,7 @@ Generates grpc-gateway OpenAPI v2 ``.json`` files
    go_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -214,8 +224,13 @@ gateway_grpc_library
 
 Generates grpc-gateway library files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/grpc-gateway/gateway_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -246,7 +261,7 @@ Generates grpc-gateway library files
    go_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

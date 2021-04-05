@@ -32,8 +32,13 @@ buf_proto_breaking_test
 
 Checks .proto files for breaking changes
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/buf/buf_proto_breaking_test>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -42,7 +47,7 @@ Checks .proto files for breaking changes
    rules_proto_grpc_buf_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -111,8 +116,13 @@ buf_proto_lint_test
 
 Lints .proto files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/buf/buf_proto_lint_test>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -121,7 +131,7 @@ Lints .proto files
    rules_proto_grpc_buf_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

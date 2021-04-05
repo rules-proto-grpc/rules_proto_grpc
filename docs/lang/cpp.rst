@@ -30,8 +30,13 @@ cpp_proto_compile
 
 Generates C++ protobuf ``.h`` & ``.cc`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -40,7 +45,7 @@ Generates C++ protobuf ``.h`` & ``.cc`` files
    rules_proto_grpc_cpp_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -111,8 +116,13 @@ cpp_grpc_compile
 
 Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -125,7 +135,7 @@ Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files
    grpc_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -192,8 +202,13 @@ cpp_proto_library
 
 Generates a C++ protobuf library using ``cc_library``, with dependencies linked
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -202,7 +217,7 @@ Generates a C++ protobuf library using ``cc_library``, with dependencies linked
    rules_proto_grpc_cpp_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -320,8 +335,13 @@ cpp_grpc_library
 
 Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencies linked
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -334,7 +354,7 @@ Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencie
    grpc_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

@@ -30,8 +30,13 @@ go_proto_compile
 
 Generates Go protobuf ``.go`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/go/go_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -58,7 +63,7 @@ Generates Go protobuf ``.go`` files
    rules_proto_grpc_go_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -129,8 +134,13 @@ go_grpc_compile
 
 Generates Go protobuf and gRPC ``.go`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/go/go_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -157,7 +167,7 @@ Generates Go protobuf and gRPC ``.go`` files
    rules_proto_grpc_go_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -224,8 +234,13 @@ go_proto_library
 
 Generates a Go protobuf library using ``go_library`` from ``rules_go``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/go/go_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -252,7 +267,7 @@ Generates a Go protobuf library using ``go_library`` from ``rules_go``
    rules_proto_grpc_go_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -323,8 +338,13 @@ go_grpc_library
 
 Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/go/go_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -351,7 +371,7 @@ Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go``
    rules_proto_grpc_go_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

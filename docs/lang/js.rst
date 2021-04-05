@@ -47,8 +47,13 @@ js_proto_compile
 
 Generates JavaScript protobuf ``.js`` and ``.d.ts`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/js/js_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -65,7 +70,7 @@ Generates JavaScript protobuf ``.js`` and ``.d.ts`` files
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -137,8 +142,13 @@ js_grpc_node_compile
 
 Generates JavaScript protobuf and gRPC-node ``.js`` and ``.d.ts`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/js/js_grpc_node_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -155,7 +165,7 @@ Generates JavaScript protobuf and gRPC-node ``.js`` and ``.d.ts`` files
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -224,8 +234,13 @@ js_grpc_web_compile
 
 Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/js/js_grpc_web_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -242,7 +257,7 @@ Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -310,8 +325,13 @@ js_proto_library
 
 Generates a JavaScript protobuf library using ``js_library`` from ``rules_nodejs``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/js/js_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -328,7 +348,7 @@ Generates a JavaScript protobuf library using ``js_library`` from ``rules_nodejs
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -406,8 +426,13 @@ js_grpc_node_library
 
 Generates a Node.js protobuf + gRPC-node library using ``js_library`` from ``rules_nodejs``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/js/js_grpc_node_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -424,7 +449,7 @@ Generates a Node.js protobuf + gRPC-node library using ``js_library`` from ``rul
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -496,8 +521,13 @@ js_grpc_web_library
 
 Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``rules_nodejs``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/js/js_grpc_web_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -514,7 +544,7 @@ Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``r
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

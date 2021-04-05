@@ -30,8 +30,13 @@ android_proto_compile
 
 Generates an Android protobuf ``.jar`` file
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/android/android_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -40,7 +45,7 @@ Generates an Android protobuf ``.jar`` file
    rules_proto_grpc_android_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -111,8 +116,13 @@ android_grpc_compile
 
 Generates Android protobuf and gRPC ``.jar`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/android/android_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -139,7 +149,7 @@ Generates Android protobuf and gRPC ``.jar`` files
    grpc_java_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -206,8 +216,13 @@ android_proto_library
 
 Generates an Android protobuf library using ``android_library`` from ``rules_android``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/android/android_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -240,7 +255,7 @@ Generates an Android protobuf library using ``android_library`` from ``rules_and
    android_sdk_repository(name = "androidsdk")
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -318,8 +333,13 @@ android_grpc_library
 
 Generates Android protobuf and gRPC library using ``android_library`` from ``rules_android``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/android/android_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -350,7 +370,7 @@ Generates Android protobuf and gRPC library using ``android_library`` from ``rul
    android_sdk_repository(name = "androidsdk")
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

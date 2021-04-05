@@ -30,8 +30,13 @@ ruby_proto_compile
 
 Generates Ruby protobuf ``.rb`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/ruby/ruby_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -54,7 +59,7 @@ Generates Ruby protobuf ``.rb`` files
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -125,8 +130,13 @@ ruby_grpc_compile
 
 Generates Ruby protobuf and gRPC ``.rb`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/ruby/ruby_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -153,7 +163,7 @@ Generates Ruby protobuf and gRPC ``.rb`` files
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -220,8 +230,13 @@ ruby_proto_library
 
 Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/ruby/ruby_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -244,7 +259,7 @@ Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -317,8 +332,13 @@ ruby_grpc_library
 
 Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/ruby/ruby_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -345,7 +365,7 @@ Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_r
    )
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

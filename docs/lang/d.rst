@@ -28,8 +28,13 @@ d_proto_compile
 
 Generates D protobuf ``.d`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/d/d_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -42,7 +47,7 @@ Generates D protobuf ``.d`` files
    d_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -113,8 +118,13 @@ d_proto_library
 
 Generates a D protobuf library using ``d_library`` from ``rules_d``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/d/d_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -127,7 +137,7 @@ Generates a D protobuf library using ``d_library`` from ``rules_d``
    d_repositories()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

@@ -30,8 +30,13 @@ csharp_proto_compile
 
 Generates C# protobuf ``.cs`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/csharp/csharp_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -58,7 +63,7 @@ Generates C# protobuf ``.cs`` files
    nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -129,8 +134,13 @@ csharp_grpc_compile
 
 Generates C# protobuf and gRPC ``.cs`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/csharp/csharp_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -160,7 +170,7 @@ Generates C# protobuf and gRPC ``.cs`` files
    nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -227,8 +237,13 @@ csharp_proto_library
 
 Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/csharp/csharp_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -255,7 +270,7 @@ Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. 
    nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -328,8 +343,13 @@ csharp_grpc_library
 
 Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/csharp/csharp_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -359,7 +379,7 @@ Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_d
    nuget_rules_proto_grpc_packages()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

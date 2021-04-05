@@ -30,8 +30,13 @@ swift_proto_compile
 
 Generates Swift protobuf ``.swift`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/swift/swift_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -47,7 +52,7 @@ Generates Swift protobuf ``.swift`` files
    swift_rules_dependencies()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -118,8 +123,13 @@ swift_grpc_compile
 
 Generates Swift protobuf and gRPC ``.swift`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/swift/swift_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -135,7 +145,7 @@ Generates Swift protobuf and gRPC ``.swift`` files
    swift_rules_dependencies()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -202,8 +212,13 @@ swift_proto_library
 
 Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/swift/swift_proto_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -219,7 +234,7 @@ Generates a Swift protobuf library using ``swift_library`` from ``rules_swift``
    swift_rules_dependencies()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -289,8 +304,13 @@ swift_grpc_library
 
 Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift``
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/swift/swift_grpc_library>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -306,7 +326,7 @@ Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules
    swift_rules_dependencies()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 

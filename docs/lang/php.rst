@@ -26,8 +26,13 @@ php_proto_compile
 
 Generates PHP protobuf ``.php`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/php/php_proto_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -36,7 +41,7 @@ Generates PHP protobuf ``.php`` files
    rules_proto_grpc_php_repos()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -107,8 +112,13 @@ php_grpc_compile
 
 Generates PHP protobuf and gRPC ``.php`` files
 
+Example
+*******
+
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/php/php_grpc_compile>`__
+
 ``WORKSPACE``
-*************
+^^^^^^^^^^^^^
 
 .. code-block:: python
 
@@ -121,7 +131,7 @@ Generates PHP protobuf and gRPC ``.php`` files
    grpc_deps()
 
 ``BUILD.bazel``
-***************
+^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
