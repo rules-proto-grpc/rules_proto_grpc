@@ -389,7 +389,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		}
 	}
 
-	out.MustWrite(filepath.Join(dir, "docs", "src", lang.Name + ".rst"))
+	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name + ".rst"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {

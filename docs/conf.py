@@ -29,8 +29,6 @@ exclude_patterns = ['.ipynb_checkpoints', '**/.ipynb_checkpoints']
 # Code highlighting
 pygments_style = 'monokai'
 
-master_doc = 'src/index'
-
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -40,8 +38,8 @@ master_doc = 'src/index'
 html_theme = 'furo'
 
 # Logo and favicon
-html_logo = 'src/_static/logo.svg'
-html_favicon = 'src/_static/logo-400.png'
+html_logo = '_static/logo.svg'
+html_favicon = '_static/logo-400.png'
 
 # Base URL for docs
 # Used to generate CNAME file
@@ -56,7 +54,7 @@ html_context = {
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['src/_static']
+html_static_path = ['_static']
 
 # Theme options
 html_theme_options = {

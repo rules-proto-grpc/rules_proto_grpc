@@ -2,7 +2,7 @@
 :description: Bazel rules for building Protobuf and gRPC code and libraries from proto_library targets
 :keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark
 
-.. include:: ../../README.rst
+.. include:: ../README.rst
 
 
 .. toctree::
@@ -20,21 +20,21 @@
    :caption: Rules
    :hidden:
 
-   android
-   buf
-   c
-   cpp
-   csharp
-   d
-   doc
-   go
-   grpc-gateway
-   java
-   js
-   objc
-   php
-   python
-   ruby
-   rust
-   scala
-   swift
+   lang/android
+   lang/buf
+   lang/c
+   lang/cpp
+   lang/csharp
+   lang/d
+   lang/doc
+   lang/go
+   lang/grpc-gateway
+   lang/java
+   lang/js
+   lang/objc
+   lang/php
+   lang/python
+   lang/ruby
+   lang/rust
+   lang/scala
+   lang/swift
