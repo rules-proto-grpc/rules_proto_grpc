@@ -55,6 +55,8 @@ Therefore, if you are solely interested in the generated source code files, use 
 rules. Otherwise, if you want a ready-to-go library, use the ``{lang}_{proto|grpc}_library`` rules.
 
 
+.. _sec_installation:
+
 Installation
 ------------
 
