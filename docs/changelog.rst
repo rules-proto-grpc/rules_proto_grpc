@@ -6,6 +6,12 @@
 Changelog
 =========
 
+3.1.1
+-----
+
+Improved documentation is now available at https://rules-proto-grpc.aliddell.com
+
+
 3.1.0
 -----
 
