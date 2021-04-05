@@ -9,7 +9,7 @@ rulegen:
 # Build docs locally
 .PHONY: docs
 docs:
-	python3 -m sphinx -c docs -a -E -T -W --keep-going docs/src docs/build
+	python3 -m sphinx -c docs -a -E -T -W --keep-going docs docs/build
 
 
 # Apply buildifier

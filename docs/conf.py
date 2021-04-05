@@ -29,6 +29,8 @@ exclude_patterns = ['.ipynb_checkpoints', '**/.ipynb_checkpoints']
 # Code highlighting
 pygments_style = 'monokai'
 
+master_doc = 'src/index'
+
 
 # -- Options for HTML output -------------------------------------------------
 
