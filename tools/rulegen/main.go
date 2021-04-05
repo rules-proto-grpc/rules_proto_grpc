@@ -426,8 +426,8 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	out.w("| ---: | :--- | :--- |")
 	for _, lang := range languages {
 		for _, rule := range lang.Rules {
-			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/stable/lang/%s.html)", lang.DisplayName, lang.Name)
-			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/stable/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
+			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/latest/lang/%s.html)", lang.DisplayName, lang.Name)
+			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/latest/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
 			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
 			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
 		}
