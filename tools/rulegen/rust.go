@@ -99,7 +99,7 @@ func makeRust() *Language {
 		Dir:  "rust",
 		Name: "rust",
 		DisplayName: "Rust",
-		Notes: mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `rust-protobuf <https://github.com/stepancheg/rust-protobuf> and `grpc-rs <https://github.com/tikv/grpc-rs>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_."),
+		Notes: mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `rust-protobuf <https://github.com/stepancheg/rust-protobuf>`_ and `grpc-rs <https://github.com/tikv/grpc-rs>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_."),
 		Flags: commonLangFlags,
 		SkipTestPlatforms: []string{"windows", "macos"}, // CI has no rust toolchain for windows and is broken on mac
 		Rules: []*Rule{
