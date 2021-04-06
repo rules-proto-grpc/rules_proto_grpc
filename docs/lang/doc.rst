@@ -109,7 +109,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//doc:docbook_plugin``
+- `@rules_proto_grpc//doc:docbook_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
 
 .. _doc_html_compile:
 
@@ -197,7 +197,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//doc:html_plugin``
+- `@rules_proto_grpc//doc:html_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
 
 .. _doc_json_compile:
 
@@ -285,7 +285,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//doc:json_plugin``
+- `@rules_proto_grpc//doc:json_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
 
 .. _doc_markdown_compile:
 
@@ -373,4 +373,4 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//doc:markdown_plugin``
+- `@rules_proto_grpc//doc:markdown_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__

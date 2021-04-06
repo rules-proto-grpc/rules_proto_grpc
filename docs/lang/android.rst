@@ -107,7 +107,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//android:javalite_plugin``
+- `@rules_proto_grpc//android:javalite_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/android/BUILD.bazel>`__
 
 .. _android_grpc_compile:
 
@@ -206,8 +206,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//android:javalite_plugin``
-- ``@rules_proto_grpc//android:grpc_javalite_plugin``
+- `@rules_proto_grpc//android:javalite_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/android/BUILD.bazel>`__
+- `@rules_proto_grpc//android:grpc_javalite_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/android/BUILD.bazel>`__
 
 .. _android_proto_library:
 

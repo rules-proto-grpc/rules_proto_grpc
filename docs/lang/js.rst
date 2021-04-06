@@ -132,8 +132,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//js:js_plugin``
-- ``@rules_proto_grpc//js:ts_plugin``
+- `@rules_proto_grpc//js:js_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
+- `@rules_proto_grpc//js:ts_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
 
 .. _js_grpc_node_compile:
 
@@ -222,10 +222,10 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//js:js_plugin``
-- ``@rules_proto_grpc//js:ts_plugin``
-- ``@rules_proto_grpc//js:grpc_node_plugin``
-- ``@rules_proto_grpc//js:grpc_node_ts_plugin``
+- `@rules_proto_grpc//js:js_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
+- `@rules_proto_grpc//js:ts_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
+- `@rules_proto_grpc//js:grpc_node_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
+- `@rules_proto_grpc//js:grpc_node_ts_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
 
 .. _js_grpc_web_compile:
 
@@ -314,9 +314,9 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//js:js_plugin``
-- ``@rules_proto_grpc//js:ts_plugin``
-- ``@rules_proto_grpc//js:grpc_web_js_plugin``
+- `@rules_proto_grpc//js:js_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
+- `@rules_proto_grpc//js:ts_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
+- `@rules_proto_grpc//js:grpc_web_js_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/js/BUILD.bazel>`__
 
 .. _js_proto_library:
 

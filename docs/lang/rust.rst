@@ -115,7 +115,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//rust:rust_plugin``
+- `@rules_proto_grpc//rust:rust_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
 
 .. _rust_grpc_compile:
 
@@ -204,8 +204,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//rust:rust_plugin``
-- ``@rules_proto_grpc//rust:grpc_rust_plugin``
+- `@rules_proto_grpc//rust:rust_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:grpc_rust_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
 
 .. _rust_proto_library:
 

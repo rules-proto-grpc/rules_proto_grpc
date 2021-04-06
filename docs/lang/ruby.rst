@@ -121,7 +121,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//ruby:ruby_plugin``
+- `@rules_proto_grpc//ruby:ruby_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/ruby/BUILD.bazel>`__
 
 .. _ruby_grpc_compile:
 
@@ -220,8 +220,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//ruby:ruby_plugin``
-- ``@rules_proto_grpc//ruby:grpc_ruby_plugin``
+- `@rules_proto_grpc//ruby:ruby_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/ruby/BUILD.bazel>`__
+- `@rules_proto_grpc//ruby:grpc_ruby_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/ruby/BUILD.bazel>`__
 
 .. _ruby_proto_library:
 

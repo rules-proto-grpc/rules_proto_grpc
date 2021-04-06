@@ -125,7 +125,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//go:go_plugin``
+- `@rules_proto_grpc//go:go_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/go/BUILD.bazel>`__
 
 .. _go_grpc_compile:
 
@@ -224,8 +224,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//go:go_plugin``
-- ``@rules_proto_grpc//go:grpc_go_plugin``
+- `@rules_proto_grpc//go:go_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/go/BUILD.bazel>`__
+- `@rules_proto_grpc//go:grpc_go_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/go/BUILD.bazel>`__
 
 .. _go_proto_library:
 

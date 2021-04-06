@@ -109,7 +109,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//c:upb_plugin``
+- `@rules_proto_grpc//c:upb_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/c/BUILD.bazel>`__
 
 .. _c_proto_library:
 

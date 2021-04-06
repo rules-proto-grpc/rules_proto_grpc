@@ -109,7 +109,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//d:d_plugin``
+- `@rules_proto_grpc//d:d_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/d/BUILD.bazel>`__
 
 .. _d_proto_library:
 

@@ -404,7 +404,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- ``@rules_proto_grpc%s``", plugin)
+				out.w("- `@rules_proto_grpc%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", plugin, lang.Dir)
 			}
 			out.ln()
 		}

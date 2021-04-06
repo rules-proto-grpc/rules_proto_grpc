@@ -107,7 +107,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//cpp:cpp_plugin``
+- `@rules_proto_grpc//cpp:cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
 
 .. _cpp_grpc_compile:
 
@@ -192,8 +192,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//cpp:cpp_plugin``
-- ``@rules_proto_grpc//cpp:grpc_cpp_plugin``
+- `@rules_proto_grpc//cpp:cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc//cpp:grpc_cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
 
 .. _cpp_proto_library:
 

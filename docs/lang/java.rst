@@ -107,7 +107,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//java:java_plugin``
+- `@rules_proto_grpc//java:java_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/java/BUILD.bazel>`__
 
 .. _java_grpc_compile:
 
@@ -188,8 +188,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//java:java_plugin``
-- ``@rules_proto_grpc//java:grpc_java_plugin``
+- `@rules_proto_grpc//java:java_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/java/BUILD.bazel>`__
+- `@rules_proto_grpc//java:grpc_java_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/java/BUILD.bazel>`__
 
 .. _java_proto_library:
 

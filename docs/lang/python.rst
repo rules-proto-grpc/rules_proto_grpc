@@ -113,7 +113,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//python:python_plugin``
+- `@rules_proto_grpc//python:python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
 
 .. _python_grpc_compile:
 
@@ -198,8 +198,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//python:python_plugin``
-- ``@rules_proto_grpc//python:grpc_python_plugin``
+- `@rules_proto_grpc//python:python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc//python:grpc_python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
 
 .. _python_grpclib_compile:
 
@@ -292,8 +292,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//python:python_plugin``
-- ``@rules_proto_grpc//python:grpclib_python_plugin``
+- `@rules_proto_grpc//python:python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc//python:grpclib_python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
 
 .. _python_proto_library:
 

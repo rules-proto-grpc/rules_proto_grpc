@@ -103,7 +103,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//php:php_plugin``
+- `@rules_proto_grpc//php:php_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/php/BUILD.bazel>`__
 
 .. _php_grpc_compile:
 
@@ -188,5 +188,5 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//php:php_plugin``
-- ``@rules_proto_grpc//php:grpc_php_plugin``
+- `@rules_proto_grpc//php:php_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/php/BUILD.bazel>`__
+- `@rules_proto_grpc//php:grpc_php_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/php/BUILD.bazel>`__

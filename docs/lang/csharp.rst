@@ -125,7 +125,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//csharp:csharp_plugin``
+- `@rules_proto_grpc//csharp:csharp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/csharp/BUILD.bazel>`__
 
 .. _csharp_grpc_compile:
 
@@ -227,8 +227,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//csharp:csharp_plugin``
-- ``@rules_proto_grpc//csharp:grpc_csharp_plugin``
+- `@rules_proto_grpc//csharp:csharp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/csharp/BUILD.bazel>`__
+- `@rules_proto_grpc//csharp:grpc_csharp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/csharp/BUILD.bazel>`__
 
 .. _csharp_proto_library:
 

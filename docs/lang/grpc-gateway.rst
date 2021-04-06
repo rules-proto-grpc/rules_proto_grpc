@@ -115,9 +115,9 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//grpc-gateway:grpc_gateway_plugin``
-- ``@rules_proto_grpc//go:grpc_go_plugin``
-- ``@rules_proto_grpc//go:go_plugin``
+- `@rules_proto_grpc//grpc-gateway:grpc_gateway_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/grpc-gateway/BUILD.bazel>`__
+- `@rules_proto_grpc//go:grpc_go_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/grpc-gateway/BUILD.bazel>`__
+- `@rules_proto_grpc//go:go_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/grpc-gateway/BUILD.bazel>`__
 
 .. _gateway_openapiv2_compile:
 
@@ -215,7 +215,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//grpc-gateway:openapiv2_plugin``
+- `@rules_proto_grpc//grpc-gateway:openapiv2_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/grpc-gateway/BUILD.bazel>`__
 
 .. _gateway_grpc_library:
 

@@ -107,7 +107,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//objc:objc_plugin``
+- `@rules_proto_grpc//objc:objc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
 
 .. _objc_grpc_compile:
 
@@ -192,8 +192,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//objc:objc_plugin``
-- ``@rules_proto_grpc//objc:grpc_objc_plugin``
+- `@rules_proto_grpc//objc:objc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
+- `@rules_proto_grpc//objc:grpc_objc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
 
 .. _objc_proto_library:
 

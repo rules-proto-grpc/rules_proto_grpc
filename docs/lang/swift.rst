@@ -114,7 +114,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//swift:swift_plugin``
+- `@rules_proto_grpc//swift:swift_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/swift/BUILD.bazel>`__
 
 .. _swift_grpc_compile:
 
@@ -202,8 +202,8 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//swift:swift_plugin``
-- ``@rules_proto_grpc//swift:grpc_swift_plugin``
+- `@rules_proto_grpc//swift:swift_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/swift/BUILD.bazel>`__
+- `@rules_proto_grpc//swift:grpc_swift_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/swift/BUILD.bazel>`__
 
 .. _swift_proto_library:
 

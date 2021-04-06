@@ -123,7 +123,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//scala:scala_plugin``
+- `@rules_proto_grpc//scala:scala_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/scala/BUILD.bazel>`__
 
 .. _scala_grpc_compile:
 
@@ -224,7 +224,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//scala:grpc_scala_plugin``
+- `@rules_proto_grpc//scala:grpc_scala_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/scala/BUILD.bazel>`__
 
 .. _scala_proto_library:
 

@@ -105,7 +105,7 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//buf:breaking_plugin``
+- `@rules_proto_grpc//buf:breaking_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
 
 .. _buf_proto_lint_test:
 
@@ -240,4 +240,4 @@ Attributes
 Plugins
 *******
 
-- ``@rules_proto_grpc//buf:lint_plugin``
+- `@rules_proto_grpc//buf:lint_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
