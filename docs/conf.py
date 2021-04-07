@@ -74,7 +74,9 @@ html_show_sphinx = False
 html_css_files = []
 
 # Extra files to include
-html_extra_path = []
+html_extra_path = [
+    'robots.txt',
+]
 
 # Sitemap options
 sitemap_filename = "sitemap-override.xml"  # RTD generates sitemap with not much in it...
