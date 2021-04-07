@@ -104,7 +104,15 @@ notified of new releases, you can use GitHub's 'Watch Releases Only' on the repo
    developers
    transitivity
    changelog
+
+
+.. toctree::
+   :caption: External
+   :hidden:
+
    GitHub Repo <https://github.com/rules-proto-grpc/rules_proto_grpc>
+   Slack <https://bazelbuild.slack.com/archives/CKU1D04RM>
+
 
 .. toctree::
    :caption: Rules
