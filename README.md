@@ -33,7 +33,7 @@ new release, please [open a new issue](https://github.com/rules-proto-grpc/rules
 
 ## Usage
 
-Full documentation for the current and previous versions can be found at https://rules-proto-grpc.aliddell.com:
+Full documentation for the current and previous versions [can be found here](https://rules-proto-grpc.aliddell.com)
 
 - [Overview](https://rules-proto-grpc.aliddell.com/en/latest/)
 - [Installation](https://rules-proto-grpc.aliddell.com/en/latest/#installation)
