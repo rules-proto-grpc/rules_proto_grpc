@@ -28,7 +28,7 @@ Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with
 doc_docbook_compile
 -------------------
 
-**Note**: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly!
 
 Generates DocBook ``.xml`` documentation file
 
@@ -116,7 +116,7 @@ Plugins
 doc_html_compile
 ----------------
 
-**Note**: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly!
 
 Generates ``.html`` documentation file
 
@@ -204,7 +204,7 @@ Plugins
 doc_json_compile
 ----------------
 
-**Note**: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly!
 
 Generates ``.json`` documentation file
 
@@ -292,7 +292,7 @@ Plugins
 doc_markdown_compile
 --------------------
 
-**Note**: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly!
 
 Generates Markdown ``.md`` documentation file
 

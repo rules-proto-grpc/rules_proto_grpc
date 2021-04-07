@@ -8,7 +8,7 @@ D
 
 Rules for generating D protobuf ``.d`` files and libraries using `protobuf-d <https://github.com/dcarp/protobuf-d>`_. Libraries are created with ``d_library`` from `rules_d <https://github.com/bazelbuild/rules_d>`_
 
-**NOTE**: These rules use the protoc-gen-d plugin, which only supports proto3 .proto files.
+.. note:: These rules use the protoc-gen-d plugin, which only supports proto3 .proto files.
 
 .. list-table:: Rules
    :widths: 1 2

@@ -333,7 +333,7 @@ Attributes
 objc_grpc_library
 -----------------
 
-**Note**: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly!
 
 Generates an Objective-C protobuf and gRPC library using ``objc_library``
 

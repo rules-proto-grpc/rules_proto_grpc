@@ -28,7 +28,7 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.
 buf_proto_breaking_test
 -----------------------
 
-**Note**: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly!
 
 Checks .proto files for breaking changes
 
@@ -112,7 +112,7 @@ Plugins
 buf_proto_lint_test
 -------------------
 
-**Note**: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly!
 
 Lints .proto files
 

@@ -122,17 +122,17 @@ var jsLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*At
 
 var jsDependencyNote = `
 
-**Note**: You must add the required dependencies to your package.json file:
+.. note:: You must add the required dependencies to your package.json file:
 
-.. code-block:: json
+   .. code-block:: json
 
-   "dependencies": {
-     "@grpc/grpc-js": "1.2.6",
-     "google-protobuf": "3.15.3",
-     "grpc-tools": "1.10.0",
-     "grpc-web": "1.2.1",
-     "ts-protoc-gen": "0.14.0"
-   }
+      "dependencies": {
+        "@grpc/grpc-js": "1.2.6",
+        "google-protobuf": "3.15.3",
+        "grpc-tools": "1.10.0",
+        "grpc-web": "1.2.1",
+        "ts-protoc-gen": "0.14.0"
+      }
 `
 
 func makeJavaScript() *Language {
