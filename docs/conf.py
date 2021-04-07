@@ -18,6 +18,7 @@ version = release
 # ones.
 extensions = [
     'notfound.extension',
+    'sphinx_sitemap',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -74,3 +75,6 @@ html_css_files = []
 
 # Extra files to include
 html_extra_path = []
+
+# Sitemap options
+sitemap_filename = "sitemap-override.xml"  # RTD generates sitemap with not much in it...
