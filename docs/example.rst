@@ -11,11 +11,11 @@ Other languages will have a similar high-level layout, but you should check the 
 pages too.
 
 The full example workspaces for C++ can be found
-[here](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp), along with the
-demo proto files
-[here](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/proto). Example
+`here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp>`__, along with
+the demo proto files
+`here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/proto>`__. Example
 workspaces for all other languages can also be found in
-[that same directory](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example).
+`that same directory <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example>`__.
 
 
 **Step 1**: Load rules_proto_grpc
