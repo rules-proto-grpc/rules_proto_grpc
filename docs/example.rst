@@ -10,6 +10,13 @@ These steps walk through the actions required to go from a raw ``.proto`` file t
 Other languages will have a similar high-level layout, but you should check the language specific
 pages too.
 
+The full example workspaces for C++ can be found
+[here](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp), along with the
+demo proto files
+[here](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/proto). Example
+workspaces for all other languages can also be found in
+[that same directory](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example).
+
 
 **Step 1**: Load rules_proto_grpc
 ------------------------------------
