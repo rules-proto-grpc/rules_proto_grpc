@@ -96,7 +96,7 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 grpc_deps()
 
 #
-# C#
+# C#/F#
 #
 load("//csharp:repositories.bzl", "csharp_repos")
 
@@ -116,9 +116,13 @@ dotnet_register_toolchains()
 
 dotnet_repositories_nugets()
 
-load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", nuget_rules_proto_grpc_packages_csharp = "nuget_rules_proto_grpc_packages")
 
-nuget_rules_proto_grpc_packages()
+nuget_rules_proto_grpc_packages_csharp()
+
+load("@rules_proto_grpc//fsharp/nuget:nuget.bzl", nuget_rules_proto_grpc_packages_fsharp = "nuget_rules_proto_grpc_packages")
+
+nuget_rules_proto_grpc_packages_fsharp()
 
 #
 # D
