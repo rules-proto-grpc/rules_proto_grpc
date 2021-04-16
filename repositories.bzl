@@ -107,13 +107,13 @@ VERSIONS = {
         "sha256": "843d0729a0cb53fa2afb46b1c262438beb7477696f31e2fbfd84de97a710f2f1",
     },
 
-    # C#
+    # C#/F#
     "io_bazel_rules_dotnet": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_dotnet",
-        "ref": "0.0.7",
-        "sha256": "322d341066165267d3f411fe9e4f5c3e6630a3cab9c41eafd4197a2e798bbf2a",
+        "ref": "8f8eee051129ce4dad195a7abba468df989f2956",
+        "sha256": "b7d76345517d74f06d72b5306ecbc880d3b05bc878c45668a6896818848819f1",
     },
 
     # D
