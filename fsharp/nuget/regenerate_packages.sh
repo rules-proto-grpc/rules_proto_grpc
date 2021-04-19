@@ -48,7 +48,7 @@ def nuget_rules_proto_grpc_packages():
     dotnet_nuget_new(
         name = "protoc-gen-fsharp",
         build_file_content = """
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_import_library")
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_import_binary", "core_import_library")
 core_import_library(
     name = "Protobuf.FSharp.dll",
     src = select(
@@ -71,8 +71,8 @@ core_import_library(
     ],
 )
 
-core_import_library(
-    name = "lib",
+core_import_binary(
+    name = "bin",
     src = select(
         {
             "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.200_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
