@@ -1,5 +1,19 @@
 load("//:defs.bzl", "proto_plugin")
 
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_import_binary")
+
+core_import_binary(
+    name = "protoc-gen-fsharp",
+    src = "@grpc-fsharp//:lib",
+    version = "0.1.3",
+    deps = [
+        "@google.protobuf//:lib",
+        "@fsharp.core//:lib",
+        "@protobuf.fsharp//:lib"
+    ],
+    visibility = ["//visibility:public"],
+)
+
 proto_plugin(
     name = "fsharp_plugin",
     options = ["no_server", "no_client"],
@@ -25,6 +39,6 @@ sh_binary(
     srcs = ["wrapper.sh"],
     data = [
         "@bazel_tools//tools/bash/runfiles",
-        "@protoc-gen-fsharp//:bin",
+        ":protoc-gen-fsharp",
     ],
 )
