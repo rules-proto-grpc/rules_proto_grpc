@@ -235,7 +235,7 @@ class Program
         client.ListFeatures(400000000, -750000000, 420000000, -730000000).Wait();
 
         // Record a few randomly selected points from the features file.
-        client.RecordRoute(RouteGuideUtil.ParseFeatures(RouteGuideUtil.DefaultFeaturesFile), 10).Wait();
+        client.RecordRoute(RouteGuideUtil.ParseFeatures("csharp/example/routeguide/client.exe/routeguide_features.json"), 10).Wait();
 
         // Send and receive some notes.
         client.RouteChat().Wait();
