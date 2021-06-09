@@ -12,24 +12,24 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_proto",
-        "ref": "84ba6ec814eebbf5312b2cc029256097ae0042c3",
-        "sha256": "3bce0e2fcf502619119c7cac03613fb52ce3034b2159dd3ae9d35f7339558aa3",
+        "ref": "f7a30f6f80006b591fa7c437fe5a951eb10bcbcf",
+        "sha256": "9fc210a34f0f9e7cc31598d109b5d069ef44911a82f507d5a88716db171615a8",
     },
     "com_google_protobuf": {
         # When updating, also update JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.15.3",
-        "sha256": "b10bf4e2d1a7586f54e64a5d9e7837e5188fc75ae69e36f215eb01def4f9721b",
+        "ref": "v3.17.3",
+        "sha256": "c6003e1d2e7fefa78a3039f19f383b4f3a61e81be8c19356f85b6461998ad3db",
     },
     "com_github_grpc_grpc": {
         # When updating, also update Go repositories.bzl, JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.35.0",
-        "sha256": "27dd2fc5c9809ddcde8eb6fa1fa278a3486566dfc28335fca13eb8df8bd3b958",
+        "ref": "v1.38.0",
+        "sha256": "abd9e52c69000f2c051761cfa1f12d52d8b7647b6c66828a91d462e796f2aede",
     },
     "zlib": {
         "type": "http",
@@ -160,15 +160,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.25.1",
-        "sha256": "aa301ab560203bf740d07456a505730bf1ee20f4c471f77357cd31e7e11f5170",
+        "ref": "v0.27.0",
+        "sha256": "8a9bcbd7663c994b96faea2518f61737571959f0b7aa5c626559ffff788efdb0",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.22.3",
-        "sha256": "112ceace31ac48a9dde28f1f1ad98e76fc7f901ef088b944a84e55bc93cd198a",
+        "ref": "v0.23.0",
+        "sha256": "0ba1c56b5df496c07b8d258fb97193668baa0b3a93e4dbb0a1559a6dcbd7d057",
     },
 
     # grpc-gateway
