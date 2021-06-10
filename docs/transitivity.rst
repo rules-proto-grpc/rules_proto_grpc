@@ -16,12 +16,12 @@ it is depended on via multiple routes. For some languages, such as C++, this bre
 produces compilation failures or runtime bugs. For other languages, such as Python, this just meant unnecessary
 duplicate files in the output binaries.
 
-Therefore, in this release of rules_proto_grpc, there is now a recommedned option to bundle only the direct proto
+Therefore, in release 3.0.0 of rules_proto_grpc, there is now a recommended option to bundle only the direct proto
 dependencies into  the libraries, without including the compiled transitive proto files. This is done by replacing the
 ``deps`` attr on ``lang_{proto|grpc}_{compile|library}`` with the ``protos`` attr. Since this would be a substantial breaking
 change to drop at once on a large project, the new behaviour is opt-in in 3.0.0 and the old method continues to work
 throughout the 3.x.x release cycle. Rules using the previous deps attr will have a warning written to console to signify
-that your library may be bundling more than expect and should switch attr.
+that your library may be bundling more than expected and should switch attr.
 
 As an additional benefit of this change, we can now support passing arbitrary per-target rules to protoc through the new
 ``options`` attr of the rules, which was a much sought after change that was impossible in the aspect based compilation.
