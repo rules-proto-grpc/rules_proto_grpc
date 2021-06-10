@@ -16,7 +16,7 @@ VERSIONS = {
         "sha256": "9fc210a34f0f9e7cc31598d109b5d069ef44911a82f507d5a88716db171615a8",
     },
     "com_google_protobuf": {
-        # When updating, also update JS requirements, JS readme, Ruby requirements and C# requirements
+        # When updating, also update JS requirements, JS rulegen js.go, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
