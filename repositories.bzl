@@ -12,24 +12,24 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_proto",
-        "ref": "84ba6ec814eebbf5312b2cc029256097ae0042c3",
-        "sha256": "3bce0e2fcf502619119c7cac03613fb52ce3034b2159dd3ae9d35f7339558aa3",
+        "ref": "f7a30f6f80006b591fa7c437fe5a951eb10bcbcf",
+        "sha256": "9fc210a34f0f9e7cc31598d109b5d069ef44911a82f507d5a88716db171615a8",
     },
     "com_google_protobuf": {
         # When updating, also update JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.15.3",
-        "sha256": "b10bf4e2d1a7586f54e64a5d9e7837e5188fc75ae69e36f215eb01def4f9721b",
+        "ref": "v3.17.3",
+        "sha256": "c6003e1d2e7fefa78a3039f19f383b4f3a61e81be8c19356f85b6461998ad3db",
     },
     "com_github_grpc_grpc": {
         # When updating, also update Go repositories.bzl, JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.35.0",
-        "sha256": "27dd2fc5c9809ddcde8eb6fa1fa278a3486566dfc28335fca13eb8df8bd3b958",
+        "ref": "v1.38.0",
+        "sha256": "abd9e52c69000f2c051761cfa1f12d52d8b7647b6c66828a91d462e796f2aede",
     },
     "zlib": {
         "type": "http",
@@ -45,15 +45,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "c7e068d38e2fec1d899e1c150e372f205c220e27",
-        "sha256": "8cc0ad31c8fc699a49ad31628273529ef8929ded0a0859a3d841ce711a9a90d5",
+        "ref": "f1b6b742254ec11f9e7bd6bff19ad2b327107a45",
+        "sha256": "56bae84082f326c5d51fe63a0929a825ae6f415ff7e3e49df20ba799dca62a7f",
     },
     "build_bazel_rules_swift": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "0.18.0",
-        "sha256": "3da7a2e1b6bf002e1ee47b0d10d889a67ec5cab42b13cf52b08b6e2f77ca3acf",
+        "ref": "0.22.0",
+        "sha256": "4f9872986eb608c34e2884bd2f2f66f8cce628fd8ed7f2fe690aff574bdb86b7",
     },
     "bazel_skylib": {
         "type": "github",
@@ -75,26 +75,26 @@ VERSIONS = {
     # Buf
     "protoc_gen_buf_breaking_darwin": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-breaking-Darwin-x86_64"],
-        "sha256": "639f57ade58f16996c861df9de7d819e6443f58b8087b44af81863eb9e781ba8",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.43.2/protoc-gen-buf-breaking-Darwin-x86_64"],
+        "sha256": "6e1e4f071e6a3c96e4a3b198125b8149214617bb42fc240bb79b2de7906636c0",
         "executable": True,
     },
     "protoc_gen_buf_breaking_linux": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-breaking-Linux-x86_64"],
-        "sha256": "298f56d527c8acea7cb51929bf1ebc75a96fd2f0c294248db68d3ba479086c53",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.43.2/protoc-gen-buf-breaking-Linux-x86_64"],
+        "sha256": "76664b850cc6b2b2c41e96b578c3d4a8c1c0e16ce267538b280e1112d71b3344",
         "executable": True,
     },
     "protoc_gen_buf_lint_darwin": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-lint-Darwin-x86_64"],
-        "sha256": "83884b667e33d2ba52f3d2976ad6d1a02333f93f73f719600d5e612f7d58c2a8",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.43.2/protoc-gen-buf-lint-Darwin-x86_64"],
+        "sha256": "88be34101cdeaf313fab9148bc74f87505a8cbbf9af3fb058dae50178e2cbd51",
         "executable": True,
     },
     "protoc_gen_buf_lint_linux": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.38.0/protoc-gen-buf-lint-Linux-x86_64"],
-        "sha256": "ded760a019da3b5da89feecde1eb831649a70cc2305f1b82675a4080d12acddc",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.43.2/protoc-gen-buf-lint-Linux-x86_64"],
+        "sha256": "9e897a52741772aa275513c7d829e107db8f315212cb88f75368ca5b11af0758",
         "executable": True,
     },
 
@@ -112,8 +112,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_dotnet",
-        "ref": "8f8eee051129ce4dad195a7abba468df989f2956",
-        "sha256": "b7d76345517d74f06d72b5306ecbc880d3b05bc878c45668a6896818848819f1",
+        "ref": "16a8cfb1895450a75727f85f5f5bde4cff1bf6b6",
+        "sha256": "b0e1382115d5dfa2db1dad0b7e72f3d02d930828df113d007121823d1386bfb6",
     },
 
     # D
@@ -160,15 +160,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.25.1",
-        "sha256": "aa301ab560203bf740d07456a505730bf1ee20f4c471f77357cd31e7e11f5170",
+        "ref": "v0.27.0",
+        "sha256": "8a9bcbd7663c994b96faea2518f61737571959f0b7aa5c626559ffff788efdb0",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.22.3",
-        "sha256": "112ceace31ac48a9dde28f1f1ad98e76fc7f901ef088b944a84e55bc93cd198a",
+        "ref": "v0.23.0",
+        "sha256": "0ba1c56b5df496c07b8d258fb97193668baa0b3a93e4dbb0a1559a6dcbd7d057",
     },
 
     # grpc-gateway
@@ -176,8 +176,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.3.0",
-        "sha256": "91fc784b828cad7138ac89451b3e3c0c2342826f2e4d04a1c051add74391270a",
+        "ref": "v2.4.0",
+        "sha256": "cc869fdaaba4ce69ddc976cb8d0ced041e392f093062f0a13ba2df2ede57a996",
     },
 
     # Java
@@ -185,23 +185,23 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "v1.35.0",
-        "sha256": "537d01bdc5ae2bdb267853a75578d671db3075b33e3a00a93f5a572191d3a7b3",
+        "ref": "v1.38.0",
+        "sha256": "c454e068bfb5d0b5bdb5e3d7e32cd1fc34aaf22202855e29e048f3ad338e57b2",
     },
     "rules_jvm_external": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_jvm_external",
-        "ref": "3.0",
-        "sha256": "baa842cbc67aec78408aec3e480b2e94dbdd14d6b0170d3a3ee14a0e1a5bb95f",
+        "ref": "4.1",
+        "sha256": "995ea6b5f41e14e1a17088b727dcff342b2c6534104e73d6f06f1ae0422c2308",
     },
 
     # JavaScript
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
         "type": "http",
-        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/3.2.1/rules_nodejs-3.2.1.tar.gz"],
-        "sha256": "bfacf15161d96a6a39510e7b3d3b522cf61cb8b82a31e79400a84c5abcab5347",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/3.6.0/rules_nodejs-3.6.0.tar.gz"],
+        "sha256": "0fa2d443571c9e02fcb7363a74ae591bdcce2dd76af8677a95965edf329d778a",
     },
     "grpc_web_plugin_darwin": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
@@ -252,8 +252,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "1b7885acf0574d2f52e7c011ce8e03ad3aed25ae",
-        "sha256": "056e506c00847d085f99ff311a3bcea08a31e180f233fb020b6b9ed1898fe5b3",
+        "ref": "087bcab8154f5c0d79980ad32cb6ffb8158de649",
+        "sha256": "b47bb71d60ed92ea8c07b9c841291af38e0f265b7f1b37912c90cce0428c2ce7",
     },
 
     # Scala
@@ -261,8 +261,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "de13a82f65af1e3c7047afd369e505bb3b2e1c64",
-        "sha256": "072687e2eef1a3506fae83ab8bb447bbe06fa5aace8fc25eb4b6106ac5374e6f",
+        "ref": "2b7edf77c153f3fbb882005e0f199f95bd322880",
+        "sha256": "e749a8ade22828419e734e2fb94d8af747bcae1b35c1b664eff1f2dc35c1ab76",
     },
     "com_github_scalapb_scalapb": {
         "type": "http",
@@ -277,8 +277,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-swift",
-        "ref": "1.0.0",
-        "sha256": "5e0258437538bdfa26ca0e023649d97baa138d91881b949b2b344ef84cc2082a",
+        "ref": "1.1.0",
+        "sha256": "e4e83b9a9b9ca88f7c14bd424acb56c10e4f212f31bb2533a7f07fa524fcb780",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_grpc_grpc_swift",
     },
     "com_github_apple_swift_log": {
