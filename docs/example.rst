@@ -49,7 +49,9 @@ we've called the file ``thing.proto``.
 **Step 3**: Write a ``BUILD`` file
 ----------------------------------
 
-This file should introduce a `proto_library <https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library>`_ target:
+This file should introduce a
+`proto_library <https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library>`_
+target:
 
 .. code-block:: python
 

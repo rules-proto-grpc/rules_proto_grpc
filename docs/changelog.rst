@@ -15,10 +15,11 @@ Improved documentation is now available at https://rules-proto-grpc.aliddell.com
 3.1.0
 -----
 
-This update mostly brings fixes to the JavaScript rules, along with new rules for generating Markdown, JSON, HTML or
-DocBook documentation from .proto files using `protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`_.
-Additionally, new ``buf_proto_lint`` and ``buf_proto_breaking`` rules have been added to support linting .proto files and
-checking for breaking changes using `Buf <https://buf.build>`_.
+This update mostly brings fixes to the JavaScript rules, along with new rules for generating
+Markdown, JSON, HTML or DocBook documentation from .proto files using
+`protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`_. Additionally, new
+``buf_proto_lint`` and ``buf_proto_breaking`` rules have been added to support linting .proto files
+and checking for breaking changes using `Buf <https://buf.build>`_.
 
 General
 *******
@@ -47,10 +48,12 @@ JavaScript
 **********
 
 - Updated ``rules_nodejs`` to 3.2.1
-- **WORKSPACE update needed**: The dependencies for JavaScript rules must now be loaded into your local ``package.json``,
-  which defaults to the name ``@npm``. The ``yarn_install`` with name ``js_modules`` in your WORKSPACE can now also be removed
+- **WORKSPACE update needed**: The dependencies for JavaScript rules must now be loaded into your
+  local ``package.json``, which defaults to the name ``@npm``. The ``yarn_install`` with name
+  ``js_modules`` in your WORKSPACE can now also be removed
 - Updated ``@grpc/grpc-js`` to 1.2.8
-- Fixed missing ``DeclarationInfo`` when using the ``js_grpc_node_library`` or ``js_grpc_web_library`` rules
+- Fixed missing ``DeclarationInfo`` when using the ``js_grpc_node_library`` or
+  ``js_grpc_web_library`` rules
   `#113 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/113>`_
 - Added a TypeScript test workspace
 
@@ -70,36 +73,41 @@ Rust
 3.0.0
 -----
 
-This update brings some major improvements to rules_proto_grpc and solves many of the longstanding issues that have been
-present. However, in doing so there have been some changes that make a major version increment necessary and may require
-updates to your build files. The updates for each language are explained below and should you have any issues, please
-open a new `issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`_ or
+This update brings some major improvements to rules_proto_grpc and solves many of the longstanding
+issues that have been present. However, in doing so there have been some changes that make a major
+version increment necessary and may require updates to your build files. The updates for each
+language are explained below and should you have any issues, please open a new
+`issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`_ or
 `discussion <https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new>`_.
 
-The most substantial change is that compilation of .proto files into language specific files is no longer transitive.
-This means that only the direct dependencies of a ``lang_proto_library`` will be present within the generated library,
-rather than every transitive proto message. The justification for this is below, but if you're just interested in the
-changes, you can skip down to the next heading.
+The most substantial change is that compilation of .proto files into language specific files is no
+longer transitive. This means that only the direct dependencies of a ``lang_proto_library`` will be
+present within the generated library, rather than every transitive proto message. The justification
+for this is below, but if you're just interested in the changes, you can skip down to the next
+heading.
 
-In previous versions of rules_proto_grpc, the compilation aspect would compile and aggregate all dependent .proto files
-from any top level target. In hindsight, this was not the correct behaviour and led to many bugs, since you may end up
-creating a library that contains compiled proto files from a third party, where you should instead be depending on a
-proper library for that third party's protos.
+In previous versions of rules_proto_grpc, the compilation aspect would compile and aggregate all
+dependent .proto files from any top level target. In hindsight, this was not the correct behaviour
+and led to many bugs, since you may end up creating a library that contains compiled proto files
+from a third party, where you should instead be depending on a proper library for that third party's
+protos.
 
-Even in a single repo, this may have meant multiple copies of a single compiled proto file being present in a target, if
-it is depended on via multiple routes. For some languages, such as C++, this breaks the 'one definition rule' and
-produces compilation failures or runtime bugs. For other languages, such as Python, this just meant unnecessary
-duplicate files in the output binaries.
+Even in a single repo, this may have meant multiple copies of a single compiled proto file being
+present in a target, if it is depended on via multiple routes. For some languages, such as C++, this
+breaks the 'one definition rule' and produces compilation failures or runtime bugs. For other
+languages, such as Python, this just meant unnecessary duplicate files in the output binaries.
 
-Therefore, in this release of rules_proto_grpc, there is now a recommedned option to bundle only the direct proto
-dependencies into  the libraries, without including the compiled transitive proto files. This is done by replacing the
-``deps`` attr on ``lang_{proto|grpc}_{compile|library}`` with the ``protos`` attr. Since this would be a substantial breaking
-change to drop at once on a large project, the new behaviour is opt-in in 3.0.0 and the old method continues to work
-throughout the 3.x.x release cycle. Rules using the previous deps attr will have a warning written to console to signify
-that your library may be bundling more than expect and should switch attr.
+Therefore, in this release of rules_proto_grpc, there is now a recommedned option to bundle only the
+direct proto dependencies into  the libraries, without including the compiled transitive proto
+files. This is done by replacing the ``deps`` attr on ``lang_{proto|grpc}_{compile|library}`` with
+the ``protos`` attr. Since this would be a substantial breaking change to drop at once on a large
+project, the new behaviour is opt-in in 3.0.0 and the old method continues to work throughout the
+3.x.x release cycle. Rules using the previous deps attr will have a warning written to console to
+signify that your library may be bundling more than expect and should switch attr.
 
-As an additional benefit of this change, we can now support passing arbitrary per-target rules to protoc through the new
-``options`` attr of the rules, which was a much sought after change that was impossible in the aspect based compilation.
+As an additional benefit of this change, we can now support passing arbitrary per-target rules to
+protoc through the new ``options`` attr of the rules, which was a much sought after change that was
+impossible in the aspect based compilation.
 
 Switching to non-transitive compilation
 ***************************************
@@ -120,16 +128,18 @@ In short, replace ``deps`` with ``protos`` on your targets:
        protos = ["//example/proto:routeguide_proto"],
    )
 
-In applying the above change, you may discover that you were inheriting dependencies transitively and that your builds
-now fail. In such cases, you should add a ``lang_{proto|grpc}_{compile|library}`` target for those proto files and
-depend on it explicitly from the relevant top level binaries/libraries.
+In applying the above change, you may discover that you were inheriting dependencies transitively
+and that your builds now fail. In such cases, you should add a
+``lang_{proto|grpc}_{compile|library}`` target for those proto files and depend on it explicitly
+from the relevant top level binaries/libraries.
 
 General Changes
 ***************
 
 - Updated protobuf to 3.15.1
 - Updated gRPC to 1.35.0
-- All rules have new per-target ``options`` and ``extra_protoc_args`` attributes to control options to protoc
+- All rules have new per-target ``options`` and ``extra_protoc_args`` attributes to control options
+  to protoc
   `#54 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/54>`_
   `#68 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/68>`_
   `#105 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/105>`_
@@ -140,13 +150,15 @@ General Changes
 Android
 *******
 
-- **WORKSPACE update needed**: The WORKSPACE imports necessary for Android rules have been updated due to upstream
-  changes in ``grpc-java``. Please see the examples for the latest WORKSPACE template for the Android rules
+- **WORKSPACE update needed**: The WORKSPACE imports necessary for Android rules have been updated
+  due to upstream changes in ``grpc-java``. Please see the examples for the latest WORKSPACE
+  template for the Android rules
 
 C
 *
 
-- Added experimental rules for C using upb `#20 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/20>`_
+- Added experimental rules for C using upb
+  `#20 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/20>`_
 
 C++
 ***
@@ -159,15 +171,15 @@ C++
 Closure
 *******
 
-- Closure rules have been removed. In practice these have been superceded by the Javascript rules, but if you are an
-  active user of these rules please open a discussion.
+- Closure rules have been removed. In practice these have been superceded by the Javascript rules,
+  but if you are an active user of these rules please open a discussion.
 
 C#
 **
 
-- Updated ``rules_dotnet`` to 0.0.7. Note that the new versions of ``rules_dotnet`` drop support for .Net Framework and
-  Mono and require use of alternate platforms. Please see the examples for the latest WORKSPACE template for the
-  C# rules
+- Updated ``rules_dotnet`` to 0.0.7. Note that the new versions of ``rules_dotnet`` drop support for
+  .Net Framework and Mono and require use of alternate platforms. Please see the examples for the
+  latest WORKSPACE template for the C# rules
 - Updated ``Grpc`` to 2.35.0
 
 D
@@ -179,9 +191,10 @@ Go
 **
 
 - Updated ``rules_go`` to 0.25.1
-- **WORKSPACE update needed**: It is now necessary to specify ``version`` to ``go_register_toolchains``
-- The plugin used for compiling .proto files for Go has switched to the new google.golang.org/protobuf
-  `#85 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/85>`_
+- **WORKSPACE update needed**: It is now necessary to specify ``version`` to
+  ``go_register_toolchains``
+- The plugin used for compiling .proto files for Go has switched to the new
+  google.golang.org/protobuf `#85 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/85>`_
 - Updated ``gazelle`` to 0.22.3
 - Updated ``org_golang_x_net`` to v0.0.0-20210129194117-4acb7895a057
 - Updated ``org_golang_x_text`` to 0.3.5
@@ -194,27 +207,30 @@ grpc-gateway
 - Updated ``grpc-gateway`` to 2.2.0
 - The ``gateway_swagger_compile`` rule has been replaced with ``gateway_openapiv2_compile``
   `#93 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/93>`_
-- The grpc-gateway rules have move to repo top level, meaning they are no longer under the ``github.com/...`` prefix. To
-  Update your use of these rules find and replace ``@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway`` with
+- The grpc-gateway rules have move to repo top level, meaning they are no longer under the
+  ``github.com/...`` prefix. To update your use of these rules find and replace
+  ``@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway`` with
   ``@rules_proto_grpc//grpc-gateway``
 
 gRPC-Web
 ********
 
 - The gRPC-Web rules have moved into ``//js``
-- Text mode generation is now supported `#59 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/59>`_
+- Text mode generation is now supported
+  `#59 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/59>`_
 
 Java
 ****
 
-- **WORKSPACE update needed**: The WORKSPACE imports necessary for Java rules have been updated due to upstream
-  changes in ``grpc-java``. Please see the examples for the latest WORKSPACE template for the Java rules
+- **WORKSPACE update needed**: The WORKSPACE imports necessary for Java rules have been updated due
+  to upstream changes in ``grpc-java``. Please see the examples for the latest WORKSPACE template
+  for the Java rules
 
 NodeJS/JavaScript
 *****************
 
-- The JavaScript rules have moved from ``@rules_proto_grpc//nodejs`` to ``@rules_proto_grpc//js``, but the old rules are
-  still aliased to ease transition
+- The JavaScript rules have moved from ``@rules_proto_grpc//nodejs`` to ``@rules_proto_grpc//js``,
+  but the old rules are still aliased to ease transition
 - Updated ``rules_nodejs`` to 3.1.0
 - Updated ``@grpc/grpc-js`` to 1.2.6
 - Added typescript generation to JS rules
@@ -237,16 +253,16 @@ Ruby
 
 - The Ruby rules have migrated from ``yugui/rules_ruby`` to ``bazelruby/rules_ruby``
 - Changed ``rules_proto_grpc_gems`` to ``rules_proto_grpc_bundle``
-- **WORKSPACE update needed**: The above changes requiresupdates to your WORKSPACE, please see the examples for the
-  latest WORKSPACE template for the Ruby rules
+- **WORKSPACE update needed**: The above changes requiresupdates to your WORKSPACE, please see the
+  examples for the latest WORKSPACE template for the Ruby rules
 - **Open issue**: The `grpc` gem may not be loadable in generated Ruby libraries, please see
   `this issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/65>`_
 
 Rust
 ****
 
-- **WORKSPACE update needed**: The upstream repo ``io_bazel_rules_rust`` has been renamed to ``rules_rust``. The
-  ``rust_workspace`` rule is also no longer required
+- **WORKSPACE update needed**: The upstream repo ``io_bazel_rules_rust`` has been renamed to
+  ``rules_rust``. The ``rust_workspace`` rule is also no longer required
 - Updated ``rules_rust`` to latest
 - Updated ``grpcio`` to 0.7.1
 - Updated ``protobuf`` to 2.20.0
@@ -254,8 +270,10 @@ Rust
 Scala
 *****
 
-- Update ``rules_scala`` to latest `#108 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/108>`_
-- **WORKSPACE update needed**: The ``scala_config`` rule from ``rules_scala`` is now required in your WORKSPACE
+- Update ``rules_scala`` to latest
+  `#108 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/108>`_
+- **WORKSPACE update needed**: The ``scala_config`` rule from ``rules_scala`` is now required in
+  your WORKSPACE
 
 Swift
 *****
@@ -279,9 +297,12 @@ General
 
 - Updated ``protobuf`` to 3.13.0
 - Updated ``grpc`` to 1.32.0
-- **WORKSPACE update needed**: These rules now depend on ``rules_proto``, which must be added to your WORKSPACE file
-- Dropped support for the deprecated ``transitivity`` attribute on ``proto_plugin``. The ``exclusions`` attribute is the supported way of achieving this
-- The ``output_dirs`` attribute of ``ProtoCompileInfo`` is now a depset, meaning directories will be deduplicated
+- **WORKSPACE update needed**: These rules now depend on ``rules_proto``, which must be added to
+  your WORKSPACE file
+- Dropped support for the deprecated ``transitivity`` attribute on ``proto_plugin``. The
+  ``exclusions`` attribute is the supported way of achieving this
+- The ``output_dirs`` attribute of ``ProtoCompileInfo`` is now a depset, meaning directories will be
+  deduplicated
 - Removed the ``deps.bzl`` files that have been deprecated since version 1.0.0
 - Tags are now propagated correctly on library rules
 
@@ -296,7 +317,8 @@ C#
 - Updated ``rules_dotnet`` to latest master
 - Updated ``Google.Protobuf`` to 3.13.0
 - Updated ``Grpc`` to 2.32.0
-- **WORKSPACE update needed**: There have been substantial changes to the required WORKSPACE rules for C#. Please see the C# language page
+- **WORKSPACE update needed**: There have been substantial changes to the required WORKSPACE rules
+  for C#. Please see the C# language page
 
 Closure
 *******
@@ -337,7 +359,8 @@ NodeJS
 - Updated ``rules_nodejs`` to 2.2.0
 - **WORKSPACE update needed**: The ``defs.bzl`` file in ``rules_nodejs`` has moved to ``index.bzl``
 - **WORKSPACE update needed**: Running ``yarn_install()`` is needed in more cases
-- **WORKSPACE update needed**: Running ``grpc_deps()`` is no longer necessary for just the NodeJS rules
+- **WORKSPACE update needed**: Running ``grpc_deps()`` is no longer necessary for just the NodeJS
+  rules
 - Moved from ``grpc`` to ``@grpc/grpc-js`` package
 - Library rules have been enabled and now return ``js_library`` rather than ``npm_package``
 
@@ -349,8 +372,10 @@ Python
 - Updated ``grpclib`` to 0.4.1
 - Moved to using ``grpcio`` library directly from the local ``grpc`` repository.
 - Pinned dependency versions in requirements.txt using pip-compile
-- **WORKSPACE update needed**: The method for loading Pip dependencies has changed. Please see the Python language page.
-- **WORKSPACE update needed**: Using the Pip dependencies is now only necessary if you are using the ``grpclib`` rules
+- **WORKSPACE update needed**: The method for loading Pip dependencies has changed. Please see the
+  Python language page.
+- **WORKSPACE update needed**: Using the Pip dependencies is now only necessary if you are using the
+  ``grpclib`` rules
 
 Rust
 ****
@@ -358,7 +383,8 @@ Rust
 - Updated ``rules_rust`` to latest master
 - Updated ``protobuf`` crate to 2.17.0
 - Updated ``grpcio`` crate to 0.6.0
-- **WORKSPACE update needed**: The setup for ``rules_rust`` has changed in the newer version. Please see the Rust language page.
+- **WORKSPACE update needed**: The setup for ``rules_rust`` has changed in the newer version. Please
+  see the Rust language page.
 - **WORKSPACE update needed**: The ``grpc_deps()`` rule is now needed for Rust
 
 Scala
@@ -416,12 +442,14 @@ General
 Closure
 *******
 
-- The required WORKSPACE rules has been updated for all Closure-based rules, please check the documentation for the current recommended set
+- The required WORKSPACE rules has been updated for all Closure-based rules, please check the
+  documentation for the current recommended set
 
 Go / GoGo / grpc-gateway
 ************************
 
-- The required WORKSPACE rules has been updated for all Go-based rules, please check the documentation for the current recommended set
+- The required WORKSPACE rules has been updated for all Go-based rules, please check the
+  documentation for the current recommended set
 
 gRPC.js
 *******
@@ -431,14 +459,17 @@ gRPC.js
 Python
 ******
 
-- The way dependencies are pulled in has changed from using ``rules_pip`` to the standard ``rules_python``.
-  Please check the documentation for the new WORKSPACE rules required and remove the old ones
+- The way dependencies are pulled in has changed from using ``rules_pip`` to the standard
+  ``rules_python``. Please check the documentation for the new WORKSPACE rules required and remove
+  the old ones
 
 Scala
 *****
 
-- Scala gRPC rules are currently not working fully. Due to delays in publishing support for Bazel 1.0, this support has been pushed back to 1.1.0
-- The required WORKSPACE rules has been updated for all Scala rules, please check the documentation for the current recommended set
+- Scala gRPC rules are currently not working fully. Due to delays in publishing support for Bazel
+  1.0, this support has been pushed back to 1.1.0
+- The required WORKSPACE rules has been updated for all Scala rules, please check the documentation
+  for the current recommended set
 
 
 0.2.0
@@ -460,4 +491,5 @@ Ruby
 0.1.0
 -----
 
-Initial release of ``rules_proto_grpc``. For changes from predecessor ``rules_proto``, please see `MIGRATION.md <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/0.1.0/docs/MIGRATION.md>`_
+Initial release of ``rules_proto_grpc``. For changes from predecessor ``rules_proto``, please see
+`MIGRATION.md <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/0.1.0/docs/MIGRATION.md>`_
