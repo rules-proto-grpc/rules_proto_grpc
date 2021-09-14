@@ -23,7 +23,6 @@ tasks:
     - "//python/..."
     - "//rust/..."
     - "//scala/..."
-    - "//swift/..."
     test_flags:
     - "--test_output=errors"
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
@@ -1249,15 +1248,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_library
-  swift_swift_proto_compile_ubuntu1804:
-    name: 'swift: swift_proto_compile'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/swift/swift_proto_compile
-    environment:
-      CC: clang
   swift_swift_proto_compile_macos:
     name: 'swift: swift_proto_compile'
     platform: macos
@@ -1266,15 +1256,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/swift/swift_proto_compile
-    environment:
-      CC: clang
-  swift_swift_grpc_compile_ubuntu1804:
-    name: 'swift: swift_grpc_compile'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/swift/swift_grpc_compile
     environment:
       CC: clang
   swift_swift_grpc_compile_macos:
@@ -1287,15 +1268,6 @@ tasks:
     working_directory: example/swift/swift_grpc_compile
     environment:
       CC: clang
-  swift_swift_proto_library_ubuntu1804:
-    name: 'swift: swift_proto_library'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/swift/swift_proto_library
-    environment:
-      CC: clang
   swift_swift_proto_library_macos:
     name: 'swift: swift_proto_library'
     platform: macos
@@ -1304,15 +1276,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/swift/swift_proto_library
-    environment:
-      CC: clang
-  swift_swift_grpc_library_ubuntu1804:
-    name: 'swift: swift_grpc_library'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/swift/swift_grpc_library
     environment:
       CC: clang
   swift_swift_grpc_library_macos:

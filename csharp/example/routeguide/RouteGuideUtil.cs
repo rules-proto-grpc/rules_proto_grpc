@@ -27,8 +27,6 @@ using RouteGuide;
 /// </summary>
 public static class RouteGuideUtil
 {
-    public const string DefaultFeaturesFile = "example/proto/routeguide_features.json";
-
     private const double CoordFactor = 1e7;
 
     /// <summary>

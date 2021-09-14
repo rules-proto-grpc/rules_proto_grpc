@@ -1,6 +1,6 @@
 """Generated nuget packages"""
 
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "nuget_package")
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "nuget_package", "dotnet_nuget_new")
 
 # Backwards compatibility definitions
 def nuget_protobuf_packages():
@@ -383,4 +383,232 @@ def nuget_rules_proto_grpc_packages():
             ],
         },
     )
+    nuget_package(
+        name = "fsharp.core",
+        package = "fsharp.core",
+        version = "5.0.1",
+        sha256 = "58f932b639c7953871cd894fbe6a4808c7d1fb800d4e258d1a3100e8ba007010",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+            "netcoreapp3.1": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+            "net5.0": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+        },
+        core_files = {
+            "netcoreapp2.0": [
+               "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/FSharp.Core.dll",
+               "lib/netstandard2.0/FSharp.Core.xml",
+               "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
+            ],
+            "netcoreapp2.1": [
+               "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/FSharp.Core.dll",
+               "lib/netstandard2.0/FSharp.Core.xml",
+               "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
+            ],
+            "netcoreapp2.2": [
+               "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/FSharp.Core.dll",
+               "lib/netstandard2.0/FSharp.Core.xml",
+               "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
+            ],
+            "netcoreapp3.0": [
+               "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/FSharp.Core.dll",
+               "lib/netstandard2.0/FSharp.Core.xml",
+               "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
+            ],
+            "netcoreapp3.1": [
+               "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/FSharp.Core.dll",
+               "lib/netstandard2.0/FSharp.Core.xml",
+               "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
+            ],
+            "net5.0": [
+               "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/FSharp.Core.dll",
+               "lib/netstandard2.0/FSharp.Core.xml",
+               "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+               "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
+            ],
+        },
+    )
+    nuget_package(
+        name = "protobuf.fsharp",
+        package = "protobuf.fsharp",
+        version = "0.1.1",
+        sha256 = "cdb3f01a7ab2de3c2012b355a4f89ebdd8a9b4a8bf58eed23e3d2e80d95d8829",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Protobuf.FSharp.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Protobuf.FSharp.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Protobuf.FSharp.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Protobuf.FSharp.dll",
+            "netcoreapp3.1": "lib/netstandard2.0/Protobuf.FSharp.dll",
+            "net5.0": "lib/netstandard2.0/Protobuf.FSharp.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+               "@fsharp.core//:netcoreapp2.0_core",
+               "@google.protobuf//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+               "@fsharp.core//:netcoreapp2.1_core",
+               "@google.protobuf//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+               "@fsharp.core//:netcoreapp2.2_core",
+               "@google.protobuf//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+               "@fsharp.core//:netcoreapp3.0_core",
+               "@google.protobuf//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+               "@fsharp.core//:netcoreapp3.1_core",
+               "@google.protobuf//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+               "@fsharp.core//:net5.0_core",
+               "@google.protobuf//:net5.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+               "lib/netstandard2.0/Protobuf.FSharp.dll",
+            ],
+            "netcoreapp2.1": [
+               "lib/netstandard2.0/Protobuf.FSharp.dll",
+            ],
+            "netcoreapp2.2": [
+               "lib/netstandard2.0/Protobuf.FSharp.dll",
+            ],
+            "netcoreapp3.0": [
+               "lib/netstandard2.0/Protobuf.FSharp.dll",
+            ],
+            "netcoreapp3.1": [
+               "lib/netstandard2.0/Protobuf.FSharp.dll",
+            ],
+            "net5.0": [
+               "lib/netstandard2.0/Protobuf.FSharp.dll",
+            ],
+        },
+    )
     ### End of generated by the tool
+    dotnet_nuget_new(
+        name = "protoc-gen-fsharp",
+        build_file_content = """
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_import_binary", "core_import_library")
+core_import_library(
+    name = "Protobuf.FSharp.dll",
+    src = select(
+        {
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.200_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.502_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.503_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.2.101_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.2.402_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:3.0.100_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/Protobuf.FSharp.dll",
+        },
+    ),
+    version = "0.1.1",
+    deps = [
+        "@fsharp.core//:lib",
+        "@google.protobuf//:lib",
+    ],
+)
+
+core_import_binary(
+    name = "bin",
+    src = select(
+        {
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.200_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.502_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.503_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.2.101_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:2.2.402_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:3.0.100_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
+        },
+    ),
+    deps = [":Protobuf.FSharp.dll"],
+    version = "0.1.3",
+    visibility = ["//visibility:public"],
+)
+    """,
+        package = "grpc-fsharp",
+        version = "0.1.3",
+        sha256 = "f1612d2d3ca0715087a87050cb7a3ebb98ff7c9294bb65afab19f7c648d1bed1",
+    )

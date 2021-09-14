@@ -159,7 +159,7 @@ class Program
         if (!String.IsNullOrEmpty(PortVar)) {
             Port = Int32.Parse(PortVar);
         }
-        var features = RouteGuideUtil.ParseFeatures(RouteGuideUtil.DefaultFeaturesFile);
+        var features = RouteGuideUtil.ParseFeatures("csharp/example/routeguide/server.exe/routeguide_features.json");
 
         Server server = new Server
         {
