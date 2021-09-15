@@ -106,7 +106,7 @@ func makeSwift() *Language {
 			"CC": "clang",
 		},
 		Flags: commonLangFlags,
-		SkipTestPlatforms: []string{"windows"},
+		SkipTestPlatforms: []string{"windows", "linux"},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "swift_proto_compile",
