@@ -267,9 +267,9 @@ VERSIONS = {
     },
     "com_github_scalapb_scalapb": {
         "type": "http",
-        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.11.5/scalapbc-0.11.5.zip"],
-        "sha256": "85fb0671ba50b56c9962b51676105ce43da5d9a1216cac0722e0aba6cc39ce80",
-        "strip_prefix": "scalapbc-0.11.5",
+        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.9.7/scalapbc-0.9.7.zip"],  # Last version with protoc plugin bundled?
+        "sha256": "623f626e97cca119b2a12c4e1d9a3c85aab9f9fd6dcb8dc22b4f704b824da94e",
+        "strip_prefix": "scalapbc-0.9.7",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
     },
 
