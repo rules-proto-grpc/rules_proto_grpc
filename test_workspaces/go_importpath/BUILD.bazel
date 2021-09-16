@@ -18,7 +18,7 @@ proto_library(
 
 go_proto_library(
     name = "go_lib_a",
-    importpath = "test_import_path",
+    importpath = "test_import_path/root",
     protos = ["proto_lib_a"],
 )
 
