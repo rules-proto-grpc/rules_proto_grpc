@@ -25,17 +25,24 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "notice",  # MIT from expression "MIT"
 ])
 
 # Generated Targets
 
+alias(
+    name = "redox_syscall",
+    actual = ":syscall",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
 rust_library(
-    name = "quote",
+    name = "syscall",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "default",
-        "proc-macro",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -48,13 +55,9 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "1.0.9",
+    version = "0.2.10",
     # buildifier: leave-alone
     deps = [
-        "@raze__proc_macro2__1_0_29//:proc_macro2",
+        "@raze__bitflags__1_3_2//:bitflags",
     ],
 )
-
-# Unsupported target "compiletest" with type "test" omitted
-
-# Unsupported target "test" with type "test" omitted

@@ -25,17 +25,17 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "notice",  # BSD-3-Clause from expression "BSD-3-Clause"
 ])
 
 # Generated Targets
 
 rust_library(
-    name = "quote",
+    name = "instant",
     srcs = glob(["**/*.rs"]),
+    aliases = {
+    },
     crate_features = [
-        "default",
-        "proc-macro",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -48,13 +48,18 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "1.0.9",
+    version = "0.1.10",
     # buildifier: leave-alone
     deps = [
-        "@raze__proc_macro2__1_0_29//:proc_macro2",
-    ],
+        "@raze__cfg_if__1_0_0//:cfg_if",
+    ] + selects.with_or({
+        # wasm32-unknown-unknown
+        (
+            "@rules_rust//rust/platform:wasm32-unknown-unknown",
+        ): [
+        ],
+        "//conditions:default": [],
+    }),
 )
 
-# Unsupported target "compiletest" with type "test" omitted
-
-# Unsupported target "test" with type "test" omitted
+# Unsupported target "wasm" with type "test" omitted

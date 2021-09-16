@@ -31,11 +31,11 @@ licenses([
 # Generated Targets
 
 rust_library(
-    name = "quote",
+    name = "futures_sink",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "default",
-        "proc-macro",
+        "alloc",
+        "std",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -48,13 +48,8 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "1.0.9",
+    version = "0.3.17",
     # buildifier: leave-alone
     deps = [
-        "@raze__proc_macro2__1_0_29//:proc_macro2",
     ],
 )
-
-# Unsupported target "compiletest" with type "test" omitted
-
-# Unsupported target "test" with type "test" omitted

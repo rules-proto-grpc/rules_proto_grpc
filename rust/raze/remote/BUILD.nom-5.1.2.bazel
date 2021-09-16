@@ -58,7 +58,7 @@ cargo_build_script(
     version = "5.1.2",
     visibility = ["//visibility:private"],
     deps = [
-        "@raze__version_check__0_9_2//:version_check",
+        "@raze__version_check__0_9_3//:version_check",
     ],
 )
 
@@ -102,7 +102,7 @@ rust_library(
     # buildifier: leave-alone
     deps = [
         ":nom_build_script",
-        "@raze__memchr__2_3_4//:memchr",
+        "@raze__memchr__2_4_1//:memchr",
     ],
 )
 

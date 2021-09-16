@@ -30,12 +30,13 @@ licenses([
 
 # Generated Targets
 
+# Unsupported target "thread_notify" with type "bench" omitted
+
 rust_library(
-    name = "quote",
+    name = "futures_executor",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "default",
-        "proc-macro",
+        "std",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -48,13 +49,13 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "1.0.9",
+    version = "0.3.17",
     # buildifier: leave-alone
     deps = [
-        "@raze__proc_macro2__1_0_29//:proc_macro2",
+        "@raze__futures_core__0_3_17//:futures_core",
+        "@raze__futures_task__0_3_17//:futures_task",
+        "@raze__futures_util__0_3_17//:futures_util",
     ],
 )
 
-# Unsupported target "compiletest" with type "test" omitted
-
-# Unsupported target "test" with type "test" omitted
+# Unsupported target "local_pool" with type "test" omitted

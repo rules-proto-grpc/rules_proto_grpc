@@ -25,17 +25,17 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT OR Apache-2.0"
+    "unencumbered",  # Unlicense from expression "Unlicense OR MIT"
 ])
 
 # Generated Targets
 
 rust_library(
-    name = "quote",
+    name = "walkdir",
     srcs = glob(["**/*.rs"]),
+    aliases = {
+    },
     crate_features = [
-        "default",
-        "proc-macro",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -48,13 +48,19 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "1.0.9",
+    version = "2.3.2",
     # buildifier: leave-alone
     deps = [
-        "@raze__proc_macro2__1_0_29//:proc_macro2",
-    ],
+        "@raze__same_file__1_0_6//:same_file",
+    ] + selects.with_or({
+        # cfg(windows)
+        (
+            "@rules_rust//rust/platform:i686-pc-windows-msvc",
+            "@rules_rust//rust/platform:x86_64-pc-windows-msvc",
+        ): [
+            "@raze__winapi__0_3_9//:winapi",
+            "@raze__winapi_util__0_1_5//:winapi_util",
+        ],
+        "//conditions:default": [],
+    }),
 )
-
-# Unsupported target "compiletest" with type "test" omitted
-
-# Unsupported target "test" with type "test" omitted
