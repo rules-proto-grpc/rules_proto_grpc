@@ -6,8 +6,8 @@ tasks:
     environment:
       CC: clang
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
     - "//buf/..."
     - "//c/..."
@@ -26,8 +26,8 @@ tasks:
     - "//scala/..."
     test_flags:
     - "--test_output=errors"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -92,8 +92,8 @@ tasks:
       CC: clang
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
     - "//buf/..."
     - "//c/..."
@@ -114,8 +114,8 @@ tasks:
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -421,8 +421,8 @@ tasks:
     name: 'csharp: csharp_proto_compile'
     platform: ubuntu1804
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_compile
@@ -430,8 +430,8 @@ tasks:
     name: 'csharp: csharp_proto_compile'
     platform: windows
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_compile
@@ -440,8 +440,8 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_compile
@@ -449,8 +449,8 @@ tasks:
     name: 'csharp: csharp_grpc_compile'
     platform: ubuntu1804
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
@@ -458,8 +458,8 @@ tasks:
     name: 'csharp: csharp_grpc_compile'
     platform: windows
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
@@ -468,8 +468,8 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
@@ -477,8 +477,8 @@ tasks:
     name: 'csharp: csharp_proto_library'
     platform: ubuntu1804
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_library
@@ -486,8 +486,8 @@ tasks:
     name: 'csharp: csharp_proto_library'
     platform: windows
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_library
@@ -496,8 +496,8 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_library
@@ -505,8 +505,8 @@ tasks:
     name: 'csharp: csharp_grpc_library'
     platform: ubuntu1804
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_library
@@ -514,8 +514,8 @@ tasks:
     name: 'csharp: csharp_grpc_library'
     platform: windows
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_library
@@ -524,8 +524,8 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_library
