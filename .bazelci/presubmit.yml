@@ -13,6 +13,7 @@ tasks:
     - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
+    - "//fsharp/..."
     - "//d/..."
     - "//doc/..."
     - "//go/..."
@@ -98,6 +99,7 @@ tasks:
     - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
+    - "//fsharp/..."
     - "//d/..."
     - "//doc/..."
     - "//go/..."
@@ -527,6 +529,94 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_library
+  fsharp_fsharp_proto_compile_ubuntu1804:
+    name: 'fsharp: fsharp_proto_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_proto_compile
+  fsharp_fsharp_proto_compile_windows:
+    name: 'fsharp: fsharp_proto_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_proto_compile
+  fsharp_fsharp_proto_compile_macos:
+    name: 'fsharp: fsharp_proto_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_proto_compile
+  fsharp_fsharp_grpc_compile_ubuntu1804:
+    name: 'fsharp: fsharp_grpc_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_grpc_compile
+  fsharp_fsharp_grpc_compile_windows:
+    name: 'fsharp: fsharp_grpc_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_grpc_compile
+  fsharp_fsharp_grpc_compile_macos:
+    name: 'fsharp: fsharp_grpc_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_grpc_compile
+  fsharp_fsharp_proto_library_ubuntu1804:
+    name: 'fsharp: fsharp_proto_library'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_proto_library
+  fsharp_fsharp_proto_library_windows:
+    name: 'fsharp: fsharp_proto_library'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_proto_library
+  fsharp_fsharp_proto_library_macos:
+    name: 'fsharp: fsharp_proto_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_proto_library
+  fsharp_fsharp_grpc_library_ubuntu1804:
+    name: 'fsharp: fsharp_grpc_library'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_grpc_library
+  fsharp_fsharp_grpc_library_windows:
+    name: 'fsharp: fsharp_grpc_library'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_grpc_library
+  fsharp_fsharp_grpc_library_macos:
+    name: 'fsharp: fsharp_grpc_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/fsharp/fsharp_grpc_library
   d_d_proto_compile_ubuntu1804:
     name: 'd: d_proto_compile'
     platform: ubuntu1804

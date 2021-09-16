@@ -55,9 +55,15 @@ csharp_regenerate_packages:
 	./csharp/nuget/regenerate_packages.sh
 
 
+# Run F# package regeneration
+.PHONY: fsharp_regenerate_packages
+fsharp_regenerate_packages:
+	./fsharp/nuget/regenerate_packages.sh
+
+
 # Run all language specific updates
 .PHONY: all_updates
-all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade pip_compile csharp_regenerate_packages
+all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade pip_compile csharp_regenerate_packages fsharp_regenerate_packages
 
 
 # A collection of targets that build routeguide clients
