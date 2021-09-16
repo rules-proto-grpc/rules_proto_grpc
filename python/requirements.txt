@@ -4,8 +4,13 @@
 #
 #    pip-compile --output-file=python/requirements.txt python/requirements.in
 #
-grpclib==0.4.1 ; python_version > "3"  # via -r python/requirements.in
-h2==4.0.0                 # via grpclib
-hpack==4.0.0              # via h2
-hyperframe==6.0.0         # via h2
-multidict==4.7.6          # via grpclib
+grpclib==0.4.2 ; python_version > "3"
+    # via -r python/requirements.in
+h2==4.0.0
+    # via grpclib
+hpack==4.0.0
+    # via h2
+hyperframe==6.0.0
+    # via h2
+multidict==4.7.6
+    # via grpclib

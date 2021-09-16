@@ -3,7 +3,7 @@
 load("//scala:scala_grpc_compile.bzl", "scala_grpc_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
-load("@io_bazel_rules_scala//scala_proto:default_dep_sets.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")  # buildifier: disable=load
+load("@io_bazel_rules_scala//scala_proto/default:default_deps.bzl", "DEFAULT_SCALAPB_COMPILE_DEPS", "DEFAULT_SCALAPB_GRPC_DEPS")  # buildifier: disable=load
 
 def scala_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos

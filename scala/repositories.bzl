@@ -4,6 +4,7 @@ load(
     "//:repositories.bzl",
     "com_github_scalapb_scalapb",
     "io_bazel_rules_scala",
+    "rules_jvm_external",
     "io_grpc_grpc_java",
     "rules_proto_grpc_repos",
 )
@@ -11,5 +12,6 @@ load(
 def scala_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
     io_grpc_grpc_java(**kwargs)
+    rules_jvm_external(**kwargs)
     com_github_scalapb_scalapb(**kwargs)
     io_bazel_rules_scala(**kwargs)

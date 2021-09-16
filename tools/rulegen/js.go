@@ -127,9 +127,9 @@ var jsDependencyNote = `
    .. code-block:: json
 
       "dependencies": {
-        "@grpc/grpc-js": "1.3.2",
-        "google-protobuf": "3.17.3",
-        "grpc-tools": "1.11.1",
+        "@grpc/grpc-js": "1.3.7",
+        "google-protobuf": "3.18.0",
+        "grpc-tools": "1.11.2",
         "grpc-web": "1.2.1",
         "ts-protoc-gen": "0.15.0"
       }
