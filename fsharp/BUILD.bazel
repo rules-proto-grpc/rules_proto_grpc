@@ -2,7 +2,10 @@ load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
     name = "fsharp_plugin",
-    options = ["no_server", "no_client"],
+    options = [
+        "no_server",
+        "no_client",
+    ],
     outputs = ["{basename|pascal}.fs"],
     protoc_plugin_name = "fsharp",
     separate_options_flag = True,

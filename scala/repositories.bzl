@@ -4,8 +4,8 @@ load(
     "//:repositories.bzl",
     "com_github_scalapb_scalapb",
     "io_bazel_rules_scala",
-    "rules_jvm_external",
     "io_grpc_grpc_java",
+    "rules_jvm_external",
     "rules_proto_grpc_repos",
 )
 
