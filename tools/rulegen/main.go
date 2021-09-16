@@ -523,7 +523,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				if ciPlatform == "macos" {
 					out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
 				}
-				if lang.Name == "csharp" { // https://github.com/bazelbuild/rules_dotnet/issues/225
+				if lang.Name == "csharp" || lang.Name == "fsharp" { // https://github.com/bazelbuild/rules_dotnet/issues/225
 					for _, flag := range ciPlatformFlags[ciPlatform] {
 						out.w(`    - "%s"`, flag)
 					}

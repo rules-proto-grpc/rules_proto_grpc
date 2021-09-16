@@ -533,6 +533,8 @@ tasks:
     name: 'fsharp: fsharp_proto_compile'
     platform: ubuntu1804
     build_flags:
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_proto_compile
@@ -540,6 +542,8 @@ tasks:
     name: 'fsharp: fsharp_proto_compile'
     platform: windows
     build_flags:
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_proto_compile
@@ -548,6 +552,8 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_proto_compile
@@ -555,6 +561,8 @@ tasks:
     name: 'fsharp: fsharp_grpc_compile'
     platform: ubuntu1804
     build_flags:
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_compile
@@ -562,6 +570,8 @@ tasks:
     name: 'fsharp: fsharp_grpc_compile'
     platform: windows
     build_flags:
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_compile
@@ -570,6 +580,8 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_compile
@@ -577,6 +589,8 @@ tasks:
     name: 'fsharp: fsharp_proto_library'
     platform: ubuntu1804
     build_flags:
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_proto_library
@@ -584,6 +598,8 @@ tasks:
     name: 'fsharp: fsharp_proto_library'
     platform: windows
     build_flags:
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_proto_library
@@ -592,6 +608,8 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_proto_library
@@ -599,6 +617,8 @@ tasks:
     name: 'fsharp: fsharp_grpc_library'
     platform: ubuntu1804
     build_flags:
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_library
@@ -606,6 +626,8 @@ tasks:
     name: 'fsharp: fsharp_grpc_library'
     platform: windows
     build_flags:
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_library
@@ -614,6 +636,8 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_library
