@@ -14,7 +14,7 @@ FSHARP_CORE_VERSION="5.0.1"
 
 OUTPUT_DIR="$(pwd)/fsharp/nuget"
 FILE_NAME="nuget.bzl"
-TOOL="bazel run --host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100 --platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100 @io_bazel_rules_dotnet//tools/nuget2bazel:nuget2bazel.exe --"
+TOOL="bazel run --host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 --platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 @io_bazel_rules_dotnet//tools/nuget2bazel:nuget2bazel.exe --"
 
 # Clear output files
 if [ -f "${OUTPUT_DIR}/${FILE_NAME}" ]; then
