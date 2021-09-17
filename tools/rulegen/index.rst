@@ -6,8 +6,9 @@
 Protobuf and gRPC rules for `Bazel <https://bazel.build>`_
 ==========================================================
 
-`Bazel <https://bazel.build>`_ rules for building `Protobuf <https://developers.google.com/protocol-buffers>`_
-and `gRPC <https://grpc.io>`_ code and libraries from
+`Bazel <https://bazel.build>`_ rules for building
+`Protobuf <https://developers.google.com/protocol-buffers>`_ and `gRPC <https://grpc.io>`_ code and
+libraries from
 `proto_library <https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library>`_
 targets
 
