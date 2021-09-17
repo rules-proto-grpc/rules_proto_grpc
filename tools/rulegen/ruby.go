@@ -16,6 +16,7 @@ ruby_bundle(
     name = "rules_proto_grpc_bundle",
     gemfile = "@rules_proto_grpc//ruby:Gemfile",
     gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+    includes = {"grpc": ["etc"]}
 )`)
 
 var rubyGrpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
@@ -38,6 +39,7 @@ ruby_bundle(
     name = "rules_proto_grpc_bundle",
     gemfile = "@rules_proto_grpc//ruby:Gemfile",
     gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+    includes = {"grpc": ["etc"]}
 )`)
 
 var rubyLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
