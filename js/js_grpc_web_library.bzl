@@ -12,7 +12,7 @@ def js_grpc_web_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+            if k in ["protos"] + proto_compile_attrs.keys()
         }  # Forward args
     )
 

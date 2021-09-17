@@ -13,7 +13,7 @@ def scala_grpc_library(name, **kwargs):  # buildifier: disable=function-docstrin
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+            if k in ["protos"] + proto_compile_attrs.keys()
         }  # Forward args
     )
 
