@@ -22,6 +22,7 @@ tasks:
     - "//js/..."
     - "//php/..."
     - "//python/..."
+    - "//ruby/..."
     - "//rust/..."
     - "//scala/..."
     test_flags:
@@ -35,6 +36,7 @@ tasks:
     - "//example/routeguide:cpp_java"
     - "//example/routeguide:cpp_js"
     - "//example/routeguide:cpp_python"
+    - "//example/routeguide:cpp_ruby"
     - "//example/routeguide:cpp_rust"
     - "//example/routeguide:csharp_cpp"
     - "//example/routeguide:csharp_csharp"
@@ -42,6 +44,7 @@ tasks:
     - "//example/routeguide:csharp_java"
     - "//example/routeguide:csharp_js"
     - "//example/routeguide:csharp_python"
+    - "//example/routeguide:csharp_ruby"
     - "//example/routeguide:csharp_rust"
     - "//example/routeguide:go_cpp"
     - "//example/routeguide:go_csharp"
@@ -49,6 +52,7 @@ tasks:
     - "//example/routeguide:go_java"
     - "//example/routeguide:go_js"
     - "//example/routeguide:go_python"
+    - "//example/routeguide:go_ruby"
     - "//example/routeguide:go_rust"
     - "//example/routeguide:java_cpp"
     - "//example/routeguide:java_csharp"
@@ -56,6 +60,7 @@ tasks:
     - "//example/routeguide:java_java"
     - "//example/routeguide:java_js"
     - "//example/routeguide:java_python"
+    - "//example/routeguide:java_ruby"
     - "//example/routeguide:java_rust"
     - "//example/routeguide:js_cpp"
     - "//example/routeguide:js_csharp"
@@ -63,6 +68,7 @@ tasks:
     - "//example/routeguide:js_java"
     - "//example/routeguide:js_js"
     - "//example/routeguide:js_python"
+    - "//example/routeguide:js_ruby"
     - "//example/routeguide:js_rust"
     - "//example/routeguide:python_cpp"
     - "//example/routeguide:python_csharp"
@@ -70,13 +76,23 @@ tasks:
     - "//example/routeguide:python_java"
     - "//example/routeguide:python_js"
     - "//example/routeguide:python_python"
+    - "//example/routeguide:python_ruby"
     - "//example/routeguide:python_rust"
+    - "//example/routeguide:ruby_cpp"
+    - "//example/routeguide:ruby_csharp"
+    - "//example/routeguide:ruby_go"
+    - "//example/routeguide:ruby_java"
+    - "//example/routeguide:ruby_js"
+    - "//example/routeguide:ruby_python"
+    - "//example/routeguide:ruby_ruby"
+    - "//example/routeguide:ruby_rust"
     - "//example/routeguide:rust_cpp"
     - "//example/routeguide:rust_csharp"
     - "//example/routeguide:rust_go"
     - "//example/routeguide:rust_java"
     - "//example/routeguide:rust_js"
     - "//example/routeguide:rust_python"
+    - "//example/routeguide:rust_ruby"
     - "//example/routeguide:rust_rust"
     - "//example/routeguide:scala_cpp"
     - "//example/routeguide:scala_csharp"
@@ -84,6 +100,7 @@ tasks:
     - "//example/routeguide:scala_java"
     - "//example/routeguide:scala_js"
     - "//example/routeguide:scala_python"
+    - "//example/routeguide:scala_ruby"
     - "//example/routeguide:scala_rust"
   main_macos:
     name: build & test all
@@ -109,6 +126,7 @@ tasks:
     - "//objc/..."
     - "//php/..."
     - "//python/..."
+    - "//ruby/..."
     - "//scala/..."
     - "//swift/..."
     test_flags:
@@ -123,42 +141,56 @@ tasks:
     - "//example/routeguide:cpp_java"
     - "//example/routeguide:cpp_js"
     - "//example/routeguide:cpp_python"
+    - "//example/routeguide:cpp_ruby"
     - "//example/routeguide:csharp_cpp"
     - "//example/routeguide:csharp_csharp"
     - "//example/routeguide:csharp_go"
     - "//example/routeguide:csharp_java"
     - "//example/routeguide:csharp_js"
     - "//example/routeguide:csharp_python"
+    - "//example/routeguide:csharp_ruby"
     - "//example/routeguide:go_cpp"
     - "//example/routeguide:go_csharp"
     - "//example/routeguide:go_go"
     - "//example/routeguide:go_java"
     - "//example/routeguide:go_js"
     - "//example/routeguide:go_python"
+    - "//example/routeguide:go_ruby"
     - "//example/routeguide:java_cpp"
     - "//example/routeguide:java_csharp"
     - "//example/routeguide:java_go"
     - "//example/routeguide:java_java"
     - "//example/routeguide:java_js"
     - "//example/routeguide:java_python"
+    - "//example/routeguide:java_ruby"
     - "//example/routeguide:js_cpp"
     - "//example/routeguide:js_csharp"
     - "//example/routeguide:js_go"
     - "//example/routeguide:js_java"
     - "//example/routeguide:js_js"
     - "//example/routeguide:js_python"
+    - "//example/routeguide:js_ruby"
     - "//example/routeguide:python_cpp"
     - "//example/routeguide:python_csharp"
     - "//example/routeguide:python_go"
     - "//example/routeguide:python_java"
     - "//example/routeguide:python_js"
     - "//example/routeguide:python_python"
+    - "//example/routeguide:python_ruby"
+    - "//example/routeguide:ruby_cpp"
+    - "//example/routeguide:ruby_csharp"
+    - "//example/routeguide:ruby_go"
+    - "//example/routeguide:ruby_java"
+    - "//example/routeguide:ruby_js"
+    - "//example/routeguide:ruby_python"
+    - "//example/routeguide:ruby_ruby"
     - "//example/routeguide:scala_cpp"
     - "//example/routeguide:scala_csharp"
     - "//example/routeguide:scala_go"
     - "//example/routeguide:scala_java"
     - "//example/routeguide:scala_js"
     - "//example/routeguide:scala_python"
+    - "//example/routeguide:scala_ruby"
   android_android_proto_compile_ubuntu1804:
     name: 'android: android_proto_compile'
     platform: ubuntu1804
@@ -1274,6 +1306,66 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_library
+  ruby_ruby_proto_compile_ubuntu1804:
+    name: 'ruby: ruby_proto_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/ruby/ruby_proto_compile
+  ruby_ruby_proto_compile_macos:
+    name: 'ruby: ruby_proto_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/ruby/ruby_proto_compile
+  ruby_ruby_grpc_compile_ubuntu1804:
+    name: 'ruby: ruby_grpc_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/ruby/ruby_grpc_compile
+  ruby_ruby_grpc_compile_macos:
+    name: 'ruby: ruby_grpc_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/ruby/ruby_grpc_compile
+  ruby_ruby_proto_library_ubuntu1804:
+    name: 'ruby: ruby_proto_library'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/ruby/ruby_proto_library
+  ruby_ruby_proto_library_macos:
+    name: 'ruby: ruby_proto_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/ruby/ruby_proto_library
+  ruby_ruby_grpc_library_ubuntu1804:
+    name: 'ruby: ruby_grpc_library'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/ruby/ruby_grpc_library
+  ruby_ruby_grpc_library_macos:
+    name: 'ruby: ruby_grpc_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/ruby/ruby_grpc_library
   rust_rust_proto_compile_ubuntu1804:
     name: 'rust: rust_proto_compile'
     platform: ubuntu1804
