@@ -14,6 +14,7 @@ routeguide_test_matrix(
     clients = [
         "//cpp/example/routeguide:client",
         "//csharp/example/routeguide:client.exe",
+        "//fsharp/example/routeguide:client.exe",
         "//go/example/routeguide/client",
         "//java/example/routeguide:client",
         "//js/example/routeguide:client",
@@ -25,6 +26,7 @@ routeguide_test_matrix(
     servers = [
         "//cpp/example/routeguide:server",
         "//csharp/example/routeguide:server.exe",
+        "//fsharp/example/routeguide:server.exe",
         "//go/example/routeguide/server",
         "//java/example/routeguide:server",
         "//js/example/routeguide:server",
