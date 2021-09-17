@@ -32,6 +32,7 @@ tasks:
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
+    - "//example/routeguide:cpp_fsharp"
     - "//example/routeguide:cpp_go"
     - "//example/routeguide:cpp_java"
     - "//example/routeguide:cpp_js"
@@ -40,14 +41,25 @@ tasks:
     - "//example/routeguide:cpp_rust"
     - "//example/routeguide:csharp_cpp"
     - "//example/routeguide:csharp_csharp"
+    - "//example/routeguide:csharp_fsharp"
     - "//example/routeguide:csharp_go"
     - "//example/routeguide:csharp_java"
     - "//example/routeguide:csharp_js"
     - "//example/routeguide:csharp_python"
     - "//example/routeguide:csharp_ruby"
     - "//example/routeguide:csharp_rust"
+    - "//example/routeguide:fsharp_cpp"
+    - "//example/routeguide:fsharp_csharp"
+    - "//example/routeguide:fsharp_fsharp"
+    - "//example/routeguide:fsharp_go"
+    - "//example/routeguide:fsharp_java"
+    - "//example/routeguide:fsharp_js"
+    - "//example/routeguide:fsharp_python"
+    - "//example/routeguide:fsharp_ruby"
+    - "//example/routeguide:fsharp_rust"
     - "//example/routeguide:go_cpp"
     - "//example/routeguide:go_csharp"
+    - "//example/routeguide:go_fsharp"
     - "//example/routeguide:go_go"
     - "//example/routeguide:go_java"
     - "//example/routeguide:go_js"
@@ -56,6 +68,7 @@ tasks:
     - "//example/routeguide:go_rust"
     - "//example/routeguide:java_cpp"
     - "//example/routeguide:java_csharp"
+    - "//example/routeguide:java_fsharp"
     - "//example/routeguide:java_go"
     - "//example/routeguide:java_java"
     - "//example/routeguide:java_js"
@@ -64,6 +77,7 @@ tasks:
     - "//example/routeguide:java_rust"
     - "//example/routeguide:js_cpp"
     - "//example/routeguide:js_csharp"
+    - "//example/routeguide:js_fsharp"
     - "//example/routeguide:js_go"
     - "//example/routeguide:js_java"
     - "//example/routeguide:js_js"
@@ -72,6 +86,7 @@ tasks:
     - "//example/routeguide:js_rust"
     - "//example/routeguide:python_cpp"
     - "//example/routeguide:python_csharp"
+    - "//example/routeguide:python_fsharp"
     - "//example/routeguide:python_go"
     - "//example/routeguide:python_java"
     - "//example/routeguide:python_js"
@@ -80,6 +95,7 @@ tasks:
     - "//example/routeguide:python_rust"
     - "//example/routeguide:ruby_cpp"
     - "//example/routeguide:ruby_csharp"
+    - "//example/routeguide:ruby_fsharp"
     - "//example/routeguide:ruby_go"
     - "//example/routeguide:ruby_java"
     - "//example/routeguide:ruby_js"
@@ -88,6 +104,7 @@ tasks:
     - "//example/routeguide:ruby_rust"
     - "//example/routeguide:rust_cpp"
     - "//example/routeguide:rust_csharp"
+    - "//example/routeguide:rust_fsharp"
     - "//example/routeguide:rust_go"
     - "//example/routeguide:rust_java"
     - "//example/routeguide:rust_js"
@@ -96,6 +113,7 @@ tasks:
     - "//example/routeguide:rust_rust"
     - "//example/routeguide:scala_cpp"
     - "//example/routeguide:scala_csharp"
+    - "//example/routeguide:scala_fsharp"
     - "//example/routeguide:scala_go"
     - "//example/routeguide:scala_java"
     - "//example/routeguide:scala_js"
@@ -137,6 +155,7 @@ tasks:
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
+    - "//example/routeguide:cpp_fsharp"
     - "//example/routeguide:cpp_go"
     - "//example/routeguide:cpp_java"
     - "//example/routeguide:cpp_js"
@@ -144,13 +163,23 @@ tasks:
     - "//example/routeguide:cpp_ruby"
     - "//example/routeguide:csharp_cpp"
     - "//example/routeguide:csharp_csharp"
+    - "//example/routeguide:csharp_fsharp"
     - "//example/routeguide:csharp_go"
     - "//example/routeguide:csharp_java"
     - "//example/routeguide:csharp_js"
     - "//example/routeguide:csharp_python"
     - "//example/routeguide:csharp_ruby"
+    - "//example/routeguide:fsharp_cpp"
+    - "//example/routeguide:fsharp_csharp"
+    - "//example/routeguide:fsharp_fsharp"
+    - "//example/routeguide:fsharp_go"
+    - "//example/routeguide:fsharp_java"
+    - "//example/routeguide:fsharp_js"
+    - "//example/routeguide:fsharp_python"
+    - "//example/routeguide:fsharp_ruby"
     - "//example/routeguide:go_cpp"
     - "//example/routeguide:go_csharp"
+    - "//example/routeguide:go_fsharp"
     - "//example/routeguide:go_go"
     - "//example/routeguide:go_java"
     - "//example/routeguide:go_js"
@@ -158,6 +187,7 @@ tasks:
     - "//example/routeguide:go_ruby"
     - "//example/routeguide:java_cpp"
     - "//example/routeguide:java_csharp"
+    - "//example/routeguide:java_fsharp"
     - "//example/routeguide:java_go"
     - "//example/routeguide:java_java"
     - "//example/routeguide:java_js"
@@ -165,6 +195,7 @@ tasks:
     - "//example/routeguide:java_ruby"
     - "//example/routeguide:js_cpp"
     - "//example/routeguide:js_csharp"
+    - "//example/routeguide:js_fsharp"
     - "//example/routeguide:js_go"
     - "//example/routeguide:js_java"
     - "//example/routeguide:js_js"
@@ -172,6 +203,7 @@ tasks:
     - "//example/routeguide:js_ruby"
     - "//example/routeguide:python_cpp"
     - "//example/routeguide:python_csharp"
+    - "//example/routeguide:python_fsharp"
     - "//example/routeguide:python_go"
     - "//example/routeguide:python_java"
     - "//example/routeguide:python_js"
@@ -179,6 +211,7 @@ tasks:
     - "//example/routeguide:python_ruby"
     - "//example/routeguide:ruby_cpp"
     - "//example/routeguide:ruby_csharp"
+    - "//example/routeguide:ruby_fsharp"
     - "//example/routeguide:ruby_go"
     - "//example/routeguide:ruby_java"
     - "//example/routeguide:ruby_js"
@@ -186,6 +219,7 @@ tasks:
     - "//example/routeguide:ruby_ruby"
     - "//example/routeguide:scala_cpp"
     - "//example/routeguide:scala_csharp"
+    - "//example/routeguide:scala_fsharp"
     - "//example/routeguide:scala_go"
     - "//example/routeguide:scala_java"
     - "//example/routeguide:scala_js"
@@ -1940,35 +1974,6 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
-  test_workspace_transitive_compilation_ubuntu1804:
-    name: 'test workspace: transitive_compilation'
-    platform: ubuntu1804
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/transitive_compilation
-  test_workspace_transitive_compilation_windows:
-    name: 'test workspace: transitive_compilation'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/transitive_compilation
-  test_workspace_transitive_compilation_macos:
-    name: 'test workspace: transitive_compilation'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/transitive_compilation
   test_workspace_typescript_ubuntu1804:
     name: 'test workspace: typescript'
     platform: ubuntu1804
