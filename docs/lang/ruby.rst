@@ -48,7 +48,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_ruby_dependencies()
    
-   rules_ruby_select_sdk(version = "2.7.1")
+   rules_ruby_select_sdk(version = "3.0.1")
    
    load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
    
@@ -148,7 +148,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_ruby_dependencies()
    
-   rules_ruby_select_sdk(version = "2.7.1")
+   rules_ruby_select_sdk(version = "3.0.1")
    
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
@@ -248,7 +248,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_ruby_dependencies()
    
-   rules_ruby_select_sdk(version = "2.7.1")
+   rules_ruby_select_sdk(version = "3.0.1")
    
    load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
    
@@ -350,7 +350,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_ruby_dependencies()
    
-   rules_ruby_select_sdk(version = "2.7.1")
+   rules_ruby_select_sdk(version = "3.0.1")
    
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
