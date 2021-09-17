@@ -56,7 +56,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "rules_proto_grpc_bundle",
        gemfile = "@rules_proto_grpc//ruby:Gemfile",
        gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
-       includes = {"grpc": ["etc"]}
+       includes = {"grpc": ["etc"]},
    )
 
 ``BUILD.bazel``
@@ -161,7 +161,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "rules_proto_grpc_bundle",
        gemfile = "@rules_proto_grpc//ruby:Gemfile",
        gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
-       includes = {"grpc": ["etc"]}
+       includes = {"grpc": ["etc"]},
    )
 
 ``BUILD.bazel``
@@ -258,7 +258,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "rules_proto_grpc_bundle",
        gemfile = "@rules_proto_grpc//ruby:Gemfile",
        gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
-       includes = {"grpc": ["etc"]}
+       includes = {"grpc": ["etc"]},
    )
 
 ``BUILD.bazel``
@@ -365,7 +365,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "rules_proto_grpc_bundle",
        gemfile = "@rules_proto_grpc//ruby:Gemfile",
        gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
-       includes = {"grpc": ["etc"]}
+       includes = {"grpc": ["etc"]},
    )
 
 ``BUILD.bazel``

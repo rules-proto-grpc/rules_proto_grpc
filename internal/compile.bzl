@@ -148,7 +148,8 @@ def proto_compile_impl(ctx):
             if verbose > 2:
                 print(
                     'Skipping plugin "{}" for "{}" as all proto files have been excluded'.format(
-                        plugin.name, ctx.label
+                        plugin.name,
+                        ctx.label,
                     ),
                 )  # buildifier: disable=print
             continue
@@ -217,7 +218,7 @@ def proto_compile_impl(ctx):
 
             # Create output directory for protoc to write into
             fixer_dir = ctx.actions.declare_directory(
-                rel_premerge_root + "/" + "_plugin_fixed_" + plugin.name
+                rel_premerge_root + "/" + "_plugin_fixed_" + plugin.name,
             )
             out_arg = fixer_dir.path
             plugin_protoc_outputs = [fixer_dir]
@@ -233,7 +234,8 @@ def proto_compile_impl(ctx):
                     premerge_root,
                 ],
                 progress_message = "Applying fixer for {} plugin on target {}".format(
-                    plugin.name, ctx.label
+                    plugin.name,
+                    ctx.label,
                 ),
                 executable = fixer,
             )
@@ -266,7 +268,8 @@ def proto_compile_impl(ctx):
         # all of the comments etc from the source files
         if "QUIRK_DIRECT_MODE" in plugin.quirks:
             args.add_all([
-                "--proto_path=" + proto_info.proto_source_root for proto_info in proto_infos
+                "--proto_path=" + proto_info.proto_source_root
+                for proto_info in proto_infos
             ])
             cmd_inputs += protos
 
@@ -315,7 +318,8 @@ def proto_compile_impl(ctx):
             use_default_shell_env = plugin.use_built_in_shell_environment,
             input_manifests = cmd_input_manifests,
             progress_message = "Compiling protoc outputs for {} plugin on target {}".format(
-                plugin.name, ctx.label
+                plugin.name,
+                ctx.label,
             ),
         )
 
@@ -360,21 +364,24 @@ def proto_compile_impl(ctx):
             # Add command to copy file to output
             command_input_files.append(file)
             command_parts.append("cp '{}' '{}'".format(
-                file.path, "{}/{}".format(new_dir.path, path),
+                file.path,
+                "{}/{}".format(new_dir.path, path),
             ))
 
         # Add debug options
         if ctx.attr.verbose > 1:
             command_parts = command_parts + [
-                "echo '\n##### SANDBOX AFTER MERGING DIRECTORIES'", "find . -type l"
+                "echo '\n##### SANDBOX AFTER MERGING DIRECTORIES'",
+                "find . -type l",
             ]
         if ctx.attr.verbose > 2:
             command_parts = [
-                "echo '\n##### SANDBOX BEFORE MERGING DIRECTORIES'", "find . -type l"
+                "echo '\n##### SANDBOX BEFORE MERGING DIRECTORIES'",
+                "find . -type l",
             ] + command_parts
         if ctx.attr.verbose > 0:
             print(
-                "Directory merge command: {}".format(" && ".join(command_parts))
+                "Directory merge command: {}".format(" && ".join(command_parts)),
             )  # buildifier: disable=print
 
         # Copy directories and files to shared output directory in one action
