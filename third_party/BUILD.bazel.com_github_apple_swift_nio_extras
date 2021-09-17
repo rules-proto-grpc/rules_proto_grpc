@@ -7,5 +7,6 @@ swift_library(
     visibility = ["//visibility:public"],
     deps = [
         "@com_github_apple_swift_nio//:NIO",
+        "@com_github_apple_swift_nio//:NIOCore",
     ],
 )

@@ -8,6 +8,7 @@ swift_library(
     deps = [
         ":NIOHPACK",
         "@com_github_apple_swift_nio//:NIO",
+        "@com_github_apple_swift_nio//:NIOCore",
         "@com_github_apple_swift_nio//:NIOHTTP1",
         "@com_github_apple_swift_nio//:NIOConcurrencyHelpers",
         "@com_github_apple_swift_nio//:NIOTLS",
@@ -21,6 +22,7 @@ swift_library(
     visibility = ["//visibility:public"],
     deps = [
         "@com_github_apple_swift_nio//:NIO",
+        "@com_github_apple_swift_nio//:NIOCore",
         "@com_github_apple_swift_nio//:NIOHTTP1",
         "@com_github_apple_swift_nio//:NIOConcurrencyHelpers",
     ],
