@@ -32,12 +32,18 @@ targets
 Overview
 --------
 
-These rules provide `Protocol Buffers (Protobuf) <https://developers.google.com/protocol-buffers>`_
-and `gRPC <https://grpc.io>`_ rules for a range of languages and services within Bazel. This
-includes generation of language specific files from protoc and the creation of libraries from these
-files.
+These rules provide a consistent set of
+`Protocol Buffers (Protobuf) <https://developers.google.com/protocol-buffers>`_ and
+`gRPC <https://grpc.io>`_ Bazel rules for a wide range of supported languages, services and
+tools. This aims to encompass all aspects of working with ``.proto`` files, such as:
 
-Each supported language (``{lang}`` below) is generally split into four rule types:
+- Generation of language specific source files with protoc
+- Creation of libraries from protoc source file outputs
+- Linting and checking for breaking changes with `Buf <https://buf.build>`__
+- Producing documentation from your Protobuf definitions with
+  `protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`__
+
+Each supported language (shown as ``{lang}`` below) is generally split into four rule types:
 
 - ``{lang}_proto_compile``: Provides generated files from the Protobuf `protoc` plugin for the
   language. For example, for C++ this provides the generated ``*.pb.cc`` and ``*.pb.h`` files.
@@ -59,8 +65,12 @@ Each supported language (``{lang}`` below) is generally split into four rule typ
 Some languages may have variations on these rules, such as when there are multiple gRPC or Protobuf
 implementations. However, generally you'll want to use the ``{lang}_{proto|grpc}_library`` rules,
 since these bundle up all the outputs into a library that can easily be used elsewhere in your Bazel
-project workspace. Alternatively, if you just want the generated source code files, use the
+workspace. Alternatively, if you just want the generated source code files, you can use the
 ``{lang}_{proto|grpc}_compile`` rules instead.
+
+If you just need compilation of ``.proto`` files for a single language, you may
+find your language specific Bazel rules have their own Protobuf or gRPC rules, which may be
+preferrable in a single-language repo.
 
 
 .. _sec_installation:
@@ -96,6 +106,84 @@ notified of new releases, you can use GitHub's 'Watch Releases Only' on the repo
    rules_proto_toolchains()
 
 
+Supported Languages and Tools
+-----------------------------
+
+.. list-table:: Supported Languages
+   :header-rows: 1
+
+   * - Language
+     - Protobuf
+     - gRPC
+   * - Android
+     - ✔
+     - ✔
+   * - C
+     - ✔
+     - ✖
+   * - C++
+     - ✔
+     - ✔
+   * - C#
+     - ✔
+     - ✔
+   * - D
+     - ✔
+     - ✖
+   * - F#
+     - ✔
+     - ✔
+   * - Go
+     - ✔
+     - ✔
+   * - Java
+     - ✔
+     - ✔
+   * - JavaScript
+     - ✔
+     - ✔
+   * - Objective-C
+     - ✔
+     - ✔
+   * - PHP
+     - ✔
+     - ✔
+   * - Python
+     - ✔
+     - ✔
+   * - Ruby
+     - ✔
+     - ✔
+   * - Rust
+     - ✔
+     - ✔
+   * - Scala
+     - ✔
+     - ✔
+   * - Swift
+     - ✔
+     - ✔
+   * - TypeScript
+     - ✔
+     - ✔
+
+.. list-table:: Supported Tools
+   :widths: 20 5 50
+
+   * - Buf Linting
+     - ✔
+     - Checks ``.proto`` files for common errors and adherance to style guidelines
+   * - Buf Breaking Change Detection
+     - ✔
+     - Checks ``.proto`` files for changes to messages that would break existing clients
+   * - grpc-gateway
+     - ✔
+     - Produces source files for creating gRPC to JSON proxies
+   * - protoc-gen-doc
+     - ✔
+     - Creates Markdown, JSON, HTML or DocBook documentation files from your ``.proto`` files
+
+
 .. toctree::
    :caption: General
    :hidden:
@@ -126,6 +214,7 @@ notified of new releases, you can use GitHub's 'Watch Releases Only' on the repo
    lang/csharp
    lang/d
    lang/doc
+   lang/fsharp
    lang/go
    lang/grpc-gateway
    lang/java
