@@ -6,6 +6,8 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 # Versions
 MINIMUM_BAZEL_VERSION = "3.0.0"
 ENABLE_VERSION_NAGS = False
+PROTOBUF_VERSION = "3.18.0"  # When updating, also update protoc below, JS requirements, JS rulegen js.go, Ruby requirements and C# requirements
+GRPC_VERSION = "1.40.0"  # When updating, also update Go repositories.bzl, JS requirements, JS readme, Ruby requirements and C# requirements
 VERSIONS = {
     # Core
     "rules_proto": {
@@ -16,19 +18,17 @@ VERSIONS = {
         "sha256": "66bfdf8782796239d3875d37e7de19b1d94301e8972b3cbd2446b332429b4df1",
     },
     "com_google_protobuf": {
-        # When updating, also update protoc below, JS requirements, JS rulegen js.go, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
-        "ref": "v3.18.0",
+        "ref": "v{}".format(PROTOBUF_VERSION),
         "sha256": "14e8042b5da37652c92ef6a2759e7d2979d295f60afd7767825e3de68c856c54",
     },
     "com_github_grpc_grpc": {
-        # When updating, also update Go repositories.bzl, JS requirements, JS readme, Ruby requirements and C# requirements
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
-        "ref": "v1.40.0",
+        "ref": "v{}".format(GRPC_VERSION),
         "sha256": "13e7c6460cd979726e5b3b129bb01c34532f115883ac696a75eb7f1d6a9765ed",
     },
     "zlib": {
@@ -66,19 +66,19 @@ VERSIONS = {
     # Protoc binaries
     "rules_proto_grpc_protoc_darwin_x86_64": {
         "type": "http",
-        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v3.18.0/protoc-3.18.0-osx-x86_64.zip"],
+        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v{}/protoc-{}-osx-x86_64.zip".format(PROTOBUF_VERSION, PROTOBUF_VERSION)],
         "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "build_file_content": """exports_files(["bin/protoc"])""",
     },
     "rules_proto_grpc_protoc_linux_x86_64": {
         "type": "http",
-        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v3.18.0/protoc-3.18.0-linux-x86_64.zip"],
+        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v{}/protoc-{}-linux-x86_64.zip".format(PROTOBUF_VERSION, PROTOBUF_VERSION)],
         "sha256": "8b6b0c82f730212801d9cce4653abb1a1f4204555a92e8e2b5f625d61e66f1b4",
         "build_file_content": """exports_files(["bin/protoc"])""",
     },
     "rules_proto_grpc_protoc_windows_x86_64": {
         "type": "http",
-        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v3.18.0/protoc-3.18.0-win64.zip"],
+        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v{}/protoc-{}-win64.zip".format(PROTOBUF_VERSION, PROTOBUF_VERSION)],
         "sha256": "222ecf84acdaacf2883b95fd83e14f1b3ffb8598f92ad8f595a90e8fd0a8feb8",
         "build_file_content": """exports_files(["bin/protoc.exe"])""",
     },
