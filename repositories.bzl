@@ -16,7 +16,7 @@ VERSIONS = {
         "sha256": "66bfdf8782796239d3875d37e7de19b1d94301e8972b3cbd2446b332429b4df1",
     },
     "com_google_protobuf": {
-        # When updating, also update JS requirements, JS rulegen js.go, Ruby requirements and C# requirements
+        # When updating, also update protoc below, JS requirements, JS rulegen js.go, Ruby requirements and C# requirements
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
@@ -79,7 +79,7 @@ VERSIONS = {
     "rules_proto_grpc_protoc_windows_x86_64": {
         "type": "http",
         "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v3.18.0/protoc-3.18.0-win64.zip"],
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "222ecf84acdaacf2883b95fd83e14f1b3ffb8598f92ad8f595a90e8fd0a8feb8",
         "build_file_content": """exports_files(["bin/protoc.exe"])""",
     },
 
