@@ -67,7 +67,7 @@ VERSIONS = {
     "rules_proto_grpc_protoc_darwin_x86_64": {
         "type": "http",
         "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v{}/protoc-{}-osx-x86_64.zip".format(PROTOBUF_VERSION, PROTOBUF_VERSION)],
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "sha256": "18c6b9585a0ceff7be1673271b30497f13c3eb8e6894354066c269d2846337c1",
         "build_file_content": """exports_files(["bin/protoc"])""",
     },
     "rules_proto_grpc_protoc_linux_x86_64": {
