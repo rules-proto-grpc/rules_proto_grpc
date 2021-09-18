@@ -63,6 +63,26 @@ VERSIONS = {
         "sha256": "7ac0fa88c0c4ad6f5b9ffb5e09ef81e235492c873659e6bb99efb89d11246bcb",
     },
 
+    # Protoc binaries
+    "rules_proto_grpc_protoc_darwin_x86_64": {
+        "type": "http",
+        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v3.18.0/protoc-3.18.0-osx-x86_64.zip"],
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build_file_content": """exports_files(["bin/protoc"])""",
+    },
+    "rules_proto_grpc_protoc_linux_x86_64": {
+        "type": "http",
+        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v3.18.0/protoc-3.18.0-linux-x86_64.zip"],
+        "sha256": "8b6b0c82f730212801d9cce4653abb1a1f4204555a92e8e2b5f625d61e66f1b4",
+        "build_file_content": """exports_files(["bin/protoc"])""",
+    },
+    "rules_proto_grpc_protoc_windows_x86_64": {
+        "type": "http",
+        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v3.18.0/protoc-3.18.0-win64.zip"],
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "build_file_content": """exports_files(["bin/protoc.exe"])""",
+    },
+
     # Android
     "build_bazel_rules_android": {
         "type": "github",
@@ -473,6 +493,10 @@ def rules_proto_grpc_repos(**kwargs):
     com_github_grpc_grpc(**kwargs)
     external_zlib(**kwargs)
 
+    rules_proto_grpc_protoc_darwin_x86_64(**kwargs)
+    rules_proto_grpc_protoc_linux_x86_64(**kwargs)
+    rules_proto_grpc_protoc_windows_x86_64(**kwargs)
+
 def rules_proto(**kwargs):
     _generic_dependency("rules_proto", **kwargs)
 
@@ -490,6 +514,18 @@ def com_github_grpc_grpc(**kwargs):
 
 def external_zlib(**kwargs):
     _generic_dependency("zlib", **kwargs)
+
+#
+# Protoc
+#
+def rules_proto_grpc_protoc_darwin_x86_64(**kwargs):
+    _generic_dependency("rules_proto_grpc_protoc_darwin_x86_64", **kwargs)
+
+def rules_proto_grpc_protoc_linux_x86_64(**kwargs):
+    _generic_dependency("rules_proto_grpc_protoc_linux_x86_64", **kwargs)
+
+def rules_proto_grpc_protoc_windows_x86_64(**kwargs):
+    _generic_dependency("rules_proto_grpc_protoc_windows_x86_64", **kwargs)
 
 #
 # Misc

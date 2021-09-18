@@ -12,8 +12,9 @@ protoc_toolchain = rule(
     attrs = {
         "protoc": attr.label(
             doc = "The protocol compiler tool",
-            default = "@com_google_protobuf//:protoc",
+            default = "//protobuf:protoc_bin",
             executable = True,
+            allow_files = True,
             cfg = "exec",
         ),
         "fixer": attr.label(
