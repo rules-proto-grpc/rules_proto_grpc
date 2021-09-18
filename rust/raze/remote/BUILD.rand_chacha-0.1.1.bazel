@@ -37,20 +37,11 @@ load(
 )
 
 cargo_build_script(
-    name = "winapi_build_script",
+    name = "rand_chacha_build_script",
     srcs = glob(["**/*.rs"]),
     build_script_env = {
     },
     crate_features = [
-        "handleapi",
-        "minwindef",
-        "ntsecapi",
-        "profileapi",
-        "winnt",
-        "winsock2",
-        "ws2def",
-        "ws2ipdef",
-        "ws2tcpip",
     ],
     crate_root = "build.rs",
     data = glob(["**"]),
@@ -62,25 +53,17 @@ cargo_build_script(
         "cargo-raze",
         "manual",
     ],
-    version = "0.3.9",
+    version = "0.1.1",
     visibility = ["//visibility:private"],
     deps = [
+        "@raze__autocfg__0_1_7//:autocfg",
     ],
 )
 
 rust_library(
-    name = "winapi",
+    name = "rand_chacha",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "handleapi",
-        "minwindef",
-        "ntsecapi",
-        "profileapi",
-        "winnt",
-        "winsock2",
-        "ws2def",
-        "ws2ipdef",
-        "ws2tcpip",
     ],
     crate_root = "src/lib.rs",
     crate_type = "lib",
@@ -93,9 +76,10 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.3.9",
+    version = "0.1.1",
     # buildifier: leave-alone
     deps = [
-        ":winapi_build_script",
+        ":rand_chacha_build_script",
+        "@raze__rand_core__0_3_1//:rand_core",
     ],
 )

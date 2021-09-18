@@ -32,7 +32,7 @@ var rustProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + 
     rust_proto_lib(
         name = name_lib,
         compilation = name_pb,
-        grpc = False,
+        externs = ["protobuf"],
     )
 
     # Create {{ .Lang.Name }} library
@@ -53,7 +53,7 @@ var rustGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
     rust_proto_lib(
         name = name_lib,
         compilation = name_pb,
-        grpc = True,
+        externs = ["protobuf", "grpc", "grpc_protobuf"],
     )
 
     # Create {{ .Lang.Name }} library
@@ -67,9 +67,9 @@ var rustGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
 
 GRPC_DEPS = [
     Label("//rust/raze:futures"),
-    Label("//rust/raze:grpcio"),
+    Label("//rust/raze:grpc"),
+    Label("//rust/raze:grpc_protobuf"),
     Label("//rust/raze:protobuf"),
-    Label("//rust:upb_libdescriptor_proto"),
 ]`)
 
 // For rust, produce one library for all protos, since they are all in the same crate
@@ -99,7 +99,7 @@ func makeRust() *Language {
 		Dir:  "rust",
 		Name: "rust",
 		DisplayName: "Rust",
-		Notes: mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `rust-protobuf <https://github.com/stepancheg/rust-protobuf>`_ and `grpc-rs <https://github.com/tikv/grpc-rs>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_."),
+		Notes: mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `rust-protobuf <https://github.com/stepancheg/rust-protobuf>`_ and `grpc <https://github.com/stepancheg/grpc-rust>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_."),
 		Flags: commonLangFlags,
 		SkipTestPlatforms: []string{"windows", "macos"}, // CI has no rust toolchain for windows and is broken on mac
 		Rules: []*Rule{

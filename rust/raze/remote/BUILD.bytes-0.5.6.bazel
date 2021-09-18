@@ -25,44 +25,19 @@ package(default_visibility = [
 ])
 
 licenses([
-    "unencumbered",  # Unlicense from expression "Unlicense OR MIT"
+    "notice",  # MIT from expression "MIT"
 ])
 
 # Generated Targets
-# buildifier: disable=out-of-order-load
-# buildifier: disable=load-on-top
-load(
-    "@rules_rust//cargo:cargo_build_script.bzl",
-    "cargo_build_script",
-)
 
-cargo_build_script(
-    name = "memchr_build_script",
-    srcs = glob(["**/*.rs"]),
-    build_script_env = {
-    },
-    crate_features = [
-        "default",
-        "std",
-    ],
-    crate_root = "build.rs",
-    data = glob(["**"]),
-    edition = "2018",
-    rustc_flags = [
-        "--cap-lints=allow",
-    ],
-    tags = [
-        "cargo-raze",
-        "manual",
-    ],
-    version = "2.4.1",
-    visibility = ["//visibility:private"],
-    deps = [
-    ],
-)
+# Unsupported target "buf" with type "bench" omitted
+
+# Unsupported target "bytes" with type "bench" omitted
+
+# Unsupported target "bytes_mut" with type "bench" omitted
 
 rust_library(
-    name = "memchr",
+    name = "bytes",
     srcs = glob(["**/*.rs"]),
     crate_features = [
         "default",
@@ -79,9 +54,30 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "2.4.1",
+    version = "0.5.6",
     # buildifier: leave-alone
     deps = [
-        ":memchr_build_script",
     ],
 )
+
+# Unsupported target "test_buf" with type "test" omitted
+
+# Unsupported target "test_buf_mut" with type "test" omitted
+
+# Unsupported target "test_bytes" with type "test" omitted
+
+# Unsupported target "test_bytes_odd_alloc" with type "test" omitted
+
+# Unsupported target "test_bytes_vec_alloc" with type "test" omitted
+
+# Unsupported target "test_chain" with type "test" omitted
+
+# Unsupported target "test_debug" with type "test" omitted
+
+# Unsupported target "test_iter" with type "test" omitted
+
+# Unsupported target "test_reader" with type "test" omitted
+
+# Unsupported target "test_serde" with type "test" omitted
+
+# Unsupported target "test_take" with type "test" omitted

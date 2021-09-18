@@ -22,8 +22,8 @@ alias(
 )
 
 alias(
-    name = "grpcio",
-    actual = "@raze__grpcio__0_9_0//:grpcio",
+    name = "grpc",
+    actual = "@raze__grpc__0_8_3//:grpc",
     tags = [
         "cargo-raze",
         "manual",
@@ -31,8 +31,8 @@ alias(
 )
 
 alias(
-    name = "grpcio_compiler",
-    actual = "@raze__grpcio_compiler__0_9_0//:grpcio_compiler",
+    name = "grpc_compiler",
+    actual = "@raze__grpc_compiler__0_8_3//:grpc_compiler",
     tags = [
         "cargo-raze",
         "manual",
@@ -42,8 +42,8 @@ alias(
 alias(
     # Extra aliased target, from raze configuration
     # N.B.: The exact form of this is subject to change.
-    name = "cargo_bin_grpc_rust_plugin",
-    actual = "@raze__grpcio_compiler__0_9_0//:cargo_bin_grpc_rust_plugin",
+    name = "cargo_bin_protoc_gen_rust_grpc",
+    actual = "@raze__grpc_compiler__0_8_3//:cargo_bin_protoc_gen_rust_grpc",
     tags = [
         "cargo-raze",
         "manual",
@@ -51,8 +51,17 @@ alias(
 )
 
 alias(
-    name = "log",
-    actual = "@raze__log__0_4_14//:log",
+    name = "grpc_protobuf",
+    actual = "@raze__grpc_protobuf__0_8_3//:grpc_protobuf",
+    tags = [
+        "cargo-raze",
+        "manual",
+    ],
+)
+
+alias(
+    name = "json",
+    actual = "@raze__json__0_12_4//:json",
     tags = [
         "cargo-raze",
         "manual",
@@ -61,7 +70,7 @@ alias(
 
 alias(
     name = "protobuf",
-    actual = "@raze__protobuf__2_25_1//:protobuf",
+    actual = "@raze__protobuf__2_18_2//:protobuf",
     tags = [
         "cargo-raze",
         "manual",
@@ -70,7 +79,7 @@ alias(
 
 alias(
     name = "protobuf_codegen",
-    actual = "@raze__protobuf_codegen__2_25_1//:protobuf_codegen",
+    actual = "@raze__protobuf_codegen__2_18_2//:protobuf_codegen",
     tags = [
         "cargo-raze",
         "manual",
@@ -81,7 +90,7 @@ alias(
     # Extra aliased target, from raze configuration
     # N.B.: The exact form of this is subject to change.
     name = "cargo_bin_protoc_gen_rust",
-    actual = "@raze__protobuf_codegen__2_25_1//:cargo_bin_protoc_gen_rust",
+    actual = "@raze__protobuf_codegen__2_18_2//:cargo_bin_protoc_gen_rust",
     tags = [
         "cargo-raze",
         "manual",
@@ -89,8 +98,8 @@ alias(
 )
 
 alias(
-    name = "serde_json",
-    actual = "@raze__serde_json__1_0_68//:serde_json",
+    name = "rand",
+    actual = "@raze__rand__0_6_5//:rand",
     tags = [
         "cargo-raze",
         "manual",

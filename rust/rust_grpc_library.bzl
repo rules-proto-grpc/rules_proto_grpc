@@ -22,7 +22,7 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     rust_proto_lib(
         name = name_lib,
         compilation = name_pb,
-        grpc = True,
+        externs = ["protobuf", "grpc", "grpc_protobuf"],
     )
 
     # Create rust library
@@ -36,7 +36,7 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
 
 GRPC_DEPS = [
     Label("//rust/raze:futures"),
-    Label("//rust/raze:grpcio"),
+    Label("//rust/raze:grpc"),
+    Label("//rust/raze:grpc_protobuf"),
     Label("//rust/raze:protobuf"),
-    Label("//rust:upb_libdescriptor_proto"),
 ]

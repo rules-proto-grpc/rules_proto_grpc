@@ -10,32 +10,26 @@ rust_binary(
     name = "client",
     srcs = [
         "client.rs",
-        "log_util.rs",
-        "util.rs",
     ],
     data = ["//example/proto:routeguide_features"],
     edition = "2018",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":routeguide",
-        "@rules_proto_grpc//rust/raze:log",
-        "@rules_proto_grpc//rust/raze:serde_json",
+        "@rules_proto_grpc//rust/raze:rand",
     ] + GRPC_DEPS,
 )
 
 rust_binary(
     name = "server",
     srcs = [
-        "log_util.rs",
         "server.rs",
-        "util.rs",
     ],
     data = ["//example/proto:routeguide_features"],
     edition = "2018",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":routeguide",
-        "@rules_proto_grpc//rust/raze:log",
-        "@rules_proto_grpc//rust/raze:serde_json",
+        "@rules_proto_grpc//rust/raze:json",
     ] + GRPC_DEPS,
 )

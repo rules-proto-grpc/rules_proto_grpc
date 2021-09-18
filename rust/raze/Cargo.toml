@@ -8,13 +8,15 @@ path = "lib.rs"
 
 [dependencies]
 futures = "=0.3.17"
-grpcio = { version = "=0.9.0", features = [] }
-grpcio-compiler = "=0.9.0"
-protobuf = { version = "=2.25.1", features = ["with-bytes"] }
-protobuf-codegen = "=2.25.1"
+grpc = "=0.8.3"
+grpc-compiler = "=0.8.3"
+grpc-protobuf = "=0.8.3"
+protobuf = { version = "=2.18.2", features = ["with-bytes"] }
+protobuf-codegen = "=2.18.2"
 
-log = "=0.4.14" # For routeguide example
-serde_json = "*" # For routeguide example
+# For routeguide example
+json = "=0.12.4"
+rand = "=0.6.5"
 
 [package.metadata.raze]
 genmode = "Remote"
@@ -26,20 +28,8 @@ rust_rules_workspace_name = "rules_rust"
 
 
 # Plugins
+[package.metadata.raze.crates.grpc-compiler.'*']
+extra_aliased_targets = ["cargo_bin_protoc_gen_rust_grpc"]
+
 [package.metadata.raze.crates.protobuf-codegen.'*']
 extra_aliased_targets = ["cargo_bin_protoc_gen_rust"]
-
-[package.metadata.raze.crates.grpcio-compiler.'*']
-extra_aliased_targets = ["cargo_bin_grpc_rust_plugin"]
-
-
-# Crate fixes
-[package.metadata.raze.crates.grpcio-sys.'*']
-gen_buildrs = false  # CMake build used by grpc-sys does not work nicely with Bazel and sandbox
-additional_deps = [":grpc_bindings"]  # Use manual gRPC binding compilation
-skipped_deps = ["libz-sys-1.1.2"]  # This now comes from manual gRPC binding compilation
-additional_build_file = "../../third_party/BUILD.bazel.raze_grpc_sys"  # Add binding definition
-
-# We need to pass BINDING_PATH env var to grpcio_sys rust_library to emulate the behaviour of
-# running build.rs
-additional_env = { BINDING_PATH = "../bindings/x86_64-unknown-linux-gnu-bindings.rs" }

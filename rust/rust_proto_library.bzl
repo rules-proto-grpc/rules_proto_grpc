@@ -22,7 +22,7 @@ def rust_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
     rust_proto_lib(
         name = name_lib,
         compilation = name_pb,
-        grpc = False,
+        externs = ["protobuf"],
     )
 
     # Create rust library

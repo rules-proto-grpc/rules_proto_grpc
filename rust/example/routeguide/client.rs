@@ -1,159 +1,178 @@
-// Copyright 2019 TiKV Project Authors. Licensed under Apache-2.0.
+// Derived from https://github.com/stepancheg/grpc-rust/blob/master/grpc-examples/route_guide
 
-#[macro_use]
-extern crate log;
+use ::routeguide::Point;
+use ::routeguide::Rectangle;
+use ::routeguide::RouteNote;
+use ::routeguide::routeguide_grpc::RouteGuideClient;
 
-mod log_util;
-mod util;
-
-use std::sync::Arc;
+use grpc::ClientConf;
+use grpc::ClientStubExt;
+use futures::executor;
+use futures::StreamExt;
+use protobuf::Message;
+use protobuf::SingularPtrField;
+use rand::thread_rng;
+use rand::Rng;
 use std::thread;
-use std::time::Duration;
 
-use futures::prelude::*;
-use grpcio::*;
-use routeguide::{Point, Rectangle, RouteNote};
-use routeguide::RouteGuideClient;
+// print_feature gets the feature for the given point.
+async fn print_feature(client: &RouteGuideClient, point: Point) {
+    println!(
+        "Getting feature for point ({}, {})",
+        point.latitude, point.longitude
+    );
+    let feature = client
+        .get_feature(grpc::RequestOptions::new(), point)
+        // Drop response metadata
+        .drop_metadata()
+        .await
+        .expect("get_feature");
+    println!("feature: {:?}", feature);
+}
 
-fn new_point(lat: i32, lon: i32) -> Point {
-    let mut point = Point::default();
-    point.set_latitude(lat);
-    point.set_longitude(lon);
+// print_features lists all the features within the given bounding Rectangle.
+async fn print_features(client: &RouteGuideClient, rect: Rectangle) {
+    println!("Looking for features within {:?}", rect);
+    let resp = client.list_features(grpc::RequestOptions::new(), rect);
+    // Stream of features without response metadata
+    let mut stream = resp.drop_metadata();
+    while let Some(feature) = stream.next().await {
+        let feature = feature.expect("feature");
+        println!("{:?}", feature);
+    }
+}
+
+fn random_point() -> Point {
+    let mut rng = thread_rng();
+    let mut point = Point::new();
+    point.latitude = rng.gen_range(-90, 90) * 10_000_000;
+    point.longitude = rng.gen_range(-180, 180) * 10_000_000;
     point
 }
 
-fn new_rect(lat1: i32, lon1: i32, lat2: i32, lon2: i32) -> Rectangle {
-    let mut rect = Rectangle::default();
-    rect.set_lo(new_point(lat1, lon1));
-    rect.set_hi(new_point(lat2, lon2));
-    rect
-}
+// run_record_route sends a sequence of points to server and expects to get a RouteSummary from server.
+async fn run_record_route(client: &RouteGuideClient) {
+    // Create a random number of random points
+    let mut rng = thread_rng();
+    let point_count = rng.gen_range(2, 102); // Traverse at least two points
 
-fn new_note(lat: i32, lon: i32, msg: &str) -> RouteNote {
-    let mut note = RouteNote::default();
-    note.set_location(new_point(lat, lon));
-    note.set_message(msg.to_owned());
-    note
-}
+    println!("Traversing {} points.", point_count);
 
-async fn get_feature(client: &RouteGuideClient, point: &Point) -> Result<()> {
-    let get_feature = client.get_feature_async(point)?;
-    let f = get_feature.await?;
-    if !f.has_location() {
-        warn!("Server returns incomplete feature.");
-        return Ok(());
+    let (mut req, resp) = client
+        .record_route(grpc::RequestOptions::new())
+        .await
+        .expect("request");
+
+    for _ in 0..point_count {
+        let point = random_point();
+        // Waiting for buffer space to send data.
+        req.wait().await.expect("block_wait");
+        req.send_data(point).expect("send_data");
     }
-    if f.get_name().is_empty() {
-        warn!("Found no feature at {}", util::format_point(point));
-        return Ok(());
-    }
-    info!(
-        "Found feature called {} at {}",
-        f.get_name(),
-        util::format_point(point)
-    );
-    Ok(())
+
+    req.finish().unwrap();
+
+    let reply = resp.drop_metadata().await.expect("resp");
+    println!("Route summary: {:?}", reply);
 }
 
-async fn list_features(client: &RouteGuideClient) -> Result<()> {
-    let rect = new_rect(400_000_000, -750_000_000, 420_000_000, -730_000_000);
-    info!("Looking for features between 40, -75 and 42, -73");
-    let mut list_features = client.list_features(&rect)?;
-    while let Some(feature) = list_features.try_next().await? {
-        let loc = feature.get_location();
-        info!(
-            "Found feature {} at {}",
-            feature.get_name(),
-            util::format_point(loc)
+// run_route_chat receives a sequence of route notes, while sending notes for various locations.
+async fn run_route_chat(client: &RouteGuideClient) {
+    fn new_note(latitude: i32, longitude: i32, message: &str) -> RouteNote {
+        RouteNote {
+            location: SingularPtrField::some(Point {
+                latitude,
+                longitude,
+                ..Default::default()
+            }),
+            message: message.to_owned(),
+            ..Default::default()
+        }
+    }
+    let notes = vec![
+        new_note(0, 1, "First message"),
+        new_note(0, 2, "Second message"),
+        new_note(0, 3, "Third message"),
+        new_note(0, 1, "Fourth message"),
+        new_note(0, 2, "Fifth message"),
+        new_note(0, 3, "Sixth message"),
+    ];
+
+    let (mut req, resp) = client
+        .route_chat(grpc::RequestOptions::new())
+        .await
+        .unwrap();
+
+    let sender_thread = thread::spawn(move || {
+        executor::block_on(async {
+            for note in notes {
+                req.wait().await.unwrap();
+                req.send_data(note).expect("send");
+            }
+            req.finish().expect("finish");
+        });
+    });
+
+    let mut responses = resp.drop_metadata();
+    while let Some(message) = responses.next().await {
+        let message = message.expect("message");
+        let location = message
+            .location
+            .as_ref()
+            .unwrap_or(Point::default_instance());
+        println!(
+            "Got message {} at point({}, {})",
+            message.message, location.latitude, location.longitude
         );
     }
-    info!("List feature rpc succeeded.");
-    Ok(())
+
+    sender_thread.join().expect("sender_thread");
 }
 
-async fn record_route(client: &RouteGuideClient) -> Result<()> {
-    let features = util::load_db();
-    let (mut sink, receiver) = client.record_route()?;
-    for i in 0..10usize {
-        let f = &features[i];
-        let point = f.get_location();
-        info!("Visiting {}", util::format_point(point));
-        sink.send((point.to_owned(), WriteFlags::default())).await?;
-        thread::sleep(Duration::from_millis(i as u64 * 100));
-    }
-    // flush
-    sink.close().await?;
-    let sumary = receiver.await?;
-    info!("Finished trip with {} points", sumary.get_point_count());
-    info!("Passed {} features", sumary.get_feature_count());
-    info!("Travelled {} meters", sumary.get_distance());
-    info!("It took {} seconds", sumary.get_elapsed_time());
-    Ok(())
-}
+pub async fn run_client(client: &RouteGuideClient) {
+    // Looking for a valid feature
+    let mut point = Point::new();
+    point.latitude = 409146138;
+    point.longitude = -746188906;
+    print_feature(&client, point).await;
 
-async fn route_chat(client: &RouteGuideClient) -> Result<()> {
-    let (mut sink, mut receiver) = client.route_chat()?;
+    // Feature missing.
+    print_feature(&client, Point::new()).await;
 
-    let send = async move {
-        let notes = vec![
-            ("First message", 0, 0),
-            ("Second message", 0, 1),
-            ("Third message", 1, 0),
-            ("Fourth message", 0, 0),
-        ];
+    // Looking for features between 40, -75 and 42, -73.
+    let mut rect = Rectangle::new();
+    rect.hi = SingularPtrField::some({
+        let mut point = Point::new();
+        point.latitude = 400000000;
+        point.longitude = -750000000;
+        point
+    })
+    .into();
+    rect.lo = SingularPtrField::some({
+        let mut point = Point::new();
+        point.latitude = 420000000;
+        point.longitude = -730000000;
+        point
+    })
+    .into();
 
-        for (msg, lat, lon) in notes {
-            let note = new_note(lat, lon, msg);
-            info!("Sending message {} at {}, {}", msg, lat, lon);
-            sink.send((note, WriteFlags::default())).await?;
-        }
-        sink.close().await?;
-        Ok(()) as Result<_>
-    };
+    print_features(&client, rect).await;
 
-    let receive = async move {
-        while let Some(note) = receiver.try_next().await? {
-            let location = note.get_location();
-            info!(
-                "Got message {} at {}, {}",
-                note.get_message(),
-                location.get_latitude(),
-                location.get_longitude()
-            );
-        }
-        Ok(()) as Result<_>
-    };
-    let (sr, rr) = futures::join!(send, receive);
-    sr.and(rr)?;
-    Ok(())
-}
+    // RecordRoute
+    run_record_route(&client).await;
 
-async fn async_main() -> Result<()> {
-    let _guard = log_util::init_log();
-    let env = Arc::new(Environment::new(2));
-    let port_str = match std::env::var("SERVER_PORT") {
-        Ok(val) => val,
-        Err(_e) => "50051".to_owned(),
-    };
-    let channel = ChannelBuilder::new(env).connect(&("127.0.0.1:".to_owned() + &port_str));
-    let client = RouteGuideClient::new(channel);
-
-    info!("-------------- GetFeature --------------");
-    get_feature(&client, &new_point(409_146_138, -746_188_906)).await?;
-    get_feature(&client, &new_point(0, 0)).await?;
-
-    info!("-------------- ListFeatures --------------");
-    list_features(&client).await?;
-
-    info!("-------------- RecordRoute --------------");
-    record_route(&client).await?;
-
-    info!("-------------- RouteChat --------------");
-    route_chat(&client).await?;
-
-    Ok(())
+    // RouteChat
+    run_route_chat(&client).await;
 }
 
 fn main() {
-    futures::executor::block_on(async_main()).unwrap()
+    let port = match std::env::var("SERVER_PORT") {
+        Ok(val) => val.parse::<u16>().unwrap(),
+        Err(_e) => 50051,
+    };
+
+    let client =
+        RouteGuideClient::new_plain("127.0.0.1", port, ClientConf::new()).expect("client");
+
+    executor::block_on(async { run_client(&client).await });
 }
