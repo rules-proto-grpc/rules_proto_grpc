@@ -73,25 +73,25 @@ VERSIONS = {
     },
 
     # Buf
-    "protoc_gen_buf_breaking_darwin": {
+    "protoc_gen_buf_breaking_darwin_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-breaking-Darwin-x86_64"],
         "sha256": "d7b12a2ccd663f00a068b19cbd2c1e81f4983ea33bd9a92980485e2c4693b75a",
         "executable": True,
     },
-    "protoc_gen_buf_breaking_linux": {
+    "protoc_gen_buf_breaking_linux_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-breaking-Linux-x86_64"],
         "sha256": "8463f63626327d81f72b4a2ad08b97898753a1ee14899e63728df9e2d110d5bf",
         "executable": True,
     },
-    "protoc_gen_buf_lint_darwin": {
+    "protoc_gen_buf_lint_darwin_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-lint-Darwin-x86_64"],
         "sha256": "3ff939636e5857f6fe3dcaeae816538fcee41cec66b10b62df5ccb65d0f79e7f",
         "executable": True,
     },
-    "protoc_gen_buf_lint_linux": {
+    "protoc_gen_buf_lint_linux_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-lint-Linux-x86_64"],
         "sha256": "a7ab67a5bcc5906366bde424ba63fdcf604e07d4825e5720c8e5b3ab1530bbf7",
@@ -133,21 +133,21 @@ VERSIONS = {
     },
 
     # Doc
-    "protoc_gen_doc_darwin": {
+    "protoc_gen_doc_darwin_x86_64": {
         "type": "http",
         "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.5.0/protoc-gen-doc-1.5.0.darwin-amd64.go1.16.6.tar.gz"],
         "sha256": "5b74f2b2b98f2c9a0978f42dc1d931e03fc51dd112e56ff9a6252f87fdb879c9",
         "strip_prefix": "protoc-gen-doc-1.5.0.darwin-amd64.go1.16.6",
         "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
     },
-    "protoc_gen_doc_linux": {
+    "protoc_gen_doc_linux_x86_64": {
         "type": "http",
         "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.5.0/protoc-gen-doc-1.5.0.linux-amd64.go1.16.6.tar.gz"],
         "sha256": "5455f066af1197a7cd3753eed5d8096b310b69b7b3d0f9b81c38223f4e0e5f10",
         "strip_prefix": "protoc-gen-doc-1.5.0.linux-amd64.go1.16.6",
         "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
     },
-    "protoc_gen_doc_windows": {
+    "protoc_gen_doc_windows_x86_64": {
         "type": "http",
         "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.5.0/protoc-gen-doc-1.5.0.windows-amd64.go1.16.6.tar.gz"],
         "sha256": "b6cc89ed9b9d037433f35a1ae5b593bf528db86e1d07f96533a9be33af9e9a6f",
@@ -506,17 +506,17 @@ def build_bazel_rules_android(**kwargs):
 #
 # Buf
 #
-def protoc_gen_buf_breaking_darwin(**kwargs):
-    _generic_dependency("protoc_gen_buf_breaking_darwin", **kwargs)
+def protoc_gen_buf_breaking_darwin_x86_64(**kwargs):
+    _generic_dependency("protoc_gen_buf_breaking_darwin_x86_64", **kwargs)
 
-def protoc_gen_buf_breaking_linux(**kwargs):
-    _generic_dependency("protoc_gen_buf_breaking_linux", **kwargs)
+def protoc_gen_buf_breaking_linux_x86_64(**kwargs):
+    _generic_dependency("protoc_gen_buf_breaking_linux_x86_64", **kwargs)
 
-def protoc_gen_buf_lint_darwin(**kwargs):
-    _generic_dependency("protoc_gen_buf_lint_darwin", **kwargs)
+def protoc_gen_buf_lint_darwin_x86_64(**kwargs):
+    _generic_dependency("protoc_gen_buf_lint_darwin_x86_64", **kwargs)
 
-def protoc_gen_buf_lint_linux(**kwargs):
-    _generic_dependency("protoc_gen_buf_lint_linux", **kwargs)
+def protoc_gen_buf_lint_linux_x86_64(**kwargs):
+    _generic_dependency("protoc_gen_buf_lint_linux_x86_64", **kwargs)
 
 #
 # C
@@ -542,14 +542,14 @@ def com_github_dcarp_protobuf_d(**kwargs):
 #
 # Doc
 #
-def protoc_gen_doc_darwin(**kwargs):
-    _generic_dependency("protoc_gen_doc_darwin", **kwargs)
+def protoc_gen_doc_darwin_x86_64(**kwargs):
+    _generic_dependency("protoc_gen_doc_darwin_x86_64", **kwargs)
 
-def protoc_gen_doc_linux(**kwargs):
-    _generic_dependency("protoc_gen_doc_linux", **kwargs)
+def protoc_gen_doc_linux_x86_64(**kwargs):
+    _generic_dependency("protoc_gen_doc_linux_x86_64", **kwargs)
 
-def protoc_gen_doc_windows(**kwargs):
-    _generic_dependency("protoc_gen_doc_windows", **kwargs)
+def protoc_gen_doc_windows_x86_64(**kwargs):
+    _generic_dependency("protoc_gen_doc_windows_x86_64", **kwargs)
 
 #
 # Go
