@@ -6,7 +6,7 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 # Versions
 MINIMUM_BAZEL_VERSION = "3.0.0"
 ENABLE_VERSION_NAGS = False
-PROTOBUF_VERSION = "3.18.0"  # When updating, also update protoc below, JS requirements, JS rulegen js.go, Ruby requirements and C# requirements
+PROTOBUF_VERSION = "3.18.0"  # When updating, also update JS requirements, JS rulegen js.go, Ruby requirements and C# requirements
 GRPC_VERSION = "1.40.0"  # When updating, also update Go repositories.bzl, JS requirements, JS readme, Ruby requirements and C# requirements
 VERSIONS = {
     # Core
@@ -61,26 +61,6 @@ VERSIONS = {
         "repo": "bazel-skylib",
         "ref": "1.0.3",
         "sha256": "7ac0fa88c0c4ad6f5b9ffb5e09ef81e235492c873659e6bb99efb89d11246bcb",
-    },
-
-    # Protoc binaries
-    "rules_proto_grpc_protoc_darwin_x86_64": {
-        "type": "http",
-        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v{}/protoc-{}-osx-x86_64.zip".format(PROTOBUF_VERSION, PROTOBUF_VERSION)],
-        "sha256": "18c6b9585a0ceff7be1673271b30497f13c3eb8e6894354066c269d2846337c1",
-        "build_file_content": """exports_files(["bin/protoc"])""",
-    },
-    "rules_proto_grpc_protoc_linux_x86_64": {
-        "type": "http",
-        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v{}/protoc-{}-linux-x86_64.zip".format(PROTOBUF_VERSION, PROTOBUF_VERSION)],
-        "sha256": "8b6b0c82f730212801d9cce4653abb1a1f4204555a92e8e2b5f625d61e66f1b4",
-        "build_file_content": """exports_files(["bin/protoc"])""",
-    },
-    "rules_proto_grpc_protoc_windows_x86_64": {
-        "type": "http",
-        "urls": ["https://github.com/protocolbuffers/protobuf/releases/download/v{}/protoc-{}-win64.zip".format(PROTOBUF_VERSION, PROTOBUF_VERSION)],
-        "sha256": "222ecf84acdaacf2883b95fd83e14f1b3ffb8598f92ad8f595a90e8fd0a8feb8",
-        "build_file_content": """exports_files(["bin/protoc.exe"])""",
     },
 
     # Android
@@ -493,10 +473,6 @@ def rules_proto_grpc_repos(**kwargs):
     com_github_grpc_grpc(**kwargs)
     external_zlib(**kwargs)
 
-    rules_proto_grpc_protoc_darwin_x86_64(**kwargs)
-    rules_proto_grpc_protoc_linux_x86_64(**kwargs)
-    rules_proto_grpc_protoc_windows_x86_64(**kwargs)
-
 def rules_proto(**kwargs):
     _generic_dependency("rules_proto", **kwargs)
 
@@ -514,18 +490,6 @@ def com_github_grpc_grpc(**kwargs):
 
 def external_zlib(**kwargs):
     _generic_dependency("zlib", **kwargs)
-
-#
-# Protoc
-#
-def rules_proto_grpc_protoc_darwin_x86_64(**kwargs):
-    _generic_dependency("rules_proto_grpc_protoc_darwin_x86_64", **kwargs)
-
-def rules_proto_grpc_protoc_linux_x86_64(**kwargs):
-    _generic_dependency("rules_proto_grpc_protoc_linux_x86_64", **kwargs)
-
-def rules_proto_grpc_protoc_windows_x86_64(**kwargs):
-    _generic_dependency("rules_proto_grpc_protoc_windows_x86_64", **kwargs)
 
 #
 # Misc
