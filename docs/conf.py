@@ -40,6 +40,9 @@ pygments_style = 'monokai'
 #
 html_theme = 'furo'
 
+# Title
+html_title = 'Protobuf and gRPC rules for Bazel - rules_proto_grpc'
+
 # Logo and favicon
 html_logo = '_static/logo.svg'
 html_favicon = '_static/logo.png'
