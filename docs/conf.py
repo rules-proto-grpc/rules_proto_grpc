@@ -49,7 +49,7 @@ html_favicon = '_static/logo.png'
 
 # Extra vars to provide to templating
 html_context = {
-    'absolute_icon_png': 'https://rules-proto-grpc.aliddell.com/en/latest/_static/logo.png'  # Used by meta tags
+    'absolute_icon_png': 'https://rules-proto-grpc.com/en/latest/_static/logo.png'  # Used by meta tags
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

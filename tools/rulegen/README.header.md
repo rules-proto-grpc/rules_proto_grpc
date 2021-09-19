@@ -33,10 +33,10 @@ new release, please [open a new issue](https://github.com/rules-proto-grpc/rules
 
 ## Usage
 
-Full documentation for the current and previous versions [can be found here](https://rules-proto-grpc.aliddell.com)
+Full documentation for the current and previous versions [can be found here](https://rules-proto-grpc.com)
 
-- [Overview](https://rules-proto-grpc.aliddell.com/en/latest/)
-- [Installation](https://rules-proto-grpc.aliddell.com/en/latest/#installation)
-- [Example Usage](https://rules-proto-grpc.aliddell.com/en/latest/example.html)
-- [Developers](https://rules-proto-grpc.aliddell.com/en/latest/developers.html)
-- [Changelog](https://rules-proto-grpc.aliddell.com/en/latest/changelog.html)
+- [Overview](https://rules-proto-grpc.com/en/latest/)
+- [Installation](https://rules-proto-grpc.com/en/latest/#installation)
+- [Example Usage](https://rules-proto-grpc.com/en/latest/example.html)
+- [Developers](https://rules-proto-grpc.com/en/latest/developers.html)
+- [Changelog](https://rules-proto-grpc.com/en/latest/changelog.html)
