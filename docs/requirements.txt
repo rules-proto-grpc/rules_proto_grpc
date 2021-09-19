@@ -1,4 +1,4 @@
-furo==2021.3.20b30
-Sphinx==3.5.3
-sphinx-notfound-page==0.6
+furo==2021.09.08
+Sphinx==4.2.0
+sphinx-notfound-page==0.7.1
 sphinx-sitemap==2.2.0
