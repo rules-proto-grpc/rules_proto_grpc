@@ -119,7 +119,7 @@ repository.  The basic idea is:
                doc = "List of protoc plugins to apply",
            ),
        ),
-       toolchains = [str(Label("//protobuf:toolchain_type"))],
+       toolchains = [str(Label("@rules_proto_grpc//protobuf:toolchain_type"))],
    )
 
    # Create macro for converting attrs and passing to compile
