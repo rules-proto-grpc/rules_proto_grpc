@@ -34,7 +34,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     js_library(
         name = name,
         srcs = [name_pb],
-        deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = deps + kwargs.get("deps", []),
         package_name = kwargs.get("package_name", name),
         strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),
@@ -67,7 +67,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     js_library(
         name = name,
         srcs = [name_pb],
-        deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = deps + kwargs.get("deps", []),
         package_name = kwargs.get("package_name", name),
         strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),
@@ -101,7 +101,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     js_library(
         name = name,
         srcs = [name_pb],
-        deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = deps + kwargs.get("deps", []),
         package_name = kwargs.get("package_name", name),
         strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),

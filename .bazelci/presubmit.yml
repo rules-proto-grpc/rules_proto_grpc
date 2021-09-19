@@ -13,9 +13,9 @@ tasks:
     - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
-    - "//fsharp/..."
     - "//d/..."
     - "//doc/..."
+    - "//fsharp/..."
     - "//go/..."
     - "//grpc-gateway/..."
     - "//java/..."
@@ -134,9 +134,9 @@ tasks:
     - "//c/..."
     - "//cpp/..."
     - "//csharp/..."
-    - "//fsharp/..."
     - "//d/..."
     - "//doc/..."
+    - "//fsharp/..."
     - "//go/..."
     - "//grpc-gateway/..."
     - "//java/..."
@@ -595,6 +595,108 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_library
+  d_d_proto_compile_ubuntu1804:
+    name: 'd: d_proto_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/d/d_proto_compile
+  d_d_proto_library_ubuntu1804:
+    name: 'd: d_proto_library'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/d/d_proto_library
+  doc_doc_docbook_compile_ubuntu1804:
+    name: 'doc: doc_docbook_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_docbook_compile
+  doc_doc_docbook_compile_windows:
+    name: 'doc: doc_docbook_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_docbook_compile
+  doc_doc_docbook_compile_macos:
+    name: 'doc: doc_docbook_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_docbook_compile
+  doc_doc_html_compile_ubuntu1804:
+    name: 'doc: doc_html_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_html_compile
+  doc_doc_html_compile_windows:
+    name: 'doc: doc_html_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_html_compile
+  doc_doc_html_compile_macos:
+    name: 'doc: doc_html_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_html_compile
+  doc_doc_json_compile_ubuntu1804:
+    name: 'doc: doc_json_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_json_compile
+  doc_doc_json_compile_windows:
+    name: 'doc: doc_json_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_json_compile
+  doc_doc_json_compile_macos:
+    name: 'doc: doc_json_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_json_compile
+  doc_doc_markdown_compile_ubuntu1804:
+    name: 'doc: doc_markdown_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_markdown_compile
+  doc_doc_markdown_compile_windows:
+    name: 'doc: doc_markdown_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_markdown_compile
+  doc_doc_markdown_compile_macos:
+    name: 'doc: doc_markdown_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_markdown_compile
   fsharp_fsharp_proto_compile_ubuntu1804:
     name: 'fsharp: fsharp_proto_compile'
     platform: ubuntu1804
@@ -707,108 +809,6 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_library
-  d_d_proto_compile_ubuntu1804:
-    name: 'd: d_proto_compile'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/d/d_proto_compile
-  d_d_proto_library_ubuntu1804:
-    name: 'd: d_proto_library'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/d/d_proto_library
-  doc_doc_docbook_compile_ubuntu1804:
-    name: 'doc: doc_docbook_compile'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_docbook_compile
-  doc_doc_docbook_compile_windows:
-    name: 'doc: doc_docbook_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_docbook_compile
-  doc_doc_docbook_compile_macos:
-    name: 'doc: doc_docbook_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_docbook_compile
-  doc_doc_html_compile_ubuntu1804:
-    name: 'doc: doc_html_compile'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_html_compile
-  doc_doc_html_compile_windows:
-    name: 'doc: doc_html_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_html_compile
-  doc_doc_html_compile_macos:
-    name: 'doc: doc_html_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_html_compile
-  doc_doc_json_compile_ubuntu1804:
-    name: 'doc: doc_json_compile'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_json_compile
-  doc_doc_json_compile_windows:
-    name: 'doc: doc_json_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_json_compile
-  doc_doc_json_compile_macos:
-    name: 'doc: doc_json_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_json_compile
-  doc_doc_markdown_compile_ubuntu1804:
-    name: 'doc: doc_markdown_compile'
-    platform: ubuntu1804
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_markdown_compile
-  doc_doc_markdown_compile_windows:
-    name: 'doc: doc_markdown_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_markdown_compile
-  doc_doc_markdown_compile_macos:
-    name: 'doc: doc_markdown_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_markdown_compile
   go_go_proto_compile_ubuntu1804:
     name: 'go: go_proto_compile'
     platform: ubuntu1804

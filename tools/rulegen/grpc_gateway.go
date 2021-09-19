@@ -52,7 +52,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     go_library(
         name = name,
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GATEWAY_DEPS + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = kwargs.get("go_deps", []) + GATEWAY_DEPS + GRPC_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

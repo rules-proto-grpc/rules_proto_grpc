@@ -20,7 +20,7 @@ def python_grpc_library(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

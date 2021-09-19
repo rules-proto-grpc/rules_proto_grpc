@@ -29,7 +29,7 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     rust_library(
         name = name,
         srcs = [name_pb, name_lib],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )

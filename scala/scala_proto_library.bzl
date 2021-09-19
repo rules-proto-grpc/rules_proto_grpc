@@ -21,7 +21,7 @@ def scala_proto_library(name, **kwargs):  # buildifier: disable=function-docstri
     scala_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         exports = PROTO_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

@@ -20,7 +20,7 @@ def python_proto_library(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

@@ -65,7 +65,7 @@ var fsharpProtoLibraryRuleTemplate = mustTemplate(fsharpLibraryRuleTemplateStrin
     fsharp_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -82,7 +82,7 @@ var fsharpGrpcLibraryRuleTemplate = mustTemplate(fsharpLibraryRuleTemplateString
     fsharp_library(
         name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )

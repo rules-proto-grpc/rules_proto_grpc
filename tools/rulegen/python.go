@@ -40,7 +40,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -66,7 +66,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -95,7 +95,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = [
             "@com_google_protobuf//:protobuf_python",
-        ] + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        ] + GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

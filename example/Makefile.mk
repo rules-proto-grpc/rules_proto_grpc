@@ -93,29 +93,6 @@ csharp_csharp_grpc_library_example:
 .PHONY: csharp_examples
 csharp_examples: csharp_csharp_proto_compile_example csharp_csharp_grpc_compile_example csharp_csharp_proto_library_example csharp_csharp_grpc_library_example
 
-.PHONY: fsharp_fsharp_proto_compile_example
-fsharp_fsharp_proto_compile_example:
-	cd example/fsharp/fsharp_proto_compile; \
-	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
-
-.PHONY: fsharp_fsharp_grpc_compile_example
-fsharp_fsharp_grpc_compile_example:
-	cd example/fsharp/fsharp_grpc_compile; \
-	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
-
-.PHONY: fsharp_fsharp_proto_library_example
-fsharp_fsharp_proto_library_example:
-	cd example/fsharp/fsharp_proto_library; \
-	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
-
-.PHONY: fsharp_fsharp_grpc_library_example
-fsharp_fsharp_grpc_library_example:
-	cd example/fsharp/fsharp_grpc_library; \
-	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
-
-.PHONY: fsharp_examples
-fsharp_examples: fsharp_fsharp_proto_compile_example fsharp_fsharp_grpc_compile_example fsharp_fsharp_proto_library_example fsharp_fsharp_grpc_library_example
-
 .PHONY: d_d_proto_compile_example
 d_d_proto_compile_example:
 	cd example/d/d_proto_compile; \
@@ -151,6 +128,29 @@ doc_doc_markdown_compile_example:
 
 .PHONY: doc_examples
 doc_examples: doc_doc_docbook_compile_example doc_doc_html_compile_example doc_doc_json_compile_example doc_doc_markdown_compile_example
+
+.PHONY: fsharp_fsharp_proto_compile_example
+fsharp_fsharp_proto_compile_example:
+	cd example/fsharp/fsharp_proto_compile; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: fsharp_fsharp_grpc_compile_example
+fsharp_fsharp_grpc_compile_example:
+	cd example/fsharp/fsharp_grpc_compile; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: fsharp_fsharp_proto_library_example
+fsharp_fsharp_proto_library_example:
+	cd example/fsharp/fsharp_proto_library; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: fsharp_fsharp_grpc_library_example
+fsharp_fsharp_grpc_library_example:
+	cd example/fsharp/fsharp_grpc_library; \
+	bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: fsharp_examples
+fsharp_examples: fsharp_fsharp_proto_compile_example fsharp_fsharp_grpc_compile_example fsharp_fsharp_proto_library_example fsharp_fsharp_grpc_library_example
 
 .PHONY: go_go_proto_compile_example
 go_go_proto_compile_example:

@@ -34,7 +34,7 @@ def objc_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     objc_library(
         name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         includes = [name_pb],
         alwayslink = kwargs.get("alwayslink"),
         copts = kwargs.get("copts"),

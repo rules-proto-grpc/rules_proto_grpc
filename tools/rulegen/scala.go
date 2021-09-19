@@ -63,7 +63,7 @@ var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString 
     scala_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         exports = PROTO_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -82,7 +82,7 @@ var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString +
     scala_library(
         name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         exports = GRPC_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

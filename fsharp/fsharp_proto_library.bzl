@@ -20,7 +20,7 @@ def fsharp_proto_library(name, **kwargs):
     fsharp_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )

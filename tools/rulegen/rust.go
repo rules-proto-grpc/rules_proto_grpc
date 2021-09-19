@@ -39,7 +39,7 @@ var rustProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + 
     rust_library(
         name = name,
         srcs = [name_pb, name_lib],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -60,7 +60,7 @@ var rustGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
     rust_library(
         name = name,
         srcs = [name_pb, name_lib],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )

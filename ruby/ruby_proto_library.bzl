@@ -20,7 +20,7 @@ def ruby_proto_library(name, **kwargs):
     ruby_library(
         name = name,
         srcs = [name_pb],
-        deps = ["@rules_proto_grpc_bundle//:gems"] + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = ["@rules_proto_grpc_bundle//:gems"] + kwargs.get("deps", []),
         includes = [native.package_name() + "/" + name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
