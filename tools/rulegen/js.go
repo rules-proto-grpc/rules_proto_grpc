@@ -35,7 +35,8 @@ def {{ .Rule.Name }}(name, **kwargs):
         name = name,
         srcs = [name_pb],
         deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = name,
+        package_name = kwargs.get("package_name", name),
+        strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -67,7 +68,8 @@ def {{ .Rule.Name }}(name, **kwargs):
         name = name,
         srcs = [name_pb],
         deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = name,
+        package_name = kwargs.get("package_name", name),
+        strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -100,7 +102,8 @@ def {{ .Rule.Name }}(name, **kwargs):
         name = name,
         srcs = [name_pb],
         deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = name,
+        package_name = kwargs.get("package_name", name),
+        strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -112,10 +115,24 @@ GRPC_DEPS = [
 
 var jsLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{
+		Name:      "package_name",
+		Type:      "string",
+		Default:   "",
+		Doc:       "The package name to use for the library. If unprovided, the target name is used.",
+		Mandatory: false,
+	},
+	&Attr{
 		Name:      "deps_repo",
 		Type:      "string",
 		Default:   "@npm",
 		Doc:       "The repository to load the dependencies from, if you don't use ``@npm``",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "legacy_path",
+		Type:      "bool",
+		Default:   "False",
+		Doc:       "Use the legacy <name>_pb path segment from the generated library require path.",
 		Mandatory: false,
 	},
 }...)

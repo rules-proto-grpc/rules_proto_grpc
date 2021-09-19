@@ -42,6 +42,10 @@ The following changes are considered 'breaking', requiring the step to the 4.x.x
   `waiting for protoc plugins <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/143>`__
   to be available.
 
+- The require path for generated files no longer includes the ``<target_name>_pb`` path segment by
+  default. For the previous behaviour, set ``legacy_path = True`` on the library.
+  `#107 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/107>`_
+
 General
 *******
 
@@ -94,6 +98,13 @@ Java
 JavaScript
 **********
 
+- **Breaking change**: The require path for generated files no longer includes the
+  ``<target_name>_pb`` path segment by default. For the previous behaviour, set
+  ``legacy_path = True`` on the library.
+  `#107 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/107>`_
+- Added ``package_name`` attribute to library rules, which allows customising the package name of
+  the generated library. By default if unspecified, the target name will continue to be used as
+  in previous versions.
 - Updated ``rules_nodejs`` to 4.2.0
 - Updated ``@grpc/grpc-js`` to 1.3.7
 - Updated ``grpc-tools`` to 1.11.2
@@ -116,7 +127,7 @@ Rust
 ****
 
 - Updated ``rules_rust`` to latest
-- Replaced ``grpcio`` with ``grpc``. **This is a breaking change**, please see above description for
+- **Breaking change**: Replaced ``grpcio`` with ``grpc``. Please see above description for
   full details on why ``grpcio`` is no longer supportable and the long term aim to support prost and
   tonic
 - Updated ``protobuf`` and ``protobuf-codegen`` to 2.25.1

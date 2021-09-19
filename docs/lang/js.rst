@@ -413,11 +413,21 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``package_name``
+     - ``string``
+     - false
+     - 
+     - The package name to use for the library. If unprovided, the target name is used.
    * - ``deps_repo``
      - ``string``
      - false
      - ``@npm``
      - The repository to load the dependencies from, if you don't use ``@npm``
+   * - ``legacy_path``
+     - ``bool``
+     - false
+     - ``False``
+     - Use the legacy <name>_pb path segment from the generated library require path.
 
 .. _js_grpc_node_library:
 
@@ -508,11 +518,21 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``package_name``
+     - ``string``
+     - false
+     - 
+     - The package name to use for the library. If unprovided, the target name is used.
    * - ``deps_repo``
      - ``string``
      - false
      - ``@npm``
      - The repository to load the dependencies from, if you don't use ``@npm``
+   * - ``legacy_path``
+     - ``bool``
+     - false
+     - ``False``
+     - Use the legacy <name>_pb path segment from the generated library require path.
 
 .. _js_grpc_web_library:
 
@@ -603,8 +623,18 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``package_name``
+     - ``string``
+     - false
+     - 
+     - The package name to use for the library. If unprovided, the target name is used.
    * - ``deps_repo``
      - ``string``
      - false
      - ``@npm``
      - The repository to load the dependencies from, if you don't use ``@npm``
+   * - ``legacy_path``
+     - ``bool``
+     - false
+     - ``False``
+     - Use the legacy <name>_pb path segment from the generated library require path.
