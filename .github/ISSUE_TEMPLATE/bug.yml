@@ -20,6 +20,7 @@ body:
     attributes:
       label: Log Output
       description: Please copy and paste any relevant log output.
+      render: plain text
   - type: input
     id: version
     attributes:
@@ -75,3 +76,4 @@ body:
     attributes:
       label: Any Other Content
       description: Please paste any other demo files if you have them.
+      render: plain text
