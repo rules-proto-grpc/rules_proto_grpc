@@ -7,7 +7,6 @@ proto_plugin(
         "no_client",
     ],
     outputs = ["{basename|pascal}.fs"],
-    protoc_plugin_name = "fsharp",
     separate_options_flag = True,
     tool = ":wrapper",
     visibility = ["//visibility:public"],
@@ -15,9 +14,7 @@ proto_plugin(
 
 proto_plugin(
     name = "grpc_fsharp_plugin",
-    options = [""],
     outputs = ["{basename|pascal}.fs"],
-    protoc_plugin_name = "fsharp",
     separate_options_flag = True,
     tool = ":wrapper",
     visibility = ["//visibility:public"],
