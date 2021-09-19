@@ -6,6 +6,146 @@
 Changelog
 =========
 
+4.0.0
+-----
+
+The 4.0.0 release brings a number of key improvements to tidy up rules_proto_grpc, along with
+updates to all of the main dependencies. For most users, 4.0.0 will be a drop-in replacement to
+the 3.x.x releases and the updates for each language are shown below. Should you have any issues
+with the new release, please open a new
+`issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`_ or
+`discussion <https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new>`_.
+
+The following changes are considered 'breaking', requiring the step to the 4.x.x release cycle:
+
+- The transitive aspect-based compilation mode using the ``deps`` attribute is now completely
+  removed. This mode was deprecated in 3.0.0 and all use of the transitive mode will have shown a
+  warning. If all of your uses of rules_proto_grpc use the ``protos`` attribute, 4.0.0 will be no
+  different from 3.x.x. See
+  `here <https://rules-proto-grpc.com/en/latest/transitivity.html>`__ for further details.
+  If you have written your own rules for a custom plugin, please see the updated and simplified rule
+  template at :ref:`sec_custom_plugins`.
+
+- The ``//nodejs`` aliases for the ``//js`` rules have been removed. Again, these were deprecated in
+  the 3.x.x cycle and printed a warning when used. If you are still using these aliases, you can
+  simply change your imports to use the ``//js`` prefixed rules.
+
+- The Rust rules have switched gRPC implementation to `grpc <https://crates.io/crates/grpc>`__.
+  In 3.x.x, we used `grpc-rs`/`grpcio`, which wraps the C/C++ implementation of gRPC directly.
+  However, the wrapping process was extremely error prone, with updates of either Rust rules or gRPC
+  causing linker failures and significant maintenance burden. Should you still need `grpcio` crate
+  support, the 3.1.1 release continues to work but may have issues with newer gRPC versions. The
+  replacement `grpc` crate is self-described as 'not suitable for production use' but is more
+  readily supportable by these rules in the short term. In the longer term, support for
+  `prost <https://github.com/tokio-rs/prost>`__ and `tonic <https://github.com/hyperium/tonic>`__
+  is also on the roadmap, but is
+  `waiting for protoc plugins <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/143>`__
+  to be available.
+
+General
+*******
+
+- Updated protobuf to 3.18.0
+- Updated grpc to 1.40.0
+- Updated ``rules_proto`` to 4.0.0
+- Documentation has moved to `rules-proto-grpc.com <https://rules-proto-grpc.com>`__. Existing links
+  to the old location will continue to work
+- Transitive aspect-based compilation has been removed
+- The ``output_files`` attribute of ``ProtoCompileInfo`` has changed from a dict of depsets to a
+  single depset. This is generally an internal implementation detail, so is unlikely to affect any
+  rule users.
+
+C
+*
+
+- Updated ``upb`` to latest
+
+C#/F#
+*****
+
+- Added F# support. `#127 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/127>`_
+- Updated gRPC to 2.40.0
+
+D
+*
+
+- Updated ``rules_d`` to latest
+
+Doc
+***
+
+- Updated ``protoc-gen-doc`` to 1.5.0
+
+Go
+**
+
+- Updated ``rules_go`` to v0.28.0
+
+grpc-gateway
+************
+
+- Updated ``grpc-gateway`` to 2.6.0
+
+Java
+****
+
+- Updated ``grpc-java`` to 1.40.1
+
+JavaScript
+**********
+
+- Updated ``rules_nodejs`` to 4.2.0
+- Updated ``@grpc/grpc-js`` to 1.3.7
+- Updated ``grpc-tools`` to 1.11.2
+- Updated ``ts-protoc-gen`` to 0.15.0
+
+Python
+******
+
+- Updated ``rules_python`` to 0.4.0
+- Updated ``six`` to 1.16.0
+
+Ruby
+****
+
+- Updated ``rules_ruby`` to 0.5.2
+- **WORKSPACE update needed**: The ``ruby_bundle`` call in your workspace needs an extra ``include``
+  attribute for grpc to work as expected. Please see the Ruby examples
+
+Rust
+****
+
+- Updated ``rules_rust`` to latest
+- Replaced ``grpcio`` with ``grpc``. **This is a breaking change**, please see above description for
+  full details on why ``grpcio`` is no longer supportable and the long term aim to support prost and
+  tonic
+- Updated ``protobuf`` and ``protobuf-codegen`` to 2.25.1
+
+Scala
+*****
+
+- Updated ``rules_scala`` to latest
+
+Swift
+*****
+
+- Updated ``rules_swift`` to 0.23.0
+- Updated ``grpc-swift`` to 1.4.1
+- Updated ``swift-log`` to 1.4.2
+- Updated ``swift-nio`` to 2.32.3
+- Updated ``swift-nio-extra`` to 1.10.2
+- Updated ``swift-nio-http2`` to 1.18.3
+- Updated ``swift-nio-ssl`` to 2.15.1
+- Updated ``swift-nio-transport-services`` to 1.11.3
+
+TypeScript
+**********
+
+- The default mode for TypeScript gRPC compilation has changed to ``grpc-js``. This means imports
+  should now use ``@grpc/grpc-js`` instead of ``grpc``
+  `#134 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/134>`_
+
+
 3.1.1
 -----
 
