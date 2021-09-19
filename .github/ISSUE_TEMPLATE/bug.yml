@@ -65,13 +65,13 @@ body:
       description: Please paste a demo BUILD file if you have one.
       render: Starlark
   - type: textarea
-    id: workspace
+    id: demo_proto
     attributes:
       label: Proto Content
       description: Please paste a demo .proto file if you have one.
       render: protobuf
   - type: textarea
-    id: workspace
+    id: demo_other
     attributes:
       label: Any Other Content
       description: Please paste any other demo files if you have them.
