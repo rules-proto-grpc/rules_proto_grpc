@@ -10,6 +10,8 @@ Rules for generating Python protobuf and gRPC ``.py`` files and libraries using 
 
 .. note:: On Windows, the path to Python for ``pip_install`` may need updating to ``Python.exe``, depending on your install.
 
+.. note:: If you have proto libraries that produce overlapping import paths, be sure to set ``legacy_create_init=False`` on the top level ``py_binary`` or ``py_test`` to ensure all paths are importable.
+
 .. list-table:: Rules
    :widths: 1 2
    :header-rows: 1
