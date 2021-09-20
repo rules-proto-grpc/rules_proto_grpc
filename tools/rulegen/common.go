@@ -47,6 +47,13 @@ var compileRuleAttrs = []*Attr{
 		Doc:       "List of labels that provide extra files to be available during protoc execution",
 		Mandatory: false,
 	},
+	&Attr{
+		Name:      "output_mode",
+		Type:      "string",
+		Default:   "PREFIXED",
+		Doc:       "The output mode for the target. PREFIXED will output to a directory named by the target, NO_PREFIX will output to the current package.",
+		Mandatory: false,
+	},
 }
 
 

@@ -34,6 +34,11 @@ proto_compile_attrs = {
         allow_files = True,
         doc = "List of labels that provide extra files to be available during protoc execution",
     ),
+    "output_mode": attr.string(
+        default = "PREFIXED",
+        values = ["PREFIXED", "NO_PREFIX"],
+        doc = "List of labels that provide extra files to be available during protoc execution",
+    ),
 }
 
 def proto_compile_impl(ctx):
@@ -59,7 +64,6 @@ def proto_compile_impl(ctx):
 
     # Execute with extracted attrs
     return proto_compile(ctx, options, extra_protoc_args, extra_protoc_files)
-
 
 def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     """
@@ -361,11 +365,13 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     if premerge_dirs:
         # If we have any output dirs specified, we declare a single output directory and merge all
         # files in one go. This is necessary to prevent path prefix conflicts
+        if ctx.attr.output_mode != "PREFIXED":
+            fail("Cannot use output_mode = {} when using plugins with directory outputs")
 
         # Declare single output directory
         dir_name = ctx.label.name
         if prefix_path:
-            dir_name = dir_name + "/" + prefix_path
+            dir_name += "/" + prefix_path
         new_dir = ctx.actions.declare_directory(dir_name)
         output_dirs = depset(direct = [new_dir])
 
@@ -434,11 +440,17 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             if prefix_path:
                 path = prefix_path + "/" + path
 
+            # Select output location based on output mode
+            # In PREFIXED mode we output to a directory named by the target label
+            # In NO_PREFIX mode, we output directly to the package root
+            if ctx.attr.output_mode == "PREFIXED":
+                path = ctx.label.name + "/" + path
+
             # Copy file to output
             output_files.append(copy_file(
                 ctx,
                 file,
-                "{}/{}".format(ctx.label.name, path),
+                path,
             ))
 
         output_files = depset(direct = output_files)

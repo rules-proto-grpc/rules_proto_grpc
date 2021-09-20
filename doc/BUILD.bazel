@@ -79,11 +79,11 @@ proto_plugin(
 proto_plugin(
     name = "template_plugin",
     out = "{name}",
-    separate_options_flag = True,
     quirks = [
         "QUIRK_OUT_PASS_ROOT",
         "QUIRK_DIRECT_MODE",
     ],
+    separate_options_flag = True,
     tool = select({
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",

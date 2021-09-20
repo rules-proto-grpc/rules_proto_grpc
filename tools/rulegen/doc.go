@@ -6,7 +6,7 @@ var docCustomRuleTemplateString = mustTemplate(`load(
     "proto_compile_attrs",
     "proto_compile_impl",
 )
-load("//internal:compile.bzl", "proto_compile",)
+load("//internal:compile.bzl", "proto_compile")
 
 # Create compile rule
 def {{ .Rule.Name }}_impl(ctx):
@@ -21,7 +21,8 @@ def {{ .Rule.Name }}_impl(ctx):
 
     # Mutate args with template
     options["*"] = [
-        ctx.file.template.path, ctx.attr.name
+        ctx.file.template.path,
+        ctx.attr.name,
     ]
     extra_protoc_files += [ctx.file.template]
 
@@ -50,7 +51,8 @@ def {{ .Rule.Name }}_impl(ctx):
 var docCustomExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
-    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}.txt",
+    output_mode = "NO_PREFIX",
     protos = [
         "@rules_proto_grpc//example/proto:greeter_grpc",
         "@rules_proto_grpc//example/proto:thing_proto",

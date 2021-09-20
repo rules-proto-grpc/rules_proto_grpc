@@ -104,6 +104,11 @@ Attributes
      - false
      - ``[]``
      - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED will output to a directory named by the target, NO_PREFIX will output to the current package.
 
 Plugins
 *******
@@ -194,6 +199,11 @@ Attributes
      - false
      - ``[]``
      - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED will output to a directory named by the target, NO_PREFIX will output to the current package.
 
 Plugins
 *******

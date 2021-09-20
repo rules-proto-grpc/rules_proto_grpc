@@ -6,7 +6,7 @@ load(
     "proto_compile_attrs",
     "proto_compile_impl",
 )
-load("//internal:compile.bzl", "proto_compile",)
+load("//internal:compile.bzl", "proto_compile")
 
 # Create compile rule
 def doc_template_compile_impl(ctx):
@@ -21,7 +21,8 @@ def doc_template_compile_impl(ctx):
 
     # Mutate args with template
     options["*"] = [
-        ctx.file.template.path, ctx.attr.name
+        ctx.file.template.path,
+        ctx.attr.name,
     ]
     extra_protoc_files += [ctx.file.template]
 

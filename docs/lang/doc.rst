@@ -110,6 +110,11 @@ Attributes
      - false
      - ``[]``
      - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED will output to a directory named by the target, NO_PREFIX will output to the current package.
 
 Plugins
 *******
@@ -201,6 +206,11 @@ Attributes
      - false
      - ``[]``
      - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED will output to a directory named by the target, NO_PREFIX will output to the current package.
 
 Plugins
 *******
@@ -292,6 +302,11 @@ Attributes
      - false
      - ``[]``
      - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED will output to a directory named by the target, NO_PREFIX will output to the current package.
 
 Plugins
 *******
@@ -383,6 +398,11 @@ Attributes
      - false
      - ``[]``
      - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED will output to a directory named by the target, NO_PREFIX will output to the current package.
 
 Plugins
 *******
@@ -420,7 +440,8 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc//doc:defs.bzl", "doc_template_compile")
    
    doc_template_compile(
-       name = "greeter_doc_proto",
+       name = "greeter_doc_proto.txt",
+       output_mode = "NO_PREFIX",
        protos = [
            "@rules_proto_grpc//example/proto:greeter_grpc",
            "@rules_proto_grpc//example/proto:thing_proto",
@@ -470,6 +491,11 @@ Attributes
      - false
      - ``[]``
      - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED will output to a directory named by the target, NO_PREFIX will output to the current package.
    * - ``template``
      - ``label``
      - true
