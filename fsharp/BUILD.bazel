@@ -25,6 +25,6 @@ sh_binary(
     srcs = ["wrapper.sh"],
     data = [
         "@bazel_tools//tools/bash/runfiles",
-        "@protoc-gen-fsharp//:bin",
+        "@grpc-fsharp//:bin",
     ],
 )

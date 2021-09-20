@@ -10,6 +10,6 @@
     "Grpc.Core": "2.40.0",
     "Grpc": "2.40.0",
     "FSharp.Core": "5.0.1",
-    "Protobuf.FSharp": "0.1.1"
+    "Protobuf.FSharp": "0.1.3"
   }
 }

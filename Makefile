@@ -53,12 +53,14 @@ pip_compile:
 .PHONY: csharp_regenerate_packages
 csharp_regenerate_packages:
 	./csharp/nuget/regenerate_packages.sh
+	bazel run //tools:buildifier
 
 
 # Run F# package regeneration
 .PHONY: fsharp_regenerate_packages
 fsharp_regenerate_packages:
 	./fsharp/nuget/regenerate_packages.sh
+	bazel run //tools:buildifier
 
 
 # Run all language specific updates

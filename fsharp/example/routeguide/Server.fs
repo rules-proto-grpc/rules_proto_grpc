@@ -119,6 +119,7 @@ let main argv =
 
     server.Start()
     Console.WriteLine("F# server listening on port " + (port.ToString()) + ". CTRL+C to stop.")
-    Console.ReadLine() |> ignore
+    while true do
+        Threading.Thread.Sleep(1000);
     server.ShutdownAsync().Wait();
     0
