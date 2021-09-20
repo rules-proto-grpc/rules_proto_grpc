@@ -30,6 +30,10 @@ proto_compile_attrs = {
     "extra_protoc_args": attr.string_list(
         doc = "A list of extra args to pass directly to protoc, not as plugin options",
     ),
+    "extra_protoc_files": attr.label_list(
+        allow_files = True,
+        doc = "List of labels that provide extra files to be available during protoc execution",
+    ),
 }
 
 def proto_compile_impl(ctx):
@@ -46,14 +50,38 @@ def proto_compile_impl(ctx):
 
     """
 
-    ###
-    ### Setup common state
-    ###
+    # Load attrs that we pass as args
+    # This is done to allow writing rules that can call proto_compile with mutable attributes,
+    # such as in doc_template_compile
+    options = ctx.attr.options
+    extra_protoc_args = getattr(ctx.attr, "extra_protoc_args", [])
+    extra_protoc_files = ctx.files.extra_protoc_files
+
+    # Execute with extracted attrs
+    return proto_compile(ctx, options, extra_protoc_args, extra_protoc_files)
+
+
+def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
+    """
+    Common implementation function for lang_*_compile rules.
+
+    Args:
+        ctx: The Bazel rule execution context object.
+        options: The mutable options dict.
+        extra_protoc_args: The mutable extra_protoc_args list.
+        extra_protoc_files: The mutable extra_protoc_files list.
+
+    Returns:
+        Providers:
+            - ProtoCompileInfo
+            - DefaultInfo
+
+    """
 
     # Load attrs
     proto_infos = [dep[ProtoInfo] for dep in ctx.attr.protos]
-    verbose = ctx.attr.verbose
     plugins = [plugin[ProtoPluginInfo] for plugin in ctx.attr._plugins]
+    verbose = ctx.attr.verbose
 
     # Load toolchain and tools
     protoc_toolchain_info = ctx.toolchains[str(Label("//protobuf:toolchain_type"))]
@@ -75,8 +103,8 @@ def proto_compile_impl(ctx):
     # Convert options dict to label keys
     plugin_labels = [plugin.label for plugin in plugins]
     per_plugin_options = {
-        Label(plugin_label): options
-        for plugin_label, options in ctx.attr.options.items()
+        Label(plugin_label): opts
+        for plugin_label, opts in options.items()
         if plugin_label != "*"
     }
 
@@ -85,10 +113,10 @@ def proto_compile_impl(ctx):
     all_plugin_options = []  # Options applied to all plugins, from the '*' key
 
     # Only allow '*' by itself
-    if "*" in ctx.attr.options:
-        if len(ctx.attr.options) > 1:
+    if "*" in options:
+        if len(options) > 1:
             fail("The options attr on target {} cannot contain '*' and other labels. Use either '*' or labels".format(ctx.label))
-        all_plugin_options = ctx.attr.options["*"]
+        all_plugin_options = options["*"]
 
     # Check all labels match a plugin in use
     for plugin_label in per_plugin_options:
@@ -258,7 +286,7 @@ def proto_compile_impl(ctx):
             proto_infos,
             out_arg,
             extra_options = all_plugin_options + per_plugin_options.get(plugin.label, []),
-            extra_protoc_args = getattr(ctx.attr, "extra_protoc_args", []),
+            extra_protoc_args = extra_protoc_args,
         )
         args = ctx.actions.args()
         args.add_all(args_list)
@@ -283,7 +311,7 @@ def proto_compile_impl(ctx):
 
         mnemonic = "ProtoCompile"
         command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + " $@"  # $@ is replaced with args list
-        inputs = cmd_inputs
+        cmd_inputs += extra_protoc_files
         tools = [protoc] + ([plugin.tool_executable] if plugin.tool_executable else [])
 
         # Amend command with debug options
@@ -298,7 +326,7 @@ def proto_compile_impl(ctx):
 
         if verbose > 3:
             command = "env && " + command
-            for f in inputs:
+            for f in cmd_inputs:
                 print("INPUT:", f.path)  # buildifier: disable=print
             for f in protos:
                 print("TARGET PROTO:", f.path)  # buildifier: disable=print
@@ -312,7 +340,7 @@ def proto_compile_impl(ctx):
             mnemonic = mnemonic,
             command = command,
             arguments = [args],
-            inputs = inputs,
+            inputs = cmd_inputs,
             tools = tools,
             outputs = plugin_protoc_outputs,
             use_default_shell_env = plugin.use_built_in_shell_environment,
@@ -369,17 +397,17 @@ def proto_compile_impl(ctx):
             ))
 
         # Add debug options
-        if ctx.attr.verbose > 1:
+        if verbose > 1:
             command_parts = command_parts + [
                 "echo '\n##### SANDBOX AFTER MERGING DIRECTORIES'",
                 "find . -type l",
             ]
-        if ctx.attr.verbose > 2:
+        if verbose > 2:
             command_parts = [
                 "echo '\n##### SANDBOX BEFORE MERGING DIRECTORIES'",
                 "find . -type l",
             ] + command_parts
-        if ctx.attr.verbose > 0:
+        if verbose > 0:
             print(
                 "Directory merge command: {}".format(" && ".join(command_parts)),
             )  # buildifier: disable=print

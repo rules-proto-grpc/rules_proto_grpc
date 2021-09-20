@@ -75,3 +75,19 @@ proto_plugin(
     }),
     visibility = ["//visibility:public"],
 )
+
+proto_plugin(
+    name = "template_plugin",
+    out = "{name}",
+    separate_options_flag = True,
+    quirks = [
+        "QUIRK_OUT_PASS_ROOT",
+        "QUIRK_DIRECT_MODE",
+    ],
+    tool = select({
+        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
+    }),
+    visibility = ["//visibility:public"],
+)

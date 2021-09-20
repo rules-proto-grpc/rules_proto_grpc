@@ -40,6 +40,13 @@ var compileRuleAttrs = []*Attr{
 		Doc:       "A list of extra args to pass directly to protoc, not as plugin options",
 		Mandatory: false,
 	},
+	&Attr{
+		Name:      "extra_protoc_files",
+		Type:      "label_list",
+		Default:   "[]",
+		Doc:       "List of labels that provide extra files to be available during protoc execution",
+		Mandatory: false,
+	},
 }
 
 
@@ -81,7 +88,7 @@ var compileRuleTemplate = mustTemplate(`load(
 var argsForwardingSnippet = `**{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos"] + proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys()
         }  # Forward args`
 
 

@@ -111,6 +111,11 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
 
 Plugins
 *******
@@ -196,6 +201,11 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
 
 Plugins
 *******
@@ -290,6 +300,11 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
 
 Plugins
 *******
@@ -379,6 +394,11 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
    * - ``deps``
      - ``label_list``
      - false
@@ -465,6 +485,11 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
    * - ``deps``
      - ``label_list``
      - false
@@ -559,6 +584,11 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
    * - ``deps``
      - ``label_list``
      - false

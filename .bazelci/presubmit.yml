@@ -695,6 +695,28 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/doc/doc_markdown_compile
+  doc_doc_template_compile_ubuntu1804:
+    name: 'doc: doc_template_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_template_compile
+  doc_doc_template_compile_windows:
+    name: 'doc: doc_template_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_template_compile
+  doc_doc_template_compile_macos:
+    name: 'doc: doc_template_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/doc/doc_template_compile
   fsharp_fsharp_proto_compile_ubuntu1804:
     name: 'fsharp: fsharp_proto_compile'
     platform: ubuntu1804

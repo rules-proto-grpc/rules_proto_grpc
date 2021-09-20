@@ -13,7 +13,7 @@ def c_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos"] + proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys()
         }  # Forward args
     )
 

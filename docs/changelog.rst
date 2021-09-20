@@ -79,6 +79,7 @@ Doc
 ***
 
 - Updated ``protoc-gen-doc`` to 1.5.0
+- Added ``doc_template_compile`` to generate output using a custom Go template file.
 
 Go
 **
