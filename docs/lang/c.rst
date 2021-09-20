@@ -24,7 +24,7 @@ Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <
 c_proto_compile
 ---------------
 
-.. warning:: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly or may change in future releases!
 
 Generates C protobuf ``.h`` & ``.c`` files
 
@@ -116,7 +116,7 @@ Plugins
 c_proto_library
 ---------------
 
-.. warning:: This rule is experimental. It may not work correctly!
+.. warning:: This rule is experimental. It may not work correctly or may change in future releases!
 
 Generates a C protobuf library using ``cc_library``, with dependencies linked
 

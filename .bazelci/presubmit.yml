@@ -853,6 +853,28 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
+  go_go_validate_compile_ubuntu1804:
+    name: 'go: go_validate_compile'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/go/go_validate_compile
+  go_go_validate_compile_windows:
+    name: 'go: go_validate_compile'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/go/go_validate_compile
+  go_go_validate_compile_macos:
+    name: 'go: go_validate_compile'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/go/go_validate_compile
   go_go_proto_library_ubuntu1804:
     name: 'go: go_proto_library'
     platform: ubuntu1804
@@ -897,6 +919,28 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
+  go_go_validate_library_ubuntu1804:
+    name: 'go: go_validate_library'
+    platform: ubuntu1804
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/go/go_validate_library
+  go_go_validate_library_windows:
+    name: 'go: go_validate_library'
+    platform: windows
+    build_flags:
+    build_targets:
+      - "//..."
+    working_directory: example/go/go_validate_library
+  go_go_validate_library_macos:
+    name: 'go: go_validate_library'
+    platform: macos
+    build_flags:
+    - "--copt=-DGRPC_BAZEL_BUILD"
+    build_targets:
+      - "//..."
+    working_directory: example/go/go_validate_library
   grpc-gateway_gateway_grpc_compile_ubuntu1804:
     name: 'grpc-gateway: gateway_grpc_compile'
     platform: ubuntu1804

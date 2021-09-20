@@ -323,7 +323,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 
 		if rule.Experimental {
-			out.w(".. warning:: This rule is experimental. It may not work correctly!")
+			out.w(".. warning:: This rule is experimental. It may not work correctly or may change in future releases!")
 			out.ln()
 		}
 		out.w(rule.Doc)
