@@ -35,6 +35,9 @@ routeguide_test_matrix(
         "//rust/example/routeguide:server",
         # "//scala/example/routeguide:server",  # Doesn't exist yet
     ],
+    skip = [
+        "fsharp_js",  # Broken
+    ],
     tagmap = {
         # Apply per-lang tags
         # "csharp": ["no-sandbox", "manual"],
