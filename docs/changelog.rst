@@ -13,8 +13,8 @@ The 4.0.0 release brings a number of key improvements to tidy up rules_proto_grp
 updates to all of the main dependencies. For most users, 4.0.0 will be a drop-in replacement to
 the 3.x.x releases and the updates for each language are shown below. Should you have any issues
 with the new release, please open a new
-`issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`_ or
-`discussion <https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new>`_.
+`issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`__ or
+`discussion <https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new>`__.
 
 The following changes are considered 'breaking', requiring the step to the 4.x.x release cycle:
 
@@ -44,7 +44,7 @@ The following changes are considered 'breaking', requiring the step to the 4.x.x
 
 - The require path for generated files no longer includes the ``<target_name>_pb`` path segment by
   default. For the previous behaviour, set ``legacy_path = True`` on the library.
-  `#107 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/107>`_
+  `#107 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/107>`__
 
 General
 *******
@@ -67,7 +67,7 @@ C
 C#/F#
 *****
 
-- Added F# support. `#127 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/127>`_
+- Added F# support. `#127 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/127>`__
 - Updated gRPC to 2.40.0
 
 D
@@ -84,6 +84,9 @@ Go
 **
 
 - Updated ``rules_go`` to v0.28.0
+- Added validator rules using
+  `protoc-gen-validate <https://github.com/envoyproxy/protoc-gen-validate>`__.
+  `#16 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/16>`__
 
 grpc-gateway
 ************
@@ -101,7 +104,7 @@ JavaScript
 - **Breaking change**: The require path for generated files no longer includes the
   ``<target_name>_pb`` path segment by default. For the previous behaviour, set
   ``legacy_path = True`` on the library.
-  `#107 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/107>`_
+  `#107 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/107>`__
 - Added ``package_name`` attribute to library rules, which allows customising the package name of
   the generated library. By default if unspecified, the target name will continue to be used as
   in previous versions.
@@ -154,7 +157,7 @@ TypeScript
 
 - The default mode for TypeScript gRPC compilation has changed to ``grpc-js``. This means imports
   should now use ``@grpc/grpc-js`` instead of ``grpc``
-  `#134 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/134>`_
+  `#134 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/134>`__
 
 
 3.1.1
@@ -168,9 +171,9 @@ Improved documentation is now available at https://rules-proto-grpc.aliddell.com
 
 This update mostly brings fixes to the JavaScript rules, along with new rules for generating
 Markdown, JSON, HTML or DocBook documentation from .proto files using
-`protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`_. Additionally, new
+`protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`__. Additionally, new
 ``buf_proto_lint`` and ``buf_proto_breaking`` rules have been added to support linting .proto files
-and checking for breaking changes using `Buf <https://buf.build>`_.
+and checking for breaking changes using `Buf <https://buf.build>`__.
 
 General
 *******
@@ -180,20 +183,20 @@ General
 Buf
 ***
 
-- Added linting and breaking change detection rules using `Buf <https://buf.build>`_
+- Added linting and breaking change detection rules using `Buf <https://buf.build>`__
 
 Doc
 ***
 
 - Added documentation rules to generate Markdown, JSON, HTML or DocBook files using
-  `protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`_
+  `protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`__
 
 grpc-gateway
 ************
 
 - Updated grpc-gateway to 2.3.0
 - Fixed issue with mixing .proto files that do and do not contain services
-  `#72 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/72>`_
+  `#72 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/72>`__
 
 JavaScript
 **********
@@ -205,7 +208,7 @@ JavaScript
 - Updated ``@grpc/grpc-js`` to 1.2.8
 - Fixed missing ``DeclarationInfo`` when using the ``js_grpc_node_library`` or
   ``js_grpc_web_library`` rules
-  `#113 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/113>`_
+  `#113 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/113>`__
 - Added a TypeScript test workspace
 
 Objective-C
@@ -228,8 +231,8 @@ This update brings some major improvements to rules_proto_grpc and solves many o
 issues that have been present. However, in doing so there have been some changes that make a major
 version increment necessary and may require updates to your build files. The updates for each
 language are explained below and should you have any issues, please open a new
-`issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`_ or
-`discussion <https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new>`_.
+`issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`__ or
+`discussion <https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new>`__.
 
 The most substantial change is that compilation of .proto files into language specific files is no
 longer transitive. This means that only the direct dependencies of a ``lang_proto_library`` will be
@@ -291,9 +294,9 @@ General Changes
 - Updated gRPC to 1.35.0
 - All rules have new per-target ``options`` and ``extra_protoc_args`` attributes to control options
   to protoc
-  `#54 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/54>`_
-  `#68 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/68>`_
-  `#105 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/105>`_
+  `#54 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/54>`__
+  `#68 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/68>`__
+  `#105 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/105>`__
 - Updated ``rules_proto`` to latest head
 - ``aspect.bzl`` and ``plugin.bzl`` have merged to a single top level ``defs.bzl``
 - The minimum supported Bazel version is 3.0.0. Some language specific rules may require 4.0.0
@@ -309,15 +312,15 @@ C
 *
 
 - Added experimental rules for C using upb
-  `#20 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/20>`_
+  `#20 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/20>`__
 
 C++
 ***
 
 - Non-transitive mode resolves issue where the same proto may be defined more than once
-  `#25 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/25>`_
+  `#25 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/25>`__
 - Header and source files are now correctly passed to the underlying ``cc_library`` rule
-  `#40 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/40>`_
+  `#40 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/40>`__
 
 Closure
 *******
@@ -345,7 +348,7 @@ Go
 - **WORKSPACE update needed**: It is now necessary to specify ``version`` to
   ``go_register_toolchains``
 - The plugin used for compiling .proto files for Go has switched to the new
-  google.golang.org/protobuf `#85 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/85>`_
+  google.golang.org/protobuf `#85 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/85>`__
 - Updated ``gazelle`` to 0.22.3
 - Updated ``org_golang_x_net`` to v0.0.0-20210129194117-4acb7895a057
 - Updated ``org_golang_x_text`` to 0.3.5
@@ -357,7 +360,7 @@ grpc-gateway
 
 - Updated ``grpc-gateway`` to 2.2.0
 - The ``gateway_swagger_compile`` rule has been replaced with ``gateway_openapiv2_compile``
-  `#93 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/93>`_
+  `#93 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/93>`__
 - The grpc-gateway rules have move to repo top level, meaning they are no longer under the
   ``github.com/...`` prefix. To update your use of these rules find and replace
   ``@rules_proto_grpc//github.com/grpc-ecosystem/grpc-gateway`` with
@@ -368,7 +371,7 @@ gRPC-Web
 
 - The gRPC-Web rules have moved into ``//js``
 - Text mode generation is now supported
-  `#59 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/59>`_
+  `#59 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/59>`__
 
 Java
 ****
@@ -391,7 +394,7 @@ Objective-C
 
 - Added ``copt`` argument pass-through for Obj-C library rules.
 - Header and source files are now correctly passed to the underlying ``cc_library`` rule
-  `#40 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/40>`_
+  `#40 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/40>`__
 
 Python
 ******
@@ -407,7 +410,7 @@ Ruby
 - **WORKSPACE update needed**: The above changes requiresupdates to your WORKSPACE, please see the
   examples for the latest WORKSPACE template for the Ruby rules
 - **Open issue**: The `grpc` gem may not be loadable in generated Ruby libraries, please see
-  `this issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/65>`_
+  `this issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/65>`__
 
 Rust
 ****
@@ -422,7 +425,7 @@ Scala
 *****
 
 - Update ``rules_scala`` to latest
-  `#108 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/108>`_
+  `#108 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/108>`__
 - **WORKSPACE update needed**: The ``scala_config`` rule from ``rules_scala`` is now required in
   your WORKSPACE
 
@@ -432,7 +435,7 @@ Swift
 - Updated ``rules_swift`` to 0.18.0
 - Updated ``grpc-swift`` to 1.0.0
 - Visibility of generated types is now configurable with ``options``
-  `#111 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/111>`_
+  `#111 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/111>`__
 
 Thanks
 ******
@@ -643,4 +646,4 @@ Ruby
 -----
 
 Initial release of ``rules_proto_grpc``. For changes from predecessor ``rules_proto``, please see
-`MIGRATION.md <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/0.1.0/docs/MIGRATION.md>`_
+`MIGRATION.md <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/0.1.0/docs/MIGRATION.md>`__
