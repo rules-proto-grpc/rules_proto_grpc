@@ -33,7 +33,7 @@ routeguide_test_matrix(
         "//python/example/routeguide:server",
         "//ruby/example/routeguide:server",
         "//rust/example/routeguide:server",
-        "//scala/example/routeguide:server",
+        # "//scala/example/routeguide:server",  # Doesn't exist yet
     ],
     tagmap = {
         # Apply per-lang tags

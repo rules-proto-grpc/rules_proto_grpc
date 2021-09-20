@@ -27,7 +27,6 @@ scala_library(
         "example/AtomicRef.scala",
         "example/RouteGuideService.scala",
     ],
-    visibility = ["//example/routeguide:__pkg__"],
     deps = [
         ":routeguide_scala_grpc",
     ],
