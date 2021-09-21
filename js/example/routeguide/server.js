@@ -1,8 +1,8 @@
 const grpc = require('@grpc/grpc-js');
 
+const messages = require('routeguide_package/example/proto/routeguide_pb.js')
+const services = require('routeguide_package/example/proto/routeguide_grpc_pb.js')
 const featureDb = require('rules_proto_grpc/example/proto/routeguide_features.json');
-const messages = require('routeguide/routeguide_pb/example/proto/routeguide_pb.js')
-const services = require('routeguide/routeguide_pb/example/proto/routeguide_grpc_pb.js')
 
 const COORD_FACTOR = 1e7;
 let feature_list = [];

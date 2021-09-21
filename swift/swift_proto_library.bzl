@@ -12,7 +12,7 @@ def swift_proto_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys()
         }  # Forward args
     )
 
@@ -20,7 +20,7 @@ def swift_proto_library(name, **kwargs):
     swift_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         module_name = kwargs.get("module_name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

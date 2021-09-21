@@ -1,12 +1,10 @@
+load("@rules_java//java:defs.bzl", "java_binary")
 load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
     name = "scala_plugin",
     out = "{name}.jar",
-    tool = select({
-        "@bazel_tools//src/conditions:host_windows": "@com_github_scalapb_scalapb//:bin/protoc-gen-scala.bat",
-        "//conditions:default": "@com_github_scalapb_scalapb//:bin/protoc-gen-scala",
-    }),
+    tool = ":scala_pb_plugin_bin",
     use_built_in_shell_environment = True,
     visibility = ["//visibility:public"],
 )
@@ -17,10 +15,15 @@ proto_plugin(
     options = [
         "grpc",
     ],
-    tool = select({
-        "@bazel_tools//src/conditions:host_windows": "@com_github_scalapb_scalapb//:bin/protoc-gen-scala.bat",
-        "//conditions:default": "@com_github_scalapb_scalapb//:bin/protoc-gen-scala",
-    }),
+    tool = ":scala_pb_plugin_bin",
     use_built_in_shell_environment = True,
     visibility = ["//visibility:public"],
+)
+
+java_binary(
+    name = "scala_pb_plugin_bin",
+    main_class = "scalapb.ScalaPbCodeGenerator",
+    runtime_deps = [
+        "@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_compilerplugin_2_12",
+    ],
 )

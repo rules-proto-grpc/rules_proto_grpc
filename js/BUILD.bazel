@@ -42,6 +42,7 @@ proto_plugin(
     empty_template = "empty.template",
     options = [
         "service=grpc-node",
+        "mode=grpc-js",
     ],
     outputs = ["{protopath}_grpc_pb.d.ts"],
     tool = "@npm//ts-protoc-gen/bin:protoc-gen-ts",

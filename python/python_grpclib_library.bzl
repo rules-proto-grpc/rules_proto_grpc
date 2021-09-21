@@ -12,7 +12,7 @@ def python_grpclib_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys()
         }  # Forward args
     )
 
@@ -22,7 +22,7 @@ def python_grpclib_library(name, **kwargs):
         srcs = [name_pb],
         deps = [
             "@com_google_protobuf//:protobuf_python",
-        ] + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        ] + GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

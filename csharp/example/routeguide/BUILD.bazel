@@ -13,7 +13,7 @@ csharp_library(
     ],
     deps = [
         ":routeguide.dll",
-        "@newtonsoft.json//:netcoreapp2.0_core",
+        "@newtonsoft.json//:lib",
     ],
 )
 
@@ -27,8 +27,8 @@ csharp_binary(
     deps = [
         ":routeguide.dll",
         ":util.dll",
-        "@google.protobuf//:netstandard1.0_core",
-        "@grpc.core//:netstandard1.5_core",
+        "@google.protobuf//:lib",
+        "@grpc.core//:lib",
     ],
 )
 
@@ -42,7 +42,7 @@ csharp_binary(
     deps = [
         ":routeguide.dll",
         ":util.dll",
-        "@google.protobuf//:netstandard1.0_core",
-        "@grpc.core//:netstandard1.5_core",
+        "@google.protobuf//:lib",
+        "@grpc.core//:lib",
     ],
 )

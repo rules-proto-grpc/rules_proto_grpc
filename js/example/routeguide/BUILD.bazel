@@ -3,6 +3,13 @@ load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
 nodejs_grpc_library(
     name = "routeguide",
+    legacy_path = True,
+    protos = ["//example/proto:routeguide_proto"],
+)
+
+nodejs_grpc_library(
+    name = "routeguide_stripped",
+    package_name = "routeguide_package",
     protos = ["//example/proto:routeguide_proto"],
 )
 
@@ -22,7 +29,7 @@ nodejs_binary(
     name = "server",
     data = [
         "server.js",
-        ":routeguide",
+        ":routeguide_stripped",
         "//example/proto:routeguide_features",
     ],
     entry_point = "server.js",

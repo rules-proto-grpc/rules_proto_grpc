@@ -27,7 +27,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     swift_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         module_name = kwargs.get("module_name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -53,7 +53,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     swift_library(
         name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         module_name = kwargs.get("module_name"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

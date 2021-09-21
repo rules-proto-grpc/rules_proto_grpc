@@ -25,9 +25,9 @@ var ciPlatformsMap = map[string][]string{
 // https://github.com/bazelbuild/rules_dotnet/issues/225
 // TODO: Remove if becomes unnecessary
 var ciPlatformFlags = map[string][]string{
-	"ubuntu1804":   []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_3.1.100"},
-	"windows": []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_3.1.100"},
-	"macos":   []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_3.1.100"},
+	"ubuntu1804": []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"},
+	"windows":    []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"},
+	"macos":      []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"},
 }
 
 func main() {
@@ -109,6 +109,7 @@ func action(c *cli.Context) error {
 		makeCsharp(),
 		makeD(),
 		makeDoc(),
+		makeFsharp(),
 		makeGo(),
 		makeGrpcGateway(),
 		makeJava(),
@@ -322,7 +323,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 
 		if rule.Experimental {
-			out.w(".. warning:: This rule is experimental. It may not work correctly!")
+			out.w(".. warning:: This rule is experimental. It may not work correctly or may change in future releases!")
 			out.ln()
 		}
 		out.w(rule.Doc)
@@ -339,7 +340,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("^^^^^^^^^^^^^")
 		out.ln()
 
-		out.w(".. code-block:: python")  // Treat starlark as python, as pygments needs this
+		out.w(".. code-block:: python") // Treat starlark as python, as pygments needs this
 		out.ln()
 		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
@@ -410,7 +411,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		}
 	}
 
-	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name + ".rst"))
+	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name+".rst"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
@@ -426,8 +427,8 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	out.w("| ---: | :--- | :--- |")
 	for _, lang := range languages {
 		for _, rule := range lang.Rules {
-			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/latest/lang/%s.html)", lang.DisplayName, lang.Name)
-			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.aliddell.com/en/latest/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
+			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.com/en/latest/lang/%s.html)", lang.DisplayName, lang.Name)
+			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.com/en/latest/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
 			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
 			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
 		}
@@ -474,6 +475,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		out.w("    build_flags:")
 		if ciPlatform == "macos" {
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+			out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
 		}
 		for _, flag := range ciPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
@@ -489,6 +491,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		out.w(`    - "--test_output=errors"`)
 		if ciPlatform == "macos" {
 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+			out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
 		}
 		for _, flag := range ciPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
@@ -521,8 +524,9 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				out.w("    build_flags:")
 				if ciPlatform == "macos" {
 					out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+					out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
 				}
-				if lang.Name == "csharp" {  // https://github.com/bazelbuild/rules_dotnet/issues/225
+				if lang.Name == "csharp" || lang.Name == "fsharp" { // https://github.com/bazelbuild/rules_dotnet/issues/225
 					for _, flag := range ciPlatformFlags[ciPlatform] {
 						out.w(`    - "%s"`, flag)
 					}
@@ -560,11 +564,13 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 			out.w("    build_flags:")
 			if ciPlatform == "macos" {
 				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+				out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
 			}
 			out.w("    test_flags:")
 			out.w(`    - "--test_output=errors"`)
 			if ciPlatform == "macos" {
 				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+				out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
 			}
 			out.w("    test_targets:")
 			out.w(`      - "//..."`)

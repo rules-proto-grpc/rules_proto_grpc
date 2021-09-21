@@ -40,7 +40,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS = "MAVEN_ARTIFACTS", rules_proto_grpc_scala_repos = "scala_repos")
    
    rules_proto_grpc_scala_repos()
    
@@ -52,13 +52,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    scala_repositories()
    
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
    load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
    
    scala_register_toolchains()
+   
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   
+   maven_install(
+       name = "rules_proto_grpc_scala_maven",
+       artifacts = RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS,
+       repositories = [
+           "https://repo1.maven.org/maven2",
+       ],
+   )
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -108,7 +114,7 @@ Attributes
      - ``int``
      - false
      - ``0``
-     - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
+     - The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc
    * - ``prefix_path``
      - ``string``
      - false
@@ -119,6 +125,16 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
 
 Plugins
 *******
@@ -142,7 +158,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS = "MAVEN_ARTIFACTS", rules_proto_grpc_scala_repos = "scala_repos")
    
    rules_proto_grpc_scala_repos()
    
@@ -154,10 +170,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    scala_repositories()
    
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
    load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
    
    scala_register_toolchains()
@@ -165,6 +177,16 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
    
    grpc_java_repositories()
+   
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   
+   maven_install(
+       name = "rules_proto_grpc_scala_maven",
+       artifacts = RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS,
+       repositories = [
+           "https://repo1.maven.org/maven2",
+       ],
+   )
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -209,7 +231,7 @@ Attributes
      - ``int``
      - false
      - ``0``
-     - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
+     - The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc
    * - ``prefix_path``
      - ``string``
      - false
@@ -220,6 +242,16 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
 
 Plugins
 *******
@@ -243,7 +275,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS = "MAVEN_ARTIFACTS", rules_proto_grpc_scala_repos = "scala_repos")
    
    rules_proto_grpc_scala_repos()
    
@@ -255,13 +287,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    scala_repositories()
    
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
    load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
    
    scala_register_toolchains()
+   
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   
+   maven_install(
+       name = "rules_proto_grpc_scala_maven",
+       artifacts = RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS,
+       repositories = [
+           "https://repo1.maven.org/maven2",
+       ],
+   )
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -313,7 +351,7 @@ Attributes
      - ``int``
      - false
      - ``0``
-     - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
+     - The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc
    * - ``prefix_path``
      - ``string``
      - false
@@ -324,6 +362,16 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
    * - ``deps``
      - ``label_list``
      - false
@@ -352,7 +400,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS = "MAVEN_ARTIFACTS", rules_proto_grpc_scala_repos = "scala_repos")
    
    rules_proto_grpc_scala_repos()
    
@@ -364,10 +412,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    scala_repositories()
    
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
    load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
    
    scala_register_toolchains()
@@ -375,6 +419,16 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
    
    grpc_java_repositories()
+   
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   
+   maven_install(
+       name = "rules_proto_grpc_scala_maven",
+       artifacts = RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS,
+       repositories = [
+           "https://repo1.maven.org/maven2",
+       ],
+   )
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -420,7 +474,7 @@ Attributes
      - ``int``
      - false
      - ``0``
-     - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
+     - The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc
    * - ``prefix_path``
      - ``string``
      - false
@@ -431,6 +485,16 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
    * - ``deps``
      - ``label_list``
      - false

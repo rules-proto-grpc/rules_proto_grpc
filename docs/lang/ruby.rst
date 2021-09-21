@@ -48,7 +48,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_ruby_dependencies()
    
-   rules_ruby_select_sdk(version = "2.7.1")
+   rules_ruby_select_sdk(version = "3.0.1")
    
    load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
    
@@ -56,6 +56,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "rules_proto_grpc_bundle",
        gemfile = "@rules_proto_grpc//ruby:Gemfile",
        gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+       includes = {"grpc": ["etc"]},
    )
 
 ``BUILD.bazel``
@@ -106,7 +107,7 @@ Attributes
      - ``int``
      - false
      - ``0``
-     - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
+     - The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc
    * - ``prefix_path``
      - ``string``
      - false
@@ -117,6 +118,16 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
 
 Plugins
 *******
@@ -148,7 +159,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_ruby_dependencies()
    
-   rules_ruby_select_sdk(version = "2.7.1")
+   rules_ruby_select_sdk(version = "3.0.1")
    
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
@@ -160,6 +171,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "rules_proto_grpc_bundle",
        gemfile = "@rules_proto_grpc//ruby:Gemfile",
        gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+       includes = {"grpc": ["etc"]},
    )
 
 ``BUILD.bazel``
@@ -205,7 +217,7 @@ Attributes
      - ``int``
      - false
      - ``0``
-     - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
+     - The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc
    * - ``prefix_path``
      - ``string``
      - false
@@ -216,6 +228,16 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
 
 Plugins
 *******
@@ -248,7 +270,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_ruby_dependencies()
    
-   rules_ruby_select_sdk(version = "2.7.1")
+   rules_ruby_select_sdk(version = "3.0.1")
    
    load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
    
@@ -256,6 +278,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "rules_proto_grpc_bundle",
        gemfile = "@rules_proto_grpc//ruby:Gemfile",
        gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+       includes = {"grpc": ["etc"]},
    )
 
 ``BUILD.bazel``
@@ -308,7 +331,7 @@ Attributes
      - ``int``
      - false
      - ``0``
-     - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
+     - The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc
    * - ``prefix_path``
      - ``string``
      - false
@@ -319,6 +342,16 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
    * - ``deps``
      - ``label_list``
      - false
@@ -350,7 +383,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_ruby_dependencies()
    
-   rules_ruby_select_sdk(version = "2.7.1")
+   rules_ruby_select_sdk(version = "3.0.1")
    
    load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
@@ -362,6 +395,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "rules_proto_grpc_bundle",
        gemfile = "@rules_proto_grpc//ruby:Gemfile",
        gemfile_lock = "@rules_proto_grpc//ruby:Gemfile.lock",
+       includes = {"grpc": ["etc"]},
    )
 
 ``BUILD.bazel``
@@ -408,7 +442,7 @@ Attributes
      - ``int``
      - false
      - ``0``
-     - The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*
+     - The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc
    * - ``prefix_path``
      - ``string``
      - false
@@ -419,6 +453,16 @@ Attributes
      - false
      - ``[]``
      - A list of extra args to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_files``
+     - ``label_list``
+     - false
+     - ``[]``
+     - List of labels that provide extra files to be available during protoc execution
+   * - ``output_mode``
+     - ``string``
+     - false
+     - ``PREFIXED``
+     - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
    * - ``deps``
      - ``label_list``
      - false

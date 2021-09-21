@@ -14,7 +14,7 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys()
         }  # Forward args
     )
 
@@ -22,21 +22,21 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     rust_proto_lib(
         name = name_lib,
         compilation = name_pb,
-        grpc = True,
+        externs = ["protobuf", "grpc", "grpc_protobuf"],
     )
 
     # Create rust library
     rust_library(
         name = name,
         srcs = [name_pb, name_lib],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
 
 GRPC_DEPS = [
     Label("//rust/raze:futures"),
-    Label("//rust/raze:grpcio"),
+    Label("//rust/raze:grpc"),
+    Label("//rust/raze:grpc_protobuf"),
     Label("//rust/raze:protobuf"),
-    Label("//rust:upb_libdescriptor_proto"),
 ]

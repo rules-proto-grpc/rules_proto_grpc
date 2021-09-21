@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package example.api;
 
+option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/grpc-gateway/examples/api";
+
 import "google/api/annotations.proto";
 
 service CustomerService {

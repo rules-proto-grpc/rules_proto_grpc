@@ -23,7 +23,7 @@ class RouteGuideClient(host: String, port: Int) {
   val channel =
     ManagedChannelBuilder
       .forAddress(host, port)
-      .usePlaintext(true)
+      .usePlaintext()
       .build()
 
   val blockingStub = RouteGuideGrpc.blockingStub(channel)
@@ -178,19 +178,6 @@ class RouteGuideClient(host: String, port: Int) {
 
 object RouteGuideClient extends App {
   val logger = Logger.getLogger(getClass.getName)
-
-// This isn't working due to some issue with the json4s library - not a priority to solve it
-//
-//  val features: Seq[Feature] = Try {
-//    RouteGuidePersistence.parseFeatures(RouteGuidePersistence.defaultFeatureFile)
-//  } recoverWith {
-//    case e: Throwable =>
-//      logger.warning("features load failed: " + e)
-//      Failure(e)
-//  } getOrElse {
-//    logger.warning("Can't load feature list from file")
-//    Seq.empty
-//  }
 
   val features = RouteGuidePersistence.getFeatures
 

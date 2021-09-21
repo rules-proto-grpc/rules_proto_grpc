@@ -72,7 +72,7 @@ routeguide_test = rule(
     test = True,
 )
 
-def routeguide_test_matrix(name = "", clients = [], servers = [], database = "//example/proto:routeguide_features", tagmap = {}):
+def routeguide_test_matrix(name = "", clients = [], servers = [], database = "//example/proto:routeguide_features", tagmap = {}, skip = []):
     """
     Build a matrix of tests that checks every client against every server.
 
@@ -82,6 +82,7 @@ def routeguide_test_matrix(name = "", clients = [], servers = [], database = "//
         servers: The list of available routeguide servers.
         database: The features list to provide to the test.
         tagmap: The dict of tags to apply to specific languages or tests ("lang" or "lang_lang").
+        skip: Combinations of client and server to skip, e.g. "cpp_js"
 
     Returns:
         Nothing.
@@ -93,6 +94,8 @@ def routeguide_test_matrix(name = "", clients = [], servers = [], database = "//
         for client in clients:
             client_name = get_parent_dirname(client)
             name = "%s_%s" % (client_name, server_name)
+            if name in skip:
+                continue
 
             # Extract tags for client and server
             tags = []

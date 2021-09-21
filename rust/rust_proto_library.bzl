@@ -14,7 +14,7 @@ def rust_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys()
         }  # Forward args
     )
 
@@ -22,14 +22,14 @@ def rust_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
     rust_proto_lib(
         name = name_lib,
         compilation = name_pb,
-        grpc = False,
+        externs = ["protobuf"],
     )
 
     # Create rust library
     rust_library(
         name = name,
         srcs = [name_pb, name_lib],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )

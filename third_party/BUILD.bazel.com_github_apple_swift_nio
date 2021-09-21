@@ -15,6 +15,7 @@ cc_library(
     srcs = glob(["Sources/CNIODarwin/**/*.c", "Sources/CNIODarwin/**/*.h"]),
     hdrs = glob(["Sources/CNIODarwin/include/**/*.h"]),
     includes = ["Sources/CNIODarwin/include"],
+    defines = ["__APPLE_USE_RFC_3542"],
     tags = ["swift_module=CNIODarwin"],
 )
 
@@ -45,6 +46,21 @@ cc_library(
 
 # Swift libraries
 swift_library(
+    name = "NIOCore",
+    srcs = glob(["Sources/NIOCore/**/*.swift"]),
+    module_name = "NIOCore",
+    visibility = ["//visibility:public"],
+    deps = [":NIOConcurrencyHelpers", ":CNIOLinux"],
+)
+
+swift_library(
+    name = "_NIODataStructures",
+    srcs = glob(["Sources/_NIODataStructures/**/*.swift"]),
+    module_name = "_NIODataStructures",
+    visibility = ["//visibility:public"],
+)
+
+swift_library(
     name = "NIOConcurrencyHelpers",
     srcs = glob(["Sources/NIOConcurrencyHelpers/**/*.swift"]),
     module_name = "NIOConcurrencyHelpers",
@@ -53,11 +69,19 @@ swift_library(
 )
 
 swift_library(
+    name = "NIOEmbedded",
+    srcs = glob(["Sources/NIOEmbedded/**/*.swift"]),
+    module_name = "NIOEmbedded",
+    visibility = ["//visibility:public"],
+    deps = [":NIOCore", ":_NIODataStructures"],
+)
+
+swift_library(
     name = "NIOFoundationCompat",
     srcs = glob(["Sources/NIOFoundationCompat/**/*.swift"]),
     module_name = "NIOFoundationCompat",
     visibility = ["//visibility:public"],
-    deps = [":NIO"],
+    deps = [":NIO", ":NIOCore"],
 )
 
 swift_library(
@@ -65,7 +89,15 @@ swift_library(
     srcs = glob(["Sources/NIOHTTP1/**/*.swift"]),
     module_name = "NIOHTTP1",
     visibility = ["//visibility:public"],
-    deps = [":NIO", ":CNIOHTTPParser", ":NIOConcurrencyHelpers"],
+    deps = [":NIO", ":NIOCore", ":CNIOHTTPParser", ":NIOConcurrencyHelpers"],
+)
+
+swift_library(
+    name = "NIOPosix",
+    srcs = glob(["Sources/NIOPosix/**/*.swift"]),
+    module_name = "NIOPosix",
+    visibility = ["//visibility:public"],
+    deps = [":CNIOLinux", ":CNIODarwin", ":CNIOWindows", ":NIOConcurrencyHelpers", ":NIOCore", ":_NIODataStructures"],
 )
 
 swift_library(
@@ -82,9 +114,8 @@ swift_library(
     module_name = "NIO",
     visibility = ["//visibility:public"],
     deps = [
-        ":CNIOLinux",
-        ":CNIODarwin",
-        ":CNIOWindows",
-        ":NIOConcurrencyHelpers",
+        ":NIOCore",
+        ":NIOEmbedded",
+        ":NIOPosix",
     ],
 )

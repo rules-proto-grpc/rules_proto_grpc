@@ -12,7 +12,7 @@ def java_grpc_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys()
         }  # Forward args
     )
 
@@ -20,7 +20,7 @@ def java_grpc_library(name, **kwargs):
     java_library(
         name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         runtime_deps = ["@io_grpc_grpc_java//netty"],
         exports = GRPC_DEPS + kwargs.get("exports", []),
         visibility = kwargs.get("visibility"),

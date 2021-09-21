@@ -13,11 +13,7 @@ def go_proto_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + [
-                key
-                for key in proto_compile_attrs.keys()
-                if key != "prefix_path"
-            ]
+            if k in proto_compile_attrs.keys() and k != "prefix_path"
         }  # Forward args
     )
 
@@ -25,7 +21,7 @@ def go_proto_library(name, **kwargs):
     go_library(
         name = name,
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = kwargs.get("go_deps", []) + PROTO_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

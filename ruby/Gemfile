@@ -4,6 +4,6 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem 'grpc', '1.35.0'
-gem 'multi_json', '1.13.1'
-gem "google-protobuf", "3.15.3"
+gem 'grpc', '1.40.0'
+gem 'multi_json', '1.15.0'
+gem "google-protobuf", "3.18.0"

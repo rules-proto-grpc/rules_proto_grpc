@@ -9,7 +9,7 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 go_rules_dependencies()
 
 go_register_toolchains(
-    version = "1.15.8",
+    version = "1.17.1",
 )
 
 bazel_gazelle()
@@ -40,11 +40,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in ["protos" if "protos" in kwargs else "deps"] + [
-                key
-                for key in proto_compile_attrs.keys()
-                if key != "prefix_path"
-            ]
+            if k in proto_compile_attrs.keys() and k != "prefix_path"
         }  # Forward args
     )
 
@@ -52,7 +48,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     go_library(
         name = name,
         srcs = [name_pb],
-        deps = kwargs.get("go_deps", []) + GATEWAY_DEPS + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = kwargs.get("go_deps", []) + GATEWAY_DEPS + GRPC_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),

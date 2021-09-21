@@ -34,8 +34,9 @@ def {{ .Rule.Name }}(name, **kwargs):
     js_library(
         name = name,
         srcs = [name_pb],
-        deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = name,
+        deps = deps + kwargs.get("deps", []),
+        package_name = kwargs.get("package_name", name),
+        strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -66,8 +67,9 @@ def {{ .Rule.Name }}(name, **kwargs):
     js_library(
         name = name,
         srcs = [name_pb],
-        deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = name,
+        deps = deps + kwargs.get("deps", []),
+        package_name = kwargs.get("package_name", name),
+        strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -99,8 +101,9 @@ def {{ .Rule.Name }}(name, **kwargs):
     js_library(
         name = name,
         srcs = [name_pb],
-        deps = deps + (kwargs.get("deps", []) if "protos" in kwargs else []),
-        package_name = name,
+        deps = deps + kwargs.get("deps", []),
+        package_name = kwargs.get("package_name", name),
+        strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
     )
@@ -112,10 +115,24 @@ GRPC_DEPS = [
 
 var jsLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{
+		Name:      "package_name",
+		Type:      "string",
+		Default:   "",
+		Doc:       "The package name to use for the library. If unprovided, the target name is used.",
+		Mandatory: false,
+	},
+	&Attr{
 		Name:      "deps_repo",
 		Type:      "string",
 		Default:   "@npm",
 		Doc:       "The repository to load the dependencies from, if you don't use ``@npm``",
+		Mandatory: false,
+	},
+	&Attr{
+		Name:      "legacy_path",
+		Type:      "bool",
+		Default:   "False",
+		Doc:       "Use the legacy <name>_pb path segment from the generated library require path.",
 		Mandatory: false,
 	},
 }...)
@@ -127,11 +144,11 @@ var jsDependencyNote = `
    .. code-block:: json
 
       "dependencies": {
-        "@grpc/grpc-js": "1.2.6",
-        "google-protobuf": "3.15.3",
-        "grpc-tools": "1.10.0",
+        "@grpc/grpc-js": "1.3.7",
+        "google-protobuf": "3.18.0",
+        "grpc-tools": "1.11.2",
         "grpc-web": "1.2.1",
-        "ts-protoc-gen": "0.14.0"
+        "ts-protoc-gen": "0.15.0"
       }
 `
 

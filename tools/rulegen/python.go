@@ -40,7 +40,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = PROTO_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -66,7 +66,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -95,7 +95,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = [
             "@com_google_protobuf//:protobuf_python",
-        ] + GRPC_DEPS + (kwargs.get("deps", []) if "protos" in kwargs else []),
+        ] + GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         visibility = kwargs.get("visibility"),
         tags = kwargs.get("tags"),
@@ -112,7 +112,7 @@ func makePython() *Language {
 		Dir:   "python",
 		Name:  "python",
 		DisplayName: "Python",
-		Notes: mustTemplate("Rules for generating Python protobuf and gRPC ``.py`` files and libraries using standard Protocol Buffers and gRPC or `grpclib <https://github.com/vmagamedov/grpclib>`_. Libraries are created with ``py_library`` from ``rules_python``. To use the fast C++ Protobuf implementation, you can add ``--define=use_fast_cpp_protos=true`` to your build, but this requires you setup the path to your Python headers.\n\n.. note:: On Windows, the path to Python for ``pip_install`` may need updating to ``Python.exe``, depending on your install."),
+		Notes: mustTemplate("Rules for generating Python protobuf and gRPC ``.py`` files and libraries using standard Protocol Buffers and gRPC or `grpclib <https://github.com/vmagamedov/grpclib>`_. Libraries are created with ``py_library`` from ``rules_python``. To use the fast C++ Protobuf implementation, you can add ``--define=use_fast_cpp_protos=true`` to your build, but this requires you setup the path to your Python headers.\n\n.. note:: On Windows, the path to Python for ``pip_install`` may need updating to ``Python.exe``, depending on your install.\n\n.. note:: If you have proto libraries that produce overlapping import paths, be sure to set ``legacy_create_init=False`` on the top level ``py_binary`` or ``py_test`` to ensure all paths are importable."),
 		Flags: commonLangFlags,
 		Aliases: map[string]string{
 			"py_proto_compile": "python_proto_compile",

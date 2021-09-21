@@ -3,7 +3,7 @@ package main
 import (
     "fmt"
 
-    pb_a "test_import_path"
+    pb_a "test_import_path/root"
     pb_b "test_import_path/folder"
 )
 
