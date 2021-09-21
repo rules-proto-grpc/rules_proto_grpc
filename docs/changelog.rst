@@ -43,8 +43,9 @@ The following changes are considered 'breaking', requiring the step to the 4.x.x
   to be available.
 
 - When using JavaScript library rules, the require path for generated files no longer includes the
-``<target_name>_pb`` path segment by default. For the previous behaviour, set ``legacy_path = True``
-  on the library. `#107 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/107>`__
+  ``<target_name>_pb`` path segment by default. For the previous behaviour, set
+  ``legacy_path = True`` on the library.
+  `#107 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/107>`__
 
 General
 *******
