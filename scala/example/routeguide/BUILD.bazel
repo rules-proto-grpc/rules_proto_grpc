@@ -14,10 +14,6 @@ scala_library(
     ],
     deps = [
         ":routeguide_scala_grpc",
-        "@com_thesamet_scalapb_scalapb_json4s//jar",
-        "@org_json4s_json4s_ast_2_12//jar",
-        "@org_json4s_json4s_core_2_12//jar",
-        "@org_json4s_json4s_jackson_2_12//jar",
     ] + GRPC_DEPS,
 )
 
@@ -47,4 +43,4 @@ scala_binary(
     ],
 )
 
-# TODO: routeguide server implementations
+# TODO: routeguide server implementation

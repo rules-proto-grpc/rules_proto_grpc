@@ -40,7 +40,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS = "MAVEN_ARTIFACTS", rules_proto_grpc_scala_repos = "scala_repos")
    
    rules_proto_grpc_scala_repos()
    
@@ -52,13 +52,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    scala_repositories()
    
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
    load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
    
    scala_register_toolchains()
+   
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   
+   maven_install(
+       name = "rules_proto_grpc_scala_maven",
+       artifacts = RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS,
+       repositories = [
+           "https://repo1.maven.org/maven2",
+       ],
+   )
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -152,7 +158,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS = "MAVEN_ARTIFACTS", rules_proto_grpc_scala_repos = "scala_repos")
    
    rules_proto_grpc_scala_repos()
    
@@ -164,10 +170,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    scala_repositories()
    
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
    load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
    
    scala_register_toolchains()
@@ -175,6 +177,16 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
    
    grpc_java_repositories()
+   
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   
+   maven_install(
+       name = "rules_proto_grpc_scala_maven",
+       artifacts = RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS,
+       repositories = [
+           "https://repo1.maven.org/maven2",
+       ],
+   )
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -263,7 +275,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS = "MAVEN_ARTIFACTS", rules_proto_grpc_scala_repos = "scala_repos")
    
    rules_proto_grpc_scala_repos()
    
@@ -275,13 +287,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    scala_repositories()
    
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
    load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
    
    scala_register_toolchains()
+   
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   
+   maven_install(
+       name = "rules_proto_grpc_scala_maven",
+       artifacts = RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS,
+       repositories = [
+           "https://repo1.maven.org/maven2",
+       ],
+   )
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -382,7 +400,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//scala:repositories.bzl", rules_proto_grpc_scala_repos = "scala_repos")
+   load("@rules_proto_grpc//scala:repositories.bzl", RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS = "MAVEN_ARTIFACTS", rules_proto_grpc_scala_repos = "scala_repos")
    
    rules_proto_grpc_scala_repos()
    
@@ -394,10 +412,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    scala_repositories()
    
-   load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
-   
-   scala_proto_repositories()
-   
    load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
    
    scala_register_toolchains()
@@ -405,6 +419,16 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
    
    grpc_java_repositories()
+   
+   load("@rules_jvm_external//:defs.bzl", "maven_install")
+   
+   maven_install(
+       name = "rules_proto_grpc_scala_maven",
+       artifacts = RULES_PROTO_GRPC_SCALA_MAVEN_ARTIFACTS,
+       repositories = [
+           "https://repo1.maven.org/maven2",
+       ],
+   )
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^

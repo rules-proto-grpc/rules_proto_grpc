@@ -249,7 +249,7 @@ rust_repositories()
 #
 # Scala
 #
-load("//scala:repositories.bzl", "scala_repos")
+load("//scala:repositories.bzl", "MAVEN_ARTIFACTS", "scala_repos")
 
 scala_repos()
 
@@ -265,41 +265,14 @@ load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
 
-load("@io_bazel_rules_scala//scala_proto:scala_proto.bzl", "scala_proto_repositories")
+load("@rules_jvm_external//:defs.bzl", "maven_install")
 
-scala_proto_repositories()
-
-#
-# Scala routeguide
-#
-load("@bazel_tools//tools/build_defs/repo:jvm.bzl", "jvm_maven_import_external")
-
-jvm_maven_import_external(
-    name = "com_thesamet_scalapb_scalapb_json4s",
-    artifact = "com.thesamet.scalapb:scalapb-json4s_2.12:0.7.1",
-    artifact_sha256 = "6c8771714329464e03104b6851bfdc3e2e4967276e1a9bd2c87c3b5a6d9c53c7",
-    server_urls = ["https://repo.maven.apache.org/maven2"],
-)
-
-jvm_maven_import_external(
-    name = "org_json4s_json4s_jackson_2_12",
-    artifact = "org.json4s:json4s-jackson_2.12:3.6.1",
-    artifact_sha256 = "83b854a39e69f022ad3d7dd3da664623252dc822ed4ed1117304f39115c88043",
-    server_urls = ["https://repo.maven.apache.org/maven2"],
-)
-
-jvm_maven_import_external(
-    name = "org_json4s_json4s_core_2_12",
-    artifact = "org.json4s:json4s-core_2.12:3.6.1",
-    artifact_sha256 = "e0f481509429a24e295b30ba64f567bad95e8d978d0882ec74e6dab291fcdac0",
-    server_urls = ["https://repo.maven.apache.org/maven2"],
-)
-
-jvm_maven_import_external(
-    name = "org_json4s_json4s_ast_2_12",
-    artifact = "org.json4s:json4s-ast_2.12:3.6.1",
-    artifact_sha256 = "39c7de601df28e32eb0c4e3d684ec65bbf2e59af83c6088cda12688d796f7746",
-    server_urls = ["https://repo.maven.apache.org/maven2"],
+maven_install(
+    name = "rules_proto_grpc_scala_maven",
+    artifacts = MAVEN_ARTIFACTS,
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
 )
 
 #

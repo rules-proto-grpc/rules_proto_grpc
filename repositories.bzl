@@ -265,13 +265,6 @@ VERSIONS = {
         "ref": "2437e40131072cadc1628726775ff00fa3941a4a",
         "sha256": "0701ee4e1cfd59702d780acde907ac657752fbb5c7d08a0ec6f58ebea8cd0efb",
     },
-    "com_github_scalapb_scalapb": {
-        "type": "http",
-        "urls": ["https://github.com/scalapb/ScalaPB/releases/download/v0.9.7/scalapbc-0.9.7.zip"],  # Last version with protoc plugin bundled?
-        "sha256": "623f626e97cca119b2a12c4e1d9a3c85aab9f9fd6dcb8dc22b4f704b824da94e",
-        "strip_prefix": "scalapbc-0.9.7",
-        "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_scalapb_scalapb",
-    },
 
     # Swift
     "com_github_grpc_grpc_swift": {
@@ -616,9 +609,6 @@ def rules_rust(**kwargs):
 #
 def io_bazel_rules_scala(**kwargs):
     _generic_dependency("io_bazel_rules_scala", **kwargs)
-
-def com_github_scalapb_scalapb(**kwargs):
-    _generic_dependency("com_github_scalapb_scalapb", **kwargs)
 
 #
 # Swift

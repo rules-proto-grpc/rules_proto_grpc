@@ -140,6 +140,9 @@ Scala
 *****
 
 - Updated ``rules_scala`` to latest
+- Updated ``ScalaPB`` to 0.11.5
+- **WORKSPACE update needed**: Dependencies are now fetched with ``maven_install``. You will need to
+  update your WORKSPACE to match the current example.
 
 Swift
 *****
@@ -546,7 +549,7 @@ Scala
 *****
 
 - Updated ``rules_scala`` to latest master
-- `ScalaPB` is now pulled from ``rules_scala``, which uses 0.9.7
+- ``ScalaPB`` is now pulled from ``rules_scala``, which uses 0.9.7
 - **WORKSPACE update needed**: The ``scala_proto_repositories()`` rule is now needed
 
 Swift
