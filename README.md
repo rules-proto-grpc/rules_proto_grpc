@@ -14,21 +14,24 @@
 
 ## Announcements 📣
 
+#### 2021/09/22 - Version 4.0.0
+
+[Version 4.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.0.0)
+with updated dependencies and removal of some previously deprecated features. gRPC has been updated
+to 1.40.0 and Protobuf has been updated to 3.18.0. This update will be a drop-in upgrade with no
+changes needed, however there are a couple of breaking changes in Javascript and Rust rules. Please
+see the release notes linked above for all changes or check the language specific fules pages in the
+docs. If you discover any problems with the new release, please
+[open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new),
+[create a discussion](https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new) or
+otherwise check in the
+[#proto channel](https://bazelbuild.slack.com/archives/CKU1D04RM) on Bazel Slack.
+
 #### 2021/03/03 - Version 3.1.0
 
 [Version 3.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/3.1.0)
-with fixes for JavaScript, updated dependencies and new rules for linting and producing documentation from .proto files.
-See the release notes linked above for all changes.
-
-#### 2021/02/21 - Version 3.0.0
-
-[Version 3.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/3.0.0)
-with updated Protobuf and gRPC versions and a number of major improvements. For some languages this may not be a
-drop-in replacement and it may be necessary to update your WORKSPACE file due to changes in dependencies; please see
-the above linked release notes for details or the language specific rules pages. If you discover any problems with the
-new release, please [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new),
-[create a discussion](https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new) or otherwise check in the
-[#proto channel](https://bazelbuild.slack.com/archives/CKU1D04RM) on Bazel Slack.
+with fixes for JavaScript, updated dependencies and new rules for linting and producing
+documentation from .proto files. See the release notes linked above for all changes.
 
 
 ## Usage
