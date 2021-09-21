@@ -22,7 +22,7 @@ proto_compile_attrs = {
         doc = "Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins",
     ),
     "verbose": attr.int(
-        doc = "The verbosity level. Supported values and results are 1: *show command*, 2: *show command and sandbox after running protoc*, 3: *show command and sandbox before and after running protoc*, 4. *show env, command, expected outputs and sandbox before and after running protoc*",
+        doc = "The verbosity level. Supported values and results are 0: Show nothing, 1: Show command, 2: Show command and sandbox after running protoc, 3: Show command and sandbox before and after running protoc, 4. Show env, command, expected outputs and sandbox before and after running protoc",
     ),
     "prefix_path": attr.string(
         doc = "Path to prefix to the generated files in the output directory",
@@ -37,7 +37,7 @@ proto_compile_attrs = {
     "output_mode": attr.string(
         default = "PREFIXED",
         values = ["PREFIXED", "NO_PREFIX"],
-        doc = "List of labels that provide extra files to be available during protoc execution",
+        doc = "The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes",
     ),
 }
 
