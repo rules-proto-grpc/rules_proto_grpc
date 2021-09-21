@@ -126,6 +126,7 @@ tasks:
       CC: clang
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -149,6 +150,7 @@ tasks:
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     test_targets:
@@ -242,6 +244,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_compile
@@ -264,6 +267,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_compile
@@ -286,6 +290,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_library
@@ -308,6 +313,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
@@ -325,6 +331,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     test_targets:
@@ -344,6 +351,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     test_targets:
@@ -368,6 +376,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/c/c_proto_compile
@@ -390,6 +399,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/c/c_proto_library
@@ -412,6 +422,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_compile
@@ -434,6 +445,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_compile
@@ -456,6 +468,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_library
@@ -478,6 +491,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_library
@@ -504,6 +518,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -532,6 +547,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -560,6 +576,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -588,6 +605,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -626,6 +644,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/doc/doc_docbook_compile
@@ -648,6 +667,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/doc/doc_html_compile
@@ -670,6 +690,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/doc/doc_json_compile
@@ -692,6 +713,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/doc/doc_markdown_compile
@@ -714,6 +736,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/doc/doc_template_compile
@@ -740,6 +763,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -768,6 +792,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -796,6 +821,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -824,6 +850,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -848,6 +875,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_compile
@@ -870,6 +898,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
@@ -892,6 +921,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/go/go_validate_compile
@@ -914,6 +944,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_library
@@ -936,6 +967,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
@@ -958,6 +990,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/go/go_validate_library
@@ -980,6 +1013,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_grpc_compile
@@ -995,6 +1029,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_openapiv2_compile
@@ -1010,6 +1045,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_grpc_library
@@ -1032,6 +1068,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_compile
@@ -1054,6 +1091,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_compile
@@ -1076,6 +1114,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_library
@@ -1098,6 +1137,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_library
@@ -1120,6 +1160,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_compile
@@ -1142,6 +1183,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_node_compile
@@ -1164,6 +1206,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_web_compile
@@ -1186,6 +1229,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_library
@@ -1208,6 +1252,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_node_library
@@ -1230,6 +1275,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_web_library
@@ -1238,6 +1284,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/objc/objc_proto_compile
@@ -1246,6 +1293,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/objc/objc_grpc_compile
@@ -1254,6 +1302,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/objc/objc_proto_library
@@ -1262,6 +1311,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/objc/objc_grpc_library
@@ -1284,6 +1334,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/php/php_proto_compile
@@ -1306,6 +1357,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/php/php_grpc_compile
@@ -1328,6 +1380,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_compile
@@ -1350,6 +1403,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
@@ -1379,6 +1433,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_library
@@ -1394,6 +1449,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_library
@@ -1416,6 +1472,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_compile
@@ -1431,6 +1488,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_compile
@@ -1446,6 +1504,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_library
@@ -1461,6 +1520,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_library
@@ -1504,6 +1564,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_compile
@@ -1519,6 +1580,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_compile
@@ -1534,6 +1596,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_library
@@ -1549,6 +1612,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_library
@@ -1557,6 +1621,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/swift/swift_proto_compile
@@ -1567,6 +1632,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/swift/swift_grpc_compile
@@ -1577,6 +1643,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/swift/swift_proto_library
@@ -1587,6 +1654,7 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     build_targets:
       - "//..."
     working_directory: example/swift/swift_grpc_library
@@ -1615,9 +1683,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
@@ -1644,9 +1714,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
@@ -1673,9 +1745,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/common_cpp_library
@@ -1702,9 +1776,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/empty_output_directory
@@ -1731,9 +1807,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/exclusions
@@ -1760,9 +1838,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
@@ -1789,9 +1869,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_fixer
@@ -1818,9 +1900,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
@@ -1847,9 +1931,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/import_prefix
@@ -1876,9 +1962,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
@@ -1896,9 +1984,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/python3_grpc
@@ -1925,9 +2015,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_dashes
@@ -1945,9 +2037,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_deps
@@ -1974,9 +2068,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/readme_http_archive
@@ -2003,9 +2099,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/relative_strip_import_prefix
@@ -2032,9 +2130,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
@@ -2061,9 +2161,11 @@ tasks:
     platform: macos
     build_flags:
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_flags:
     - "--test_output=errors"
     - "--copt=-DGRPC_BAZEL_BUILD"
+    - "--features=-supports_dynamic_linker
     test_targets:
       - "//..."
     working_directory: test_workspaces/typescript
