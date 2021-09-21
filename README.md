@@ -19,9 +19,9 @@
 [Version 4.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.0.0)
 with updated dependencies and removal of some previously deprecated features. gRPC has been updated
 to 1.40.0 and Protobuf has been updated to 3.18.0. This update will be a drop-in upgrade with no
-changes needed, however there are a couple of breaking changes in Javascript and Rust rules. Please
-see the release notes linked above for all changes or check the language specific fules pages in the
-docs. If you discover any problems with the new release, please
+changes needed for most users, however there are a couple of breaking changes in the Javascript and
+Rust rules. Please see the release notes linked above for all changes or check the language specific
+rules pages in the docs. If you discover any problems with the new release, please
 [open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new),
 [create a discussion](https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new) or
 otherwise check in the
