@@ -4,12 +4,11 @@ var docCustomRuleTemplateString = mustTemplate(`load(
     "//:defs.bzl",
     "ProtoPluginInfo",
     "proto_compile_attrs",
-    "proto_compile_impl",
 )
 load("//internal:compile.bzl", "proto_compile")
 
 # Create compile rule
-def {{ .Rule.Name }}_impl(ctx):
+def {{ .Rule.Name }}_impl(ctx):  # buildifier: disable=function-docstring
     # Load attrs that we pass as args
     options = ctx.attr.options
     extra_protoc_args = getattr(ctx.attr, "extra_protoc_args", [])
@@ -24,7 +23,7 @@ def {{ .Rule.Name }}_impl(ctx):
         ctx.file.template.path,
         ctx.attr.name,
     ]
-    extra_protoc_files += [ctx.file.template]
+    extra_protoc_files.append(ctx.file.template)
 
     # Execute with extracted attrs
     return proto_compile(ctx, options, extra_protoc_args, extra_protoc_files)

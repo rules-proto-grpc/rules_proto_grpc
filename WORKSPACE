@@ -265,8 +265,6 @@ load("@io_bazel_rules_scala//scala:toolchains.bzl", "scala_register_toolchains")
 
 scala_register_toolchains()
 
-load("@rules_jvm_external//:defs.bzl", "maven_install")
-
 maven_install(
     name = "rules_proto_grpc_scala_maven",
     artifacts = MAVEN_ARTIFACTS,

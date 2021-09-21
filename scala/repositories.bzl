@@ -2,7 +2,7 @@
 
 load(
     "//:repositories.bzl",
-    "GRPC_VERSION",
+    "GRPC_VERSION",  # @unused
     "io_bazel_rules_scala",
     "io_grpc_grpc_java",
     "rules_jvm_external",

@@ -82,6 +82,7 @@ def routeguide_test_matrix(name = "", clients = [], servers = [], database = "//
         servers: The list of available routeguide servers.
         database: The features list to provide to the test.
         tagmap: The dict of tags to apply to specific languages or tests ("lang" or "lang_lang").
+        skip: Combinations of client and server to skip, e.g. "cpp_js"
 
     Returns:
         Nothing.

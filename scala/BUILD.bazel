@@ -1,3 +1,4 @@
+load("@rules_java//java:defs.bzl", "java_binary")
 load("//:defs.bzl", "proto_plugin")
 
 proto_plugin(
