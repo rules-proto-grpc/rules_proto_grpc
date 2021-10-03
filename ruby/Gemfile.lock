@@ -4,8 +4,8 @@ GEM
     google-protobuf (3.18.0)
     googleapis-common-protos-types (1.2.0)
       google-protobuf (~> 3.14)
-    grpc (1.40.0)
-      google-protobuf (~> 3.15)
+    grpc (1.41.0)
+      google-protobuf (~> 3.17)
       googleapis-common-protos-types (~> 1.0)
     multi_json (1.15.0)
 
@@ -14,5 +14,5 @@ PLATFORMS
 
 DEPENDENCIES
   google-protobuf (= 3.18.0)
-  grpc (= 1.40.0)
+  grpc (= 1.41.0)
   multi_json (= 1.15.0)

@@ -6,9 +6,9 @@
     "System.Runtime.CompilerServices.Unsafe": "4.7.1",
     "System.Memory": "4.5.4",
     "Google.Protobuf": "3.18.0",
-    "Grpc.Core.Api": "2.40.0",
-    "Grpc.Core": "2.40.0",
-    "Grpc": "2.40.0",
+    "Grpc.Core.Api": "2.41.0",
+    "Grpc.Core": "2.41.0",
+    "Grpc": "2.41.0",
     "FSharp.Core": "5.0.1",
     "Protobuf.FSharp": "0.1.3"
   }

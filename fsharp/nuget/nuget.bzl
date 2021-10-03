@@ -170,8 +170,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.core.api",
         package = "grpc.core.api",
-        version = "2.40.0",
-        sha256 = "79246badf1942f3966341894e2f1a9447c4ab3a7bbfd94b2879b5789c8cd7925",
+        version = "2.41.0",
+        sha256 = "7b553d323e1500ebf4c51e0c7f73783bacf655696287ebe8825fb759d1764414",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
@@ -236,8 +236,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.core",
         package = "grpc.core",
-        version = "2.40.0",
-        sha256 = "b3d74d4d24e4bea1bf4be48849cf4c8ec5da51cf45d8f4c05338a5f76fa0a80e",
+        version = "2.41.0",
+        sha256 = "1af3097b610f179b360be7026a5a4ae879a560457593e9b9052a656322dc4ab1",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.dll",
@@ -356,8 +356,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc",
         package = "grpc",
-        version = "2.40.0",
-        sha256 = "931cf1271355b8ed3ce8a35aa1feb312b62398a4f0aa2e54767318b0adfda498",
+        version = "2.41.0",
+        sha256 = "f713eb796e914c640bda058188a098773a8033fd692e61cf3cc662fba237456d",
         core_deps = {
             "netcoreapp2.0": [
                 "@grpc.core//:netcoreapp2.0_core",
