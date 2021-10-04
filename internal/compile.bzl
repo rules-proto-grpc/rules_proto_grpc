@@ -106,7 +106,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
     # Convert options dict to label keys
     plugin_labels = [plugin.label for plugin in plugins]
-    per_plugin_options = {  # Dict of plugin label to options string list
+    per_plugin_options = {
+        # Dict of plugin label to options string list
         Label(plugin_label): opts
         for plugin_label, opts in options.items()
         if plugin_label != "*"
