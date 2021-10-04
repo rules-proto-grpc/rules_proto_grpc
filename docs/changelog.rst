@@ -6,6 +6,15 @@
 Changelog
 =========
 
+4.0.1
+-----
+
+General
+*******
+
+- Fixed label specific values in ``options`` attr being ignored
+
+
 4.0.0
 -----
 
