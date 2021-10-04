@@ -92,7 +92,7 @@ notified of new releases, you can use GitHub's 'Watch Releases Only' on the repo
 
    http_archive(
        name = "rules_proto_grpc",
-      sha256 = "{{ .Sha256 }}",
+       sha256 = "{{ .Sha256 }}",
        strip_prefix = "rules_proto_grpc-{{ .Ref }}",
        urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/{{ .Ref }}.tar.gz"],
    )
