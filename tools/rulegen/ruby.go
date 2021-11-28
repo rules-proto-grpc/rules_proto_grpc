@@ -85,7 +85,7 @@ func makeRuby() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf ``.rb`` files",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"none"},
+				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "ruby_grpc_compile",
@@ -96,7 +96,7 @@ func makeRuby() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf and gRPC ``.rb`` files",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"none"},
+				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "ruby_proto_library",
@@ -106,7 +106,7 @@ func makeRuby() *Language {
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{"none"},
+				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "ruby_grpc_library",
@@ -116,7 +116,7 @@ func makeRuby() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{"none"},
+				SkipTestPlatforms: []string{"windows"},
 			},
 		},
 	}
