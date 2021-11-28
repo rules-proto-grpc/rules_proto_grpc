@@ -201,25 +201,25 @@ VERSIONS = {
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
         "type": "http",
-        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.2.0/rules_nodejs-4.2.0.tar.gz"],
-        "sha256": "4e1a5633267a0ca1d550cced2919dd4148575c0bafd47608b88aea79c41b5ca3",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.6/rules_nodejs-4.4.6.tar.gz"],
+        "sha256": "cfc289523cf1594598215901154a6c2515e8bf3671fd708264a6f6aefe02bf39",
     },
     "grpc_web_plugin_darwin": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-darwin-x86_64"],
-        "sha256": "81bb5d4d3ae0340568fd0739402c052f32476dd520b44355e5032b556a3bc0da",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.0/protoc-gen-grpc-web-1.3.0-darwin-x86_64"],
+        "sha256": "4b8962af0e26047271858c731589825f92d4973d4a47ed9a0c544dd24c292b15",
         "executable": True,
     },
     "grpc_web_plugin_linux": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-linux-x86_64"],
-        "sha256": "6ce1625db7902d38d38d83690ec578c182e9cf2abaeb58d3fba1dae0c299c597",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.0/protoc-gen-grpc-web-1.3.0-linux-x86_64"],
+        "sha256": "ab26bdf1326236df9b35941608ca309e949233b2c442e3cd973a341d3331cf90",
         "executable": True,
     },
     "grpc_web_plugin_windows": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-windows-x86_64.exe"],
-        "sha256": "5886b4c9886dfdbfd1c7c2f26a15c396c6662b9f1acf9b6d8efbd490bc3736db",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.0/protoc-gen-grpc-web-1.3.0-windows-x86_64.exe"],
+        "sha256": "899a087d7d5592fcb547b29aa986e86a8989c9e7f1500bc0f3b5f45b09a87c85",
         "executable": True,
     },
 
