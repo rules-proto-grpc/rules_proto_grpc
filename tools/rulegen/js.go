@@ -144,10 +144,10 @@ var jsDependencyNote = `
    .. code-block:: json
 
       "dependencies": {
-        "@grpc/grpc-js": "1.3.7",
-        "google-protobuf": "3.18.0",
+        "@grpc/grpc-js": "1.4.4",
+        "google-protobuf": "3.19.1",
         "grpc-tools": "1.11.2",
-        "grpc-web": "1.2.1",
+        "grpc-web": "1.3.0",
         "ts-protoc-gen": "0.15.0"
       }
 `
