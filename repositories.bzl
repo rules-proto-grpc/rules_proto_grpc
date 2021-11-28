@@ -193,8 +193,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_jvm_external",
-        "ref": "4.1",
-        "sha256": "995ea6b5f41e14e1a17088b727dcff342b2c6534104e73d6f06f1ae0422c2308",
+        "ref": "4.2",
+        "sha256": "2cd77de091e5376afaf9cc391c15f093ebd0105192373b334f0a855d89092ad5",
     },
 
     # JavaScript
