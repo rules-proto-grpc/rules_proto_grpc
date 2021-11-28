@@ -1,8 +1,8 @@
 ---
 tasks:
-  main_ubuntu1804:
+  main_ubuntu2004:
     name: build & test all
-    platform: ubuntu1804
+    platform: ubuntu2004
     environment:
       CC: clang
     build_flags:
@@ -225,9 +225,9 @@ tasks:
     - "//example/routeguide:scala_js"
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_ruby"
-  android_android_proto_compile_ubuntu1804:
+  android_android_proto_compile_ubuntu2004:
     name: 'android: android_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -248,9 +248,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_compile
-  android_android_grpc_compile_ubuntu1804:
+  android_android_grpc_compile_ubuntu2004:
     name: 'android: android_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -271,9 +271,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_compile
-  android_android_proto_library_ubuntu1804:
+  android_android_proto_library_ubuntu2004:
     name: 'android: android_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -294,9 +294,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/android/android_proto_library
-  android_android_grpc_library_ubuntu1804:
+  android_android_grpc_library_ubuntu2004:
     name: 'android: android_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -317,9 +317,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/android/android_grpc_library
-  buf_buf_proto_breaking_test_ubuntu1804:
+  buf_buf_proto_breaking_test_ubuntu2004:
     name: 'buf: buf_proto_breaking_test'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -337,9 +337,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: example/buf/buf_proto_breaking_test
-  buf_buf_proto_lint_test_ubuntu1804:
+  buf_buf_proto_lint_test_ubuntu2004:
     name: 'buf: buf_proto_lint_test'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -357,9 +357,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: example/buf/buf_proto_lint_test
-  c_c_proto_compile_ubuntu1804:
+  c_c_proto_compile_ubuntu2004:
     name: 'c: c_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -380,9 +380,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/c/c_proto_compile
-  c_c_proto_library_ubuntu1804:
+  c_c_proto_library_ubuntu2004:
     name: 'c: c_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -403,9 +403,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/c/c_proto_library
-  cpp_cpp_proto_compile_ubuntu1804:
+  cpp_cpp_proto_compile_ubuntu2004:
     name: 'cpp: cpp_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -426,9 +426,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_compile
-  cpp_cpp_grpc_compile_ubuntu1804:
+  cpp_cpp_grpc_compile_ubuntu2004:
     name: 'cpp: cpp_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -449,9 +449,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_compile
-  cpp_cpp_proto_library_ubuntu1804:
+  cpp_cpp_proto_library_ubuntu2004:
     name: 'cpp: cpp_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -472,9 +472,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_proto_library
-  cpp_cpp_grpc_library_ubuntu1804:
+  cpp_cpp_grpc_library_ubuntu2004:
     name: 'cpp: cpp_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -495,9 +495,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/cpp/cpp_grpc_library
-  csharp_csharp_proto_compile_ubuntu1804:
+  csharp_csharp_proto_compile_ubuntu2004:
     name: 'csharp: csharp_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
@@ -524,9 +524,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_compile
-  csharp_csharp_grpc_compile_ubuntu1804:
+  csharp_csharp_grpc_compile_ubuntu2004:
     name: 'csharp: csharp_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
@@ -553,9 +553,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_compile
-  csharp_csharp_proto_library_ubuntu1804:
+  csharp_csharp_proto_library_ubuntu2004:
     name: 'csharp: csharp_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
@@ -582,9 +582,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_proto_library
-  csharp_csharp_grpc_library_ubuntu1804:
+  csharp_csharp_grpc_library_ubuntu2004:
     name: 'csharp: csharp_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
@@ -611,23 +611,23 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/csharp/csharp_grpc_library
-  d_d_proto_compile_ubuntu1804:
+  d_d_proto_compile_ubuntu2004:
     name: 'd: d_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
     working_directory: example/d/d_proto_compile
-  d_d_proto_library_ubuntu1804:
+  d_d_proto_library_ubuntu2004:
     name: 'd: d_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
     working_directory: example/d/d_proto_library
-  doc_doc_docbook_compile_ubuntu1804:
+  doc_doc_docbook_compile_ubuntu2004:
     name: 'doc: doc_docbook_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -648,9 +648,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/doc/doc_docbook_compile
-  doc_doc_html_compile_ubuntu1804:
+  doc_doc_html_compile_ubuntu2004:
     name: 'doc: doc_html_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -671,9 +671,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/doc/doc_html_compile
-  doc_doc_json_compile_ubuntu1804:
+  doc_doc_json_compile_ubuntu2004:
     name: 'doc: doc_json_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -694,9 +694,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/doc/doc_json_compile
-  doc_doc_markdown_compile_ubuntu1804:
+  doc_doc_markdown_compile_ubuntu2004:
     name: 'doc: doc_markdown_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -717,9 +717,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/doc/doc_markdown_compile
-  doc_doc_template_compile_ubuntu1804:
+  doc_doc_template_compile_ubuntu2004:
     name: 'doc: doc_template_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -740,9 +740,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/doc/doc_template_compile
-  fsharp_fsharp_proto_compile_ubuntu1804:
+  fsharp_fsharp_proto_compile_ubuntu2004:
     name: 'fsharp: fsharp_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
@@ -769,9 +769,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_proto_compile
-  fsharp_fsharp_grpc_compile_ubuntu1804:
+  fsharp_fsharp_grpc_compile_ubuntu2004:
     name: 'fsharp: fsharp_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
@@ -798,9 +798,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_compile
-  fsharp_fsharp_proto_library_ubuntu1804:
+  fsharp_fsharp_proto_library_ubuntu2004:
     name: 'fsharp: fsharp_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
@@ -827,9 +827,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_proto_library
-  fsharp_fsharp_grpc_library_ubuntu1804:
+  fsharp_fsharp_grpc_library_ubuntu2004:
     name: 'fsharp: fsharp_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
@@ -856,9 +856,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/fsharp/fsharp_grpc_library
-  go_go_proto_compile_ubuntu1804:
+  go_go_proto_compile_ubuntu2004:
     name: 'go: go_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -879,9 +879,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_compile
-  go_go_grpc_compile_ubuntu1804:
+  go_go_grpc_compile_ubuntu2004:
     name: 'go: go_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -902,9 +902,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_compile
-  go_go_validate_compile_ubuntu1804:
+  go_go_validate_compile_ubuntu2004:
     name: 'go: go_validate_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -925,9 +925,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_validate_compile
-  go_go_proto_library_ubuntu1804:
+  go_go_proto_library_ubuntu2004:
     name: 'go: go_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -948,9 +948,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_proto_library
-  go_go_grpc_library_ubuntu1804:
+  go_go_grpc_library_ubuntu2004:
     name: 'go: go_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -971,9 +971,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_grpc_library
-  go_go_validate_library_ubuntu1804:
+  go_go_validate_library_ubuntu2004:
     name: 'go: go_validate_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -994,9 +994,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/go/go_validate_library
-  grpc-gateway_gateway_grpc_compile_ubuntu1804:
+  grpc-gateway_gateway_grpc_compile_ubuntu2004:
     name: 'grpc-gateway: gateway_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1017,9 +1017,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_grpc_compile
-  grpc-gateway_gateway_openapiv2_compile_ubuntu1804:
+  grpc-gateway_gateway_openapiv2_compile_ubuntu2004:
     name: 'grpc-gateway: gateway_openapiv2_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1033,9 +1033,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_openapiv2_compile
-  grpc-gateway_gateway_grpc_library_ubuntu1804:
+  grpc-gateway_gateway_grpc_library_ubuntu2004:
     name: 'grpc-gateway: gateway_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1049,9 +1049,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/grpc-gateway/gateway_grpc_library
-  java_java_proto_compile_ubuntu1804:
+  java_java_proto_compile_ubuntu2004:
     name: 'java: java_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1072,9 +1072,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_compile
-  java_java_grpc_compile_ubuntu1804:
+  java_java_grpc_compile_ubuntu2004:
     name: 'java: java_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1095,9 +1095,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_compile
-  java_java_proto_library_ubuntu1804:
+  java_java_proto_library_ubuntu2004:
     name: 'java: java_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1118,9 +1118,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/java/java_proto_library
-  java_java_grpc_library_ubuntu1804:
+  java_java_grpc_library_ubuntu2004:
     name: 'java: java_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1141,9 +1141,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/java/java_grpc_library
-  js_js_proto_compile_ubuntu1804:
+  js_js_proto_compile_ubuntu2004:
     name: 'js: js_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1164,9 +1164,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_compile
-  js_js_grpc_node_compile_ubuntu1804:
+  js_js_grpc_node_compile_ubuntu2004:
     name: 'js: js_grpc_node_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1187,9 +1187,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_node_compile
-  js_js_grpc_web_compile_ubuntu1804:
+  js_js_grpc_web_compile_ubuntu2004:
     name: 'js: js_grpc_web_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1210,9 +1210,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_web_compile
-  js_js_proto_library_ubuntu1804:
+  js_js_proto_library_ubuntu2004:
     name: 'js: js_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1233,9 +1233,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/js/js_proto_library
-  js_js_grpc_node_library_ubuntu1804:
+  js_js_grpc_node_library_ubuntu2004:
     name: 'js: js_grpc_node_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1256,9 +1256,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/js/js_grpc_node_library
-  js_js_grpc_web_library_ubuntu1804:
+  js_js_grpc_web_library_ubuntu2004:
     name: 'js: js_grpc_web_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1315,9 +1315,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/objc/objc_grpc_library
-  php_php_proto_compile_ubuntu1804:
+  php_php_proto_compile_ubuntu2004:
     name: 'php: php_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1338,9 +1338,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/php/php_proto_compile
-  php_php_grpc_compile_ubuntu1804:
+  php_php_grpc_compile_ubuntu2004:
     name: 'php: php_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1361,9 +1361,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/php/php_grpc_compile
-  python_python_proto_compile_ubuntu1804:
+  python_python_proto_compile_ubuntu2004:
     name: 'python: python_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1384,9 +1384,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_compile
-  python_python_grpc_compile_ubuntu1804:
+  python_python_grpc_compile_ubuntu2004:
     name: 'python: python_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1407,16 +1407,16 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_compile
-  python_python_grpclib_compile_ubuntu1804:
+  python_python_grpclib_compile_ubuntu2004:
     name: 'python: python_grpclib_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_compile
-  python_python_proto_library_ubuntu1804:
+  python_python_proto_library_ubuntu2004:
     name: 'python: python_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1437,9 +1437,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/python/python_proto_library
-  python_python_grpc_library_ubuntu1804:
+  python_python_grpc_library_ubuntu2004:
     name: 'python: python_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1453,16 +1453,16 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpc_library
-  python_python_grpclib_library_ubuntu1804:
+  python_python_grpclib_library_ubuntu2004:
     name: 'python: python_grpclib_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
     working_directory: example/python/python_grpclib_library
-  ruby_ruby_proto_compile_ubuntu1804:
+  ruby_ruby_proto_compile_ubuntu2004:
     name: 'ruby: ruby_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1476,9 +1476,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_compile
-  ruby_ruby_grpc_compile_ubuntu1804:
+  ruby_ruby_grpc_compile_ubuntu2004:
     name: 'ruby: ruby_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1492,9 +1492,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_compile
-  ruby_ruby_proto_library_ubuntu1804:
+  ruby_ruby_proto_library_ubuntu2004:
     name: 'ruby: ruby_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1508,9 +1508,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_proto_library
-  ruby_ruby_grpc_library_ubuntu1804:
+  ruby_ruby_grpc_library_ubuntu2004:
     name: 'ruby: ruby_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1524,37 +1524,37 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/ruby/ruby_grpc_library
-  rust_rust_proto_compile_ubuntu1804:
+  rust_rust_proto_compile_ubuntu2004:
     name: 'rust: rust_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
     working_directory: example/rust/rust_proto_compile
-  rust_rust_grpc_compile_ubuntu1804:
+  rust_rust_grpc_compile_ubuntu2004:
     name: 'rust: rust_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
     working_directory: example/rust/rust_grpc_compile
-  rust_rust_proto_library_ubuntu1804:
+  rust_rust_proto_library_ubuntu2004:
     name: 'rust: rust_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
     working_directory: example/rust/rust_proto_library
-  rust_rust_grpc_library_ubuntu1804:
+  rust_rust_grpc_library_ubuntu2004:
     name: 'rust: rust_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
     working_directory: example/rust/rust_grpc_library
-  scala_scala_proto_compile_ubuntu1804:
+  scala_scala_proto_compile_ubuntu2004:
     name: 'scala: scala_proto_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1568,9 +1568,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_compile
-  scala_scala_grpc_compile_ubuntu1804:
+  scala_scala_grpc_compile_ubuntu2004:
     name: 'scala: scala_grpc_compile'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1584,9 +1584,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/scala/scala_grpc_compile
-  scala_scala_proto_library_ubuntu1804:
+  scala_scala_proto_library_ubuntu2004:
     name: 'scala: scala_proto_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1600,9 +1600,9 @@ tasks:
     build_targets:
       - "//..."
     working_directory: example/scala/scala_proto_library
-  scala_scala_grpc_library_ubuntu1804:
+  scala_scala_grpc_library_ubuntu2004:
     name: 'scala: scala_grpc_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     build_targets:
       - "//..."
@@ -1660,9 +1660,9 @@ tasks:
     working_directory: example/swift/swift_grpc_library
     environment:
       CC: clang
-  test_workspace_absolute_strip_import_prefix_ubuntu1804:
+  test_workspace_absolute_strip_import_prefix_ubuntu2004:
     name: 'test workspace: absolute_strip_import_prefix'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1691,9 +1691,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/absolute_strip_import_prefix
-  test_workspace_combined_strip_and_add_prefix_ubuntu1804:
+  test_workspace_combined_strip_and_add_prefix_ubuntu2004:
     name: 'test workspace: combined_strip_and_add_prefix'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1722,9 +1722,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/combined_strip_and_add_prefix
-  test_workspace_common_cpp_library_ubuntu1804:
+  test_workspace_common_cpp_library_ubuntu2004:
     name: 'test workspace: common_cpp_library'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1753,9 +1753,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/common_cpp_library
-  test_workspace_empty_output_directory_ubuntu1804:
+  test_workspace_empty_output_directory_ubuntu2004:
     name: 'test workspace: empty_output_directory'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1784,9 +1784,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/empty_output_directory
-  test_workspace_exclusions_ubuntu1804:
+  test_workspace_exclusions_ubuntu2004:
     name: 'test workspace: exclusions'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1815,9 +1815,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/exclusions
-  test_workspace_generated_proto_ubuntu1804:
+  test_workspace_generated_proto_ubuntu2004:
     name: 'test workspace: generated_proto'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1846,9 +1846,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/generated_proto
-  test_workspace_go_fixer_ubuntu1804:
+  test_workspace_go_fixer_ubuntu2004:
     name: 'test workspace: go_fixer'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1877,9 +1877,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_fixer
-  test_workspace_go_importpath_ubuntu1804:
+  test_workspace_go_importpath_ubuntu2004:
     name: 'test workspace: go_importpath'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1908,9 +1908,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/go_importpath
-  test_workspace_import_prefix_ubuntu1804:
+  test_workspace_import_prefix_ubuntu2004:
     name: 'test workspace: import_prefix'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1939,9 +1939,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/import_prefix
-  test_workspace_objc_capitalisation_ubuntu1804:
+  test_workspace_objc_capitalisation_ubuntu2004:
     name: 'test workspace: objc_capitalisation'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1970,9 +1970,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/objc_capitalisation
-  test_workspace_python3_grpc_ubuntu1804:
+  test_workspace_python3_grpc_ubuntu2004:
     name: 'test workspace: python3_grpc'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -1992,9 +1992,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/python3_grpc
-  test_workspace_python_dashes_ubuntu1804:
+  test_workspace_python_dashes_ubuntu2004:
     name: 'test workspace: python_dashes'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -2023,9 +2023,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_dashes
-  test_workspace_python_deps_ubuntu1804:
+  test_workspace_python_deps_ubuntu2004:
     name: 'test workspace: python_deps'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -2045,9 +2045,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/python_deps
-  test_workspace_readme_http_archive_ubuntu1804:
+  test_workspace_readme_http_archive_ubuntu2004:
     name: 'test workspace: readme_http_archive'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -2076,9 +2076,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/readme_http_archive
-  test_workspace_relative_strip_import_prefix_ubuntu1804:
+  test_workspace_relative_strip_import_prefix_ubuntu2004:
     name: 'test workspace: relative_strip_import_prefix'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -2107,9 +2107,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/relative_strip_import_prefix
-  test_workspace_shared_proto_ubuntu1804:
+  test_workspace_shared_proto_ubuntu2004:
     name: 'test workspace: shared_proto'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
@@ -2138,9 +2138,9 @@ tasks:
     test_targets:
       - "//..."
     working_directory: test_workspaces/shared_proto
-  test_workspace_typescript_ubuntu1804:
+  test_workspace_typescript_ubuntu2004:
     name: 'test workspace: typescript'
-    platform: ubuntu1804
+    platform: ubuntu2004
     build_flags:
     test_flags:
     - "--test_output=errors"
