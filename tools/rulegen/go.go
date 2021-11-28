@@ -99,7 +99,9 @@ var goValidateLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Ru
         tags = kwargs.get("tags"),
     )
 
-VALIDATE_DEPS = [] + GRPC_DEPS`)
+VALIDATE_DEPS = [
+    "@com_github_envoyproxy_protoc_gen_validate//validate:go_default_library",
+] + GRPC_DEPS`)
 
 // For go, produce one library for all protos, since they are all in the same package
 var goProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
