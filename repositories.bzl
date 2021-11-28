@@ -161,15 +161,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.28.0",
-        "sha256": "38171ce619b2695fa095427815d52c2a115c716b15f4cd0525a88c376113f584",
+        "ref": "v0.29.0",
+        "sha256": "7a89df64b765721be9bb73b3aa52c15209af3b6628cae4344b9516e8b21c2b8b",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.23.0",
-        "sha256": "0ba1c56b5df496c07b8d258fb97193668baa0b3a93e4dbb0a1559a6dcbd7d057",
+        "ref": "v0.24.0",
+        "sha256": "fc4c319b9e32ea44be8a5e1a46746d93e8b6a8b104baf7cb6a344a0a08386fed",
     },
 
     # grpc-gateway
