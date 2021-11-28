@@ -3,7 +3,7 @@
 load("//rust:rust_proto_compile.bzl", "rust_proto_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("//rust:rust_proto_lib.bzl", "rust_proto_lib")
-load("@rules_rust//rust:rust.bzl", "rust_library")
+load("@rules_rust//rust:defs.bzl", "rust_library")
 
 def rust_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
