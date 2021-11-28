@@ -15,7 +15,10 @@ genrule(
 
 proto_library(
     name = "proto_lib",
-    srcs = ["generated.proto", "static.proto"],
+    srcs = [
+        "generated.proto",
+        "static.proto",
+    ],
     deps = ["@another_workspace//:proto_lib"],
 )
 
@@ -28,5 +31,8 @@ py_test(
     name = "test",
     srcs = ["main.py"],
     main = "main.py",
-    deps = ["py_lib", "@another_workspace//:py_lib"],
+    deps = [
+        "py_lib",
+        "@another_workspace//:py_lib",
+    ],
 )
