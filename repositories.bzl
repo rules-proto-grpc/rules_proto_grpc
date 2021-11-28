@@ -271,8 +271,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-swift",
-        "ref": "1.4.1",
-        "sha256": "17ac5ef8d1277d61818c8057c4cf3060d6bd4606827c116933d5b245fcfc5df7",
+        "ref": "1.6.0",
+        "sha256": "f08729b656dd1e7c1e273f2362a907d3ce6721348a4cd347574cd1ef28a95983",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_grpc_grpc_swift",
     },
     "com_github_apple_swift_log": {
