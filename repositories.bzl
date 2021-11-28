@@ -177,8 +177,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.6.0",
-        "sha256": "4a1a50fcb2dafb0134db0be669d3d8d8dd0d6933f88a3e580fee2727ccf5ebc2",
+        "ref": "v2.7.0",
+        "sha256": "34d56ba0e4fd6e341d8a9f8cf83c79796525d2175f53944081d17409a736c887",
     },
 
     # Java
