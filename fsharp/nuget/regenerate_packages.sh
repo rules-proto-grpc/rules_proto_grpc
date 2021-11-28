@@ -54,12 +54,6 @@ core_import_library(
     name = "Protobuf.FSharp.dll",
     src = select(
         {
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.200_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.502_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.503_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.2.101_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.2.402_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:3.0.100_config": "tools/netcoreapp2.1/any/Protobuf.FSharp.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/Protobuf.FSharp.dll",
@@ -76,12 +70,6 @@ core_import_binary(
     name = "bin",
     src = select(
         {
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.200_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.502_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.1.503_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.2.101_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:2.2.402_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:3.0.100_config": "tools/netcoreapp2.1/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
