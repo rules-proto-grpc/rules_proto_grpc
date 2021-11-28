@@ -2,7 +2,7 @@
 
 load(
     "//:repositories.bzl",
-    "GRPC_VERSION",  # @unused
+    "GRPC_VERSION",
     "io_bazel_rules_scala",
     "io_grpc_grpc_java",
     "rules_jvm_external",
@@ -16,9 +16,8 @@ def scala_repos(**kwargs):  # buildifier: disable=function-docstring
     io_bazel_rules_scala(**kwargs)
 
 MAVEN_ARTIFACTS = [
-    "io.grpc:grpc-all:1.40.1",  # TODO: Remove once past 1.40.1 and uncomment below
-    #"io.grpc:grpc-all:{}".format(GRPC_VERSION),
-    "com.thesamet.scalapb:compilerplugin_2.12:0.11.5",
-    "com.thesamet.scalapb:scalapb-runtime_2.12:0.11.5",
-    "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:0.11.5",
+    "io.grpc:grpc-all:{}".format(GRPC_VERSION),
+    "com.thesamet.scalapb:compilerplugin_2.12:0.11.6",
+    "com.thesamet.scalapb:scalapb-runtime_2.12:0.11.6",
+    "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:0.11.6",
 ]
