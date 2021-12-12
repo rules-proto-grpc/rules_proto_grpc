@@ -9,6 +9,10 @@ Changelog
 4.1.0
 -----
 
+The 4.1.0 is mostly an incremental update of dependencies. However, users of the Go and grpc-gateway
+rules should see the note below about a change in WORKSPACE order required to avoid resolving very
+old versions of dependencies via Gazelle.
+
 General
 *******
 
