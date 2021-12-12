@@ -190,8 +190,9 @@ Supported Languages and Tools
 
    Overview <self>
    example
-   developers
+   custom_plugins
    transitivity
+   contributing
    changelog
 
 

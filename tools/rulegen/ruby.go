@@ -71,7 +71,10 @@ func makeRuby() *Language {
 		DisplayName: "Ruby",
 		Notes: mustTemplate("Rules for generating Ruby protobuf and gRPC ``.rb`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with ``ruby_library`` from `rules_ruby <https://github.com/bazelruby/rules_ruby>`_"),
 		Flags: commonLangFlags,
-		SkipTestPlatforms: []string{"windows"}, // CI has no Ruby available for windows
+		SkipTestPlatforms: []string{
+			"windows", // CI has no Ruby available for windows
+			"linux",  // Ruby fails to run on ubuntu image with "/usr/bin/env: 'ruby': Permission denied"
+		},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "ruby_proto_compile",
@@ -82,6 +85,7 @@ func makeRuby() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf ``.rb`` files",
 				Attrs:            compileRuleAttrs,
+				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "ruby_grpc_compile",
@@ -92,6 +96,7 @@ func makeRuby() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Ruby protobuf and gRPC ``.rb`` files",
 				Attrs:            compileRuleAttrs,
+				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "ruby_proto_library",
@@ -101,6 +106,7 @@ func makeRuby() *Language {
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Ruby protobuf library using ``ruby_library`` from ``rules_ruby``",
 				Attrs:            libraryRuleAttrs,
+				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "ruby_grpc_library",
@@ -110,6 +116,7 @@ func makeRuby() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Ruby protobuf and gRPC library using ``ruby_library`` from ``rules_ruby``",
 				Attrs:            libraryRuleAttrs,
+				SkipTestPlatforms: []string{"windows"},
 			},
 		},
 	}

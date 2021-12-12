@@ -28,4 +28,6 @@ def go_validate_library(name, **kwargs):
         tags = kwargs.get("tags"),
     )
 
-VALIDATE_DEPS = [] + GRPC_DEPS
+VALIDATE_DEPS = [
+    "@com_github_envoyproxy_protoc_gen_validate//validate:go_default_library",
+] + GRPC_DEPS

@@ -20,6 +20,9 @@ proto_plugin(
         "google/protobuf",
     ],
     outputs = ["{protopath}.swagger.json"],
+    quirks = [
+        "QUIRK_DIRECT_MODE",
+    ],
     tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2",
     visibility = ["//visibility:public"],
 )

@@ -14,13 +14,13 @@ go_register_toolchains(
 
 bazel_gazelle()
 
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-
-gazelle_dependencies()
-
 load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
-rules_proto_grpc_{{ .Lang.Name }}_repos()`)
+rules_proto_grpc_{{ .Lang.Name }}_repos()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()`)
 
 var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
@@ -99,7 +99,9 @@ var goValidateLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Ru
         tags = kwargs.get("tags"),
     )
 
-VALIDATE_DEPS = [] + GRPC_DEPS`)
+VALIDATE_DEPS = [
+    "@com_github_envoyproxy_protoc_gen_validate//validate:go_default_library",
+] + GRPC_DEPS`)
 
 // For go, produce one library for all protos, since they are all in the same package
 var goProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")

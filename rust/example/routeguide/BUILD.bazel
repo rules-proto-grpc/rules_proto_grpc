@@ -1,5 +1,5 @@
 load("//rust:rust_grpc_library.bzl", "GRPC_DEPS", "rust_grpc_library")
-load("@rules_rust//rust:rust.bzl", "rust_binary")
+load("@rules_rust//rust:defs.bzl", "rust_binary")
 
 rust_grpc_library(
     name = "routeguide",
