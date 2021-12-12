@@ -190,7 +190,7 @@ Supported Languages and Tools
 
    Overview <self>
    example
-   developers
+   contributing
    transitivity
    changelog
 

@@ -1,10 +1,10 @@
 :author: rules_proto_grpc
 :description: Changelog for the rules_proto_grpc Bazel rules
-:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Developers
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, Developers, Contributing
 
 
-Developers
-==========
+Contributing
+============
 
 Contributions are very welcome on this project. Issues should be raised for bugs and feature
 requests. Pull requests should be targeted at the master branch and will run against CI.
