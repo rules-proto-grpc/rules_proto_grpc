@@ -6,6 +6,15 @@
 Changelog
 =========
 
+4.1.1
+-----
+
+Python
+******
+
+- Ensured Python dependencies are correctly updated
+
+
 4.1.0
 -----
 
@@ -22,7 +31,7 @@ General
 C#/F#
 *****
 
-- Updated gRPC to 2.41.0
+- Updated gRPC to 2.42.0
 - Updated ``rules_dotnet`` to latest
 
 Go

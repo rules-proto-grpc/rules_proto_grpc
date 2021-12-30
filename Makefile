@@ -46,6 +46,7 @@ ruby_bundle_upgrade:
 # Run pip-compile to upgrade python dependencies
 .PHONY: pip_compile
 pip_compile:
+	rm python/requirements.txt; \
 	pip-compile python/requirements.in --output-file python/requirements.txt
 
 
