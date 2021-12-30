@@ -6,6 +6,15 @@
 Changelog
 =========
 
+4.1.1
+-----
+
+Python
+******
+
+- Ensured Python dependencies are correctly updated
+
+
 4.1.0
 -----
 
