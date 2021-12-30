@@ -22,7 +22,7 @@ General
 C#/F#
 *****
 
-- Updated gRPC to 2.41.0
+- Updated gRPC to 2.42.0
 - Updated ``rules_dotnet`` to latest
 
 Go
