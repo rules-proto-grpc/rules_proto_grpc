@@ -6,11 +6,11 @@
 #
 grpclib==0.4.2 ; python_version > "3"
     # via -r python/requirements.in
-h2==4.0.0
+h2==4.1.0
     # via grpclib
 hpack==4.0.0
     # via h2
-hyperframe==6.0.0
+hyperframe==6.0.1
     # via h2
-multidict==4.7.6
+multidict==5.2.0
     # via grpclib
