@@ -15,7 +15,8 @@ FSHARP_CORE_VERSION="5.0.1"
 
 OUTPUT_DIR="$(pwd)/fsharp/nuget"
 FILE_NAME="nuget.bzl"
-TOOL="bazel run --host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 --platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 @io_bazel_rules_dotnet//tools/nuget2bazel:nuget2bazel.exe --"
+DOTNET_TOOLCHAIN="$(uname -sm | tr 'A-Z ' 'a-z_')_6.0.101"
+TOOL="bazel run --host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:${DOTNET_TOOLCHAIN} --platforms=@io_bazel_rules_dotnet//dotnet/toolchain:${DOTNET_TOOLCHAIN} @io_bazel_rules_dotnet//tools/nuget2bazel:nuget2bazel.exe --"
 
 # Clear output files
 if [ -f "${OUTPUT_DIR}/${FILE_NAME}" ]; then
@@ -57,6 +58,8 @@ core_import_library(
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.404_config": "tools/net5.0/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/Protobuf.FSharp.dll",
         },
     ),
     version = "$PROTOBUF_FSHARP_VERSION",
@@ -73,6 +76,8 @@ core_import_binary(
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.404_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
         },
     ),
     deps = [":Protobuf.FSharp.dll"],

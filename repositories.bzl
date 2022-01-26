@@ -112,8 +112,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_dotnet",
-        "ref": "a07119eedbba3aee95cefda1f4db0d6a48c53071",
-        "sha256": "75a9c7292e93a7c1b86f59cf457bea5c6e7d6899150e42dbb900ba755f1cbd84",
+        "ref": "7679ec59712b3e8242cf6be1aeeeca3d80b95408",
+        "sha256": "168290c9c7c5c32e34f963dd38bb3ea76ae96540dbadf3c5585ef36a1265ee74",
     },
 
     # D

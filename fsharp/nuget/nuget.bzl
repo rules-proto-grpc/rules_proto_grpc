@@ -43,6 +43,7 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp3.0": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "netcoreapp3.1": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "net5.0": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+            "net6.0": "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
         },
         core_ref = {
             "netcoreapp2.0": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
@@ -51,6 +52,7 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp3.0": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "netcoreapp3.1": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
             "net5.0": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
+            "net6.0": "ref/netstandard2.0/System.Runtime.CompilerServices.Unsafe.dll",
         },
         core_files = {
             "netcoreapp2.0": [
@@ -74,6 +76,10 @@ def nuget_rules_proto_grpc_packages():
                 "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
             ],
             "net5.0": [
+                "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
+                "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
+            ],
+            "net6.0": [
                 "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.dll",
                 "lib/netcoreapp2.0/System.Runtime.CompilerServices.Unsafe.xml",
             ],
@@ -111,6 +117,7 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp3.0": "lib/netstandard2.0/Google.Protobuf.dll",
             "netcoreapp3.1": "lib/netstandard2.0/Google.Protobuf.dll",
             "net5.0": "lib/net5.0/Google.Protobuf.dll",
+            "net6.0": "lib/net5.0/Google.Protobuf.dll",
         },
         core_deps = {
             "netcoreapp2.0": [
@@ -165,13 +172,18 @@ def nuget_rules_proto_grpc_packages():
                 "lib/net5.0/Google.Protobuf.pdb",
                 "lib/net5.0/Google.Protobuf.xml",
             ],
+            "net6.0": [
+                "lib/net5.0/Google.Protobuf.dll",
+                "lib/net5.0/Google.Protobuf.pdb",
+                "lib/net5.0/Google.Protobuf.xml",
+            ],
         },
     )
     nuget_package(
         name = "grpc.core.api",
         package = "grpc.core.api",
-        version = "2.42.0",
-        sha256 = "e8c12e9d1e4dddbce1d4ea1c7c27f3599c94d5ad18e5ef08c836de02d94f0d07",
+        version = "2.43.0",
+        sha256 = "12880d33af4b2706b009c09ce67a087520c0c23f7fb71fedf0eedb088e68dc2b",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
@@ -179,6 +191,7 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp3.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp3.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "net5.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
+            "net6.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
         },
         core_deps = {
             "netcoreapp2.0": [
@@ -198,6 +211,9 @@ def nuget_rules_proto_grpc_packages():
             ],
             "net5.0": [
                 "@system.memory//:net5.0_core",
+            ],
+            "net6.0": [
+                "@system.memory//:net6.0_core",
             ],
         },
         core_files = {
@@ -231,13 +247,18 @@ def nuget_rules_proto_grpc_packages():
                 "lib/netstandard2.0/Grpc.Core.Api.pdb",
                 "lib/netstandard2.0/Grpc.Core.Api.xml",
             ],
+            "net6.0": [
+                "lib/netstandard2.0/Grpc.Core.Api.dll",
+                "lib/netstandard2.0/Grpc.Core.Api.pdb",
+                "lib/netstandard2.0/Grpc.Core.Api.xml",
+            ],
         },
     )
     nuget_package(
         name = "grpc.core",
         package = "grpc.core",
-        version = "2.42.0",
-        sha256 = "7180cc7b1cdc5f60885e2a17f2ecc5dcdb9eb737f917214309c1eb04e0d8e4cb",
+        version = "2.43.0",
+        sha256 = "bd4ee0a45e86d381df853999792185d219c6fab72975666ad58db304522efba7",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.dll",
@@ -245,6 +266,7 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp3.0": "lib/netstandard2.0/Grpc.Core.dll",
             "netcoreapp3.1": "lib/netstandard2.0/Grpc.Core.dll",
             "net5.0": "lib/netstandard2.0/Grpc.Core.dll",
+            "net6.0": "lib/netstandard2.0/Grpc.Core.dll",
         },
         core_deps = {
             "netcoreapp2.0": [
@@ -271,6 +293,10 @@ def nuget_rules_proto_grpc_packages():
                 "@grpc.core.api//:net5.0_core",
                 "@system.memory//:net5.0_core",
             ],
+            "net6.0": [
+                "@grpc.core.api//:net6.0_core",
+                "@system.memory//:net6.0_core",
+            ],
         },
         core_files = {
             "netcoreapp2.0": [
@@ -339,6 +365,19 @@ def nuget_rules_proto_grpc_packages():
                 "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
             ],
             "net5.0": [
+                "lib/netstandard2.0/Grpc.Core.dll",
+                "lib/netstandard2.0/Grpc.Core.pdb",
+                "lib/netstandard2.0/Grpc.Core.xml",
+
+                # Patched in by regenerate_packages.sh
+                # Can't use select() here, so must just specify all
+                "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
+                "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
+                "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so",
+                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
+                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
+            ],
+            "net6.0": [
                 "lib/netstandard2.0/Grpc.Core.dll",
                 "lib/netstandard2.0/Grpc.Core.pdb",
                 "lib/netstandard2.0/Grpc.Core.xml",
@@ -377,6 +416,9 @@ def nuget_rules_proto_grpc_packages():
             "net5.0": [
                 "@grpc.core//:net5.0_core",
             ],
+            "net6.0": [
+                "@grpc.core//:net6.0_core",
+            ],
         },
     )
     nuget_package(
@@ -391,6 +433,7 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp3.0": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
             "netcoreapp3.1": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
             "net5.0": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+            "net6.0": "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
         },
         core_files = {
             "netcoreapp2.0": [
@@ -479,6 +522,23 @@ def nuget_rules_proto_grpc_packages():
                 "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
             ],
             "net5.0": [
+                "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/de/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/es/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/fr/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/FSharp.Core.dll",
+                "lib/netstandard2.0/FSharp.Core.xml",
+                "lib/netstandard2.0/it/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/ja/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/ko/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/pl/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/pt-BR/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/ru/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/tr/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
+                "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll",
+            ],
+            "net6.0": [
                 "lib/netstandard2.0/cs/FSharp.Core.resources.dll",
                 "lib/netstandard2.0/de/FSharp.Core.resources.dll",
                 "lib/netstandard2.0/es/FSharp.Core.resources.dll",
@@ -509,6 +569,7 @@ def nuget_rules_proto_grpc_packages():
             "netcoreapp3.0": "lib/netstandard2.0/Protobuf.FSharp.dll",
             "netcoreapp3.1": "lib/netstandard2.0/Protobuf.FSharp.dll",
             "net5.0": "lib/netstandard2.0/Protobuf.FSharp.dll",
+            "net6.0": "lib/netstandard2.0/Protobuf.FSharp.dll",
         },
         core_deps = {
             "netcoreapp2.0": [
@@ -535,6 +596,10 @@ def nuget_rules_proto_grpc_packages():
                 "@fsharp.core//:net5.0_core",
                 "@google.protobuf//:net5.0_core",
             ],
+            "net6.0": [
+                "@fsharp.core//:net6.0_core",
+                "@google.protobuf//:net6.0_core",
+            ],
         },
         core_files = {
             "netcoreapp2.0": [
@@ -555,6 +620,9 @@ def nuget_rules_proto_grpc_packages():
             "net5.0": [
                 "lib/netstandard2.0/Protobuf.FSharp.dll",
             ],
+            "net6.0": [
+                "lib/netstandard2.0/Protobuf.FSharp.dll",
+            ],
         },
     )
 
@@ -570,6 +638,8 @@ core_import_library(
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.404_config": "tools/net5.0/any/Protobuf.FSharp.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/Protobuf.FSharp.dll",
         },
     ),
     version = "0.1.3",
@@ -586,6 +656,8 @@ core_import_binary(
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.404_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
+            "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
         },
     ),
     deps = [":Protobuf.FSharp.dll"],

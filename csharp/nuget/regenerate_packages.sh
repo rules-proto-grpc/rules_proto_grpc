@@ -12,7 +12,8 @@ GRPC_VERSION="2.42.0"
 
 OUTPUT_DIR="$(pwd)/csharp/nuget"
 FILE_NAME="nuget.bzl"
-TOOL="bazel run --host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 --platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 @io_bazel_rules_dotnet//tools/nuget2bazel:nuget2bazel.exe --"
+DOTNET_TOOLCHAIN="$(uname -sm | tr 'A-Z ' 'a-z_')_6.0.101"
+TOOL="bazel run --host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:${DOTNET_TOOLCHAIN} --platforms=@io_bazel_rules_dotnet//dotnet/toolchain:${DOTNET_TOOLCHAIN} @io_bazel_rules_dotnet//tools/nuget2bazel:nuget2bazel.exe --"
 
 # Clear output files
 if [ -f "${OUTPUT_DIR}/${FILE_NAME}" ]; then
