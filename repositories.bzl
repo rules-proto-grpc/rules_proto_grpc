@@ -113,7 +113,7 @@ VERSIONS = {
         "org": "bazelbuild",
         "repo": "rules_dotnet",
         "ref": "7679ec59712b3e8242cf6be1aeeeca3d80b95408",
-        "sha256": "168290c9c7c5c32e34f963dd38bb3ea76ae96540dbadf3c5585ef36a1265ee74",
+        "sha256": "85cfda5c610cc7491294a6f31a7048b0d57df69479d5b68630a030cab97f0f51",
     },
 
     # D
