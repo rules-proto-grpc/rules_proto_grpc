@@ -71,6 +71,12 @@ def pascal_objc(s):
         (string): The capitalized string.
 
     """
+
+    # It is possible for proto files to be named with dashes.
+    # e.g. company-proto.proto, this ensures the output file names for ObjC
+    # correctly match.
+    s = s.replace("-", "_")
+
     segments = []
     for segment in s.split("_"):
         repl = _objc_upper_segments.get(segment)
