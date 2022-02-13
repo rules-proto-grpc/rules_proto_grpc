@@ -10,7 +10,7 @@ proto_library(
     name = "proto_lib",
     srcs = [
         "demo.proto",
-        "folder/dashes-demo.proto",        
+        "folder/dashes-demo.proto",
         "folder/nested_demo.proto",
     ],
 )
