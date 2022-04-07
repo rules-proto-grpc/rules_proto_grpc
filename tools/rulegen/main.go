@@ -506,77 +506,77 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		}
 	}
 
-	//
-	// Write tasks for examples
-	//
-	for _, lang := range languages {
-		for _, rule := range lang.Rules {
-			exampleDir := path.Join(dir, "example", lang.Dir, rule.Name)
+	// //
+	// // Write tasks for examples
+	// //
+	// for _, lang := range languages {
+	// 	for _, rule := range lang.Rules {
+	// 		exampleDir := path.Join(dir, "example", lang.Dir, rule.Name)
 
-			for _, ciPlatform := range ciPlatforms {
-				if !doTestOnPlatform(lang, rule, ciPlatform) {
-					continue
-				}
+	// 		for _, ciPlatform := range ciPlatforms {
+	// 			if !doTestOnPlatform(lang, rule, ciPlatform) {
+	// 				continue
+	// 			}
 
-				out.w("  %s_%s_%s:", lang.Name, rule.Name, ciPlatform)
-				out.w("    name: '%s: %s'", lang.Name, rule.Name)
-				out.w("    platform: %s", ciPlatform)
-				out.w("    build_flags:")
-				if ciPlatform == "macos" {
-					out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
-					out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
-				}
-				if lang.Name == "csharp" || lang.Name == "fsharp" { // https://github.com/bazelbuild/rules_dotnet/issues/225
-					for _, flag := range ciPlatformFlags[ciPlatform] {
-						out.w(`    - "%s"`, flag)
-					}
-				}
-				out.w("    build_targets:")
-				out.w(`      - "//..."`)
-				if rule.IsTest {
-					out.w("    test_targets:")
-					out.w(`      - "//..."`)
-				}
-				out.w("    working_directory: %s", exampleDir)
+	// 			out.w("  %s_%s_%s:", lang.Name, rule.Name, ciPlatform)
+	// 			out.w("    name: '%s: %s'", lang.Name, rule.Name)
+	// 			out.w("    platform: %s", ciPlatform)
+	// 			out.w("    build_flags:")
+	// 			if ciPlatform == "macos" {
+	// 				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+	// 				out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
+	// 			}
+	// 			if lang.Name == "csharp" || lang.Name == "fsharp" { // https://github.com/bazelbuild/rules_dotnet/issues/225
+	// 				for _, flag := range ciPlatformFlags[ciPlatform] {
+	// 					out.w(`    - "%s"`, flag)
+	// 				}
+	// 			}
+	// 			out.w("    build_targets:")
+	// 			out.w(`      - "//..."`)
+	// 			if rule.IsTest {
+	// 				out.w("    test_targets:")
+	// 				out.w(`      - "//..."`)
+	// 			}
+	// 			out.w("    working_directory: %s", exampleDir)
 
-				if len(lang.PresubmitEnvVars) > 0 || len(rule.PresubmitEnvVars) > 0 {
-					out.w("    environment:")
-					for k, v := range lang.PresubmitEnvVars {
-						out.w("      %s: %s", k, v)
-					}
-					for k, v := range rule.PresubmitEnvVars {
-						out.w("      %s: %s", k, v)
-					}
-				}
-			}
-		}
-	}
+	// 			if len(lang.PresubmitEnvVars) > 0 || len(rule.PresubmitEnvVars) > 0 {
+	// 				out.w("    environment:")
+	// 				for k, v := range lang.PresubmitEnvVars {
+	// 					out.w("      %s: %s", k, v)
+	// 				}
+	// 				for k, v := range rule.PresubmitEnvVars {
+	// 					out.w("      %s: %s", k, v)
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// }
 
-	// Add test workspaces
-	for _, testWorkspace := range findTestWorkspaceNames(dir) {
-		for _, ciPlatform := range ciPlatforms {
-			if ciPlatform == "windows" && (testWorkspace == "python3_grpc" || testWorkspace == "python_deps") {
-				continue // Don't run python grpc test workspaces on windows
-			}
-			out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
-			out.w("    name: 'test workspace: %s'", testWorkspace)
-			out.w("    platform: %s", ciPlatform)
-			out.w("    build_flags:")
-			if ciPlatform == "macos" {
-				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
-				out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
-			}
-			out.w("    test_flags:")
-			out.w(`    - "--test_output=errors"`)
-			if ciPlatform == "macos" {
-				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
-				out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
-			}
-			out.w("    test_targets:")
-			out.w(`      - "//..."`)
-			out.w("    working_directory: %s", path.Join(dir, "test_workspaces", testWorkspace))
-		}
-	}
+	// // Add test workspaces
+	// for _, testWorkspace := range findTestWorkspaceNames(dir) {
+	// 	for _, ciPlatform := range ciPlatforms {
+	// 		if ciPlatform == "windows" && (testWorkspace == "python3_grpc" || testWorkspace == "python_deps") {
+	// 			continue // Don't run python grpc test workspaces on windows
+	// 		}
+	// 		out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
+	// 		out.w("    name: 'test workspace: %s'", testWorkspace)
+	// 		out.w("    platform: %s", ciPlatform)
+	// 		out.w("    build_flags:")
+	// 		if ciPlatform == "macos" {
+	// 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+	// 			out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
+	// 		}
+	// 		out.w("    test_flags:")
+	// 		out.w(`    - "--test_output=errors"`)
+	// 		if ciPlatform == "macos" {
+	// 			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
+	// 			out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
+	// 		}
+	// 		out.w("    test_targets:")
+	// 		out.w(`      - "//..."`)
+	// 		out.w("    working_directory: %s", path.Join(dir, "test_workspaces", testWorkspace))
+	// 	}
+	// }
 
 	out.ln()
 	out.MustWrite(filepath.Join(dir, ".bazelci", "presubmit.yml"))
