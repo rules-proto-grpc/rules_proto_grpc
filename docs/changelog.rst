@@ -6,13 +6,100 @@
 Changelog
 =========
 
+4.1.1
+-----
+
+Python
+******
+
+- Ensured Python dependencies are correctly updated
+
+
+4.1.0
+-----
+
+The 4.1.0 is mostly an incremental update of dependencies. However, users of the Go and grpc-gateway
+rules should see the note below about a change in WORKSPACE order required to avoid resolving very
+old versions of dependencies via Gazelle.
+
+General
+*******
+
+- Updated protobuf to 3.19.1
+- Updated grpc to 1.42.0
+
+C#/F#
+*****
+
+- Updated gRPC to 2.42.0
+- Updated ``rules_dotnet`` to latest
+
+Go
+**
+
+- Updated ``rules_go`` to 0.29.0
+- Updated ``gazelle`` to 0.24.0. Note that Gazelle has added multiple dependencies in 0.24.0 that
+  conflict with our dependencies and are at quite old versions. If you get an error about
+  ``SupportPackageIsVersion7``, you must swap the order you run ``gazelle_dependencies()`` in your
+  WORKSPACE to be after ``rules_proto_grpc_go_repos``. See
+  `this issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/160>`__ for further
+  details
+- Updated ``com_github_envoyproxy_protoc_gen_validate`` to 0.6.2
+
+grpc-gateway
+************
+
+- See above note about Gazelle
+
+gRPC-Web
+********
+
+- Updated ``grpc-web`` to 1.3.0
+
+JavaScript
+**********
+
+- Updated ``rules_nodejs`` to 4.4.6
+- Updated ``@grpc/grpc-js`` to 1.4.4
+
+Python
+******
+
+- Updated ``rules_python`` to 0.5.0
+
+Ruby
+****
+
+- Updated ``rules_ruby`` to 0.6.0
+
+Rust
+****
+
+- Updated ``rules_rust`` to latest. Note that new ``rules_rust`` commits have moved their
+  rules definitions from ``/rust/rust.bzl`` to ``/rust/defs.bzl``, which is now required to be
+  followed by these rules. No backwards compatibility is possible here as the original path has been
+  removed
+
+Scala
+*****
+
+- Updated ``rules_scala`` to latest
+- Updated ``ScalaPB`` to 0.11.6
+
+Swift
+*****
+
+- Updated ``rules_swift`` to 0.24.0
+- Updated ``grpc-swift`` to 1.6.0
+
+
 4.0.1
 -----
 
 General
 *******
 
-- Fixed label specific values in ``options`` attr being ignored
+- Fixed plugin label specific values in ``options`` attr being ignored
 
 
 4.0.0

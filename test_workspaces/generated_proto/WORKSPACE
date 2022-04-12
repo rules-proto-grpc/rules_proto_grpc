@@ -18,3 +18,8 @@ rules_proto_toolchains()
 load("@rules_proto_grpc//python:repositories.bzl", "python_repos")
 
 python_repos()
+
+local_repository(
+    name = "another_workspace",
+    path = "./another_workspace",
+)

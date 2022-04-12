@@ -50,10 +50,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos = "gateway_repos")
    
    rules_proto_grpc_gateway_repos()
@@ -61,6 +57,10 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
    
    go_repositories()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -160,10 +160,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos = "gateway_repos")
    
    rules_proto_grpc_gateway_repos()
@@ -171,6 +167,10 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
    
    go_repositories()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -268,10 +268,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//grpc-gateway:repositories.bzl", rules_proto_grpc_gateway_repos = "gateway_repos")
    
    rules_proto_grpc_gateway_repos()
@@ -279,6 +275,10 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
    
    go_repositories()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^

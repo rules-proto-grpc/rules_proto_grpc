@@ -76,13 +76,13 @@ go_register_toolchains(
     version = "1.17.1",
 )
 
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-
-gazelle_dependencies()
-
 load("//go:repositories.bzl", "go_repos")
 
 go_repos()
+
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
 
 #
 # C++

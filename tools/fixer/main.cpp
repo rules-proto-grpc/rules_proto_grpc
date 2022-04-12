@@ -120,7 +120,7 @@ int main(int argc, char **argv, char **envp) {
 
         } else {
             // Source file does not exist, write target file with template
-            std::cout << "Fixing missing plugin output file: " << path << "\n";
+            //std::cout << "Fixing missing plugin output file: " << path << "\n";
 
             // Build file specific template vars
             std::map<std::string, std::string> file_template_vars{common_template_vars};

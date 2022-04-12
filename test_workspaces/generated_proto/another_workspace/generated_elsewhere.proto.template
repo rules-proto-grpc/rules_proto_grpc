@@ -1,5 +1,5 @@
 syntax = "proto3";
 
-message demo {
+message generated_elsewhere {
     bool field = 1;
 }

@@ -1,2 +1,4 @@
-# Attempt to import proto file, this should succeed
-import demo_pb2
+# Attempt to import proto files, this should succeed
+import generated_pb2
+import generated_elsewhere_pb2
+import static_pb2

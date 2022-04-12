@@ -6,8 +6,8 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 # Versions
 MINIMUM_BAZEL_VERSION = "3.0.0"
 ENABLE_VERSION_NAGS = False
-PROTOBUF_VERSION = "3.18.0"  # When updating, also update JS requirements, JS rulegen js.go, Ruby requirements and C# requirements
-GRPC_VERSION = "1.40.0"  # When updating, also update Go repositories.bzl, JS requirements, JS readme, Ruby requirements and C# requirements
+PROTOBUF_VERSION = "3.19.1"  # When updating, also update JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
+GRPC_VERSION = "1.42.0"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
 VERSIONS = {
     # Core
     "rules_proto": {
@@ -22,14 +22,14 @@ VERSIONS = {
         "org": "protocolbuffers",
         "repo": "protobuf",
         "ref": "v{}".format(PROTOBUF_VERSION),
-        "sha256": "14e8042b5da37652c92ef6a2759e7d2979d295f60afd7767825e3de68c856c54",
+        "sha256": "87407cd28e7a9c95d9f61a098a53cf031109d451a7763e7dd1253abf8b4df422",
     },
     "com_github_grpc_grpc": {
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
         "ref": "v{}".format(GRPC_VERSION),
-        "sha256": "13e7c6460cd979726e5b3b129bb01c34532f115883ac696a75eb7f1d6a9765ed",
+        "sha256": "b2f2620c762427bfeeef96a68c1924319f384e877bc0e084487601e4cc6e434c",
     },
     "zlib": {
         "type": "http",
@@ -45,22 +45,22 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "0.4.0",
-        "sha256": "45f22030b4c3475d5beb74ee9a9b86df6e83d5e18c6f23c7ec1a43cea7a31b93",
+        "ref": "0.5.0",
+        "sha256": "a2fd4c2a8bcf897b718e5643040b03d9528ac6179f6990774b7c19b2dc6cd96b",
     },
     "build_bazel_rules_swift": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "0.23.0",
-        "sha256": "8b4f43f2976c88dede0eda9ee4f171ed9f4c5ed7c4dd84f136ccb8b6cbb710fd",
+        "ref": "0.24.0",
+        "sha256": "56f79e7f1b075b0ba9c046db0ff290ad2b5696c47c683ea3faf414bf70e0fa9b",
     },
     "bazel_skylib": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-skylib",
-        "ref": "1.0.3",
-        "sha256": "7ac0fa88c0c4ad6f5b9ffb5e09ef81e235492c873659e6bb99efb89d11246bcb",
+        "ref": "1.1.1",
+        "sha256": "07b4117379dde7ab382345c3b0f5edfc6b7cff6c93756eac63da121e0bbcc5de",
     },
 
     # Android
@@ -112,8 +112,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_dotnet",
-        "ref": "16a8cfb1895450a75727f85f5f5bde4cff1bf6b6",
-        "sha256": "b0e1382115d5dfa2db1dad0b7e72f3d02d930828df113d007121823d1386bfb6",
+        "ref": "a07119eedbba3aee95cefda1f4db0d6a48c53071",
+        "sha256": "75a9c7292e93a7c1b86f59cf457bea5c6e7d6899150e42dbb900ba755f1cbd84",
     },
 
     # D
@@ -161,15 +161,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.28.0",
-        "sha256": "38171ce619b2695fa095427815d52c2a115c716b15f4cd0525a88c376113f584",
+        "ref": "v0.29.0",
+        "sha256": "7a89df64b765721be9bb73b3aa52c15209af3b6628cae4344b9516e8b21c2b8b",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.23.0",
-        "sha256": "0ba1c56b5df496c07b8d258fb97193668baa0b3a93e4dbb0a1559a6dcbd7d057",
+        "ref": "v0.24.0",
+        "sha256": "fc4c319b9e32ea44be8a5e1a46746d93e8b6a8b104baf7cb6a344a0a08386fed",
     },
 
     # grpc-gateway
@@ -186,40 +186,40 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        "ref": "v1.40.1",
-        "sha256": "340091bf58b05c1a7d4cae5c60d6acde7e82ce24f67d09a16638fe894c0e233f",
+        "ref": "v{}".format(GRPC_VERSION),
+        "sha256": "1289abd750bee2ebc80679435301e046d587bdf0c0802a76907119725d18eef0",
     },
     "rules_jvm_external": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_jvm_external",
-        "ref": "4.1",
-        "sha256": "995ea6b5f41e14e1a17088b727dcff342b2c6534104e73d6f06f1ae0422c2308",
+        "ref": "4.2",
+        "sha256": "2cd77de091e5376afaf9cc391c15f093ebd0105192373b334f0a855d89092ad5",
     },
 
     # JavaScript
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
         "type": "http",
-        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.2.0/rules_nodejs-4.2.0.tar.gz"],
-        "sha256": "4e1a5633267a0ca1d550cced2919dd4148575c0bafd47608b88aea79c41b5ca3",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/4.4.6/rules_nodejs-4.4.6.tar.gz"],
+        "sha256": "cfc289523cf1594598215901154a6c2515e8bf3671fd708264a6f6aefe02bf39",
     },
     "grpc_web_plugin_darwin": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-darwin-x86_64"],
-        "sha256": "81bb5d4d3ae0340568fd0739402c052f32476dd520b44355e5032b556a3bc0da",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.0/protoc-gen-grpc-web-1.3.0-darwin-x86_64"],
+        "sha256": "4b8962af0e26047271858c731589825f92d4973d4a47ed9a0c544dd24c292b15",
         "executable": True,
     },
     "grpc_web_plugin_linux": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-linux-x86_64"],
-        "sha256": "6ce1625db7902d38d38d83690ec578c182e9cf2abaeb58d3fba1dae0c299c597",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.0/protoc-gen-grpc-web-1.3.0-linux-x86_64"],
+        "sha256": "ab26bdf1326236df9b35941608ca309e949233b2c442e3cd973a341d3331cf90",
         "executable": True,
     },
     "grpc_web_plugin_windows": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.2.1/protoc-gen-grpc-web-1.2.1-windows-x86_64.exe"],
-        "sha256": "5886b4c9886dfdbfd1c7c2f26a15c396c6662b9f1acf9b6d8efbd490bc3736db",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.0/protoc-gen-grpc-web-1.3.0-windows-x86_64.exe"],
+        "sha256": "899a087d7d5592fcb547b29aa986e86a8989c9e7f1500bc0f3b5f45b09a87c85",
         "executable": True,
     },
 
@@ -244,8 +244,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelruby",
         "repo": "rules_ruby",
-        "ref": "v0.5.2",
-        "sha256": "793a98624ab659d6ace878d907843b1483bd47cbcc19e99c7eb2df8d6b478492",
+        "ref": "v0.6.0",
+        "sha256": "5035393cb5043d49ca9de78acb9e8c8622a193f6463a57ad02383a622b6dc663",
     },
 
     # Rust
@@ -253,8 +253,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "75c63c36ab6a268d4de773437400d1d853723e84",
-        "sha256": "7acea74e203e0590ecd483139b6cb55b60630227dfc2d0590c39f574ca1b3f8b",
+        "ref": "87b74a1d72612e90441fd75a364a6e61bcf80ca6",
+        "sha256": "43d2ce2da5ad4def3a48bd5b7f0a732e0f116887d9487c45eefceee31ef8d054",
     },
 
     # Scala
@@ -262,8 +262,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "2437e40131072cadc1628726775ff00fa3941a4a",
-        "sha256": "0701ee4e1cfd59702d780acde907ac657752fbb5c7d08a0ec6f58ebea8cd0efb",
+        "ref": "17791a18aa966cdf2babb004822e6c70a7decc76",
+        "sha256": "6899cddf7407d09266dddcf6faf9f2a8b414de5e2b35ef8b294418f559172f28",
     },
 
     # Swift
@@ -271,8 +271,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-swift",
-        "ref": "1.4.1",
-        "sha256": "17ac5ef8d1277d61818c8057c4cf3060d6bd4606827c116933d5b245fcfc5df7",
+        "ref": "1.6.0",
+        "sha256": "f08729b656dd1e7c1e273f2362a907d3ce6721348a4cd347574cd1ef28a95983",
         "build_file": "@rules_proto_grpc//third_party:BUILD.bazel.com_github_grpc_grpc_swift",
     },
     "com_github_apple_swift_log": {

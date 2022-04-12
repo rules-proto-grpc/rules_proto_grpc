@@ -8,14 +8,18 @@ package(default_visibility = ["//visibility:private"])
 
 genrule(
     name = "generate_proto",
-    srcs = ["demo.proto.template"],
-    outs = ["demo.proto"],
-    cmd = "cp '$(location demo.proto.template)' '$@'",
+    srcs = ["generated.proto.template"],
+    outs = ["generated.proto"],
+    cmd = "cp '$(location generated.proto.template)' '$@'",
 )
 
 proto_library(
     name = "proto_lib",
-    srcs = ["demo.proto"],
+    srcs = [
+        "generated.proto",
+        "static.proto",
+    ],
+    deps = ["@another_workspace//:proto_lib"],
 )
 
 python_proto_library(
@@ -27,5 +31,8 @@ py_test(
     name = "test",
     srcs = ["main.py"],
     main = "main.py",
-    deps = ["py_lib"],
+    deps = [
+        "py_lib",
+        "@another_workspace//:py_lib",
+    ],
 )

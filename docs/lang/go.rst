@@ -58,13 +58,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
    
    rules_proto_grpc_go_repos()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -172,13 +172,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
    
    rules_proto_grpc_go_repos()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -284,13 +284,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
    
    rules_proto_grpc_go_repos()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -395,13 +395,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
    
    rules_proto_grpc_go_repos()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -509,13 +509,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
    
    rules_proto_grpc_go_repos()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -624,13 +624,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    bazel_gazelle()
    
-   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-   
-   gazelle_dependencies()
-   
    load("@rules_proto_grpc//go:repositories.bzl", rules_proto_grpc_go_repos = "go_repos")
    
    rules_proto_grpc_go_repos()
+   
+   load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+   
+   gazelle_dependencies()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
