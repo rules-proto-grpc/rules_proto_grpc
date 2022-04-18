@@ -107,8 +107,6 @@ tasks:
     environment:
       CC: clang
     build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -131,8 +129,6 @@ tasks:
     - "//swift/..."
     test_flags:
     - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     test_targets:
