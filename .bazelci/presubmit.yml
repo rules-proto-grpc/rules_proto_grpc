@@ -1,5 +1,10 @@
 ---
 tasks:
+  test_ubuntu2004:
+    name: build & test all
+    platform: ubuntu2004
+    shell_commands:
+      - echo test
   main_ubuntu2004:
     name: build & test all
     platform: ubuntu2004
