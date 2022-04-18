@@ -1,0 +1,1165 @@
+name: CI
+	
+on:
+  push: {}
+  pull_request: {}
+  
+jobs:
+  examples-ubuntu-latest:
+    name: 'Examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: android android_proto_compile
+        working-directory: example/android/android_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_grpc_compile
+        working-directory: example/android/android_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_proto_library
+        working-directory: example/android/android_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_grpc_library
+        working-directory: example/android/android_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: buf buf_proto_breaking_test
+        working-directory: example/buf/buf_proto_breaking_test
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: buf buf_proto_lint_test
+        working-directory: example/buf/buf_proto_lint_test
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: c c_proto_compile
+        working-directory: example/c/c_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: c c_proto_library
+        working-directory: example/c/c_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_proto_compile
+        working-directory: example/cpp/cpp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_grpc_compile
+        working-directory: example/cpp/cpp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_proto_library
+        working-directory: example/cpp/cpp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_grpc_library
+        working-directory: example/cpp/cpp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_proto_compile
+        working-directory: example/csharp/csharp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_grpc_compile
+        working-directory: example/csharp/csharp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_proto_library
+        working-directory: example/csharp/csharp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_grpc_library
+        working-directory: example/csharp/csharp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: d d_proto_compile
+        working-directory: example/d/d_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: d d_proto_library
+        working-directory: example/d/d_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_docbook_compile
+        working-directory: example/doc/doc_docbook_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_html_compile
+        working-directory: example/doc/doc_html_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_json_compile
+        working-directory: example/doc/doc_json_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_markdown_compile
+        working-directory: example/doc/doc_markdown_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_template_compile
+        working-directory: example/doc/doc_template_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_proto_compile
+        working-directory: example/fsharp/fsharp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_grpc_compile
+        working-directory: example/fsharp/fsharp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_proto_library
+        working-directory: example/fsharp/fsharp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_grpc_library
+        working-directory: example/fsharp/fsharp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_proto_compile
+        working-directory: example/go/go_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_grpc_compile
+        working-directory: example/go/go_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_validate_compile
+        working-directory: example/go/go_validate_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_proto_library
+        working-directory: example/go/go_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_grpc_library
+        working-directory: example/go/go_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_validate_library
+        working-directory: example/go/go_validate_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_grpc_compile
+        working-directory: example/grpc-gateway/gateway_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_openapiv2_compile
+        working-directory: example/grpc-gateway/gateway_openapiv2_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_grpc_library
+        working-directory: example/grpc-gateway/gateway_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_proto_compile
+        working-directory: example/java/java_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_grpc_compile
+        working-directory: example/java/java_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_proto_library
+        working-directory: example/java/java_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_grpc_library
+        working-directory: example/java/java_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_proto_compile
+        working-directory: example/js/js_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_node_compile
+        working-directory: example/js/js_grpc_node_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_web_compile
+        working-directory: example/js/js_grpc_web_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_proto_library
+        working-directory: example/js/js_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_node_library
+        working-directory: example/js/js_grpc_node_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_web_library
+        working-directory: example/js/js_grpc_web_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_proto_compile
+        working-directory: example/objc/objc_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_grpc_compile
+        working-directory: example/objc/objc_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_proto_library
+        working-directory: example/objc/objc_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_grpc_library
+        working-directory: example/objc/objc_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: php php_proto_compile
+        working-directory: example/php/php_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: php php_grpc_compile
+        working-directory: example/php/php_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_proto_compile
+        working-directory: example/python/python_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpc_compile
+        working-directory: example/python/python_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpclib_compile
+        working-directory: example/python/python_grpclib_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_proto_library
+        working-directory: example/python/python_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpc_library
+        working-directory: example/python/python_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpclib_library
+        working-directory: example/python/python_grpclib_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_proto_compile
+        working-directory: example/ruby/ruby_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_grpc_compile
+        working-directory: example/ruby/ruby_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_proto_library
+        working-directory: example/ruby/ruby_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_grpc_library
+        working-directory: example/ruby/ruby_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_proto_compile
+        working-directory: example/rust/rust_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_grpc_compile
+        working-directory: example/rust/rust_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_proto_library
+        working-directory: example/rust/rust_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_grpc_library
+        working-directory: example/rust/rust_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_proto_compile
+        working-directory: example/scala/scala_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_grpc_compile
+        working-directory: example/scala/scala_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_proto_library
+        working-directory: example/scala/scala_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_grpc_library
+        working-directory: example/scala/scala_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_proto_compile
+        working-directory: example/swift/swift_proto_compile
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_grpc_compile
+        working-directory: example/swift/swift_grpc_compile
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_proto_library
+        working-directory: example/swift/swift_proto_library
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_grpc_library
+        working-directory: example/swift/swift_grpc_library
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+  examples-windows-latest:
+    name: 'Examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: android android_proto_compile
+        working-directory: example/android/android_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_grpc_compile
+        working-directory: example/android/android_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_proto_library
+        working-directory: example/android/android_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_grpc_library
+        working-directory: example/android/android_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: buf buf_proto_breaking_test
+        working-directory: example/buf/buf_proto_breaking_test
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: buf buf_proto_lint_test
+        working-directory: example/buf/buf_proto_lint_test
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: c c_proto_compile
+        working-directory: example/c/c_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: c c_proto_library
+        working-directory: example/c/c_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_proto_compile
+        working-directory: example/cpp/cpp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_grpc_compile
+        working-directory: example/cpp/cpp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_proto_library
+        working-directory: example/cpp/cpp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_grpc_library
+        working-directory: example/cpp/cpp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_proto_compile
+        working-directory: example/csharp/csharp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_grpc_compile
+        working-directory: example/csharp/csharp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_proto_library
+        working-directory: example/csharp/csharp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_grpc_library
+        working-directory: example/csharp/csharp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: d d_proto_compile
+        working-directory: example/d/d_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: d d_proto_library
+        working-directory: example/d/d_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_docbook_compile
+        working-directory: example/doc/doc_docbook_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_html_compile
+        working-directory: example/doc/doc_html_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_json_compile
+        working-directory: example/doc/doc_json_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_markdown_compile
+        working-directory: example/doc/doc_markdown_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_template_compile
+        working-directory: example/doc/doc_template_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_proto_compile
+        working-directory: example/fsharp/fsharp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_grpc_compile
+        working-directory: example/fsharp/fsharp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_proto_library
+        working-directory: example/fsharp/fsharp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_grpc_library
+        working-directory: example/fsharp/fsharp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_proto_compile
+        working-directory: example/go/go_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_grpc_compile
+        working-directory: example/go/go_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_validate_compile
+        working-directory: example/go/go_validate_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_proto_library
+        working-directory: example/go/go_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_grpc_library
+        working-directory: example/go/go_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_validate_library
+        working-directory: example/go/go_validate_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_grpc_compile
+        working-directory: example/grpc-gateway/gateway_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_openapiv2_compile
+        working-directory: example/grpc-gateway/gateway_openapiv2_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_grpc_library
+        working-directory: example/grpc-gateway/gateway_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_proto_compile
+        working-directory: example/java/java_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_grpc_compile
+        working-directory: example/java/java_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_proto_library
+        working-directory: example/java/java_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_grpc_library
+        working-directory: example/java/java_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_proto_compile
+        working-directory: example/js/js_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_node_compile
+        working-directory: example/js/js_grpc_node_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_web_compile
+        working-directory: example/js/js_grpc_web_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_proto_library
+        working-directory: example/js/js_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_node_library
+        working-directory: example/js/js_grpc_node_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_web_library
+        working-directory: example/js/js_grpc_web_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_proto_compile
+        working-directory: example/objc/objc_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_grpc_compile
+        working-directory: example/objc/objc_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_proto_library
+        working-directory: example/objc/objc_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_grpc_library
+        working-directory: example/objc/objc_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: php php_proto_compile
+        working-directory: example/php/php_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: php php_grpc_compile
+        working-directory: example/php/php_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_proto_compile
+        working-directory: example/python/python_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpc_compile
+        working-directory: example/python/python_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpclib_compile
+        working-directory: example/python/python_grpclib_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_proto_library
+        working-directory: example/python/python_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpc_library
+        working-directory: example/python/python_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpclib_library
+        working-directory: example/python/python_grpclib_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_proto_compile
+        working-directory: example/ruby/ruby_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_grpc_compile
+        working-directory: example/ruby/ruby_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_proto_library
+        working-directory: example/ruby/ruby_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_grpc_library
+        working-directory: example/ruby/ruby_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_proto_compile
+        working-directory: example/rust/rust_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_grpc_compile
+        working-directory: example/rust/rust_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_proto_library
+        working-directory: example/rust/rust_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_grpc_library
+        working-directory: example/rust/rust_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_proto_compile
+        working-directory: example/scala/scala_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_grpc_compile
+        working-directory: example/scala/scala_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_proto_library
+        working-directory: example/scala/scala_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_grpc_library
+        working-directory: example/scala/scala_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_proto_compile
+        working-directory: example/swift/swift_proto_compile
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_grpc_compile
+        working-directory: example/swift/swift_grpc_compile
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_proto_library
+        working-directory: example/swift/swift_proto_library
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_grpc_library
+        working-directory: example/swift/swift_grpc_library
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+  examples-macos-latest:
+    name: 'Examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: android android_proto_compile
+        working-directory: example/android/android_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_grpc_compile
+        working-directory: example/android/android_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_proto_library
+        working-directory: example/android/android_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: android android_grpc_library
+        working-directory: example/android/android_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: buf buf_proto_breaking_test
+        working-directory: example/buf/buf_proto_breaking_test
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: buf buf_proto_lint_test
+        working-directory: example/buf/buf_proto_lint_test
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: c c_proto_compile
+        working-directory: example/c/c_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: c c_proto_library
+        working-directory: example/c/c_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_proto_compile
+        working-directory: example/cpp/cpp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_grpc_compile
+        working-directory: example/cpp/cpp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_proto_library
+        working-directory: example/cpp/cpp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: cpp cpp_grpc_library
+        working-directory: example/cpp/cpp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_proto_compile
+        working-directory: example/csharp/csharp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_grpc_compile
+        working-directory: example/csharp/csharp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_proto_library
+        working-directory: example/csharp/csharp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: csharp csharp_grpc_library
+        working-directory: example/csharp/csharp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: d d_proto_compile
+        working-directory: example/d/d_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: d d_proto_library
+        working-directory: example/d/d_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_docbook_compile
+        working-directory: example/doc/doc_docbook_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_html_compile
+        working-directory: example/doc/doc_html_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_json_compile
+        working-directory: example/doc/doc_json_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_markdown_compile
+        working-directory: example/doc/doc_markdown_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: doc doc_template_compile
+        working-directory: example/doc/doc_template_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_proto_compile
+        working-directory: example/fsharp/fsharp_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_grpc_compile
+        working-directory: example/fsharp/fsharp_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_proto_library
+        working-directory: example/fsharp/fsharp_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: fsharp fsharp_grpc_library
+        working-directory: example/fsharp/fsharp_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_proto_compile
+        working-directory: example/go/go_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_grpc_compile
+        working-directory: example/go/go_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_validate_compile
+        working-directory: example/go/go_validate_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_proto_library
+        working-directory: example/go/go_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_grpc_library
+        working-directory: example/go/go_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go go_validate_library
+        working-directory: example/go/go_validate_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_grpc_compile
+        working-directory: example/grpc-gateway/gateway_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_openapiv2_compile
+        working-directory: example/grpc-gateway/gateway_openapiv2_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: grpc-gateway gateway_grpc_library
+        working-directory: example/grpc-gateway/gateway_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_proto_compile
+        working-directory: example/java/java_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_grpc_compile
+        working-directory: example/java/java_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_proto_library
+        working-directory: example/java/java_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: java java_grpc_library
+        working-directory: example/java/java_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_proto_compile
+        working-directory: example/js/js_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_node_compile
+        working-directory: example/js/js_grpc_node_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_web_compile
+        working-directory: example/js/js_grpc_web_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_proto_library
+        working-directory: example/js/js_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_node_library
+        working-directory: example/js/js_grpc_node_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: js js_grpc_web_library
+        working-directory: example/js/js_grpc_web_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_proto_compile
+        working-directory: example/objc/objc_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_grpc_compile
+        working-directory: example/objc/objc_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_proto_library
+        working-directory: example/objc/objc_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc objc_grpc_library
+        working-directory: example/objc/objc_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: php php_proto_compile
+        working-directory: example/php/php_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: php php_grpc_compile
+        working-directory: example/php/php_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_proto_compile
+        working-directory: example/python/python_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpc_compile
+        working-directory: example/python/python_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpclib_compile
+        working-directory: example/python/python_grpclib_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_proto_library
+        working-directory: example/python/python_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpc_library
+        working-directory: example/python/python_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python python_grpclib_library
+        working-directory: example/python/python_grpclib_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_proto_compile
+        working-directory: example/ruby/ruby_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_grpc_compile
+        working-directory: example/ruby/ruby_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_proto_library
+        working-directory: example/ruby/ruby_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: ruby ruby_grpc_library
+        working-directory: example/ruby/ruby_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_proto_compile
+        working-directory: example/rust/rust_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_grpc_compile
+        working-directory: example/rust/rust_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_proto_library
+        working-directory: example/rust/rust_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: rust rust_grpc_library
+        working-directory: example/rust/rust_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_proto_compile
+        working-directory: example/scala/scala_proto_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_grpc_compile
+        working-directory: example/scala/scala_grpc_compile
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_proto_library
+        working-directory: example/scala/scala_proto_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: scala scala_grpc_library
+        working-directory: example/scala/scala_grpc_library
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_proto_compile
+        working-directory: example/swift/swift_proto_compile
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_grpc_compile
+        working-directory: example/swift/swift_grpc_compile
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_proto_library
+        working-directory: example/swift/swift_proto_library
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: swift swift_grpc_library
+        working-directory: example/swift/swift_grpc_library
+        env:
+          CC: clang
+        run: |
+          bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+  test-workspaces-ubuntu-latest:
+    name: 'Test Workspaces on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: absolute_strip_import_prefix
+        working-directory: test_workspaces/absolute_strip_import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: combined_strip_and_add_prefix
+        working-directory: test_workspaces/combined_strip_and_add_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: common_cpp_library
+        working-directory: test_workspaces/common_cpp_library
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: empty_output_directory
+        working-directory: test_workspaces/empty_output_directory
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: exclusions
+        working-directory: test_workspaces/exclusions
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: generated_proto
+        working-directory: test_workspaces/generated_proto
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go_fixer
+        working-directory: test_workspaces/go_fixer
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go_importpath
+        working-directory: test_workspaces/go_importpath
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: import_prefix
+        working-directory: test_workspaces/import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc_capitalisation
+        working-directory: test_workspaces/objc_capitalisation
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python3_grpc
+        working-directory: test_workspaces/python3_grpc
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python_dashes
+        working-directory: test_workspaces/python_dashes
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python_deps
+        working-directory: test_workspaces/python_deps
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: readme_http_archive
+        working-directory: test_workspaces/readme_http_archive
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: relative_strip_import_prefix
+        working-directory: test_workspaces/relative_strip_import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: shared_proto
+        working-directory: test_workspaces/shared_proto
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: typescript
+        working-directory: test_workspaces/typescript
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+  test-workspaces-windows-latest:
+    name: 'Test Workspaces on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: absolute_strip_import_prefix
+        working-directory: test_workspaces/absolute_strip_import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: combined_strip_and_add_prefix
+        working-directory: test_workspaces/combined_strip_and_add_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: common_cpp_library
+        working-directory: test_workspaces/common_cpp_library
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: empty_output_directory
+        working-directory: test_workspaces/empty_output_directory
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: exclusions
+        working-directory: test_workspaces/exclusions
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: generated_proto
+        working-directory: test_workspaces/generated_proto
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go_fixer
+        working-directory: test_workspaces/go_fixer
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go_importpath
+        working-directory: test_workspaces/go_importpath
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: import_prefix
+        working-directory: test_workspaces/import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc_capitalisation
+        working-directory: test_workspaces/objc_capitalisation
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python3_grpc
+        working-directory: test_workspaces/python3_grpc
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python_dashes
+        working-directory: test_workspaces/python_dashes
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python_deps
+        working-directory: test_workspaces/python_deps
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: readme_http_archive
+        working-directory: test_workspaces/readme_http_archive
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: relative_strip_import_prefix
+        working-directory: test_workspaces/relative_strip_import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: shared_proto
+        working-directory: test_workspaces/shared_proto
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: typescript
+        working-directory: test_workspaces/typescript
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+  test-workspaces-macos-latest:
+    name: 'Test Workspaces on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: absolute_strip_import_prefix
+        working-directory: test_workspaces/absolute_strip_import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: combined_strip_and_add_prefix
+        working-directory: test_workspaces/combined_strip_and_add_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: common_cpp_library
+        working-directory: test_workspaces/common_cpp_library
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: empty_output_directory
+        working-directory: test_workspaces/empty_output_directory
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: exclusions
+        working-directory: test_workspaces/exclusions
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: generated_proto
+        working-directory: test_workspaces/generated_proto
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go_fixer
+        working-directory: test_workspaces/go_fixer
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: go_importpath
+        working-directory: test_workspaces/go_importpath
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: import_prefix
+        working-directory: test_workspaces/import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: objc_capitalisation
+        working-directory: test_workspaces/objc_capitalisation
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python3_grpc
+        working-directory: test_workspaces/python3_grpc
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python_dashes
+        working-directory: test_workspaces/python_dashes
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: python_deps
+        working-directory: test_workspaces/python_deps
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: readme_http_archive
+        working-directory: test_workspaces/readme_http_archive
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: relative_strip_import_prefix
+        working-directory: test_workspaces/relative_strip_import_prefix
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: shared_proto
+        working-directory: test_workspaces/shared_proto
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+      - name: typescript
+        working-directory: test_workspaces/typescript
+        run: |
+          bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
