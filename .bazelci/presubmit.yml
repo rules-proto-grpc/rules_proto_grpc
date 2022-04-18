@@ -1,10 +1,5 @@
 ---
 tasks:
-  test_ubuntu2004:
-    name: build & test all
-    platform: ubuntu2004
-    shell_commands:
-      - echo test && false
   main_ubuntu2004:
     name: build & test all
     platform: ubuntu2004
@@ -105,6 +100,7 @@ tasks:
     - "//example/routeguide:scala_js"
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_rust"
+
   main_macos:
     name: build & test all
     platform: macos
@@ -211,3 +207,383 @@ tasks:
     - "//example/routeguide:scala_js"
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_ruby"
+
+  android_ubuntu2004:
+    name: android examples
+    platform: ubuntu2004
+    shell_commands:
+     - make android_android_proto_compile
+     - make android_android_grpc_compile
+     - make android_android_proto_library
+     - make android_android_grpc_library
+  android_windows:
+    name: android examples
+    platform: windows
+    shell_commands:
+     - make android_android_proto_compile
+     - make android_android_grpc_compile
+     - make android_android_proto_library
+     - make android_android_grpc_library
+  android_macos:
+    name: android examples
+    platform: macos
+    shell_commands:
+     - make android_android_proto_compile
+     - make android_android_grpc_compile
+     - make android_android_proto_library
+     - make android_android_grpc_library
+
+  buf_ubuntu2004:
+    name: buf examples
+    platform: ubuntu2004
+    shell_commands:
+     - make buf_buf_proto_breaking_test
+     - make buf_buf_proto_lint_test
+  buf_macos:
+    name: buf examples
+    platform: macos
+    shell_commands:
+     - make buf_buf_proto_breaking_test
+     - make buf_buf_proto_lint_test
+
+  c_ubuntu2004:
+    name: c examples
+    platform: ubuntu2004
+    shell_commands:
+     - make c_c_proto_compile
+     - make c_c_proto_library
+  c_windows:
+    name: c examples
+    platform: windows
+    shell_commands:
+     - make c_c_proto_compile
+     - make c_c_proto_library
+  c_macos:
+    name: c examples
+    platform: macos
+    shell_commands:
+     - make c_c_proto_compile
+     - make c_c_proto_library
+
+  cpp_ubuntu2004:
+    name: cpp examples
+    platform: ubuntu2004
+    shell_commands:
+     - make cpp_cpp_proto_compile
+     - make cpp_cpp_grpc_compile
+     - make cpp_cpp_proto_library
+     - make cpp_cpp_grpc_library
+  cpp_windows:
+    name: cpp examples
+    platform: windows
+    shell_commands:
+     - make cpp_cpp_proto_compile
+     - make cpp_cpp_grpc_compile
+     - make cpp_cpp_proto_library
+     - make cpp_cpp_grpc_library
+  cpp_macos:
+    name: cpp examples
+    platform: macos
+    shell_commands:
+     - make cpp_cpp_proto_compile
+     - make cpp_cpp_grpc_compile
+     - make cpp_cpp_proto_library
+     - make cpp_cpp_grpc_library
+
+  csharp_ubuntu2004:
+    name: csharp examples
+    platform: ubuntu2004
+    shell_commands:
+     - make csharp_csharp_proto_compile
+     - make csharp_csharp_grpc_compile
+     - make csharp_csharp_proto_library
+     - make csharp_csharp_grpc_library
+  csharp_windows:
+    name: csharp examples
+    platform: windows
+    shell_commands:
+     - make csharp_csharp_proto_compile
+     - make csharp_csharp_grpc_compile
+     - make csharp_csharp_proto_library
+     - make csharp_csharp_grpc_library
+  csharp_macos:
+    name: csharp examples
+    platform: macos
+    shell_commands:
+     - make csharp_csharp_proto_compile
+     - make csharp_csharp_grpc_compile
+     - make csharp_csharp_proto_library
+     - make csharp_csharp_grpc_library
+
+  d_ubuntu2004:
+    name: d examples
+    platform: ubuntu2004
+    shell_commands:
+     - make d_d_proto_compile
+     - make d_d_proto_library
+
+  doc_ubuntu2004:
+    name: doc examples
+    platform: ubuntu2004
+    shell_commands:
+     - make doc_doc_docbook_compile
+     - make doc_doc_html_compile
+     - make doc_doc_json_compile
+     - make doc_doc_markdown_compile
+     - make doc_doc_template_compile
+  doc_windows:
+    name: doc examples
+    platform: windows
+    shell_commands:
+     - make doc_doc_docbook_compile
+     - make doc_doc_html_compile
+     - make doc_doc_json_compile
+     - make doc_doc_markdown_compile
+     - make doc_doc_template_compile
+  doc_macos:
+    name: doc examples
+    platform: macos
+    shell_commands:
+     - make doc_doc_docbook_compile
+     - make doc_doc_html_compile
+     - make doc_doc_json_compile
+     - make doc_doc_markdown_compile
+     - make doc_doc_template_compile
+
+  fsharp_ubuntu2004:
+    name: fsharp examples
+    platform: ubuntu2004
+    shell_commands:
+     - make fsharp_fsharp_proto_compile
+     - make fsharp_fsharp_grpc_compile
+     - make fsharp_fsharp_proto_library
+     - make fsharp_fsharp_grpc_library
+  fsharp_windows:
+    name: fsharp examples
+    platform: windows
+    shell_commands:
+     - make fsharp_fsharp_proto_compile
+     - make fsharp_fsharp_grpc_compile
+     - make fsharp_fsharp_proto_library
+     - make fsharp_fsharp_grpc_library
+  fsharp_macos:
+    name: fsharp examples
+    platform: macos
+    shell_commands:
+     - make fsharp_fsharp_proto_compile
+     - make fsharp_fsharp_grpc_compile
+     - make fsharp_fsharp_proto_library
+     - make fsharp_fsharp_grpc_library
+
+  go_ubuntu2004:
+    name: go examples
+    platform: ubuntu2004
+    shell_commands:
+     - make go_go_proto_compile
+     - make go_go_grpc_compile
+     - make go_go_validate_compile
+     - make go_go_proto_library
+     - make go_go_grpc_library
+     - make go_go_validate_library
+  go_windows:
+    name: go examples
+    platform: windows
+    shell_commands:
+     - make go_go_proto_compile
+     - make go_go_grpc_compile
+     - make go_go_validate_compile
+     - make go_go_proto_library
+     - make go_go_grpc_library
+     - make go_go_validate_library
+  go_macos:
+    name: go examples
+    platform: macos
+    shell_commands:
+     - make go_go_proto_compile
+     - make go_go_grpc_compile
+     - make go_go_validate_compile
+     - make go_go_proto_library
+     - make go_go_grpc_library
+     - make go_go_validate_library
+
+  grpc-gateway_ubuntu2004:
+    name: grpc-gateway examples
+    platform: ubuntu2004
+    shell_commands:
+     - make grpc-gateway_gateway_grpc_compile
+     - make grpc-gateway_gateway_openapiv2_compile
+     - make grpc-gateway_gateway_grpc_library
+  grpc-gateway_windows:
+    name: grpc-gateway examples
+    platform: windows
+    shell_commands:
+     - make grpc-gateway_gateway_grpc_compile
+  grpc-gateway_macos:
+    name: grpc-gateway examples
+    platform: macos
+    shell_commands:
+     - make grpc-gateway_gateway_grpc_compile
+     - make grpc-gateway_gateway_openapiv2_compile
+     - make grpc-gateway_gateway_grpc_library
+
+  java_ubuntu2004:
+    name: java examples
+    platform: ubuntu2004
+    shell_commands:
+     - make java_java_proto_compile
+     - make java_java_grpc_compile
+     - make java_java_proto_library
+     - make java_java_grpc_library
+  java_windows:
+    name: java examples
+    platform: windows
+    shell_commands:
+     - make java_java_proto_compile
+     - make java_java_grpc_compile
+     - make java_java_proto_library
+     - make java_java_grpc_library
+  java_macos:
+    name: java examples
+    platform: macos
+    shell_commands:
+     - make java_java_proto_compile
+     - make java_java_grpc_compile
+     - make java_java_proto_library
+     - make java_java_grpc_library
+
+  js_ubuntu2004:
+    name: js examples
+    platform: ubuntu2004
+    shell_commands:
+     - make js_js_proto_compile
+     - make js_js_grpc_node_compile
+     - make js_js_grpc_web_compile
+     - make js_js_proto_library
+     - make js_js_grpc_node_library
+     - make js_js_grpc_web_library
+  js_windows:
+    name: js examples
+    platform: windows
+    shell_commands:
+     - make js_js_proto_compile
+     - make js_js_grpc_node_compile
+     - make js_js_grpc_web_compile
+     - make js_js_proto_library
+     - make js_js_grpc_node_library
+     - make js_js_grpc_web_library
+  js_macos:
+    name: js examples
+    platform: macos
+    shell_commands:
+     - make js_js_proto_compile
+     - make js_js_grpc_node_compile
+     - make js_js_grpc_web_compile
+     - make js_js_proto_library
+     - make js_js_grpc_node_library
+     - make js_js_grpc_web_library
+
+  objc_macos:
+    name: objc examples
+    platform: macos
+    shell_commands:
+     - make objc_objc_proto_compile
+     - make objc_objc_grpc_compile
+     - make objc_objc_proto_library
+     - make objc_objc_grpc_library
+
+  php_ubuntu2004:
+    name: php examples
+    platform: ubuntu2004
+    shell_commands:
+     - make php_php_proto_compile
+     - make php_php_grpc_compile
+  php_windows:
+    name: php examples
+    platform: windows
+    shell_commands:
+     - make php_php_proto_compile
+     - make php_php_grpc_compile
+  php_macos:
+    name: php examples
+    platform: macos
+    shell_commands:
+     - make php_php_proto_compile
+     - make php_php_grpc_compile
+
+  python_ubuntu2004:
+    name: python examples
+    platform: ubuntu2004
+    shell_commands:
+     - make python_python_proto_compile
+     - make python_python_grpc_compile
+     - make python_python_grpclib_compile
+     - make python_python_proto_library
+     - make python_python_grpc_library
+     - make python_python_grpclib_library
+  python_windows:
+    name: python examples
+    platform: windows
+    shell_commands:
+     - make python_python_proto_compile
+     - make python_python_grpc_compile
+     - make python_python_proto_library
+  python_macos:
+    name: python examples
+    platform: macos
+    shell_commands:
+     - make python_python_proto_compile
+     - make python_python_grpc_compile
+     - make python_python_proto_library
+     - make python_python_grpc_library
+
+  ruby_ubuntu2004:
+    name: ruby examples
+    platform: ubuntu2004
+    shell_commands:
+     - make ruby_ruby_proto_compile
+     - make ruby_ruby_grpc_compile
+     - make ruby_ruby_proto_library
+     - make ruby_ruby_grpc_library
+  ruby_macos:
+    name: ruby examples
+    platform: macos
+    shell_commands:
+     - make ruby_ruby_proto_compile
+     - make ruby_ruby_grpc_compile
+     - make ruby_ruby_proto_library
+     - make ruby_ruby_grpc_library
+
+  rust_ubuntu2004:
+    name: rust examples
+    platform: ubuntu2004
+    shell_commands:
+     - make rust_rust_proto_compile
+     - make rust_rust_grpc_compile
+     - make rust_rust_proto_library
+     - make rust_rust_grpc_library
+
+  scala_ubuntu2004:
+    name: scala examples
+    platform: ubuntu2004
+    shell_commands:
+     - make scala_scala_proto_compile
+     - make scala_scala_grpc_compile
+     - make scala_scala_proto_library
+     - make scala_scala_grpc_library
+  scala_macos:
+    name: scala examples
+    platform: macos
+    shell_commands:
+     - make scala_scala_proto_compile
+     - make scala_scala_grpc_compile
+     - make scala_scala_proto_library
+     - make scala_scala_grpc_library
+
+  swift_macos:
+    name: swift examples
+    platform: macos
+    shell_commands:
+     - make swift_swift_proto_compile
+     - make swift_swift_grpc_compile
+     - make swift_swift_proto_library
+     - make swift_swift_grpc_library
