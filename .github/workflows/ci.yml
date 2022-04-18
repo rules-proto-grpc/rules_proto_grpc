@@ -5,8 +5,8 @@ on:
   pull_request: {}
 
 jobs:
-  examples-ubuntu-latest:
-    name: 'Examples on ubuntu-latest'
+  android-examples-ubuntu-latest:
+    name: 'android examples on ubuntu-latest'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -26,6 +26,11 @@ jobs:
         working-directory: example/android/android_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  buf-examples-ubuntu-latest:
+    name: 'buf examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: buf buf_proto_breaking_test
         working-directory: example/buf/buf_proto_breaking_test
         run: |
@@ -36,6 +41,11 @@ jobs:
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
           bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  c-examples-ubuntu-latest:
+    name: 'c examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: c c_proto_compile
         working-directory: example/c/c_proto_compile
         run: |
@@ -44,6 +54,11 @@ jobs:
         working-directory: example/c/c_proto_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  cpp-examples-ubuntu-latest:
+    name: 'cpp examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: cpp cpp_proto_compile
         working-directory: example/cpp/cpp_proto_compile
         run: |
@@ -60,6 +75,11 @@ jobs:
         working-directory: example/cpp/cpp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  csharp-examples-ubuntu-latest:
+    name: 'csharp examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: csharp csharp_proto_compile
         working-directory: example/csharp/csharp_proto_compile
         run: |
@@ -76,6 +96,11 @@ jobs:
         working-directory: example/csharp/csharp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  d-examples-ubuntu-latest:
+    name: 'd examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: d d_proto_compile
         working-directory: example/d/d_proto_compile
         run: |
@@ -84,6 +109,11 @@ jobs:
         working-directory: example/d/d_proto_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  doc-examples-ubuntu-latest:
+    name: 'doc examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: doc doc_docbook_compile
         working-directory: example/doc/doc_docbook_compile
         run: |
@@ -104,6 +134,11 @@ jobs:
         working-directory: example/doc/doc_template_compile
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  fsharp-examples-ubuntu-latest:
+    name: 'fsharp examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: fsharp fsharp_proto_compile
         working-directory: example/fsharp/fsharp_proto_compile
         run: |
@@ -120,6 +155,11 @@ jobs:
         working-directory: example/fsharp/fsharp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  go-examples-ubuntu-latest:
+    name: 'go examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: go go_proto_compile
         working-directory: example/go/go_proto_compile
         run: |
@@ -144,6 +184,11 @@ jobs:
         working-directory: example/go/go_validate_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  grpc-gateway-examples-ubuntu-latest:
+    name: 'grpc-gateway examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: grpc-gateway gateway_grpc_compile
         working-directory: example/grpc-gateway/gateway_grpc_compile
         run: |
@@ -156,6 +201,11 @@ jobs:
         working-directory: example/grpc-gateway/gateway_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  java-examples-ubuntu-latest:
+    name: 'java examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: java java_proto_compile
         working-directory: example/java/java_proto_compile
         run: |
@@ -172,6 +222,11 @@ jobs:
         working-directory: example/java/java_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  js-examples-ubuntu-latest:
+    name: 'js examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: js js_proto_compile
         working-directory: example/js/js_proto_compile
         run: |
@@ -196,6 +251,11 @@ jobs:
         working-directory: example/js/js_grpc_web_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  objc-examples-ubuntu-latest:
+    name: 'objc examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: objc objc_proto_compile
         working-directory: example/objc/objc_proto_compile
         run: |
@@ -212,6 +272,11 @@ jobs:
         working-directory: example/objc/objc_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  php-examples-ubuntu-latest:
+    name: 'php examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: php php_proto_compile
         working-directory: example/php/php_proto_compile
         run: |
@@ -220,6 +285,11 @@ jobs:
         working-directory: example/php/php_grpc_compile
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  python-examples-ubuntu-latest:
+    name: 'python examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: python python_proto_compile
         working-directory: example/python/python_proto_compile
         run: |
@@ -244,6 +314,11 @@ jobs:
         working-directory: example/python/python_grpclib_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  ruby-examples-ubuntu-latest:
+    name: 'ruby examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: ruby ruby_proto_compile
         working-directory: example/ruby/ruby_proto_compile
         run: |
@@ -260,6 +335,11 @@ jobs:
         working-directory: example/ruby/ruby_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  rust-examples-ubuntu-latest:
+    name: 'rust examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: rust rust_proto_compile
         working-directory: example/rust/rust_proto_compile
         run: |
@@ -276,6 +356,11 @@ jobs:
         working-directory: example/rust/rust_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  scala-examples-ubuntu-latest:
+    name: 'scala examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: scala scala_proto_compile
         working-directory: example/scala/scala_proto_compile
         run: |
@@ -292,6 +377,11 @@ jobs:
         working-directory: example/scala/scala_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  swift-examples-ubuntu-latest:
+    name: 'swift examples on ubuntu-latest'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: swift swift_proto_compile
         working-directory: example/swift/swift_proto_compile
         env:
@@ -317,8 +407,8 @@ jobs:
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
-  examples-windows-latest:
-    name: 'Examples on windows-latest'
+  android-examples-windows-latest:
+    name: 'android examples on windows-latest'
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v1
@@ -338,6 +428,11 @@ jobs:
         working-directory: example/android/android_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  buf-examples-windows-latest:
+    name: 'buf examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: buf buf_proto_breaking_test
         working-directory: example/buf/buf_proto_breaking_test
         run: |
@@ -348,6 +443,11 @@ jobs:
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
           bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  c-examples-windows-latest:
+    name: 'c examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: c c_proto_compile
         working-directory: example/c/c_proto_compile
         run: |
@@ -356,6 +456,11 @@ jobs:
         working-directory: example/c/c_proto_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  cpp-examples-windows-latest:
+    name: 'cpp examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: cpp cpp_proto_compile
         working-directory: example/cpp/cpp_proto_compile
         run: |
@@ -372,6 +477,11 @@ jobs:
         working-directory: example/cpp/cpp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  csharp-examples-windows-latest:
+    name: 'csharp examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: csharp csharp_proto_compile
         working-directory: example/csharp/csharp_proto_compile
         run: |
@@ -388,6 +498,11 @@ jobs:
         working-directory: example/csharp/csharp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  d-examples-windows-latest:
+    name: 'd examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: d d_proto_compile
         working-directory: example/d/d_proto_compile
         run: |
@@ -396,6 +511,11 @@ jobs:
         working-directory: example/d/d_proto_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  doc-examples-windows-latest:
+    name: 'doc examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: doc doc_docbook_compile
         working-directory: example/doc/doc_docbook_compile
         run: |
@@ -416,6 +536,11 @@ jobs:
         working-directory: example/doc/doc_template_compile
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  fsharp-examples-windows-latest:
+    name: 'fsharp examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: fsharp fsharp_proto_compile
         working-directory: example/fsharp/fsharp_proto_compile
         run: |
@@ -432,6 +557,11 @@ jobs:
         working-directory: example/fsharp/fsharp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  go-examples-windows-latest:
+    name: 'go examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: go go_proto_compile
         working-directory: example/go/go_proto_compile
         run: |
@@ -456,6 +586,11 @@ jobs:
         working-directory: example/go/go_validate_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  grpc-gateway-examples-windows-latest:
+    name: 'grpc-gateway examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: grpc-gateway gateway_grpc_compile
         working-directory: example/grpc-gateway/gateway_grpc_compile
         run: |
@@ -468,6 +603,11 @@ jobs:
         working-directory: example/grpc-gateway/gateway_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  java-examples-windows-latest:
+    name: 'java examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: java java_proto_compile
         working-directory: example/java/java_proto_compile
         run: |
@@ -484,6 +624,11 @@ jobs:
         working-directory: example/java/java_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  js-examples-windows-latest:
+    name: 'js examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: js js_proto_compile
         working-directory: example/js/js_proto_compile
         run: |
@@ -508,6 +653,11 @@ jobs:
         working-directory: example/js/js_grpc_web_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  objc-examples-windows-latest:
+    name: 'objc examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: objc objc_proto_compile
         working-directory: example/objc/objc_proto_compile
         run: |
@@ -524,6 +674,11 @@ jobs:
         working-directory: example/objc/objc_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  php-examples-windows-latest:
+    name: 'php examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: php php_proto_compile
         working-directory: example/php/php_proto_compile
         run: |
@@ -532,6 +687,11 @@ jobs:
         working-directory: example/php/php_grpc_compile
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  python-examples-windows-latest:
+    name: 'python examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: python python_proto_compile
         working-directory: example/python/python_proto_compile
         run: |
@@ -556,6 +716,11 @@ jobs:
         working-directory: example/python/python_grpclib_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  ruby-examples-windows-latest:
+    name: 'ruby examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: ruby ruby_proto_compile
         working-directory: example/ruby/ruby_proto_compile
         run: |
@@ -572,6 +737,11 @@ jobs:
         working-directory: example/ruby/ruby_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  rust-examples-windows-latest:
+    name: 'rust examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: rust rust_proto_compile
         working-directory: example/rust/rust_proto_compile
         run: |
@@ -588,6 +758,11 @@ jobs:
         working-directory: example/rust/rust_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  scala-examples-windows-latest:
+    name: 'scala examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: scala scala_proto_compile
         working-directory: example/scala/scala_proto_compile
         run: |
@@ -604,6 +779,11 @@ jobs:
         working-directory: example/scala/scala_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  swift-examples-windows-latest:
+    name: 'swift examples on windows-latest'
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: swift swift_proto_compile
         working-directory: example/swift/swift_proto_compile
         env:
@@ -629,8 +809,8 @@ jobs:
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
-  examples-macos-latest:
-    name: 'Examples on macos-latest'
+  android-examples-macos-latest:
+    name: 'android examples on macos-latest'
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v1
@@ -650,6 +830,11 @@ jobs:
         working-directory: example/android/android_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  buf-examples-macos-latest:
+    name: 'buf examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: buf buf_proto_breaking_test
         working-directory: example/buf/buf_proto_breaking_test
         run: |
@@ -660,6 +845,11 @@ jobs:
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
           bazel --batch test --test_output=errors --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  c-examples-macos-latest:
+    name: 'c examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: c c_proto_compile
         working-directory: example/c/c_proto_compile
         run: |
@@ -668,6 +858,11 @@ jobs:
         working-directory: example/c/c_proto_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  cpp-examples-macos-latest:
+    name: 'cpp examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: cpp cpp_proto_compile
         working-directory: example/cpp/cpp_proto_compile
         run: |
@@ -684,6 +879,11 @@ jobs:
         working-directory: example/cpp/cpp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  csharp-examples-macos-latest:
+    name: 'csharp examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: csharp csharp_proto_compile
         working-directory: example/csharp/csharp_proto_compile
         run: |
@@ -700,6 +900,11 @@ jobs:
         working-directory: example/csharp/csharp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  d-examples-macos-latest:
+    name: 'd examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: d d_proto_compile
         working-directory: example/d/d_proto_compile
         run: |
@@ -708,6 +913,11 @@ jobs:
         working-directory: example/d/d_proto_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  doc-examples-macos-latest:
+    name: 'doc examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: doc doc_docbook_compile
         working-directory: example/doc/doc_docbook_compile
         run: |
@@ -728,6 +938,11 @@ jobs:
         working-directory: example/doc/doc_template_compile
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  fsharp-examples-macos-latest:
+    name: 'fsharp examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: fsharp fsharp_proto_compile
         working-directory: example/fsharp/fsharp_proto_compile
         run: |
@@ -744,6 +959,11 @@ jobs:
         working-directory: example/fsharp/fsharp_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  go-examples-macos-latest:
+    name: 'go examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: go go_proto_compile
         working-directory: example/go/go_proto_compile
         run: |
@@ -768,6 +988,11 @@ jobs:
         working-directory: example/go/go_validate_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  grpc-gateway-examples-macos-latest:
+    name: 'grpc-gateway examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: grpc-gateway gateway_grpc_compile
         working-directory: example/grpc-gateway/gateway_grpc_compile
         run: |
@@ -780,6 +1005,11 @@ jobs:
         working-directory: example/grpc-gateway/gateway_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  java-examples-macos-latest:
+    name: 'java examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: java java_proto_compile
         working-directory: example/java/java_proto_compile
         run: |
@@ -796,6 +1026,11 @@ jobs:
         working-directory: example/java/java_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  js-examples-macos-latest:
+    name: 'js examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: js js_proto_compile
         working-directory: example/js/js_proto_compile
         run: |
@@ -820,6 +1055,11 @@ jobs:
         working-directory: example/js/js_grpc_web_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  objc-examples-macos-latest:
+    name: 'objc examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: objc objc_proto_compile
         working-directory: example/objc/objc_proto_compile
         run: |
@@ -836,6 +1076,11 @@ jobs:
         working-directory: example/objc/objc_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  php-examples-macos-latest:
+    name: 'php examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: php php_proto_compile
         working-directory: example/php/php_proto_compile
         run: |
@@ -844,6 +1089,11 @@ jobs:
         working-directory: example/php/php_grpc_compile
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  python-examples-macos-latest:
+    name: 'python examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: python python_proto_compile
         working-directory: example/python/python_proto_compile
         run: |
@@ -868,6 +1118,11 @@ jobs:
         working-directory: example/python/python_grpclib_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  ruby-examples-macos-latest:
+    name: 'ruby examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: ruby ruby_proto_compile
         working-directory: example/ruby/ruby_proto_compile
         run: |
@@ -884,6 +1139,11 @@ jobs:
         working-directory: example/ruby/ruby_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  rust-examples-macos-latest:
+    name: 'rust examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: rust rust_proto_compile
         working-directory: example/rust/rust_proto_compile
         run: |
@@ -900,6 +1160,11 @@ jobs:
         working-directory: example/rust/rust_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  scala-examples-macos-latest:
+    name: 'scala examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: scala scala_proto_compile
         working-directory: example/scala/scala_proto_compile
         run: |
@@ -916,6 +1181,11 @@ jobs:
         working-directory: example/scala/scala_grpc_library
         run: |
           bazel --batch build --verbose_failures --disk_cache=../../bazel-disk-cache //...
+  swift-examples-macos-latest:
+    name: 'swift examples on macos-latest'
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v1
       - name: swift swift_proto_compile
         working-directory: example/swift/swift_proto_compile
         env:
