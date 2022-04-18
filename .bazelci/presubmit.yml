@@ -212,6 +212,7 @@ tasks:
     name: android examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make android_android_proto_compile_example
      - make android_android_grpc_compile_example
      - make android_android_proto_library_example
@@ -228,6 +229,7 @@ tasks:
     name: android examples
     platform: macos
     shell_commands:
+     - set -x
      - make android_android_proto_compile_example
      - make android_android_grpc_compile_example
      - make android_android_proto_library_example
@@ -237,12 +239,14 @@ tasks:
     name: buf examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
   buf_macos_examples:
     name: buf examples
     platform: macos
     shell_commands:
+     - set -x
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
 
@@ -250,6 +254,7 @@ tasks:
     name: c examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
   c_windows_examples:
@@ -262,6 +267,7 @@ tasks:
     name: c examples
     platform: macos
     shell_commands:
+     - set -x
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
 
@@ -269,6 +275,7 @@ tasks:
     name: cpp examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make cpp_cpp_proto_compile_example
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
@@ -285,6 +292,7 @@ tasks:
     name: cpp examples
     platform: macos
     shell_commands:
+     - set -x
      - make cpp_cpp_proto_compile_example
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
@@ -294,6 +302,7 @@ tasks:
     name: csharp examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make csharp_csharp_proto_compile_example
      - make csharp_csharp_grpc_compile_example
      - make csharp_csharp_proto_library_example
@@ -310,6 +319,7 @@ tasks:
     name: csharp examples
     platform: macos
     shell_commands:
+     - set -x
      - make csharp_csharp_proto_compile_example
      - make csharp_csharp_grpc_compile_example
      - make csharp_csharp_proto_library_example
@@ -319,6 +329,7 @@ tasks:
     name: d examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make d_d_proto_compile_example
      - make d_d_proto_library_example
 
@@ -326,6 +337,7 @@ tasks:
     name: doc examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make doc_doc_docbook_compile_example
      - make doc_doc_html_compile_example
      - make doc_doc_json_compile_example
@@ -344,6 +356,7 @@ tasks:
     name: doc examples
     platform: macos
     shell_commands:
+     - set -x
      - make doc_doc_docbook_compile_example
      - make doc_doc_html_compile_example
      - make doc_doc_json_compile_example
@@ -354,6 +367,7 @@ tasks:
     name: fsharp examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make fsharp_fsharp_proto_compile_example
      - make fsharp_fsharp_grpc_compile_example
      - make fsharp_fsharp_proto_library_example
@@ -370,6 +384,7 @@ tasks:
     name: fsharp examples
     platform: macos
     shell_commands:
+     - set -x
      - make fsharp_fsharp_proto_compile_example
      - make fsharp_fsharp_grpc_compile_example
      - make fsharp_fsharp_proto_library_example
@@ -379,6 +394,7 @@ tasks:
     name: go examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make go_go_proto_compile_example
      - make go_go_grpc_compile_example
      - make go_go_validate_compile_example
@@ -399,6 +415,7 @@ tasks:
     name: go examples
     platform: macos
     shell_commands:
+     - set -x
      - make go_go_proto_compile_example
      - make go_go_grpc_compile_example
      - make go_go_validate_compile_example
@@ -410,6 +427,7 @@ tasks:
     name: grpc-gateway examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make grpc-gateway_gateway_grpc_compile_example
      - make grpc-gateway_gateway_openapiv2_compile_example
      - make grpc-gateway_gateway_grpc_library_example
@@ -422,6 +440,7 @@ tasks:
     name: grpc-gateway examples
     platform: macos
     shell_commands:
+     - set -x
      - make grpc-gateway_gateway_grpc_compile_example
      - make grpc-gateway_gateway_openapiv2_compile_example
      - make grpc-gateway_gateway_grpc_library_example
@@ -430,6 +449,7 @@ tasks:
     name: java examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make java_java_proto_compile_example
      - make java_java_grpc_compile_example
      - make java_java_proto_library_example
@@ -446,6 +466,7 @@ tasks:
     name: java examples
     platform: macos
     shell_commands:
+     - set -x
      - make java_java_proto_compile_example
      - make java_java_grpc_compile_example
      - make java_java_proto_library_example
@@ -455,6 +476,7 @@ tasks:
     name: js examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make js_js_proto_compile_example
      - make js_js_grpc_node_compile_example
      - make js_js_grpc_web_compile_example
@@ -475,6 +497,7 @@ tasks:
     name: js examples
     platform: macos
     shell_commands:
+     - set -x
      - make js_js_proto_compile_example
      - make js_js_grpc_node_compile_example
      - make js_js_grpc_web_compile_example
@@ -486,6 +509,7 @@ tasks:
     name: objc examples
     platform: macos
     shell_commands:
+     - set -x
      - make objc_objc_proto_compile_example
      - make objc_objc_grpc_compile_example
      - make objc_objc_proto_library_example
@@ -495,6 +519,7 @@ tasks:
     name: php examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make php_php_proto_compile_example
      - make php_php_grpc_compile_example
   php_windows_examples:
@@ -507,6 +532,7 @@ tasks:
     name: php examples
     platform: macos
     shell_commands:
+     - set -x
      - make php_php_proto_compile_example
      - make php_php_grpc_compile_example
 
@@ -514,6 +540,7 @@ tasks:
     name: python examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make python_python_proto_compile_example
      - make python_python_grpc_compile_example
      - make python_python_grpclib_compile_example
@@ -531,6 +558,7 @@ tasks:
     name: python examples
     platform: macos
     shell_commands:
+     - set -x
      - make python_python_proto_compile_example
      - make python_python_grpc_compile_example
      - make python_python_proto_library_example
@@ -540,6 +568,7 @@ tasks:
     name: ruby examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make ruby_ruby_proto_compile_example
      - make ruby_ruby_grpc_compile_example
      - make ruby_ruby_proto_library_example
@@ -548,6 +577,7 @@ tasks:
     name: ruby examples
     platform: macos
     shell_commands:
+     - set -x
      - make ruby_ruby_proto_compile_example
      - make ruby_ruby_grpc_compile_example
      - make ruby_ruby_proto_library_example
@@ -557,6 +587,7 @@ tasks:
     name: rust examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make rust_rust_proto_compile_example
      - make rust_rust_grpc_compile_example
      - make rust_rust_proto_library_example
@@ -566,6 +597,7 @@ tasks:
     name: scala examples
     platform: ubuntu2004
     shell_commands:
+     - set -x
      - make scala_scala_proto_compile_example
      - make scala_scala_grpc_compile_example
      - make scala_scala_proto_library_example
@@ -574,6 +606,7 @@ tasks:
     name: scala examples
     platform: macos
     shell_commands:
+     - set -x
      - make scala_scala_proto_compile_example
      - make scala_scala_grpc_compile_example
      - make scala_scala_proto_library_example
@@ -583,6 +616,7 @@ tasks:
     name: swift examples
     platform: macos
     shell_commands:
+     - set -x
      - make swift_swift_proto_compile_example
      - make swift_swift_grpc_compile_example
      - make swift_swift_proto_library_example
