@@ -22,6 +22,7 @@ tasks:
     - "//js/..."
     - "//php/..."
     - "//python/..."
+    - "//ruby/..."
     - "//rust/..."
     - "//scala/..."
     test_flags:
@@ -36,6 +37,7 @@ tasks:
     - "//example/routeguide:cpp_java"
     - "//example/routeguide:cpp_js"
     - "//example/routeguide:cpp_python"
+    - "//example/routeguide:cpp_ruby"
     - "//example/routeguide:cpp_rust"
     - "//example/routeguide:csharp_cpp"
     - "//example/routeguide:csharp_csharp"
@@ -44,6 +46,7 @@ tasks:
     - "//example/routeguide:csharp_java"
     - "//example/routeguide:csharp_js"
     - "//example/routeguide:csharp_python"
+    - "//example/routeguide:csharp_ruby"
     - "//example/routeguide:csharp_rust"
     - "//example/routeguide:fsharp_cpp"
     - "//example/routeguide:fsharp_csharp"
@@ -51,6 +54,7 @@ tasks:
     - "//example/routeguide:fsharp_go"
     - "//example/routeguide:fsharp_java"
     - "//example/routeguide:fsharp_python"
+    - "//example/routeguide:fsharp_ruby"
     - "//example/routeguide:fsharp_rust"
     - "//example/routeguide:go_cpp"
     - "//example/routeguide:go_csharp"
@@ -59,6 +63,7 @@ tasks:
     - "//example/routeguide:go_java"
     - "//example/routeguide:go_js"
     - "//example/routeguide:go_python"
+    - "//example/routeguide:go_ruby"
     - "//example/routeguide:go_rust"
     - "//example/routeguide:java_cpp"
     - "//example/routeguide:java_csharp"
@@ -67,6 +72,7 @@ tasks:
     - "//example/routeguide:java_java"
     - "//example/routeguide:java_js"
     - "//example/routeguide:java_python"
+    - "//example/routeguide:java_ruby"
     - "//example/routeguide:java_rust"
     - "//example/routeguide:js_cpp"
     - "//example/routeguide:js_csharp"
@@ -75,6 +81,7 @@ tasks:
     - "//example/routeguide:js_java"
     - "//example/routeguide:js_js"
     - "//example/routeguide:js_python"
+    - "//example/routeguide:js_ruby"
     - "//example/routeguide:js_rust"
     - "//example/routeguide:python_cpp"
     - "//example/routeguide:python_csharp"
@@ -83,7 +90,17 @@ tasks:
     - "//example/routeguide:python_java"
     - "//example/routeguide:python_js"
     - "//example/routeguide:python_python"
+    - "//example/routeguide:python_ruby"
     - "//example/routeguide:python_rust"
+    - "//example/routeguide:ruby_cpp"
+    - "//example/routeguide:ruby_csharp"
+    - "//example/routeguide:ruby_fsharp"
+    - "//example/routeguide:ruby_go"
+    - "//example/routeguide:ruby_java"
+    - "//example/routeguide:ruby_js"
+    - "//example/routeguide:ruby_python"
+    - "//example/routeguide:ruby_ruby"
+    - "//example/routeguide:ruby_rust"
     - "//example/routeguide:rust_cpp"
     - "//example/routeguide:rust_csharp"
     - "//example/routeguide:rust_fsharp"
@@ -91,6 +108,7 @@ tasks:
     - "//example/routeguide:rust_java"
     - "//example/routeguide:rust_js"
     - "//example/routeguide:rust_python"
+    - "//example/routeguide:rust_ruby"
     - "//example/routeguide:rust_rust"
     - "//example/routeguide:scala_cpp"
     - "//example/routeguide:scala_csharp"
@@ -99,6 +117,7 @@ tasks:
     - "//example/routeguide:scala_java"
     - "//example/routeguide:scala_js"
     - "//example/routeguide:scala_python"
+    - "//example/routeguide:scala_ruby"
     - "//example/routeguide:scala_rust"
 
   main_macos:
@@ -213,14 +232,16 @@ tasks:
      - make android_android_grpc_compile_example
      - make android_android_proto_library_example
      - make android_android_grpc_library_example
+
   android_windows_examples:
     name: android examples
     platform: windows
     batch_commands:
-     - make android_android_proto_compile_example
-     - make android_android_grpc_compile_example
-     - make android_android_proto_library_example
-     - make android_android_grpc_library_example
+     - make.exe android_android_proto_compile_example
+     - make.exe android_android_grpc_compile_example
+     - make.exe android_android_proto_library_example
+     - make.exe android_android_grpc_library_example
+
   android_macos_examples:
     name: android examples
     platform: macos
@@ -238,6 +259,7 @@ tasks:
      - set -x
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
+
   buf_macos_examples:
     name: buf examples
     platform: macos
@@ -253,12 +275,14 @@ tasks:
      - set -x
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
+
   c_windows_examples:
     name: c examples
     platform: windows
     batch_commands:
-     - make c_c_proto_compile_example
-     - make c_c_proto_library_example
+     - make.exe c_c_proto_compile_example
+     - make.exe c_c_proto_library_example
+
   c_macos_examples:
     name: c examples
     platform: macos
@@ -276,14 +300,16 @@ tasks:
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
      - make cpp_cpp_grpc_library_example
+
   cpp_windows_examples:
     name: cpp examples
     platform: windows
     batch_commands:
-     - make cpp_cpp_proto_compile_example
-     - make cpp_cpp_grpc_compile_example
-     - make cpp_cpp_proto_library_example
-     - make cpp_cpp_grpc_library_example
+     - make.exe cpp_cpp_proto_compile_example
+     - make.exe cpp_cpp_grpc_compile_example
+     - make.exe cpp_cpp_proto_library_example
+     - make.exe cpp_cpp_grpc_library_example
+
   cpp_macos_examples:
     name: cpp examples
     platform: macos
@@ -303,14 +329,16 @@ tasks:
      - make csharp_csharp_grpc_compile_example
      - make csharp_csharp_proto_library_example
      - make csharp_csharp_grpc_library_example
+
   csharp_windows_examples:
     name: csharp examples
     platform: windows
     batch_commands:
-     - make csharp_csharp_proto_compile_example
-     - make csharp_csharp_grpc_compile_example
-     - make csharp_csharp_proto_library_example
-     - make csharp_csharp_grpc_library_example
+     - make.exe csharp_csharp_proto_compile_example
+     - make.exe csharp_csharp_grpc_compile_example
+     - make.exe csharp_csharp_proto_library_example
+     - make.exe csharp_csharp_grpc_library_example
+
   csharp_macos_examples:
     name: csharp examples
     platform: macos
@@ -339,15 +367,17 @@ tasks:
      - make doc_doc_json_compile_example
      - make doc_doc_markdown_compile_example
      - make doc_doc_template_compile_example
+
   doc_windows_examples:
     name: doc examples
     platform: windows
     batch_commands:
-     - make doc_doc_docbook_compile_example
-     - make doc_doc_html_compile_example
-     - make doc_doc_json_compile_example
-     - make doc_doc_markdown_compile_example
-     - make doc_doc_template_compile_example
+     - make.exe doc_doc_docbook_compile_example
+     - make.exe doc_doc_html_compile_example
+     - make.exe doc_doc_json_compile_example
+     - make.exe doc_doc_markdown_compile_example
+     - make.exe doc_doc_template_compile_example
+
   doc_macos_examples:
     name: doc examples
     platform: macos
@@ -368,14 +398,16 @@ tasks:
      - make fsharp_fsharp_grpc_compile_example
      - make fsharp_fsharp_proto_library_example
      - make fsharp_fsharp_grpc_library_example
+
   fsharp_windows_examples:
     name: fsharp examples
     platform: windows
     batch_commands:
-     - make fsharp_fsharp_proto_compile_example
-     - make fsharp_fsharp_grpc_compile_example
-     - make fsharp_fsharp_proto_library_example
-     - make fsharp_fsharp_grpc_library_example
+     - make.exe fsharp_fsharp_proto_compile_example
+     - make.exe fsharp_fsharp_grpc_compile_example
+     - make.exe fsharp_fsharp_proto_library_example
+     - make.exe fsharp_fsharp_grpc_library_example
+
   fsharp_macos_examples:
     name: fsharp examples
     platform: macos
@@ -397,16 +429,18 @@ tasks:
      - make go_go_proto_library_example
      - make go_go_grpc_library_example
      - make go_go_validate_library_example
+
   go_windows_examples:
     name: go examples
     platform: windows
     batch_commands:
-     - make go_go_proto_compile_example
-     - make go_go_grpc_compile_example
-     - make go_go_validate_compile_example
-     - make go_go_proto_library_example
-     - make go_go_grpc_library_example
-     - make go_go_validate_library_example
+     - make.exe go_go_proto_compile_example
+     - make.exe go_go_grpc_compile_example
+     - make.exe go_go_validate_compile_example
+     - make.exe go_go_proto_library_example
+     - make.exe go_go_grpc_library_example
+     - make.exe go_go_validate_library_example
+
   go_macos_examples:
     name: go examples
     platform: macos
@@ -427,11 +461,13 @@ tasks:
      - make grpc-gateway_gateway_grpc_compile_example
      - make grpc-gateway_gateway_openapiv2_compile_example
      - make grpc-gateway_gateway_grpc_library_example
+
   grpc-gateway_windows_examples:
     name: grpc-gateway examples
     platform: windows
     batch_commands:
-     - make grpc-gateway_gateway_grpc_compile_example
+     - make.exe grpc-gateway_gateway_grpc_compile_example
+
   grpc-gateway_macos_examples:
     name: grpc-gateway examples
     platform: macos
@@ -450,14 +486,16 @@ tasks:
      - make java_java_grpc_compile_example
      - make java_java_proto_library_example
      - make java_java_grpc_library_example
+
   java_windows_examples:
     name: java examples
     platform: windows
     batch_commands:
-     - make java_java_proto_compile_example
-     - make java_java_grpc_compile_example
-     - make java_java_proto_library_example
-     - make java_java_grpc_library_example
+     - make.exe java_java_proto_compile_example
+     - make.exe java_java_grpc_compile_example
+     - make.exe java_java_proto_library_example
+     - make.exe java_java_grpc_library_example
+
   java_macos_examples:
     name: java examples
     platform: macos
@@ -479,16 +517,18 @@ tasks:
      - make js_js_proto_library_example
      - make js_js_grpc_node_library_example
      - make js_js_grpc_web_library_example
+
   js_windows_examples:
     name: js examples
     platform: windows
     batch_commands:
-     - make js_js_proto_compile_example
-     - make js_js_grpc_node_compile_example
-     - make js_js_grpc_web_compile_example
-     - make js_js_proto_library_example
-     - make js_js_grpc_node_library_example
-     - make js_js_grpc_web_library_example
+     - make.exe js_js_proto_compile_example
+     - make.exe js_js_grpc_node_compile_example
+     - make.exe js_js_grpc_web_compile_example
+     - make.exe js_js_proto_library_example
+     - make.exe js_js_grpc_node_library_example
+     - make.exe js_js_grpc_web_library_example
+
   js_macos_examples:
     name: js examples
     platform: macos
@@ -518,12 +558,14 @@ tasks:
      - set -x
      - make php_php_proto_compile_example
      - make php_php_grpc_compile_example
+
   php_windows_examples:
     name: php examples
     platform: windows
     batch_commands:
-     - make php_php_proto_compile_example
-     - make php_php_grpc_compile_example
+     - make.exe php_php_proto_compile_example
+     - make.exe php_php_grpc_compile_example
+
   php_macos_examples:
     name: php examples
     platform: macos
@@ -543,13 +585,15 @@ tasks:
      - make python_python_proto_library_example
      - make python_python_grpc_library_example
      - make python_python_grpclib_library_example
+
   python_windows_examples:
     name: python examples
     platform: windows
     batch_commands:
-     - make python_python_proto_compile_example
-     - make python_python_grpc_compile_example
-     - make python_python_proto_library_example
+     - make.exe python_python_proto_compile_example
+     - make.exe python_python_grpc_compile_example
+     - make.exe python_python_proto_library_example
+
   python_macos_examples:
     name: python examples
     platform: macos
@@ -569,6 +613,7 @@ tasks:
      - make ruby_ruby_grpc_compile_example
      - make ruby_ruby_proto_library_example
      - make ruby_ruby_grpc_library_example
+
   ruby_macos_examples:
     name: ruby examples
     platform: macos
@@ -598,6 +643,7 @@ tasks:
      - make scala_scala_grpc_compile_example
      - make scala_scala_proto_library_example
      - make scala_scala_grpc_library_example
+
   scala_macos_examples:
     name: scala examples
     platform: macos
