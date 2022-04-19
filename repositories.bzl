@@ -76,7 +76,7 @@ VERSIONS = {
     # Buf
     "protoc_gen_buf_breaking_darwin_arm64": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-breaking-Darwin-x86_64".format(BUF_VERSION)],
+        "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-breaking-Darwin-arm64".format(BUF_VERSION)],
         "sha256": "d7b12a2ccd663f00a068b19cbd2c1e81f4983ea33bd9a92980485e2c4693b75a",
         "executable": True,
     },
