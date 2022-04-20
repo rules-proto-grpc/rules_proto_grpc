@@ -233,15 +233,6 @@ tasks:
      - make android_android_proto_library_example
      - make android_android_grpc_library_example
 
-  android_windows_examples:
-    name: android examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make android_android_proto_compile_example"
-     - powershell -Command "make android_android_grpc_compile_example"
-     - powershell -Command "make android_android_proto_library_example"
-     - powershell -Command "make android_android_grpc_library_example"
-
   android_macos_examples:
     name: android examples
     platform: macos
@@ -276,13 +267,6 @@ tasks:
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
 
-  c_windows_examples:
-    name: c examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make c_c_proto_compile_example"
-     - powershell -Command "make c_c_proto_library_example"
-
   c_macos_examples:
     name: c examples
     platform: macos
@@ -300,15 +284,6 @@ tasks:
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
      - make cpp_cpp_grpc_library_example
-
-  cpp_windows_examples:
-    name: cpp examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make cpp_cpp_proto_compile_example"
-     - powershell -Command "make cpp_cpp_grpc_compile_example"
-     - powershell -Command "make cpp_cpp_proto_library_example"
-     - powershell -Command "make cpp_cpp_grpc_library_example"
 
   cpp_macos_examples:
     name: cpp examples
@@ -329,15 +304,6 @@ tasks:
      - make csharp_csharp_grpc_compile_example
      - make csharp_csharp_proto_library_example
      - make csharp_csharp_grpc_library_example
-
-  csharp_windows_examples:
-    name: csharp examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make csharp_csharp_proto_compile_example"
-     - powershell -Command "make csharp_csharp_grpc_compile_example"
-     - powershell -Command "make csharp_csharp_proto_library_example"
-     - powershell -Command "make csharp_csharp_grpc_library_example"
 
   csharp_macos_examples:
     name: csharp examples
@@ -368,16 +334,6 @@ tasks:
      - make doc_doc_markdown_compile_example
      - make doc_doc_template_compile_example
 
-  doc_windows_examples:
-    name: doc examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make doc_doc_docbook_compile_example"
-     - powershell -Command "make doc_doc_html_compile_example"
-     - powershell -Command "make doc_doc_json_compile_example"
-     - powershell -Command "make doc_doc_markdown_compile_example"
-     - powershell -Command "make doc_doc_template_compile_example"
-
   doc_macos_examples:
     name: doc examples
     platform: macos
@@ -398,15 +354,6 @@ tasks:
      - make fsharp_fsharp_grpc_compile_example
      - make fsharp_fsharp_proto_library_example
      - make fsharp_fsharp_grpc_library_example
-
-  fsharp_windows_examples:
-    name: fsharp examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make fsharp_fsharp_proto_compile_example"
-     - powershell -Command "make fsharp_fsharp_grpc_compile_example"
-     - powershell -Command "make fsharp_fsharp_proto_library_example"
-     - powershell -Command "make fsharp_fsharp_grpc_library_example"
 
   fsharp_macos_examples:
     name: fsharp examples
@@ -430,17 +377,6 @@ tasks:
      - make go_go_grpc_library_example
      - make go_go_validate_library_example
 
-  go_windows_examples:
-    name: go examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make go_go_proto_compile_example"
-     - powershell -Command "make go_go_grpc_compile_example"
-     - powershell -Command "make go_go_validate_compile_example"
-     - powershell -Command "make go_go_proto_library_example"
-     - powershell -Command "make go_go_grpc_library_example"
-     - powershell -Command "make go_go_validate_library_example"
-
   go_macos_examples:
     name: go examples
     platform: macos
@@ -462,12 +398,6 @@ tasks:
      - make grpc-gateway_gateway_openapiv2_compile_example
      - make grpc-gateway_gateway_grpc_library_example
 
-  grpc-gateway_windows_examples:
-    name: grpc-gateway examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make grpc-gateway_gateway_grpc_compile_example"
-
   grpc-gateway_macos_examples:
     name: grpc-gateway examples
     platform: macos
@@ -486,15 +416,6 @@ tasks:
      - make java_java_grpc_compile_example
      - make java_java_proto_library_example
      - make java_java_grpc_library_example
-
-  java_windows_examples:
-    name: java examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make java_java_proto_compile_example"
-     - powershell -Command "make java_java_grpc_compile_example"
-     - powershell -Command "make java_java_proto_library_example"
-     - powershell -Command "make java_java_grpc_library_example"
 
   java_macos_examples:
     name: java examples
@@ -517,17 +438,6 @@ tasks:
      - make js_js_proto_library_example
      - make js_js_grpc_node_library_example
      - make js_js_grpc_web_library_example
-
-  js_windows_examples:
-    name: js examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make js_js_proto_compile_example"
-     - powershell -Command "make js_js_grpc_node_compile_example"
-     - powershell -Command "make js_js_grpc_web_compile_example"
-     - powershell -Command "make js_js_proto_library_example"
-     - powershell -Command "make js_js_grpc_node_library_example"
-     - powershell -Command "make js_js_grpc_web_library_example"
 
   js_macos_examples:
     name: js examples
@@ -559,13 +469,6 @@ tasks:
      - make php_php_proto_compile_example
      - make php_php_grpc_compile_example
 
-  php_windows_examples:
-    name: php examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make php_php_proto_compile_example"
-     - powershell -Command "make php_php_grpc_compile_example"
-
   php_macos_examples:
     name: php examples
     platform: macos
@@ -585,14 +488,6 @@ tasks:
      - make python_python_proto_library_example
      - make python_python_grpc_library_example
      - make python_python_grpclib_library_example
-
-  python_windows_examples:
-    name: python examples
-    platform: windows
-    batch_commands:
-     - powershell -Command "make python_python_proto_compile_example"
-     - powershell -Command "make python_python_grpc_compile_example"
-     - powershell -Command "make python_python_proto_library_example"
 
   python_macos_examples:
     name: python examples
