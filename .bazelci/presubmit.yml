@@ -539,3 +539,69 @@ tasks:
      - make swift_swift_grpc_compile_example
      - make swift_swift_proto_library_example
      - make swift_swift_grpc_library_example
+
+  ubuntu2004_test_workspaces:
+    name: test workspaces
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make test_workspace_absolute_strip_import_prefix
+     - make test_workspace_combined_strip_and_add_prefix
+     - make test_workspace_common_cpp_library
+     - make test_workspace_empty_output_directory
+     - make test_workspace_exclusions
+     - make test_workspace_generated_proto
+     - make test_workspace_go_fixer
+     - make test_workspace_go_importpath
+     - make test_workspace_import_prefix
+     - make test_workspace_objc_capitalisation
+     - make test_workspace_python3_grpc
+     - make test_workspace_python_dashes
+     - make test_workspace_python_deps
+     - make test_workspace_readme_http_archive
+     - make test_workspace_relative_strip_import_prefix
+     - make test_workspace_shared_proto
+     - make test_workspace_typescript
+
+  windows_test_workspaces:
+    name: test workspaces
+    platform: windows
+    batch_commands:
+     - make.exe test_workspace_absolute_strip_import_prefix
+     - make.exe test_workspace_combined_strip_and_add_prefix
+     - make.exe test_workspace_common_cpp_library
+     - make.exe test_workspace_empty_output_directory
+     - make.exe test_workspace_exclusions
+     - make.exe test_workspace_generated_proto
+     - make.exe test_workspace_go_fixer
+     - make.exe test_workspace_go_importpath
+     - make.exe test_workspace_import_prefix
+     - make.exe test_workspace_objc_capitalisation
+     - make.exe test_workspace_python_dashes
+     - make.exe test_workspace_readme_http_archive
+     - make.exe test_workspace_relative_strip_import_prefix
+     - make.exe test_workspace_shared_proto
+     - make.exe test_workspace_typescript
+
+  macos_test_workspaces:
+    name: test workspaces
+    platform: macos
+    shell_commands:
+     - set -x
+     - make test_workspace_absolute_strip_import_prefix
+     - make test_workspace_combined_strip_and_add_prefix
+     - make test_workspace_common_cpp_library
+     - make test_workspace_empty_output_directory
+     - make test_workspace_exclusions
+     - make test_workspace_generated_proto
+     - make test_workspace_go_fixer
+     - make test_workspace_go_importpath
+     - make test_workspace_import_prefix
+     - make test_workspace_objc_capitalisation
+     - make test_workspace_python3_grpc
+     - make test_workspace_python_dashes
+     - make test_workspace_python_deps
+     - make test_workspace_readme_http_archive
+     - make test_workspace_relative_strip_import_prefix
+     - make test_workspace_shared_proto
+     - make test_workspace_typescript
