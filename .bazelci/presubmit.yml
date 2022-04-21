@@ -563,26 +563,6 @@ tasks:
      - make test_workspace_shared_proto
      - make test_workspace_typescript
 
-  windows_test_workspaces:
-    name: test workspaces
-    platform: windows
-    batch_commands:
-     - make.exe test_workspace_absolute_strip_import_prefix
-     - make.exe test_workspace_combined_strip_and_add_prefix
-     - make.exe test_workspace_common_cpp_library
-     - make.exe test_workspace_empty_output_directory
-     - make.exe test_workspace_exclusions
-     - make.exe test_workspace_generated_proto
-     - make.exe test_workspace_go_fixer
-     - make.exe test_workspace_go_importpath
-     - make.exe test_workspace_import_prefix
-     - make.exe test_workspace_objc_capitalisation
-     - make.exe test_workspace_python_dashes
-     - make.exe test_workspace_readme_http_archive
-     - make.exe test_workspace_relative_strip_import_prefix
-     - make.exe test_workspace_shared_proto
-     - make.exe test_workspace_typescript
-
   macos_test_workspaces:
     name: test workspaces
     platform: macos
