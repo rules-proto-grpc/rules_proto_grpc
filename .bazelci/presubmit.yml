@@ -209,6 +209,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make android_android_proto_compile_example
      - make android_android_grpc_compile_example
      - make android_android_proto_library_example
@@ -219,6 +221,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make android_android_proto_compile_example
      - make android_android_grpc_compile_example
      - make android_android_proto_library_example
@@ -229,6 +233,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
 
@@ -237,6 +243,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
 
@@ -245,6 +253,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
 
@@ -253,6 +263,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
 
@@ -261,6 +273,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make cpp_cpp_proto_compile_example
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
@@ -271,6 +285,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make cpp_cpp_proto_compile_example
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
@@ -281,6 +297,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make csharp_csharp_proto_compile_example
      - make csharp_csharp_grpc_compile_example
      - make csharp_csharp_proto_library_example
@@ -291,6 +309,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make csharp_csharp_proto_compile_example
      - make csharp_csharp_grpc_compile_example
      - make csharp_csharp_proto_library_example
@@ -301,6 +321,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make d_d_proto_compile_example
      - make d_d_proto_library_example
 
@@ -309,6 +331,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make doc_doc_docbook_compile_example
      - make doc_doc_html_compile_example
      - make doc_doc_json_compile_example
@@ -320,6 +344,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make doc_doc_docbook_compile_example
      - make doc_doc_html_compile_example
      - make doc_doc_json_compile_example
@@ -331,6 +357,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make fsharp_fsharp_proto_compile_example
      - make fsharp_fsharp_grpc_compile_example
      - make fsharp_fsharp_proto_library_example
@@ -341,6 +369,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make fsharp_fsharp_proto_compile_example
      - make fsharp_fsharp_grpc_compile_example
      - make fsharp_fsharp_proto_library_example
@@ -351,6 +381,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make go_go_proto_compile_example
      - make go_go_grpc_compile_example
      - make go_go_validate_compile_example
@@ -363,6 +395,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make go_go_proto_compile_example
      - make go_go_grpc_compile_example
      - make go_go_validate_compile_example
@@ -375,6 +409,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make grpc-gateway_gateway_grpc_compile_example
      - make grpc-gateway_gateway_openapiv2_compile_example
      - make grpc-gateway_gateway_grpc_library_example
@@ -384,6 +420,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make grpc-gateway_gateway_grpc_compile_example
      - make grpc-gateway_gateway_openapiv2_compile_example
      - make grpc-gateway_gateway_grpc_library_example
@@ -393,6 +431,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make java_java_proto_compile_example
      - make java_java_grpc_compile_example
      - make java_java_proto_library_example
@@ -403,6 +443,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make java_java_proto_compile_example
      - make java_java_grpc_compile_example
      - make java_java_proto_library_example
@@ -413,6 +455,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make js_js_proto_compile_example
      - make js_js_grpc_node_compile_example
      - make js_js_grpc_web_compile_example
@@ -425,6 +469,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make js_js_proto_compile_example
      - make js_js_grpc_node_compile_example
      - make js_js_grpc_web_compile_example
@@ -437,6 +483,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make objc_objc_proto_compile_example
      - make objc_objc_grpc_compile_example
      - make objc_objc_proto_library_example
@@ -447,6 +495,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make php_php_proto_compile_example
      - make php_php_grpc_compile_example
 
@@ -455,6 +505,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make php_php_proto_compile_example
      - make php_php_grpc_compile_example
 
@@ -463,6 +515,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make python_python_proto_compile_example
      - make python_python_grpc_compile_example
      - make python_python_grpclib_compile_example
@@ -475,6 +529,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make python_python_proto_compile_example
      - make python_python_grpc_compile_example
      - make python_python_proto_library_example
@@ -485,6 +541,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make ruby_ruby_proto_compile_example
      - make ruby_ruby_grpc_compile_example
      - make ruby_ruby_proto_library_example
@@ -495,6 +553,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make ruby_ruby_proto_compile_example
      - make ruby_ruby_grpc_compile_example
      - make ruby_ruby_proto_library_example
@@ -505,6 +565,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make rust_rust_proto_compile_example
      - make rust_rust_grpc_compile_example
      - make rust_rust_proto_library_example
@@ -515,6 +577,8 @@ tasks:
     platform: ubuntu2004
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make scala_scala_proto_compile_example
      - make scala_scala_grpc_compile_example
      - make scala_scala_proto_library_example
@@ -525,6 +589,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make scala_scala_proto_compile_example
      - make scala_scala_grpc_compile_example
      - make scala_scala_proto_library_example
@@ -535,6 +601,8 @@ tasks:
     platform: macos
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
      - make swift_swift_proto_compile_example
      - make swift_swift_grpc_compile_example
      - make swift_swift_proto_library_example
