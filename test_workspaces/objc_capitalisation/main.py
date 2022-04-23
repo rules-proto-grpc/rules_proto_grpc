@@ -6,6 +6,8 @@ import sys
 expected = {
     'objc_lib/Demo.pbobjc.m',
     'objc_lib/Demo.pbobjc.h',
+    'objc_lib/folder/DashesDemo.pbobjc.m',
+    'objc_lib/folder/DashesDemo.pbobjc.h',
     'objc_lib/folder/NestedDemo.pbobjc.m',
     'objc_lib/folder/NestedDemo.pbobjc.h',
 }
