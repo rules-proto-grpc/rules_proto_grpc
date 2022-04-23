@@ -100,14 +100,13 @@ tasks:
     - "//example/routeguide:scala_js"
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_rust"
+
   main_macos:
     name: build & test all
     platform: macos
     environment:
       CC: clang
     build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     build_targets:
@@ -130,8 +129,6 @@ tasks:
     - "//swift/..."
     test_flags:
     - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
     test_targets:
@@ -206,1947 +203,393 @@ tasks:
     - "//example/routeguide:scala_js"
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_ruby"
-  android_android_proto_compile_ubuntu2004:
-    name: 'android: android_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_proto_compile
-  android_android_proto_compile_windows:
-    name: 'android: android_proto_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_proto_compile
-  android_android_proto_compile_macos:
-    name: 'android: android_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_proto_compile
-  android_android_grpc_compile_ubuntu2004:
-    name: 'android: android_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_grpc_compile
-  android_android_grpc_compile_windows:
-    name: 'android: android_grpc_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_grpc_compile
-  android_android_grpc_compile_macos:
-    name: 'android: android_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_grpc_compile
-  android_android_proto_library_ubuntu2004:
-    name: 'android: android_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_proto_library
-  android_android_proto_library_windows:
-    name: 'android: android_proto_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_proto_library
-  android_android_proto_library_macos:
-    name: 'android: android_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_proto_library
-  android_android_grpc_library_ubuntu2004:
-    name: 'android: android_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_grpc_library
-  android_android_grpc_library_windows:
-    name: 'android: android_grpc_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_grpc_library
-  android_android_grpc_library_macos:
-    name: 'android: android_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/android/android_grpc_library
-  buf_buf_proto_breaking_test_ubuntu2004:
-    name: 'buf: buf_proto_breaking_test'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    test_targets:
-      - "//..."
-    working_directory: example/buf/buf_proto_breaking_test
-  buf_buf_proto_breaking_test_macos:
-    name: 'buf: buf_proto_breaking_test'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    test_targets:
-      - "//..."
-    working_directory: example/buf/buf_proto_breaking_test
-  buf_buf_proto_lint_test_ubuntu2004:
-    name: 'buf: buf_proto_lint_test'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    test_targets:
-      - "//..."
-    working_directory: example/buf/buf_proto_lint_test
-  buf_buf_proto_lint_test_macos:
-    name: 'buf: buf_proto_lint_test'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    test_targets:
-      - "//..."
-    working_directory: example/buf/buf_proto_lint_test
-  c_c_proto_compile_ubuntu2004:
-    name: 'c: c_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/c/c_proto_compile
-  c_c_proto_compile_windows:
-    name: 'c: c_proto_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/c/c_proto_compile
-  c_c_proto_compile_macos:
-    name: 'c: c_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/c/c_proto_compile
-  c_c_proto_library_ubuntu2004:
-    name: 'c: c_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/c/c_proto_library
-  c_c_proto_library_windows:
-    name: 'c: c_proto_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/c/c_proto_library
-  c_c_proto_library_macos:
-    name: 'c: c_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/c/c_proto_library
-  cpp_cpp_proto_compile_ubuntu2004:
-    name: 'cpp: cpp_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_proto_compile
-  cpp_cpp_proto_compile_windows:
-    name: 'cpp: cpp_proto_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_proto_compile
-  cpp_cpp_proto_compile_macos:
-    name: 'cpp: cpp_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_proto_compile
-  cpp_cpp_grpc_compile_ubuntu2004:
-    name: 'cpp: cpp_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_grpc_compile
-  cpp_cpp_grpc_compile_windows:
-    name: 'cpp: cpp_grpc_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_grpc_compile
-  cpp_cpp_grpc_compile_macos:
-    name: 'cpp: cpp_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_grpc_compile
-  cpp_cpp_proto_library_ubuntu2004:
-    name: 'cpp: cpp_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_proto_library
-  cpp_cpp_proto_library_windows:
-    name: 'cpp: cpp_proto_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_proto_library
-  cpp_cpp_proto_library_macos:
-    name: 'cpp: cpp_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_proto_library
-  cpp_cpp_grpc_library_ubuntu2004:
-    name: 'cpp: cpp_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_grpc_library
-  cpp_cpp_grpc_library_windows:
-    name: 'cpp: cpp_grpc_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_grpc_library
-  cpp_cpp_grpc_library_macos:
-    name: 'cpp: cpp_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/cpp/cpp_grpc_library
-  csharp_csharp_proto_compile_ubuntu2004:
-    name: 'csharp: csharp_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_proto_compile
-  csharp_csharp_proto_compile_windows:
-    name: 'csharp: csharp_proto_compile'
-    platform: windows
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_proto_compile
-  csharp_csharp_proto_compile_macos:
-    name: 'csharp: csharp_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_proto_compile
-  csharp_csharp_grpc_compile_ubuntu2004:
-    name: 'csharp: csharp_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_grpc_compile
-  csharp_csharp_grpc_compile_windows:
-    name: 'csharp: csharp_grpc_compile'
-    platform: windows
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_grpc_compile
-  csharp_csharp_grpc_compile_macos:
-    name: 'csharp: csharp_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_grpc_compile
-  csharp_csharp_proto_library_ubuntu2004:
-    name: 'csharp: csharp_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_proto_library
-  csharp_csharp_proto_library_windows:
-    name: 'csharp: csharp_proto_library'
-    platform: windows
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_proto_library
-  csharp_csharp_proto_library_macos:
-    name: 'csharp: csharp_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_proto_library
-  csharp_csharp_grpc_library_ubuntu2004:
-    name: 'csharp: csharp_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_grpc_library
-  csharp_csharp_grpc_library_windows:
-    name: 'csharp: csharp_grpc_library'
-    platform: windows
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_grpc_library
-  csharp_csharp_grpc_library_macos:
-    name: 'csharp: csharp_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/csharp/csharp_grpc_library
-  d_d_proto_compile_ubuntu2004:
-    name: 'd: d_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/d/d_proto_compile
-  d_d_proto_library_ubuntu2004:
-    name: 'd: d_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/d/d_proto_library
-  doc_doc_docbook_compile_ubuntu2004:
-    name: 'doc: doc_docbook_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_docbook_compile
-  doc_doc_docbook_compile_windows:
-    name: 'doc: doc_docbook_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_docbook_compile
-  doc_doc_docbook_compile_macos:
-    name: 'doc: doc_docbook_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_docbook_compile
-  doc_doc_html_compile_ubuntu2004:
-    name: 'doc: doc_html_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_html_compile
-  doc_doc_html_compile_windows:
-    name: 'doc: doc_html_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_html_compile
-  doc_doc_html_compile_macos:
-    name: 'doc: doc_html_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_html_compile
-  doc_doc_json_compile_ubuntu2004:
-    name: 'doc: doc_json_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_json_compile
-  doc_doc_json_compile_windows:
-    name: 'doc: doc_json_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_json_compile
-  doc_doc_json_compile_macos:
-    name: 'doc: doc_json_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_json_compile
-  doc_doc_markdown_compile_ubuntu2004:
-    name: 'doc: doc_markdown_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_markdown_compile
-  doc_doc_markdown_compile_windows:
-    name: 'doc: doc_markdown_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_markdown_compile
-  doc_doc_markdown_compile_macos:
-    name: 'doc: doc_markdown_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_markdown_compile
-  doc_doc_template_compile_ubuntu2004:
-    name: 'doc: doc_template_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_template_compile
-  doc_doc_template_compile_windows:
-    name: 'doc: doc_template_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_template_compile
-  doc_doc_template_compile_macos:
-    name: 'doc: doc_template_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/doc/doc_template_compile
-  fsharp_fsharp_proto_compile_ubuntu2004:
-    name: 'fsharp: fsharp_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_proto_compile
-  fsharp_fsharp_proto_compile_windows:
-    name: 'fsharp: fsharp_proto_compile'
-    platform: windows
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_proto_compile
-  fsharp_fsharp_proto_compile_macos:
-    name: 'fsharp: fsharp_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_proto_compile
-  fsharp_fsharp_grpc_compile_ubuntu2004:
-    name: 'fsharp: fsharp_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_grpc_compile
-  fsharp_fsharp_grpc_compile_windows:
-    name: 'fsharp: fsharp_grpc_compile'
-    platform: windows
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_grpc_compile
-  fsharp_fsharp_grpc_compile_macos:
-    name: 'fsharp: fsharp_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_grpc_compile
-  fsharp_fsharp_proto_library_ubuntu2004:
-    name: 'fsharp: fsharp_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_proto_library
-  fsharp_fsharp_proto_library_windows:
-    name: 'fsharp: fsharp_proto_library'
-    platform: windows
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_proto_library
-  fsharp_fsharp_proto_library_macos:
-    name: 'fsharp: fsharp_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_proto_library
-  fsharp_fsharp_grpc_library_ubuntu2004:
-    name: 'fsharp: fsharp_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_grpc_library
-  fsharp_fsharp_grpc_library_windows:
-    name: 'fsharp: fsharp_grpc_library'
-    platform: windows
-    build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_grpc_library
-  fsharp_fsharp_grpc_library_macos:
-    name: 'fsharp: fsharp_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    build_targets:
-      - "//..."
-    working_directory: example/fsharp/fsharp_grpc_library
-  go_go_proto_compile_ubuntu2004:
-    name: 'go: go_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_proto_compile
-  go_go_proto_compile_windows:
-    name: 'go: go_proto_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_proto_compile
-  go_go_proto_compile_macos:
-    name: 'go: go_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_proto_compile
-  go_go_grpc_compile_ubuntu2004:
-    name: 'go: go_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_grpc_compile
-  go_go_grpc_compile_windows:
-    name: 'go: go_grpc_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_grpc_compile
-  go_go_grpc_compile_macos:
-    name: 'go: go_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_grpc_compile
-  go_go_validate_compile_ubuntu2004:
-    name: 'go: go_validate_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_validate_compile
-  go_go_validate_compile_windows:
-    name: 'go: go_validate_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_validate_compile
-  go_go_validate_compile_macos:
-    name: 'go: go_validate_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_validate_compile
-  go_go_proto_library_ubuntu2004:
-    name: 'go: go_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_proto_library
-  go_go_proto_library_windows:
-    name: 'go: go_proto_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_proto_library
-  go_go_proto_library_macos:
-    name: 'go: go_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_proto_library
-  go_go_grpc_library_ubuntu2004:
-    name: 'go: go_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_grpc_library
-  go_go_grpc_library_windows:
-    name: 'go: go_grpc_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_grpc_library
-  go_go_grpc_library_macos:
-    name: 'go: go_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_grpc_library
-  go_go_validate_library_ubuntu2004:
-    name: 'go: go_validate_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_validate_library
-  go_go_validate_library_windows:
-    name: 'go: go_validate_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_validate_library
-  go_go_validate_library_macos:
-    name: 'go: go_validate_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/go/go_validate_library
-  grpc-gateway_gateway_grpc_compile_ubuntu2004:
-    name: 'grpc-gateway: gateway_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-gateway/gateway_grpc_compile
-  grpc-gateway_gateway_grpc_compile_windows:
-    name: 'grpc-gateway: gateway_grpc_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-gateway/gateway_grpc_compile
-  grpc-gateway_gateway_grpc_compile_macos:
-    name: 'grpc-gateway: gateway_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-gateway/gateway_grpc_compile
-  grpc-gateway_gateway_openapiv2_compile_ubuntu2004:
-    name: 'grpc-gateway: gateway_openapiv2_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-gateway/gateway_openapiv2_compile
-  grpc-gateway_gateway_openapiv2_compile_macos:
-    name: 'grpc-gateway: gateway_openapiv2_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-gateway/gateway_openapiv2_compile
-  grpc-gateway_gateway_grpc_library_ubuntu2004:
-    name: 'grpc-gateway: gateway_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-gateway/gateway_grpc_library
-  grpc-gateway_gateway_grpc_library_macos:
-    name: 'grpc-gateway: gateway_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/grpc-gateway/gateway_grpc_library
-  java_java_proto_compile_ubuntu2004:
-    name: 'java: java_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_proto_compile
-  java_java_proto_compile_windows:
-    name: 'java: java_proto_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_proto_compile
-  java_java_proto_compile_macos:
-    name: 'java: java_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_proto_compile
-  java_java_grpc_compile_ubuntu2004:
-    name: 'java: java_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_grpc_compile
-  java_java_grpc_compile_windows:
-    name: 'java: java_grpc_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_grpc_compile
-  java_java_grpc_compile_macos:
-    name: 'java: java_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_grpc_compile
-  java_java_proto_library_ubuntu2004:
-    name: 'java: java_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_proto_library
-  java_java_proto_library_windows:
-    name: 'java: java_proto_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_proto_library
-  java_java_proto_library_macos:
-    name: 'java: java_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_proto_library
-  java_java_grpc_library_ubuntu2004:
-    name: 'java: java_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_grpc_library
-  java_java_grpc_library_windows:
-    name: 'java: java_grpc_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_grpc_library
-  java_java_grpc_library_macos:
-    name: 'java: java_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/java/java_grpc_library
-  js_js_proto_compile_ubuntu2004:
-    name: 'js: js_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_proto_compile
-  js_js_proto_compile_windows:
-    name: 'js: js_proto_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_proto_compile
-  js_js_proto_compile_macos:
-    name: 'js: js_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_proto_compile
-  js_js_grpc_node_compile_ubuntu2004:
-    name: 'js: js_grpc_node_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_node_compile
-  js_js_grpc_node_compile_windows:
-    name: 'js: js_grpc_node_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_node_compile
-  js_js_grpc_node_compile_macos:
-    name: 'js: js_grpc_node_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_node_compile
-  js_js_grpc_web_compile_ubuntu2004:
-    name: 'js: js_grpc_web_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_web_compile
-  js_js_grpc_web_compile_windows:
-    name: 'js: js_grpc_web_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_web_compile
-  js_js_grpc_web_compile_macos:
-    name: 'js: js_grpc_web_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_web_compile
-  js_js_proto_library_ubuntu2004:
-    name: 'js: js_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_proto_library
-  js_js_proto_library_windows:
-    name: 'js: js_proto_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_proto_library
-  js_js_proto_library_macos:
-    name: 'js: js_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_proto_library
-  js_js_grpc_node_library_ubuntu2004:
-    name: 'js: js_grpc_node_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_node_library
-  js_js_grpc_node_library_windows:
-    name: 'js: js_grpc_node_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_node_library
-  js_js_grpc_node_library_macos:
-    name: 'js: js_grpc_node_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_node_library
-  js_js_grpc_web_library_ubuntu2004:
-    name: 'js: js_grpc_web_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_web_library
-  js_js_grpc_web_library_windows:
-    name: 'js: js_grpc_web_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_web_library
-  js_js_grpc_web_library_macos:
-    name: 'js: js_grpc_web_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/js/js_grpc_web_library
-  objc_objc_proto_compile_macos:
-    name: 'objc: objc_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/objc/objc_proto_compile
-  objc_objc_grpc_compile_macos:
-    name: 'objc: objc_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/objc/objc_grpc_compile
-  objc_objc_proto_library_macos:
-    name: 'objc: objc_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/objc/objc_proto_library
-  objc_objc_grpc_library_macos:
-    name: 'objc: objc_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/objc/objc_grpc_library
-  php_php_proto_compile_ubuntu2004:
-    name: 'php: php_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/php/php_proto_compile
-  php_php_proto_compile_windows:
-    name: 'php: php_proto_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/php/php_proto_compile
-  php_php_proto_compile_macos:
-    name: 'php: php_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/php/php_proto_compile
-  php_php_grpc_compile_ubuntu2004:
-    name: 'php: php_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/php/php_grpc_compile
-  php_php_grpc_compile_windows:
-    name: 'php: php_grpc_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/php/php_grpc_compile
-  php_php_grpc_compile_macos:
-    name: 'php: php_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/php/php_grpc_compile
-  python_python_proto_compile_ubuntu2004:
-    name: 'python: python_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_proto_compile
-  python_python_proto_compile_windows:
-    name: 'python: python_proto_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_proto_compile
-  python_python_proto_compile_macos:
-    name: 'python: python_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_proto_compile
-  python_python_grpc_compile_ubuntu2004:
-    name: 'python: python_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpc_compile
-  python_python_grpc_compile_windows:
-    name: 'python: python_grpc_compile'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpc_compile
-  python_python_grpc_compile_macos:
-    name: 'python: python_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpc_compile
-  python_python_grpclib_compile_ubuntu2004:
-    name: 'python: python_grpclib_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpclib_compile
-  python_python_proto_library_ubuntu2004:
-    name: 'python: python_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_proto_library
-  python_python_proto_library_windows:
-    name: 'python: python_proto_library'
-    platform: windows
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_proto_library
-  python_python_proto_library_macos:
-    name: 'python: python_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_proto_library
-  python_python_grpc_library_ubuntu2004:
-    name: 'python: python_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpc_library
-  python_python_grpc_library_macos:
-    name: 'python: python_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpc_library
-  python_python_grpclib_library_ubuntu2004:
-    name: 'python: python_grpclib_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/python/python_grpclib_library
-  ruby_ruby_proto_compile_ubuntu2004:
-    name: 'ruby: ruby_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_proto_compile
-  ruby_ruby_proto_compile_macos:
-    name: 'ruby: ruby_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_proto_compile
-  ruby_ruby_grpc_compile_ubuntu2004:
-    name: 'ruby: ruby_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_grpc_compile
-  ruby_ruby_grpc_compile_macos:
-    name: 'ruby: ruby_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_grpc_compile
-  ruby_ruby_proto_library_ubuntu2004:
-    name: 'ruby: ruby_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_proto_library
-  ruby_ruby_proto_library_macos:
-    name: 'ruby: ruby_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_proto_library
-  ruby_ruby_grpc_library_ubuntu2004:
-    name: 'ruby: ruby_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_grpc_library
-  ruby_ruby_grpc_library_macos:
-    name: 'ruby: ruby_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/ruby/ruby_grpc_library
-  rust_rust_proto_compile_ubuntu2004:
-    name: 'rust: rust_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/rust/rust_proto_compile
-  rust_rust_grpc_compile_ubuntu2004:
-    name: 'rust: rust_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/rust/rust_grpc_compile
-  rust_rust_proto_library_ubuntu2004:
-    name: 'rust: rust_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/rust/rust_proto_library
-  rust_rust_grpc_library_ubuntu2004:
-    name: 'rust: rust_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/rust/rust_grpc_library
-  scala_scala_proto_compile_ubuntu2004:
-    name: 'scala: scala_proto_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/scala/scala_proto_compile
-  scala_scala_proto_compile_macos:
-    name: 'scala: scala_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/scala/scala_proto_compile
-  scala_scala_grpc_compile_ubuntu2004:
-    name: 'scala: scala_grpc_compile'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/scala/scala_grpc_compile
-  scala_scala_grpc_compile_macos:
-    name: 'scala: scala_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/scala/scala_grpc_compile
-  scala_scala_proto_library_ubuntu2004:
-    name: 'scala: scala_proto_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/scala/scala_proto_library
-  scala_scala_proto_library_macos:
-    name: 'scala: scala_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/scala/scala_proto_library
-  scala_scala_grpc_library_ubuntu2004:
-    name: 'scala: scala_grpc_library'
-    platform: ubuntu2004
-    build_flags:
-    build_targets:
-      - "//..."
-    working_directory: example/scala/scala_grpc_library
-  scala_scala_grpc_library_macos:
-    name: 'scala: scala_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/scala/scala_grpc_library
-  swift_swift_proto_compile_macos:
-    name: 'swift: swift_proto_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/swift/swift_proto_compile
-    environment:
-      CC: clang
-  swift_swift_grpc_compile_macos:
-    name: 'swift: swift_grpc_compile'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/swift/swift_grpc_compile
-    environment:
-      CC: clang
-  swift_swift_proto_library_macos:
-    name: 'swift: swift_proto_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/swift/swift_proto_library
-    environment:
-      CC: clang
-  swift_swift_grpc_library_macos:
-    name: 'swift: swift_grpc_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    build_targets:
-      - "//..."
-    working_directory: example/swift/swift_grpc_library
-    environment:
-      CC: clang
-  test_workspace_absolute_strip_import_prefix_ubuntu2004:
-    name: 'test workspace: absolute_strip_import_prefix'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/absolute_strip_import_prefix
-  test_workspace_absolute_strip_import_prefix_windows:
-    name: 'test workspace: absolute_strip_import_prefix'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/absolute_strip_import_prefix
-  test_workspace_absolute_strip_import_prefix_macos:
-    name: 'test workspace: absolute_strip_import_prefix'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/absolute_strip_import_prefix
-  test_workspace_combined_strip_and_add_prefix_ubuntu2004:
-    name: 'test workspace: combined_strip_and_add_prefix'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/combined_strip_and_add_prefix
-  test_workspace_combined_strip_and_add_prefix_windows:
-    name: 'test workspace: combined_strip_and_add_prefix'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/combined_strip_and_add_prefix
-  test_workspace_combined_strip_and_add_prefix_macos:
-    name: 'test workspace: combined_strip_and_add_prefix'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/combined_strip_and_add_prefix
-  test_workspace_common_cpp_library_ubuntu2004:
-    name: 'test workspace: common_cpp_library'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/common_cpp_library
-  test_workspace_common_cpp_library_windows:
-    name: 'test workspace: common_cpp_library'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/common_cpp_library
-  test_workspace_common_cpp_library_macos:
-    name: 'test workspace: common_cpp_library'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/common_cpp_library
-  test_workspace_empty_output_directory_ubuntu2004:
-    name: 'test workspace: empty_output_directory'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/empty_output_directory
-  test_workspace_empty_output_directory_windows:
-    name: 'test workspace: empty_output_directory'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/empty_output_directory
-  test_workspace_empty_output_directory_macos:
-    name: 'test workspace: empty_output_directory'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/empty_output_directory
-  test_workspace_exclusions_ubuntu2004:
-    name: 'test workspace: exclusions'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/exclusions
-  test_workspace_exclusions_windows:
-    name: 'test workspace: exclusions'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/exclusions
-  test_workspace_exclusions_macos:
-    name: 'test workspace: exclusions'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/exclusions
-  test_workspace_generated_proto_ubuntu2004:
-    name: 'test workspace: generated_proto'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/generated_proto
-  test_workspace_generated_proto_windows:
-    name: 'test workspace: generated_proto'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/generated_proto
-  test_workspace_generated_proto_macos:
-    name: 'test workspace: generated_proto'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/generated_proto
-  test_workspace_go_fixer_ubuntu2004:
-    name: 'test workspace: go_fixer'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/go_fixer
-  test_workspace_go_fixer_windows:
-    name: 'test workspace: go_fixer'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/go_fixer
-  test_workspace_go_fixer_macos:
-    name: 'test workspace: go_fixer'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/go_fixer
-  test_workspace_go_importpath_ubuntu2004:
-    name: 'test workspace: go_importpath'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/go_importpath
-  test_workspace_go_importpath_windows:
-    name: 'test workspace: go_importpath'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/go_importpath
-  test_workspace_go_importpath_macos:
-    name: 'test workspace: go_importpath'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/go_importpath
-  test_workspace_import_prefix_ubuntu2004:
-    name: 'test workspace: import_prefix'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/import_prefix
-  test_workspace_import_prefix_windows:
-    name: 'test workspace: import_prefix'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/import_prefix
-  test_workspace_import_prefix_macos:
-    name: 'test workspace: import_prefix'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/import_prefix
-  test_workspace_objc_capitalisation_ubuntu2004:
-    name: 'test workspace: objc_capitalisation'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/objc_capitalisation
-  test_workspace_objc_capitalisation_windows:
-    name: 'test workspace: objc_capitalisation'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/objc_capitalisation
-  test_workspace_objc_capitalisation_macos:
-    name: 'test workspace: objc_capitalisation'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/objc_capitalisation
-  test_workspace_python3_grpc_ubuntu2004:
-    name: 'test workspace: python3_grpc'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python3_grpc
-  test_workspace_python3_grpc_macos:
-    name: 'test workspace: python3_grpc'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python3_grpc
-  test_workspace_python_dashes_ubuntu2004:
-    name: 'test workspace: python_dashes'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python_dashes
-  test_workspace_python_dashes_windows:
-    name: 'test workspace: python_dashes'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python_dashes
-  test_workspace_python_dashes_macos:
-    name: 'test workspace: python_dashes'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python_dashes
-  test_workspace_python_deps_ubuntu2004:
-    name: 'test workspace: python_deps'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python_deps
-  test_workspace_python_deps_macos:
-    name: 'test workspace: python_deps'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/python_deps
-  test_workspace_readme_http_archive_ubuntu2004:
-    name: 'test workspace: readme_http_archive'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/readme_http_archive
-  test_workspace_readme_http_archive_windows:
-    name: 'test workspace: readme_http_archive'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/readme_http_archive
-  test_workspace_readme_http_archive_macos:
-    name: 'test workspace: readme_http_archive'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/readme_http_archive
-  test_workspace_relative_strip_import_prefix_ubuntu2004:
-    name: 'test workspace: relative_strip_import_prefix'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/relative_strip_import_prefix
-  test_workspace_relative_strip_import_prefix_windows:
-    name: 'test workspace: relative_strip_import_prefix'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/relative_strip_import_prefix
-  test_workspace_relative_strip_import_prefix_macos:
-    name: 'test workspace: relative_strip_import_prefix'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/relative_strip_import_prefix
-  test_workspace_shared_proto_ubuntu2004:
-    name: 'test workspace: shared_proto'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/shared_proto
-  test_workspace_shared_proto_windows:
-    name: 'test workspace: shared_proto'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/shared_proto
-  test_workspace_shared_proto_macos:
-    name: 'test workspace: shared_proto'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/shared_proto
-  test_workspace_typescript_ubuntu2004:
-    name: 'test workspace: typescript'
-    platform: ubuntu2004
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/typescript
-  test_workspace_typescript_windows:
-    name: 'test workspace: typescript'
-    platform: windows
-    build_flags:
-    test_flags:
-    - "--test_output=errors"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/typescript
-  test_workspace_typescript_macos:
-    name: 'test workspace: typescript'
-    platform: macos
-    build_flags:
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_flags:
-    - "--test_output=errors"
-    - "--copt=-DGRPC_BAZEL_BUILD"
-    - "--features=-supports_dynamic_linker"
-    test_targets:
-      - "//..."
-    working_directory: test_workspaces/typescript
+
+  android_ubuntu2004_examples:
+    name: android examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make android_android_proto_compile_example
+     - make android_android_grpc_compile_example
+     - make android_android_proto_library_example
+     - make android_android_grpc_library_example
+
+  android_macos_examples:
+    name: android examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make android_android_proto_compile_example
+     - make android_android_grpc_compile_example
+     - make android_android_proto_library_example
+     - make android_android_grpc_library_example
+
+  buf_ubuntu2004_examples:
+    name: buf examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make buf_buf_proto_breaking_test_example
+     - make buf_buf_proto_lint_test_example
+
+  buf_macos_examples:
+    name: buf examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make buf_buf_proto_breaking_test_example
+     - make buf_buf_proto_lint_test_example
+
+  c_ubuntu2004_examples:
+    name: c examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make c_c_proto_compile_example
+     - make c_c_proto_library_example
+
+  c_macos_examples:
+    name: c examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make c_c_proto_compile_example
+     - make c_c_proto_library_example
+
+  cpp_ubuntu2004_examples:
+    name: cpp examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make cpp_cpp_proto_compile_example
+     - make cpp_cpp_grpc_compile_example
+     - make cpp_cpp_proto_library_example
+     - make cpp_cpp_grpc_library_example
+
+  cpp_macos_examples:
+    name: cpp examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make cpp_cpp_proto_compile_example
+     - make cpp_cpp_grpc_compile_example
+     - make cpp_cpp_proto_library_example
+     - make cpp_cpp_grpc_library_example
+
+  csharp_ubuntu2004_examples:
+    name: csharp examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - make csharp_csharp_proto_compile_example
+     - make csharp_csharp_grpc_compile_example
+     - make csharp_csharp_proto_library_example
+     - make csharp_csharp_grpc_library_example
+
+  csharp_macos_examples:
+    name: csharp examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - make csharp_csharp_proto_compile_example
+     - make csharp_csharp_grpc_compile_example
+     - make csharp_csharp_proto_library_example
+     - make csharp_csharp_grpc_library_example
+
+  d_ubuntu2004_examples:
+    name: d examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make d_d_proto_compile_example
+     - make d_d_proto_library_example
+
+  doc_ubuntu2004_examples:
+    name: doc examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make doc_doc_docbook_compile_example
+     - make doc_doc_html_compile_example
+     - make doc_doc_json_compile_example
+     - make doc_doc_markdown_compile_example
+     - make doc_doc_template_compile_example
+
+  doc_macos_examples:
+    name: doc examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make doc_doc_docbook_compile_example
+     - make doc_doc_html_compile_example
+     - make doc_doc_json_compile_example
+     - make doc_doc_markdown_compile_example
+     - make doc_doc_template_compile_example
+
+  fsharp_ubuntu2004_examples:
+    name: fsharp examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - make fsharp_fsharp_proto_compile_example
+     - make fsharp_fsharp_grpc_compile_example
+     - make fsharp_fsharp_proto_library_example
+     - make fsharp_fsharp_grpc_library_example
+
+  fsharp_macos_examples:
+    name: fsharp examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - export BAZEL_EXTRA_FLAGS="--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - export BAZEL_EXTRA_FLAGS="--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201 $BAZEL_EXTRA_FLAGS"
+     - make fsharp_fsharp_proto_compile_example
+     - make fsharp_fsharp_grpc_compile_example
+     - make fsharp_fsharp_proto_library_example
+     - make fsharp_fsharp_grpc_library_example
+
+  go_ubuntu2004_examples:
+    name: go examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make go_go_proto_compile_example
+     - make go_go_grpc_compile_example
+     - make go_go_validate_compile_example
+     - make go_go_proto_library_example
+     - make go_go_grpc_library_example
+     - make go_go_validate_library_example
+
+  go_macos_examples:
+    name: go examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make go_go_proto_compile_example
+     - make go_go_grpc_compile_example
+     - make go_go_validate_compile_example
+     - make go_go_proto_library_example
+     - make go_go_grpc_library_example
+     - make go_go_validate_library_example
+
+  grpc-gateway_ubuntu2004_examples:
+    name: grpc-gateway examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make grpc-gateway_gateway_grpc_compile_example
+     - make grpc-gateway_gateway_openapiv2_compile_example
+     - make grpc-gateway_gateway_grpc_library_example
+
+  grpc-gateway_macos_examples:
+    name: grpc-gateway examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make grpc-gateway_gateway_grpc_compile_example
+     - make grpc-gateway_gateway_openapiv2_compile_example
+     - make grpc-gateway_gateway_grpc_library_example
+
+  java_ubuntu2004_examples:
+    name: java examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make java_java_proto_compile_example
+     - make java_java_grpc_compile_example
+     - make java_java_proto_library_example
+     - make java_java_grpc_library_example
+
+  java_macos_examples:
+    name: java examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make java_java_proto_compile_example
+     - make java_java_grpc_compile_example
+     - make java_java_proto_library_example
+     - make java_java_grpc_library_example
+
+  js_ubuntu2004_examples:
+    name: js examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make js_js_proto_compile_example
+     - make js_js_grpc_node_compile_example
+     - make js_js_grpc_web_compile_example
+     - make js_js_proto_library_example
+     - make js_js_grpc_node_library_example
+     - make js_js_grpc_web_library_example
+
+  js_macos_examples:
+    name: js examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make js_js_proto_compile_example
+     - make js_js_grpc_node_compile_example
+     - make js_js_grpc_web_compile_example
+     - make js_js_proto_library_example
+     - make js_js_grpc_node_library_example
+     - make js_js_grpc_web_library_example
+
+  objc_macos_examples:
+    name: objc examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make objc_objc_proto_compile_example
+     - make objc_objc_grpc_compile_example
+     - make objc_objc_proto_library_example
+     - make objc_objc_grpc_library_example
+
+  php_ubuntu2004_examples:
+    name: php examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make php_php_proto_compile_example
+     - make php_php_grpc_compile_example
+
+  php_macos_examples:
+    name: php examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make php_php_proto_compile_example
+     - make php_php_grpc_compile_example
+
+  python_ubuntu2004_examples:
+    name: python examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make python_python_proto_compile_example
+     - make python_python_grpc_compile_example
+     - make python_python_grpclib_compile_example
+     - make python_python_proto_library_example
+     - make python_python_grpc_library_example
+     - make python_python_grpclib_library_example
+
+  python_macos_examples:
+    name: python examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make python_python_proto_compile_example
+     - make python_python_grpc_compile_example
+     - make python_python_proto_library_example
+     - make python_python_grpc_library_example
+
+  ruby_ubuntu2004_examples:
+    name: ruby examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make ruby_ruby_proto_compile_example
+     - make ruby_ruby_grpc_compile_example
+     - make ruby_ruby_proto_library_example
+     - make ruby_ruby_grpc_library_example
+
+  ruby_macos_examples:
+    name: ruby examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make ruby_ruby_proto_compile_example
+     - make ruby_ruby_grpc_compile_example
+     - make ruby_ruby_proto_library_example
+     - make ruby_ruby_grpc_library_example
+
+  rust_ubuntu2004_examples:
+    name: rust examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make rust_rust_proto_compile_example
+     - make rust_rust_grpc_compile_example
+     - make rust_rust_proto_library_example
+     - make rust_rust_grpc_library_example
+
+  scala_ubuntu2004_examples:
+    name: scala examples
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make scala_scala_proto_compile_example
+     - make scala_scala_grpc_compile_example
+     - make scala_scala_proto_library_example
+     - make scala_scala_grpc_library_example
+
+  scala_macos_examples:
+    name: scala examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make scala_scala_proto_compile_example
+     - make scala_scala_grpc_compile_example
+     - make scala_scala_proto_library_example
+     - make scala_scala_grpc_library_example
+
+  swift_macos_examples:
+    name: swift examples
+    platform: macos
+    shell_commands:
+     - set -x
+     - make swift_swift_proto_compile_example
+     - make swift_swift_grpc_compile_example
+     - make swift_swift_proto_library_example
+     - make swift_swift_grpc_library_example
+
+  ubuntu2004_test_workspaces:
+    name: test workspaces
+    platform: ubuntu2004
+    shell_commands:
+     - set -x
+     - make test_workspace_absolute_strip_import_prefix
+     - make test_workspace_combined_strip_and_add_prefix
+     - make test_workspace_common_cpp_library
+     - make test_workspace_empty_output_directory
+     - make test_workspace_exclusions
+     - make test_workspace_generated_proto
+     - make test_workspace_go_fixer
+     - make test_workspace_go_importpath
+     - make test_workspace_import_prefix
+     - make test_workspace_objc_capitalisation
+     - make test_workspace_python3_grpc
+     - make test_workspace_python_dashes
+     - make test_workspace_python_deps
+     - make test_workspace_readme_http_archive
+     - make test_workspace_relative_strip_import_prefix
+     - make test_workspace_shared_proto
+     - make test_workspace_typescript
+
+  macos_test_workspaces:
+    name: test workspaces
+    platform: macos
+    shell_commands:
+     - set -x
+     - make test_workspace_absolute_strip_import_prefix
+     - make test_workspace_combined_strip_and_add_prefix
+     - make test_workspace_common_cpp_library
+     - make test_workspace_empty_output_directory
+     - make test_workspace_exclusions
+     - make test_workspace_generated_proto
+     - make test_workspace_go_fixer
+     - make test_workspace_go_importpath
+     - make test_workspace_import_prefix
+     - make test_workspace_objc_capitalisation
+     - make test_workspace_python3_grpc
+     - make test_workspace_python_dashes
+     - make test_workspace_python_deps
+     - make test_workspace_readme_http_archive
+     - make test_workspace_relative_strip_import_prefix
+     - make test_workspace_shared_proto
+     - make test_workspace_typescript
