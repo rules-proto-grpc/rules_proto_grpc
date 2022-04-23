@@ -24,7 +24,7 @@ var ciPlatformsMap = map[string][]string{
 
 // https://github.com/bazelbuild/rules_dotnet/issues/225
 // TODO: Remove if becomes unnecessary
-var ciPlatformFlags = map[string][]string{
+var dotnetPlatformFlags = map[string][]string{
 	"ubuntu2004": []string{
 		"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101",
 		"--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101",
@@ -153,7 +153,7 @@ func action(c *cli.Context) error {
 		Sha256: sha256,
 	})
 
-	mustWriteBazelciPresubmitYml(dir, languages, []string{}, c.String("available_tests"))
+	mustWriteBazelCIPresubmitYml(dir, languages, c.String("available_tests"))
 
 	mustWriteExamplesMakefile(dir, languages)
 	mustWriteTestWorkspacesMakefile(dir)
@@ -455,7 +455,7 @@ func mustWriteIndexRst(dir, template string, data interface{}) {
 	out.MustWrite(filepath.Join(dir, "docs", "index.rst"))
 }
 
-func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []string, availableTestsPath string) {
+func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTestsPath string) {
 	// Read available tests
 	content, err := ioutil.ReadFile(availableTestsPath)
 	if err != nil {
@@ -482,11 +482,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		out.w("    environment:")
 		out.w(`      CC: clang`)
 		out.w("    build_flags:")
-		if ciPlatform == "macos" {
-			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
-			out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
-		}
-		for _, flag := range ciPlatformFlags[ciPlatform] {
+		for _, flag := range dotnetPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
 		}
 		out.w("    build_targets:")
@@ -498,11 +494,7 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 		}
 		out.w("    test_flags:")
 		out.w(`    - "--test_output=errors"`)
-		if ciPlatform == "macos" {
-			out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
-			out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
-		}
-		for _, flag := range ciPlatformFlags[ciPlatform] {
+		for _, flag := range dotnetPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
 		}
 		out.w("    test_targets:")
@@ -513,81 +505,97 @@ func mustWriteBazelciPresubmitYml(dir string, languages []*Language, envVars []s
 				}
 			}
 		}
+		out.ln()
 	}
 
 	//
 	// Write tasks for examples
 	//
 	for _, lang := range languages {
-		for _, rule := range lang.Rules {
-			exampleDir := path.Join(dir, "example", lang.Dir, rule.Name)
+		for _, ciPlatform := range ciPlatforms {
+			// Skip windows, due to missing make
+			if ciPlatform == "windows" {
+				continue
+			}
 
-			for _, ciPlatform := range ciPlatforms {
+			// Check platform has at least one example to run
+			platformHasCommand := false
+			for _, rule := range lang.Rules {
+				if doTestOnPlatform(lang, rule, ciPlatform) {
+					platformHasCommand = true
+					break
+				}
+			}
+			if !platformHasCommand {
+				continue
+			}
+
+			// Write task
+			out.w("  %s_%s_examples:", lang.Name, ciPlatform)
+			out.w("    name: %s examples", lang.Name)
+			out.w("    platform: %s", ciPlatform)
+			if ciPlatform == "windows" {
+				out.w("    batch_commands:")
+			} else {
+				out.w("    shell_commands:")
+				out.w("     - set -x")
+				if lang.Name == "csharp" || lang.Name == "fsharp" {
+					for _, flag := range dotnetPlatformFlags[ciPlatform] {
+						out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
+					}
+				}
+			}
+
+			for _, rule := range lang.Rules {
 				if !doTestOnPlatform(lang, rule, ciPlatform) {
 					continue
 				}
 
-				out.w("  %s_%s_%s:", lang.Name, rule.Name, ciPlatform)
-				out.w("    name: '%s: %s'", lang.Name, rule.Name)
-				out.w("    platform: %s", ciPlatform)
-				out.w("    build_flags:")
-				if ciPlatform == "macos" {
-					out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
-					out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
-				}
-				if lang.Name == "csharp" || lang.Name == "fsharp" { // https://github.com/bazelbuild/rules_dotnet/issues/225
-					for _, flag := range ciPlatformFlags[ciPlatform] {
-						out.w(`    - "%s"`, flag)
-					}
-				}
-				out.w("    build_targets:")
-				out.w(`      - "//..."`)
-				if rule.IsTest {
-					out.w("    test_targets:")
-					out.w(`      - "//..."`)
-				}
-				out.w("    working_directory: %s", exampleDir)
-
-				if len(lang.PresubmitEnvVars) > 0 || len(rule.PresubmitEnvVars) > 0 {
-					out.w("    environment:")
-					for k, v := range lang.PresubmitEnvVars {
-						out.w("      %s: %s", k, v)
-					}
-					for k, v := range rule.PresubmitEnvVars {
-						out.w("      %s: %s", k, v)
-					}
+				if ciPlatform == "windows" {
+					out.w("     - make.exe %s_%s_example", lang.Name, rule.Name)
+				} else {
+					out.w("     - make %s_%s_example", lang.Name, rule.Name)
 				}
 			}
+
+			out.ln()
 		}
 	}
 
-	// Add test workspaces
-	for _, testWorkspace := range findTestWorkspaceNames(dir) {
-		for _, ciPlatform := range ciPlatforms {
+	//
+	// Write tasks for test workspaces
+	//
+	for _, ciPlatform := range ciPlatforms {
+		// Skip windows, due to missing make
+		if ciPlatform == "windows" {
+			continue
+		}
+
+		out.w("  %s_test_workspaces:", ciPlatform)
+		out.w("    name: test workspaces")
+		out.w("    platform: %s", ciPlatform)
+		if ciPlatform == "windows" {
+			out.w("    batch_commands:")
+		} else {
+			out.w("    shell_commands:")
+			out.w("     - set -x")
+		}
+
+		for _, testWorkspace := range findTestWorkspaceNames(dir) {
 			if ciPlatform == "windows" && (testWorkspace == "python3_grpc" || testWorkspace == "python_deps") {
 				continue // Don't run python grpc test workspaces on windows
 			}
-			out.w("  test_workspace_%s_%s:", testWorkspace, ciPlatform)
-			out.w("    name: 'test workspace: %s'", testWorkspace)
-			out.w("    platform: %s", ciPlatform)
-			out.w("    build_flags:")
-			if ciPlatform == "macos" {
-				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
-				out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
+
+			if ciPlatform == "windows" {
+				out.w("     - make.exe test_workspace_%s", testWorkspace)
+			} else {
+				out.w("     - make test_workspace_%s", testWorkspace)
 			}
-			out.w("    test_flags:")
-			out.w(`    - "--test_output=errors"`)
-			if ciPlatform == "macos" {
-				out.w(`    - "--copt=-DGRPC_BAZEL_BUILD"`) // https://github.com/bazelbuild/bazel/issues/4341 required for macos
-				out.w(`    - "--features=-supports_dynamic_linker"`)  // TODO: Needed until Bazel 5.0.0: https://github.com/bazelbuild/bazel/issues/4341#issuecomment-758361769
-			}
-			out.w("    test_targets:")
-			out.w(`      - "//..."`)
-			out.w("    working_directory: %s", path.Join(dir, "test_workspaces", testWorkspace))
 		}
+
+		out.ln()
 	}
 
-	out.ln()
 	out.MustWrite(filepath.Join(dir, ".bazelci", "presubmit.yml"))
 }
 
@@ -612,10 +620,11 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			out.w(".PHONY: %s", name)
 			out.w("%s:", name)
 			out.w("	cd %s; \\", exampleDir)
+
 			if rule.IsTest {
-				out.w("	bazel --batch test --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch test ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			} else {
-				out.w("	bazel --batch build --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			}
 			out.ln()
 		}
@@ -646,7 +655,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 		out.w(".PHONY: %s", name)
 		out.w("%s:", name)
 		out.w("	cd %s; \\", path.Join(dir, "test_workspaces", testWorkspace))
-		out.w("	bazel --batch test --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
+		out.w("	bazel --batch test ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
 		out.ln()
 	}
 

@@ -51,7 +51,7 @@ proto_plugin = rule(
         ),
         "use_built_in_shell_environment": attr.bool(
             doc = "Whether the tool should use the built in shell environment or not",
-            default = False,
+            default = True,
         ),
         "protoc_plugin_name": attr.string(
             doc = "The name used for the plugin binary on the protoc command line. Useful for targeting built-in plugins. Uses plugin name when not set",
