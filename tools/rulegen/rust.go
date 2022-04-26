@@ -8,9 +8,11 @@ load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
 
-load("@rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
 
-rust_repositories()`)
+rules_rust_dependencies()
+
+rust_register_toolchains(edition="2021")`)
 
 var rustLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")

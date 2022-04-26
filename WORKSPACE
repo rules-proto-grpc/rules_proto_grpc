@@ -246,9 +246,11 @@ load("//rust:repositories.bzl", "rust_repos")
 
 rust_repos()
 
-load("@rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
 
-rust_repositories()
+rules_rust_dependencies()
+
+rust_register_toolchains(edition="2021")
 
 #
 # Scala
