@@ -157,21 +157,18 @@ VERSIONS = {
         "type": "http",
         "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.5.1/protoc-gen-doc_1.5.1_darwin_amd64.tar.gz"],
         "sha256": "f429e5a5ddd886bfb68265f2f92c1c6a509780b7adcaf7a8b3be943f28e144ba",
-        "strip_prefix": "protoc-gen-doc_1.5.1_darwin_amd64",
         "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
     },
     "protoc_gen_doc_linux_x86_64": {
         "type": "http",
         "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.5.1/protoc-gen-doc_1.5.1_linux_amd64.tar.gz"],
         "sha256": "47cd72b07e6dab3408d686a65d37d3a6ab616da7d8b564b2bd2a2963a72b72fd",
-        "strip_prefix": "protoc-gen-doc_1.5.1_linux_amd64",
         "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
     },
     "protoc_gen_doc_windows_x86_64": {
         "type": "http",
         "urls": ["https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.5.1/protoc-gen-doc_1.5.1_windows_amd64.tar.gz"],
         "sha256": "8acf0bf64eda29183b4c6745c3c6a12562fd9a8ab08d61788cf56e6659c66b3b",
-        "strip_prefix": "protoc-gen-doc_1.5.1_windows_amd64",
         "build_file_content": """exports_files(glob(["protoc-gen-doc*"]))""",
     },
 
