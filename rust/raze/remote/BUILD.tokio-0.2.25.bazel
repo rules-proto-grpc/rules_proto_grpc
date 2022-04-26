@@ -74,7 +74,7 @@ rust_library(
         "@raze__memchr__2_4_1//:memchr",
         "@raze__mio__0_6_23//:mio",
         "@raze__pin_project_lite__0_1_12//:pin_project_lite",
-        "@raze__slab__0_4_5//:slab",
+        "@raze__slab__0_4_6//:slab",
     ] + selects.with_or({
         # cfg(unix)
         (
@@ -95,7 +95,7 @@ rust_library(
             "@rules_rust//rust/platform:x86_64-linux-android",
             "@rules_rust//rust/platform:x86_64-unknown-freebsd",
         ): [
-            "@raze__libc__0_2_108//:libc",
+            "@raze__libc__0_2_124//:libc",
             "@raze__mio_uds__0_6_8//:mio_uds",
         ],
         "//conditions:default": [],

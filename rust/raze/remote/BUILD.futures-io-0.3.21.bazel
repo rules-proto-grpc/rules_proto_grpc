@@ -26,15 +26,16 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # Apache-2.0 from expression "Apache-2.0 OR MIT"
+    "notice",  # MIT from expression "MIT OR Apache-2.0"
 ])
 
 # Generated Targets
 
 rust_library(
-    name = "pin_project_lite",
+    name = "futures_io",
     srcs = glob(["**/*.rs"]),
     crate_features = [
+        "std",
     ],
     crate_root = "src/lib.rs",
     data = [],
@@ -46,20 +47,8 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.2.7",
+    version = "0.3.21",
     # buildifier: leave-alone
     deps = [
     ],
 )
-
-# Unsupported target "compiletest" with type "test" omitted
-
-# Unsupported target "drop_order" with type "test" omitted
-
-# Unsupported target "expandtest" with type "test" omitted
-
-# Unsupported target "lint" with type "test" omitted
-
-# Unsupported target "proper_unpin" with type "test" omitted
-
-# Unsupported target "test" with type "test" omitted

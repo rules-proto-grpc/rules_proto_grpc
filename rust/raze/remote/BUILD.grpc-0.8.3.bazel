@@ -53,7 +53,7 @@ rust_library(
         "@raze__bytes__0_5_6//:bytes",
         "@raze__futures__0_3_17//:futures",
         "@raze__httpbis__0_9_1//:httpbis",
-        "@raze__log__0_4_14//:log",
+        "@raze__log__0_4_16//:log",
         "@raze__log_ndc__0_2_0//:log_ndc",
         "@raze__tls_api__0_4_0//:tls_api",
         "@raze__tls_api_stub__0_4_0//:tls_api_stub",
