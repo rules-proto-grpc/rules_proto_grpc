@@ -17,7 +17,7 @@ def scala_repos(**kwargs):  # buildifier: disable=function-docstring
 
 MAVEN_ARTIFACTS = [
     "io.grpc:grpc-all:{}".format(GRPC_VERSION),
-    "com.thesamet.scalapb:compilerplugin_2.12:0.11.6",
-    "com.thesamet.scalapb:scalapb-runtime_2.12:0.11.6",
-    "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:0.11.6",
+    "com.thesamet.scalapb:compilerplugin_2.12:0.11.10",
+    "com.thesamet.scalapb:scalapb-runtime_2.12:0.11.10",
+    "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:0.11.10",
 ]
