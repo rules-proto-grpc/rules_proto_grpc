@@ -4,6 +4,10 @@ var jsWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
+load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
+
+build_bazel_rules_nodejs_dependencies()
+
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(

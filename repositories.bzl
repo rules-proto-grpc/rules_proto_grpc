@@ -494,7 +494,6 @@ def bazel_skylib(**kwargs):
 def rules_pkg(**kwargs):
     _generic_dependency("rules_pkg", **kwargs)
 
-
 #
 # Android
 #
