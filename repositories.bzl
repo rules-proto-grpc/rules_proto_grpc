@@ -240,6 +240,15 @@ VERSIONS = {
         "executable": True,
     },
 
+    # Python
+    "subpar": {
+        "type": "github",
+        "org": "google",
+        "repo": "subpar",
+        "ref": "2.0.0",
+        "sha256": "b80297a1b8d38027a86836dbadc22f55dc3ecad56728175381aa6330705ac10f",
+    },
+
     # Ruby
     "bazelruby_rules_ruby": {
         "type": "github",
@@ -592,6 +601,12 @@ def grpc_web_plugin_linux(**kwargs):
 
 def grpc_web_plugin_windows(**kwargs):
     _generic_dependency("grpc_web_plugin_windows", **kwargs)
+
+#
+# Python
+#
+def subpar(**kwargs):
+    _generic_dependency("subpar", **kwargs)
 
 #
 # Ruby
