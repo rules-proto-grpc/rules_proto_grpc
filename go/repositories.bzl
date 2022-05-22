@@ -13,6 +13,14 @@ def go_repos(**kwargs):  # buildifier: disable=function-docstring
     io_bazel_rules_go(**kwargs)
 
     go_repository(
+        name = "org_golang_google_protobuf",
+        build_file_proto_mode = "disable",
+        importpath = "google.golang.org/protobuf",
+        sum = "h1:w43yiav+6bVFTBQFZX0r7ipe9JQ1QsbMgHwbBziscLw=",
+        version = "v1.28.0",
+    )
+
+    go_repository(
         name = "org_golang_google_grpc",
         build_file_proto_mode = "disable",
         importpath = "google.golang.org/grpc",
