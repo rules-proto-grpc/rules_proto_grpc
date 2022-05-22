@@ -72,17 +72,9 @@ load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_depe
 
 go_rules_dependencies()
 
-go_register_toolchains(
-    version = "1.17.1",
-)
-
 load("//go:repositories.bzl", "go_repos")
 
 go_repos()
-
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-
-gazelle_dependencies()
 
 #
 # C++
@@ -150,6 +142,9 @@ doc_repos()
 # Go
 #
 # Moved to above C++
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
 
 #
 # gRPC gateway
