@@ -461,7 +461,7 @@ def _generic_dependency(name, **kwargs):
 #
 # Toolchains
 #
-def rules_proto_grpc_toolchains():
+def rules_proto_grpc_toolchains(name = ""):
     """Register the rules_proto_grpc toolchains."""
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
     native.register_toolchains(str(Label("//protobuf:protoc_toolchain")))

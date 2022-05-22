@@ -52,7 +52,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_rust_dependencies()
    
-   rust_register_toolchains(edition="2021")
+   rust_register_toolchains(edition = "2021")
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -158,7 +158,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_rust_dependencies()
    
-   rust_register_toolchains(edition="2021")
+   rust_register_toolchains(edition = "2021")
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -260,7 +260,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_rust_dependencies()
    
-   rust_register_toolchains(edition="2021")
+   rust_register_toolchains(edition = "2021")
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -360,7 +360,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_rust_dependencies()
    
-   rust_register_toolchains(edition="2021")
+   rust_register_toolchains(edition = "2021")
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^

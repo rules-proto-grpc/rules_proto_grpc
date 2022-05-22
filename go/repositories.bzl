@@ -2,7 +2,7 @@
 
 load(
     "//:repositories.bzl",
-    "GRPC_VERSION",
+    # "GRPC_VERSION",
     "rules_proto_grpc_repos",
 )
 load("@bazel_gazelle//:deps.bzl", "go_repository")
