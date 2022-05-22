@@ -200,8 +200,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.10.0",
-        "sha256": "d7136b4ced1d8b270144953c610635ebc6cdf017863171829ed5bf8c0e8800d7",
+        "ref": "v2.10.1",
+        "sha256": "1901d56a06135135078cea7eb1f8a968dd0d18681171b24a1d5d633a708badc2",
     },
 
     # Java
