@@ -79,6 +79,12 @@ VERSIONS = {
         "sha256": "d7b12a2ccd663f00a068b19cbd2c1e81f4983ea33bd9a92980485e2c4693b75a",
         "executable": True,
     },
+    "protoc_gen_buf_breaking_darwin_arm64": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-breaking-Darwin-arm64"],
+        "sha256": "bc35dafd09842c4aaf72162aad4d5750fe957ed4608a773391606c3ace0c3ae0",
+        "executable": True,
+    },
     "protoc_gen_buf_breaking_linux_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-breaking-Linux-x86_64"],
@@ -89,6 +95,12 @@ VERSIONS = {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-lint-Darwin-x86_64"],
         "sha256": "3ff939636e5857f6fe3dcaeae816538fcee41cec66b10b62df5ccb65d0f79e7f",
+        "executable": True,
+    },
+    "protoc_gen_buf_lint_darwin_arm64": {
+        "type": "http_file",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-lint-Darwin-arm64"],
+        "sha256": "3eb7fd8698acdd970584c3b21f2619aa0f71c4942aa0f2429eb300f2e65e5a38",
         "executable": True,
     },
     "protoc_gen_buf_lint_linux_x86_64": {
@@ -502,11 +514,17 @@ def build_bazel_rules_android(**kwargs):
 def protoc_gen_buf_breaking_darwin_x86_64(**kwargs):
     _generic_dependency("protoc_gen_buf_breaking_darwin_x86_64", **kwargs)
 
+def protoc_gen_buf_breaking_darwin_arm64(**kwargs):
+    _generic_dependency("protoc_gen_buf_breaking_darwin_arm64", **kwargs)
+
 def protoc_gen_buf_breaking_linux_x86_64(**kwargs):
     _generic_dependency("protoc_gen_buf_breaking_linux_x86_64", **kwargs)
 
 def protoc_gen_buf_lint_darwin_x86_64(**kwargs):
     _generic_dependency("protoc_gen_buf_lint_darwin_x86_64", **kwargs)
+
+def protoc_gen_buf_lint_darwin_arm64(**kwargs):
+    _generic_dependency("protoc_gen_buf_lint_darwin_arm64", **kwargs)
 
 def protoc_gen_buf_lint_linux_x86_64(**kwargs):
     _generic_dependency("protoc_gen_buf_lint_linux_x86_64", **kwargs)
