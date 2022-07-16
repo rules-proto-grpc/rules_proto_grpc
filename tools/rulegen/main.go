@@ -15,9 +15,9 @@ import (
 )
 
 var defaultPlatforms = []string{"linux", "windows", "macos"}
-var ciPlatforms = []string{"ubuntu2004", "windows", "macos"}
+var ciPlatforms = []string{"debian11", "windows", "macos"}
 var ciPlatformsMap = map[string][]string{
-	"linux":   []string{"ubuntu2004", "rbe_ubuntu2004"},
+	"linux":   []string{"debian11"},
 	"windows": []string{"windows"},
 	"macos":   []string{"macos"},
 }
@@ -25,7 +25,7 @@ var ciPlatformsMap = map[string][]string{
 // https://github.com/bazelbuild/rules_dotnet/issues/225
 // TODO: Remove if becomes unnecessary
 var dotnetPlatformFlags = map[string][]string{
-	"ubuntu2004": []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"},
+	"debian11":   []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"},
 	"windows":    []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"},
 	"macos":      []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"},
 }
