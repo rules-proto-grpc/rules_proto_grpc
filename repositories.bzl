@@ -75,26 +75,26 @@ VERSIONS = {
     # Buf
     "protoc_gen_buf_breaking_darwin_x86_64": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-breaking-Darwin-x86_64"],
-        "sha256": "d7b12a2ccd663f00a068b19cbd2c1e81f4983ea33bd9a92980485e2c4693b75a",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v1.7.0/protoc-gen-buf-breaking-Darwin-x86_64"],
+        "sha256": "4d619259242e494aeea6c3a1cd8ff67bcbc9664741439a2cfffe1094cbe8d3b6",
         "executable": True,
     },
     "protoc_gen_buf_breaking_linux_x86_64": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-breaking-Linux-x86_64"],
-        "sha256": "8463f63626327d81f72b4a2ad08b97898753a1ee14899e63728df9e2d110d5bf",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v1.7.0/protoc-gen-buf-breaking-Linux-x86_64"],
+        "sha256": "82996e37a5af75537b1d607d569014252199f43e51baa311526da15e440a8c9f",
         "executable": True,
     },
     "protoc_gen_buf_lint_darwin_x86_64": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-lint-Darwin-x86_64"],
-        "sha256": "3ff939636e5857f6fe3dcaeae816538fcee41cec66b10b62df5ccb65d0f79e7f",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v1.7.0/protoc-gen-buf-lint-Darwin-x86_64"],
+        "sha256": "6ccb808d5538f0c75b59514d8961f140c78c4788755c794f895317dda452fe64",
         "executable": True,
     },
     "protoc_gen_buf_lint_linux_x86_64": {
         "type": "http_file",
-        "urls": ["https://github.com/bufbuild/buf/releases/download/v0.56.0/protoc-gen-buf-lint-Linux-x86_64"],
-        "sha256": "a7ab67a5bcc5906366bde424ba63fdcf604e07d4825e5720c8e5b3ab1530bbf7",
+        "urls": ["https://github.com/bufbuild/buf/releases/download/v1.7.0/protoc-gen-buf-lint-Linux-x86_64"],
+        "sha256": "86d43c929382d41a23c868533a26e5d901ce8230d2676622172a13ae1c9d38b6",
         "executable": True,
     },
 
