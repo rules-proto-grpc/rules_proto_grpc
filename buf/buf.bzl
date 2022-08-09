@@ -80,7 +80,7 @@ set -uo pipefail
 
 def buf_proto_breaking_test_impl(ctx):
     return buf_apply_impl(ctx, [json.encode({
-        "against_input": ctx.file.against_input.path,
+        "against_input": ctx.file.against_input.short_path,
         "limit_to_input_files": True,
         "input_config": {
             "version": "v1beta1",
