@@ -395,7 +395,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
             # Add command to copy file to output
             command_input_files.append(file)
-            command_parts.append("mkdir $(dirname '{}')".format(
+            command_parts.append("mkdir -p $(dirname '{}')".format(
                 "{}/{}".format(new_dir.path, path),
             ))
             command_parts.append("cp '{}' '{}'".format(
