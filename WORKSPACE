@@ -20,6 +20,45 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
+#
+# Android
+#
+# Deferred until after Go and C++
+
+#
+# Buf
+#
+load("//buf:repositories.bzl", "buf_repos")
+
+buf_repos()
+
+#
+# Go
+#
+# Load rules_go before running grpc_deps in C++, since that depends on a very old version of
+# rules_go
+#
+load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
+
+io_bazel_rules_go()
+
+bazel_gazelle()
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies")
+
+go_rules_dependencies()
+
+load("//go:repositories.bzl", "go_repos")
+
+go_repos()
+
+#
+# C++
+#
+load("//cpp:repositories.bzl", "cpp_repos")
+
+cpp_repos()
+
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()
@@ -56,40 +95,6 @@ grpc_java_repositories()
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
 
 android_sdk_repository(name = "androidsdk")
-
-#
-# Buf
-#
-load("//buf:repositories.bzl", "buf_repos")
-
-buf_repos()
-
-#
-# Go
-#
-# Load rules_go before running grpc_deps in C++, since that depends on a very old version of
-# rules_go
-#
-load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
-
-io_bazel_rules_go()
-
-bazel_gazelle()
-
-load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies")
-
-go_rules_dependencies()
-
-load("//go:repositories.bzl", "go_repos")
-
-go_repos()
-
-#
-# C++
-#
-load("//cpp:repositories.bzl", "cpp_repos")
-
-cpp_repos()
 
 #
 # C#/F#
