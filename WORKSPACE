@@ -227,7 +227,7 @@ load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_r
 
 rules_ruby_dependencies()
 
-rules_ruby_select_sdk(version = "3.0.1")
+rules_ruby_select_sdk(version = "3.0.2")
 
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
 
