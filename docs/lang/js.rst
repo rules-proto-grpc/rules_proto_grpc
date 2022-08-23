@@ -14,7 +14,7 @@ Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.
 
       "dependencies": {
         "@grpc/grpc-js": "1.6.7",
-        "google-protobuf": "3.20.1",
+        "google-protobuf": "3.21.0",
         "grpc-tools": "1.11.2",
         "grpc-web": "1.3.1",
         "ts-protoc-gen": "0.15.0"
