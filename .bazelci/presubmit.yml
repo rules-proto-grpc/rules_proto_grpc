@@ -564,6 +564,7 @@ tasks:
      - make test_workspace_go_fixer
      - make test_workspace_go_importpath
      - make test_workspace_import_prefix
+     - make test_workspace_nested_output_directory
      - make test_workspace_objc_capitalisation
      - make test_workspace_python3_grpc
      - make test_workspace_python_dashes
@@ -587,6 +588,7 @@ tasks:
      - make test_workspace_go_fixer
      - make test_workspace_go_importpath
      - make test_workspace_import_prefix
+     - make test_workspace_nested_output_directory
      - make test_workspace_objc_capitalisation
      - make test_workspace_python3_grpc
      - make test_workspace_python_dashes
