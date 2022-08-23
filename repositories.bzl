@@ -191,8 +191,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.26.0",
-        "sha256": "27e2c0fcd15e76368d56c01bf171684e83891f82f99534f2e3712a04c781bbb9",
+        "ref": "v0.24.0",  # 0.25.0+ has issues with "No dependencies were provided": https://github.com/bazelbuild/bazel-gazelle/issues/1217
+        "sha256": "fc4c319b9e32ea44be8a5e1a46746d93e8b6a8b104baf7cb6a344a0a08386fed",
     },
 
     # grpc-gateway
