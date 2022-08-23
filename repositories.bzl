@@ -6,7 +6,7 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 # Versions
 MINIMUM_BAZEL_VERSION = "5.0.0"
 ENABLE_VERSION_NAGS = False
-PROTOBUF_VERSION = "21.5"  # When updating, also update JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
+PROTOBUF_VERSION = "21.5"  # When updating, also update protobuf-javascript, JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
 GRPC_VERSION = "1.48.0"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
 BUF_VERSION = "v1.6.0"
 VERSIONS = {
@@ -226,6 +226,13 @@ VERSIONS = {
         "type": "http",
         "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.5.2/rules_nodejs-5.5.2.tar.gz"],
         "sha256": "c78216f5be5d451a42275b0b7dc809fb9347e2b04a68f68bad620a2b01f5c774",
+    },
+    "com_google_protobuf_javascript": {
+        "type": "github",
+        "org": "protocolbuffers",
+        "repo": "protobuf-javascript",
+        "ref": "a428c58273abad07c66071d9753bc4d1289de426",  # TODO: 3.21.0 broken
+        "sha256": "08e8aa6b4f434a5364bdef69cd129792677f8b241cdebfa7c10bb43d618e0e05",
     },
     "grpc_web_plugin_darwin": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
@@ -601,6 +608,9 @@ def rules_jvm_external(**kwargs):
 #
 def build_bazel_rules_nodejs(**kwargs):
     _generic_dependency("build_bazel_rules_nodejs", **kwargs)
+
+def com_google_protobuf_javascript(**kwargs):
+    _generic_dependency("com_google_protobuf_javascript", **kwargs)
 
 def grpc_web_plugin_darwin(**kwargs):
     _generic_dependency("grpc_web_plugin_darwin", **kwargs)
