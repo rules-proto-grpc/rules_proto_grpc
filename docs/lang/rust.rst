@@ -48,9 +48,11 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    grpc_deps()
    
-   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
+   load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
    
-   rust_repositories()
+   rules_rust_dependencies()
+   
+   rust_register_toolchains(edition = "2021")
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -152,9 +154,11 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    grpc_deps()
    
-   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
+   load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
    
-   rust_repositories()
+   rules_rust_dependencies()
+   
+   rust_register_toolchains(edition = "2021")
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -252,9 +256,11 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    grpc_deps()
    
-   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
+   load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
    
-   rust_repositories()
+   rules_rust_dependencies()
+   
+   rust_register_toolchains(edition = "2021")
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -350,9 +356,11 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    grpc_deps()
    
-   load("@rules_rust//rust:repositories.bzl", "rust_repositories")
+   load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
    
-   rust_repositories()
+   rules_rust_dependencies()
+   
+   rust_register_toolchains(edition = "2021")
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^

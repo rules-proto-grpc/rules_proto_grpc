@@ -11,7 +11,7 @@ proto_plugin(
         "binary",
     ],
     outputs = ["{protopath}_pb.js"],
-    protoc_plugin_name = "js",
+    tool = "@com_google_protobuf_javascript//generator:protoc-gen-js",
     visibility = ["//visibility:public"],
 )
 

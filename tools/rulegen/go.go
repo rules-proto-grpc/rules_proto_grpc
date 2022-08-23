@@ -4,6 +4,12 @@ var goWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repositories.b
 
 io_bazel_rules_go()
 
+bazel_gazelle()
+
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
+
+rules_proto_grpc_{{ .Lang.Name }}_repos()
+
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
@@ -11,12 +17,6 @@ go_rules_dependencies()
 go_register_toolchains(
     version = "1.17.1",
 )
-
-bazel_gazelle()
-
-load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
-
-rules_proto_grpc_{{ .Lang.Name }}_repos()
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 

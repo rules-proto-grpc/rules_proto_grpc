@@ -26,17 +26,15 @@ package(default_visibility = [
 ])
 
 licenses([
-    "notice",  # MIT from expression "MIT"
+    "notice",  # MIT from expression "MIT OR Apache-2.0"
 ])
 
 # Generated Targets
 
-rust_library(
-    name = "slab",
+rust_proc_macro(
+    name = "futures_macro",
     srcs = glob(["**/*.rs"]),
     crate_features = [
-        "default",
-        "std",
     ],
     crate_root = "src/lib.rs",
     data = [],
@@ -48,12 +46,11 @@ rust_library(
         "cargo-raze",
         "manual",
     ],
-    version = "0.4.5",
+    version = "0.3.21",
     # buildifier: leave-alone
     deps = [
+        "@raze__proc_macro2__1_0_37//:proc_macro2",
+        "@raze__quote__1_0_18//:quote",
+        "@raze__syn__1_0_91//:syn",
     ],
 )
-
-# Unsupported target "serde" with type "test" omitted
-
-# Unsupported target "slab" with type "test" omitted

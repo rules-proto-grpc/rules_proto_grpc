@@ -4,6 +4,10 @@ var jsWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
 
+load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
+
+build_bazel_rules_nodejs_dependencies()
+
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
 yarn_install(
@@ -144,10 +148,10 @@ var jsDependencyNote = `
    .. code-block:: json
 
       "dependencies": {
-        "@grpc/grpc-js": "1.4.4",
-        "google-protobuf": "3.19.1",
+        "@grpc/grpc-js": "1.6.7",
+        "google-protobuf": "3.21.0",
         "grpc-tools": "1.11.2",
-        "grpc-web": "1.3.0",
+        "grpc-web": "1.3.1",
         "ts-protoc-gen": "0.15.0"
       }
 `

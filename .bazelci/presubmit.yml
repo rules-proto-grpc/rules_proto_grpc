@@ -8,6 +8,7 @@ tasks:
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
+    - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//buf/..."
     - "//c/..."
@@ -109,6 +110,7 @@ tasks:
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
+    - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//buf/..."
     - "//c/..."
@@ -562,6 +564,7 @@ tasks:
      - make test_workspace_go_fixer
      - make test_workspace_go_importpath
      - make test_workspace_import_prefix
+     - make test_workspace_nested_output_directory
      - make test_workspace_objc_capitalisation
      - make test_workspace_python3_grpc
      - make test_workspace_python_dashes
@@ -585,6 +588,7 @@ tasks:
      - make test_workspace_go_fixer
      - make test_workspace_go_importpath
      - make test_workspace_import_prefix
+     - make test_workspace_nested_output_directory
      - make test_workspace_objc_capitalisation
      - make test_workspace_python3_grpc
      - make test_workspace_python_dashes

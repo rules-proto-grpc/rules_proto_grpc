@@ -23,6 +23,53 @@ rules_proto_toolchains()
 #
 # Android
 #
+# Deferred until after Go and C++
+
+#
+# Buf
+#
+load("//buf:repositories.bzl", "buf_repos")
+
+buf_repos()
+
+#
+# Go
+#
+# Load rules_go before running grpc_deps in C++, since that depends on a very old version of
+# rules_go
+#
+load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
+
+io_bazel_rules_go()
+
+bazel_gazelle()
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_rules_dependencies")
+
+go_rules_dependencies()
+
+load("//go:repositories.bzl", "go_repos")
+
+go_repos()
+
+#
+# C++
+#
+load("//cpp:repositories.bzl", "cpp_repos")
+
+cpp_repos()
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+
+grpc_extra_deps()
+
+#
+# Android
+#
 load("//android:repositories.bzl", "android_repos")
 
 android_repos()
@@ -48,52 +95,6 @@ grpc_java_repositories()
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
 
 android_sdk_repository(name = "androidsdk")
-
-#
-# Buf
-#
-load("//buf:repositories.bzl", "buf_repos")
-
-buf_repos()
-
-#
-# Go
-#
-# Load rules_go before running grpc_deps in C++, since that depends on a very old version of
-# rules_go
-#
-load("//:repositories.bzl", "bazel_gazelle", "io_bazel_rules_go")  # buildifier: disable=same-origin-load
-
-io_bazel_rules_go()
-
-bazel_gazelle()
-
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
-
-go_rules_dependencies()
-
-go_register_toolchains(
-    version = "1.17.1",
-)
-
-load("//go:repositories.bzl", "go_repos")
-
-go_repos()
-
-load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-
-gazelle_dependencies()
-
-#
-# C++
-#
-load("//cpp:repositories.bzl", "cpp_repos")
-
-cpp_repos()
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-
-grpc_deps()
 
 #
 # C#/F#
@@ -146,6 +147,9 @@ doc_repos()
 # Go
 #
 # Moved to above C++
+load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
+
+gazelle_dependencies()
 
 #
 # gRPC gateway
@@ -175,6 +179,10 @@ java_repos()
 load("//js:repositories.bzl", "js_repos")
 
 js_repos()
+
+load("@build_bazel_rules_nodejs//:repositories.bzl", "build_bazel_rules_nodejs_dependencies")
+
+build_bazel_rules_nodejs_dependencies()
 
 load("@build_bazel_rules_nodejs//:index.bzl", "yarn_install")
 
@@ -224,7 +232,7 @@ load("@bazelruby_rules_ruby//ruby:deps.bzl", "rules_ruby_dependencies", "rules_r
 
 rules_ruby_dependencies()
 
-rules_ruby_select_sdk(version = "3.0.1")
+rules_ruby_select_sdk(version = "3.0.2")
 
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_bundle")
 
@@ -242,9 +250,11 @@ load("//rust:repositories.bzl", "rust_repos")
 
 rust_repos()
 
-load("@rules_rust//rust:repositories.bzl", "rust_repositories")
+load("@rules_rust//rust:repositories.bzl", "rules_rust_dependencies", "rust_register_toolchains")
 
-rust_repositories()
+rules_rust_dependencies()
+
+rust_register_toolchains(edition = "2021")
 
 #
 # Scala

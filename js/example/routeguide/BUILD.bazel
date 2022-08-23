@@ -21,7 +21,7 @@ nodejs_binary(
         "//example/proto:routeguide_features",
     ],
     entry_point = "client.js",
-    link_workspace_root = True,  # Required to load routeguide_features
+    templated_args = ["--bazel_patch_module_resolver"],  # Workaround until rules_js is mature
     visibility = ["//example/routeguide:__pkg__"],
 )
 
@@ -33,6 +33,6 @@ nodejs_binary(
         "//example/proto:routeguide_features",
     ],
     entry_point = "server.js",
-    link_workspace_root = True,  # Required to load routeguide_features
+    templated_args = ["--bazel_patch_module_resolver"],  # Workaround until rules_js is mature
     visibility = ["//example/routeguide:__pkg__"],
 )
