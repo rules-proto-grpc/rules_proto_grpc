@@ -29,6 +29,7 @@ def go_repos(**kwargs):  # buildifier: disable=function-docstring
     go_repository(
         name = "org_golang_google_grpc_cmd_protoc_gen_go_grpc",
         importpath = "google.golang.org/grpc/cmd/protoc-gen-go-grpc",
+        build_external = "external",
         sum = "h1:TLkBREm4nIsEcexnCjgQd5GQWaHcqMzwQV0TX9pq8S0=",
         version = "v1.2.0",
     )
