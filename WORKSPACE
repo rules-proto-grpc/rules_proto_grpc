@@ -20,6 +20,14 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+
+grpc_extra_deps()
+
 #
 # Android
 #
@@ -82,14 +90,6 @@ go_repos()
 load("//cpp:repositories.bzl", "cpp_repos")
 
 cpp_repos()
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-
-grpc_deps()
-
-load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-
-grpc_extra_deps()
 
 #
 # C#/F#
