@@ -53,8 +53,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "1.0.0",
-        "sha256": "dc94d244cf0d4f2b5c042f7861ec70d32087cf4437eb5b6a9c5b82815d4374bd",
+        "ref": "1.1.0",
+        "sha256": "0ad2023c3e6e8f960e4ae24da508fe5cc44032e04af9961478543a5f5802ce6e",
     },
     "bazel_skylib": {
         "type": "github",
@@ -200,8 +200,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.11.2",
-        "sha256": "f1d2122e8ed3e0901c29e51037defd039e10e8df47b5c0107e0fc0076a3c118f",
+        "ref": "v2.11.3",
+        "sha256": "6b180623ed23e545d66b05bd0e32d87623048c5d37dcda4f6aaab21b84170d46",
     },
 
     # Java
