@@ -2,7 +2,7 @@
 
 load(
     "//:repositories.bzl",
-    # "GRPC_VERSION",
+    "GRPC_VERSION",
     "rules_proto_grpc_repos",
 )
 load("@bazel_gazelle//:deps.bzl", "go_repository")
@@ -22,9 +22,8 @@ def go_repos(**kwargs):  # buildifier: disable=function-docstring
         name = "org_golang_google_grpc",
         build_file_proto_mode = "disable",
         importpath = "google.golang.org/grpc",
-        sum = "h1:9n77onPX5F3qfFCqjy9dhn8PbNQsIKeVU04J9G7umt8=",
-        # version = "v{}".format(GRPC_VERSION),
-        version = "v1.47.0",  # TODO: revert to above
+        sum = "h1:rQOsyJ/8+ufEDJd/Gdsz7HG220Mh9HAhFHRGnIjda0w=",
+        version = "v{}".format(GRPC_VERSION),
     )
 
     go_repository(

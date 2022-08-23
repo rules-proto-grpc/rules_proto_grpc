@@ -7,7 +7,7 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 MINIMUM_BAZEL_VERSION = "5.0.0"
 ENABLE_VERSION_NAGS = False
 PROTOBUF_VERSION = "3.20.1"  # When updating, also update JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
-GRPC_VERSION = "1.47.1"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
+GRPC_VERSION = "1.48.0"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
 BUF_VERSION = "v1.6.0"
 VERSIONS = {
     # Core
@@ -30,7 +30,7 @@ VERSIONS = {
         "org": "grpc",
         "repo": "grpc",
         "ref": "v{}".format(GRPC_VERSION),
-        "sha256": "ba7c36989ad8a52c813adeebb0c65869283448f496dbb2868c75f69941dec6a9",
+        "sha256": "9b1f348b15a7637f5191e4e673194549384f2eccf01fcef7cc1515864d71b424",
     },
     "zlib": {
         "type": "http",
@@ -209,9 +209,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc",
         "repo": "grpc-java",
-        # "ref": "v{}".format(GRPC_VERSION),
-        "ref": "v1.47.0",  # TODO: revert to above
-        "sha256": "0f6cf8c1e97757333e08975c8637093b40540a54a201cfd3ce284c8d1d073fae",
+        "ref": "v{}".format(GRPC_VERSION),
+        "sha256": "f6ecacf924da06aa1c97b4339a74e8d4e345af083b5d197d0758c90881205108",
     },
     "rules_jvm_external": {
         "type": "github",
