@@ -25,9 +25,18 @@ var ciPlatformsMap = map[string][]string{
 // https://github.com/bazelbuild/rules_dotnet/issues/225
 // TODO: Remove if becomes unnecessary
 var dotnetPlatformFlags = map[string][]string{
-	"ubuntu2004": []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"},
-	"windows":    []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_5.0.201"},
-	"macos":      []string{"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201", "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"},
+	"ubuntu2004": []string{
+		"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101",
+		"--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101",
+	},
+	"windows": []string{
+		"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_6.0.101",
+		"--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:windows_amd64_6.0.101",
+	},
+	"macos": []string{
+		"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101",
+		"--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101",
+	},
 }
 
 func main() {

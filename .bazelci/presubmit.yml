@@ -6,8 +6,8 @@ tasks:
     environment:
       CC: clang
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
     - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//buf/..."
@@ -27,8 +27,8 @@ tasks:
     - "//scala/..."
     test_flags:
     - "--test_output=errors"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -108,8 +108,8 @@ tasks:
     environment:
       CC: clang
     build_flags:
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
     - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//buf/..."
@@ -131,8 +131,8 @@ tasks:
     - "//swift/..."
     test_flags:
     - "--test_output=errors"
-    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
-    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201"
+    - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
+    - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
