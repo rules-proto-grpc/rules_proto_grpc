@@ -88,8 +88,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "system.memory",
         package = "system.memory",
-        version = "4.5.4",
-        sha256 = "dec0847f33b8823e4260672d97d657411461c00ada3107ec7bbcb32a845eeb91",
+        version = "4.5.5",
+        sha256 = "10f43da352a29fb2b3188e4edd4dcf5100194c8b526e4f61fe2e2b5623775a22",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/System.Memory.dll",
         },
@@ -108,8 +108,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "google.protobuf",
         package = "google.protobuf",
-        version = "3.19.1",
-        sha256 = "57f962a32281c2c884ca3efbd2ead0eadae8c2ef619c105652d250312e671583",
+        version = "3.21.5",
+        sha256 = "f94cf5d860aa9ad1042f255b3d9b6b041f649d8d6bed4e343c54f2dd8cf8f16f",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Google.Protobuf.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Google.Protobuf.dll",
@@ -182,16 +182,16 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.core.api",
         package = "grpc.core.api",
-        version = "2.43.0",
-        sha256 = "12880d33af4b2706b009c09ce67a087520c0c23f7fb71fedf0eedb088e68dc2b",
+        version = "2.47.0",
+        sha256 = "cce27d5afbbc5e23d289c2c494a2f2dce24b655709c4833759d46ee019f679cb",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp2.2": "lib/netstandard2.0/Grpc.Core.Api.dll",
-            "netcoreapp3.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
-            "netcoreapp3.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
-            "net5.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
-            "net6.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
+            "netcoreapp3.0": "lib/netstandard2.1/Grpc.Core.Api.dll",
+            "netcoreapp3.1": "lib/netstandard2.1/Grpc.Core.Api.dll",
+            "net5.0": "lib/netstandard2.1/Grpc.Core.Api.dll",
+            "net6.0": "lib/netstandard2.1/Grpc.Core.Api.dll",
         },
         core_deps = {
             "netcoreapp2.0": [
@@ -233,191 +233,99 @@ def nuget_rules_proto_grpc_packages():
                 "lib/netstandard2.0/Grpc.Core.Api.xml",
             ],
             "netcoreapp3.0": [
-                "lib/netstandard2.0/Grpc.Core.Api.dll",
-                "lib/netstandard2.0/Grpc.Core.Api.pdb",
-                "lib/netstandard2.0/Grpc.Core.Api.xml",
+                "lib/netstandard2.1/Grpc.Core.Api.dll",
+                "lib/netstandard2.1/Grpc.Core.Api.pdb",
+                "lib/netstandard2.1/Grpc.Core.Api.xml",
             ],
             "netcoreapp3.1": [
-                "lib/netstandard2.0/Grpc.Core.Api.dll",
-                "lib/netstandard2.0/Grpc.Core.Api.pdb",
-                "lib/netstandard2.0/Grpc.Core.Api.xml",
+                "lib/netstandard2.1/Grpc.Core.Api.dll",
+                "lib/netstandard2.1/Grpc.Core.Api.pdb",
+                "lib/netstandard2.1/Grpc.Core.Api.xml",
             ],
             "net5.0": [
-                "lib/netstandard2.0/Grpc.Core.Api.dll",
-                "lib/netstandard2.0/Grpc.Core.Api.pdb",
-                "lib/netstandard2.0/Grpc.Core.Api.xml",
+                "lib/netstandard2.1/Grpc.Core.Api.dll",
+                "lib/netstandard2.1/Grpc.Core.Api.pdb",
+                "lib/netstandard2.1/Grpc.Core.Api.xml",
             ],
             "net6.0": [
-                "lib/netstandard2.0/Grpc.Core.Api.dll",
-                "lib/netstandard2.0/Grpc.Core.Api.pdb",
-                "lib/netstandard2.0/Grpc.Core.Api.xml",
+                "lib/netstandard2.1/Grpc.Core.Api.dll",
+                "lib/netstandard2.1/Grpc.Core.Api.pdb",
+                "lib/netstandard2.1/Grpc.Core.Api.xml",
             ],
         },
     )
     nuget_package(
-        name = "grpc.core",
-        package = "grpc.core",
-        version = "2.43.0",
-        sha256 = "bd4ee0a45e86d381df853999792185d219c6fab72975666ad58db304522efba7",
+        name = "grpc.net.common",
+        package = "grpc.net.common",
+        version = "2.47.0",
+        sha256 = "08f0ee4a023fba9c74ad27930ad7c66f5708164212a30551db8fc4742c3df012",
         core_lib = {
-            "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.dll",
-            "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.dll",
-            "netcoreapp2.2": "lib/netstandard2.0/Grpc.Core.dll",
-            "netcoreapp3.0": "lib/netstandard2.0/Grpc.Core.dll",
-            "netcoreapp3.1": "lib/netstandard2.0/Grpc.Core.dll",
-            "net5.0": "lib/netstandard2.0/Grpc.Core.dll",
-            "net6.0": "lib/netstandard2.0/Grpc.Core.dll",
+            "netcoreapp2.0": "lib/netstandard2.0/Grpc.Net.Common.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Grpc.Net.Common.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Grpc.Net.Common.dll",
+            "netcoreapp3.0": "lib/netstandard2.1/Grpc.Net.Common.dll",
+            "netcoreapp3.1": "lib/netstandard2.1/Grpc.Net.Common.dll",
+            "net5.0": "lib/net5.0/Grpc.Net.Common.dll",
+            "net6.0": "lib/net6.0/Grpc.Net.Common.dll",
         },
         core_deps = {
             "netcoreapp2.0": [
                 "@grpc.core.api//:netcoreapp2.0_core",
-                "@system.memory//:netcoreapp2.0_core",
             ],
             "netcoreapp2.1": [
                 "@grpc.core.api//:netcoreapp2.1_core",
-                "@system.memory//:netcoreapp2.1_core",
             ],
             "netcoreapp2.2": [
                 "@grpc.core.api//:netcoreapp2.2_core",
-                "@system.memory//:netcoreapp2.2_core",
             ],
             "netcoreapp3.0": [
                 "@grpc.core.api//:netcoreapp3.0_core",
-                "@system.memory//:netcoreapp3.0_core",
             ],
             "netcoreapp3.1": [
                 "@grpc.core.api//:netcoreapp3.1_core",
-                "@system.memory//:netcoreapp3.1_core",
             ],
             "net5.0": [
                 "@grpc.core.api//:net5.0_core",
-                "@system.memory//:net5.0_core",
             ],
             "net6.0": [
                 "@grpc.core.api//:net6.0_core",
-                "@system.memory//:net6.0_core",
             ],
         },
         core_files = {
             "netcoreapp2.0": [
-                "lib/netstandard2.0/Grpc.Core.dll",
-                "lib/netstandard2.0/Grpc.Core.pdb",
-                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so",
-                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
+                "lib/netstandard2.0/Grpc.Net.Common.dll",
+                "lib/netstandard2.0/Grpc.Net.Common.pdb",
+                "lib/netstandard2.0/Grpc.Net.Common.xml",
             ],
             "netcoreapp2.1": [
-                "lib/netstandard2.0/Grpc.Core.dll",
-                "lib/netstandard2.0/Grpc.Core.pdb",
-                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so",
-                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
+                "lib/netstandard2.0/Grpc.Net.Common.dll",
+                "lib/netstandard2.0/Grpc.Net.Common.pdb",
+                "lib/netstandard2.0/Grpc.Net.Common.xml",
             ],
             "netcoreapp2.2": [
-                "lib/netstandard2.0/Grpc.Core.dll",
-                "lib/netstandard2.0/Grpc.Core.pdb",
-                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so",
-                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
+                "lib/netstandard2.0/Grpc.Net.Common.dll",
+                "lib/netstandard2.0/Grpc.Net.Common.pdb",
+                "lib/netstandard2.0/Grpc.Net.Common.xml",
             ],
             "netcoreapp3.0": [
-                "lib/netstandard2.0/Grpc.Core.dll",
-                "lib/netstandard2.0/Grpc.Core.pdb",
-                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so",
-                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
+                "lib/netstandard2.1/Grpc.Net.Common.dll",
+                "lib/netstandard2.1/Grpc.Net.Common.pdb",
+                "lib/netstandard2.1/Grpc.Net.Common.xml",
             ],
             "netcoreapp3.1": [
-                "lib/netstandard2.0/Grpc.Core.dll",
-                "lib/netstandard2.0/Grpc.Core.pdb",
-                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so",
-                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
+                "lib/netstandard2.1/Grpc.Net.Common.dll",
+                "lib/netstandard2.1/Grpc.Net.Common.pdb",
+                "lib/netstandard2.1/Grpc.Net.Common.xml",
             ],
             "net5.0": [
-                "lib/netstandard2.0/Grpc.Core.dll",
-                "lib/netstandard2.0/Grpc.Core.pdb",
-                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so",
-                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
+                "lib/net5.0/Grpc.Net.Common.dll",
+                "lib/net5.0/Grpc.Net.Common.pdb",
+                "lib/net5.0/Grpc.Net.Common.xml",
             ],
             "net6.0": [
-                "lib/netstandard2.0/Grpc.Core.dll",
-                "lib/netstandard2.0/Grpc.Core.pdb",
-                "lib/netstandard2.0/Grpc.Core.xml",
-
-                # Patched in by regenerate_packages.sh
-                # Can't use select() here, so must just specify all
-                "runtimes/win-x64/native/grpc_csharp_ext.x64.dll",
-                "runtimes/win-x86/native/grpc_csharp_ext.x86.dll",
-                "runtimes/linux-arm64/native/libgrpc_csharp_ext.arm64.so",
-                "runtimes/linux-x64/native/libgrpc_csharp_ext.x64.so",
-                "runtimes/osx-x64/native/libgrpc_csharp_ext.x64.dylib",
-            ],
-        },
-    )
-    nuget_package(
-        name = "grpc",
-        package = "grpc",
-        version = "2.42.0",
-        sha256 = "e9097f2ab88447b58bcf20929d6954634332f4ad36f64f977d1e797262a2859a",
-        core_deps = {
-            "netcoreapp2.0": [
-                "@grpc.core//:netcoreapp2.0_core",
-            ],
-            "netcoreapp2.1": [
-                "@grpc.core//:netcoreapp2.1_core",
-            ],
-            "netcoreapp2.2": [
-                "@grpc.core//:netcoreapp2.2_core",
-            ],
-            "netcoreapp3.0": [
-                "@grpc.core//:netcoreapp3.0_core",
-            ],
-            "netcoreapp3.1": [
-                "@grpc.core//:netcoreapp3.1_core",
-            ],
-            "net5.0": [
-                "@grpc.core//:net5.0_core",
-            ],
-            "net6.0": [
-                "@grpc.core//:net6.0_core",
+                "lib/net6.0/Grpc.Net.Common.dll",
+                "lib/net6.0/Grpc.Net.Common.pdb",
+                "lib/net6.0/Grpc.Net.Common.xml",
             ],
         },
     )

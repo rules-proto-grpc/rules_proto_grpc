@@ -7,15 +7,14 @@ set -eu
 set -o pipefail
 set -x
 
-PROTOBUF_VERSION="3.19.1"
-GRPC_VERSION="2.42.0"
-PROTOBUF_FSHARP_VERSION="0.1.3"
-GRPC_FSHARP_VERSION="0.1.5"
-FSHARP_CORE_VERSION="5.0.1"
+PROTOBUF_VERSION="3.21.5"
+GRPC_VERSION="2.47.0"
+PROTOBUF_FSHARP_VERSION="0.2.0"
+FSHARP_CORE_VERSION="6.0.5"
 
 OUTPUT_DIR="$(pwd)/fsharp/nuget"
 FILE_NAME="nuget.bzl"
-DOTNET_TOOLCHAIN="$(uname -sm | tr 'A-Z ' 'a-z_')_6.0.101"
+DOTNET_TOOLCHAIN="$(uname -sm | tr 'A-Z ' 'a-z_' | sed -e 's/x86_64/amd64/')_6.0.101"
 TOOL="bazel run --host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:${DOTNET_TOOLCHAIN} --platforms=@io_bazel_rules_dotnet//dotnet/toolchain:${DOTNET_TOOLCHAIN} @io_bazel_rules_dotnet//tools/nuget2bazel:nuget2bazel.exe --"
 
 # Clear output files
@@ -93,18 +92,14 @@ EOF
 
 # Add deps
 ${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Google.Protobuf "${PROTOBUF_VERSION}"
-${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc "${GRPC_VERSION}"
+${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc.Net.Common "${GRPC_VERSION}"
 ${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" FSharp.Core "${FSHARP_CORE_VERSION}"
 ${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Protobuf.FSharp "${PROTOBUF_FSHARP_VERSION}"
-#${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" grpc-fsharp "${GRPC_FSHARP_VERSION}"
 
 # Clear packages directory
 if [ -d "${OUTPUT_DIR}/packages" ]; then
     rm -r "${OUTPUT_DIR}/packages"
 fi
-
-# Patch missing Grpc.Core runtimes into nuget_package
-cat "${OUTPUT_DIR}/${FILE_NAME}" | python3 -c "import sys; patch = open('${OUTPUT_DIR}/${FILE_NAME}.patch').read(); sys.stdout.write(sys.stdin.read().replace('Grpc.Core.xml\",', 'Grpc.Core.xml\",' + patch))" | sponge "${OUTPUT_DIR}/${FILE_NAME}"
 
 # Patch in buildifier fixes
 cat "${OUTPUT_DIR}/${FILE_NAME}" | python3 -c "import sys; sys.stdout.write('\"\"\"Generated nuget packages\"\"\"\n\n' + sys.stdin.read().replace('def nuget_rules_proto_grpc_packages():', 'def nuget_rules_proto_grpc_packages():\n    \"\"\"Nuget packages\"\"\"'))" | sponge "${OUTPUT_DIR}/${FILE_NAME}"
