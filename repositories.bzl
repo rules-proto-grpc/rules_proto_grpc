@@ -285,8 +285,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "e14f2528689efd04e54a332d2f27936eac45e2cb",
-        "sha256": "e185041a629ba33ed89febd4703363c236073e7a236b23bdc1b4cfbdc518f701",
+        "ref": "972fdf2b3bda64138db34a630a9910eee96b4d8a",
+        "sha256": "d1eb5719d7a082c30c3041c8e87a31d41115a9147da718b395b80926f9e47708",
     },
 
     # Swift
