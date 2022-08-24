@@ -1,7 +1,7 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_test")
 load("@rules_proto_grpc//js:defs.bzl", "js_grpc_node_library")
-load("@npm//@bazel/typescript:index.bzl", "ts_library")
+load("@npm//@bazel/typescript:index.bzl", "ts_project")
 
 package(default_visibility = ["//visibility:private"])
 
@@ -15,7 +15,7 @@ js_grpc_node_library(
     protos = ["proto_lib"],
 )
 
-ts_library(
+ts_project(
     name = "main_ts",
     srcs = [
         "main.ts",
