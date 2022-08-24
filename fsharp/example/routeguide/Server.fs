@@ -82,7 +82,13 @@ module Server =
                 
                 stopwatch.Stop()
 
-                let summary: RouteGuide.RouteSummary = { PointCount = ValueSome(pointCount); FeatureCount = ValueSome(featureCount); Distance = ValueSome(distance); ElapsedTime = ValueSome(((stopwatch.ElapsedMilliseconds / int64(1000)) |> int)); _UnknownFields = null}
+                let summary: RouteGuide.RouteSummary = {
+                    PointCount = pointCount;
+                    FeatureCount = featureCount;
+                    Distance = distance;
+                    ElapsedTime = ((stopwatch.ElapsedMilliseconds / int64(1000)) |> int);
+                    _UnknownFields = null
+                }
                 return summary
             } |> Async.StartAsTask
      

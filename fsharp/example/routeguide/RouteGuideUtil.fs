@@ -16,64 +16,49 @@ let private coordFactor : double = 1e7
 
 let toRadians (value: double) : double = (Math.PI / (180 |> double)) * value
 
-let getLatitude (point: Point) =
-    match point.Latitude with
-    | ValueSome (l) -> (l |> double) / coordFactor
-    | ValueNone -> 0.
+let getLatitude (point: Point) = (point.Latitude |> double) / coordFactor
 
 let getDistance (start: Point) (``end``: Point) : double =
-    match (start.Latitude, start.Longitude, ``end``.Latitude, ``end``.Longitude) with
-    | (ValueSome (slat), ValueSome (slon), ValueSome (elat), ValueSome (elon)) ->
-        let r = 6371000.
-        let lat1 = toRadians (slat |> double)
-        let lat2 = toRadians (elat |> double)
-        let lon1 = toRadians (slon |> double)
-        let lon2 = toRadians (elon |> double)
-        let deltalat = lat2 - lat1
-        let deltalon = lon2 - lon1
+    let r = 6371000.
+    let lat1 = toRadians (start.Latitude |> double)
+    let lat2 = toRadians (``end``.Latitude |> double)
+    let lon1 = toRadians (start.Longitude |> double)
+    let lon2 = toRadians (``end``.Longitude |> double)
+    let deltalat = lat2 - lat1
+    let deltalon = lon2 - lon1
 
-        let a =
-            Math.Sin(deltalat / 2.) * Math.Sin(deltalat / 2.)
-            + Math.Cos(lat1)
-              * Math.Cos(lat2)
-              * Math.Sin(deltalon / 2.)
-              * Math.Sin(deltalon / 2.)
+    let a =
+        Math.Sin(deltalat / 2.) * Math.Sin(deltalat / 2.)
+        + Math.Cos(lat1)
+            * Math.Cos(lat2)
+            * Math.Sin(deltalon / 2.)
+            * Math.Sin(deltalon / 2.)
 
-        let c =
-            2. * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1. - a))
+    let c =
+        2. * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1. - a))
 
-        r * c
-    | _ -> 0.
-
+    r * c
 
 let contains (rectangle: Rectangle) (point: Point) =
     match (rectangle.Lo, rectangle.Hi) with
-    | (ValueSome (reclo), ValueSome (rechi)) ->
-        match (reclo.Latitude, reclo.Longitude, rechi.Latitude, rechi.Latitude, point.Longitude, point.Latitude) with
-        | (ValueSome (lolat),
-           ValueSome (lolon),
-           ValueSome (hilat),
-           ValueSome (hilon),
-           ValueSome (plon),
-           ValueSome (plat)) ->
-            let left = Math.Min(lolon, hilon)
-            let right = Math.Max(lolon, hilon)
-            let top = Math.Max(lolat, hilat)
-            let bottom = Math.Min(lolat, hilat)
+    | (ValueSome (recLo), ValueSome (recHi)) ->
+        let left = Math.Min(recLo.Longitude, recHi.Longitude)
+        let right = Math.Max(recLo.Longitude, recHi.Longitude)
+        let top = Math.Max(recLo.Latitude, recHi.Latitude)
+        let bottom = Math.Min(recLo.Latitude, recHi.Latitude)
 
-            (plon >= left
-             && plat <= right
-             && plat >= bottom
-             && plat <= top)
-        | _ -> false
+        (point.Longitude >= left
+            && point.Longitude <= right
+            && point.Latitude >= bottom
+            && point.Latitude <= top)
     | _ -> false
 
 let jsonFeatureToProtoFeature (jsonFeature: JsonFeature) : Feature =
-    { Name = ValueSome(jsonFeature.Name)
+    { Name = jsonFeature.Name
       Location =
           ValueSome(
-              { Latitude = ValueSome(jsonFeature.Location.Latitude)
-                Longitude = ValueSome(jsonFeature.Location.Longitude)
+              { Latitude = jsonFeature.Location.Latitude
+                Longitude = jsonFeature.Location.Longitude
                 _UnknownFields = null }
           )
       _UnknownFields = null }
