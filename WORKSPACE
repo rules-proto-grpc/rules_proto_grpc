@@ -53,6 +53,23 @@ load("//go:repositories.bzl", "go_repos")
 go_repos()
 
 #
+# Swift
+#
+# Load build_bazel_rules_swift before running grpc_deps in C++, since that depends on a very old
+# version of build_bazel_apple_support
+#
+load("//swift:repositories.bzl", "swift_repos")
+
+swift_repos()
+
+load(
+    "@build_bazel_rules_swift//swift:repositories.bzl",
+    "swift_rules_dependencies",
+)
+
+swift_rules_dependencies()
+
+#
 # C++
 #
 load("//cpp:repositories.bzl", "cpp_repos")
@@ -286,16 +303,7 @@ maven_install(
 #
 # Swift
 #
-load("//swift:repositories.bzl", "swift_repos")
-
-swift_repos()
-
-load(
-    "@build_bazel_rules_swift//swift:repositories.bzl",
-    "swift_rules_dependencies",
-)
-
-swift_rules_dependencies()
+# Moved to above C++
 
 #
 # Misc

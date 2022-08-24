@@ -49,13 +49,6 @@ VERSIONS = {
         "ref": "0.10.2",
         "sha256": "a3a6e99f497be089f81ec082882e40246bfd435f52f4e82f37e89449b04573f6",
     },
-    "build_bazel_rules_swift": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_swift",
-        "ref": "1.1.0",
-        "sha256": "0ad2023c3e6e8f960e4ae24da508fe5cc44032e04af9961478543a5f5802ce6e",
-    },
     "bazel_skylib": {
         "type": "github",
         "org": "bazelbuild",
@@ -290,6 +283,13 @@ VERSIONS = {
     },
 
     # Swift
+    "build_bazel_rules_swift": {
+        "type": "github",
+        "org": "bazelbuild",
+        "repo": "rules_swift",
+        "ref": "1.1.0",
+        "sha256": "0ad2023c3e6e8f960e4ae24da508fe5cc44032e04af9961478543a5f5802ce6e",
+    },
     "com_github_grpc_grpc_swift": {
         "type": "github",
         "org": "grpc",
