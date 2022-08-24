@@ -49,24 +49,7 @@ def nuget_rules_proto_grpc_packages():
     dotnet_nuget_new(
         name = "grpc-fsharp",
         build_file_content = """
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_import_binary", "core_import_library")
-core_import_library(
-    name = "Protobuf.FSharp.dll",
-    src = select(
-        {
-            "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.100_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:3.1.407_config": "tools/netcoreapp3.1/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.404_config": "tools/net5.0/any/Protobuf.FSharp.dll",
-            "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/Protobuf.FSharp.dll",
-        },
-    ),
-    version = "$PROTOBUF_FSHARP_VERSION",
-    deps = [
-        "@fsharp.core//:lib",
-        "@google.protobuf//:lib",
-    ],
-)
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_import_binary")
 
 core_import_binary(
     name = "bin",
@@ -77,9 +60,10 @@ core_import_binary(
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.404_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
+            "//conditions:default": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
         },
     ),
-    deps = [":Protobuf.FSharp.dll"],
+    deps = ["@google.protobuf//:lib",],
     version = "$GRPC_FSHARP_VERSION",
     visibility = ["//visibility:public"],
 )
