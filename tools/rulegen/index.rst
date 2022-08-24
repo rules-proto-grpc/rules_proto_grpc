@@ -164,8 +164,8 @@ Supported Languages and Tools
      - ✔
      - ✔
    * - TypeScript
-     - ✔
-     - ✔
+     - ✖
+     - ✖
 
 .. list-table:: Supported Tools
    :widths: 20 5 50
