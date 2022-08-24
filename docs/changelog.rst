@@ -6,6 +6,107 @@
 Changelog
 =========
 
+4.2.0
+-----
+
+General
+*******
+
+- Updated protobuf to 21.5
+- Updated grpc to 1.48.0
+- Updated zlib to 1.2.12
+- Switched default ``use_built_in_shell_environment`` to ``True`` .
+  `#182 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/182>`__
+- Bumped minimum Bazel version to 5.0.0
+- Updated ``bazel_skylib`` to 1.2.1
+- Added section to the documentation on overriding dependencies
+- Fixed compilation failure when using a mix of plugins that output directories and files
+
+Buf
+***
+
+- Updated Buf plugins to v1.7.0
+- Added support for M1/arm64
+
+C++
+***
+
+- **WORKSPACE update needed**: You now need to load ``grpc_extra_deps`` in your WORKSPACE file. See
+  the example workspaces for the new template
+
+C#/F#
+*****
+
+- **Breaking change**: The C# and F# rules have switched from using the deprecated ``Grpc.Core`` to
+  the new ``Grpc.Net.Client`` and ``Grpc.AspNetCore``
+- Updated gRPC to 2.47.0
+- Updated ``rules_dotnet`` to latest
+- Updated ``FSharp.Core`` to 6.0.5
+- Updated ``Protobuf.FSharp`` to 0.2.0
+- Updated ``grpc-fsharp`` to 0.2.0
+
+Docs
+****
+
+- Updated ``protoc-gen-doc`` to 1.5.1
+
+Go
+**
+
+- Updated ``rules_go`` to 0.34.0
+- Updated ``gazelle`` to 0.26.0
+- Updated ``protoc-gen-validate`` to 0.6.7
+
+grpc-gateway
+************
+
+- Updated ``grpc-gateway`` to 2.11.3
+
+gRPC-Web
+********
+
+- Updated ``grpc-web`` to 1.3.1
+
+JavaScript
+**********
+
+- Updated ``rules_nodejs`` to 5.5.2
+- Moved to ``protocolbuffers/protobuf-javascript``
+- Updated ``@grpc/grpc-js`` to 1.6.7
+- **WORKSPACE update needed**: The ``build_bazel_rules_nodejs_dependencies`` rule needs to be added
+  to your WORKSPACE
+
+Objective-C
+***********
+
+- Fixed expected naming of output files for proto files containing dash in file name.
+  `#177 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/177>`__
+- **WORKSPACE update needed**: You now need to load ``grpc_extra_deps`` in your WORKSPACE file. See
+  the example workspaces for the new template
+
+Python
+******
+
+- Updated ``rules_python`` to 0.10.2
+- **WORKSPACE update needed**: You now need to load ``grpc_extra_deps`` in your WORKSPACE file. See
+  the example workspaces for the new template
+
+Rust
+****
+- Updated ``rules_rust`` to 0.9.0
+
+Scala
+*****
+
+- Updated ``rules_scala`` to latest
+- Updated ``ScalaPB`` to 0.11.10
+
+Swift
+*****
+
+- Updated ``rules_swift`` to 1.1.0
+
+
 4.1.1
 -----
 
