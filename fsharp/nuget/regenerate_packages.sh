@@ -10,7 +10,7 @@ set -x
 PROTOBUF_VERSION="3.21.5"
 GRPC_VERSION="2.47.0"
 PROTOBUF_FSHARP_VERSION="0.2.0"
-GRPC_FSHARP_VERSION="0.1.5"
+GRPC_FSHARP_VERSION="0.2.0"
 
 OUTPUT_DIR="$(pwd)/fsharp/nuget"
 FILE_NAME="nuget.bzl"
@@ -60,7 +60,6 @@ core_import_binary(
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.404_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
-            "//conditions:default": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
         },
     ),
     deps = ["@google.protobuf//:lib",],
@@ -70,7 +69,7 @@ core_import_binary(
     """,
         package = "grpc-fsharp",
         version = "$GRPC_FSHARP_VERSION",
-        sha256 = "f5577eaa2e092c739a9b92f9574461ae6839ee1c59c9c0129ef561a2ec2ff563",
+        sha256 = "23f5525682dce5a9719c62d888580902a5b4827070653aecdb58ac27201d84e7",
     )
 EOF
 

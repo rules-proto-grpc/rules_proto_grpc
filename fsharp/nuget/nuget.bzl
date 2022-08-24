@@ -1784,15 +1784,14 @@ core_import_binary(
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.201_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:5.0.404_config": "tools/net5.0/any/FSharp.GrpcCodeGenerator.dll",
             "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
-            "//conditions:default": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
         },
     ),
     deps = ["@google.protobuf//:lib",],
-    version = "0.1.5",
+    version = "0.2.0",
     visibility = ["//visibility:public"],
 )
     """,
         package = "grpc-fsharp",
-        version = "0.1.5",
-        sha256 = "f5577eaa2e092c739a9b92f9574461ae6839ee1c59c9c0129ef561a2ec2ff563",
+        version = "0.2.0",
+        sha256 = "23f5525682dce5a9719c62d888580902a5b4827070653aecdb58ac27201d84e7",
     )
