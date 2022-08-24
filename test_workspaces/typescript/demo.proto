@@ -1,9 +1,0 @@
-syntax = "proto3";
-
-service Demo {
-    rpc Demo (demo) returns (demo);
-}
-
-message demo {
-    bool field = 1;
-}

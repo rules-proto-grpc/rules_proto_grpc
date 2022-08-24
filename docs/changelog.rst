@@ -75,6 +75,8 @@ JavaScript
 - Updated ``@grpc/grpc-js`` to 1.6.7
 - **WORKSPACE update needed**: The ``build_bazel_rules_nodejs_dependencies`` rule needs to be added
   to your WORKSPACE
+- TypeScript support is currently somewhat broken, see `here <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/194>`__.
+  This is not a change from 4.1.0
 
 Objective-C
 ***********
