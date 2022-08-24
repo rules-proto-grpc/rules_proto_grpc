@@ -10,7 +10,7 @@ set -x
 PROTOBUF_VERSION="3.21.5"
 GRPC_VERSION="2.47.0"
 PROTOBUF_FSHARP_VERSION="0.2.0"
-FSHARP_CORE_VERSION="6.0.5"
+GRPC_FSHARP_VERSION="0.1.5"
 
 OUTPUT_DIR="$(pwd)/fsharp/nuget"
 FILE_NAME="nuget.bzl"
@@ -92,8 +92,8 @@ EOF
 
 # Add deps
 ${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Google.Protobuf "${PROTOBUF_VERSION}"
-${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc.Net.Common "${GRPC_VERSION}"
-${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" FSharp.Core "${FSHARP_CORE_VERSION}"
+${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc.Net.Client "${GRPC_VERSION}"
+${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc.AspNetCore "${GRPC_VERSION}"
 ${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Protobuf.FSharp "${PROTOBUF_FSHARP_VERSION}"
 
 # Clear packages directory

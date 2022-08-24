@@ -27,8 +27,8 @@ def fsharp_grpc_library(name, **kwargs):
 
 GRPC_DEPS = [
     "@google.protobuf//:lib",
-    "@grpc.net.common//:lib",
-    "@fsharp.core//:lib",
+    "@grpc.net.client//:lib",
+    "@grpc.aspnetcore//:lib",
     "@protobuf.fsharp//:lib",
     "@core_sdk_stdlib//:libraryset",
 ]

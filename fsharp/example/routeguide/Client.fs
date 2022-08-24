@@ -1,11 +1,11 @@
 module Client
 
-open Grpc.Core
 open System
-open System.Linq
 open System.Text
 open FSharp.Control
 
+open Grpc.Core
+open Grpc.Net.Client
 
 type Client(client: RouteGuide.RouteGuide.RouteGuideClient) =
 
@@ -80,7 +80,7 @@ type Client(client: RouteGuide.RouteGuide.RouteGuideClient) =
                     seq { 0 .. numPoints }
                     |> Seq.map
                         (fun i ->
-                            let index = rand.Next(features.Count())
+                            let index = rand.Next(Seq.length features)
                             let point = (features |> Seq.item index).Location
 
                             match point with
@@ -225,7 +225,7 @@ let main argv =
             50051
 
     let channel =
-        Channel("127.0.0.1:" + port.ToString(), ChannelCredentials.Insecure)
+        GrpcChannel.ForAddress("http://127.0.0.1:" + port.ToString());
 
     let routeGuideClient =
         RouteGuide.RouteGuide.RouteGuideClient(channel)
