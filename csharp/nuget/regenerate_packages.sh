@@ -48,7 +48,8 @@ EOF
 
 # Add deps
 ${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Google.Protobuf "${PROTOBUF_VERSION}"
-${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc.Net.Common "${GRPC_VERSION}"
+${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc.Net.Client "${GRPC_VERSION}"
+${TOOL} add --path "${OUTPUT_DIR}" --indent --bazelfile "${FILE_NAME}" Grpc.AspNetCore "${GRPC_VERSION}"
 
 # Clear packages directory
 if [ -d "${OUTPUT_DIR}/packages" ]; then

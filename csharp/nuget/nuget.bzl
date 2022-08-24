@@ -180,10 +180,55 @@ def nuget_rules_proto_grpc_packages():
         },
     )
     nuget_package(
+        name = "microsoft.extensions.logging.abstractions",
+        package = "microsoft.extensions.logging.abstractions",
+        version = "3.1.28",
+        sha256 = "e72f178d65de1d27a4e0c8bc258477a299ffc1904768d3d672cbd31932466a83",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+            "netcoreapp3.1": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+            "net5.0": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+            "net6.0": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+            ],
+            "net5.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+            ],
+            "net6.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
+            ],
+        },
+    )
+    nuget_package(
         name = "grpc.core.api",
         package = "grpc.core.api",
-        version = "2.47.0",
-        sha256 = "cce27d5afbbc5e23d289c2c494a2f2dce24b655709c4833759d46ee019f679cb",
+        version = "2.48.0",
+        sha256 = "57b07a0be859338ea889fc1fed497141ef4b073119efee3de75a2ea69f131421",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
@@ -257,8 +302,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.net.common",
         package = "grpc.net.common",
-        version = "2.47.0",
-        sha256 = "08f0ee4a023fba9c74ad27930ad7c66f5708164212a30551db8fc4742c3df012",
+        version = "2.48.0",
+        sha256 = "80faf47280b9f60a882a4e17ae621257327190d5f513f0aa4459b72042f7fea8",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Net.Common.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Net.Common.dll",
@@ -326,6 +371,1196 @@ def nuget_rules_proto_grpc_packages():
                 "lib/net6.0/Grpc.Net.Common.dll",
                 "lib/net6.0/Grpc.Net.Common.pdb",
                 "lib/net6.0/Grpc.Net.Common.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "grpc.tools",
+        package = "grpc.tools",
+        version = "2.48.0",
+        sha256 = "03c7536e1d3a93af27417111f57f96ce8e7275eee292aaf9e341ab8e3e6d2204",
+        core_files = {
+            "netcoreapp2.0": [
+                "tools/linux_arm64/grpc_csharp_plugin",
+                "tools/linux_arm64/protoc",
+                "tools/linux_x64/grpc_csharp_plugin",
+                "tools/linux_x64/protoc",
+                "tools/linux_x86/grpc_csharp_plugin",
+                "tools/linux_x86/protoc",
+                "tools/macosx_x64/grpc_csharp_plugin",
+                "tools/macosx_x64/protoc",
+                "tools/windows_x64/grpc_csharp_plugin.exe",
+                "tools/windows_x64/protoc.exe",
+                "tools/windows_x86/grpc_csharp_plugin.exe",
+                "tools/windows_x86/protoc.exe",
+                "build/Grpc.Tools.props",
+                "build/Grpc.Tools.targets",
+                "build/_grpc/Grpc.CSharp.xml",
+                "build/_grpc/_Grpc.Tools.props",
+                "build/_grpc/_Grpc.Tools.targets",
+                "build/_protobuf/Google.Protobuf.Tools.props",
+                "build/_protobuf/Google.Protobuf.Tools.targets",
+                "build/_protobuf/net45/Protobuf.MSBuild.dll",
+                "build/_protobuf/net45/Protobuf.MSBuild.pdb",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.dll",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.pdb",
+                "build/_protobuf/Protobuf.CSharp.xml",
+            ],
+            "netcoreapp2.1": [
+                "tools/linux_arm64/grpc_csharp_plugin",
+                "tools/linux_arm64/protoc",
+                "tools/linux_x64/grpc_csharp_plugin",
+                "tools/linux_x64/protoc",
+                "tools/linux_x86/grpc_csharp_plugin",
+                "tools/linux_x86/protoc",
+                "tools/macosx_x64/grpc_csharp_plugin",
+                "tools/macosx_x64/protoc",
+                "tools/windows_x64/grpc_csharp_plugin.exe",
+                "tools/windows_x64/protoc.exe",
+                "tools/windows_x86/grpc_csharp_plugin.exe",
+                "tools/windows_x86/protoc.exe",
+                "build/Grpc.Tools.props",
+                "build/Grpc.Tools.targets",
+                "build/_grpc/Grpc.CSharp.xml",
+                "build/_grpc/_Grpc.Tools.props",
+                "build/_grpc/_Grpc.Tools.targets",
+                "build/_protobuf/Google.Protobuf.Tools.props",
+                "build/_protobuf/Google.Protobuf.Tools.targets",
+                "build/_protobuf/net45/Protobuf.MSBuild.dll",
+                "build/_protobuf/net45/Protobuf.MSBuild.pdb",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.dll",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.pdb",
+                "build/_protobuf/Protobuf.CSharp.xml",
+            ],
+            "netcoreapp2.2": [
+                "tools/linux_arm64/grpc_csharp_plugin",
+                "tools/linux_arm64/protoc",
+                "tools/linux_x64/grpc_csharp_plugin",
+                "tools/linux_x64/protoc",
+                "tools/linux_x86/grpc_csharp_plugin",
+                "tools/linux_x86/protoc",
+                "tools/macosx_x64/grpc_csharp_plugin",
+                "tools/macosx_x64/protoc",
+                "tools/windows_x64/grpc_csharp_plugin.exe",
+                "tools/windows_x64/protoc.exe",
+                "tools/windows_x86/grpc_csharp_plugin.exe",
+                "tools/windows_x86/protoc.exe",
+                "build/Grpc.Tools.props",
+                "build/Grpc.Tools.targets",
+                "build/_grpc/Grpc.CSharp.xml",
+                "build/_grpc/_Grpc.Tools.props",
+                "build/_grpc/_Grpc.Tools.targets",
+                "build/_protobuf/Google.Protobuf.Tools.props",
+                "build/_protobuf/Google.Protobuf.Tools.targets",
+                "build/_protobuf/net45/Protobuf.MSBuild.dll",
+                "build/_protobuf/net45/Protobuf.MSBuild.pdb",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.dll",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.pdb",
+                "build/_protobuf/Protobuf.CSharp.xml",
+            ],
+            "netcoreapp3.0": [
+                "tools/linux_arm64/grpc_csharp_plugin",
+                "tools/linux_arm64/protoc",
+                "tools/linux_x64/grpc_csharp_plugin",
+                "tools/linux_x64/protoc",
+                "tools/linux_x86/grpc_csharp_plugin",
+                "tools/linux_x86/protoc",
+                "tools/macosx_x64/grpc_csharp_plugin",
+                "tools/macosx_x64/protoc",
+                "tools/windows_x64/grpc_csharp_plugin.exe",
+                "tools/windows_x64/protoc.exe",
+                "tools/windows_x86/grpc_csharp_plugin.exe",
+                "tools/windows_x86/protoc.exe",
+                "build/Grpc.Tools.props",
+                "build/Grpc.Tools.targets",
+                "build/_grpc/Grpc.CSharp.xml",
+                "build/_grpc/_Grpc.Tools.props",
+                "build/_grpc/_Grpc.Tools.targets",
+                "build/_protobuf/Google.Protobuf.Tools.props",
+                "build/_protobuf/Google.Protobuf.Tools.targets",
+                "build/_protobuf/net45/Protobuf.MSBuild.dll",
+                "build/_protobuf/net45/Protobuf.MSBuild.pdb",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.dll",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.pdb",
+                "build/_protobuf/Protobuf.CSharp.xml",
+            ],
+            "netcoreapp3.1": [
+                "tools/linux_arm64/grpc_csharp_plugin",
+                "tools/linux_arm64/protoc",
+                "tools/linux_x64/grpc_csharp_plugin",
+                "tools/linux_x64/protoc",
+                "tools/linux_x86/grpc_csharp_plugin",
+                "tools/linux_x86/protoc",
+                "tools/macosx_x64/grpc_csharp_plugin",
+                "tools/macosx_x64/protoc",
+                "tools/windows_x64/grpc_csharp_plugin.exe",
+                "tools/windows_x64/protoc.exe",
+                "tools/windows_x86/grpc_csharp_plugin.exe",
+                "tools/windows_x86/protoc.exe",
+                "build/Grpc.Tools.props",
+                "build/Grpc.Tools.targets",
+                "build/_grpc/Grpc.CSharp.xml",
+                "build/_grpc/_Grpc.Tools.props",
+                "build/_grpc/_Grpc.Tools.targets",
+                "build/_protobuf/Google.Protobuf.Tools.props",
+                "build/_protobuf/Google.Protobuf.Tools.targets",
+                "build/_protobuf/net45/Protobuf.MSBuild.dll",
+                "build/_protobuf/net45/Protobuf.MSBuild.pdb",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.dll",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.pdb",
+                "build/_protobuf/Protobuf.CSharp.xml",
+            ],
+            "net5.0": [
+                "tools/linux_arm64/grpc_csharp_plugin",
+                "tools/linux_arm64/protoc",
+                "tools/linux_x64/grpc_csharp_plugin",
+                "tools/linux_x64/protoc",
+                "tools/linux_x86/grpc_csharp_plugin",
+                "tools/linux_x86/protoc",
+                "tools/macosx_x64/grpc_csharp_plugin",
+                "tools/macosx_x64/protoc",
+                "tools/windows_x64/grpc_csharp_plugin.exe",
+                "tools/windows_x64/protoc.exe",
+                "tools/windows_x86/grpc_csharp_plugin.exe",
+                "tools/windows_x86/protoc.exe",
+                "build/Grpc.Tools.props",
+                "build/Grpc.Tools.targets",
+                "build/_grpc/Grpc.CSharp.xml",
+                "build/_grpc/_Grpc.Tools.props",
+                "build/_grpc/_Grpc.Tools.targets",
+                "build/_protobuf/Google.Protobuf.Tools.props",
+                "build/_protobuf/Google.Protobuf.Tools.targets",
+                "build/_protobuf/net45/Protobuf.MSBuild.dll",
+                "build/_protobuf/net45/Protobuf.MSBuild.pdb",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.dll",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.pdb",
+                "build/_protobuf/Protobuf.CSharp.xml",
+            ],
+            "net6.0": [
+                "tools/linux_arm64/grpc_csharp_plugin",
+                "tools/linux_arm64/protoc",
+                "tools/linux_x64/grpc_csharp_plugin",
+                "tools/linux_x64/protoc",
+                "tools/linux_x86/grpc_csharp_plugin",
+                "tools/linux_x86/protoc",
+                "tools/macosx_x64/grpc_csharp_plugin",
+                "tools/macosx_x64/protoc",
+                "tools/windows_x64/grpc_csharp_plugin.exe",
+                "tools/windows_x64/protoc.exe",
+                "tools/windows_x86/grpc_csharp_plugin.exe",
+                "tools/windows_x86/protoc.exe",
+                "build/Grpc.Tools.props",
+                "build/Grpc.Tools.targets",
+                "build/_grpc/Grpc.CSharp.xml",
+                "build/_grpc/_Grpc.Tools.props",
+                "build/_grpc/_Grpc.Tools.targets",
+                "build/_protobuf/Google.Protobuf.Tools.props",
+                "build/_protobuf/Google.Protobuf.Tools.targets",
+                "build/_protobuf/net45/Protobuf.MSBuild.dll",
+                "build/_protobuf/net45/Protobuf.MSBuild.pdb",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.dll",
+                "build/_protobuf/netstandard1.3/Protobuf.MSBuild.pdb",
+                "build/_protobuf/Protobuf.CSharp.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.dependencyinjection.abstractions",
+        package = "microsoft.extensions.dependencyinjection.abstractions",
+        version = "3.1.28",
+        sha256 = "0579cb83227af0af84bae8f960b3805b55b247ed4d6b1a4248d5c0fe95edb9d7",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+            "netcoreapp3.1": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+            "net5.0": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+            "net6.0": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+            ],
+            "net5.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+            ],
+            "net6.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.primitives",
+        package = "microsoft.extensions.primitives",
+        version = "3.1.28",
+        sha256 = "b1a933ce4ee16f090887ce4be123f467b7be0a6563361e3c544dd77ee889c221",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
+            "net5.0": "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
+            "net6.0": "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@system.memory//:netcoreapp2.0_core",
+                "@system.runtime.compilerservices.unsafe//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@system.memory//:netcoreapp2.1_core",
+                "@system.runtime.compilerservices.unsafe//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@system.memory//:netcoreapp2.2_core",
+                "@system.runtime.compilerservices.unsafe//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@system.memory//:netcoreapp3.0_core",
+                "@system.runtime.compilerservices.unsafe//:netcoreapp3.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.xml",
+            ],
+            "net5.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.xml",
+            ],
+            "net6.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Primitives.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.configuration.abstractions",
+        package = "microsoft.extensions.configuration.abstractions",
+        version = "3.1.28",
+        sha256 = "112e961517032dbdb991b2071d33dbea631de2bc9fa95bc43527bc0610bffbca",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll",
+            "net5.0": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll",
+            "net6.0": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@microsoft.extensions.primitives//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@microsoft.extensions.primitives//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@microsoft.extensions.primitives//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@microsoft.extensions.primitives//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@microsoft.extensions.primitives//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@microsoft.extensions.primitives//:net5.0_core",
+            ],
+            "net6.0": [
+                "@microsoft.extensions.primitives//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.xml",
+            ],
+            "net5.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.xml",
+            ],
+            "net6.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Abstractions.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.configuration",
+        package = "microsoft.extensions.configuration",
+        version = "3.1.28",
+        sha256 = "e44fd0e3621d0ec787edd669cca825c3db8d26892f5effb0cace6d3d2a516c31",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.dll",
+            "net5.0": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.dll",
+            "net6.0": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@microsoft.extensions.configuration.abstractions//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@microsoft.extensions.configuration.abstractions//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@microsoft.extensions.configuration.abstractions//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@microsoft.extensions.configuration.abstractions//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@microsoft.extensions.configuration.abstractions//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@microsoft.extensions.configuration.abstractions//:net5.0_core",
+            ],
+            "net6.0": [
+                "@microsoft.extensions.configuration.abstractions//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.xml",
+            ],
+            "net5.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.xml",
+            ],
+            "net6.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.configuration.binder",
+        package = "microsoft.extensions.configuration.binder",
+        version = "3.1.28",
+        sha256 = "13066ea73f5232468624d983f244fcc1b11111f2f2da9cc61ea286472dff11ed",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll",
+            "net5.0": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll",
+            "net6.0": "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@microsoft.extensions.configuration//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@microsoft.extensions.configuration//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@microsoft.extensions.configuration//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@microsoft.extensions.configuration//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@microsoft.extensions.configuration//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@microsoft.extensions.configuration//:net5.0_core",
+            ],
+            "net6.0": [
+                "@microsoft.extensions.configuration//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.xml",
+            ],
+            "net5.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.xml",
+            ],
+            "net6.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Configuration.Binder.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.options",
+        package = "microsoft.extensions.options",
+        version = "3.1.28",
+        sha256 = "8a9d47c81ba87a477ec613f746e9bb9bb4782d96acd188449aaa8415e471d9c9",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll",
+            "net5.0": "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll",
+            "net6.0": "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.0_core",
+                "@microsoft.extensions.primitives//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.1_core",
+                "@microsoft.extensions.primitives//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.2_core",
+                "@microsoft.extensions.primitives//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp3.0_core",
+                "@microsoft.extensions.primitives//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp3.1_core",
+                "@microsoft.extensions.primitives//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:net5.0_core",
+                "@microsoft.extensions.primitives//:net5.0_core",
+            ],
+            "net6.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:net6.0_core",
+                "@microsoft.extensions.primitives//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Options.xml",
+            ],
+            "net5.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Options.xml",
+            ],
+            "net6.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Options.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Options.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "grpc.aspnetcore.server",
+        package = "grpc.aspnetcore.server",
+        version = "2.48.0",
+        sha256 = "6d56e73012dcaf9c1af19a066a63f3cffb1234e57bcaa49902c938a62feccf52",
+        core_lib = {
+            "netcoreapp3.0": "lib/netcoreapp3.0/Grpc.AspNetCore.Server.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.0/Grpc.AspNetCore.Server.dll",
+            "net5.0": "lib/net5.0/Grpc.AspNetCore.Server.dll",
+            "net6.0": "lib/net6.0/Grpc.AspNetCore.Server.dll",
+        },
+        core_deps = {
+            "netcoreapp3.0": [
+                "@grpc.net.common//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@grpc.net.common//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@grpc.net.common//:net5.0_core",
+            ],
+            "net6.0": [
+                "@grpc.net.common//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp3.0": [
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.dll",
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.pdb",
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.dll",
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.pdb",
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.xml",
+            ],
+            "net5.0": [
+                "lib/net5.0/Grpc.AspNetCore.Server.dll",
+                "lib/net5.0/Grpc.AspNetCore.Server.pdb",
+                "lib/net5.0/Grpc.AspNetCore.Server.xml",
+            ],
+            "net6.0": [
+                "lib/net6.0/Grpc.AspNetCore.Server.dll",
+                "lib/net6.0/Grpc.AspNetCore.Server.pdb",
+                "lib/net6.0/Grpc.AspNetCore.Server.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "grpc.net.client",
+        package = "grpc.net.client",
+        version = "2.48.0",
+        sha256 = "7c0bf76216c1132dfe71a9ff1672d7addd5a2dbcc523356caff9765ee74fe5c8",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Grpc.Net.Client.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Grpc.Net.Client.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Grpc.Net.Client.dll",
+            "netcoreapp3.0": "lib/netstandard2.1/Grpc.Net.Client.dll",
+            "netcoreapp3.1": "lib/netstandard2.1/Grpc.Net.Client.dll",
+            "net5.0": "lib/net5.0/Grpc.Net.Client.dll",
+            "net6.0": "lib/net6.0/Grpc.Net.Client.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@grpc.net.common//:netcoreapp2.0_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@grpc.net.common//:netcoreapp2.1_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@grpc.net.common//:netcoreapp2.2_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@grpc.net.common//:netcoreapp3.0_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@grpc.net.common//:netcoreapp3.1_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@grpc.net.common//:net5.0_core",
+                "@microsoft.extensions.logging.abstractions//:net5.0_core",
+            ],
+            "net6.0": [
+                "@grpc.net.common//:net6.0_core",
+                "@microsoft.extensions.logging.abstractions//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Grpc.Net.Client.dll",
+                "lib/netstandard2.0/Grpc.Net.Client.pdb",
+                "lib/netstandard2.0/Grpc.Net.Client.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Grpc.Net.Client.dll",
+                "lib/netstandard2.0/Grpc.Net.Client.pdb",
+                "lib/netstandard2.0/Grpc.Net.Client.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Grpc.Net.Client.dll",
+                "lib/netstandard2.0/Grpc.Net.Client.pdb",
+                "lib/netstandard2.0/Grpc.Net.Client.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.1/Grpc.Net.Client.dll",
+                "lib/netstandard2.1/Grpc.Net.Client.pdb",
+                "lib/netstandard2.1/Grpc.Net.Client.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netstandard2.1/Grpc.Net.Client.dll",
+                "lib/netstandard2.1/Grpc.Net.Client.pdb",
+                "lib/netstandard2.1/Grpc.Net.Client.xml",
+            ],
+            "net5.0": [
+                "lib/net5.0/Grpc.Net.Client.dll",
+                "lib/net5.0/Grpc.Net.Client.pdb",
+                "lib/net5.0/Grpc.Net.Client.xml",
+            ],
+            "net6.0": [
+                "lib/net6.0/Grpc.Net.Client.dll",
+                "lib/net6.0/Grpc.Net.Client.pdb",
+                "lib/net6.0/Grpc.Net.Client.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "system.threading.tasks.extensions",
+        package = "system.threading.tasks.extensions",
+        version = "4.5.4",
+        sha256 = "a304a963cc0796c5179f9c6b7d8022bbce3b2fa7c029eb6196f631f7b462d678",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@system.runtime.compilerservices.unsafe//:netcoreapp2.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/System.Threading.Tasks.Extensions.dll",
+                "lib/netstandard2.0/System.Threading.Tasks.Extensions.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.bcl.asyncinterfaces",
+        package = "microsoft.bcl.asyncinterfaces",
+        version = "1.1.1",
+        sha256 = "7c0717e2cc44d2f79633509906d5d1fd49e4cbeeac137df2ad5ee886b5862a28",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+            "netcoreapp3.0": "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+            "netcoreapp3.1": "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+            "net5.0": "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+            "net6.0": "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+        },
+        core_ref = {
+            "netcoreapp2.0": "ref/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+            "netcoreapp2.1": "ref/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+            "netcoreapp2.2": "ref/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+            "netcoreapp3.0": "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+            "netcoreapp3.1": "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+            "net5.0": "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+            "net6.0": "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@system.threading.tasks.extensions//:netcoreapp2.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+                "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+                "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.dll",
+                "lib/netstandard2.0/Microsoft.Bcl.AsyncInterfaces.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+                "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+                "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.xml",
+            ],
+            "net5.0": [
+                "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+                "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.xml",
+            ],
+            "net6.0": [
+                "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll",
+                "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.dependencyinjection",
+        package = "microsoft.extensions.dependencyinjection",
+        version = "3.1.28",
+        sha256 = "c79caa0c5ab71ec61b163817297a5e11573a94cdf3a03b1428bb874a95786a57",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+            "netcoreapp3.0": "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll",
+            "net5.0": "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll",
+            "net6.0": "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.0_core",
+                "@microsoft.bcl.asyncinterfaces//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.1_core",
+                "@microsoft.bcl.asyncinterfaces//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.2_core",
+                "@microsoft.bcl.asyncinterfaces//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:net5.0_core",
+            ],
+            "net6.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
+                "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.xml",
+            ],
+            "net5.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.xml",
+            ],
+            "net6.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.DependencyInjection.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.logging",
+        package = "microsoft.extensions.logging",
+        version = "3.1.28",
+        sha256 = "91fe03d634cc6351e3bcaf137c972965859242503473c85e5bc846749ac5d9f3",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.1/Microsoft.Extensions.Logging.dll",
+            "net5.0": "lib/netcoreapp3.1/Microsoft.Extensions.Logging.dll",
+            "net6.0": "lib/netcoreapp3.1/Microsoft.Extensions.Logging.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@microsoft.extensions.configuration.binder//:netcoreapp2.0_core",
+                "@microsoft.extensions.dependencyinjection//:netcoreapp2.0_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.0_core",
+                "@microsoft.extensions.options//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@microsoft.extensions.configuration.binder//:netcoreapp2.1_core",
+                "@microsoft.extensions.dependencyinjection//:netcoreapp2.1_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.1_core",
+                "@microsoft.extensions.options//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@microsoft.extensions.configuration.binder//:netcoreapp2.2_core",
+                "@microsoft.extensions.dependencyinjection//:netcoreapp2.2_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.2_core",
+                "@microsoft.extensions.options//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@microsoft.extensions.configuration.binder//:netcoreapp3.0_core",
+                "@microsoft.extensions.dependencyinjection//:netcoreapp3.0_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp3.0_core",
+                "@microsoft.extensions.options//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@microsoft.extensions.configuration.binder//:netcoreapp3.1_core",
+                "@microsoft.extensions.dependencyinjection//:netcoreapp3.1_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp3.1_core",
+                "@microsoft.extensions.options//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@microsoft.extensions.configuration.binder//:net5.0_core",
+                "@microsoft.extensions.dependencyinjection//:net5.0_core",
+                "@microsoft.extensions.logging.abstractions//:net5.0_core",
+                "@microsoft.extensions.options//:net5.0_core",
+            ],
+            "net6.0": [
+                "@microsoft.extensions.configuration.binder//:net6.0_core",
+                "@microsoft.extensions.dependencyinjection//:net6.0_core",
+                "@microsoft.extensions.logging.abstractions//:net6.0_core",
+                "@microsoft.extensions.options//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Logging.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Logging.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Logging.xml",
+            ],
+            "net5.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Logging.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Logging.xml",
+            ],
+            "net6.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Logging.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Logging.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "microsoft.extensions.http",
+        package = "microsoft.extensions.http",
+        version = "3.1.28",
+        sha256 = "fa0bed32e4119d8feaae3df2b996654d45e7deeb24c070f51fe5124e37fbb8ae",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+            "netcoreapp3.0": "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll",
+            "net5.0": "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll",
+            "net6.0": "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.0_core",
+                "@microsoft.extensions.logging//:netcoreapp2.0_core",
+                "@microsoft.extensions.options//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.1_core",
+                "@microsoft.extensions.logging//:netcoreapp2.1_core",
+                "@microsoft.extensions.options//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp2.2_core",
+                "@microsoft.extensions.logging//:netcoreapp2.2_core",
+                "@microsoft.extensions.options//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp3.0_core",
+                "@microsoft.extensions.logging//:netcoreapp3.0_core",
+                "@microsoft.extensions.options//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:netcoreapp3.1_core",
+                "@microsoft.extensions.logging//:netcoreapp3.1_core",
+                "@microsoft.extensions.options//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:net5.0_core",
+                "@microsoft.extensions.logging//:net5.0_core",
+                "@microsoft.extensions.options//:net5.0_core",
+            ],
+            "net6.0": [
+                "@microsoft.extensions.dependencyinjection.abstractions//:net6.0_core",
+                "@microsoft.extensions.logging//:net6.0_core",
+                "@microsoft.extensions.options//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
+                "lib/netstandard2.0/Microsoft.Extensions.Http.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Http.xml",
+            ],
+            "net5.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Http.xml",
+            ],
+            "net6.0": [
+                "lib/netcoreapp3.1/Microsoft.Extensions.Http.dll",
+                "lib/netcoreapp3.1/Microsoft.Extensions.Http.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "grpc.net.clientfactory",
+        package = "grpc.net.clientfactory",
+        version = "2.48.0",
+        sha256 = "6cc1414687afad83ea5dd631bb801e1aaecca0c2b153db09cdb9d1ae59ec38ec",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Grpc.Net.ClientFactory.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Grpc.Net.ClientFactory.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Grpc.Net.ClientFactory.dll",
+            "netcoreapp3.0": "lib/netstandard2.1/Grpc.Net.ClientFactory.dll",
+            "netcoreapp3.1": "lib/netstandard2.1/Grpc.Net.ClientFactory.dll",
+            "net5.0": "lib/net5.0/Grpc.Net.ClientFactory.dll",
+            "net6.0": "lib/net6.0/Grpc.Net.ClientFactory.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@grpc.net.client//:netcoreapp2.0_core",
+                "@microsoft.extensions.http//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@grpc.net.client//:netcoreapp2.1_core",
+                "@microsoft.extensions.http//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@grpc.net.client//:netcoreapp2.2_core",
+                "@microsoft.extensions.http//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@grpc.net.client//:netcoreapp3.0_core",
+                "@microsoft.extensions.http//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@grpc.net.client//:netcoreapp3.1_core",
+                "@microsoft.extensions.http//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@grpc.net.client//:net5.0_core",
+                "@microsoft.extensions.http//:net5.0_core",
+            ],
+            "net6.0": [
+                "@grpc.net.client//:net6.0_core",
+                "@microsoft.extensions.http//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.dll",
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.pdb",
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.dll",
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.pdb",
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.dll",
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.pdb",
+                "lib/netstandard2.0/Grpc.Net.ClientFactory.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.1/Grpc.Net.ClientFactory.dll",
+                "lib/netstandard2.1/Grpc.Net.ClientFactory.pdb",
+                "lib/netstandard2.1/Grpc.Net.ClientFactory.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netstandard2.1/Grpc.Net.ClientFactory.dll",
+                "lib/netstandard2.1/Grpc.Net.ClientFactory.pdb",
+                "lib/netstandard2.1/Grpc.Net.ClientFactory.xml",
+            ],
+            "net5.0": [
+                "lib/net5.0/Grpc.Net.ClientFactory.dll",
+                "lib/net5.0/Grpc.Net.ClientFactory.pdb",
+                "lib/net5.0/Grpc.Net.ClientFactory.xml",
+            ],
+            "net6.0": [
+                "lib/net6.0/Grpc.Net.ClientFactory.dll",
+                "lib/net6.0/Grpc.Net.ClientFactory.pdb",
+                "lib/net6.0/Grpc.Net.ClientFactory.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "grpc.aspnetcore.server.clientfactory",
+        package = "grpc.aspnetcore.server.clientfactory",
+        version = "2.48.0",
+        sha256 = "8eb309664e36d034aa3021630a9bd71b5300ad3913787081392afacaaf97dca5",
+        core_lib = {
+            "netcoreapp3.0": "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.dll",
+            "netcoreapp3.1": "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.dll",
+            "net5.0": "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.dll",
+            "net6.0": "lib/net6.0/Grpc.AspNetCore.Server.ClientFactory.dll",
+        },
+        core_deps = {
+            "netcoreapp3.0": [
+                "@grpc.aspnetcore.server//:netcoreapp3.0_core",
+                "@grpc.net.clientfactory//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@grpc.aspnetcore.server//:netcoreapp3.1_core",
+                "@grpc.net.clientfactory//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@grpc.aspnetcore.server//:net5.0_core",
+                "@grpc.net.clientfactory//:net5.0_core",
+            ],
+            "net6.0": [
+                "@grpc.aspnetcore.server//:net6.0_core",
+                "@grpc.net.clientfactory//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp3.0": [
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.dll",
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.pdb",
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.dll",
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.pdb",
+                "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.xml",
+            ],
+            "net5.0": [
+                "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.dll",
+                "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.pdb",
+                "lib/net5.0/Grpc.AspNetCore.Server.ClientFactory.xml",
+            ],
+            "net6.0": [
+                "lib/net6.0/Grpc.AspNetCore.Server.ClientFactory.dll",
+                "lib/net6.0/Grpc.AspNetCore.Server.ClientFactory.pdb",
+                "lib/net6.0/Grpc.AspNetCore.Server.ClientFactory.xml",
+            ],
+        },
+    )
+    nuget_package(
+        name = "grpc.aspnetcore",
+        package = "grpc.aspnetcore",
+        version = "2.47.0",
+        sha256 = "000c74a2585e7d428cdcf7e37cb23cbfbc0ead3dcf7c08a2fd157df266313bb6",
+        core_deps = {
+            "netcoreapp3.0": [
+                "@grpc.aspnetcore.server.clientfactory//:netcoreapp3.0_core",
+                "@google.protobuf//:netcoreapp3.0_core",
+                "@grpc.tools//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@grpc.aspnetcore.server.clientfactory//:netcoreapp3.1_core",
+                "@google.protobuf//:netcoreapp3.1_core",
+                "@grpc.tools//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@grpc.aspnetcore.server.clientfactory//:net5.0_core",
+                "@google.protobuf//:net5.0_core",
+                "@grpc.tools//:net5.0_core",
+            ],
+            "net6.0": [
+                "@grpc.aspnetcore.server.clientfactory//:net6.0_core",
+                "@google.protobuf//:net6.0_core",
+                "@grpc.tools//:net6.0_core",
             ],
         },
     )
