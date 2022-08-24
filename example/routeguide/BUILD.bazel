@@ -36,6 +36,8 @@ routeguide_test_matrix(
         # "//scala/example/routeguide:server",  # Doesn't exist yet
     ],
     skip = [
+        "csharp_rust",  # Broken
+        "fsharp_rust",  # Broken
         "fsharp_js",  # Broken
     ],
     tagmap = {
