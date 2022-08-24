@@ -62,7 +62,9 @@ core_import_binary(
             "@io_bazel_rules_dotnet//dotnet/toolchain:6.0.101_config": "tools/net6.0/any/FSharp.GrpcCodeGenerator.dll",
         },
     ),
-    deps = ["@google.protobuf//:lib",],
+    deps = [
+        "@protobuf.fsharp//:lib",
+    ],
     version = "$GRPC_FSHARP_VERSION",
     visibility = ["//visibility:public"],
 )
