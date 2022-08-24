@@ -14,24 +14,10 @@
 
 ## Announcements 📣
 
-#### 2021/12/12 - Version 4.1.0
+#### 2022/08/24 - Version 4.2.0
 
-[Version 4.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.1.0),
-which is mostly an incremental update of dependencies. However, users of the Go and grpc-gateway
-rules should see the release notes linked above for a change required in WORKSPACE order.
-
-#### 2021/09/22 - Version 4.0.0
-
-[Version 4.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.0.0)
-with updated dependencies and removal of some previously deprecated features. gRPC has been updated
-to 1.40.0 and Protobuf has been updated to 3.18.0. This update will be a drop-in upgrade with no
-changes needed for most users, however there are a couple of breaking changes in the Javascript and
-Rust rules. Please see the release notes linked above for all changes or check the language specific
-rules pages in the docs. If you discover any problems with the new release, please
-[open a new issue](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new),
-[create a discussion](https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new) or
-otherwise check in the
-[#proto channel](https://bazelbuild.slack.com/archives/CKU1D04RM) on Bazel Slack.
+[Version 4.2.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.2.0),
+which contains a number of bug-fixes and dependency updates
 
 
 ## Usage
