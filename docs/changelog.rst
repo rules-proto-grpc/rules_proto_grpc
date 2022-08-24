@@ -95,6 +95,7 @@ Python
 
 Rust
 ****
+
 - Updated ``rules_rust`` to 0.9.0
 
 Scala
