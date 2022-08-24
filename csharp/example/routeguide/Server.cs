@@ -21,6 +21,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+
 using Grpc.Core;
 using Grpc.Core.Utils;
 
@@ -35,9 +42,9 @@ class Program
         readonly object myLock = new object();
         readonly Dictionary<RouteGuide.Point, List<RouteGuide.RouteNote>> routeNotes = new Dictionary<RouteGuide.Point, List<RouteGuide.RouteNote>>();
 
-        public RouteGuideImpl(List<RouteGuide.Feature> features)
+        public RouteGuideImpl()
         {
-            this.features = features;
+            this.features = RouteGuideUtil.ParseFeatures("csharp/example/routeguide/server.exe/routeguide_features.json");
         }
 
         /// <summary>
@@ -159,32 +166,26 @@ class Program
         if (!String.IsNullOrEmpty(PortVar)) {
             Port = Int32.Parse(PortVar);
         }
-        var features = RouteGuideUtil.ParseFeatures("csharp/example/routeguide/server.exe/routeguide_features.json");
 
-        Server server = new Server
-        {
-            Services = { RouteGuide.RouteGuide.BindService(new RouteGuideImpl(features)) },
-            Ports = { new ServerPort("localhost", Port, ServerCredentials.Insecure) }
-        };
+        var host = new WebHostBuilder()
+            .ConfigureLogging(options => options.AddConsole())
+            .ConfigureLogging(options => options.AddDebug())
+            .ConfigureServices(services => services.AddGrpc())
+            .Configure(app => {
+                app.UseRouting();
+                app.UseEndpoints(endpoints => {
+                    endpoints.MapGrpcService<RouteGuideImpl>();
+                });
+            })
+            .UseKestrel(serverOptions => {
+                serverOptions.ConfigureEndpointDefaults(listenOptions => {
+                    listenOptions.Protocols = HttpProtocols.Http2;  // Force using HTTP2 over insecure endpoints
+                });
+            })
+            .UseUrls("http://localhost:" + Port)
+            .Build();
 
-        server.Start();
-
-        Console.WriteLine("C# server listening on port " + Port + ".  Type 'exit' or CTRL+C to stop.");
-
-        string command = "";
-        do
-        {
-            command = Console.ReadLine();
-            switch (command)
-            {
-                case "whatever":
-                break;
-            }
-        }
-        while (command != "exit");
-
-        server.ShutdownAsync().Wait();
-
+        host.Run();
     }
 
 }

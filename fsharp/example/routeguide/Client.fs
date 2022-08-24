@@ -1,11 +1,11 @@
 module Client
 
-open Grpc.Core
 open System
-open System.Linq
 open System.Text
 open FSharp.Control
 
+open Grpc.Core
+open Grpc.Net.Client
 
 type Client(client: RouteGuide.RouteGuide.RouteGuideClient) =
 
@@ -14,17 +14,15 @@ type Client(client: RouteGuide.RouteGuide.RouteGuideClient) =
             printfn "*** GetFeature: lat=%i lon=%i" lat lon
 
             let request : RouteGuide.Point =
-                { Latitude = ValueSome(lat)
-                  Longitude = ValueSome(lon)
+                { Latitude = lat
+                  Longitude = lon
                   _UnknownFields = null }
 
             let feature : RouteGuide.Feature = client.GetFeature(request)
 
             match (feature.Name, feature.Location) with
-            | (ValueSome (name), ValueSome (location)) ->
-                match (location.Latitude, location.Longitude) with
-                | (ValueSome (lat), ValueSome (lon)) -> printfn "Found feature called \"%s\" at %i, %i" name lat lon
-                | _ -> printfn "Point did not have coordinates"
+            | (name, ValueSome (location)) ->
+                printfn "Found feature called \"%s\" at %i, %i" name location.Latitude location.Longitude
             | _ -> printfn "Found no feature at %i, %i" lat lon
         with :? RpcException as ex -> printfn "Rpc failed: %s" ex.Message
 
@@ -36,14 +34,14 @@ type Client(client: RouteGuide.RouteGuide.RouteGuideClient) =
                 let request : RouteGuide.Rectangle =
                     { Lo =
                           ValueSome(
-                              { Latitude = ValueSome(lowLat)
-                                Longitude = ValueSome(lowLon)
+                              { Latitude = lowLat
+                                Longitude = lowLon
                                 _UnknownFields = null }
                           )
                       Hi =
                           ValueSome(
-                              { Latitude = ValueSome(hiLat)
-                                Longitude = ValueSome(hiLon)
+                              { Latitude = hiLat
+                                Longitude = hiLon
                                 _UnknownFields = null }
                           )
                       _UnknownFields = null }
@@ -80,27 +78,22 @@ type Client(client: RouteGuide.RouteGuide.RouteGuideClient) =
                     seq { 0 .. numPoints }
                     |> Seq.map
                         (fun i ->
-                            let index = rand.Next(features.Count())
+                            let index = rand.Next(Seq.length features)
                             let point = (features |> Seq.item index).Location
 
                             match point with
                             | ValueSome (p) ->
-                                match (p.Latitude, p.Longitude) with
-                                | (ValueSome (lat), ValueSome (lon)) ->
-                                    Some(
-                                        async {
-                                            printfn "Visiting point %i, %i" lat lon
+                                Some(
+                                    async {
+                                        printfn "Visiting point %i, %i" p.Latitude p.Longitude
 
-                                            call.RequestStream.WriteAsync(p)
-                                            |> Async.AwaitTask
-                                            |> ignore
+                                        call.RequestStream.WriteAsync(p)
+                                        |> Async.AwaitTask
+                                        |> ignore
 
-                                            do! Async.Sleep 1000
-                                        }
-                                    )
-                                | _ ->
-                                    printfn "%s" "Point did not have latitude and longitude"
-                                    None
+                                        do! Async.Sleep 1000
+                                    }
+                                )
                             | _ ->
                                 printfn "%s" "Feature did not have a point"
                                 None)
@@ -114,15 +107,12 @@ type Client(client: RouteGuide.RouteGuide.RouteGuideClient) =
 
                 let! summary = call.ResponseAsync |> Async.AwaitTask
 
-                match (summary.PointCount, summary.FeatureCount, summary.Distance, summary.ElapsedTime) with
-                | (ValueSome (p), ValueSome (f), ValueSome (d), ValueSome (e)) ->
-                    printfn
-                        "Finished trip with %i points. Passed %i features. Travelled %i meters. It took %i seconds."
-                        p
-                        f
-                        d
-                        e
-                | _ -> printfn "%s" "Summary did not include full details"
+                printfn
+                    "Finished trip with %i points. Passed %i features. Travelled %i meters. It took %i seconds."
+                    summary.PointCount
+                    summary.FeatureCount
+                    summary.Distance
+                    summary.ElapsedTime
 
                 printfn "%s" "Finished RecordRoute"
 
@@ -136,35 +126,35 @@ type Client(client: RouteGuide.RouteGuide.RouteGuideClient) =
                 printfn "%s" "*** RouteChat"
 
                 let requests : RouteGuide.RouteNote list =
-                    [ { Message = ValueSome("First message")
+                    [ { Message = "First message"
                         Location =
                             ValueSome(
-                                { Longitude = ValueSome(0)
-                                  Latitude = ValueSome(0)
+                                { Longitude = 0
+                                  Latitude = 0
                                   _UnknownFields = null }
                             )
                         _UnknownFields = null }
-                      { Message = ValueSome("Second message")
+                      { Message = "Second message"
                         Location =
                             ValueSome(
-                                { Longitude = ValueSome(0)
-                                  Latitude = ValueSome(1)
+                                { Longitude = 0
+                                  Latitude = 1
                                   _UnknownFields = null }
                             )
                         _UnknownFields = null }
-                      { Message = ValueSome("Third message")
+                      { Message = "Third message"
                         Location =
                             ValueSome(
-                                { Longitude = ValueSome(1)
-                                  Latitude = ValueSome(0)
+                                { Longitude = 1
+                                  Latitude = 0
                                   _UnknownFields = null }
                             )
                         _UnknownFields = null }
-                      { Message = ValueSome("Fourth message")
+                      { Message = "Fourth message"
                         Location =
                             ValueSome(
-                                { Longitude = ValueSome(0)
-                                  Latitude = ValueSome(0)
+                                { Longitude = 0
+                                  Latitude = 0
                                   _UnknownFields = null }
                             )
                         _UnknownFields = null } ]
@@ -225,7 +215,7 @@ let main argv =
             50051
 
     let channel =
-        Channel("127.0.0.1:" + port.ToString(), ChannelCredentials.Insecure)
+        GrpcChannel.ForAddress("http://127.0.0.1:" + port.ToString());
 
     let routeGuideClient =
         RouteGuide.RouteGuide.RouteGuideClient(channel)

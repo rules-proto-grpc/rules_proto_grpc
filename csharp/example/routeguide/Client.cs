@@ -12,12 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-using Grpc.Core;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Grpc.Core;
+using Grpc.Net.Client;
 
 class Program
 {
@@ -221,7 +222,7 @@ class Program
             Port = Int32.Parse(PortVar);
         }
 
-        var channel = new Channel("127.0.0.1:"+Port, ChannelCredentials.Insecure);
+        var channel = GrpcChannel.ForAddress("http://127.0.0.1:" + Port);
         var routeGuideClient = new RouteGuide.RouteGuide.RouteGuideClient(channel);
         var client = new Client(routeGuideClient);
 

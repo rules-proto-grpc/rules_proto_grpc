@@ -87,7 +87,8 @@ var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString
 
 GRPC_DEPS = [
     "@google.protobuf//:lib",
-    "@grpc.core//:lib",
+    "@grpc.net.client//:lib",
+    "@grpc.aspnetcore//:lib",
     "@core_sdk_stdlib//:libraryset",
 ]`)
 

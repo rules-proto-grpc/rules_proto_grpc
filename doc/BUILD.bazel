@@ -12,6 +12,7 @@ proto_plugin(
         "QUIRK_DIRECT_MODE",
     ],
     tool = select({
+        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
@@ -31,6 +32,7 @@ proto_plugin(
         "QUIRK_DIRECT_MODE",
     ],
     tool = select({
+        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
@@ -50,6 +52,7 @@ proto_plugin(
         "QUIRK_DIRECT_MODE",
     ],
     tool = select({
+        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
@@ -69,6 +72,7 @@ proto_plugin(
         "QUIRK_DIRECT_MODE",
     ],
     tool = select({
+        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
@@ -85,6 +89,7 @@ proto_plugin(
     ],
     separate_options_flag = True,
     tool = select({
+        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",

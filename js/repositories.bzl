@@ -3,6 +3,7 @@
 load(
     "//:repositories.bzl",
     "build_bazel_rules_nodejs",
+    "com_google_protobuf_javascript",
     "grpc_web_plugin_darwin",
     "grpc_web_plugin_linux",
     "grpc_web_plugin_windows",
@@ -12,6 +13,7 @@ load(
 def js_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
     build_bazel_rules_nodejs(**kwargs)
+    com_google_protobuf_javascript(**kwargs)
     grpc_web_plugin_darwin(**kwargs)
     grpc_web_plugin_linux(**kwargs)
     grpc_web_plugin_windows(**kwargs)

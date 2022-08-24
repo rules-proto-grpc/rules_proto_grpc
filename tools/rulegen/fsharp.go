@@ -89,8 +89,8 @@ var fsharpGrpcLibraryRuleTemplate = mustTemplate(fsharpLibraryRuleTemplateString
 
 GRPC_DEPS = [
     "@google.protobuf//:lib",
-    "@grpc.core//:lib",
-    "@fsharp.core//:lib",
+    "@grpc.net.client//:lib",
+    "@grpc.aspnetcore//:lib",
     "@protobuf.fsharp//:lib",
     "@core_sdk_stdlib//:libraryset",
 ]`)

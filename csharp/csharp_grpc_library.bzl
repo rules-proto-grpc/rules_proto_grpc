@@ -27,6 +27,7 @@ def csharp_grpc_library(name, **kwargs):
 
 GRPC_DEPS = [
     "@google.protobuf//:lib",
-    "@grpc.core//:lib",
+    "@grpc.net.client//:lib",
+    "@grpc.aspnetcore//:lib",
     "@core_sdk_stdlib//:libraryset",
 ]

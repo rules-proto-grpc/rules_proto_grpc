@@ -4,6 +4,12 @@ var grpcGatewayWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//:repos
 
 io_bazel_rules_go()
 
+bazel_gazelle()
+
+load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_gateway_repos = "gateway_repos")
+
+rules_proto_grpc_gateway_repos()
+
 load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
@@ -11,12 +17,6 @@ go_rules_dependencies()
 go_register_toolchains(
     version = "1.17.1",
 )
-
-bazel_gazelle()
-
-load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_gateway_repos = "gateway_repos")
-
-rules_proto_grpc_gateway_repos()
 
 load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
 

@@ -3,12 +3,20 @@ open System.Collections.Generic
 open System.Diagnostics
 open System.Threading.Tasks
 
+open Microsoft.AspNetCore.Builder
+open Microsoft.AspNetCore.Hosting
+open Microsoft.Extensions.DependencyInjection
+open Microsoft.Extensions.Hosting
+open Microsoft.Extensions.Logging
+open Microsoft.AspNetCore.Server.Kestrel.Core
+
 open Grpc.Core
 
 module Server =
 
     type RouteGuideImpl(features: RouteGuide.Feature seq) =
         inherit RouteGuide.RouteGuide.RouteGuideBase()
+        let features = RouteGuideUtil.parseFeatures "fsharp/example/routeguide/server.exe/routeguide_features.json";
         let myLock = new Object();
         let routeNotes: Dictionary<RouteGuide.Point, List<RouteGuide.RouteNote>> = new Dictionary<RouteGuide.Point, List<RouteGuide.RouteNote>>();
         member private this.checkFeature (location: RouteGuide.Point): RouteGuide.Feature option =
@@ -74,7 +82,13 @@ module Server =
                 
                 stopwatch.Stop()
 
-                let summary: RouteGuide.RouteSummary = { PointCount = ValueSome(pointCount); FeatureCount = ValueSome(featureCount); Distance = ValueSome(distance); ElapsedTime = ValueSome(((stopwatch.ElapsedMilliseconds / int64(1000)) |> int)); _UnknownFields = null}
+                let summary: RouteGuide.RouteSummary = {
+                    PointCount = pointCount;
+                    FeatureCount = featureCount;
+                    Distance = distance;
+                    ElapsedTime = ((stopwatch.ElapsedMilliseconds / int64(1000)) |> int);
+                    _UnknownFields = null
+                }
                 return summary
             } |> Async.StartAsTask
      
@@ -105,21 +119,27 @@ let main argv =
             Int32.Parse(portVar)
         else
             50051
-    let features = RouteGuideUtil.parseFeatures "fsharp/example/routeguide/server.exe/routeguide_features.json"
 
-    let server = Server()
+    let host =
+        WebHostBuilder()
+            .ConfigureLogging(fun options -> options.AddConsole() |> ignore)
+            .ConfigureLogging(fun options -> options.AddDebug() |> ignore)
+            .ConfigureServices(fun services -> services.AddGrpc() |> ignore)
+            .Configure(fun app ->
+                app.UseRouting() |> ignore
+                app.UseEndpoints(fun endpoints ->
+                    endpoints.MapGrpcService<RouteGuideImpl>() |> ignore
+                ) |> ignore
+            )
+            .UseKestrel(fun serverOptions ->
+                serverOptions.ConfigureEndpointDefaults(fun listenOptions ->
+                    listenOptions.Protocols <- HttpProtocols.Http2  // Force using HTTP2 over insecure endpoints
+                    ()
+                ) |> ignore
+            )
+            .UseUrls("http://localhost:" + port.ToString())
+            .Build()
 
-    let serviceDefinition =
-        RouteGuide.RouteGuide.RouteGuideMethodBinder.BindService(RouteGuideImpl(features))
+    host.Run()
 
-    server.Services.Add(serviceDefinition)
-
-    server.Ports.Add(ServerPort("127.0.0.1", port, ServerCredentials.Insecure))
-    |> ignore
-
-    server.Start()
-    Console.WriteLine("F# server listening on port " + (port.ToString()) + ". CTRL+C to stop.")
-    while true do
-        Threading.Thread.Sleep(1000);
-    server.ShutdownAsync().Wait();
     0

@@ -72,7 +72,7 @@ rust_library(
             "@rules_rust//rust/platform:x86_64-unknown-freebsd",
         ): [
             "@raze__iovec__0_1_4//:iovec",
-            "@raze__libc__0_2_108//:libc",
+            "@raze__libc__0_2_124//:libc",
             "@raze__mio__0_6_23//:mio",
         ],
         "//conditions:default": [],

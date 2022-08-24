@@ -36,8 +36,8 @@ proto_compile_attrs = {
     ),
     "output_mode": attr.string(
         default = "PREFIXED",
-        values = ["PREFIXED", "NO_PREFIX"],
-        doc = "The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes",
+        values = ["PREFIXED", "NO_PREFIX", "NO_PREFIX_FLAT"],
+        doc = "The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output files directly to the current package, NO_PREFIX_FLAT will ouput directly to the current package without mirroring the package tree. Using NO_PREFIX may lead to conflicting writes",
     ),
 }
 
@@ -395,6 +395,9 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
             # Add command to copy file to output
             command_input_files.append(file)
+            command_parts.append("mkdir -p $(dirname '{}')".format(
+                "{}/{}".format(new_dir.path, path),
+            ))
             command_parts.append("cp '{}' '{}'".format(
                 file.path,
                 "{}/{}".format(new_dir.path, path),
@@ -440,9 +443,11 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
             # Select output location based on output mode
             # In PREFIXED mode we output to a directory named by the target label
-            # In NO_PREFIX mode, we output directly to the package root
+            # In NO_PREFIX or NO_PREFIX_FLAT mode, we output directly to the package root
             if ctx.attr.output_mode == "PREFIXED":
                 path = ctx.label.name + "/" + path
+            elif ctx.attr.output_mode == "NO_PREFIX_FLAT":
+                path = file.basename
 
             # Copy file to output
             output_files.append(copy_file(
