@@ -24,7 +24,7 @@ For example, to use a specific Protobuf version:
    http_archive(
      name = "com_google_protobuf",
      sha256 = "8b28fdd45bab62d15db232ec404248901842e5340299a57765e48abe8a80d930",
-     strip_prefix = "protobuf-v3.20.1",
+     strip_prefix = "protobuf-3.20.1",
      urls = ["https://github.com/protocolbuffers/protobuf/archive/v3.20.1.tar.gz"],
    )
 
