@@ -1,6 +1,7 @@
 """Compilation rules definition for rules_proto_grpc."""
 
 load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+load("@bazel_skylib//lib:shell.bzl", "shell")
 load(
     "//internal:common.bzl",
     "copy_file",
@@ -290,14 +291,13 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             extra_options = all_plugin_options + per_plugin_options.get(plugin.label, []),
             extra_protoc_args = extra_protoc_args,
         )
-        args = ctx.actions.args()
-        args.add_all(args_list)
+        args = args_list
 
         # Add import roots and files if required by plugin
         # By default we pass just the descriptors and the proto paths, but these may not contain
         # all of the comments etc from the source files
         if "QUIRK_DIRECT_MODE" in plugin.quirks:
-            args.add_all([
+            args.extend([
                 "--proto_path=" + proto_info.proto_source_root
                 for proto_info in proto_infos
             ])
@@ -305,14 +305,14 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
         # Add source proto files as descriptor paths
         for proto_path in proto_paths:
-            args.add(proto_path)
+            args.append(proto_path)
 
         ###
         ### Specify protoc action
         ###
 
         mnemonic = "ProtoCompile"
-        command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + " $@"  # $@ is replaced with args list
+        command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + " " +  " ".join([shell.quote(arg) for arg in args])  # $@ is replaced with args list
         cmd_inputs += extra_protoc_files
         tools = [protoc] + ([plugin.tool_executable] if plugin.tool_executable else [])
 
@@ -341,7 +341,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         ctx.actions.run_shell(
             mnemonic = mnemonic,
             command = command,
-            arguments = [args],
+            arguments = [],
             inputs = cmd_inputs,
             tools = tools,
             outputs = plugin_protoc_outputs,
