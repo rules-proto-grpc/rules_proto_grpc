@@ -227,7 +227,7 @@ VERSIONS = {
         "ref": "a428c58273abad07c66071d9753bc4d1289de426",  # TODO: 3.21.0 broken
         "sha256": "08e8aa6b4f434a5364bdef69cd129792677f8b241cdebfa7c10bb43d618e0e05",
     },
-    "grpc_web_plugin_darwin_aarch64": {
+    "grpc_web_plugin_darwin_arm64": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
         "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.1/protoc-gen-grpc-web-1.4.1-darwin-aarch64"],
         "sha256": "b086938a7f1851df924d254c0c820c795ae084ed8fc98af4a17d0e10eec0ce59",
@@ -618,8 +618,8 @@ def build_bazel_rules_nodejs(**kwargs):
 def com_google_protobuf_javascript(**kwargs):
     _generic_dependency("com_google_protobuf_javascript", **kwargs)
 
-def grpc_web_plugin_darwin_aarch64(**kwargs):
-    _generic_dependency("grpc_web_plugin_darwin_aarch64", **kwargs)
+def grpc_web_plugin_darwin_arm64(**kwargs):
+    _generic_dependency("grpc_web_plugin_darwin_arm64", **kwargs)
 
 def grpc_web_plugin_darwin_x86_64(**kwargs):
     _generic_dependency("grpc_web_plugin_darwin_x86_64", **kwargs)
