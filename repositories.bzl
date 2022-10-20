@@ -618,8 +618,11 @@ def build_bazel_rules_nodejs(**kwargs):
 def com_google_protobuf_javascript(**kwargs):
     _generic_dependency("com_google_protobuf_javascript", **kwargs)
 
-def grpc_web_plugin_darwin(**kwargs):
-    _generic_dependency("grpc_web_plugin_darwin", **kwargs)
+def grpc_web_plugin_darwin_aarch64(**kwargs):
+    _generic_dependency("grpc_web_plugin_darwin_aarch64", **kwargs)
+
+def grpc_web_plugin_darwin_x86_64(**kwargs):
+    _generic_dependency("grpc_web_plugin_darwin_x86_64", **kwargs)
 
 def grpc_web_plugin_linux(**kwargs):
     _generic_dependency("grpc_web_plugin_linux", **kwargs)
