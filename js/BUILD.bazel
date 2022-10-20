@@ -62,7 +62,8 @@ proto_plugin(
         "{protopath}_grpc_web_pb.d.ts",
     ],
     tool = select({
-        "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_web_plugin_darwin//file",
+        "@bazel_tools//src/conditions:darwin_aarch64": "@grpc_web_plugin_darwin_aarch64//file",
+        "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_web_plugin_darwin_x86_64//file",
         "@bazel_tools//src/conditions:linux_x86_64": "@grpc_web_plugin_linux//file",
         "@bazel_tools//src/conditions:windows": "@grpc_web_plugin_windows//file",
     }),
