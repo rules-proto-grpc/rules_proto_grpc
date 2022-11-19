@@ -15,6 +15,7 @@ def _proto_plugin_impl(ctx):
             tool = ctx.attr.tool,
             tool_executable = ctx.executable.tool,
             use_built_in_shell_environment = ctx.attr.use_built_in_shell_environment,
+            env = ctx.attr.env,
             protoc_plugin_name = ctx.attr.protoc_plugin_name,
             exclusions = ctx.attr.exclusions,
             data = ctx.files.data,
@@ -52,6 +53,10 @@ proto_plugin = rule(
         "use_built_in_shell_environment": attr.bool(
             doc = "Whether the tool should use the built in shell environment or not",
             default = True,
+        ),
+        "env": attr.string_dict(
+            doc = "Sets the dictionary of environment variables to use when invoking protoc. Must be None if use_built_in_shell_environment is true.",
+            default = {},
         ),
         "protoc_plugin_name": attr.string(
             doc = "The name used for the plugin binary on the protoc command line. Useful for targeting built-in plugins. Uses plugin name when not set",
