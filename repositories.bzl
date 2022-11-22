@@ -168,8 +168,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.34.0",
-        "sha256": "b1fb0e70834df1504f06fd0195260f45b296d25799684036b73425b8913ccfb0",
+        "ref": "v0.35.0",
+        "sha256": "cc027f11f98aef8bc52c472ced0714994507a16ccd3a0820b2df2d6db695facd",
     },
     "bazel_gazelle": {
         "type": "github",
@@ -184,8 +184,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.11.3",
-        "sha256": "6b180623ed23e545d66b05bd0e32d87623048c5d37dcda4f6aaab21b84170d46",
+        "ref": "v2.14.0",
+        "sha256": "6bca5c2a0eddc0cd042ad8352c581c2135d0b0ab8a610f1045e9b17de9afb318",
     },
 
     # Java
