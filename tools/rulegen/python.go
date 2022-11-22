@@ -24,13 +24,17 @@ load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
 
 grpc_extra_deps()
 
-load("@rules_python//python:pip.bzl", "pip_install")
+load("@rules_python//python:pip.bzl", "pip_parse")
 
-pip_install(
+pip_parse(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "@rules_proto_grpc//python:requirements.txt",
-)`)
+)
+
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
+
+install_deps()`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
@@ -112,7 +116,7 @@ def {{ .Rule.Name }}(name, **kwargs):
 GRPC_DEPS = [
     # Don't use requirement(), since rules_proto_grpc_py3_deps doesn't necessarily exist when
     # imported by defs.bzl
-    "@rules_proto_grpc_py3_deps//pypi__grpclib",
+    "@rules_proto_grpc_py3_deps_grpclib//:pkg",
 ]`)
 
 func makePython() *Language {

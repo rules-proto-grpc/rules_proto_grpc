@@ -31,5 +31,5 @@ def python_grpclib_library(name, **kwargs):
 GRPC_DEPS = [
     # Don't use requirement(), since rules_proto_grpc_py3_deps doesn't necessarily exist when
     # imported by defs.bzl
-    "@rules_proto_grpc_py3_deps//pypi__grpclib",
+    "@rules_proto_grpc_py3_deps_grpclib//:pkg",
 ]

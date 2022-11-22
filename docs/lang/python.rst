@@ -256,13 +256,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    grpc_extra_deps()
    
-   load("@rules_python//python:pip.bzl", "pip_install")
+   load("@rules_python//python:pip.bzl", "pip_parse")
    
-   pip_install(
+   pip_parse(
        name = "rules_proto_grpc_py3_deps",
        python_interpreter = "python3",
        requirements = "@rules_proto_grpc//python:requirements.txt",
    )
+   
+   load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
+   
+   install_deps()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -562,13 +566,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    grpc_extra_deps()
    
-   load("@rules_python//python:pip.bzl", "pip_install")
+   load("@rules_python//python:pip.bzl", "pip_parse")
    
-   pip_install(
+   pip_parse(
        name = "rules_proto_grpc_py3_deps",
        python_interpreter = "python3",
        requirements = "@rules_proto_grpc//python:requirements.txt",
    )
+   
+   load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
+   
+   install_deps()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
