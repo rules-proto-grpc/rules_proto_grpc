@@ -224,31 +224,31 @@ VERSIONS = {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf-javascript",
-        "ref": "a428c58273abad07c66071d9753bc4d1289de426",  # TODO: 3.21.0 broken
-        "sha256": "08e8aa6b4f434a5364bdef69cd129792677f8b241cdebfa7c10bb43d618e0e05",
+        "ref": "v3.21.2",
+        "sha256": "35bca1729532b0a77280bf28ab5937438e3dcccd6b31a282d9ae84c896b6f6e3",
     },
     "grpc_web_plugin_darwin_arm64": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.1/protoc-gen-grpc-web-1.4.1-darwin-aarch64"],
-        "sha256": "b086938a7f1851df924d254c0c820c795ae084ed8fc98af4a17d0e10eec0ce59",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-darwin-aarch64"],
+        "sha256": "87263950cd36ec875c86b1e50625215727264c5495d6625ddf9e4f79aeef727e",
         "executable": True,
     },
     "grpc_web_plugin_darwin_x86_64": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.1/protoc-gen-grpc-web-1.4.1-darwin-x86_64"],
-        "sha256": "9839f8a61648c045ad220606b005d930edfa86c02b23e1cde15e4038cc8ad1c3",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-darwin-x86_64"],
+        "sha256": "6b73e8e9ef2deb114d39c9eea177ff8450d92e7154b5e47dea668a43499a2383",
         "executable": True,
     },
     "grpc_web_plugin_linux": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.1/protoc-gen-grpc-web-1.4.1-linux-x86_64"],
-        "sha256": "c67ef7e9a36fbcbf9de275f856633ee2bc492cbe16894eb9325dc78a9c892213",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-linux-x86_64"],
+        "sha256": "5e82c3f1f435e176c94b94de9669911ab3bfb891608b7e80adff358f777ff857",
         "executable": True,
     },
     "grpc_web_plugin_windows": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.1/protoc-gen-grpc-web-1.4.1-windows-x86_64.exe"],
-        "sha256": "57c5fb71d8be77e01bd2a95cc2532cd1ab06f6392f501c3e71f225441de304dd",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-windows-x86_64.exe"],
+        "sha256": "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5",
         "executable": True,
     },
 
