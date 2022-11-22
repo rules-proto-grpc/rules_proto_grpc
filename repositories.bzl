@@ -208,8 +208,8 @@ VERSIONS = {
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
         "type": "http",
-        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.5.2/rules_nodejs-5.5.2.tar.gz"],
-        "sha256": "c78216f5be5d451a42275b0b7dc809fb9347e2b04a68f68bad620a2b01f5c774",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.7.1/rules_nodejs-5.7.1.tar.gz"],
+        "sha256": "5aae76dced38f784b58d9776e4ab12278bc156a9ed2b1d9fcd3e39921dc88fda",
     },
     "com_google_protobuf_javascript": {
         "type": "github",
