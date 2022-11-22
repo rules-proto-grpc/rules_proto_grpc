@@ -266,8 +266,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "0.9.0",
-        "sha256": "ba6ef62c8db01a86512b8bc8bc464b344d1c18c6b83aefe9440bb89f0d4adc8d",
+        "ref": "0.13.0",
+        "sha256": "61e49a227e4e0c7f74e0b3ab524222a0c9181213eb50d6acf605b7765a4bf226",
     },
 
     # Scala
@@ -275,8 +275,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "972fdf2b3bda64138db34a630a9910eee96b4d8a",
-        "sha256": "d1eb5719d7a082c30c3041c8e87a31d41115a9147da718b395b80926f9e47708",
+        "ref": "73f5d1a7da081c9f5160b9ed7ac745388af28e23",
+        "sha256": "9529dd867c7f6951ce8b803849c3ddcddbaebbbff71bbbcac50fe94874c1cdf7",
     },
 
     # Swift
