@@ -8,7 +8,7 @@ MINIMUM_BAZEL_VERSION = "5.0.0"
 ENABLE_VERSION_NAGS = False
 PROTOBUF_VERSION = "21.9"  # When updating, also update protobuf-javascript, JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
 GRPC_VERSION = "1.51.0"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
-BUF_VERSION = "v1.7.0"
+BUF_VERSION = "v1.9.0"
 VERSIONS = {
     # Core
     "rules_proto": {
@@ -77,37 +77,37 @@ VERSIONS = {
     "protoc_gen_buf_breaking_darwin_arm64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-breaking-Darwin-arm64".format(BUF_VERSION)],
-        "sha256": "3c2f3a31594fb2e20da94313260bd1befad832c15d646c9dae9e83d1dbd29623",
+        "sha256": "785c4623ecb8b6f695c3252a5fd2c7ceb4013ba439ae07e6d38db0a8f4e0adc5",
         "executable": True,
     },
     "protoc_gen_buf_breaking_darwin_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-breaking-Darwin-x86_64".format(BUF_VERSION)],
-        "sha256": "4d619259242e494aeea6c3a1cd8ff67bcbc9664741439a2cfffe1094cbe8d3b6",
+        "sha256": "f0fc9d4f1129182b95961266087fc4775c7903dec5678723559a29932cdcb475",
         "executable": True,
     },
     "protoc_gen_buf_breaking_linux_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-breaking-Linux-x86_64".format(BUF_VERSION)],
-        "sha256": "82996e37a5af75537b1d607d569014252199f43e51baa311526da15e440a8c9f",
+        "sha256": "a288eea1ff7715b166c5cdd5dffd0be0e5dc5e126d564daac49a268cb32215f0",
         "executable": True,
     },
     "protoc_gen_buf_lint_darwin_arm64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-lint-Darwin-arm64".format(BUF_VERSION)],
-        "sha256": "135281faa5f91bbd87c32df077a3693593f78b2bee2c4e906e05865385bb869b",
+        "sha256": "59b3af74dcc7710b88ef57775e8ca51283d89d730ba7146054f2fe71e3dbb41d",
         "executable": True,
     },
     "protoc_gen_buf_lint_darwin_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-lint-Darwin-x86_64".format(BUF_VERSION)],
-        "sha256": "6ccb808d5538f0c75b59514d8961f140c78c4788755c794f895317dda452fe64",
+        "sha256": "7bff384c4b7a2842878a98a62fba3c2760bd28e9ed1f8e8e6d9f5d13a8a0fec0",
         "executable": True,
     },
     "protoc_gen_buf_lint_linux_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-lint-Linux-x86_64".format(BUF_VERSION)],
-        "sha256": "86d43c929382d41a23c868533a26e5d901ce8230d2676622172a13ae1c9d38b6",
+        "sha256": "7cd8366283198f781f1590d6b01cbc67ddae679d883fed80b4395c68bbf6a1b4",
         "executable": True,
     },
 
