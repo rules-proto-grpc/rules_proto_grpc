@@ -37,15 +37,15 @@ def go_repos(**kwargs):  # buildifier: disable=function-docstring
     go_repository(
         name = "com_github_envoyproxy_protoc_gen_validate",
         importpath = "github.com/envoyproxy/protoc-gen-validate",
-        sum = "h1:qcZcULcd/abmQg6dwigimCNEyi4gg31M/xaciQlDml8=",
-        version = "v0.6.7",
+        sum = "h1:wyv+mWIshClA4g6hTlKD9xb6fiNAnDu3+8qYf7KSuSE=",
+        version = "v0.9.0",
     )
 
     go_repository(
         name = "com_github_lyft_protoc_gen_star",
         importpath = "github.com/lyft/protoc-gen-star",
-        sum = "h1:xOpFu4vwmIoUeUrRuAtdCrZZymT/6AkW/bsUWA506Fo=",
-        version = "v0.6.0",
+        sum = "h1:erE0rdztuaDq3bpGifD95wfoPrSZc95nGA6tbiNYh6M=",
+        version = "v0.6.1",
     )
 
     go_repository(
@@ -58,6 +58,6 @@ def go_repos(**kwargs):  # buildifier: disable=function-docstring
     go_repository(
         name = "com_github_spf13_afero",
         importpath = "github.com/spf13/afero",
-        sum = "h1:xoax2sJ2DT8S8xA2paPFjDCScCNeWsg75VG0DLRreiY=",
-        version = "v1.6.0",
+        sum = "h1:41FoI0fD7OR7mGcKE/aOiLkGreyf8ifIOQmJANWogMk=",
+        version = "v1.9.3",
     )
