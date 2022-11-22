@@ -540,6 +540,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			} else {
 				out.w("    shell_commands:")
 				out.w("     - set -x")
+				out.w("     - export CC=clang")
 				if lang.Name == "csharp" || lang.Name == "fsharp" {
 					for _, flag := range dotnetPlatformFlags[ciPlatform] {
 						out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
@@ -580,6 +581,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		} else {
 			out.w("    shell_commands:")
 			out.w("     - set -x")
+			out.w("     - export CC=clang")
 		}
 
 		for _, testWorkspace := range findTestWorkspaceNames(dir) {
