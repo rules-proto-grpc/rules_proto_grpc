@@ -248,7 +248,7 @@ VERSIONS = {
     "grpc_web_plugin_windows": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
         "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-windows-x86_64.exe"],
-        "sha256": "0019dfc4b32d63c1392aa264aed2253c1e0c2fb09216f8e2cc269bbfb8bb49b5",
+        "sha256": "3a0fc44662cb89a5c101b632e3e8841d04d9bea3103512deae82591e2acdff93",
         "executable": True,
     },
 
