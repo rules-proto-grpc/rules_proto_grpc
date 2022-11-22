@@ -29,6 +29,7 @@ tasks:
     - "--test_output=errors"
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
+    - "--cxxopt=-std=c++17"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -131,6 +132,7 @@ tasks:
     - "--test_output=errors"
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
+    - "--cxxopt=-std=c++17"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"

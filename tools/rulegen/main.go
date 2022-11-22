@@ -498,6 +498,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		for _, flag := range dotnetPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
 		}
+		out.w(`    - "--cxxopt=-std=c++17"`)
 		out.w("    test_targets:")
 		for _, clientLang := range languages {
 			for _, serverLang := range languages {
