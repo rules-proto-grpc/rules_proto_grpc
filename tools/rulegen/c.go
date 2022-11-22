@@ -1,13 +1,5 @@
 package main
 
-var cWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
-
-rules_proto_grpc_{{ .Lang.Name }}_repos()
-
-load("@upb//bazel:workspace_deps.bzl", "upb_deps")
-
-upb_deps()`)
-
 var cProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 load("//internal:compile.bzl", "proto_compile_attrs")
 load("//internal:filter_files.bzl", "filter_files")
@@ -85,7 +77,7 @@ func makeC() *Language {
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//c:upb_plugin"},
-				WorkspaceExample: cWorkspaceTemplate,
+				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates C protobuf ``.h`` & ``.c`` files",
 				Attrs:            compileRuleAttrs,
@@ -95,7 +87,7 @@ func makeC() *Language {
 				Name:             "c_proto_library",
 				Kind:             "proto",
 				Implementation:   cProtoLibraryRuleTemplate,
-				WorkspaceExample: cWorkspaceTemplate,
+				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     cProtoLibraryExampleTemplate,
 				Doc:              "Generates a C protobuf library using ``cc_library``, with dependencies linked",
 				Attrs:            cppLibraryRuleAttrs,

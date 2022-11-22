@@ -42,9 +42,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_proto_grpc_c_repos()
    
-   load("@upb//bazel:workspace_deps.bzl", "upb_deps")
+   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
-   upb_deps()
+   grpc_deps()
+   
+   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+   
+   grpc_extra_deps()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -144,9 +148,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    rules_proto_grpc_c_repos()
    
-   load("@upb//bazel:workspace_deps.bzl", "upb_deps")
+   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
    
-   upb_deps()
+   grpc_deps()
+   
+   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+   
+   grpc_extra_deps()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^

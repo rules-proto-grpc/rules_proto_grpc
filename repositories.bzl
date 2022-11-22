@@ -111,15 +111,6 @@ VERSIONS = {
         "executable": True,
     },
 
-    # C
-    "upb": {
-        "type": "github",
-        "org": "protocolbuffers",
-        "repo": "upb",
-        "ref": "982f26aad42291064878ff64cb5a43d69723f91c",
-        "sha256": "72d25e544bce0e350612184096ba4cd3454d63c048e5c18a682038c075c947a4",
-    },
-
     # C#/F#
     "io_bazel_rules_dotnet": {
         "type": "github",
@@ -548,12 +539,6 @@ def protoc_gen_buf_lint_darwin_x86_64(**kwargs):
 
 def protoc_gen_buf_lint_linux_x86_64(**kwargs):
     _generic_dependency("protoc_gen_buf_lint_linux_x86_64", **kwargs)
-
-#
-# C
-#
-def upb(**kwargs):
-    _generic_dependency("upb", **kwargs)
 
 #
 # C#
