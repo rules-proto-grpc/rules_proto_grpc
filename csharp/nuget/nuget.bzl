@@ -108,8 +108,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "google.protobuf",
         package = "google.protobuf",
-        version = "3.21.5",
-        sha256 = "f94cf5d860aa9ad1042f255b3d9b6b041f649d8d6bed4e343c54f2dd8cf8f16f",
+        version = "3.21.9",
+        sha256 = "cf66c5d4b2eba4f2d2be0ea3d87058aa0ed2710374c88e447b0445e55859ef74",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Google.Protobuf.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Google.Protobuf.dll",
@@ -182,8 +182,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.logging.abstractions",
         package = "microsoft.extensions.logging.abstractions",
-        version = "3.1.28",
-        sha256 = "e72f178d65de1d27a4e0c8bc258477a299ffc1904768d3d672cbd31932466a83",
+        version = "3.1.31",
+        sha256 = "9ec6e8d4dbaf458c024ae061e1522d416c5b11e336d9de35f958772c5cfb0374",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
@@ -227,8 +227,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.core.api",
         package = "grpc.core.api",
-        version = "2.48.0",
-        sha256 = "57b07a0be859338ea889fc1fed497141ef4b073119efee3de75a2ea69f131421",
+        version = "2.50.0",
+        sha256 = "24eaa1503748d28c442eb476749acbbc5c75077f46354fc53bb9f6ca2740fa9f",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Core.Api.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Core.Api.dll",
@@ -302,8 +302,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.net.common",
         package = "grpc.net.common",
-        version = "2.48.0",
-        sha256 = "80faf47280b9f60a882a4e17ae621257327190d5f513f0aa4459b72042f7fea8",
+        version = "2.50.0",
+        sha256 = "3129061e180a48aa84f59164d516eece2c06957c6c06947d2deab78a46ed7355",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Net.Common.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Net.Common.dll",
@@ -375,10 +375,92 @@ def nuget_rules_proto_grpc_packages():
         },
     )
     nuget_package(
+        name = "grpc.net.client",
+        package = "grpc.net.client",
+        version = "2.50.0",
+        sha256 = "7bdcbdcf6317c5a844613da764e37027e6cb5556e5895010ed7f818ce963876b",
+        core_lib = {
+            "netcoreapp2.0": "lib/netstandard2.0/Grpc.Net.Client.dll",
+            "netcoreapp2.1": "lib/netstandard2.0/Grpc.Net.Client.dll",
+            "netcoreapp2.2": "lib/netstandard2.0/Grpc.Net.Client.dll",
+            "netcoreapp3.0": "lib/netstandard2.1/Grpc.Net.Client.dll",
+            "netcoreapp3.1": "lib/netstandard2.1/Grpc.Net.Client.dll",
+            "net5.0": "lib/net5.0/Grpc.Net.Client.dll",
+            "net6.0": "lib/net6.0/Grpc.Net.Client.dll",
+        },
+        core_deps = {
+            "netcoreapp2.0": [
+                "@grpc.net.common//:netcoreapp2.0_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.0_core",
+            ],
+            "netcoreapp2.1": [
+                "@grpc.net.common//:netcoreapp2.1_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.1_core",
+            ],
+            "netcoreapp2.2": [
+                "@grpc.net.common//:netcoreapp2.2_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp2.2_core",
+            ],
+            "netcoreapp3.0": [
+                "@grpc.net.common//:netcoreapp3.0_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp3.0_core",
+            ],
+            "netcoreapp3.1": [
+                "@grpc.net.common//:netcoreapp3.1_core",
+                "@microsoft.extensions.logging.abstractions//:netcoreapp3.1_core",
+            ],
+            "net5.0": [
+                "@grpc.net.common//:net5.0_core",
+                "@microsoft.extensions.logging.abstractions//:net5.0_core",
+            ],
+            "net6.0": [
+                "@grpc.net.common//:net6.0_core",
+                "@microsoft.extensions.logging.abstractions//:net6.0_core",
+            ],
+        },
+        core_files = {
+            "netcoreapp2.0": [
+                "lib/netstandard2.0/Grpc.Net.Client.dll",
+                "lib/netstandard2.0/Grpc.Net.Client.pdb",
+                "lib/netstandard2.0/Grpc.Net.Client.xml",
+            ],
+            "netcoreapp2.1": [
+                "lib/netstandard2.0/Grpc.Net.Client.dll",
+                "lib/netstandard2.0/Grpc.Net.Client.pdb",
+                "lib/netstandard2.0/Grpc.Net.Client.xml",
+            ],
+            "netcoreapp2.2": [
+                "lib/netstandard2.0/Grpc.Net.Client.dll",
+                "lib/netstandard2.0/Grpc.Net.Client.pdb",
+                "lib/netstandard2.0/Grpc.Net.Client.xml",
+            ],
+            "netcoreapp3.0": [
+                "lib/netstandard2.1/Grpc.Net.Client.dll",
+                "lib/netstandard2.1/Grpc.Net.Client.pdb",
+                "lib/netstandard2.1/Grpc.Net.Client.xml",
+            ],
+            "netcoreapp3.1": [
+                "lib/netstandard2.1/Grpc.Net.Client.dll",
+                "lib/netstandard2.1/Grpc.Net.Client.pdb",
+                "lib/netstandard2.1/Grpc.Net.Client.xml",
+            ],
+            "net5.0": [
+                "lib/net5.0/Grpc.Net.Client.dll",
+                "lib/net5.0/Grpc.Net.Client.pdb",
+                "lib/net5.0/Grpc.Net.Client.xml",
+            ],
+            "net6.0": [
+                "lib/net6.0/Grpc.Net.Client.dll",
+                "lib/net6.0/Grpc.Net.Client.pdb",
+                "lib/net6.0/Grpc.Net.Client.xml",
+            ],
+        },
+    )
+    nuget_package(
         name = "grpc.tools",
         package = "grpc.tools",
-        version = "2.48.0",
-        sha256 = "03c7536e1d3a93af27417111f57f96ce8e7275eee292aaf9e341ab8e3e6d2204",
+        version = "2.50.0",
+        sha256 = "eedfe928f8126d0d31c6f1fbc50ed7b76a993143cdbef1c61bb6e3856549611e",
         core_files = {
             "netcoreapp2.0": [
                 "tools/linux_arm64/grpc_csharp_plugin",
@@ -567,8 +649,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.dependencyinjection.abstractions",
         package = "microsoft.extensions.dependencyinjection.abstractions",
-        version = "3.1.28",
-        sha256 = "0579cb83227af0af84bae8f960b3805b55b247ed4d6b1a4248d5c0fe95edb9d7",
+        version = "3.1.31",
+        sha256 = "4f80b8e0b4f94429fb7d001c328f2f182af1b012126ce6ae790c7e8be650c07e",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
@@ -612,8 +694,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.primitives",
         package = "microsoft.extensions.primitives",
-        version = "3.1.28",
-        sha256 = "b1a933ce4ee16f090887ce4be123f467b7be0a6563361e3c544dd77ee889c221",
+        version = "3.1.31",
+        sha256 = "826d3e1cbc7fa53c8f3b92447b555e5dbe34235192bebe984ffbb2dd83cd6a4a",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
@@ -675,8 +757,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.configuration.abstractions",
         package = "microsoft.extensions.configuration.abstractions",
-        version = "3.1.28",
-        sha256 = "112e961517032dbdb991b2071d33dbea631de2bc9fa95bc43527bc0610bffbca",
+        version = "3.1.31",
+        sha256 = "6f4bb148fffb14d323bcd427c8f99b47927e5fd7f8cb09171805ef47be0d7a74",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
@@ -743,8 +825,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.configuration",
         package = "microsoft.extensions.configuration",
-        version = "3.1.28",
-        sha256 = "e44fd0e3621d0ec787edd669cca825c3db8d26892f5effb0cace6d3d2a516c31",
+        version = "3.1.31",
+        sha256 = "d6a57636e38e96ba8bb89316d7022da8a4f54969f2d787667e6ba4d1454cf9d9",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Configuration.dll",
@@ -811,8 +893,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.configuration.binder",
         package = "microsoft.extensions.configuration.binder",
-        version = "3.1.28",
-        sha256 = "13066ea73f5232468624d983f244fcc1b11111f2f2da9cc61ea286472dff11ed",
+        version = "3.1.31",
+        sha256 = "642a3bd8031b6cd22755566a075bcfde608bf4457388f90db784059344d6265c",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Configuration.Binder.dll",
@@ -879,8 +961,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.options",
         package = "microsoft.extensions.options",
-        version = "3.1.28",
-        sha256 = "8a9d47c81ba87a477ec613f746e9bb9bb4782d96acd188449aaa8415e471d9c9",
+        version = "3.1.31",
+        sha256 = "4ec67385c3b166652d28ccc64b670b9c4a471e0b506405c20f751af0e7dc9463",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Options.dll",
@@ -954,8 +1036,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.aspnetcore.server",
         package = "grpc.aspnetcore.server",
-        version = "2.48.0",
-        sha256 = "6d56e73012dcaf9c1af19a066a63f3cffb1234e57bcaa49902c938a62feccf52",
+        version = "2.50.0",
+        sha256 = "3f4c4d014b30a9ae5d9efd43c41858db85e8cc0dd6aea938c1a4671ad48d329d",
         core_lib = {
             "netcoreapp3.0": "lib/netcoreapp3.0/Grpc.AspNetCore.Server.dll",
             "netcoreapp3.1": "lib/netcoreapp3.0/Grpc.AspNetCore.Server.dll",
@@ -996,88 +1078,6 @@ def nuget_rules_proto_grpc_packages():
                 "lib/net6.0/Grpc.AspNetCore.Server.dll",
                 "lib/net6.0/Grpc.AspNetCore.Server.pdb",
                 "lib/net6.0/Grpc.AspNetCore.Server.xml",
-            ],
-        },
-    )
-    nuget_package(
-        name = "grpc.net.client",
-        package = "grpc.net.client",
-        version = "2.48.0",
-        sha256 = "7c0bf76216c1132dfe71a9ff1672d7addd5a2dbcc523356caff9765ee74fe5c8",
-        core_lib = {
-            "netcoreapp2.0": "lib/netstandard2.0/Grpc.Net.Client.dll",
-            "netcoreapp2.1": "lib/netstandard2.0/Grpc.Net.Client.dll",
-            "netcoreapp2.2": "lib/netstandard2.0/Grpc.Net.Client.dll",
-            "netcoreapp3.0": "lib/netstandard2.1/Grpc.Net.Client.dll",
-            "netcoreapp3.1": "lib/netstandard2.1/Grpc.Net.Client.dll",
-            "net5.0": "lib/net5.0/Grpc.Net.Client.dll",
-            "net6.0": "lib/net6.0/Grpc.Net.Client.dll",
-        },
-        core_deps = {
-            "netcoreapp2.0": [
-                "@grpc.net.common//:netcoreapp2.0_core",
-                "@microsoft.extensions.logging.abstractions//:netcoreapp2.0_core",
-            ],
-            "netcoreapp2.1": [
-                "@grpc.net.common//:netcoreapp2.1_core",
-                "@microsoft.extensions.logging.abstractions//:netcoreapp2.1_core",
-            ],
-            "netcoreapp2.2": [
-                "@grpc.net.common//:netcoreapp2.2_core",
-                "@microsoft.extensions.logging.abstractions//:netcoreapp2.2_core",
-            ],
-            "netcoreapp3.0": [
-                "@grpc.net.common//:netcoreapp3.0_core",
-                "@microsoft.extensions.logging.abstractions//:netcoreapp3.0_core",
-            ],
-            "netcoreapp3.1": [
-                "@grpc.net.common//:netcoreapp3.1_core",
-                "@microsoft.extensions.logging.abstractions//:netcoreapp3.1_core",
-            ],
-            "net5.0": [
-                "@grpc.net.common//:net5.0_core",
-                "@microsoft.extensions.logging.abstractions//:net5.0_core",
-            ],
-            "net6.0": [
-                "@grpc.net.common//:net6.0_core",
-                "@microsoft.extensions.logging.abstractions//:net6.0_core",
-            ],
-        },
-        core_files = {
-            "netcoreapp2.0": [
-                "lib/netstandard2.0/Grpc.Net.Client.dll",
-                "lib/netstandard2.0/Grpc.Net.Client.pdb",
-                "lib/netstandard2.0/Grpc.Net.Client.xml",
-            ],
-            "netcoreapp2.1": [
-                "lib/netstandard2.0/Grpc.Net.Client.dll",
-                "lib/netstandard2.0/Grpc.Net.Client.pdb",
-                "lib/netstandard2.0/Grpc.Net.Client.xml",
-            ],
-            "netcoreapp2.2": [
-                "lib/netstandard2.0/Grpc.Net.Client.dll",
-                "lib/netstandard2.0/Grpc.Net.Client.pdb",
-                "lib/netstandard2.0/Grpc.Net.Client.xml",
-            ],
-            "netcoreapp3.0": [
-                "lib/netstandard2.1/Grpc.Net.Client.dll",
-                "lib/netstandard2.1/Grpc.Net.Client.pdb",
-                "lib/netstandard2.1/Grpc.Net.Client.xml",
-            ],
-            "netcoreapp3.1": [
-                "lib/netstandard2.1/Grpc.Net.Client.dll",
-                "lib/netstandard2.1/Grpc.Net.Client.pdb",
-                "lib/netstandard2.1/Grpc.Net.Client.xml",
-            ],
-            "net5.0": [
-                "lib/net5.0/Grpc.Net.Client.dll",
-                "lib/net5.0/Grpc.Net.Client.pdb",
-                "lib/net5.0/Grpc.Net.Client.xml",
-            ],
-            "net6.0": [
-                "lib/net6.0/Grpc.Net.Client.dll",
-                "lib/net6.0/Grpc.Net.Client.pdb",
-                "lib/net6.0/Grpc.Net.Client.xml",
             ],
         },
     )
@@ -1163,8 +1163,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.dependencyinjection",
         package = "microsoft.extensions.dependencyinjection",
-        version = "3.1.28",
-        sha256 = "c79caa0c5ab71ec61b163817297a5e11573a94cdf3a03b1428bb874a95786a57",
+        version = "3.1.31",
+        sha256 = "bacf458d060eac74f0879df4cc0418dc9b731a0fdc070900b7980146af27e7dc",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll",
@@ -1234,8 +1234,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.logging",
         package = "microsoft.extensions.logging",
-        version = "3.1.28",
-        sha256 = "91fe03d634cc6351e3bcaf137c972965859242503473c85e5bc846749ac5d9f3",
+        version = "3.1.31",
+        sha256 = "2f8a8fa8137f3aff3ea503e3323536fadc8d0996f78736c2e8bb59dce7089280",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Logging.dll",
@@ -1323,8 +1323,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "microsoft.extensions.http",
         package = "microsoft.extensions.http",
-        version = "3.1.28",
-        sha256 = "fa0bed32e4119d8feaae3df2b996654d45e7deeb24c070f51fe5124e37fbb8ae",
+        version = "3.1.31",
+        sha256 = "e4fc433a02b61cb17770db68756e5e203049bd1147d1538af21097ef9411828b",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Microsoft.Extensions.Http.dll",
@@ -1405,8 +1405,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.net.clientfactory",
         package = "grpc.net.clientfactory",
-        version = "2.48.0",
-        sha256 = "6cc1414687afad83ea5dd631bb801e1aaecca0c2b153db09cdb9d1ae59ec38ec",
+        version = "2.50.0",
+        sha256 = "3850ede74723cabbe6e3ec25d673b061859ae90cda4511e2d6823553d9bb4ae1",
         core_lib = {
             "netcoreapp2.0": "lib/netstandard2.0/Grpc.Net.ClientFactory.dll",
             "netcoreapp2.1": "lib/netstandard2.0/Grpc.Net.ClientFactory.dll",
@@ -1487,8 +1487,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.aspnetcore.server.clientfactory",
         package = "grpc.aspnetcore.server.clientfactory",
-        version = "2.48.0",
-        sha256 = "8eb309664e36d034aa3021630a9bd71b5300ad3913787081392afacaaf97dca5",
+        version = "2.50.0",
+        sha256 = "88ecd2a2de632f6ccb5fcf1a3a177f090ab6a04a044fc3c5ae4fbe0beea52474",
         core_lib = {
             "netcoreapp3.0": "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.dll",
             "netcoreapp3.1": "lib/netcoreapp3.0/Grpc.AspNetCore.Server.ClientFactory.dll",
@@ -1539,8 +1539,8 @@ def nuget_rules_proto_grpc_packages():
     nuget_package(
         name = "grpc.aspnetcore",
         package = "grpc.aspnetcore",
-        version = "2.47.0",
-        sha256 = "000c74a2585e7d428cdcf7e37cb23cbfbc0ead3dcf7c08a2fd157df266313bb6",
+        version = "2.50.0",
+        sha256 = "3778e85f4de610fdee7311e38d5f90b0536b7731deef5ffc03fecfacd74ce928",
         core_deps = {
             "netcoreapp3.0": [
                 "@grpc.aspnetcore.server.clientfactory//:netcoreapp3.0_core",
