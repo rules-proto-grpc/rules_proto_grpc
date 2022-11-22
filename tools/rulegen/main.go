@@ -485,7 +485,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		for _, flag := range dotnetPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
 		}
-		out.w(`    - "--host_cxxopt=-std=c++17"`)
+		out.w(`    - "--cxxopt=-std=c++17"`)
 		out.w("    build_targets:")
 		for _, lang := range languages {
 			// Skip experimental or excluded
@@ -658,7 +658,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 		out.w(".PHONY: %s", name)
 		out.w("%s:", name)
 		out.w("	cd %s; \\", path.Join(dir, "test_workspaces", testWorkspace))
-		out.w("	bazel --batch test --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
+		out.w("	bazel --batch test --cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
 		out.ln()
 	}
 
