@@ -284,8 +284,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "1.1.0",
-        "sha256": "0ad2023c3e6e8f960e4ae24da508fe5cc44032e04af9961478543a5f5802ce6e",
+        "ref": "1.2.0",
+        "sha256": "d97cdcfe002cec6368689760663009160073bd3fad48c529f89618df65974437",
     },
     "com_github_grpc_grpc_swift": {
         "type": "github",
