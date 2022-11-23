@@ -472,10 +472,6 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	// Write tasks for main code
 	//
 	for _, ciPlatform := range ciPlatforms {
-		// Skip windows, due to issues with 'undeclared inclusion'
-		if ciPlatform == "windows" {
-			continue
-		}
 		out.w("  main_%s:", ciPlatform)
 		out.w("    name: build & test all")
 		out.w("    platform: %s", ciPlatform)
