@@ -607,6 +607,7 @@ tasks:
      - make test_workspace_readme_http_archive
      - make test_workspace_relative_strip_import_prefix
      - make test_workspace_shared_proto
+     - make test_workspace_special_characters
 
   macos_test_workspaces:
     name: test workspaces
@@ -631,3 +632,4 @@ tasks:
      - make test_workspace_readme_http_archive
      - make test_workspace_relative_strip_import_prefix
      - make test_workspace_shared_proto
+     - make test_workspace_special_characters
