@@ -11,7 +11,7 @@ def objc_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
         name = name_pb,
         **{
             k: v
-            or (k, v) in kwargs.items()
+            for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys() or
                k in bazel_build_rule_common_attrs
         }  # Forward args

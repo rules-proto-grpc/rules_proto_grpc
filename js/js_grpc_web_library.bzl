@@ -11,7 +11,7 @@ def js_grpc_web_library(name, **kwargs):
         name = name_pb,
         **{
             k: v
-            or (k, v) in kwargs.items()
+            for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys() or
                k in bazel_build_rule_common_attrs
         }  # Forward args
