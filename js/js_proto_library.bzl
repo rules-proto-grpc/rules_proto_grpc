@@ -1,7 +1,7 @@
 """Generated definition of js_proto_library."""
 
 load("//js:js_proto_compile.bzl", "js_proto_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 def js_proto_library(name, **kwargs):
@@ -12,7 +12,7 @@ def js_proto_library(name, **kwargs):
         **{
             k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         },  # Forward args
     )
 
@@ -31,7 +31,7 @@ def js_proto_library(name, **kwargs):
         strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         **{
             k: v for (k, v) in kwargs.items()
-            if k in bazel_rule_common_attrs
+            if k in bazel_build_rule_common_attrs
         },  # Forward Bazel common args
     )
 

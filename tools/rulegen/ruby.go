@@ -43,7 +43,7 @@ ruby_bundle(
 )`)
 
 var rubyLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_library")
 
 def {{ .Rule.Name }}(name, **kwargs):

@@ -17,7 +17,7 @@ yarn_install(
 )`)
 
 var jsProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -49,7 +49,7 @@ PROTO_DEPS = [
 ]`)
 
 var nodeGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:js_grpc_node_compile.bzl", "js_grpc_node_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -82,7 +82,7 @@ GRPC_DEPS = [
 ]`)
 
 var jsGrpcWebLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:js_grpc_web_compile.bzl", "js_grpc_web_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 def {{ .Rule.Name }}(name, **kwargs):

@@ -1,7 +1,7 @@
 """Generated definition of scala_grpc_library."""
 
 load("//scala:scala_grpc_compile.bzl", "scala_grpc_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_scala//scala:scala.bzl", "scala_library")
 
 def scala_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
@@ -12,7 +12,7 @@ def scala_grpc_library(name, **kwargs):  # buildifier: disable=function-docstrin
         **{
             k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         },  # Forward args
     )
 
@@ -24,7 +24,7 @@ def scala_grpc_library(name, **kwargs):  # buildifier: disable=function-docstrin
         exports = GRPC_DEPS + kwargs.get("exports", []),
         **{
             k: v for (k, v) in kwargs.items()
-            if k in bazel_rule_common_attrs
+            if k in bazel_build_rule_common_attrs
         },  # Forward Bazel common args
     )
 

@@ -9,7 +9,7 @@ load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
 d_repositories()`)
 
 var dProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir}}:d_proto_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_d//d:d.bzl", "d_library")
 
 def {{ .Rule.Name }}(name, **kwargs):

@@ -15,7 +15,7 @@ rules_rust_dependencies()
 rust_register_toolchains(edition = "2021")`)
 
 var rustLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("//{{ .Lang.Dir }}:rust_proto_lib.bzl", "rust_proto_lib")
 load("@rules_rust//rust:defs.bzl", "rust_library")
 

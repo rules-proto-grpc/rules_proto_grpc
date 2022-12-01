@@ -37,7 +37,7 @@ load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
 install_deps()`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -62,7 +62,7 @@ PROTO_DEPS = [
 ]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -88,7 +88,7 @@ GRPC_DEPS = [
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(name, **kwargs):

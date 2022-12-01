@@ -1,7 +1,7 @@
 """Generated definition of rust_grpc_library."""
 
 load("//rust:rust_grpc_compile.bzl", "rust_grpc_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("//rust:rust_proto_lib.bzl", "rust_proto_lib")
 load("@rules_rust//rust:defs.bzl", "rust_library")
 
@@ -14,7 +14,7 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
         **{
             k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         },  # Forward args
     )
 
@@ -32,7 +32,7 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
         deps = GRPC_DEPS + kwargs.get("deps", []),
         **{
             k: v for (k, v) in kwargs.items()
-            if k in bazel_rule_common_attrs
+            if k in bazel_build_rule_common_attrs
         },  # Forward Bazel common args
     )
 

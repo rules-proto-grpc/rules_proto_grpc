@@ -95,12 +95,12 @@ var compileRuleTemplate = mustTemplate(`load(
 var compileArgsForwardingSnippet = `**{
             k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         },  # Forward args`
 
 var libraryArgsForwardingSnippet = `**{
             k: v for (k, v) in kwargs.items()
-            if k in bazel_rule_common_attrs
+            if k in bazel_build_rule_common_attrs
         },  # Forward Bazel common args`
 
 

@@ -27,7 +27,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()`)
 
 var grpcGatewayLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:gateway_grpc_compile.bzl", "gateway_grpc_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("//go:go_grpc_library.bzl", "GRPC_DEPS")
 
@@ -41,7 +41,7 @@ def {{ .Rule.Name }}(name, **kwargs):
             k: v
             for (k, v) in kwargs.items()
             if (k in proto_compile_attrs.keys() and k != "prefix_path")
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 

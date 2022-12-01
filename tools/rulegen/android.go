@@ -31,7 +31,7 @@ var androidGrpcLibraryWorkspaceTemplate = mustTemplate(androidLibraryWorkspaceTe
 var androidProtoLibraryWorkspaceTemplate = mustTemplate("# The set of dependencies loaded here is excessive for android proto alone\n# (but simplifies our setup)\n" + androidLibraryWorkspaceTemplateString)
 
 var androidLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 
 def {{ .Rule.Name }}(name, **kwargs):

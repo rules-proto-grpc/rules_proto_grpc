@@ -1,7 +1,7 @@
 """Generated definition of python_grpclib_library."""
 
 load("//python:python_grpclib_compile.bzl", "python_grpclib_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def python_grpclib_library(name, **kwargs):
@@ -12,7 +12,7 @@ def python_grpclib_library(name, **kwargs):
         **{
             k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         },  # Forward args
     )
 
@@ -26,7 +26,7 @@ def python_grpclib_library(name, **kwargs):
         imports = [name_pb],
         **{
             k: v for (k, v) in kwargs.items()
-            if k in bazel_rule_common_attrs
+            if k in bazel_build_rule_common_attrs
         },  # Forward Bazel common args
     )
 

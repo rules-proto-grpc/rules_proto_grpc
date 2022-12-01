@@ -48,7 +48,7 @@ load("@rules_proto_grpc//fsharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packag
 nuget_rules_proto_grpc_packages()`)
 
 var fsharpLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "fsharp_library")
 
 def {{ .Rule.Name }}(name, **kwargs):

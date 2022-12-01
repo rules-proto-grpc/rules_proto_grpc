@@ -1,7 +1,7 @@
 """Generated definition of fsharp_grpc_library."""
 
 load("//fsharp:fsharp_grpc_compile.bzl", "fsharp_grpc_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "fsharp_library")
 
 def fsharp_grpc_library(name, **kwargs):
@@ -12,7 +12,7 @@ def fsharp_grpc_library(name, **kwargs):
         **{
             k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         },  # Forward args
     )
 
@@ -23,7 +23,7 @@ def fsharp_grpc_library(name, **kwargs):
         deps = GRPC_DEPS + kwargs.get("deps", []),
         **{
             k: v for (k, v) in kwargs.items()
-            if k in bazel_rule_common_attrs
+            if k in bazel_build_rule_common_attrs
         },  # Forward Bazel common args
     )
 

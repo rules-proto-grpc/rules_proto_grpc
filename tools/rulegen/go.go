@@ -23,7 +23,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()`)
 
 var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -36,7 +36,7 @@ def {{ .Rule.Name }}(name, **kwargs):
             k: v
             for (k, v) in kwargs.items()
             if (k in proto_compile_attrs.keys() and k != "prefix_path")
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 `

@@ -2,7 +2,7 @@
 
 load("//go:go_proto_library.bzl", "PROTO_DEPS")
 load("//go:go_grpc_compile.bzl", "go_grpc_compile")
-load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 def go_grpc_library(name, **kwargs):
@@ -15,7 +15,7 @@ def go_grpc_library(name, **kwargs):
             k: v
             for (k, v) in kwargs.items()
             if (k in proto_compile_attrs.keys() and k != "prefix_path")
-            or k in bazel_rule_common_attrs
+            or k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 
@@ -27,7 +27,7 @@ def go_grpc_library(name, **kwargs):
         importpath = kwargs.get("importpath"),
         **{
             k: v for (k, v) in kwargs.items()
-            if k in bazel_rule_common_attrs
+            if k in bazel_build_rule_common_attrs
         },  # Forward Bazel common args
     )
 
