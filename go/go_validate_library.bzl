@@ -2,7 +2,7 @@
 
 load("//go:go_grpc_library.bzl", "GRPC_DEPS")
 load("//go:go_validate_compile.bzl", "go_validate_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 def go_validate_library(name, **kwargs):
@@ -14,7 +14,8 @@ def go_validate_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys() and k != "prefix_path"
+            if (k in proto_compile_attrs.keys() and k != "prefix_path")
+            or k in bazel_rule_common_attrs
         }  # Forward args
     )
 
@@ -24,8 +25,10 @@ def go_validate_library(name, **kwargs):
         srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + VALIDATE_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        **{
+            k: v for (k, v) in kwargs.items()
+            if k in bazel_rule_common_attrs
+        },  # Forward Bazel common args
     )
 
 VALIDATE_DEPS = [

@@ -92,11 +92,16 @@ var compileRuleTemplate = mustTemplate(`load(
 )`)
 
 // When editing, note that Go and gateway do not use this snippet and have their own local version
-var argsForwardingSnippet = `**{
-            k: v
-            for (k, v) in kwargs.items()
+var compileArgsForwardingSnippet = `**{
+            k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-        }  # Forward args`
+            or k in bazel_rule_common_attrs
+        },  # Forward args`
+
+var libraryArgsForwardingSnippet = `**{
+            k: v for (k, v) in kwargs.items()
+            if k in bazel_rule_common_attrs
+        },  # Forward Bazel common args`
 
 
 var protoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")

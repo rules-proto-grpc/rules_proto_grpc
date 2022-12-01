@@ -9,7 +9,7 @@ load("@io_bazel_rules_d//d:d.bzl", "d_repositories")
 d_repositories()`)
 
 var dProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir}}:d_proto_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_d//d:d.bzl", "d_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -17,7 +17,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -25,8 +25,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [

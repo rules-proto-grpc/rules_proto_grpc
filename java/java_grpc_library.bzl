@@ -1,7 +1,7 @@
 """Generated definition of java_grpc_library."""
 
 load("//java:java_grpc_compile.bzl", "java_grpc_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
 load("@rules_java//java:defs.bzl", "java_library")
 
 def java_grpc_library(name, **kwargs):
@@ -10,10 +10,10 @@ def java_grpc_library(name, **kwargs):
     java_grpc_compile(
         name = name_pb,
         **{
-            k: v
-            for (k, v) in kwargs.items()
+            k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-        }  # Forward args
+            or k in bazel_rule_common_attrs
+        },  # Forward args
     )
 
     # Create java library
@@ -23,8 +23,10 @@ def java_grpc_library(name, **kwargs):
         deps = GRPC_DEPS + kwargs.get("deps", []),
         runtime_deps = ["@io_grpc_grpc_java//netty"],
         exports = GRPC_DEPS + kwargs.get("exports", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        **{
+            k: v for (k, v) in kwargs.items()
+            if k in bazel_rule_common_attrs
+        },  # Forward Bazel common args
     )
 
 GRPC_DEPS = [

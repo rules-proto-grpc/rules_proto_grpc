@@ -1,5 +1,6 @@
 """Top level definition exports for rules_proto_grpc."""
 
+load("//internal:common.bzl", _bazel_rule_common_attrs = "bazel_rule_common_attrs")
 load("//internal:compile.bzl", _proto_compile_attrs = "proto_compile_attrs", _proto_compile_impl = "proto_compile_impl")
 load("//internal:filter_files.bzl", _filter_files = "filter_files")
 load("//internal:plugin.bzl", _proto_plugin = "proto_plugin")
@@ -17,4 +18,5 @@ proto_compile_attrs = _proto_compile_attrs
 proto_compile_impl = _proto_compile_impl
 
 # Export utils
+bazel_rule_common_attrs = _bazel_rule_common_attrs
 filter_files = _filter_files

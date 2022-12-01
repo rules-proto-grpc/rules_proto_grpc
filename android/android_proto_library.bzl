@@ -1,7 +1,7 @@
 """Generated definition of android_proto_library."""
 
 load("//android:android_proto_compile.bzl", "android_proto_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 
 def android_proto_library(name, **kwargs):
@@ -10,10 +10,10 @@ def android_proto_library(name, **kwargs):
     android_proto_compile(
         name = name_pb,
         **{
-            k: v
-            for (k, v) in kwargs.items()
+            k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-        }  # Forward args
+            or k in bazel_rule_common_attrs
+        },  # Forward args
     )
 
     # Create android library
@@ -22,8 +22,10 @@ def android_proto_library(name, **kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         exports = PROTO_DEPS + kwargs.get("exports", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        **{
+            k: v for (k, v) in kwargs.items()
+            if k in bazel_rule_common_attrs
+        },  # Forward Bazel common args
     )
 
 PROTO_DEPS = [

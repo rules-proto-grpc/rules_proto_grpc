@@ -31,7 +31,7 @@ var androidGrpcLibraryWorkspaceTemplate = mustTemplate(androidLibraryWorkspaceTe
 var androidProtoLibraryWorkspaceTemplate = mustTemplate("# The set of dependencies loaded here is excessive for android proto alone\n# (but simplifies our setup)\n" + androidLibraryWorkspaceTemplateString)
 
 var androidLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_android//android:rules.bzl", "android_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -39,7 +39,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 `
 
@@ -50,8 +50,7 @@ var androidProtoLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStr
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         exports = PROTO_DEPS + kwargs.get("exports", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -66,8 +65,7 @@ var androidGrpcLibraryRuleTemplate = mustTemplate(androidLibraryRuleTemplateStri
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         exports = GRPC_DEPS + kwargs.get("exports", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [

@@ -27,7 +27,7 @@ compat_repositories()
 grpc_java_repositories()`)
 
 var javaLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
 load("@rules_java//java:defs.bzl", "java_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -35,7 +35,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 `
 
@@ -46,8 +46,7 @@ var javaProtoLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + 
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         exports = PROTO_DEPS + kwargs.get("exports", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -62,8 +61,7 @@ var javaGrpcLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
         deps = GRPC_DEPS + kwargs.get("deps", []),
         runtime_deps = ["@io_grpc_grpc_java//netty"],
         exports = GRPC_DEPS + kwargs.get("exports", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [

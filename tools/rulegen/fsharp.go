@@ -48,7 +48,7 @@ load("@rules_proto_grpc//fsharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packag
 nuget_rules_proto_grpc_packages()`)
 
 var fsharpLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "fsharp_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -56,7 +56,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 `
 
@@ -66,8 +66,7 @@ var fsharpProtoLibraryRuleTemplate = mustTemplate(fsharpLibraryRuleTemplateStrin
         name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -83,8 +82,7 @@ var fsharpGrpcLibraryRuleTemplate = mustTemplate(fsharpLibraryRuleTemplateString
         name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [

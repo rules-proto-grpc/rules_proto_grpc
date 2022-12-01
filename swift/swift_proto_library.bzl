@@ -1,7 +1,7 @@
 """Generated definition of swift_proto_library."""
 
 load("//swift:swift_proto_compile.bzl", "swift_proto_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 def swift_proto_library(name, **kwargs):
@@ -10,10 +10,10 @@ def swift_proto_library(name, **kwargs):
     swift_proto_compile(
         name = name_pb,
         **{
-            k: v
-            for (k, v) in kwargs.items()
+            k: v for (k, v) in kwargs.items()
             if k in proto_compile_attrs.keys()
-        }  # Forward args
+            or k in bazel_rule_common_attrs
+        },  # Forward args
     )
 
     # Create swift library
@@ -22,8 +22,10 @@ def swift_proto_library(name, **kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         module_name = kwargs.get("module_name"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        **{
+            k: v for (k, v) in kwargs.items()
+            if k in bazel_rule_common_attrs
+        },  # Forward Bazel common args
     )
 
 PROTO_DEPS = [
