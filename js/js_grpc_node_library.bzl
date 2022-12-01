@@ -10,10 +10,11 @@ def js_grpc_node_library(name, **kwargs):
     js_grpc_node_compile(
         name = name_pb,
         **{
-            k: v for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys()
-            or k in bazel_build_rule_common_attrs
-        },  # Forward args
+            k: v
+            or (k, v) in kwargs.items()
+            if k in proto_compile_attrs.keys() or
+               k in bazel_build_rule_common_attrs
+        }  # Forward args
     )
 
     # Resolve deps
@@ -30,9 +31,10 @@ def js_grpc_node_library(name, **kwargs):
         package_name = kwargs.get("package_name", name),
         strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
         **{
-            k: v for (k, v) in kwargs.items()
+            k: v
+            for (k, v) in kwargs.items()
             if k in bazel_build_rule_common_attrs
-        },  # Forward Bazel common args
+        }  # Forward Bazel common args
     )
 
 GRPC_DEPS = [

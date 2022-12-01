@@ -14,8 +14,8 @@ def go_validate_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if (k in proto_compile_attrs.keys() and k != "prefix_path")
-            or k in bazel_build_rule_common_attrs
+            if (k in proto_compile_attrs.keys() and k != "prefix_path") or
+               k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 
@@ -26,9 +26,10 @@ def go_validate_library(name, **kwargs):
         deps = kwargs.get("go_deps", []) + VALIDATE_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
         **{
-            k: v for (k, v) in kwargs.items()
+            k: v
+            for (k, v) in kwargs.items()
             if k in bazel_build_rule_common_attrs
-        },  # Forward Bazel common args
+        }  # Forward Bazel common args
     )
 
 VALIDATE_DEPS = [

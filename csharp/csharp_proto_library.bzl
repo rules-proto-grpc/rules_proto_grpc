@@ -10,10 +10,11 @@ def csharp_proto_library(name, **kwargs):
     csharp_proto_compile(
         name = name_pb,
         **{
-            k: v for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys()
-            or k in bazel_build_rule_common_attrs
-        },  # Forward args
+            k: v
+            or (k, v) in kwargs.items()
+            if k in proto_compile_attrs.keys() or
+               k in bazel_build_rule_common_attrs
+        }  # Forward args
     )
 
     # Create csharp library
@@ -22,9 +23,10 @@ def csharp_proto_library(name, **kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         **{
-            k: v for (k, v) in kwargs.items()
+            k: v
+            for (k, v) in kwargs.items()
             if k in bazel_build_rule_common_attrs
-        },  # Forward Bazel common args
+        }  # Forward Bazel common args
     )
 
 PROTO_DEPS = [

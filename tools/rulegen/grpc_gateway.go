@@ -40,8 +40,8 @@ def {{ .Rule.Name }}(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if (k in proto_compile_attrs.keys() and k != "prefix_path")
-            or k in bazel_build_rule_common_attrs
+            if (k in proto_compile_attrs.keys() and k != "prefix_path") or
+               k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 

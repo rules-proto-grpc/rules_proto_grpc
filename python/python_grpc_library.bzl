@@ -10,10 +10,11 @@ def python_grpc_library(name, **kwargs):
     python_grpc_compile(
         name = name_pb,
         **{
-            k: v for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys()
-            or k in bazel_build_rule_common_attrs
-        },  # Forward args
+            k: v
+            or (k, v) in kwargs.items()
+            if k in proto_compile_attrs.keys() or
+               k in bazel_build_rule_common_attrs
+        }  # Forward args
     )
 
     # Create python library
@@ -23,9 +24,10 @@ def python_grpc_library(name, **kwargs):
         deps = GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
         **{
-            k: v for (k, v) in kwargs.items()
+            k: v
+            for (k, v) in kwargs.items()
             if k in bazel_build_rule_common_attrs
-        },  # Forward Bazel common args
+        }  # Forward Bazel common args
     )
 
 GRPC_DEPS = [

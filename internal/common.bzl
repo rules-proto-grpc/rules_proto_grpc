@@ -379,16 +379,16 @@ def get_parent_dirname(label):
 # These are listed here to be correctly propagated through *_library macros to the underlying
 # rules without just passing the entirety of kwargs, although maybe that's the better choice...
 bazel_build_rule_common_attrs = [
-    'compatible_with',
-    'deprecation',
-    'distribs',
-    'exec_compatible_with',
-    'exec_properties',
-    'features',
-    'restricted_to',
-    'tags',
-    'target_compatible_with',
-    'testonly',
-    'toolchains',
-    'visibility',
+    "compatible_with",
+    "deprecation",
+    "distribs",
+    "exec_compatible_with",
+    "exec_properties",
+    "features",
+    "restricted_to",
+    "tags",
+    "target_compatible_with",
+    "testonly",
+    "toolchains",
+    "visibility",
 ]
