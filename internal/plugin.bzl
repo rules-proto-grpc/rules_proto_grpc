@@ -15,6 +15,7 @@ def _proto_plugin_impl(ctx):
             out = ctx.attr.out,
             output_directory = ctx.attr.output_directory,
             env = ctx.attr.env,
+            extra_protoc_args = ctx.attr.extra_protoc_args,
             exclusions = ctx.attr.exclusions,
             data = ctx.files.data,
             use_built_in_shell_environment = ctx.attr.use_built_in_shell_environment,
@@ -52,6 +53,9 @@ proto_plugin = rule(
         "env": attr.string_dict(
             doc = "Sets the dictionary of environment variables to use when invoking protoc. Must be None if use_built_in_shell_environment is true.",
             default = {},
+        ),
+        "extra_protoc_args": attr.string_list(
+            doc = "A list of extra command line arguments to pass directly to protoc, not as plugin options",
         ),
         "exclusions": attr.string_list(
             doc = "Exclusion filters to apply when generating outputs with this plugin. Used to prevent generating files that are included in the protobuf library, for example. Can exclude either by proto name prefix or by proto folder prefix",
