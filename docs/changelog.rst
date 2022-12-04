@@ -94,7 +94,7 @@ Scala
 Swift
 *****
 
-- Updated ``rules_swift`` to 1.3.0
+- Updated ``rules_swift`` to 1.4.0
 
 
 4.2.0
