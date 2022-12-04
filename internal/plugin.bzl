@@ -14,6 +14,7 @@ def _proto_plugin_impl(ctx):
             outputs = ctx.attr.outputs,
             out = ctx.attr.out,
             output_directory = ctx.attr.output_directory,
+            env = ctx.attr.env,
             extra_protoc_args = ctx.attr.extra_protoc_args,
             exclusions = ctx.attr.exclusions,
             data = ctx.files.data,
@@ -48,6 +49,10 @@ proto_plugin = rule(
         "output_directory": attr.bool(
             doc = "Flag that indicates that the plugin should only output a directory. Used for plugins that have no direct mapping from source file name to output name. Cannot be used in conjunction with outputs or out",
             default = False,
+        ),
+        "env": attr.string_dict(
+            doc = "Sets the dictionary of environment variables to use when invoking protoc. Must be None if use_built_in_shell_environment is true.",
+            default = {},
         ),
         "extra_protoc_args": attr.string_list(
             doc = "A list of extra command line arguments to pass directly to protoc, not as plugin options",

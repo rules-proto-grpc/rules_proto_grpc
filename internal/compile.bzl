@@ -41,12 +41,14 @@ proto_compile_attrs = {
     ),
 }
 
-def proto_compile_impl(ctx):
+def proto_compile_impl(ctx, base_env = {}):
     """
     Common implementation function for lang_*_compile rules.
 
     Args:
         ctx: The Bazel rule execution context object.
+        base_env: Default environment to use for protoc if
+            "use_built_in_shell_environment" = False for a given plugin.
 
     Returns:
         Providers:
@@ -63,9 +65,9 @@ def proto_compile_impl(ctx):
     extra_protoc_files = ctx.files.extra_protoc_files
 
     # Execute with extracted attrs
-    return proto_compile(ctx, options, extra_protoc_args, extra_protoc_files)
+    return proto_compile(ctx, options, extra_protoc_args, extra_protoc_files, base_env)
 
-def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
+def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files, base_env):
     """
     Common implementation function for lang_*_compile rules.
 
@@ -74,6 +76,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         options: The mutable options dict.
         extra_protoc_args: The mutable extra_protoc_args list.
         extra_protoc_files: The mutable extra_protoc_files list.
+        base_env: Default environment to use for protoc if
+            "use_built_in_shell_environment" = False for a given plugin.
 
     Returns:
         Providers:
@@ -328,7 +332,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             command = "echo '\n##### SANDBOX BEFORE RUNNING PROTOC' && find . -type l && " + command
 
         if verbose > 3:
-            command = "env && " + command
+            command = "echo Printing environment used to invoke protoc.... && env && " + command
             for f in cmd_inputs:
                 print("INPUT:", f.path)  # buildifier: disable=print
             for f in protos:
@@ -338,7 +342,15 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             for f in plugin_outputs:
                 print("EXPECTED OUTPUT:", f.path)  # buildifier: disable=print
 
-        # Run protoc
+        env = {}
+        if (len(env) > 0) and plugin.use_built_in_shell_environment:
+            fail("env and use_built_in_shell_environment are mutually exclusive; " +
+                 " both set for plugin {}".format(plugin.name))
+
+        if not plugin.use_built_in_shell_environment:
+            env = dict(base_env, **env)
+
+        # Run protoc (https://bazel.build/rules/lib/actions#run_shell)
         ctx.actions.run_shell(
             mnemonic = mnemonic,
             command = command,
@@ -346,6 +358,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             inputs = cmd_inputs,
             tools = tools,
             outputs = plugin_protoc_outputs,
+            env = env,
             use_default_shell_env = plugin.use_built_in_shell_environment,
             input_manifests = cmd_input_manifests,
             progress_message = "Compiling protoc outputs for {} plugin on target {}".format(
