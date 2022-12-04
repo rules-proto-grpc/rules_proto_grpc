@@ -6,6 +6,99 @@
 Changelog
 =========
 
+4.3.0
+-----
+
+General
+*******
+
+- Updated protobuf to 21.10
+- Updated grpc to 1.51.0
+- Updated ``rules_proto`` to 5.3.0-21.5
+- Updated ``bazel_skylib`` to 1.3.0
+- Added support for paths to proto files that contain spaces or other special characters
+- Added forwarding of all standard Bazel rule attributes for library macros
+- Added support for providing plugin-specific environment variables
+
+Buf
+***
+
+- Updated Buf plugins to v1.9.0
+
+C
+*
+
+- **WORKSPACE update needed**: The upb version is now sourced from gRPC dependencies to prevent
+  version skew in mixed C and C++ workspaces. See the example workspaces for the new template
+
+C#/F#
+*****
+
+- Updated gRPC to 2.50.0
+
+Go
+**
+
+- Updated ``google.golang.org/protobuf`` to 1.28.1
+- Updated ``rules_go`` to 0.36.0
+- Updated ``github.com/envoyproxy/protoc-gen-validate`` to 0.9.0
+
+grpc-gateway
+************
+
+- Updated ``grpc-gateway`` to 2.14.0
+
+gRPC-Web
+********
+
+- Added support for M1 builds of grpc-web
+- Updated ``grpc-web`` to 1.4.2
+
+Java
+****
+
+- Updated ``rules_jvm_external`` to 4.5
+
+JavaScript
+**********
+
+- Updated ``google-protobuf`` to 3.21.2
+- Updated ``@grpc/grpc-js`` to 1.7.3
+- Updated ``rules_nodejs`` to 5.7.1
+
+Python
+******
+
+- Updated ``rules_python`` to 0.15.0
+- Updated ``grpclib`` to 0.4.3
+- **WORKSPACE update needed**: The Python dependencies have moved from ``pip_install`` to
+  ``pip_parse``, as advised by ``rules_python`` authors. See the example workspaces for the new
+  template, which is only necessary if you are using grpclib
+- Removed subpar dependency
+
+Ruby
+****
+
+- Updated ``google-protobuf`` to 3.21.9
+- Updated ``grpc`` to 1.50.0
+
+Rust
+****
+
+- Updated ``rules_rust`` to 0.14.0
+
+Scala
+*****
+
+- Update ScalaPB to 0.11.12
+- Updated ``rules_scala`` to latest
+
+Swift
+*****
+
+- Updated ``rules_swift`` to 1.4.0
+
+
 4.2.0
 -----
 

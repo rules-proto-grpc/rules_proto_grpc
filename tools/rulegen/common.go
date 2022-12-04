@@ -37,7 +37,7 @@ var compileRuleAttrs = []*Attr{
 		Name:      "extra_protoc_args",
 		Type:      "string_list",
 		Default:   "[]",
-		Doc:       "A list of extra args to pass directly to protoc, not as plugin options",
+		Doc:       "A list of extra command line arguments to pass directly to protoc, not as plugin options",
 		Mandatory: false,
 	},
 	&Attr{
@@ -92,11 +92,18 @@ var compileRuleTemplate = mustTemplate(`load(
 )`)
 
 // When editing, note that Go and gateway do not use this snippet and have their own local version
-var argsForwardingSnippet = `**{
+var compileArgsForwardingSnippet = `**{
             k: v
             for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys() or
+               k in bazel_build_rule_common_attrs
         }  # Forward args`
+
+var libraryArgsForwardingSnippet = `**{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in bazel_build_rule_common_attrs
+        }  # Forward Bazel common args`
 
 
 var protoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")

@@ -1,7 +1,7 @@
 """Generated definition of swift_grpc_library."""
 
 load("//swift:swift_grpc_compile.bzl", "swift_grpc_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 def swift_grpc_library(name, **kwargs):
@@ -12,7 +12,8 @@ def swift_grpc_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys() or
+               k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 
@@ -22,8 +23,11 @@ def swift_grpc_library(name, **kwargs):
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         module_name = kwargs.get("module_name"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in bazel_build_rule_common_attrs
+        }  # Forward Bazel common args
     )
 
 GRPC_DEPS = [

@@ -230,13 +230,17 @@ load("//python:repositories.bzl", "python_repos")
 
 python_repos()
 
-load("@rules_python//python:pip.bzl", "pip_install")
+load("@rules_python//python:pip.bzl", "pip_parse")
 
-pip_install(
+pip_parse(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "@rules_proto_grpc//python:requirements.txt",
 )
+
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
+
+install_deps()
 
 #
 # Ruby

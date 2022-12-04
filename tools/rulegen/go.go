@@ -23,7 +23,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()`)
 
 var goLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -35,7 +35,8 @@ def {{ .Rule.Name }}(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys() and k != "prefix_path"
+            if (k in proto_compile_attrs.keys() and k != "prefix_path") or
+               k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 `
@@ -47,8 +48,7 @@ var goProtoLibraryRuleTemplate = mustTemplate(goLibraryRuleTemplateString + `
         srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + PROTO_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -77,8 +77,7 @@ var goGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Rule.B
         srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + GRPC_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [
@@ -95,8 +94,7 @@ var goValidateLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Ru
         srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + VALIDATE_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 VALIDATE_DEPS = [

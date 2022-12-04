@@ -27,7 +27,7 @@ load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 gazelle_dependencies()`)
 
 var grpcGatewayLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:gateway_grpc_compile.bzl", "gateway_grpc_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("//go:go_grpc_library.bzl", "GRPC_DEPS")
 
@@ -40,7 +40,8 @@ def {{ .Rule.Name }}(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys() and k != "prefix_path"
+            if (k in proto_compile_attrs.keys() and k != "prefix_path") or
+               k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 
@@ -50,8 +51,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = kwargs.get("go_deps", []) + GATEWAY_DEPS + GRPC_DEPS + kwargs.get("deps", []),
         importpath = kwargs.get("importpath"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GATEWAY_DEPS = [

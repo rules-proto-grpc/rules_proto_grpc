@@ -1,7 +1,7 @@
 """Generated definition of rust_proto_library."""
 
 load("//rust:rust_proto_compile.bzl", "rust_proto_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("//rust:rust_proto_lib.bzl", "rust_proto_lib")
 load("@rules_rust//rust:defs.bzl", "rust_library")
 
@@ -14,7 +14,8 @@ def rust_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys() or
+               k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 
@@ -30,8 +31,11 @@ def rust_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
         name = name,
         srcs = [name_pb, name_lib],
         deps = PROTO_DEPS + kwargs.get("deps", []),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in bazel_build_rule_common_attrs
+        }  # Forward Bazel common args
     )
 
 PROTO_DEPS = [

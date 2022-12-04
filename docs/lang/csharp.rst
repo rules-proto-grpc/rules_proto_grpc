@@ -120,7 +120,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -232,7 +232,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -349,7 +349,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -462,7 +462,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false

@@ -311,8 +311,9 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         ### Specify protoc action
         ###
 
+        # $@ is replaced with args list and is quote wrapped to support paths with special chars
         mnemonic = "ProtoCompile"
-        command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + " $@"  # $@ is replaced with args list
+        command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + ' "$@"'
         cmd_inputs += extra_protoc_files
         tools = [protoc] + ([plugin.tool_executable] if plugin.tool_executable else [])
 
@@ -337,7 +338,21 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             for f in plugin_outputs:
                 print("EXPECTED OUTPUT:", f.path)  # buildifier: disable=print
 
-        # Run protoc
+        # Check env attr exclusivity
+        if plugin.env and plugin.use_built_in_shell_environment:
+            fail(
+                "Plugin env and use_built_in_shell_environment attributes are mutually exclusive; " +
+                " both set for plugin {}".format(plugin.name),
+            )
+
+        # Build protoc env for plugin, with replacement
+        # See https://github.com/rules-proto-grpc/rules_proto_grpc/pull/226
+        plugin_env = {
+            k: v.replace("{bindir}", ctx.bin_dir.path)
+            for k, v in plugin.env.items()
+        }
+
+        # Run protoc (https://bazel.build/rules/lib/actions#run_shell)
         ctx.actions.run_shell(
             mnemonic = mnemonic,
             command = command,
@@ -345,6 +360,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             inputs = cmd_inputs,
             tools = tools,
             outputs = plugin_protoc_outputs,
+            env = plugin_env,
             use_default_shell_env = plugin.use_built_in_shell_environment,
             input_manifests = cmd_input_manifests,
             progress_message = "Compiling protoc outputs for {} plugin on target {}".format(

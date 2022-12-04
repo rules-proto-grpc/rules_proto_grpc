@@ -1,4 +1,17 @@
+load("@rules_python//python/pip_install:requirements.bzl", "compile_pip_requirements")
 load("//:defs.bzl", "proto_plugin")
+
+compile_pip_requirements(
+    name = "requirements",
+    extra_args = [
+        "--generate-hashes",
+    ],
+    requirements_in = "requirements.in",
+    requirements_txt = "requirements.txt",
+    tags = [
+        "manual",
+    ],
+)
 
 proto_plugin(
     name = "python_plugin",

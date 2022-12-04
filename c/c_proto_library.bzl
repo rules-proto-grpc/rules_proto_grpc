@@ -1,8 +1,7 @@
 """Generated definition of c_proto_library."""
 
 load("//c:c_proto_compile.bzl", "c_proto_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
-load("//internal:filter_files.bzl", "filter_files")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 def c_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
@@ -13,7 +12,8 @@ def c_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in proto_compile_attrs.keys()
+            if k in proto_compile_attrs.keys() or
+               k in bazel_build_rule_common_attrs
         }  # Forward args
     )
 
@@ -46,8 +46,11 @@ def c_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
         local_defines = kwargs.get("local_defines"),
         nocopts = kwargs.get("nocopts"),
         strip_include_prefix = kwargs.get("strip_include_prefix"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in bazel_build_rule_common_attrs
+        }  # Forward Bazel common args
     )
 
 PROTO_DEPS = [

@@ -1,8 +1,7 @@
 package main
 
 var objcLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
-load("//internal:filter_files.bzl", "filter_files")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("@rules_cc//cc:defs.bzl", "objc_library")
 
 def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
@@ -10,7 +9,7 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Filter files to sources and headers
@@ -44,8 +43,7 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
         local_defines = kwargs.get("local_defines"),
         nocopts = kwargs.get("nocopts"),
         strip_include_prefix = kwargs.get("strip_include_prefix"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -68,8 +66,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
         local_defines = kwargs.get("local_defines"),
         nocopts = kwargs.get("nocopts"),
         strip_include_prefix = kwargs.get("strip_include_prefix"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [
