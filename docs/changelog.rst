@@ -73,6 +73,7 @@ Python
 - **WORKSPACE update needed**: The Python dependencies have moved from ``pip_install`` to
   ``pip_parse``, as advised by ``rules_python`` authors. See the example workspaces for the new
   template, which is only necessary if you are using grpclib
+- Removed subpar dependency
 
 Ruby
 ****
