@@ -142,7 +142,7 @@ API Reference
    * - ``use_built_in_shell_environment``
      - ``bool``
      - false
-     - ``False``
+     - ``True``
      - Flag to indicate whether the tool should use the built in shell environment
    * - ``separate_options_flag``
      - ``bool``
