@@ -37,7 +37,7 @@ var compileRuleAttrs = []*Attr{
 		Name:      "extra_protoc_args",
 		Type:      "string_list",
 		Default:   "[]",
-		Doc:       "A list of extra args to pass directly to protoc, not as plugin options",
+		Doc:       "A list of extra command line arguments to pass directly to protoc, not as plugin options",
 		Mandatory: false,
 	},
 	&Attr{
