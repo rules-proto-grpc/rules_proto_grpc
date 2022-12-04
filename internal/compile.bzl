@@ -341,8 +341,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # Check env attr exclusivity
         if plugin.env and plugin.use_built_in_shell_environment:
             fail(
-                "Plugin env and use_built_in_shell_environment attributes are mutually exclusive; "
-                + " both set for plugin {}".format(plugin.name),
+                "Plugin env and use_built_in_shell_environment attributes are mutually exclusive; " +
+                " both set for plugin {}".format(plugin.name),
             )
 
         # Build protoc env for plugin, with replacement
