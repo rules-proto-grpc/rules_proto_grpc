@@ -6,31 +6,31 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 # Versions
 MINIMUM_BAZEL_VERSION = "5.0.0"
 ENABLE_VERSION_NAGS = False
-PROTOBUF_VERSION = "21.5"  # When updating, also update protobuf-javascript, JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
-GRPC_VERSION = "1.48.0"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
-BUF_VERSION = "v1.7.0"
+PROTOBUF_VERSION = "21.10"  # When updating, also update protobuf-javascript, JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
+GRPC_VERSION = "1.51.0"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
+BUF_VERSION = "v1.9.0"
 VERSIONS = {
     # Core
     "rules_proto": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_proto",
-        "ref": "4.0.0",
-        "sha256": "66bfdf8782796239d3875d37e7de19b1d94301e8972b3cbd2446b332429b4df1",
+        "ref": "5.3.0-21.5",
+        "sha256": "80d3a4ec17354cccc898bfe32118edd934f851b03029d63ef3fc7c8663a7415c",
     },
     "com_google_protobuf": {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf",
         "ref": "v{}".format(PROTOBUF_VERSION),
-        "sha256": "4a7e87e4166c358c63342dddcde6312faee06ea9d5bb4e2fa87d3478076f6639",
+        "sha256": "f3f9ce6dc288f2f939bdc9d277ebdfbc8dbcd51741071f93da70e0e62919f57f",
     },
     "com_github_grpc_grpc": {
         "type": "github",
         "org": "grpc",
         "repo": "grpc",
         "ref": "v{}".format(GRPC_VERSION),
-        "sha256": "9b1f348b15a7637f5191e4e673194549384f2eccf01fcef7cc1515864d71b424",
+        "sha256": "7f42363711eb483a0501239fd5522467b31d8fe98d70d7867c6ca7b52440d828",
     },
     "zlib": {
         "type": "http",
@@ -46,22 +46,22 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "0.10.2",
-        "sha256": "a3a6e99f497be089f81ec082882e40246bfd435f52f4e82f37e89449b04573f6",
+        "ref": "0.15.0",
+        "sha256": "fda23c37fbacf7579f94d5e8f342d3a831140e9471b770782e83846117dd6596",
     },
     "bazel_skylib": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-skylib",
-        "ref": "1.2.1",
-        "sha256": "710c2ca4b4d46250cdce2bf8f5aa76ea1f0cba514ab368f2988f70e864cfaf51",
+        "ref": "1.3.0",
+        "sha256": "3b620033ca48fcd6f5ef2ac85e0f6ec5639605fa2f627968490e52fc91a9932f",
     },
     "rules_pkg": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_pkg",
-        "ref": "0.7.0",
-        "sha256": "e110311d898c1ff35f39829ae3ec56e39c0ef92eb44de74418982a114f51e132",
+        "ref": "0.8.0",
+        "sha256": "ab55ed03c8e10b5cfd0748a4f9cf5d55c23cb7a7e623c4d306b75684e57483e4",
     },
 
     # Android
@@ -77,47 +77,38 @@ VERSIONS = {
     "protoc_gen_buf_breaking_darwin_arm64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-breaking-Darwin-arm64".format(BUF_VERSION)],
-        "sha256": "3c2f3a31594fb2e20da94313260bd1befad832c15d646c9dae9e83d1dbd29623",
+        "sha256": "785c4623ecb8b6f695c3252a5fd2c7ceb4013ba439ae07e6d38db0a8f4e0adc5",
         "executable": True,
     },
     "protoc_gen_buf_breaking_darwin_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-breaking-Darwin-x86_64".format(BUF_VERSION)],
-        "sha256": "4d619259242e494aeea6c3a1cd8ff67bcbc9664741439a2cfffe1094cbe8d3b6",
+        "sha256": "f0fc9d4f1129182b95961266087fc4775c7903dec5678723559a29932cdcb475",
         "executable": True,
     },
     "protoc_gen_buf_breaking_linux_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-breaking-Linux-x86_64".format(BUF_VERSION)],
-        "sha256": "82996e37a5af75537b1d607d569014252199f43e51baa311526da15e440a8c9f",
+        "sha256": "a288eea1ff7715b166c5cdd5dffd0be0e5dc5e126d564daac49a268cb32215f0",
         "executable": True,
     },
     "protoc_gen_buf_lint_darwin_arm64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-lint-Darwin-arm64".format(BUF_VERSION)],
-        "sha256": "135281faa5f91bbd87c32df077a3693593f78b2bee2c4e906e05865385bb869b",
+        "sha256": "59b3af74dcc7710b88ef57775e8ca51283d89d730ba7146054f2fe71e3dbb41d",
         "executable": True,
     },
     "protoc_gen_buf_lint_darwin_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-lint-Darwin-x86_64".format(BUF_VERSION)],
-        "sha256": "6ccb808d5538f0c75b59514d8961f140c78c4788755c794f895317dda452fe64",
+        "sha256": "7bff384c4b7a2842878a98a62fba3c2760bd28e9ed1f8e8e6d9f5d13a8a0fec0",
         "executable": True,
     },
     "protoc_gen_buf_lint_linux_x86_64": {
         "type": "http_file",
         "urls": ["https://github.com/bufbuild/buf/releases/download/{}/protoc-gen-buf-lint-Linux-x86_64".format(BUF_VERSION)],
-        "sha256": "86d43c929382d41a23c868533a26e5d901ce8230d2676622172a13ae1c9d38b6",
+        "sha256": "7cd8366283198f781f1590d6b01cbc67ddae679d883fed80b4395c68bbf6a1b4",
         "executable": True,
-    },
-
-    # C
-    "upb": {
-        "type": "github",
-        "org": "protocolbuffers",
-        "repo": "upb",
-        "ref": "982f26aad42291064878ff64cb5a43d69723f91c",
-        "sha256": "72d25e544bce0e350612184096ba4cd3454d63c048e5c18a682038c075c947a4",
     },
 
     # C#/F#
@@ -177,8 +168,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.34.0",
-        "sha256": "b1fb0e70834df1504f06fd0195260f45b296d25799684036b73425b8913ccfb0",
+        "ref": "v0.36.0",
+        "sha256": "667aa901ff13d19b2ed56534f8d4a99903534e7a65be24264c7f182cf0af3d7b",
     },
     "bazel_gazelle": {
         "type": "github",
@@ -193,8 +184,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.11.3",
-        "sha256": "6b180623ed23e545d66b05bd0e32d87623048c5d37dcda4f6aaab21b84170d46",
+        "ref": "v2.14.0",
+        "sha256": "6bca5c2a0eddc0cd042ad8352c581c2135d0b0ab8a610f1045e9b17de9afb318",
     },
 
     # Java
@@ -203,56 +194,53 @@ VERSIONS = {
         "org": "grpc",
         "repo": "grpc-java",
         "ref": "v{}".format(GRPC_VERSION),
-        "sha256": "f6ecacf924da06aa1c97b4339a74e8d4e345af083b5d197d0758c90881205108",
+        "sha256": "3762fd9a1045aa83d9a967840da142a1558565b76b470860282a1126e162799b",
     },
     "rules_jvm_external": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_jvm_external",
-        "ref": "4.2",
-        "sha256": "2cd77de091e5376afaf9cc391c15f093ebd0105192373b334f0a855d89092ad5",
+        "ref": "4.5",
+        "sha256": "6e9f2b94ecb6aa7e7ec4a0fbf882b226ff5257581163e88bf70ae521555ad271",
     },
 
     # JavaScript
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
         "type": "http",
-        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.5.2/rules_nodejs-5.5.2.tar.gz"],
-        "sha256": "c78216f5be5d451a42275b0b7dc809fb9347e2b04a68f68bad620a2b01f5c774",
+        "urls": ["https://github.com/bazelbuild/rules_nodejs/releases/download/5.7.2/rules_nodejs-5.7.2.tar.gz"],
+        "sha256": "0e8a818724c0d5dcc10c31f9452ebd54b2ab94c452d4dcbb0d45a6636d2d5a44",
     },
     "com_google_protobuf_javascript": {
         "type": "github",
         "org": "protocolbuffers",
         "repo": "protobuf-javascript",
-        "ref": "a428c58273abad07c66071d9753bc4d1289de426",  # TODO: 3.21.0 broken
-        "sha256": "08e8aa6b4f434a5364bdef69cd129792677f8b241cdebfa7c10bb43d618e0e05",
+        "ref": "v3.21.2",
+        "sha256": "35bca1729532b0a77280bf28ab5937438e3dcccd6b31a282d9ae84c896b6f6e3",
     },
-    "grpc_web_plugin_darwin": {
+    "grpc_web_plugin_darwin_arm64": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.1/protoc-gen-grpc-web-1.3.1-darwin-x86_64"],
-        "sha256": "466ffe6d2096a2e09823ad02170a90a3e9f79d24094ec8ddcaf6c6d4e673aa2c",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-darwin-aarch64"],
+        "sha256": "87263950cd36ec875c86b1e50625215727264c5495d6625ddf9e4f79aeef727e",
+        "executable": True,
+    },
+    "grpc_web_plugin_darwin_x86_64": {
+        "type": "http_file",  # When updating, also update in package.json and vice-versa
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-darwin-x86_64"],
+        "sha256": "6b73e8e9ef2deb114d39c9eea177ff8450d92e7154b5e47dea668a43499a2383",
         "executable": True,
     },
     "grpc_web_plugin_linux": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.1/protoc-gen-grpc-web-1.3.1-linux-x86_64"],
-        "sha256": "12d3cfefb22e077251e6d1fae2aeaafd7a66518898397c667ba69cdd1260e72a",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-linux-x86_64"],
+        "sha256": "5e82c3f1f435e176c94b94de9669911ab3bfb891608b7e80adff358f777ff857",
         "executable": True,
     },
     "grpc_web_plugin_windows": {
         "type": "http_file",  # When updating, also update in package.json and vice-versa
-        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.3.1/protoc-gen-grpc-web-1.3.1-windows-x86_64.exe"],
-        "sha256": "f7f3d3b8ddcc7f0f8e432e744768682c070491fc1dcacb922343ec8f39c0d115",
+        "urls": ["https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-windows-x86_64.exe"],
+        "sha256": "3a0fc44662cb89a5c101b632e3e8841d04d9bea3103512deae82591e2acdff93",
         "executable": True,
-    },
-
-    # Python
-    "subpar": {
-        "type": "github",
-        "org": "google",
-        "repo": "subpar",
-        "ref": "2.0.0",
-        "sha256": "b80297a1b8d38027a86836dbadc22f55dc3ecad56728175381aa6330705ac10f",
     },
 
     # Ruby
@@ -269,8 +257,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_rust",
-        "ref": "0.9.0",
-        "sha256": "ba6ef62c8db01a86512b8bc8bc464b344d1c18c6b83aefe9440bb89f0d4adc8d",
+        "ref": "0.14.0",
+        "sha256": "2625a71dafa42fb63348bcb04498cb9e83be6ea0e99e0359863345dc1cfd65fb",
     },
 
     # Scala
@@ -278,8 +266,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_scala",
-        "ref": "972fdf2b3bda64138db34a630a9910eee96b4d8a",
-        "sha256": "d1eb5719d7a082c30c3041c8e87a31d41115a9147da718b395b80926f9e47708",
+        "ref": "73f5d1a7da081c9f5160b9ed7ac745388af28e23",
+        "sha256": "9529dd867c7f6951ce8b803849c3ddcddbaebbbff71bbbcac50fe94874c1cdf7",
     },
 
     # Swift
@@ -287,8 +275,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_swift",
-        "ref": "1.1.0",
-        "sha256": "0ad2023c3e6e8f960e4ae24da508fe5cc44032e04af9961478543a5f5802ce6e",
+        "ref": "1.4.0",
+        "sha256": "512c4a15b959b9558d4cf7cf05392d994cf5104def3bcdd2f69d3a6eab0b47b3",
     },
     "com_github_grpc_grpc_swift": {
         "type": "github",
@@ -544,12 +532,6 @@ def protoc_gen_buf_lint_linux_x86_64(**kwargs):
     _generic_dependency("protoc_gen_buf_lint_linux_x86_64", **kwargs)
 
 #
-# C
-#
-def upb(**kwargs):
-    _generic_dependency("upb", **kwargs)
-
-#
 # C#
 #
 def io_bazel_rules_dotnet(**kwargs):
@@ -612,20 +594,17 @@ def build_bazel_rules_nodejs(**kwargs):
 def com_google_protobuf_javascript(**kwargs):
     _generic_dependency("com_google_protobuf_javascript", **kwargs)
 
-def grpc_web_plugin_darwin(**kwargs):
-    _generic_dependency("grpc_web_plugin_darwin", **kwargs)
+def grpc_web_plugin_darwin_arm64(**kwargs):
+    _generic_dependency("grpc_web_plugin_darwin_arm64", **kwargs)
+
+def grpc_web_plugin_darwin_x86_64(**kwargs):
+    _generic_dependency("grpc_web_plugin_darwin_x86_64", **kwargs)
 
 def grpc_web_plugin_linux(**kwargs):
     _generic_dependency("grpc_web_plugin_linux", **kwargs)
 
 def grpc_web_plugin_windows(**kwargs):
     _generic_dependency("grpc_web_plugin_windows", **kwargs)
-
-#
-# Python
-#
-def subpar(**kwargs):
-    _generic_dependency("subpar", **kwargs)
 
 #
 # Ruby

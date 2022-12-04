@@ -43,7 +43,7 @@ ruby_bundle(
 )`)
 
 var rubyLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@bazelruby_rules_ruby//ruby:defs.bzl", "ruby_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -51,7 +51,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -60,8 +60,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = ["@rules_proto_grpc_bundle//:gems"] + kwargs.get("deps", []),
         includes = [native.package_name() + "/" + name_pb],
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )`)
 
 func makeRuby() *Language {

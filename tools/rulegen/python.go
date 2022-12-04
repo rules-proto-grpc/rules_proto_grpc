@@ -24,16 +24,20 @@ load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
 
 grpc_extra_deps()
 
-load("@rules_python//python:pip.bzl", "pip_install")
+load("@rules_python//python:pip.bzl", "pip_parse")
 
-pip_install(
+pip_parse(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
     requirements = "@rules_proto_grpc//python:requirements.txt",
-)`)
+)
+
+load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
+
+install_deps()`)
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -41,7 +45,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     python_proto_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -50,8 +54,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -59,7 +62,7 @@ PROTO_DEPS = [
 ]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -67,7 +70,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     python_grpc_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -76,8 +79,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [
@@ -86,7 +88,7 @@ GRPC_DEPS = [
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -94,7 +96,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     python_grpclib_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -105,14 +107,13 @@ def {{ .Rule.Name }}(name, **kwargs):
             "@com_google_protobuf//:protobuf_python",
         ] + GRPC_DEPS + kwargs.get("deps", []),
         imports = [name_pb],
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [
     # Don't use requirement(), since rules_proto_grpc_py3_deps doesn't necessarily exist when
     # imported by defs.bzl
-    "@rules_proto_grpc_py3_deps//pypi__grpclib",
+    "@rules_proto_grpc_py3_deps_grpclib//:pkg",
 ]`)
 
 func makePython() *Language {

@@ -12,7 +12,7 @@ load(
 swift_rules_dependencies()`)
 
 var swiftProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -20,7 +20,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -29,8 +29,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         module_name = kwargs.get("module_name"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -38,7 +37,7 @@ PROTO_DEPS = [
 ]`)
 
 var swiftGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_swift//swift:swift.bzl", "swift_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -46,7 +45,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Create {{ .Lang.Name }} library
@@ -55,8 +54,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         module_name = kwargs.get("module_name"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [

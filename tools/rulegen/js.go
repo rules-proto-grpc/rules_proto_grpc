@@ -17,7 +17,7 @@ yarn_install(
 )`)
 
 var jsProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -25,7 +25,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Resolve deps
@@ -41,8 +41,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         deps = deps + kwargs.get("deps", []),
         package_name = kwargs.get("package_name", name),
         strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -50,7 +49,7 @@ PROTO_DEPS = [
 ]`)
 
 var nodeGrpcLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:js_grpc_node_compile.bzl", "js_grpc_node_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -58,7 +57,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     js_grpc_node_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Resolve deps
@@ -74,8 +73,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         deps = deps + kwargs.get("deps", []),
         package_name = kwargs.get("package_name", name),
         strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [
@@ -84,7 +82,7 @@ GRPC_DEPS = [
 ]`)
 
 var jsGrpcWebLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:js_grpc_web_compile.bzl", "js_grpc_web_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@build_bazel_rules_nodejs//:index.bzl", "js_library")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -92,7 +90,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     name_pb = name + "_pb"
     js_grpc_web_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Resolve deps
@@ -108,8 +106,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         deps = deps + kwargs.get("deps", []),
         package_name = kwargs.get("package_name", name),
         strip_prefix = name_pb if not kwargs.get("legacy_path") else None,
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [
@@ -148,10 +145,10 @@ var jsDependencyNote = `
    .. code-block:: json
 
       "dependencies": {
-        "@grpc/grpc-js": "1.6.7",
-        "google-protobuf": "3.21.0",
-        "grpc-tools": "1.11.2",
-        "grpc-web": "1.3.1",
+        "@grpc/grpc-js": "1.7.3",
+        "google-protobuf": "3.21.2",
+        "grpc-tools": "1.11.3",
+        "grpc-web": "1.4.2",
         "ts-protoc-gen": "0.15.0"
       }
 `

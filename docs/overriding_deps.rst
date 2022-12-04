@@ -2,7 +2,7 @@
 :description: Overriding dependencies
 :keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Workspace, Dependencies
 
-.. _sec_custom_plugins:
+.. _sec_overriding_deps:
 
 Overriding Dependencies
 =======================

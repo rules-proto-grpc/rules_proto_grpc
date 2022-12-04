@@ -485,7 +485,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		for _, flag := range dotnetPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
 		}
-		out.w(`    - "--host_cxxopt=-std=c++17"`)
+		out.w(`    - "--cxxopt=-std=c++17"`)
 		out.w("    build_targets:")
 		for _, lang := range languages {
 			// Skip experimental or excluded
@@ -498,6 +498,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		for _, flag := range dotnetPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
 		}
+		out.w(`    - "--cxxopt=-std=c++17"`)
 		out.w("    test_targets:")
 		for _, clientLang := range languages {
 			for _, serverLang := range languages {
@@ -540,6 +541,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			} else {
 				out.w("    shell_commands:")
 				out.w("     - set -x")
+				out.w("     - export CC=clang")
 				if lang.Name == "csharp" || lang.Name == "fsharp" {
 					for _, flag := range dotnetPlatformFlags[ciPlatform] {
 						out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
@@ -580,6 +582,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		} else {
 			out.w("    shell_commands:")
 			out.w("     - set -x")
+			out.w("     - export CC=clang")
 		}
 
 		for _, testWorkspace := range findTestWorkspaceNames(dir) {
@@ -623,9 +626,9 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			out.w("	cd %s; \\", exampleDir)
 
 			if rule.IsTest {
-				out.w("	bazel --batch test --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch test --cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			} else {
-				out.w("	bazel --batch build --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch build --cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			}
 			out.ln()
 		}
@@ -656,7 +659,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 		out.w(".PHONY: %s", name)
 		out.w("%s:", name)
 		out.w("	cd %s; \\", path.Join(dir, "test_workspaces", testWorkspace))
-		out.w("	bazel --batch test --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
+		out.w("	bazel --batch test --cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
 		out.ln()
 	}
 

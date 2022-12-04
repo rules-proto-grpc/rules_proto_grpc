@@ -1,16 +1,7 @@
 package main
 
-var cWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
-
-rules_proto_grpc_{{ .Lang.Name }}_repos()
-
-load("@upb//bazel:workspace_deps.bzl", "upb_deps")
-
-upb_deps()`)
-
 var cProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//internal:compile.bzl", "proto_compile_attrs")
-load("//internal:filter_files.bzl", "filter_files")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
@@ -18,7 +9,7 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     name_pb = name + "_pb"
     {{ .Lang.Name }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.ArgsForwardingSnippet }}
+        {{ .Common.CompileArgsForwardingSnippet }}
     )
 
     # Filter files to sources and headers
@@ -50,8 +41,7 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
         local_defines = kwargs.get("local_defines"),
         nocopts = kwargs.get("nocopts"),
         strip_include_prefix = kwargs.get("strip_include_prefix"),
-        visibility = kwargs.get("visibility"),
-        tags = kwargs.get("tags"),
+        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -85,7 +75,7 @@ func makeC() *Language {
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
 				Plugins:          []string{"//c:upb_plugin"},
-				WorkspaceExample: cWorkspaceTemplate,
+				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates C protobuf ``.h`` & ``.c`` files",
 				Attrs:            compileRuleAttrs,
@@ -95,7 +85,7 @@ func makeC() *Language {
 				Name:             "c_proto_library",
 				Kind:             "proto",
 				Implementation:   cProtoLibraryRuleTemplate,
-				WorkspaceExample: cWorkspaceTemplate,
+				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     cProtoLibraryExampleTemplate,
 				Doc:              "Generates a C protobuf library using ``cc_library``, with dependencies linked",
 				Attrs:            cppLibraryRuleAttrs,

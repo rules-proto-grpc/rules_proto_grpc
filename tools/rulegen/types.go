@@ -103,10 +103,11 @@ type Attr struct {
 
 // Templating types
 type CommonTemplatingFields struct {
-	ArgsForwardingSnippet string
+	CompileArgsForwardingSnippet string
+	LibraryArgsForwardingSnippet string
 }
 
-var commonTemplatingFields = &CommonTemplatingFields{argsForwardingSnippet}
+var commonTemplatingFields = &CommonTemplatingFields{compileArgsForwardingSnippet, libraryArgsForwardingSnippet}
 
 type RuleTemplatingData struct {
 	Lang *Language

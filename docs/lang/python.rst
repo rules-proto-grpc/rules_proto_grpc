@@ -110,7 +110,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -209,7 +209,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -256,13 +256,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    grpc_extra_deps()
    
-   load("@rules_python//python:pip.bzl", "pip_install")
+   load("@rules_python//python:pip.bzl", "pip_parse")
    
-   pip_install(
+   pip_parse(
        name = "rules_proto_grpc_py3_deps",
        python_interpreter = "python3",
        requirements = "@rules_proto_grpc//python:requirements.txt",
    )
+   
+   load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
+   
+   install_deps()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -317,7 +321,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -416,7 +420,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -516,7 +520,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -562,13 +566,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    grpc_extra_deps()
    
-   load("@rules_python//python:pip.bzl", "pip_install")
+   load("@rules_python//python:pip.bzl", "pip_parse")
    
-   pip_install(
+   pip_parse(
        name = "rules_proto_grpc_py3_deps",
        python_interpreter = "python3",
        requirements = "@rules_proto_grpc//python:requirements.txt",
    )
+   
+   load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
+   
+   install_deps()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -624,7 +632,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false

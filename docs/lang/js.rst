@@ -13,10 +13,10 @@ Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.
    .. code-block:: json
 
       "dependencies": {
-        "@grpc/grpc-js": "1.6.7",
-        "google-protobuf": "3.21.0",
-        "grpc-tools": "1.11.2",
-        "grpc-web": "1.3.1",
+        "@grpc/grpc-js": "1.7.3",
+        "google-protobuf": "3.21.2",
+        "grpc-tools": "1.11.3",
+        "grpc-web": "1.4.2",
         "ts-protoc-gen": "0.15.0"
       }
 
@@ -131,7 +131,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -235,7 +235,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -341,7 +341,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -453,7 +453,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -572,7 +572,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
@@ -691,7 +691,7 @@ Attributes
      - ``string_list``
      - false
      - ``[]``
-     - A list of extra args to pass directly to protoc, not as plugin options
+     - A list of extra command line arguments to pass directly to protoc, not as plugin options
    * - ``extra_protoc_files``
      - ``label_list``
      - false
