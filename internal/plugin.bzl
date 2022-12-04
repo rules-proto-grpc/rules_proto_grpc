@@ -51,7 +51,7 @@ proto_plugin = rule(
             default = False,
         ),
         "env": attr.string_dict(
-            doc = "Sets the dictionary of environment variables to use when invoking protoc. Must be None if use_built_in_shell_environment is true.",
+            doc = "A dictionary of key-value environment variables to use when invoking protoc for this plugin. Must be empty if use_built_in_shell_environment is true",
             default = {},
         ),
         "extra_protoc_args": attr.string_list(

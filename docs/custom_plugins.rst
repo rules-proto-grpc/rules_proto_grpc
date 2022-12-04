@@ -124,6 +124,11 @@ API Reference
      - false
      - ``[]``
      - A list of extra command line arguments to pass directly to protoc, not as plugin options
+   * - ``extra_protoc_args``
+     - ``string_dict``
+     - false
+     - ``{}``
+     - A dictionary of key-value environment variables to use when invoking protoc for this plugin. Must be empty if use_built_in_shell_environment is true
    * - ``exclusions``
      - ``string_list``
      - false
