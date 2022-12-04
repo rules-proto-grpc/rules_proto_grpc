@@ -18,6 +18,7 @@ General
 - Updated ``bazel_skylib`` to 1.3.0
 - Added support for paths to proto files that contain spaces or other special characters
 - Added forwarding of all standard Bazel rule attributes for library macros
+- Added support for providing plugin-specific environment variables
 
 Buf
 ***

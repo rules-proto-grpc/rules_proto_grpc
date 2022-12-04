@@ -14,10 +14,11 @@
 
 ## Announcements 📣
 
-#### 2022/08/24 - Version 4.2.0
+#### 2022/12/04 - Version 4.3.0
 
-[Version 4.2.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.2.0),
-which contains a number of bug-fixes and dependency updates
+[Version 4.3.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.3.0),
+which contains support for more plugins features, fixes for proto paths containing special
+characters and updates to the core dependencies
 
 
 ## Usage
