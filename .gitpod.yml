@@ -1,0 +1,9 @@
+image:
+  file: .gitpod.Dockerfile
+
+jetbrains:
+  pycharm:
+    prebuilds:
+      version: stable
+    plugins:
+      - com.google.idea.bazel.ijwb
