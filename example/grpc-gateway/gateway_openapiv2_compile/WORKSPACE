@@ -33,7 +33,7 @@ go_register_toolchains(
     version = "1.17.1",
 )
 
-load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+load("@grpc_ecosystem_grpc_gateway_v2//:repositories.bzl", "go_repositories")
 
 go_repositories()
 
