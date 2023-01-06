@@ -177,7 +177,7 @@ load("//grpc-gateway:repositories.bzl", "gateway_repos")
 
 gateway_repos()
 
-load("@grpc_ecosystem_grpc_gateway_v2//:repositories.bzl", "go_repositories")
+load("@com_github_grpc_ecosystem_grpc_gateway_v2//:repositories.bzl", "go_repositories")
 
 go_repositories()
 

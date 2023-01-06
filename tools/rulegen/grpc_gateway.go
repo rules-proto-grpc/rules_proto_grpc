@@ -18,7 +18,7 @@ go_register_toolchains(
     version = "1.17.1",
 )
 
-load("@grpc_ecosystem_grpc_gateway_v2//:repositories.bzl", "go_repositories")
+load("@com_github_grpc_ecosystem_grpc_gateway_v2//:repositories.bzl", "go_repositories")
 
 go_repositories()
 
@@ -58,8 +58,8 @@ GATEWAY_DEPS = [
     "@org_golang_google_protobuf//proto:go_default_library",
     "@org_golang_google_grpc//grpclog:go_default_library",
     "@org_golang_google_grpc//metadata:go_default_library",
-    "@grpc_ecosystem_grpc_gateway_v2//runtime:go_default_library",
-    "@grpc_ecosystem_grpc_gateway_v2//utilities:go_default_library",
+    "@com_github_grpc_ecosystem_grpc_gateway_v2//runtime:go_default_library",
+    "@com_github_grpc_ecosystem_grpc_gateway_v2//utilities:go_default_library",
     "@go_googleapis//google/api:annotations_go_proto",
 ]`)
 
