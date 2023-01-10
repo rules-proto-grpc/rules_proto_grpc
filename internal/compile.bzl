@@ -41,12 +41,14 @@ proto_compile_attrs = {
     ),
 }
 
-def proto_compile_impl(ctx):
+def proto_compile_impl(ctx, options_override = None):
     """
     Common implementation function for lang_*_compile rules.
 
     Args:
         ctx: The Bazel rule execution context object.
+        options_override: A dictionary with either label or string keys and list of string
+            values. If specified, replaces the ctx.attr.options value.
 
     Returns:
         Providers:
@@ -59,6 +61,9 @@ def proto_compile_impl(ctx):
     # This is done to allow writing rules that can call proto_compile with mutable attributes,
     # such as in doc_template_compile
     options = ctx.attr.options
+    if options_override != None:
+        options = options_override
+
     extra_protoc_args = getattr(ctx.attr, "extra_protoc_args", [])
     extra_protoc_files = ctx.files.extra_protoc_files
 
@@ -108,7 +113,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     plugin_labels = [plugin.label for plugin in plugins]
     per_plugin_options = {
         # Dict of plugin label to options string list
-        Label(plugin_label): opts
+        _coerce_to_label(plugin_label): opts
         for plugin_label, opts in options.items()
         if plugin_label != "*"
     }
@@ -490,3 +495,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             runfiles = ctx.runfiles(transitive_files = all_outputs),
         ),
     ]
+
+def _coerce_to_label(label_or_string):
+    if type(label_or_string) == "Label":
+        return label_or_string
+    return Label(label_or_string)
