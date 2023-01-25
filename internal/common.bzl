@@ -1,42 +1,5 @@
 """Common generic rules used by rules_proto_grpc."""
 
-_rust_keywords = [
-    "as",
-    "break",
-    "const",
-    "continue",
-    "crate",
-    "else",
-    "enum",
-    "extern",
-    "false",
-    "fn",
-    "for",
-    "if",
-    "impl",
-    "let",
-    "loop",
-    "match",
-    "mod",
-    "move",
-    "mut",
-    "pub",
-    "ref",
-    "return",
-    "self",
-    "Self",
-    "static",
-    "struct",
-    "super",
-    "trait",
-    "true",
-    "type",
-    "unsafe",
-    "use",
-    "where",
-    "while",
-]
-
 _objc_upper_segments = {
     "url": "URL",
     "http": "HTTP",
@@ -99,19 +62,6 @@ def pascal_case(s):
 
     """
     return "".join([capitalize(part) for part in s.split("_")])
-
-def rust_keyword(s):
-    """
-    Check if arg is a rust keyword and append '_pb' if true.
-
-    Args:
-        s (string): The input string to be capitalized.
-
-    Returns:
-        (string): The appended string.
-
-    """
-    return s + "_pb" if s in _rust_keywords else s
 
 def python_path(s):
     """
@@ -209,10 +159,6 @@ def get_output_filename(src_file, pattern, proto_info):
             protopath_partitions[0],
             pascal_objc(protopath_partitions[2]),
         ]))
-    elif "{basename|rust_keyword}" in pattern:
-        filename = pattern.replace("{basename|rust_keyword}", rust_keyword(basename))
-    elif "{protopath|rust_keyword}" in pattern:
-        filename = pattern.replace("{basename|rust_keyword}", rust_keyword(protopath))
     else:
         filename += basename + pattern
 

@@ -6,7 +6,7 @@
 Rust
 ====
 
-Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `rust-protobuf <https://github.com/stepancheg/rust-protobuf>`_ and `grpc <https://github.com/stepancheg/grpc-rust>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_.
+Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `prost <https://github.com/tokio-rs/prost>`_ and `tonic <https://github.com/hyperium/tonic>`_. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Requires ``--experimental_proto_descriptor_sets_include_source_info`` to be set for the build.
 
 .. list-table:: Rules
    :widths: 1 2
@@ -14,26 +14,26 @@ Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries using `r
 
    * - Rule
      - Description
-   * - `rust_proto_compile`_
-     - Generates Rust protobuf ``.rs`` files
-   * - `rust_grpc_compile`_
-     - Generates Rust protobuf and gRPC ``.rs`` files
-   * - `rust_proto_library`_
-     - Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
-   * - `rust_grpc_library`_
-     - Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``
+   * - `rust_prost_proto_compile`_
+     - Generates Rust protobuf ``.rs`` files using prost
+   * - `rust_tonic_grpc_compile`_
+     - Generates Rust protobuf and gRPC ``.rs`` files using prost and tonic
+   * - `rust_prost_proto_library`_
+     - Generates a Rust prost protobuf library using ``rust_library`` from ``rules_rust``
+   * - `rust_tonic_grpc_library`_
+     - Generates a Rust prost protobuf and tonic gRPC library using ``rust_library`` from ``rules_rust``
 
-.. _rust_proto_compile:
+.. _rust_prost_proto_compile:
 
-rust_proto_compile
-------------------
+rust_prost_proto_compile
+------------------------
 
-Generates Rust protobuf ``.rs`` files
+Generates Rust protobuf ``.rs`` files using prost
 
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_proto_compile>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_prost_proto_compile>`__
 
 ``WORKSPACE``
 ^^^^^^^^^^^^^
@@ -59,19 +59,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_compile")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_prost_proto_compile")
    
-   rust_proto_compile(
+   rust_prost_proto_compile(
        name = "person_rust_proto",
        protos = ["@rules_proto_grpc//example/proto:person_proto"],
    )
    
-   rust_proto_compile(
+   rust_prost_proto_compile(
        name = "place_rust_proto",
        protos = ["@rules_proto_grpc//example/proto:place_proto"],
    )
    
-   rust_proto_compile(
+   rust_prost_proto_compile(
        name = "thing_rust_proto",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
@@ -79,7 +79,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 Attributes
 **********
 
-.. list-table:: Attributes for rust_proto_compile
+.. list-table:: Attributes for rust_prost_proto_compile
    :widths: 1 1 1 1 4
    :header-rows: 1
 
@@ -127,19 +127,20 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//rust:rust_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:rust_prost_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:rust_crate_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
 
-.. _rust_grpc_compile:
+.. _rust_tonic_grpc_compile:
 
-rust_grpc_compile
------------------
+rust_tonic_grpc_compile
+-----------------------
 
-Generates Rust protobuf and gRPC ``.rs`` files
+Generates Rust protobuf and gRPC ``.rs`` files using prost and tonic
 
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_grpc_compile>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_tonic_grpc_compile>`__
 
 ``WORKSPACE``
 ^^^^^^^^^^^^^
@@ -165,14 +166,14 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_compile")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_tonic_grpc_compile")
    
-   rust_grpc_compile(
+   rust_tonic_grpc_compile(
        name = "thing_rust_grpc",
        protos = ["@rules_proto_grpc//example/proto:thing_proto"],
    )
    
-   rust_grpc_compile(
+   rust_tonic_grpc_compile(
        name = "greeter_rust_grpc",
        protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
    )
@@ -180,7 +181,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 Attributes
 **********
 
-.. list-table:: Attributes for rust_grpc_compile
+.. list-table:: Attributes for rust_tonic_grpc_compile
    :widths: 1 1 1 1 4
    :header-rows: 1
 
@@ -228,20 +229,21 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//rust:rust_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
-- `@rules_proto_grpc//rust:grpc_rust_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:rust_prost_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:rust_tonic_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:rust_crate_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
 
-.. _rust_proto_library:
+.. _rust_prost_proto_library:
 
-rust_proto_library
-------------------
+rust_prost_proto_library
+------------------------
 
-Generates a Rust protobuf library using ``rust_library`` from ``rules_rust``
+Generates a Rust prost protobuf library using ``rust_library`` from ``rules_rust``
 
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_proto_library>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_prost_proto_library>`__
 
 ``WORKSPACE``
 ^^^^^^^^^^^^^
@@ -267,10 +269,10 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_proto_library")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_prost_proto_library")
    
-   rust_proto_library(
-       name = "proto_rust_proto",
+   rust_prost_proto_library(
+       name = "proto_rust_prost_proto",
        protos = [
            "@rules_proto_grpc//example/proto:person_proto",
            "@rules_proto_grpc//example/proto:place_proto",
@@ -281,7 +283,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 Attributes
 **********
 
-.. list-table:: Attributes for rust_proto_library
+.. list-table:: Attributes for rust_prost_proto_library
    :widths: 1 1 1 1 4
    :header-rows: 1
 
@@ -330,18 +332,28 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``prost_deps``
+     - ``label_list``
+     - false
+     - ``["//rust/crates:prost", "//rust/crates:prost-types"]``
+     - The prost dependencies that the rust library should depend on.
+   * - ``prost_derive_dep``
+     - ``label``
+     - false
+     - ``//rust/crates:prost-derive``
+     - The prost-derive dependency that the rust library should depend on.
 
-.. _rust_grpc_library:
+.. _rust_tonic_grpc_library:
 
-rust_grpc_library
------------------
+rust_tonic_grpc_library
+-----------------------
 
-Generates a Rust protobuf and gRPC library using ``rust_library`` from ``rules_rust``
+Generates a Rust prost protobuf and tonic gRPC library using ``rust_library`` from ``rules_rust``
 
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_grpc_library>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/rust/rust_tonic_grpc_library>`__
 
 ``WORKSPACE``
 ^^^^^^^^^^^^^
@@ -367,10 +379,10 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_grpc_library")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_tonic_grpc_library")
    
-   rust_grpc_library(
-       name = "greeter_rust_grpc",
+   rust_tonic_grpc_library(
+       name = "greeter_rust_tonic_grpc",
        protos = [
            "@rules_proto_grpc//example/proto:greeter_grpc",
            "@rules_proto_grpc//example/proto:thing_proto",
@@ -380,7 +392,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 Attributes
 **********
 
-.. list-table:: Attributes for rust_grpc_library
+.. list-table:: Attributes for rust_tonic_grpc_library
    :widths: 1 1 1 1 4
    :header-rows: 1
 
@@ -429,3 +441,18 @@ Attributes
      - false
      - ``[]``
      - List of labels to pass as deps attr to underlying lang_library rule
+   * - ``prost_deps``
+     - ``label_list``
+     - false
+     - ``["//rust/crates:prost", "//rust/crates:prost-types"]``
+     - The prost dependencies that the rust library should depend on.
+   * - ``prost_derive_dep``
+     - ``label``
+     - false
+     - ``//rust/crates:prost-derive``
+     - The prost-derive dependency that the rust library should depend on.
+   * - ``tonic_dep``
+     - ``label``
+     - false
+     - ``//rust/crates:tonic``
+     - The tonic dependency that the rust library should depend on.

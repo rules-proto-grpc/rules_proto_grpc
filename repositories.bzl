@@ -254,11 +254,9 @@ VERSIONS = {
 
     # Rust
     "rules_rust": {
-        "type": "github",
-        "org": "bazelbuild",
-        "repo": "rules_rust",
-        "ref": "0.14.0",
-        "sha256": "2625a71dafa42fb63348bcb04498cb9e83be6ea0e99e0359863345dc1cfd65fb",
+        "type": "http",
+        "urls": ["https://github.com/bazelbuild/rules_rust/releases/download/0.16.1/rules_rust-v0.16.1.tar.gz"],
+        "sha256": "aaaa4b9591a5dad8d8907ae2dbe6e0eb49e6314946ce4c7149241648e56a1277",
     },
 
     # Scala

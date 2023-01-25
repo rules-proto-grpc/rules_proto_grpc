@@ -546,10 +546,10 @@ tasks:
     shell_commands:
      - set -x
      - export CC=clang
-     - make rust_rust_proto_compile_example
-     - make rust_rust_grpc_compile_example
-     - make rust_rust_proto_library_example
-     - make rust_rust_grpc_library_example
+     - make rust_rust_prost_proto_compile_example
+     - make rust_rust_tonic_grpc_compile_example
+     - make rust_rust_prost_proto_library_example
+     - make rust_rust_tonic_grpc_library_example
 
   scala_ubuntu2004_examples:
     name: scala examples
