@@ -1,8 +1,20 @@
-load("//rust:rust_grpc_library.bzl", "GRPC_DEPS", "rust_grpc_library")
+load("//rust:rust_prost_proto_library.bzl", "rust_prost_proto_library")
+load("//rust:rust_tonic_grpc_library.bzl", "rust_tonic_grpc_library")
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 
-rust_grpc_library(
-    name = "routeguide",
+rust_prost_proto_library(
+    name = "prost_test",
+    options = {
+        "//rust:rust_prost_plugin": ["type_attribute=.routeguide.Point=#[derive(Eq\\,Hash)]"],
+    },
+    protos = ["//example/proto:routeguide_proto"],
+)
+
+rust_tonic_grpc_library(
+    name = "proto",
+    options = {
+        "//rust:rust_prost_plugin": ["type_attribute=.routeguide.Point=#[derive(Eq\\,Hash)]"],
+    },
     protos = ["//example/proto:routeguide_proto"],
 )
 
@@ -12,24 +24,35 @@ rust_binary(
         "client.rs",
     ],
     data = ["//example/proto:routeguide_features"],
-    edition = "2018",
+    edition = "2021",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
-        ":routeguide",
-        "@rules_proto_grpc//rust/raze:rand",
-    ] + GRPC_DEPS,
+        ":proto",
+        "//rust/crates:async-stream",
+        "//rust/crates:futures",
+        "//rust/crates:rand",
+        "//rust/crates:tokio",
+        "//rust/crates:tonic",
+    ],
 )
 
 rust_binary(
     name = "server",
     srcs = [
+        "data.rs",
         "server.rs",
     ],
     data = ["//example/proto:routeguide_features"],
-    edition = "2018",
+    edition = "2021",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
-        ":routeguide",
-        "@rules_proto_grpc//rust/raze:json",
-    ] + GRPC_DEPS,
+        ":proto",
+        "//rust/crates:async-stream",
+        "//rust/crates:futures",
+        "//rust/crates:serde",
+        "//rust/crates:serde_json",
+        "//rust/crates:tokio",
+        "//rust/crates:tokio-stream",
+        "//rust/crates:tonic",
+    ],
 )
