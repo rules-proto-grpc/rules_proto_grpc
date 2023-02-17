@@ -1,0 +1,11 @@
+load("@rules_proto_grpc//kotlin:defs.bzl", "kotlin_grpc_compile")
+
+kotlin_grpc_compile(
+    name = "thing_kotlin_grpc",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
+
+kotlin_grpc_compile(
+    name = "greeter_kotlin_grpc",
+    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+)

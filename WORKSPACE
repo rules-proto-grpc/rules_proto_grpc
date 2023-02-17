@@ -21,6 +21,54 @@ rules_proto_dependencies()
 rules_proto_toolchains()
 
 #
+# Java
+#
+load("//java:repositories.bzl", "java_repos")
+
+java_repos()
+
+#
+# Kotlin-JVM
+#
+#
+# Load rules_kotlin/com_github_grpc_grpc_kotlin before #grpc_extra_deps, as it depends on an older version.
+# Also so we can get the maven_install artifacts/override_targets.
+#
+load("//kotlin:repositories.bzl", "kotlin_repos")
+
+kotlin_repos()
+
+load("@io_bazel_rules_kotlin//kotlin:repositories.bzl", "kotlin_repositories")
+
+kotlin_repositories()
+
+load("@io_bazel_rules_kotlin//kotlin:core.bzl", "kt_register_toolchains")
+
+kt_register_toolchains()
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
+load("@com_github_grpc_grpc_kotlin//:repositories.bzl", "IO_GRPC_GRPC_KOTLIN_ARTIFACTS", "IO_GRPC_GRPC_KOTLIN_OVERRIDE_TARGETS", "grpc_kt_repositories")
+
+maven_install(
+    artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS + IO_GRPC_GRPC_KOTLIN_ARTIFACTS,
+    generate_compat_repositories = True,
+    override_targets = dict(IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS.items() +
+                            IO_GRPC_GRPC_KOTLIN_OVERRIDE_TARGETS.items()),
+    repositories = [
+        "https://repo.maven.apache.org/maven2/",
+    ],
+)
+
+load("@maven//:compat.bzl", "compat_repositories")
+
+compat_repositories()
+
+grpc_java_repositories()
+
+grpc_kt_repositories()
+
+#
 # Android
 #
 # Deferred until after Go and C++
@@ -90,24 +138,6 @@ grpc_extra_deps()
 load("//android:repositories.bzl", "android_repos")
 
 android_repos()
-
-load("@rules_jvm_external//:defs.bzl", "maven_install")
-load("@io_grpc_grpc_java//:repositories.bzl", "IO_GRPC_GRPC_JAVA_ARTIFACTS", "IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS", "grpc_java_repositories")
-
-maven_install(
-    artifacts = IO_GRPC_GRPC_JAVA_ARTIFACTS,
-    generate_compat_repositories = True,
-    override_targets = IO_GRPC_GRPC_JAVA_OVERRIDE_TARGETS,
-    repositories = [
-        "https://repo.maven.apache.org/maven2/",
-    ],
-)
-
-load("@maven//:compat.bzl", "compat_repositories")
-
-compat_repositories()
-
-grpc_java_repositories()
 
 load("@build_bazel_rules_android//android:sdk_repository.bzl", "android_sdk_repository")
 
@@ -180,15 +210,6 @@ gateway_repos()
 load("@com_github_grpc_ecosystem_grpc_gateway_v2//:repositories.bzl", "go_repositories")
 
 go_repositories()
-
-#
-# Java
-#
-load("//java:repositories.bzl", "java_repos")
-
-java_repos()
-
-# grpc_java_repositories already called above in android
 
 #
 # JavaScript

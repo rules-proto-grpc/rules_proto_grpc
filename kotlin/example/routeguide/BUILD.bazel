@@ -1,0 +1,46 @@
+# Slightly updated routeguide example from https://github.com/grpc/grpc-kotlin
+
+load("@io_bazel_rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary")
+load("//kotlin:defs.bzl", "kotlin_grpc_library")
+
+proto_library(
+    name = "route_guide_proto",
+    srcs = ["route_guide.proto"],
+    deps = ["@com_google_protobuf//:duration_proto"],
+)
+
+kotlin_grpc_library(
+    name = "routeguide",
+    protos = [":route_guide_proto"],
+)
+
+kt_jvm_binary(
+    name = "client",
+    srcs = [
+        "io/grpc/examples/routeguidekt/Database.kt",
+        "io/grpc/examples/routeguidekt/Points.kt",
+        "io/grpc/examples/routeguidekt/RouteGuideClient.kt",
+    ],
+    main_class = "io.grpc.examples.routeguide.RouteGuideClient",
+    resources = ["route_guide_db.json"],
+    visibility = ["//example/routeguide:__pkg__"],
+    deps = [
+        ":routeguide",
+        "@maven//:org_jetbrains_kotlinx_kotlinx_coroutines_core_jvm",
+    ],
+)
+
+kt_jvm_binary(
+    name = "server",
+    srcs = [
+        "io/grpc/examples/routeguidekt/Database.kt",
+        "io/grpc/examples/routeguidekt/Points.kt",
+        "io/grpc/examples/routeguidekt/RouteGuideServer.kt",
+    ],
+    main_class = "io.grpc.examples.routeguide.RouteGuideServer",
+    resources = ["route_guide_db.json"],
+    visibility = ["//example/routeguide:__pkg__"],
+    deps = [
+        ":routeguide",
+    ],
+)

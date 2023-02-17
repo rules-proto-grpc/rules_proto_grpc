@@ -38,7 +38,7 @@ import java.util.logging.Logger;
  * Sample client code that makes gRPC calls to the server.
  */
 public class RouteGuideClient {
-  private static final Logger logger = Logger.getLogger(RouteGuideClient.class.getName());
+  private static final Logger logger = Logger.getLogger(io.grpc.examples.routeguidekt.RouteGuideClient.class.getName());
 
   private final ManagedChannel channel;
   private final RouteGuideBlockingStub blockingStub;
@@ -268,7 +268,7 @@ public class RouteGuideClient {
       port = Integer.parseInt(serverPort);
     }
 
-    RouteGuideClient client = new RouteGuideClient("localhost", port);
+    io.grpc.examples.routeguidekt.RouteGuideClient client = new io.grpc.examples.routeguidekt.RouteGuideClient("localhost", port);
     try {
       // Looking for a valid feature
       client.getFeature(409146138, -746188906);
