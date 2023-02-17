@@ -1,0 +1,15 @@
+load("//:defs.bzl", "proto_plugin")
+
+proto_plugin(
+    name = "kotlin_plugin",
+    out = "{name}.jar",
+    protoc_plugin_name = "kotlin",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_kotlin_plugin",
+    out = "{name}_grpc.jar",
+    tool = "@com_github_grpc_grpc_kotlin//compiler/src/main/java/io/grpc/kotlin/generator:GeneratorRunner",
+    visibility = ["//visibility:public"],
+)

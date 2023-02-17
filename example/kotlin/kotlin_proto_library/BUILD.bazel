@@ -1,0 +1,18 @@
+load("@rules_proto_grpc//kotlin:defs.bzl", "kotlin_proto_library")
+
+kotlin_proto_library(
+    name = "person_kotlin_proto",
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    deps = ["place_kotlin_proto"],
+)
+
+kotlin_proto_library(
+    name = "place_kotlin_proto",
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    deps = ["thing_kotlin_proto"],
+)
+
+kotlin_proto_library(
+    name = "thing_kotlin_proto",
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)
