@@ -43,7 +43,7 @@ import java.util.logging.Logger;
  * A sample gRPC server that serve the RouteGuide (see route_guide.proto) service.
  */
 public class RouteGuideServer {
-  private static final Logger logger = Logger.getLogger(RouteGuideServer.class.getName());
+  private static final Logger logger = Logger.getLogger(io.grpc.examples.routeguidekt.RouteGuideServer.class.getName());
 
   private final int port;
   private final Server server;
@@ -74,7 +74,7 @@ public class RouteGuideServer {
       public void run() {
         // Use stderr here since the logger may has been reset by its JVM shutdown hook.
         System.err.println("*** shutting down gRPC server since JVM is shutting down");
-        RouteGuideServer.this.stop();
+        io.grpc.examples.routeguidekt.RouteGuideServer.this.stop();
         System.err.println("*** server shut down");
       }
     });
@@ -105,7 +105,7 @@ public class RouteGuideServer {
     if (serverPort != null && !serverPort.isEmpty()) {
       port = Integer.parseInt(serverPort);
     }
-    RouteGuideServer server = new RouteGuideServer(port);
+    io.grpc.examples.routeguidekt.RouteGuideServer server = new io.grpc.examples.routeguidekt.RouteGuideServer(port);
     server.start();
     server.blockUntilShutdown();
   }

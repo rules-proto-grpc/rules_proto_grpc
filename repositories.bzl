@@ -204,6 +204,21 @@ VERSIONS = {
         "sha256": "6e9f2b94ecb6aa7e7ec4a0fbf882b226ff5257581163e88bf70ae521555ad271",
     },
 
+    # Kotlin
+    # Use .tar.gz in release assets, not the Github generated source .tar.gz
+    "io_bazel_rules_kotlin": {
+        "type": "http",
+        "urls": ["https://github.com/bazelbuild/rules_kotlin/releases/download/v1.8-RC-1/rules_kotlin_release.tgz"],
+        "sha256": "1779628569eb3b0fe97a3fb5c3ed8090e6503e425600b401c7b1afb6b23a3098",
+    },
+    "com_github_grpc_grpc_kotlin": {
+        "type": "github",
+        "org": "grpc",
+        "repo": "grpc-kotlin",
+        "ref": "v1.3.0",
+        "sha256": "466d33303aac7e825822b402efa3dcfddd68e6f566ed79443634180bb75eab6e",
+    },
+
     # JavaScript
     # Use .tar.gz in release assets, not the Github generated source .tar.gz
     "build_bazel_rules_nodejs": {
@@ -584,6 +599,15 @@ def io_grpc_grpc_java(**kwargs):
 
 def rules_jvm_external(**kwargs):
     _generic_dependency("rules_jvm_external", **kwargs)
+
+#
+# Kotlin
+#
+def io_bazel_rules_kotlin(**kwargs):
+    _generic_dependency("io_bazel_rules_kotlin", **kwargs)
+
+def com_github_grpc_grpc_kotlin(**kwargs):
+    _generic_dependency("com_github_grpc_grpc_kotlin", **kwargs)
 
 #
 # JavaScript

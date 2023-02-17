@@ -17,6 +17,8 @@
 package io.grpc.examples.routeguide;
 
 import com.google.protobuf.util.JsonFormat;
+import io.grpc.examples.routeguidekt.RouteGuideServer;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
