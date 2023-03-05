@@ -42,6 +42,7 @@ func makeD() *Language {
 
 .. note:: These rules use the protoc-gen-d plugin, which only supports proto3 .proto files.`),
 		Flags: commonLangFlags,
+		SkipTestPlatforms: []string{"windows", "macos"},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "d_proto_compile",
@@ -52,7 +53,6 @@ func makeD() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates D protobuf ``.d`` files",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows", "macos"},
 			},
 // 			&Rule{
 // 				Name:             "d_grpc_compile",
@@ -63,7 +63,6 @@ func makeD() *Language {
 // 				BuildExample:     grpcCompileExampleTemplate,
 // 				Doc:              "Generates D protobuf and gRPC ``.d`` files",
 // 				Attrs:            libraryRuleAttrs,
-// 				SkipTestPlatforms: []string{"windows", "macos"},
 // 			},
 			&Rule{
 				Name:             "d_proto_library",
@@ -73,7 +72,6 @@ func makeD() *Language {
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a D protobuf library using ``d_library`` from ``rules_d``",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows", "macos"},
 			},
 // 			&Rule{
 // 				Name:             "d_grpc_library",
@@ -83,7 +81,6 @@ func makeD() *Language {
 // 				BuildExample:     grpcLibraryExampleTemplate,
 // 				Doc:              "Generates a D protobuf and gRPC library using ``d_library`` from ``rules_d``",
 // 				Attrs:            libraryRuleAttrs,
-// 				SkipTestPlatforms: []string{"windows", "macos"},
 // 			},
 		},
 	}
