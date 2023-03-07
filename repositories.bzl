@@ -573,7 +573,7 @@ def bazel_gazelle(**kwargs):
 #
 # gRPC gateway
 #
-def grpc_ecosystem_grpc_gateway(**kwargs):
+def com_github_grpc_ecosystem_grpc_gateway_v2(**kwargs):
     _generic_dependency("com_github_grpc_ecosystem_grpc_gateway_v2", **kwargs)
 
 #

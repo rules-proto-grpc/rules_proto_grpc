@@ -2,10 +2,10 @@
 
 load(
     "//:repositories.bzl",
-    "grpc_ecosystem_grpc_gateway",
+    "com_github_grpc_ecosystem_grpc_gateway_v2",
 )
 load("//go:repositories.bzl", "go_repos")
 
 def gateway_repos(**kwargs):  # buildifier: disable=function-docstring
     go_repos(**kwargs)
-    grpc_ecosystem_grpc_gateway(**kwargs)
+    com_github_grpc_ecosystem_grpc_gateway_v2(**kwargs)
