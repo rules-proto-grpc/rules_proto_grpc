@@ -180,7 +180,7 @@ VERSIONS = {
     },
 
     # grpc-gateway
-    "grpc_ecosystem_grpc_gateway": {
+    "com_github_grpc_ecosystem_grpc_gateway_v2": {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
@@ -574,7 +574,7 @@ def bazel_gazelle(**kwargs):
 # gRPC gateway
 #
 def grpc_ecosystem_grpc_gateway(**kwargs):
-    _generic_dependency("grpc_ecosystem_grpc_gateway", **kwargs)
+    _generic_dependency("com_github_grpc_ecosystem_grpc_gateway_v2", **kwargs)
 
 #
 # Java

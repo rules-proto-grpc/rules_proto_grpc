@@ -37,7 +37,7 @@ load("@rules_proto_grpc//grpc-gateway:repositories.bzl", rules_proto_grpc_gatewa
 
 rules_proto_grpc_gateway_repos()
 
-load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+load("@com_github_grpc_ecosystem_grpc_gateway_v2//:repositories.bzl", "go_repositories")
 
 go_repositories()
 
