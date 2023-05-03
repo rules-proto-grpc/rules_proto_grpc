@@ -177,7 +177,7 @@ load("//grpc-gateway:repositories.bzl", "gateway_repos")
 
 gateway_repos()
 
-load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+load("@com_github_grpc_ecosystem_grpc_gateway_v2//:repositories.bzl", "go_repositories")
 
 go_repositories()
 
@@ -235,7 +235,7 @@ load("@rules_python//python:pip.bzl", "pip_parse")
 pip_parse(
     name = "rules_proto_grpc_py3_deps",
     python_interpreter = "python3",
-    requirements = "@rules_proto_grpc//python:requirements.txt",
+    requirements_lock = "@rules_proto_grpc//python:requirements.txt",
 )
 
 load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")

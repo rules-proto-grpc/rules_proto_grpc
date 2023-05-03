@@ -291,6 +291,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             extra_protoc_args = extra_protoc_args,
         )
         args = ctx.actions.args()
+        args.set_param_file_format("multiline")
+        args.use_param_file("@%s", use_always = False)
         args.add_all(args_list)
 
         # Add import roots and files if required by plugin

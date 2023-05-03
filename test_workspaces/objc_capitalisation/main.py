@@ -10,6 +10,8 @@ expected = {
     'objc_lib/folder/DashesDemo.pbobjc.h',
     'objc_lib/folder/NestedDemo.pbobjc.m',
     'objc_lib/folder/NestedDemo.pbobjc.h',
+    'objc_lib/folder/Vector3F.pbobjc.m',
+    'objc_lib/folder/Vector3F.pbobjc.h',
 }
 
 if os.name == 'nt':

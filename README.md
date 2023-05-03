@@ -14,6 +14,11 @@
 
 ## Announcements 📣
 
+#### 2023/05/03 - Version 4.4.0
+
+[Version 4.4.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.4.0),
+which mainly contains fixes for build edge-cases and wider compatibility
+
 #### 2022/12/04 - Version 4.3.0
 
 [Version 4.3.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.3.0),

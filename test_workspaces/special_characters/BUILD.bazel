@@ -8,9 +8,9 @@ package(default_visibility = ["//visibility:private"])
 
 proto_library(
     name = "proto_lib",
-    srcs = ["path-with-special-chars/a b\"!/demo.proto"],
+    srcs = ["path-with-special-chars/a b!/demo.proto"],
     import_prefix = "c d^*",
-    strip_import_prefix = "path-with-special-chars/a b\"!",
+    strip_import_prefix = "path-with-special-chars/a b!",
 )
 
 cpp_proto_library(

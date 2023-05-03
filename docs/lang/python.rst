@@ -261,7 +261,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    pip_parse(
        name = "rules_proto_grpc_py3_deps",
        python_interpreter = "python3",
-       requirements = "@rules_proto_grpc//python:requirements.txt",
+       requirements_lock = "@rules_proto_grpc//python:requirements.txt",
    )
    
    load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
@@ -571,7 +571,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    pip_parse(
        name = "rules_proto_grpc_py3_deps",
        python_interpreter = "python3",
-       requirements = "@rules_proto_grpc//python:requirements.txt",
+       requirements_lock = "@rules_proto_grpc//python:requirements.txt",
    )
    
    load("@rules_proto_grpc_py3_deps//:requirements.bzl", "install_deps")
