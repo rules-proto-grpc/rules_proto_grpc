@@ -12,6 +12,7 @@ proto_library(
         "demo.proto",
         "folder/dashes-demo.proto",
         "folder/nested_demo.proto",
+        "folder/vector3f.proto",
     ],
 )
 
