@@ -679,7 +679,7 @@ http_archive(
     name = "rules_proto_grpc",
     sha256 = "%s",
     strip_prefix = "rules_proto_grpc-%s",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/%s.tar.gz"],
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/%s/rules_proto_grpc-%s.tar.gz"],
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
@@ -693,7 +693,7 @@ load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_
 rules_proto_dependencies()
 
 rules_proto_toolchains()
-`, sha256, ref, ref)
+`, sha256, ref, ref, ref)
 	out.MustWrite(filepath.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
 }
 
