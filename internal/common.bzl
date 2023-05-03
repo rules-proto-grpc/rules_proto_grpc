@@ -59,8 +59,8 @@ def pascal_objc(s):
     """
     Convert pascal_case -> PascalCase
 
-    Objective C uses pascal case, but there are e exceptions that it uppercases
-    the entire segment: url, http, and https.
+    Objective C uses pascal case, but there are exceptions that it uppercases.
+    For example, it will uppercase the words "url", "http", and "https".
 
     https://github.com/protocolbuffers/protobuf/blob/54176b26a9be6c9903b375596b778f51f5947921/src/google/protobuf/compiler/objectivec/objectivec_helpers.cc#L91
 
@@ -78,14 +78,50 @@ def pascal_objc(s):
     s = s.replace("-", "_")
 
     segments = []
-    for segment in s.split("_"):
+    current = ""
+    last_char_was_number = False
+    last_char_was_lower = False
+    last_char_was_upper = False
+    for char in s.elems():
+        if char.isdigit():
+            if last_char_was_number:
+                segments.append(current)
+                current = ""
+            current += char
+            last_char_was_number = True
+            last_char_was_lower = False
+            last_char_was_upper = False
+        elif char.islower():
+            if not last_char_was_lower and not last_char_was_upper:
+                segments.append(current)
+                current = ""
+            current += char
+            last_char_was_number = False
+            last_char_was_lower = True
+            last_char_was_upper = False
+        elif char.isupper():
+            if not last_char_was_upper:
+                segments.append(current)
+                current = ""
+            current += char.lower()
+            last_char_was_number = False
+            last_char_was_lower = False
+            last_char_was_upper = True
+        else:
+            last_char_was_number = False
+            last_char_was_lower = False
+            last_char_was_upper = False
+    segments.append(current)
+
+    new_segments = []
+    for segment in segments:
         repl = _objc_upper_segments.get(segment)
         if repl:
             segment = repl
         else:
             segment = capitalize(segment)
-        segments.append(segment)
-    return "".join(segments)
+        new_segments.append(segment)
+    return "".join(new_segments)
 
 def pascal_case(s):
     """
