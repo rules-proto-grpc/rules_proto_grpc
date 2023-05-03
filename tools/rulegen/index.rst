@@ -94,7 +94,7 @@ notified of new releases, you can use GitHub's 'Watch Releases Only' on the repo
        name = "rules_proto_grpc",
        sha256 = "{{ .Sha256 }}",
        strip_prefix = "rules_proto_grpc-{{ .Ref }}",
-       urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/{{ .Ref }}.tar.gz"],
+       urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/{{ .Ref }}/rules_proto_grpc-{{ .Ref }}.tar.gz"],
    )
 
    load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
