@@ -76,7 +76,7 @@ func main() {
 		&cli.StringFlag{
 			Name:  "github_url",
 			Usage: "URL for github download",
-			Value: "https://github.com/rules-proto-grpc/rules_proto_grpc/archive/{ref}.tar.gz",
+			Value: "https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/{ref}/rules_proto_grpc-{ref}.tar.gz",
 		},
 		&cli.StringFlag{
 			Name:  "available_tests",
@@ -107,7 +107,7 @@ func action(c *cli.Context) error {
 
 	// Autodetermine sha256 if we have a real commit and templated sha256 value
 	if ref != "{GIT_COMMIT_ID}" && sha256 == "{ARCHIVE_TAR_GZ_SHA256}" {
-		sha256 = mustGetSha256(strings.Replace(githubURL, "{ref}", ref, 1))
+		sha256 = mustGetSha256(strings.ReplaceAll(githubURL, "{ref}", ref))
 	}
 
 	languages := []*Language{
