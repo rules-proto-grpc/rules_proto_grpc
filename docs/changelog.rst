@@ -6,6 +6,40 @@
 Changelog
 =========
 
+4.4.0
+-----
+
+General
+*******
+
+- Increased minimum supported Bazel version from 5.0.0 to 5.3.0.
+  `#230 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/230>`__
+- Added support for param file for excess arguments, which allows for longer commands lines without
+  failure
+- Fixed Windows incompatibility due to test workspace containing quote character in path
+- The `proto_compile` function is now exported in the public `defs.bzl` for use in external rules
+- Added static release assets generation, which will change the format of the download URL to use in
+  your WORKSPACE. See the sample installation docs for the new URL
+
+Go
+**
+
+- Updated ``github.com/envoyproxy/protoc-gen-validate`` to 1.0.0
+
+grpc-gateway
+************
+
+-  **WORKSPACE update needed**: Renamed ``grpc-gateway`` repository name from
+  ``grpc_ecosystem_grpc_gateway`` to ``com_github_grpc_ecosystem_grpc_gateway_v2``, to match the
+  naming used by Gazelle. You may need to update your WORKSPACE file to use the new name
+
+Objective-C
+***********
+
+- Fixed expected naming of output files for proto files containing numbers in file name.
+  `#253 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/253>`__
+
+
 4.3.0
 -----
 
