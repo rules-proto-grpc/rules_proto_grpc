@@ -33,8 +33,9 @@ def cpp_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Create cpp library
     cc_library(
         name = name,
-        srcs = [name_pb],
+        srcs = [name_pb + "_srcs"],
         deps = GRPC_DEPS + kwargs.get("deps", []),
+        hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         alwayslink = kwargs.get("alwayslink"),
         copts = kwargs.get("copts"),
