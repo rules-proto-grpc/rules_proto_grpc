@@ -168,8 +168,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.36.0",
-        "sha256": "667aa901ff13d19b2ed56534f8d4a99903534e7a65be24264c7f182cf0af3d7b",
+        "ref": "v0.39.1",
+        "sha256": "473a064d502e89d11c497a59f9717d1846e01515a3210bd169f22323161c076e",
     },
     "bazel_gazelle": {
         "type": "github",
