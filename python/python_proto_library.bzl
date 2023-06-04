@@ -22,6 +22,7 @@ def python_proto_library(name, **kwargs):
         name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
+        data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         **{
             k: v
