@@ -9,6 +9,7 @@ proto_plugin(
     ],
     options = ["paths=source_relative"],
     outputs = ["{protopath}.pb.gw.go"],
+    separate_options_flag = True,
     tool = "@com_github_grpc_ecosystem_grpc_gateway_v2//protoc-gen-grpc-gateway",
     visibility = ["//visibility:public"],
 )
@@ -23,6 +24,7 @@ proto_plugin(
     quirks = [
         "QUIRK_DIRECT_MODE",
     ],
+    separate_options_flag = True,
     tool = "@com_github_grpc_ecosystem_grpc_gateway_v2//protoc-gen-openapiv2",
     visibility = ["//visibility:public"],
 )
