@@ -15,9 +15,9 @@ import (
 )
 
 var defaultPlatforms = []string{"linux", "windows", "macos"}
-var ciPlatforms = []string{"ubuntu2004", "windows", "macos"}
+var ciPlatforms = []string{"ubuntu2204", "windows", "macos"}
 var ciPlatformsMap = map[string][]string{
-	"linux":   []string{"ubuntu2004"},
+	"linux":   []string{"ubuntu2204"},
 	"windows": []string{"windows"},
 	"macos":   []string{"macos"},
 }
@@ -25,7 +25,7 @@ var ciPlatformsMap = map[string][]string{
 // https://github.com/bazelbuild/rules_dotnet/issues/225
 // TODO: Remove if becomes unnecessary
 var dotnetPlatformFlags = map[string][]string{
-	"ubuntu2004": []string{
+	"ubuntu2204": []string{
 		"--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101",
 		"--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101",
 	},
