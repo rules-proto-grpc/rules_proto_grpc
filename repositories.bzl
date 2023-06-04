@@ -15,8 +15,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_proto",
-        "ref": "5.3.0-21.5",
-        "sha256": "80d3a4ec17354cccc898bfe32118edd934f851b03029d63ef3fc7c8663a7415c",
+        "ref": "5.3.0-21.7",
+        "sha256": "dc3fb206a2cb3441b485eb1e423165b231235a1ea9b031b4433cf7bc1fa460dd",
     },
     "com_google_protobuf": {
         "type": "github",
