@@ -33,7 +33,7 @@ Full documentation for the current and previous versions [can be found here](htt
 - [Overview](https://rules-proto-grpc.com/en/latest/)
 - [Installation](https://rules-proto-grpc.com/en/latest/#installation)
 - [Example Usage](https://rules-proto-grpc.com/en/latest/example.html)
-- [Developers](https://rules-proto-grpc.com/en/latest/developers.html)
+- [Custom Plugins](https://rules-proto-grpc.com/en/latest/custom_plugins.html)
 - [Changelog](https://rules-proto-grpc.com/en/latest/changelog.html)
 
 
