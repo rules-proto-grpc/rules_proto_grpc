@@ -248,8 +248,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelruby",
         "repo": "rules_ruby",
-        "ref": "v0.6.0",
-        "sha256": "5035393cb5043d49ca9de78acb9e8c8622a193f6463a57ad02383a622b6dc663",
+        "ref": "cc2f5ce961f7fa34557264dd05c7597e634f31e1",
+        "sha256": "cf3c7d3c1e032c804e7f85e1c38e7f16cf50cb1353736e4ef69e3b63059d305f",
     },
 
     # Rust
