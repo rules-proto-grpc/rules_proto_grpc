@@ -53,6 +53,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
+        data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         {{ .Common.LibraryArgsForwardingSnippet }}
     )
@@ -78,6 +79,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
+        data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         {{ .Common.LibraryArgsForwardingSnippet }}
     )
@@ -106,6 +108,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         deps = [
             "@com_google_protobuf//:protobuf_python",
         ] + GRPC_DEPS + kwargs.get("deps", []),
+        data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         {{ .Common.LibraryArgsForwardingSnippet }}
     )

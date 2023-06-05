@@ -7,7 +7,7 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 MINIMUM_BAZEL_VERSION = "5.3.0"
 ENABLE_VERSION_NAGS = False
 PROTOBUF_VERSION = "21.10"  # When updating, also update protobuf-javascript, JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
-GRPC_VERSION = "1.51.0"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
+GRPC_VERSION = "1.54.1"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
 BUF_VERSION = "v1.9.0"
 VERSIONS = {
     # Core
@@ -15,8 +15,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_proto",
-        "ref": "5.3.0-21.5",
-        "sha256": "80d3a4ec17354cccc898bfe32118edd934f851b03029d63ef3fc7c8663a7415c",
+        "ref": "5.3.0-21.7",
+        "sha256": "dc3fb206a2cb3441b485eb1e423165b231235a1ea9b031b4433cf7bc1fa460dd",
     },
     "com_google_protobuf": {
         "type": "github",
@@ -30,7 +30,7 @@ VERSIONS = {
         "org": "grpc",
         "repo": "grpc",
         "ref": "v{}".format(GRPC_VERSION),
-        "sha256": "7f42363711eb483a0501239fd5522467b31d8fe98d70d7867c6ca7b52440d828",
+        "sha256": "79e3ff93f7fa3c8433e2165f2550fa14889fce147c15d9828531cbfc7ad11e01",
     },
     "zlib": {
         "type": "http",
@@ -168,8 +168,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.36.0",
-        "sha256": "667aa901ff13d19b2ed56534f8d4a99903534e7a65be24264c7f182cf0af3d7b",
+        "ref": "v0.39.1",
+        "sha256": "473a064d502e89d11c497a59f9717d1846e01515a3210bd169f22323161c076e",
     },
     "bazel_gazelle": {
         "type": "github",
@@ -194,7 +194,7 @@ VERSIONS = {
         "org": "grpc",
         "repo": "grpc-java",
         "ref": "v{}".format(GRPC_VERSION),
-        "sha256": "3762fd9a1045aa83d9a967840da142a1558565b76b470860282a1126e162799b",
+        "sha256": "98c32df8a878cbca5a6799922d28e9df93a4d5607316e0e3f8269a5886d9e429",
     },
     "rules_jvm_external": {
         "type": "github",
@@ -248,8 +248,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelruby",
         "repo": "rules_ruby",
-        "ref": "v0.6.0",
-        "sha256": "5035393cb5043d49ca9de78acb9e8c8622a193f6463a57ad02383a622b6dc663",
+        "ref": "cc2f5ce961f7fa34557264dd05c7597e634f31e1",
+        "sha256": "cf3c7d3c1e032c804e7f85e1c38e7f16cf50cb1353736e4ef69e3b63059d305f",
     },
 
     # Rust

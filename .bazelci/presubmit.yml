@@ -1,14 +1,15 @@
 ---
 tasks:
-  main_ubuntu2004:
+  main_ubuntu2204:
     name: build & test all
-    platform: ubuntu2004
+    platform: ubuntu2204
     environment:
       CC: clang
     build_flags:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
     - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//buf/..."
     - "//c/..."
@@ -30,6 +31,7 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_6.0.101"
     - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -110,6 +112,7 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
     - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//buf/..."
     - "//c/..."
@@ -132,6 +135,7 @@ tasks:
     - "--host_platform=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
     - "--platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_6.0.101"
     - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     test_targets:
     - "//example/routeguide:cpp_cpp"
     - "//example/routeguide:cpp_csharp"
@@ -205,9 +209,9 @@ tasks:
     - "//example/routeguide:scala_python"
     - "//example/routeguide:scala_ruby"
 
-  android_ubuntu2004_examples:
+  android_ubuntu2204_examples:
     name: android examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -227,9 +231,9 @@ tasks:
      - make android_android_proto_library_example
      - make android_android_grpc_library_example
 
-  buf_ubuntu2004_examples:
+  buf_ubuntu2204_examples:
     name: buf examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -245,9 +249,9 @@ tasks:
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
 
-  c_ubuntu2004_examples:
+  c_ubuntu2204_examples:
     name: c examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -263,9 +267,9 @@ tasks:
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
 
-  cpp_ubuntu2004_examples:
+  cpp_ubuntu2204_examples:
     name: cpp examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -285,9 +289,9 @@ tasks:
      - make cpp_cpp_proto_library_example
      - make cpp_cpp_grpc_library_example
 
-  csharp_ubuntu2004_examples:
+  csharp_ubuntu2204_examples:
     name: csharp examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -311,18 +315,18 @@ tasks:
      - make csharp_csharp_proto_library_example
      - make csharp_csharp_grpc_library_example
 
-  d_ubuntu2004_examples:
+  d_ubuntu2204_examples:
     name: d examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
      - make d_d_proto_compile_example
      - make d_d_proto_library_example
 
-  doc_ubuntu2004_examples:
+  doc_ubuntu2204_examples:
     name: doc examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -344,9 +348,9 @@ tasks:
      - make doc_doc_markdown_compile_example
      - make doc_doc_template_compile_example
 
-  fsharp_ubuntu2004_examples:
+  fsharp_ubuntu2204_examples:
     name: fsharp examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -370,9 +374,9 @@ tasks:
      - make fsharp_fsharp_proto_library_example
      - make fsharp_fsharp_grpc_library_example
 
-  go_ubuntu2004_examples:
+  go_ubuntu2204_examples:
     name: go examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -396,9 +400,9 @@ tasks:
      - make go_go_grpc_library_example
      - make go_go_validate_library_example
 
-  grpc-gateway_ubuntu2004_examples:
+  grpc-gateway_ubuntu2204_examples:
     name: grpc-gateway examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -416,9 +420,9 @@ tasks:
      - make grpc-gateway_gateway_openapiv2_compile_example
      - make grpc-gateway_gateway_grpc_library_example
 
-  java_ubuntu2004_examples:
+  java_ubuntu2204_examples:
     name: java examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -438,9 +442,9 @@ tasks:
      - make java_java_proto_library_example
      - make java_java_grpc_library_example
 
-  js_ubuntu2004_examples:
+  js_ubuntu2204_examples:
     name: js examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -475,9 +479,9 @@ tasks:
      - make objc_objc_proto_library_example
      - make objc_objc_grpc_library_example
 
-  php_ubuntu2004_examples:
+  php_ubuntu2204_examples:
     name: php examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -493,9 +497,9 @@ tasks:
      - make php_php_proto_compile_example
      - make php_php_grpc_compile_example
 
-  python_ubuntu2004_examples:
+  python_ubuntu2204_examples:
     name: python examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -517,9 +521,9 @@ tasks:
      - make python_python_proto_library_example
      - make python_python_grpc_library_example
 
-  ruby_ubuntu2004_examples:
+  ruby_ubuntu2204_examples:
     name: ruby examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -539,9 +543,9 @@ tasks:
      - make ruby_ruby_proto_library_example
      - make ruby_ruby_grpc_library_example
 
-  rust_ubuntu2004_examples:
+  rust_ubuntu2204_examples:
     name: rust examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -550,9 +554,9 @@ tasks:
      - make rust_rust_proto_library_example
      - make rust_rust_grpc_library_example
 
-  scala_ubuntu2004_examples:
+  scala_ubuntu2204_examples:
     name: scala examples
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
@@ -583,9 +587,9 @@ tasks:
      - make swift_swift_proto_library_example
      - make swift_swift_grpc_library_example
 
-  ubuntu2004_test_workspaces:
+  ubuntu2204_test_workspaces:
     name: test workspaces
-    platform: ubuntu2004
+    platform: ubuntu2204
     shell_commands:
      - set -x
      - export CC=clang
