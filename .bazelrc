@@ -1,4 +1,0 @@
-build --compilation_mode=opt
-build --strip=never
-
-build --experimental_proto_descriptor_sets_include_source_info

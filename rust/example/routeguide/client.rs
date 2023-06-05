@@ -10,8 +10,8 @@ use tokio::time;
 use tonic::transport::Channel;
 use tonic::Request;
 
-use proto::routeguide::route_guide_client::RouteGuideClient;
-use proto::routeguide::{Point, Rectangle, RouteNote};
+use routeguide_tonic::routeguide::route_guide_client::RouteGuideClient;
+use routeguide_tonic::routeguide::{Point, Rectangle, RouteNote};
 
 async fn print_features(client: &mut RouteGuideClient<Channel>) -> Result<(), Box<dyn Error>> {
     let rectangle = Rectangle {

@@ -1,6 +1,6 @@
 // https://github.com/hyperium/tonic/blob/4e5c6c8f2354301aed984da891ef284d16c936e5/examples/src/routeguide/data.rs
 
-use proto::routeguide;
+use routeguide_tonic::routeguide;
 use serde::Deserialize;
 use std::fs::File;
 

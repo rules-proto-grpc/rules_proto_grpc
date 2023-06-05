@@ -6,6 +6,7 @@ load(
     "rules_rust",
 )
 
+
 def rust_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
     rules_rust(**kwargs)

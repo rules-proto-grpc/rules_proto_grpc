@@ -281,7 +281,7 @@ load("@rules_rust//crate_universe:repositories.bzl", "crate_universe_dependencie
 
 crate_universe_dependencies(bootstrap = True)
 
-load("//rust/crates:crates.bzl", "crate_repositories")
+load("//rust:crate_deps.bzl", "crate_repositories")
 
 crate_repositories()
 

@@ -1,21 +1,24 @@
-load("//rust:rust_prost_proto_library.bzl", "rust_prost_proto_library")
-load("//rust:rust_tonic_grpc_library.bzl", "rust_tonic_grpc_library")
+load("//rust:macros.bzl", "rust_prost_proto_library", "rust_tonic_grpc_library")
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 
 rust_prost_proto_library(
-    name = "prost_test",
+    name = "routeguide_prost",
     options = {
         "//rust:rust_prost_plugin": ["type_attribute=.routeguide.Point=#[derive(Eq\\,Hash)]"],
     },
+    declared_proto_packages = ["routeguide"],
     protos = ["//example/proto:routeguide_proto"],
 )
 
 rust_tonic_grpc_library(
-    name = "proto",
+    name = "routeguide_tonic",
+    protos = ["//example/proto:routeguide_proto"],
+    declared_proto_packages = ["routeguide"],
     options = {
         "//rust:rust_prost_plugin": ["type_attribute=.routeguide.Point=#[derive(Eq\\,Hash)]"],
     },
-    protos = ["//example/proto:routeguide_proto"],
+    # prost_proto = ":routeguide_prost",
+    # service_proto_package = "routeguide",
 )
 
 rust_binary(
@@ -27,12 +30,12 @@ rust_binary(
     edition = "2021",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
-        ":proto",
-        "//rust/crates:async-stream",
-        "//rust/crates:futures",
-        "//rust/crates:rand",
-        "//rust/crates:tokio",
-        "//rust/crates:tonic",
+        ":routeguide_tonic",
+        "//rust/3rdparty/crates:async-stream",
+        "//rust/3rdparty/crates:futures",
+        "//rust/3rdparty/crates:rand",
+        "//rust/3rdparty/crates:tokio",
+        "//rust/3rdparty/crates:tonic",
     ],
 )
 
@@ -42,17 +45,18 @@ rust_binary(
         "data.rs",
         "server.rs",
     ],
+    
     data = ["//example/proto:routeguide_features"],
     edition = "2021",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
-        ":proto",
-        "//rust/crates:async-stream",
-        "//rust/crates:futures",
-        "//rust/crates:serde",
-        "//rust/crates:serde_json",
-        "//rust/crates:tokio",
-        "//rust/crates:tokio-stream",
-        "//rust/crates:tonic",
+        ":routeguide_tonic",
+        "//rust/3rdparty/crates:async-stream",
+        "//rust/3rdparty/crates:futures",
+        "//rust/3rdparty/crates:serde",
+        "//rust/3rdparty/crates:serde_json",
+        "//rust/3rdparty/crates:tokio",
+        "//rust/3rdparty/crates:tokio-stream",
+        "//rust/3rdparty/crates:tonic",
     ],
 )

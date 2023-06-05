@@ -11,8 +11,8 @@ use tokio_stream::wrappers::ReceiverStream;
 use tonic::transport::Server;
 use tonic::{Request, Response, Status};
 
-use proto::routeguide::route_guide_server::{RouteGuide, RouteGuideServer};
-use proto::routeguide::{Feature, Point, Rectangle, RouteNote, RouteSummary};
+use routeguide_tonic::routeguide::route_guide_server::{RouteGuide, RouteGuideServer};
+use routeguide_tonic::routeguide::{Feature, Point, Rectangle, RouteNote, RouteSummary};
 
 mod data;
 
