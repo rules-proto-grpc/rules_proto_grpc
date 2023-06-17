@@ -6,6 +6,41 @@
 Changelog
 =========
 
+Pending
+-------
+
+General
+*******
+
+- Updated grpc to 1.54.1
+- Updated ``rules_proto`` to 5.3.0-21.7
+- Fixed passing extra options to the ``grpc-gateway`` plugin.
+  `#258 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/258>`__
+- Removed header files from runfiles of `cpp_grpc_library`.
+  `#262 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/262>`__
+
+C#/F#
+*****
+
+- Updated gRPC to 2.53.0
+
+Go
+**
+
+- Updated ``rules_go`` to 0.39.1
+
+Python
+******
+
+- Added support for passing ``data`` attr to Python library rules.
+  `#257 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257>`__
+
+Ruby
+****
+
+- Updated ``rules_ruby`` to latest
+
+
 4.4.0
 -----
 
