@@ -53,6 +53,15 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    rules_rust_dependencies()
    
    rust_register_toolchains(edition = "2021")
+   
+   load("@rules_rust//crate_universe:repositories.bzl", "crate_universe_dependencies")
+   
+   crate_universe_dependencies(bootstrap = True)
+   
+   load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
+   
+   crate_repositories()
+   
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -160,6 +169,15 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    rules_rust_dependencies()
    
    rust_register_toolchains(edition = "2021")
+   
+   load("@rules_rust//crate_universe:repositories.bzl", "crate_universe_dependencies")
+   
+   crate_universe_dependencies(bootstrap = True)
+   
+   load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
+   
+   crate_repositories()
+   
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -263,6 +281,15 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    rules_rust_dependencies()
    
    rust_register_toolchains(edition = "2021")
+   
+   load("@rules_rust//crate_universe:repositories.bzl", "crate_universe_dependencies")
+   
+   crate_universe_dependencies(bootstrap = True)
+   
+   load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
+   
+   crate_repositories()
+   
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -373,6 +400,15 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    rules_rust_dependencies()
    
    rust_register_toolchains(edition = "2021")
+   
+   load("@rules_rust//crate_universe:repositories.bzl", "crate_universe_dependencies")
+   
+   crate_universe_dependencies(bootstrap = True)
+   
+   load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
+   
+   crate_repositories()
+   
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
