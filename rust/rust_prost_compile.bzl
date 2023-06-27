@@ -5,18 +5,8 @@ load(
     "proto_compile_attrs",
     "proto_compile",
 )
+load(":providers.bzl", "ProstProtoInfo")
 
-prost_compile_attrs = [
-    "declared_proto_packages",
-    "crate_name",
-]
-ProstProtoInfo = provider(
-    doc = "Additional information needed for prost compilation rules.",
-    fields = {
-        "crate_name": "Name of the crate that will wrap this module.",
-        "declared_proto_packages": "All proto packages that this compile rule generates bindings for.",
-    }
-)
 
 def rust_prost_proto_compile_impl(ctx):
     """Implements rust prost proto library.
