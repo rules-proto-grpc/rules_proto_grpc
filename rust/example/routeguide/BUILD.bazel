@@ -1,4 +1,4 @@
-load("//rust:macros.bzl", "rust_prost_proto_library", "rust_tonic_grpc_library")
+load("//rust:defs.bzl", "rust_prost_proto_library", "rust_tonic_grpc_library")
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 
 rust_prost_proto_library(

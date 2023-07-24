@@ -1,6 +1,6 @@
 """Generated definition of rust_prost_proto_library."""
 
-load("//rust:rust_prost_compile.bzl", "prost_compile_attrs", "rust_prost_proto_compile", "rust_tonic_grpc_compile")
+load("//rust:compile.bzl", "prost_compile_attrs", "rust_prost_proto_compile", "rust_tonic_grpc_compile")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("//rust:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")  # @unused
 load("@rules_rust//rust:defs.bzl", "rust_library")
