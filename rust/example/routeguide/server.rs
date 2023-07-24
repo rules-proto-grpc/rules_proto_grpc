@@ -132,7 +132,12 @@ impl RouteGuide for RouteGuideService {
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let addr = "[::1]:10000".parse().unwrap();
+    let port = match std::env::var("SERVER_PORT") {
+        Ok(val) => val.parse::<u16>().unwrap(),
+        Err(_e) => 50051,
+    };
+
+    let addr = format!("[::1]:{}", port).parse().unwrap();
 
     println!("RouteGuideServer listening on: {}", addr);
 
