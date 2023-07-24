@@ -19,8 +19,7 @@ def rust_prost_proto_compile_impl(ctx):
             - (ProtoCompileInfo): From core proto_compile function
             - (DefaultInfo): Default build rule info.
     """
-
-    # 
+    # Build extern options
     externs = []
     for dep in ctx.attr.prost_proto_deps:
         if ProstProtoInfo not in dep:
@@ -35,6 +34,7 @@ def rust_prost_proto_compile_impl(ctx):
                 dep_crate,
                 package.replace(".", "::"),
             ))
+
     options = {}
     for option in ctx.attr.options:
         options[option] = ctx.attr.options[option]
@@ -48,6 +48,7 @@ def rust_prost_proto_compile_impl(ctx):
         getattr(ctx.attr, "extra_protoc_args", []),
         ctx.files.extra_protoc_files)
     crate_name = ctx.attr.crate_name or ctx.attr.name
+
     return compile_result + [ProstProtoInfo(
         declared_proto_packages = ctx.attr.declared_proto_packages,
         crate_name = crate_name
