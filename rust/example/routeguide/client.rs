@@ -61,9 +61,9 @@ async fn run_route_chat(client: &mut RouteGuideClient<Channel>) -> Result<(), Bo
     let start = time::Instant::now();
 
     let outbound = async_stream::stream! {
-        let mut interval = time::interval(Duration::from_secs(1));
+        let mut interval = time::interval(Duration::from_millis(100));
 
-        loop {
+        for _ in 1..10 {
             let time = interval.tick().await;
             let elapsed = time.duration_since(start);
             let note = RouteNote {
