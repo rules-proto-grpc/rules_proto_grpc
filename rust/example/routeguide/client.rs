@@ -90,7 +90,12 @@ async fn run_route_chat(client: &mut RouteGuideClient<Channel>) -> Result<(), Bo
 
 #[tokio::main(flavor = "current_thread")]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let mut client = RouteGuideClient::connect("http://[::1]:10000").await?;
+    let port = match std::env::var("SERVER_PORT") {
+        Ok(val) => val.parse::<u16>().unwrap(),
+        Err(_e) => 50051,
+    };
+
+    let mut client = RouteGuideClient::connect(format!("http://127.0.0.1:{}", port)).await?;
 
     println!("*** SIMPLE RPC ***");
     let response = client
