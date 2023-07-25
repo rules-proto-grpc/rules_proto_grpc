@@ -59,7 +59,6 @@ proto_plugin(
     tool = "@rules_proto_grpc//rust/3rdparty/crates:protoc-gen-prost-serde__protoc-gen-prost-serde",
     visibility = ["//visibility:public"],
 )
-# @rules_proto_grpc_rust
 
 sh_binary(
     name = "rust_fixer",
