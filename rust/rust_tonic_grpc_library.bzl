@@ -1,24 +1,10 @@
 """Generated definition of rust_tonic_grpc_library."""
 
-load("//rust:common.bzl", "create_name_to_label", "prost_compile_attrs")
+load("//rust:common.bzl", "create_name_to_label", "prepare_prost_proto_deps", "prost_compile_attrs")
 load("//rust:rust_tonic_grpc_compile.bzl", "rust_tonic_grpc_compile")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("//rust:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load("@rules_rust//rust:defs.bzl", "rust_library")
-
-# We assume that all targets in prost_proto_deps[] were also generated with this macro.
-# For convenience we append the _pb suffix if its missing to allow users to provide the same name as they used when
-# they used this macro to generate that dependency.
-def _prepare_prost_proto_deps(prost_proto_deps):
-    prost_proto_compiled_targets = []
-
-    for dep in prost_proto_deps:
-        if dep.endswith("_pb"):
-            prost_proto_compiled_targets.append(dep)
-        else:
-            prost_proto_compiled_targets.append(dep + "_pb")
-
-    return prost_proto_compiled_targets
 
 def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
@@ -27,7 +13,7 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
     name_root = name + "_root"
 
     prost_proto_deps = kwargs.get("prost_proto_deps", [])
-    prost_proto_compiled_targets = _prepare_prost_proto_deps(prost_proto_deps)
+    prost_proto_compiled_targets = prepare_prost_proto_deps(prost_proto_deps)
 
     rust_tonic_grpc_compile(
         name = name_pb,
