@@ -60,15 +60,11 @@ load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
 crate_repositories()
 `)
 
-var rustLibraryRuleTemplateString = `load("//rust:common.bzl", "prost_compile_attrs")
+var rustLibraryRuleTemplateString = `load("//rust:common.bzl", "create_name_to_label", "prost_compile_attrs")
 load("//{{ .Lang.Dir }}:{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("//{{ .Lang.Dir }}:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load("@rules_rust//rust:defs.bzl", "rust_library")
-
-def _crate(name):
-    """Convert a simple crate name into its full label."""
-    return Label("//rust/3rdparty/crates:" + name)
 
 # We assume that all targets in prost_proto_deps[] were also generated with this macro.
 # For convenience we append the _pb suffix if its missing to allow users to provide the same name as they used when
@@ -126,12 +122,12 @@ var rustProstProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateStri
         crate_root = name_root,
         crate_name = kwargs.get("crate_name"),
         srcs = [name_fixed],
-        deps = kwargs.get("prost_deps", [_crate("prost"), _crate("prost-types")]) +
-               kwargs.get("pbjson_deps", [_crate("pbjson-types"), _crate("pbjson")]) +
-               kwargs.get("serde_deps", [_crate("serde")]) +
+        deps = kwargs.get("prost_deps", [create_name_to_label("prost"), create_name_to_label("prost-types")]) +
+               kwargs.get("pbjson_deps", [create_name_to_label("pbjson-types"), create_name_to_label("pbjson")]) +
+               kwargs.get("serde_deps", [create_name_to_label("serde")]) +
                kwargs.get("deps", []) +
                prost_proto_deps,
-        proc_macro_deps = [kwargs.get("prost_derive_dep", _crate("prost-derive"))],
+        proc_macro_deps = [kwargs.get("prost_derive_dep", create_name_to_label("prost-derive"))],
         {{ .Common.LibraryArgsForwardingSnippet }}
     )`)
 
@@ -149,13 +145,13 @@ var rustTonicGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateStrin
         crate_root = name_root,
         crate_name = kwargs.get("crate_name"),
         srcs = [name_fixed],
-        deps = kwargs.get("prost_deps", [_crate("prost"), _crate("prost-types")]) +
-               kwargs.get("pbjson_deps", [_crate("pbjson-types"), _crate("pbjson")]) +
-               kwargs.get("serde_deps", [_crate("serde")]) +
-               kwargs.get("tonic_deps", [_crate("tonic")]) +
+        deps = kwargs.get("prost_deps", [create_name_to_label("prost"), create_name_to_label("prost-types")]) +
+               kwargs.get("pbjson_deps", [create_name_to_label("pbjson-types"), create_name_to_label("pbjson")]) +
+               kwargs.get("serde_deps", [create_name_to_label("serde")]) +
+               kwargs.get("tonic_deps", [create_name_to_label("tonic")]) +
                kwargs.get("deps", []) +
                prost_proto_deps,
-        proc_macro_deps = [kwargs.get("prost_derive_dep", _crate("prost-derive"))],
+        proc_macro_deps = [kwargs.get("prost_derive_dep", create_name_to_label("prost-derive"))],
         {{ .Common.LibraryArgsForwardingSnippet }}
     )`)
 
