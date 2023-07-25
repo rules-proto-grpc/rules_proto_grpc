@@ -123,7 +123,7 @@ class RouteGuideClient {
     std::uniform_int_distribution<int> feature_distribution(
         0, feature_list_.size() - 1);
     std::uniform_int_distribution<int> delay_distribution(
-        500, 1500);
+        50, 100);
 
     std::unique_ptr<ClientWriter<Point> > writer(
         stub_->RecordRoute(&context, &stats));
