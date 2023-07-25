@@ -5,7 +5,7 @@ var rustCompileRuleTemplate = mustTemplate(`load(
     "ProtoPluginInfo",
     "proto_compile_attrs",
 )
-load(":compile.bzl", "rust_prost_proto_compile_impl")
+load(":common.bzl", "rust_prost_proto_compile_impl")
 load(":providers.bzl", "ProstProtoInfo")
 
 # Create compile rule
@@ -60,7 +60,7 @@ load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
 crate_repositories()
 `)
 
-var rustLibraryRuleTemplateString = `load("//rust:compile.bzl", "prost_compile_attrs")
+var rustLibraryRuleTemplateString = `load("//rust:common.bzl", "prost_compile_attrs")
 load("//{{ .Lang.Dir }}:{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("//{{ .Lang.Dir }}:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")

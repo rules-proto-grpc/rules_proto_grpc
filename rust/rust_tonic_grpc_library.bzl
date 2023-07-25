@@ -1,6 +1,6 @@
 """Generated definition of rust_tonic_grpc_library."""
 
-load("//rust:compile.bzl", "prost_compile_attrs")
+load("//rust:common.bzl", "prost_compile_attrs")
 load("//rust:rust_tonic_grpc_compile.bzl", "rust_tonic_grpc_compile")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("//rust:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")

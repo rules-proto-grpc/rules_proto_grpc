@@ -5,7 +5,7 @@ load(
     "ProtoPluginInfo",
     "proto_compile_attrs",
 )
-load(":compile.bzl", "rust_prost_proto_compile_impl")
+load(":common.bzl", "rust_prost_proto_compile_impl")
 load(":providers.bzl", "ProstProtoInfo")
 
 # Create compile rule
