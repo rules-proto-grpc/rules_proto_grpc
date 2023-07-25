@@ -8,6 +8,7 @@ load(
 load(":compile.bzl", "rust_prost_proto_compile_impl")
 load(":providers.bzl", "ProstProtoInfo")
 
+# Create compile rule
 rust_prost_proto_compile = rule(
     implementation = rust_prost_proto_compile_impl,
     attrs = dict(

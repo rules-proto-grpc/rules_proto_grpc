@@ -138,6 +138,7 @@ Plugins
 
 - `@rules_proto_grpc//rust:rust_prost_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
 - `@rules_proto_grpc//rust:rust_crate_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:rust_serde_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
 
 .. _rust_tonic_grpc_compile:
 
@@ -248,8 +249,9 @@ Plugins
 *******
 
 - `@rules_proto_grpc//rust:rust_prost_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
-- `@rules_proto_grpc//rust:rust_tonic_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
 - `@rules_proto_grpc//rust:rust_crate_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:rust_serde_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
+- `@rules_proto_grpc//rust:rust_tonic_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/rust/BUILD.bazel>`__
 
 .. _rust_prost_proto_library:
 

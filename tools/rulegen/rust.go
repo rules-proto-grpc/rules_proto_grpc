@@ -1,5 +1,42 @@
 package main
 
+var rustCompileRuleTemplate = mustTemplate(`load(
+    "//:defs.bzl",
+    "ProtoPluginInfo",
+    "proto_compile_attrs",
+)
+load(":compile.bzl", "rust_prost_proto_compile_impl")
+load(":providers.bzl", "ProstProtoInfo")
+
+# Create compile rule
+{{ .Rule.Name }} = rule(
+    implementation = rust_prost_proto_compile_impl,
+    attrs = dict(
+        proto_compile_attrs,
+        prost_proto_deps = attr.label_list(
+            providers = [ProstProtoInfo],
+            mandatory = False,
+            doc = "Other protos compiled by prost that our proto directly depends upon. Used to generated externs_path=... options for prost.",
+        ),
+        declared_proto_packages = attr.string_list(
+            mandatory = True,
+            doc = "List of labels that provide the ProtoInfo provider (such as proto_library from rules_proto)",
+        ),
+        crate_name = attr.string(
+            mandatory = False,
+            doc = "Name of the crate these protos will be compiled into later using rust_library. See rust_prost_proto_library macro for more details.",
+        ),
+        _plugins = attr.label_list(
+            providers = [ProtoPluginInfo],
+            default = [{{ range .Rule.Plugins }}
+                Label("{{ . }}"),{{ end }}
+            ],
+            doc = "List of protoc plugins to apply",
+        ),
+    ),
+    toolchains = [str(Label("//protobuf:toolchain_type"))],
+)`)
+
 var rustWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
 
 rules_proto_grpc_{{ .Lang.Name }}_repos()
@@ -147,8 +184,8 @@ func makeRust() *Language {
 				Name:             "rust_prost_proto_compile",
 				Base:             "rust_prost",
 				Kind:             "proto",
-				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//rust:rust_prost_plugin", "//rust:rust_crate_plugin"},
+				Implementation:   rustCompileRuleTemplate,
+				Plugins:          []string{"//rust:rust_prost_plugin", "//rust:rust_crate_plugin", "//rust:rust_serde_plugin"},
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Rust protobuf ``.rs`` files using prost",
@@ -158,8 +195,8 @@ func makeRust() *Language {
 				Name:             "rust_tonic_grpc_compile",
 				Base:             "rust_tonic",
 				Kind:             "grpc",
-				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//rust:rust_prost_plugin", "//rust:rust_tonic_plugin", "//rust:rust_crate_plugin"},
+				Implementation:   rustCompileRuleTemplate,
+				Plugins:          []string{"//rust:rust_prost_plugin", "//rust:rust_crate_plugin", "//rust:rust_serde_plugin", "//rust:rust_tonic_plugin",},
 				WorkspaceExample: rustWorkspaceTemplate,
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Rust protobuf and gRPC ``.rs`` files using prost and tonic",

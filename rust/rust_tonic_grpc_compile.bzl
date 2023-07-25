@@ -1,4 +1,4 @@
-"""Rules for compiling .proto files using the prost via the prost protoc plugins."""
+"""Generated definition of rust_tonic_grpc_compile."""
 
 load(
     "//:defs.bzl",
@@ -8,6 +8,7 @@ load(
 load(":compile.bzl", "rust_prost_proto_compile_impl")
 load(":providers.bzl", "ProstProtoInfo")
 
+# Create compile rule
 rust_tonic_grpc_compile = rule(
     implementation = rust_prost_proto_compile_impl,
     attrs = dict(
@@ -30,8 +31,8 @@ rust_tonic_grpc_compile = rule(
             default = [
                 Label("//rust:rust_prost_plugin"),
                 Label("//rust:rust_crate_plugin"),
-                Label("//rust:rust_tonic_plugin"),
                 Label("//rust:rust_serde_plugin"),
+                Label("//rust:rust_tonic_plugin"),
             ],
             doc = "List of protoc plugins to apply",
         ),
