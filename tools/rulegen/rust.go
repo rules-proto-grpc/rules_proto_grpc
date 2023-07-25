@@ -60,48 +60,60 @@ load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
 crate_repositories()
 `)
 
-var rustLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
+var rustLibraryRuleTemplateString = `load("//rust:compile.bzl", "prost_compile_attrs")
+load("//{{ .Lang.Dir }}:{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("//{{ .Lang.Dir }}:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root") # @unused
+load("//{{ .Lang.Dir }}:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load("@rules_rust//rust:defs.bzl", "rust_library")
+
+def _crate(name):
+    """Convert a simple crate name into its full label."""
+    return Label("//rust/3rdparty/crates:" + name)
+
+# We assume that all targets in prost_proto_deps[] were also generated with this macro.
+# For convenience we append the _pb suffix if its missing to allow users to provide the same name as they used when
+# they used this macro to generate that dependency.
+def _prepare_prost_proto_deps(prost_proto_deps):
+    prost_proto_compiled_targets = []
+
+    for dep in prost_proto_deps:
+        if dep.endswith("_pb"):
+            prost_proto_compiled_targets.append(dep)
+        else:
+            prost_proto_compiled_targets.append(dep + "_pb")
+
+    return prost_proto_compiled_targets
 
 def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
     name_pb = name + "_pb"
     name_fixed = name_pb + "_fixed"
     name_root = name + "_root"
+
+    prost_proto_deps = kwargs.get("prost_proto_deps", [])
+    prost_proto_compiled_targets = _prepare_prost_proto_deps(prost_proto_deps)
+
     {{ .Rule.Base }}_{{ .Rule.Kind }}_compile(
         name = name_pb,
-        {{ .Common.CompileArgsForwardingSnippet }}
+        crate_name = name,
+        prost_proto_deps = prost_proto_compiled_targets,
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in proto_compile_attrs.keys() or
+               k in bazel_build_rule_common_attrs or
+               k in prost_compile_attrs
+        }  # Forward args
     )
-`
 
-var rustProstProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
-    rust_proto_crate_root(
-        name = name_root,
-        crate_dir = name_pb,
-    )
-
-    # Create {{ .Rule.Base }} library
-    rust_library(
-        name = name,
-        edition = "2021",
-		crate_root = name_root,
-		crate_name = kwargs.get("crate_name"),
-        srcs = [name_pb],
-        deps = kwargs.get("prost_deps", [Label("//rust/crates:prost"), Label("//rust/crates:prost-types")]) + kwargs.get("deps", []),
-        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("//rust/crates:prost-derive"))],
-        {{ .Common.LibraryArgsForwardingSnippet }}
-    )
-`)
-
-var rustTonicGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
-    # fix up imports
+    # Fix up imports
     rust_proto_crate_fixer(
         name = name_fixed,
         compilation = name_pb,
     )
+`
 
+var rustProstProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
     rust_proto_crate_root(
         name = name_root,
         crate_dir = name_fixed,
@@ -111,16 +123,41 @@ var rustTonicGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateStrin
     rust_library(
         name = name,
         edition = "2021",
-		crate_root = name_root,
-		crate_name = kwargs.get("crate_name"),
+        crate_root = name_root,
+        crate_name = kwargs.get("crate_name"),
         srcs = [name_fixed],
-        deps = kwargs.get("prost_deps", [Label("//rust/crates:prost"), Label("//rust/crates:prost-types")]) +
-          [kwargs.get("tonic_dep", Label("//rust/crates:tonic"))] +
-          kwargs.get("deps", []),
-        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("//rust/crates:prost-derive"))],
+        deps = kwargs.get("prost_deps", [_crate("prost"), _crate("prost-types")]) +
+               kwargs.get("pbjson_deps", [_crate("pbjson-types"), _crate("pbjson")]) +
+               kwargs.get("serde_deps", [_crate("serde")]) +
+               kwargs.get("deps", []) +
+               prost_proto_deps,
+        proc_macro_deps = [kwargs.get("prost_derive_dep", _crate("prost-derive"))],
         {{ .Common.LibraryArgsForwardingSnippet }}
+    )`)
+
+var rustTonicGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
+    rust_proto_crate_root(
+        name = name_root,
+        crate_dir = name_fixed,
+        mod_file = kwargs.get("mod_file"),
     )
-`)
+
+    # Create {{ .Rule.Base }} library
+    rust_library(
+        name = name,
+        edition = "2021",
+        crate_root = name_root,
+        crate_name = kwargs.get("crate_name"),
+        srcs = [name_fixed],
+        deps = kwargs.get("prost_deps", [_crate("prost"), _crate("prost-types")]) +
+               kwargs.get("pbjson_deps", [_crate("pbjson-types"), _crate("pbjson")]) +
+               kwargs.get("serde_deps", [_crate("serde")]) +
+               kwargs.get("tonic_deps", [_crate("tonic")]) +
+               kwargs.get("deps", []) +
+               prost_proto_deps,
+        proc_macro_deps = [kwargs.get("prost_derive_dep", _crate("prost-derive"))],
+        {{ .Common.LibraryArgsForwardingSnippet }}
+    )`)
 
 // For rust, produce one library for all protos, since they are all in the same crate
 var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
@@ -163,10 +200,10 @@ var rustProstLibraryRuleAttrs = append(append([]*Attr{}, libraryRuleAttrs...), [
 
 var rustTonicLibraryRuleAttrs = append(append([]*Attr{}, rustProstLibraryRuleAttrs...), []*Attr{
 	&Attr{
-		Name:      "tonic_dep",
+		Name:      "tonic_deps",
 		Type:      "label",
-		Default:   `//rust/crates:tonic`,
-		Doc:       "The tonic dependency that the rust library should depend on.",
+		Default:   `[//rust/crates:tonic]`,
+		Doc:       "The tonic dependencies that the rust library should depend on.",
 		Mandatory: false,
 	},
 }...)

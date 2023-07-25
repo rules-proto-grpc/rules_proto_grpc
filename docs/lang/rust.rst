@@ -489,8 +489,8 @@ Attributes
      - false
      - ``//rust/crates:prost-derive``
      - The prost-derive dependency that the rust library should depend on.
-   * - ``tonic_dep``
+   * - ``tonic_deps``
      - ``label``
      - false
-     - ``//rust/crates:tonic``
-     - The tonic dependency that the rust library should depend on.
+     - ``[//rust/crates:tonic]``
+     - The tonic dependencies that the rust library should depend on.

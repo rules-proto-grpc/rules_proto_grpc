@@ -1,4 +1,4 @@
-"""Generated definition of rust_prost_proto_library."""
+"""Generated definition of rust_tonic_grpc_library."""
 
 load("//rust:compile.bzl", "prost_compile_attrs")
 load("//rust:rust_tonic_grpc_compile.bzl", "rust_tonic_grpc_compile")
@@ -7,6 +7,7 @@ load("//rust:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load("@rules_rust//rust:defs.bzl", "rust_library")
 
 def _crate(name):
+    """Convert a simple crate name into its full label."""
     return Label("//rust/3rdparty/crates:" + name)
 
 # We assume that all targets in prost_proto_deps[] were also generated with this macro.
@@ -28,10 +29,13 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
     name_pb = name + "_pb"
     name_fixed = name_pb + "_fixed"
     name_root = name + "_root"
+
     prost_proto_deps = kwargs.get("prost_proto_deps", [])
     prost_proto_compiled_targets = _prepare_prost_proto_deps(prost_proto_deps)
+
     rust_tonic_grpc_compile(
         name = name_pb,
+        crate_name = name,
         prost_proto_deps = prost_proto_compiled_targets,
         **{
             k: v
@@ -62,11 +66,12 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
         crate_name = kwargs.get("crate_name"),
         srcs = [name_fixed],
         deps = kwargs.get("prost_deps", [_crate("prost"), _crate("prost-types")]) +
-               [kwargs.get("tonic_dep", _crate("tonic"))] +
                kwargs.get("pbjson_deps", [_crate("pbjson-types"), _crate("pbjson")]) +
-               kwargs.get("serde_deps", [_crate("serde")]) +  # Label(CRATES_PATH + ":serde-types")
-               kwargs.get("deps", []) + prost_proto_deps,
-        proc_macro_deps = [kwargs.get("prost_derive_dep", Label("//rust/3rdparty/crates:prost-derive"))],
+               kwargs.get("serde_deps", [_crate("serde")]) +
+               kwargs.get("tonic_deps", [_crate("tonic")]) +
+               kwargs.get("deps", []) +
+               prost_proto_deps,
+        proc_macro_deps = [kwargs.get("prost_derive_dep", _crate("prost-derive"))],
         **{
             k: v
             for (k, v) in kwargs.items()

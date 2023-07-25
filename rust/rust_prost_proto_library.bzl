@@ -7,6 +7,7 @@ load("//rust:rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load("@rules_rust//rust:defs.bzl", "rust_library")
 
 def _crate(name):
+    """Convert a simple crate name into its full label."""
     return Label("//rust/3rdparty/crates:" + name)
 
 # We assume that all targets in prost_proto_deps[] were also generated with this macro.
