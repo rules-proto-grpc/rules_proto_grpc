@@ -1,9 +1,9 @@
 """Rules for compiling .proto files using the prost via the prost protoc plugins."""
+
 load(
     "//:defs.bzl",
     "ProtoPluginInfo",
     "proto_compile_attrs",
-    "proto_compile",
 )
 load(":compile.bzl", "rust_prost_proto_compile_impl")
 load(":providers.bzl", "ProstProtoInfo")
@@ -15,7 +15,7 @@ rust_tonic_grpc_compile = rule(
         prost_proto_deps = attr.label_list(
             providers = [ProstProtoInfo],
             mandatory = False,
-            doc = "Other protos compiled by prost that our proto directly depends upon. Used to generated externs_path=... options for prost."
+            doc = "Other protos compiled by prost that our proto directly depends upon. Used to generated externs_path=... options for prost.",
         ),
         declared_proto_packages = attr.string_list(
             mandatory = True,

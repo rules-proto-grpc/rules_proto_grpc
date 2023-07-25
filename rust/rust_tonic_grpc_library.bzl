@@ -13,7 +13,6 @@ def _crate(name):
 # For convenience we append the _pb suffix if its missing to allow users to provide the same name as they used when
 # they used this macro to generate that dependency.
 def _prepare_prost_proto_deps(prost_proto_deps):
-    
     prost_proto_compiled_targets = []
 
     for dep in prost_proto_deps:
@@ -65,7 +64,7 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
         deps = kwargs.get("prost_deps", [_crate("prost"), _crate("prost-types")]) +
                [kwargs.get("tonic_dep", _crate("tonic"))] +
                kwargs.get("pbjson_deps", [_crate("pbjson-types"), _crate("pbjson")]) +
-                kwargs.get("serde_deps", [_crate("serde")]) + # Label(CRATES_PATH + ":serde-types")
+               kwargs.get("serde_deps", [_crate("serde")]) +  # Label(CRATES_PATH + ":serde-types")
                kwargs.get("deps", []) + prost_proto_deps,
         proc_macro_deps = [kwargs.get("prost_derive_dep", Label("//rust/3rdparty/crates:prost-derive"))],
         **{

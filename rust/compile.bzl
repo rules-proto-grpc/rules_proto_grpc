@@ -1,12 +1,7 @@
 """Rules for compiling .proto files using the prost via the prost protoc plugins."""
-load(
-    "//:defs.bzl",
-    "ProtoPluginInfo",
-    "proto_compile_attrs",
-    "proto_compile",
-)
-load(":providers.bzl", "ProstProtoInfo")
 
+load("//:defs.bzl", "proto_compile")
+load(":providers.bzl", "ProstProtoInfo")
 
 prost_compile_attrs = [
     "declared_proto_packages",
@@ -25,6 +20,7 @@ def rust_prost_proto_compile_impl(ctx):
             - (ProtoCompileInfo): From core proto_compile function
             - (DefaultInfo): Default build rule info.
     """
+
     # Build extern options
     externs = []
     for dep in ctx.attr.prost_proto_deps:
@@ -33,7 +29,7 @@ def rust_prost_proto_compile_impl(ctx):
         proto_info = dep[ProstProtoInfo]
         packages = proto_info.declared_proto_packages
         dep_crate = proto_info.crate_name or proto_info.name
-        
+
         for package in packages:
             externs.append("extern_path={}=::{}::{}".format(
                 "." + package,
@@ -47,15 +43,16 @@ def rust_prost_proto_compile_impl(ctx):
     if "//rust:rust_prost_plugin" not in options:
         options["//rust:rust_prost_plugin"] = []
     options["//rust:rust_prost_plugin"] = options["//rust:rust_prost_plugin"] + externs
-    
+
     compile_result = proto_compile(
         ctx,
         options,
         getattr(ctx.attr, "extra_protoc_args", []),
-        ctx.files.extra_protoc_files)
+        ctx.files.extra_protoc_files,
+    )
     crate_name = ctx.attr.crate_name or ctx.attr.name
 
     return compile_result + [ProstProtoInfo(
         declared_proto_packages = ctx.attr.declared_proto_packages,
-        crate_name = crate_name
+        crate_name = crate_name,
     )]

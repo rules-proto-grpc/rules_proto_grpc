@@ -1,6 +1,7 @@
 # Third party crates/deps for rules_proto_grpc_rust.
 
 load("@rules_rust//crate_universe:defs.bzl", "crate", "crates_vendor")
+
 crates_vendor(
     name = "crates_vendor",
     annotations = {
@@ -22,7 +23,7 @@ crates_vendor(
         # See https://github.com/neoeinstein/protoc-gen-prost/issues/62
         "protoc-gen-prost-crate": crate.spec(
             git = "https://github.com/neoeinstein/protoc-gen-prost",
-            rev = "038cd342677dfa869f8c3a2a2787a139fc561df8"
+            rev = "038cd342677dfa869f8c3a2a2787a139fc561df8",
         ),
         "protoc-gen-tonic": crate.spec(
             version = "0.2.1",
@@ -71,11 +72,11 @@ crates_vendor(
         ),
         # See: https://github.com/influxdata/pbjson/pull/90
         "pbjson-types": crate.spec(
-            git	 = 'https://github.com/echochamber/pbjson',
-            rev = 'a4f760e5d53086d989f28dc9d1d0adcc22fe37c4'
+            git = "https://github.com/echochamber/pbjson",
+            rev = "a4f760e5d53086d989f28dc9d1d0adcc22fe37c4",
         ),
         "pbjson": crate.spec(
-          version = "0.5.1",
+            version = "0.5.1",
         ),
     },
     repository_name = "rules_proto_grpc_rust",
