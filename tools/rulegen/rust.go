@@ -141,6 +141,36 @@ var rustTonicGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateStrin
         {{ .Common.LibraryArgsForwardingSnippet }}
     )`)
 
+var rustProtoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    declared_proto_packages = ["example.proto"],
+    options = {
+        "//rust:rust_prost_plugin": ["type_attribute=.other.space.Person=#[derive(Eq\\,Hash)]"],
+    },
+    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+)
+
+{{ .Rule.Name }}(
+    name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    declared_proto_packages = ["example.proto"],
+    options = {
+        "//rust:rust_prost_plugin": ["type_attribute=.other.space.Place=#[derive(Eq\\,Hash)]"],
+    },
+    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+)
+
+{{ .Rule.Name }}(
+    name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    declared_proto_packages = ["example.proto"],
+    options = {
+        # Known limitation, can't derive if the type contains a pbjson type.
+        # "//rust:rust_prost_plugin": ["type_attribute=.other.space.Thing=#[derive(Eq\\,Hash)]"],
+    },
+    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+)`)
+
 // For rust, produce one library for all protos, since they are all in the same crate
 var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
@@ -206,7 +236,7 @@ func makeRust() *Language {
 				Implementation:   rustCompileRuleTemplate,
 				Plugins:          []string{"//rust:rust_prost_plugin", "//rust:rust_crate_plugin", "//rust:rust_serde_plugin"},
 				WorkspaceExample: rustWorkspaceTemplate,
-				BuildExample:     protoCompileExampleTemplate,
+				BuildExample:     rustProtoCompileExampleTemplate,
 				Doc:              "Generates Rust protobuf ``.rs`` files using prost",
 				Attrs:            compileRuleAttrs,
 			},
