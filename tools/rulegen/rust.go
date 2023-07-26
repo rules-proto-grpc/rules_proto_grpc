@@ -5,8 +5,7 @@ var rustCompileRuleTemplate = mustTemplate(`load(
     "ProtoPluginInfo",
     "proto_compile_attrs",
 )
-load(":common.bzl", "rust_prost_proto_compile_impl")
-load(":providers.bzl", "ProstProtoInfo")
+load(":common.bzl", "ProstProtoInfo", "rust_prost_proto_compile_impl")
 
 # Create compile rule
 {{ .Rule.Name }} = rule(
