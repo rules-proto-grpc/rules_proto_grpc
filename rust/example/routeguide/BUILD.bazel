@@ -17,8 +17,6 @@ rust_tonic_grpc_library(
         "//rust:rust_prost_plugin": ["type_attribute=.routeguide.Point=#[derive(Eq\\,Hash)]"],
     },
     protos = ["//example/proto:routeguide_proto"],
-    # prost_proto = ":routeguide_prost",
-    # service_proto_package = "routeguide",
 )
 
 rust_binary(
