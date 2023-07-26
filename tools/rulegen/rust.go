@@ -170,6 +170,17 @@ var rustProtoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ 
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )`)
 
+var rustGrpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
+    declared_proto_packages = ["example.proto"],
+    protos = [
+        "@rules_proto_grpc//example/proto:thing_proto",
+        "@rules_proto_grpc//example/proto:greeter_grpc",
+    ],
+)`)
+
 var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
@@ -266,7 +277,7 @@ func makeRust() *Language {
 				Implementation:   rustCompileRuleTemplate,
 				Plugins:          []string{"//rust:rust_prost_plugin", "//rust:rust_crate_plugin", "//rust:rust_serde_plugin", "//rust:rust_tonic_plugin",},
 				WorkspaceExample: rustWorkspaceTemplate,
-				BuildExample:     grpcCompileExampleTemplate,
+				BuildExample:     rustGrpcCompileExampleTemplate,
 				Doc:              "Generates Rust protobuf and gRPC ``.rs`` files using prost and tonic",
 				Attrs:            compileRuleAttrs,
 			},

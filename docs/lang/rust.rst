@@ -201,13 +201,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc//rust:defs.bzl", "rust_tonic_grpc_compile")
    
    rust_tonic_grpc_compile(
-       name = "thing_rust_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
-   )
-   
-   rust_tonic_grpc_compile(
        name = "greeter_rust_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       declared_proto_packages = ["example.proto"],
+       protos = [
+           "@rules_proto_grpc//example/proto:thing_proto",
+           "@rules_proto_grpc//example/proto:greeter_grpc",
+       ],
    )
 
 Attributes
