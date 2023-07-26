@@ -314,12 +314,33 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc//rust:defs.bzl", "rust_prost_proto_library")
    
    rust_prost_proto_library(
-       name = "proto_rust_prost_proto",
+       name = "person_place_rust_prost_proto",
+       declared_proto_packages = ["example.proto"],
        protos = [
            "@rules_proto_grpc//example/proto:person_proto",
            "@rules_proto_grpc//example/proto:place_proto",
+       ],
+       options = {
+           "//rust:rust_prost_plugin": [
+               "type_attribute=.example.proto.Person=#[derive(Eq\\,Hash)]",
+               "type_attribute=.example.proto.Place=#[derive(Eq\\,Hash)]",
+           ],
+       },
+       prost_proto_deps = [
+           ":thing_rust_prost_proto",
+       ],
+   )
+   
+   rust_prost_proto_library(
+       name = "thing_rust_prost_proto",
+       declared_proto_packages = ["example.proto"],
+       protos = [
            "@rules_proto_grpc//example/proto:thing_proto",
        ],
+       options = {
+           # Known limitation, can't derive if the type contains a pbjson type.
+           # "//rust:rust_prost_plugin": ["type_attribute=.example.proto.Thing=#[derive(Eq\\,Hash)]"],
+       },
    )
 
 Attributes

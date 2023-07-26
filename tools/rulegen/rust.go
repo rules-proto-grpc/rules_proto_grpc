@@ -171,16 +171,36 @@ var rustProtoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ 
     protos = ["@rules_proto_grpc//example/proto:thing_proto"],
 )`)
 
-// For rust, produce one library for all protos, since they are all in the same crate
 var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
-    name = "proto_{{ .Rule.Base }}_{{ .Rule.Kind }}",
+    name = "person_place_{{ .Rule.Base }}_{{ .Rule.Kind }}",
+    declared_proto_packages = ["example.proto"],
     protos = [
         "@rules_proto_grpc//example/proto:person_proto",
         "@rules_proto_grpc//example/proto:place_proto",
+    ],
+    options = {
+        "//rust:rust_prost_plugin": [
+            "type_attribute=.example.proto.Person=#[derive(Eq\\,Hash)]",
+            "type_attribute=.example.proto.Place=#[derive(Eq\\,Hash)]",
+        ],
+    },
+    prost_proto_deps = [
+        ":thing_{{ .Rule.Base }}_{{ .Rule.Kind }}",
+    ],
+)
+
+{{ .Rule.Name }}(
+    name = "thing_{{ .Rule.Base }}_{{ .Rule.Kind }}",
+    declared_proto_packages = ["example.proto"],
+    protos = [
         "@rules_proto_grpc//example/proto:thing_proto",
     ],
+    options = {
+        # Known limitation, can't derive if the type contains a pbjson type.
+        # "//rust:rust_prost_plugin": ["type_attribute=.example.proto.Thing=#[derive(Eq\\,Hash)]"],
+    },
 )`)
 
 var rustGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
