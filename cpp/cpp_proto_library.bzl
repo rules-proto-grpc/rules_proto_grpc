@@ -36,7 +36,7 @@ def cpp_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
         srcs = [name_pb + "_srcs"],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
-        includes = [name_pb],
+        includes = [name_pb] if kwargs.get("output_mode", "PREFIXED") == "PREFIXED" else ["."],
         alwayslink = kwargs.get("alwayslink"),
         copts = kwargs.get("copts"),
         defines = kwargs.get("defines"),
