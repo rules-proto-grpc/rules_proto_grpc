@@ -235,7 +235,6 @@ def get_output_filename(src_file, pattern, proto_info):
             protopath_partitions[0],
             pascal_objc(protopath_partitions[2]),
         ]))
-        filename = pattern.replace("{basename|rust_keyword}", rust_keyword(protopath))
     elif "{protopath|dasherize}" in pattern:
         filename = pattern.replace("{protopath|dasherize}", "/".join([
             # Dasherize only the file name
