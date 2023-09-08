@@ -137,7 +137,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Err(_e) => 50051,
     };
 
-    let addr = format!("[::1]:{}", port).parse().unwrap();
+    let addr = format!("[::]:{}", port).parse().unwrap();
 
     println!("RouteGuideServer listening on: {}", addr);
 
