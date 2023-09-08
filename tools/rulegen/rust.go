@@ -213,12 +213,34 @@ var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ 
     },
 )`)
 
-var rustGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var rustGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}", "rust_prost_proto_library")
 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Rule.Base }}_{{ .Rule.Kind }}",
+    declared_proto_packages = ["example.proto"],
     protos = [
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+        # "@rules_proto_grpc//example/proto:thing_proto",
+    ],
+    options = {
+        "//rust:rust_prost_plugin": [
+            "type_attribute=.example.proto.Person=#[derive(Eq\\,Hash)]",
+            "type_attribute=.example.proto.Place=#[derive(Eq\\,Hash)]",
+            # "type_attribute=.example.proto.Thing=#[derive(Eq\\,Hash)]",
+        ],
+    },
+    prost_proto_deps = [
+        ":thing_prost",
+    ],
+)
+
+# See https://github.com/rules-proto-grpc/rules_proto_grpc/pull/265/#issuecomment-1577920311
+rust_prost_proto_library(
+    name = "thing_prost",
+    declared_proto_packages = ["example.proto"],
+    protos = [
         "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )`)
