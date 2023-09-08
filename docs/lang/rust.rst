@@ -61,7 +61,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
    
    crate_repositories()
-   
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -191,7 +190,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
    
    crate_repositories()
-   
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -204,8 +202,8 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "greeter_rust_grpc",
        declared_proto_packages = ["example.proto"],
        protos = [
-           "@rules_proto_grpc//example/proto:thing_proto",
            "@rules_proto_grpc//example/proto:greeter_grpc",
+           "@rules_proto_grpc//example/proto:thing_proto",
        ],
    )
 
@@ -303,7 +301,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
    
    crate_repositories()
-   
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -315,10 +312,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    rust_prost_proto_library(
        name = "person_place_rust_prost_proto",
        declared_proto_packages = ["example.proto"],
-       protos = [
-           "@rules_proto_grpc//example/proto:person_proto",
-           "@rules_proto_grpc//example/proto:place_proto",
-       ],
        options = {
            "//rust:rust_prost_plugin": [
                "type_attribute=.example.proto.Person=#[derive(Eq\\,Hash)]",
@@ -328,18 +321,22 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        prost_proto_deps = [
            ":thing_rust_prost_proto",
        ],
+       protos = [
+           "@rules_proto_grpc//example/proto:person_proto",
+           "@rules_proto_grpc//example/proto:place_proto",
+       ],
    )
    
    rust_prost_proto_library(
        name = "thing_rust_prost_proto",
        declared_proto_packages = ["example.proto"],
-       protos = [
-           "@rules_proto_grpc//example/proto:thing_proto",
-       ],
        options = {
            # Known limitation, can't derive if the type contains a pbjson type.
            # "//rust:rust_prost_plugin": ["type_attribute=.example.proto.Thing=#[derive(Eq\\,Hash)]"],
        },
+       protos = [
+           "@rules_proto_grpc//example/proto:thing_proto",
+       ],
    )
 
 Attributes
@@ -443,24 +440,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
    
    crate_repositories()
-   
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//rust:defs.bzl", "rust_tonic_grpc_library", "rust_prost_proto_library")
+   load("@rules_proto_grpc//rust:defs.bzl", "rust_prost_proto_library", "rust_tonic_grpc_library")
    
    rust_tonic_grpc_library(
        name = "greeter_rust_tonic_grpc",
        declared_proto_packages = ["example.proto"],
-       protos = [
-           "@rules_proto_grpc//example/proto:greeter_grpc",
-           "@rules_proto_grpc//example/proto:person_proto",
-           "@rules_proto_grpc//example/proto:place_proto",
-           # "@rules_proto_grpc//example/proto:thing_proto",
-       ],
        options = {
            "//rust:rust_prost_plugin": [
                "type_attribute=.example.proto.Person=#[derive(Eq\\,Hash)]",
@@ -470,6 +460,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        },
        prost_proto_deps = [
            ":thing_prost",
+       ],
+       protos = [
+           "@rules_proto_grpc//example/proto:greeter_grpc",
+           "@rules_proto_grpc//example/proto:person_proto",
+           "@rules_proto_grpc//example/proto:place_proto",
+           # "@rules_proto_grpc//example/proto:thing_proto",
        ],
    )
    

@@ -36,4 +36,3 @@ crate_universe_dependencies(bootstrap = True)
 load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
 
 crate_repositories()
-

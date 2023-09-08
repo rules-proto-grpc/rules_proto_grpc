@@ -144,7 +144,7 @@ def snake_case(s):
     for char in s.elems():
         if char.isupper():
             if is_last_lower_case:
-                converted += "_"+char
+                converted += "_" + char
                 is_last_lower_case = False
                 continue
         elif char.islower() or char.isdigit():

@@ -20,7 +20,15 @@ def create_name_to_label(name):
     return Label("//rust/3rdparty/crates:" + name)
 
 def prepare_prost_proto_deps(prost_proto_deps):
-    """Convert a list of prost proto deps to correct format."""
+    """Convert a list of prost proto deps to correct format.
+
+    Args:
+        prost_proto_deps: List of target names to be converted.
+
+    Returns:
+        List of converted target names.
+    """
+
     # We assume that all targets in prost_proto_deps[] were also generated with this macro.
     # For convenience we append the _pb suffix if its missing to allow users to provide the same
     # name as they used when they used this macro to generate that dependency.

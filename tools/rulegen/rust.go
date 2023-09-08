@@ -56,8 +56,7 @@ crate_universe_dependencies(bootstrap = True)
 
 load("@rules_proto_grpc//rust:crate_deps.bzl", "crate_repositories")
 
-crate_repositories()
-`)
+crate_repositories()`)
 
 var rustLibraryRuleTemplateString = `load("//rust:common.bzl", "create_name_to_label", "prepare_prost_proto_deps", "prost_compile_attrs")
 load("//{{ .Lang.Dir }}:{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
@@ -176,8 +175,8 @@ var rustGrpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
     declared_proto_packages = ["example.proto"],
     protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
         "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )`)
 
@@ -186,10 +185,6 @@ var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ 
 {{ .Rule.Name }}(
     name = "person_place_{{ .Rule.Base }}_{{ .Rule.Kind }}",
     declared_proto_packages = ["example.proto"],
-    protos = [
-        "@rules_proto_grpc//example/proto:person_proto",
-        "@rules_proto_grpc//example/proto:place_proto",
-    ],
     options = {
         "//rust:rust_prost_plugin": [
             "type_attribute=.example.proto.Person=#[derive(Eq\\,Hash)]",
@@ -199,31 +194,29 @@ var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ 
     prost_proto_deps = [
         ":thing_{{ .Rule.Base }}_{{ .Rule.Kind }}",
     ],
+    protos = [
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+    ],
 )
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Rule.Base }}_{{ .Rule.Kind }}",
     declared_proto_packages = ["example.proto"],
-    protos = [
-        "@rules_proto_grpc//example/proto:thing_proto",
-    ],
     options = {
         # Known limitation, can't derive if the type contains a pbjson type.
         # "//rust:rust_prost_plugin": ["type_attribute=.example.proto.Thing=#[derive(Eq\\,Hash)]"],
     },
+    protos = [
+        "@rules_proto_grpc//example/proto:thing_proto",
+    ],
 )`)
 
-var rustGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}", "rust_prost_proto_library")
+var rustGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "rust_prost_proto_library", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Rule.Base }}_{{ .Rule.Kind }}",
     declared_proto_packages = ["example.proto"],
-    protos = [
-        "@rules_proto_grpc//example/proto:greeter_grpc",
-        "@rules_proto_grpc//example/proto:person_proto",
-        "@rules_proto_grpc//example/proto:place_proto",
-        # "@rules_proto_grpc//example/proto:thing_proto",
-    ],
     options = {
         "//rust:rust_prost_plugin": [
             "type_attribute=.example.proto.Person=#[derive(Eq\\,Hash)]",
@@ -233,6 +226,12 @@ var rustGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .
     },
     prost_proto_deps = [
         ":thing_prost",
+    ],
+    protos = [
+        "@rules_proto_grpc//example/proto:greeter_grpc",
+        "@rules_proto_grpc//example/proto:person_proto",
+        "@rules_proto_grpc//example/proto:place_proto",
+        # "@rules_proto_grpc//example/proto:thing_proto",
     ],
 )
 
