@@ -44,14 +44,12 @@ std::string GetDbFileContent(int argc, char** argv) {
   return db.str();
 }
 
-std::string GetServerAddress() {
-  std::string server_host("0.0.0.0");
+std::string GetServerPort() {
   std::string server_port("50051");
   if (std::getenv("SERVER_PORT")) {
     server_port = std::getenv("SERVER_PORT");
   }
-  std::string server_address = server_host + ":" + server_port;
-  return server_address;
+  return server_port;
 }
 
 // A simple parser for the json db file. It requires the db file to have the

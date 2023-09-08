@@ -168,7 +168,7 @@ class RouteGuideImpl final : public RouteGuide::Service {
 };
 
 void RunServer(const std::string& db_path) {
-  std::string server_address = routeguide::GetServerAddress();
+  std::string server_address = "[::]:" + routeguide::GetServerPort();
 
   RouteGuideImpl service(db_path);
 
