@@ -6,7 +6,7 @@
 Changelog
 =========
 
-Pending
+4.5.0
 -------
 
 General
@@ -18,6 +18,16 @@ General
   `#258 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/258>`__
 - Removed header files from runfiles of `cpp_grpc_library`.
   `#262 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/262>`__
+- Added a path conversion from snake_case to dashed-case.
+  `#274 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/274>`__
+- Fixed missing env var in documentation.
+  `#279 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/279>`__
+
+C++
+***
+
+- Added support for ``NO_PREFIX`` output mode.
+  `#276 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/276>`__
 
 C#/F#
 *****
@@ -39,6 +49,13 @@ Ruby
 ****
 
 - Updated ``rules_ruby`` to latest
+
+Rust
+****
+
+- **Major change**: Replaced Rust protobuf and gRPC libraries with Prost and Tonic respectively. See
+  the Rust rules documentation for examples of how this change can be adopted.
+  `#265 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/265>`__
 
 
 4.4.0
