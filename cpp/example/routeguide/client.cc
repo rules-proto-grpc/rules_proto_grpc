@@ -107,7 +107,7 @@ class RouteGuideClient {
     if (status.ok()) {
       std::cout << "ListFeatures rpc succeeded." << std::endl;
     } else {
-      std::cout << "ListFeatures rpc failed." << std::endl;
+      std::cout << "ListFeatures rpc failed: " << status.error_message() << std::endl;
       std::exit(EXIT_FAILURE);
     }
   }
@@ -148,7 +148,7 @@ class RouteGuideClient {
                 << "It took " << stats.elapsed_time() << " seconds"
                 << std::endl;
     } else {
-      std::cout << "RecordRoute rpc failed." << std::endl;
+      std::cout << "RecordRoute rpc failed: " << status.error_message() << std::endl;
       std::exit(EXIT_FAILURE);
     }
   }
@@ -183,7 +183,7 @@ class RouteGuideClient {
     writer.join();
     Status status = stream->Finish();
     if (!status.ok()) {
-      std::cout << "RouteChat rpc failed." << std::endl;
+      std::cout << "RouteChat rpc failed: " << status.error_message() << std::endl;
       std::exit(EXIT_FAILURE);
     }
   }
@@ -194,7 +194,7 @@ class RouteGuideClient {
     ClientContext context;
     Status status = stub_->GetFeature(&context, point, feature);
     if (!status.ok()) {
-      std::cout << "GetFeature rpc failed." << std::endl;
+      std::cout << "GetFeature rpc failed: " << status.error_message() << std::endl;
       std::exit(EXIT_FAILURE);
       return false;
     }
