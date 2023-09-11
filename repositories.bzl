@@ -10,14 +10,6 @@ PROTOBUF_VERSION = "21.10"  # When updating, also update protobuf-javascript, JS
 GRPC_VERSION = "1.54.1"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
 BUF_VERSION = "v1.9.0"
 VERSIONS = {
-    "platforms": {
-        "type": "http",
-        "urls": [
-            "https://mirror.bazel.build/github.com/bazelbuild/platforms/releases/download/0.0.6/platforms-0.0.6.tar.gz",
-            "https://github.com/bazelbuild/platforms/releases/download/0.0.6/platforms-0.0.6.tar.gz",
-        ],
-        "sha256": "5308fc1d8865406a49427ba24a9ab53087f17f5266a7aabbfc28823f3916e1ca",
-    },
     # Core
     "rules_proto": {
         "type": "github",
@@ -473,7 +465,6 @@ def rules_proto_grpc_repos(**kwargs):
     """Load the rules_proto_grpc common dependencies."""  # buildifier: disable=function-docstring-args
     check_bazel_minimum_version(MINIMUM_BAZEL_VERSION)
 
-    platforms(**kwargs)
     rules_proto(**kwargs)
     rules_python(**kwargs)
     build_bazel_rules_swift(**kwargs)
@@ -483,9 +474,6 @@ def rules_proto_grpc_repos(**kwargs):
     com_google_protobuf(**kwargs)
     com_github_grpc_grpc(**kwargs)
     external_zlib(**kwargs)
-
-def platforms(**kwargs):
-    _generic_dependency("platforms", **kwargs)
 
 def rules_proto(**kwargs):
     _generic_dependency("rules_proto", **kwargs)
