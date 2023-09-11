@@ -1,8 +1,21 @@
-load("//rust:rust_grpc_library.bzl", "GRPC_DEPS", "rust_grpc_library")
+load("//rust:defs.bzl", "rust_prost_proto_library", "rust_tonic_grpc_library")
 load("@rules_rust//rust:defs.bzl", "rust_binary")
 
-rust_grpc_library(
-    name = "routeguide",
+rust_prost_proto_library(
+    name = "routeguide_prost",
+    declared_proto_packages = ["routeguide"],
+    options = {
+        "//rust:rust_prost_plugin": ["type_attribute=.routeguide.Point=#[derive(Eq\\,Hash)]"],
+    },
+    protos = ["//example/proto:routeguide_proto"],
+)
+
+rust_tonic_grpc_library(
+    name = "routeguide_tonic",
+    declared_proto_packages = ["routeguide"],
+    options = {
+        "//rust:rust_prost_plugin": ["type_attribute=.routeguide.Point=#[derive(Eq\\,Hash)]"],
+    },
     protos = ["//example/proto:routeguide_proto"],
 )
 
@@ -12,24 +25,35 @@ rust_binary(
         "client.rs",
     ],
     data = ["//example/proto:routeguide_features"],
-    edition = "2018",
+    edition = "2021",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
-        ":routeguide",
-        "@rules_proto_grpc//rust/raze:rand",
-    ] + GRPC_DEPS,
+        ":routeguide_tonic",
+        "//rust/3rdparty/crates:async-stream",
+        "//rust/3rdparty/crates:futures",
+        "//rust/3rdparty/crates:rand",
+        "//rust/3rdparty/crates:tokio",
+        "//rust/3rdparty/crates:tonic",
+    ],
 )
 
 rust_binary(
     name = "server",
     srcs = [
+        "data.rs",
         "server.rs",
     ],
     data = ["//example/proto:routeguide_features"],
-    edition = "2018",
+    edition = "2021",
     visibility = ["//example/routeguide:__pkg__"],
     deps = [
-        ":routeguide",
-        "@rules_proto_grpc//rust/raze:json",
-    ] + GRPC_DEPS,
+        ":routeguide_tonic",
+        "//rust/3rdparty/crates:async-stream",
+        "//rust/3rdparty/crates:futures",
+        "//rust/3rdparty/crates:serde",
+        "//rust/3rdparty/crates:serde_json",
+        "//rust/3rdparty/crates:tokio",
+        "//rust/3rdparty/crates:tokio-stream",
+        "//rust/3rdparty/crates:tonic",
+    ],
 )

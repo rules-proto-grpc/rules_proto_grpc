@@ -18,13 +18,10 @@ buildifier:
 	bazel run //tools:buildifier
 
 
-# Run cargo raze on the rust dependencies
-.PHONY: rust_raze
-rust_raze:
-	cd rust/raze; \
-	rm Cargo.raze.lock || true; \
-	rm -r remote; \
-	cargo raze;
+# Run crate_universe to update the rust dependencies
+.PHONY: rust_crates_vendor
+rust_crates_vendor:
+	bazel run //rust:crates_vendor -- --repin
 
 
 # Run yarn to upgrade the js dependencies
@@ -66,7 +63,7 @@ fsharp_regenerate_packages:
 
 # Run all language specific updates
 .PHONY: all_updates
-all_updates: rust_raze yarn_upgrade ruby_bundle_upgrade pip_compile csharp_regenerate_packages fsharp_regenerate_packages
+all_updates: rust_crates_vendor yarn_upgrade ruby_bundle_upgrade pip_compile csharp_regenerate_packages fsharp_regenerate_packages
 
 
 # Pull in auto-generated examples makefile

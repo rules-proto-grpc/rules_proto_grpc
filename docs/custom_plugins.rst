@@ -124,7 +124,7 @@ API Reference
      - false
      - ``[]``
      - A list of extra command line arguments to pass directly to protoc, not as plugin options
-   * - ``extra_protoc_args``
+   * - ``env``
      - ``string_dict``
      - false
      - ``{}``
