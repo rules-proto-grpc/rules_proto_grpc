@@ -3,30 +3,45 @@ tasks:
   main_ubuntu2204:
     name: build & test all
     platform: ubuntu2204
+    build_flags:
+    - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//cpp/..."
     test_flags:
     - "--test_output=errors"
+    - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     test_targets:
     - "//example/routeguide:cpp_cpp"
 
   main_windows:
     name: build & test all
     platform: windows
+    build_flags:
+    - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//cpp/..."
     test_flags:
     - "--test_output=errors"
+    - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     test_targets:
     - "//example/routeguide:cpp_cpp"
 
   main_macos:
     name: build & test all
     platform: macos
+    build_flags:
+    - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     build_targets:
     - "//cpp/..."
     test_flags:
     - "--test_output=errors"
+    - "--cxxopt=-std=c++17"
+    - "--host_cxxopt=-std=c++17"
     test_targets:
     - "//example/routeguide:cpp_cpp"
 

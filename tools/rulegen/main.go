@@ -438,11 +438,11 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("    platform: %s", ciPlatform)
 		// out.w("    environment:")
 		// out.w(`      CC: clang`)
-		if (len(extraPlatformFlags[ciPlatform]) > 0) {
-			out.w("    build_flags:")
-			for _, flag := range extraPlatformFlags[ciPlatform] {
-				out.w(`    - "%s"`, flag)
-			}
+		out.w("    build_flags:")
+		out.w(`    - "--cxxopt=-std=c++17"`)
+		out.w(`    - "--host_cxxopt=-std=c++17"`)
+		for _, flag := range extraPlatformFlags[ciPlatform] {
+			out.w(`    - "%s"`, flag)
 		}
 		out.w("    build_targets:")
 		for _, lang := range languages {
@@ -453,6 +453,8 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		}
 		out.w("    test_flags:")
 		out.w(`    - "--test_output=errors"`)
+		out.w(`    - "--cxxopt=-std=c++17"`)
+		out.w(`    - "--host_cxxopt=-std=c++17"`)
 		for _, flag := range extraPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
 		}
@@ -565,9 +567,9 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			out.w("	cd %s; \\", exampleDir)
 
 			if rule.IsTest {
-				out.w("	bazel --batch test --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch test --enable_bzlmod --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			} else {
-				out.w("	bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch build --enable_bzlmod --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			}
 			out.ln()
 		}
