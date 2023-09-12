@@ -62,7 +62,7 @@ tasks:
     platform: windows
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
-    shell_commands:
+    batch_commands:
      - make.exe cpp_cpp_proto_compile_example
      - make.exe cpp_cpp_grpc_compile_example
      - make.exe cpp_cpp_proto_library_example
@@ -111,7 +111,7 @@ tasks:
     platform: windows
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
-    shell_commands:
+    batch_commands:
      - make.exe test_workspace_absolute_strip_import_prefix
      - make.exe test_workspace_combined_strip_and_add_prefix
      - make.exe test_workspace_common_cpp_library

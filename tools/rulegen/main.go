@@ -507,7 +507,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
 			}
 			if ciPlatform == "windows" {
-				out.w("    shell_commands:")
+				out.w("    batch_commands:")
 			} else {
 				out.w("    shell_commands:")
 				out.w("     - set -x")
@@ -546,7 +546,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
 		}
 		if ciPlatform == "windows" {
-			out.w("    shell_commands:")
+			out.w("    batch_commands:")
 		} else {
 			out.w("    shell_commands:")
 			out.w("     - set -x")
