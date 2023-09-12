@@ -602,7 +602,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 		out.w(".PHONY: %s", name)
 		out.w("%s:", name)
 		out.w("	cd %s; \\", path.Join(dir, "test_workspaces", testWorkspace))
-		out.w("	bazel --batch test --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
+		out.w("	bazel --batch test --enable_bzlmod --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
 		out.ln()
 	}
 
