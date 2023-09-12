@@ -13,27 +13,9 @@ routeguide_test_matrix(
     name = "routeguide_matrix",
     clients = [
         "//cpp/example/routeguide:client",
-        "//csharp/example/routeguide:client.exe",
-        "//fsharp/example/routeguide:client.exe",
-        "//go/example/routeguide/client",
-        "//java/example/routeguide:client",
-        "//js/example/routeguide:client",
-        "//python/example/routeguide:client",
-        "//ruby/example/routeguide:client",
-        "//rust/example/routeguide:client",
-        "//scala/example/routeguide:client",
     ],
     servers = [
         "//cpp/example/routeguide:server",
-        "//csharp/example/routeguide:server.exe",
-        "//fsharp/example/routeguide:server.exe",
-        "//go/example/routeguide/server",
-        "//java/example/routeguide:server",
-        "//js/example/routeguide:server",
-        "//python/example/routeguide:server",
-        "//ruby/example/routeguide:server",
-        "//rust/example/routeguide:server",
-        # "//scala/example/routeguide:server",  # Doesn't exist yet
     ],
     skip = [
         "csharp_rust",  # Broken

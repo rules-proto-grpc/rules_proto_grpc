@@ -47,7 +47,7 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     )
 
 PROTO_DEPS = [
-    "@com_google_protobuf//:protobuf",
+    "@protobuf//:protobuf",
 ]`)
 
 var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
@@ -71,9 +71,9 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     )
 
 GRPC_DEPS = [
-    "@com_google_protobuf//:protobuf",
-    "@com_github_grpc_grpc//:grpc++",
-    "@com_github_grpc_grpc//:grpc++_reflection",
+    "@protobuf//:protobuf",
+    "@grpc//:grpc++",
+    "@grpc//:grpc++_reflection",
 ]`)
 
 var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{

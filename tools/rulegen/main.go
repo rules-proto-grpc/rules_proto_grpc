@@ -100,25 +100,7 @@ func action(c *cli.Context) error {
 	}
 
 	languages := []*Language{
-		makeAndroid(),
-		makeBuf(),
-		makeC(),
 		makeCpp(),
-		makeCsharp(),
-		makeD(),
-		makeDoc(),
-		makeFsharp(),
-		makeGo(),
-		makeGrpcGateway(),
-		makeJava(),
-		makeJavaScript(),
-		makeObjc(),
-		makePhp(),
-		makePython(),
-		makeRuby(),
-		makeRust(),
-		makeScala(),
-		makeSwift(),
 	}
 
 	for _, lang := range languages {

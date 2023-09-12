@@ -209,22 +209,4 @@ Supported Languages and Tools
    :caption: Rules
    :hidden:
 
-   lang/android
-   lang/buf
-   lang/c
    lang/cpp
-   lang/csharp
-   lang/d
-   lang/doc
-   lang/fsharp
-   lang/go
-   lang/grpc-gateway
-   lang/java
-   lang/js
-   lang/objc
-   lang/php
-   lang/python
-   lang/ruby
-   lang/rust
-   lang/scala
-   lang/swift

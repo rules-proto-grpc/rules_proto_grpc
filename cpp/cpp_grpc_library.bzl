@@ -54,7 +54,7 @@ def cpp_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     )
 
 GRPC_DEPS = [
-    "@com_google_protobuf//:protobuf",
-    "@com_github_grpc_grpc//:grpc++",
-    "@com_github_grpc_grpc//:grpc++_reflection",
+    "@protobuf//:protobuf",
+    "@grpc//:grpc++",
+    "@grpc//:grpc++_reflection",
 ]
