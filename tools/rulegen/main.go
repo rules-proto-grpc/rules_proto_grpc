@@ -438,9 +438,11 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("    platform: %s", ciPlatform)
 		// out.w("    environment:")
 		// out.w(`      CC: clang`)
-		out.w("    build_flags:")
-		for _, flag := range extraPlatformFlags[ciPlatform] {
-			out.w(`    - "%s"`, flag)
+		if (len(extraPlatformFlags[ciPlatform]) > 0) {
+			out.w("    build_flags:")
+			for _, flag := range extraPlatformFlags[ciPlatform] {
+				out.w(`    - "%s"`, flag)
+			}
 		}
 		out.w("    build_targets:")
 		for _, lang := range languages {

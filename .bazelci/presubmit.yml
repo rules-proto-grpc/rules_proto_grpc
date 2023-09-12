@@ -3,7 +3,6 @@ tasks:
   main_ubuntu2204:
     name: build & test all
     platform: ubuntu2204
-    build_flags:
     build_targets:
     - "//cpp/..."
     test_flags:
@@ -14,7 +13,6 @@ tasks:
   main_windows:
     name: build & test all
     platform: windows
-    build_flags:
     build_targets:
     - "//cpp/..."
     test_flags:
@@ -25,7 +23,6 @@ tasks:
   main_macos:
     name: build & test all
     platform: macos
-    build_flags:
     build_targets:
     - "//cpp/..."
     test_flags:
