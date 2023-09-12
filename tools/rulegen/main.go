@@ -443,10 +443,6 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	// Write tasks for main code
 	//
 	for _, ciPlatform := range ciPlatforms {
-		// Skip windows, due to issues with 'undeclared inclusion'
-		if ciPlatform == "windows" {
-			continue
-		}
 		out.w("  main_%s:", ciPlatform)
 		out.w("    name: build & test all")
 		out.w("    platform: %s", ciPlatform)
@@ -488,11 +484,6 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	//
 	for _, lang := range languages {
 		for _, ciPlatform := range ciPlatforms {
-			// Skip windows, due to missing make
-			if ciPlatform == "windows" {
-				continue
-			}
-
 			// Check platform has at least one example to run
 			platformHasCommand := false
 			for _, rule := range lang.Rules {
@@ -515,10 +506,8 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 				out.w("    shell_commands:")
 				out.w("     - set -x")
 				out.w("     - export CC=clang")
-				if lang.Name == "csharp" || lang.Name == "fsharp" {
-					for _, flag := range extraPlatformFlags[ciPlatform] {
-						out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
-					}
+				for _, flag := range extraPlatformFlags[ciPlatform] {
+					out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
 				}
 			}
 
@@ -542,11 +531,6 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	// Write tasks for test workspaces
 	//
 	for _, ciPlatform := range ciPlatforms {
-		// Skip windows, due to missing make
-		if ciPlatform == "windows" {
-			continue
-		}
-
 		out.w("  %s_test_workspaces:", ciPlatform)
 		out.w("    name: test workspaces")
 		out.w("    platform: %s", ciPlatform)
@@ -559,10 +543,6 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		}
 
 		for _, testWorkspace := range findTestWorkspaceNames(dir) {
-			if ciPlatform == "windows" && (testWorkspace == "python3_grpc" || testWorkspace == "python_deps") {
-				continue // Don't run python grpc test workspaces on windows
-			}
-
 			if ciPlatform == "windows" {
 				out.w("     - make.exe test_workspace_%s", testWorkspace)
 			} else {
