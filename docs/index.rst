@@ -190,9 +190,7 @@ Supported Languages and Tools
 
    Overview <self>
    example
-   overriding_deps
    custom_plugins
-   transitivity
    contributing
    changelog
 
