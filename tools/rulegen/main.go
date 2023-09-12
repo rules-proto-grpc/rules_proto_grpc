@@ -163,7 +163,7 @@ func mustWriteLanguageExamples(dir string, lang *Language) {
 }
 
 func mustWriteLanguageExampleStaticFiles(dir string, lang *Language, rule *Rule) {
-	// Write empty workspace file
+	// Write empty WORKSPACE file to indicate Bazel workspace root
 	out := &LineWriter{}
 	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
 }
@@ -309,15 +309,6 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 
 		out.w("Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/%s/%s>`__", lang.Dir, rule.Name)
-		out.ln()
-
-		out.w("``WORKSPACE``")
-		out.w("^^^^^^^^^^^^^")
-		out.ln()
-
-		out.w(".. code-block:: python") // Treat starlark as python, as pygments needs this
-		out.ln()
-		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
 
 		out.w("``BUILD.bazel``")

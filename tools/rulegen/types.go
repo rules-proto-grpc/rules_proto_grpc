@@ -16,9 +16,6 @@ type Language struct {
 	// The display name of the language
 	DisplayName string
 
-	// Workspace usage
-	WorkspaceExample string
-
 	// List of rules
 	Rules []*Rule
 
@@ -51,9 +48,6 @@ type Rule struct {
 
 	// Description
 	Doc string
-
-	// Temmplate for workspace
-	WorkspaceExample *template.Template
 
 	// Template for build file
 	BuildExample *template.Template

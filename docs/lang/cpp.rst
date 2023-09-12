@@ -35,15 +35,6 @@ Example
 
 Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_proto_compile>`__
 
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
-   
-   rules_proto_grpc_cpp_repos()
-
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
@@ -131,23 +122,6 @@ Example
 
 Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_grpc_compile>`__
 
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
-   
-   rules_proto_grpc_cpp_repos()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-   
-   grpc_deps()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-   
-   grpc_extra_deps()
-
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
@@ -230,15 +204,6 @@ Example
 *******
 
 Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_proto_library>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
-   
-   rules_proto_grpc_cpp_repos()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -373,23 +338,6 @@ Example
 *******
 
 Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_grpc_library>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
-   
-   rules_proto_grpc_cpp_repos()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-   
-   grpc_deps()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-   
-   grpc_extra_deps()
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
