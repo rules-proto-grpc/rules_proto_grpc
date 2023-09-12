@@ -1,8 +1,8 @@
 """Generated definition of cpp_proto_library."""
 
-load("//cpp:cpp_proto_compile.bzl", "cpp_proto_compile")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
+load("//cpp:cpp_proto_compile.bzl", "cpp_proto_compile")
 
 def cpp_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos

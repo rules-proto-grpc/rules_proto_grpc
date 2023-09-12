@@ -9,8 +9,8 @@ load(
     "get_package_root",
     "strip_path_prefix",
 )
-load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoPluginInfo")
 load("//internal:protoc.bzl", "build_protoc_args")
+load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoPluginInfo")
 
 proto_compile_attrs = {
     "protos": attr.label_list(

@@ -1,8 +1,8 @@
 package main
 
-var cppLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+var cppLibraryRuleTemplateString = `load("@rules_cc//cc:defs.bzl", "cc_library")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
-load("@rules_cc//cc:defs.bzl", "cc_library")
+load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
