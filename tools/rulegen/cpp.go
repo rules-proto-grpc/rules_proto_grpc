@@ -47,7 +47,7 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     )
 
 PROTO_DEPS = [
-    "@protobuf//:protobuf",
+    Label("@protobuf//:protobuf"),
 ]`)
 
 var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
@@ -71,9 +71,9 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     )
 
 GRPC_DEPS = [
-    "@protobuf//:protobuf",
-    "@grpc//:grpc++",
-    # "@grpc//:grpc++_reflection",  # TODO: See https://github.com/bazelbuild/bazel-central-registry/issues/841
+    Label("@protobuf//:protobuf"),
+    Label("@grpc//:grpc++"),
+    # Label("@grpc//:grpc++_reflection"),  # TODO: See https://github.com/bazelbuild/bazel-central-registry/issues/841
 ]`)
 
 var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{

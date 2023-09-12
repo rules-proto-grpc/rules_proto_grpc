@@ -54,7 +54,7 @@ def cpp_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     )
 
 GRPC_DEPS = [
-    "@protobuf//:protobuf",
-    "@grpc//:grpc++",
-    # "@grpc//:grpc++_reflection",  # TODO: See https://github.com/bazelbuild/bazel-central-registry/issues/841
+    Label("@protobuf//:protobuf"),
+    Label("@grpc//:grpc++"),
+    # Label("@grpc//:grpc++_reflection"),  # TODO: See https://github.com/bazelbuild/bazel-central-registry/issues/841
 ]

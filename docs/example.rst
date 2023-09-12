@@ -58,12 +58,12 @@ target:
    proto_library(
        name = "thing_proto",
        srcs = ["thing.proto"],
-       deps = ["@com_google_protobuf//:any_proto"],
+       deps = ["@protobuf//:any_proto"],
    )
 
 This rule takes no visible action, but is used to group a set of related ``.proto`` files and their
 dependencies. In this example we have a dependency on a well-known type ``any.proto``, hence the
-``proto_library`` to ``proto_library`` dependency (``"@com_google_protobuf//:any_proto"``)
+``proto_library`` to ``proto_library`` dependency (``"@protobuf//:any_proto"``)
 
 
 **Step 4**: Add a ``cpp_proto_compile`` target

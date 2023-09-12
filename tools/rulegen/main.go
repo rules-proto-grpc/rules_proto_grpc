@@ -155,39 +155,34 @@ func mustWriteLanguageExamples(dir string, lang *Language) {
 		if err != nil {
 			log.Fatalf("FAILED to create %s: %v", exampleDir, err)
 		}
-		mustWriteLanguageExampleWorkspace(exampleDir, lang, rule)
+		mustWriteLanguageExampleStaticFiles(exampleDir, lang, rule)
+		mustWriteLanguageExampleModule(exampleDir, lang, rule)
 		mustWriteLanguageExampleBuildFile(exampleDir, lang, rule)
 		mustWriteLanguageExampleBazelrcFile(exampleDir, lang, rule)
 	}
 }
 
-func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
+func mustWriteLanguageExampleStaticFiles(dir string, lang *Language, rule *Rule) {
+	// Write empty workspace file
+	out := &LineWriter{}
+	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
+}
+
+func mustWriteLanguageExampleModule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
 	depth := strings.Split(lang.Dir, "/")
 	// +2 as we are in the example/{rule} subdirectory
 	relpath := strings.Repeat("../", len(depth)+2)
 
-	out.w(`local_repository(
-    name = "rules_proto_grpc",
+	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
+
+local_path_override(
+    module_name = "rules_proto_grpc",
     path = "%s",
-)
-
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
-
-rules_proto_grpc_toolchains()
-
-rules_proto_grpc_repos()
-
-load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-
-rules_proto_dependencies()
-
-rules_proto_toolchains()`, relpath)
+)`, relpath)
 
 	out.ln()
-	out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
-	out.ln()
-	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
+	out.MustWrite(filepath.Join(dir, "MODULE.bazel"))
 }
 
 func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
@@ -579,9 +574,9 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			out.w("	cd %s; \\", exampleDir)
 
 			if rule.IsTest {
-				out.w("	bazel --batch test --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch test --enable_bzlmod --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			} else {
-				out.w("	bazel --batch build --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch build --enable_bzlmod --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			}
 			out.ln()
 		}

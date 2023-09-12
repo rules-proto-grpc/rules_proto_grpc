@@ -54,5 +54,5 @@ def cpp_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
     )
 
 PROTO_DEPS = [
-    "@protobuf//:protobuf",
+    Label("@protobuf//:protobuf"),
 ]

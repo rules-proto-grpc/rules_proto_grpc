@@ -19,7 +19,7 @@ proto_library(
     srcs = ["thing.proto"],
     visibility = ["//visibility:public"],
     deps = [
-        "@com_google_protobuf//:any_proto",
+        "@protobuf//:any_proto",
     ],
 )
 
@@ -43,6 +43,6 @@ proto_library(
     visibility = ["//visibility:public"],
     deps = [
         ":thing_proto",  # Non well-known
-        "@com_google_protobuf//:any_proto",  # Well-known
+        "@protobuf//:any_proto",  # Well-known
     ],
 )
