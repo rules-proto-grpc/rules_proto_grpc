@@ -11,6 +11,9 @@
     <a href="https://bazelbuild.slack.com/archives/CKU1D04RM"><img src="https://img.shields.io/badge/bazelbuild-%23proto-38a3a5?logo=slack"></a>
 </div>
 
+> [!IMPORTANT]
+> You are looking at the `next` branch, which contains highly experimental bzlmod support. It is not
+> recommended that you use this version of these rules at present
 
 ## Announcements 📣
 
