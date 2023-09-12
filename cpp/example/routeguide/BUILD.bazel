@@ -15,7 +15,7 @@ cc_test(
     copts = ["-Iexternal/gtest/include"],
     deps = [
         ":helper",
-        "//external:gtest",
+        "@googletest//:gtest",
     ],
 )
 

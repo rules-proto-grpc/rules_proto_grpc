@@ -16,6 +16,7 @@ register_toolchains("@rules_proto_grpc//protobuf:protoc_toolchain")
 
 # Dev dependencies
 bazel_dep(name = "buildifier_prebuilt", version = "6.3.3", dev_dependency = True)
+bazel_dep(name = "googletest", version = "1.14.0", dev_dependency = True)
 
 rulegen_go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps", dev_dependency = True)
 rulegen_go_deps.module(
