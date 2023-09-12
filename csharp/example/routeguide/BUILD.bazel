@@ -1,5 +1,5 @@
 load("//csharp:defs.bzl", "csharp_grpc_library")
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "csharp_binary", "csharp_library")
+load("@rules_dotnet//dotnet:defs.bzl", "csharp_binary", "csharp_library")
 
 csharp_grpc_library(
     name = "routeguide.dll",

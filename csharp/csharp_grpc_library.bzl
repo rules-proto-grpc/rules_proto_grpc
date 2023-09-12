@@ -2,7 +2,7 @@
 
 load("//csharp:csharp_grpc_compile.bzl", "csharp_grpc_compile")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "csharp_library")
+load("@rules_dotnet//dotnet:defs.bzl", "csharp_library")
 
 def csharp_grpc_library(name, **kwargs):
     # Compile protos

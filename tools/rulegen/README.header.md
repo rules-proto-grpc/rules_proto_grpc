@@ -14,6 +14,13 @@
 
 ## Announcements 📣
 
+#### 2023/09/12 - Version 4.5.0
+
+[Version 4.5.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.5.0),
+which contains a number of version updates, bug fixes and usability improvements over 4.4.0.
+Additionally, the Rust rules contain a major change of underlying gRPC and Protobuf library; the
+rules now use Tonic and Prost respectively
+
 #### 2023/05/03 - Version 4.4.0
 
 [Version 4.4.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.4.0),
