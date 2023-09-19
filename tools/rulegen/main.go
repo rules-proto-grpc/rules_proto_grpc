@@ -570,15 +570,14 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 func mustWriteBazelignore(dir string, languages []*Language) {
 	// Write constant header
 	out := &LineWriter{}
-	out.w("core")
+	out.w("modules")
 	out.w("test_workspaces")
 	out.ln()
 
 	//
-	// Write per-language ignores
+	// Write example ignores
 	//
 	for _, lang := range languages {
-		out.w(lang.Name)
 		for _, rule := range lang.Rules {
 			out.w("examples/%s/%s", lang.Name, rule.Name)
 		}
