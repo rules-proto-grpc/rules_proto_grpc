@@ -1,8 +1,12 @@
 bazel_dep(name = "protobuf", version = "21.7")
 bazel_dep(name = "rules_cc", version = "0.0.8")
 bazel_dep(name = "rules_proto", version = "5.3.0-21.7")
-bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0")
 local_path_override(
     module_name = "rules_proto_grpc",
-    path = "../../",
+    path = "../../modules/core",
+)
+local_path_override(
+    module_name = "rules_proto_grpc_cpp",
+    path = "../../modules/cpp",
 )

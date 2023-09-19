@@ -147,7 +147,7 @@ func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out.ln()
 	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
-	out.MustWrite(filepath.Join(dir, lang.Name, rule.Name + ".bzl"))
+	out.MustWrite(filepath.Join(dir, "modules", lang.Name, rule.Name + ".bzl"))
 }
 
 func mustWriteLanguageExamples(dir string, lang *Language) {
@@ -179,11 +179,11 @@ func mustWriteLanguageExampleModule(dir string, lang *Language, rule *Rule) {
 bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")
 local_path_override(
     module_name = "rules_proto_grpc",
-    path = "%score",
+    path = "%smodules/core",
 )
 local_path_override(
     module_name = "rules_proto_grpc_%s",
-    path = "%s%s",
+    path = "%smodules/%s",
 )`, lang.Name, rootPath, lang.Name, rootPath, lang.Name)
 
 	out.ln()
@@ -233,7 +233,7 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 
 		out.ln()
 	}
-	out.MustWrite(filepath.Join(dir, lang.Name, "defs.bzl"))
+	out.MustWrite(filepath.Join(dir, "modules", lang.Name, "defs.bzl"))
 }
 
 func mustWriteLanguageReadme(dir string, lang *Language) {
@@ -332,7 +332,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		}
 	}
 
-	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name+".rst"))
+	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name + ".rst"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {

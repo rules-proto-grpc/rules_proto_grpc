@@ -10,19 +10,19 @@ bazel_dep(name = "rules_python", version = "0.25.0")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
 local_path_override(
     module_name = "rules_proto_grpc",
-    path = "core",
+    path = "modules/core",
 )
 
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0")
 local_path_override(
     module_name = "rules_proto_grpc_cpp",
-    path = "cpp",
+    path = "modules/cpp",
 )
 
 bazel_dep(name = "rules_proto_grpc_python", version = "0.0.0")
 local_path_override(
     module_name = "rules_proto_grpc_python",
-    path = "python",
+    path = "modules/python",
 )
 
 # Python
