@@ -1,8 +1,8 @@
 package main
 
 var cppLibraryRuleTemplateString = `load("@rules_cc//cc:defs.bzl", "cc_library")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
-load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
+load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
@@ -156,7 +156,7 @@ func makeCpp() *Language {
 				Name:             "cpp_proto_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//cpp:cpp_plugin"},
+				Plugins:          []string{"//:proto_plugin"},
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates C++ protobuf ``.h`` & ``.cc`` files",
 				Attrs:            compileRuleAttrs,
@@ -165,7 +165,7 @@ func makeCpp() *Language {
 				Name:             "cpp_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//cpp:cpp_plugin", "//cpp:grpc_cpp_plugin"},
+				Plugins:          []string{"//:proto_plugin", "//:grpc_plugin"},
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files",
 				Attrs:            compileRuleAttrs,

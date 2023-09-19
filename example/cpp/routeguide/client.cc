@@ -28,7 +28,7 @@
 #include <grpcpp/client_context.h>
 #include <grpcpp/create_channel.h>
 #include <grpcpp/security/credentials.h>
-#include "cpp/example/routeguide/helper.h"
+#include "example/cpp/routeguide/helper.h"
 #include "example/proto/routeguide.grpc.pb.h"
 
 using grpc::Channel;

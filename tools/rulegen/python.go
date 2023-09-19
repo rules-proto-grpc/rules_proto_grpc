@@ -1,8 +1,8 @@
 package main
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("@rules_python//python:defs.bzl", "py_library")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
@@ -26,8 +26,8 @@ def {{ .Rule.Name }}(name, **kwargs):
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("@pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
@@ -53,8 +53,8 @@ def {{ .Rule.Name }}(name, **kwargs):
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("@pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("//:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos
@@ -97,7 +97,7 @@ func makePython() *Language {
 				Name:             "python_proto_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//python:python_plugin"},
+				Plugins:          []string{"//:proto_plugin"},
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Python protobuf ``.py`` files",
 				Attrs:            compileRuleAttrs,
@@ -106,7 +106,7 @@ func makePython() *Language {
 				Name:             "python_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//python:python_plugin", "//python:grpc_python_plugin"},
+				Plugins:          []string{"//:proto_plugin", "//:grpc_plugin"},
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf and gRPC ``.py`` files",
 				Attrs:            compileRuleAttrs,
@@ -115,7 +115,7 @@ func makePython() *Language {
 				Name:             "python_grpclib_compile",
 				Kind:             "grpc",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//python:python_plugin", "//python:grpclib_python_plugin"},
+				Plugins:          []string{"//:proto_plugin", "//:grpclib_plugin"},
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)",
 				Attrs:            compileRuleAttrs,

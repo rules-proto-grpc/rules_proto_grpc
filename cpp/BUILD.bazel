@@ -1,7 +1,7 @@
-load("//:defs.bzl", "proto_plugin")
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
 
 proto_plugin(
-    name = "cpp_plugin",
+    name = "proto_plugin",
     exclusions = [
         "google/protobuf",
     ],
@@ -14,7 +14,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_cpp_plugin",
+    name = "grpc_plugin",
     exclusions = [
         "google/protobuf",
     ],

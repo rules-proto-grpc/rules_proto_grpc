@@ -1,4 +1,4 @@
-load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
+load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_library")
 
 cpp_proto_library(
     name = "person_cpp_proto",

@@ -1,5 +1,5 @@
 load("@rules_python//python/pip_install:requirements.bzl", "compile_pip_requirements")
-load("//:defs.bzl", "proto_plugin")
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
 
 compile_pip_requirements(
     name = "requirements",
@@ -14,7 +14,7 @@ compile_pip_requirements(
 )
 
 proto_plugin(
-    name = "python_plugin",
+    name = "proto_plugin",
     exclusions = [
         "google/protobuf",
     ],
@@ -24,7 +24,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_python_plugin",
+    name = "grpc_plugin",
     exclusions = [
         "google/protobuf",
     ],
@@ -34,7 +34,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpclib_python_plugin",
+    name = "grpclib_plugin",
     outputs = ["{protopath}_grpc.py"],
     tool = "//python/grpclib:plugin",
     visibility = ["//visibility:public"],

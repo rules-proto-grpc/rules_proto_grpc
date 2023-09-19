@@ -40,7 +40,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_compile")
    
    cpp_proto_compile(
        name = "person_cpp_proto",
@@ -108,7 +108,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//cpp:cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
 
 .. _cpp_grpc_compile:
 
@@ -127,7 +127,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_compile")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_grpc_compile")
    
    cpp_grpc_compile(
        name = "thing_cpp_grpc",
@@ -190,8 +190,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//cpp:cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
-- `@rules_proto_grpc//cpp:grpc_cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
 
 .. _cpp_proto_library:
 
@@ -210,7 +210,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_library")
    
    cpp_proto_library(
        name = "person_cpp_proto",

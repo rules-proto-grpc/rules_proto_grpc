@@ -1,4 +1,4 @@
-load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_compile")
+load("@rules_proto_grpc_python//:defs.bzl", "python_grpclib_compile")
 
 python_grpclib_compile(
     name = "thing_python_grpc",

@@ -1,5 +1,5 @@
 load("@rules_python//python:defs.bzl", "py_binary", "py_library")
-load("//python:defs.bzl", "python_grpc_library")
+load("@rules_proto_grpc_python//:defs.bzl", "python_grpc_library")
 
 python_grpc_library(
     name = "routeguide",

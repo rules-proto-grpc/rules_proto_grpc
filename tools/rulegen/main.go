@@ -172,13 +172,18 @@ func mustWriteLanguageExampleModule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
 	depth := strings.Split(lang.Dir, "/")
 	// +2 as we are in the example/{rule} subdirectory
-	relpath := strings.Repeat("../", len(depth)+2)
+	rootPath := strings.Repeat("../", len(depth) + 2)
 
 	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")
 local_path_override(
     module_name = "rules_proto_grpc",
-    path = "%s",
-)`, relpath)
+    path = "%score",
+)
+local_path_override(
+    module_name = "rules_proto_grpc_%s",
+    path = "%s%s",
+)`, lang.Name, rootPath, lang.Name, rootPath, lang.Dir)
 
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "MODULE.bazel"))
@@ -375,7 +380,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- `@rules_proto_grpc%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", plugin, lang.Dir)
+				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Dir)
 			}
 			out.ln()
 		}

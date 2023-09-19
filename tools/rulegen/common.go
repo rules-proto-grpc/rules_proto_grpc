@@ -69,7 +69,7 @@ var libraryRuleAttrs = append(append([]*Attr(nil), compileRuleAttrs...), []*Attr
 
 
 var compileRuleTemplate = mustTemplate(`load(
-    "//:defs.bzl",
+    "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
     "proto_compile_attrs",
     "proto_compile_impl",
@@ -88,7 +88,7 @@ var compileRuleTemplate = mustTemplate(`load(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("//protobuf:toolchain_type"))],
+    toolchains = ["@rules_proto_grpc//protoc:toolchain_type"],
 )`)
 
 // When editing, note that Go and gateway do not use this snippet and have their own local version
@@ -106,7 +106,7 @@ var libraryArgsForwardingSnippet = `**{
         }  # Forward Bazel common args`
 
 
-var protoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var protoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
@@ -124,7 +124,7 @@ var protoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lan
 )`)
 
 
-var grpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var grpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
@@ -137,7 +137,7 @@ var grpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang
 )`)
 
 
-var protoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var protoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
@@ -157,7 +157,7 @@ var protoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lan
 )`)
 
 
-var grpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var grpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",

@@ -388,21 +388,6 @@ def get_package_root(ctx):
 
     return package_root
 
-def get_parent_dirname(label):
-    """
-    Get the name of the parent directory of a label.
-
-    Args:
-        label: The label to get the parent directory of.
-
-    Returns:
-        The name of the parent directory.
-
-    """
-    if label.startswith("//"):
-        label = label[2:]
-    return label.partition("/")[0]
-
 # All common build attrs from https://bazel.build/reference/be/common-definitions#common-attributes
 # These are listed here to be correctly propagated through *_library macros to the underlying
 # rules without just passing the entirety of kwargs, although maybe that's the better choice...

@@ -1,4 +1,4 @@
-load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
+load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_compile")
 
 cpp_proto_compile(
     name = "person_cpp_proto",

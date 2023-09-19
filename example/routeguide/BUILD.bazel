@@ -12,12 +12,12 @@ load("//example/routeguide:routeguide_test.bzl", "routeguide_test_matrix")
 routeguide_test_matrix(
     name = "routeguide_matrix",
     clients = [
-        "//cpp/example/routeguide:client",
-        "//python/example/routeguide:client",
+        "//example/cpp/routeguide:client",
+        "//example/python/routeguide:client",
     ],
     servers = [
-        "//cpp/example/routeguide:server",
-        "//python/example/routeguide:server",
+        "//example/cpp/routeguide:server",
+        "//example/python/routeguide:server",
     ],
     skip = [
         "csharp_rust",  # Broken

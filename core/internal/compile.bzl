@@ -39,6 +39,13 @@ proto_compile_attrs = {
         values = ["PREFIXED", "NO_PREFIX", "NO_PREFIX_FLAT"],
         doc = "The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output files directly to the current package, NO_PREFIX_FLAT will ouput directly to the current package without mirroring the package tree. Using NO_PREFIX may lead to conflicting writes",
     ),
+    "_fixer": attr.label(
+        default = "@rules_proto_grpc//fixer",
+        cfg = "exec",
+        allow_files = True,
+        executable = True,
+        doc = "Label of the fixer target",
+    ),
 }
 
 def proto_compile_impl(ctx):
@@ -88,9 +95,9 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     verbose = ctx.attr.verbose
 
     # Load toolchain and tools
-    protoc_toolchain_info = ctx.toolchains[str(Label("//protobuf:toolchain_type"))]
+    protoc_toolchain_info = ctx.toolchains[str(Label("//protoc:toolchain_type"))]
     protoc = protoc_toolchain_info.protoc_executable
-    fixer = protoc_toolchain_info.fixer_executable
+    fixer = ctx.executable._fixer
 
     # The directory where the outputs will be generated, relative to the package.
     # A temporary dir is used here to allow output directories that may need to be merged later

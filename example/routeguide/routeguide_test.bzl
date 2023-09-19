@@ -1,6 +1,7 @@
 """Definition of the routeguide test and matrix rules."""
 
-load("//internal:common.bzl", "get_parent_dirname")
+def _get_lang_name(label):
+    return label.partition("//example/")[2].rpartition("/")[0].replace("/", "_")
 
 def _routeguide_test_impl(ctx):
     # Build test execution script
@@ -90,9 +91,9 @@ def routeguide_test_matrix(name = "", clients = [], servers = [], database = "//
     """
     port = 50051
     for server in servers:
-        server_name = get_parent_dirname(server)
+        server_name = _get_lang_name(server)
         for client in clients:
-            client_name = get_parent_dirname(client)
+            client_name = _get_lang_name(client)
             name = "%s_%s" % (client_name, server_name)
             if name in skip:
                 continue

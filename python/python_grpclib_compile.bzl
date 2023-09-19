@@ -1,7 +1,7 @@
 """Generated definition of python_grpclib_compile."""
 
 load(
-    "//:defs.bzl",
+    "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
     "proto_compile_attrs",
     "proto_compile_impl",
@@ -15,11 +15,11 @@ python_grpclib_compile = rule(
         _plugins = attr.label_list(
             providers = [ProtoPluginInfo],
             default = [
-                Label("//python:python_plugin"),
-                Label("//python:grpclib_python_plugin"),
+                Label("//:proto_plugin"),
+                Label("//:grpclib_plugin"),
             ],
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("//protobuf:toolchain_type"))],
+    toolchains = ["@rules_proto_grpc//protoc:toolchain_type"],
 )

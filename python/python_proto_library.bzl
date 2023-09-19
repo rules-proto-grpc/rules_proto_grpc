@@ -1,8 +1,8 @@
 """Generated definition of python_proto_library."""
 
 load("@rules_python//python:defs.bzl", "py_library")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("//python:python_proto_compile.bzl", "python_proto_compile")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("//:python_proto_compile.bzl", "python_proto_compile")
 
 def python_proto_library(name, **kwargs):
     # Compile protos

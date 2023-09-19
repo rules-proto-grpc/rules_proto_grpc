@@ -1,8 +1,8 @@
 """Generated definition of cpp_grpc_library."""
 
 load("@rules_cc//cc:defs.bzl", "cc_library")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
-load("//cpp:cpp_grpc_compile.bzl", "cpp_grpc_compile")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
+load("//:cpp_grpc_compile.bzl", "cpp_grpc_compile")
 
 def cpp_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos

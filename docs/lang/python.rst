@@ -48,7 +48,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//python:defs.bzl", "python_proto_compile")
+   load("@rules_proto_grpc_python//:defs.bzl", "python_proto_compile")
    
    python_proto_compile(
        name = "person_python_proto",
