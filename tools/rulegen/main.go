@@ -130,6 +130,8 @@ func action(c *cli.Context) error {
 	mustWriteExamplesMakefile(dir, languages)
 	mustWriteTestWorkspacesMakefile(dir)
 
+	mustWriteBazelignore(dir, languages)
+
 	return nil
 }
 
@@ -563,6 +565,27 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "test_workspaces", "Makefile.mk"))
+}
+
+func mustWriteBazelignore(dir string, languages []*Language) {
+	// Write constant header
+	out := &LineWriter{}
+	out.w("core")
+	out.w("test_workspaces")
+	out.ln()
+
+	//
+	// Write per-language ignores
+	//
+	for _, lang := range languages {
+		out.w(lang.Dir)
+		for _, rule := range lang.Rules {
+			out.w("examples/%s/%s", lang.Dir, rule.Name)
+		}
+		out.ln()
+	}
+
+	out.MustWrite(filepath.Join(dir, ".bazelignore"))
 }
 
 func findTestWorkspaceNames(dir string) []string {

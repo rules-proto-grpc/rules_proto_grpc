@@ -1,2 +1,16 @@
-# Don't include test child workspaces
+core
 test_workspaces
+
+cpp
+examples/cpp/cpp_proto_compile
+examples/cpp/cpp_grpc_compile
+examples/cpp/cpp_proto_library
+examples/cpp/cpp_grpc_library
+
+python
+examples/python/python_proto_compile
+examples/python/python_grpc_compile
+examples/python/python_grpclib_compile
+examples/python/python_proto_library
+examples/python/python_grpc_library
+examples/python/python_grpclib_library
