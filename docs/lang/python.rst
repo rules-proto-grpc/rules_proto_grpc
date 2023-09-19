@@ -116,7 +116,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//python:python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
 
 .. _python_grpc_compile:
 
@@ -135,7 +135,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//python:defs.bzl", "python_grpc_compile")
+   load("@rules_proto_grpc_python//:defs.bzl", "python_grpc_compile")
    
    python_grpc_compile(
        name = "thing_python_grpc",
@@ -198,8 +198,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//python:python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
-- `@rules_proto_grpc//python:grpc_python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
 
 .. _python_grpclib_compile:
 
@@ -218,7 +218,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_compile")
+   load("@rules_proto_grpc_python//:defs.bzl", "python_grpclib_compile")
    
    python_grpclib_compile(
        name = "thing_python_grpc",
@@ -281,8 +281,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//python:python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
-- `@rules_proto_grpc//python:grpclib_python_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:grpclib_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
 
 .. _python_proto_library:
 
@@ -301,7 +301,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//python:defs.bzl", "python_proto_library")
+   load("@rules_proto_grpc_python//:defs.bzl", "python_proto_library")
    
    python_proto_library(
        name = "person_python_proto",
@@ -390,7 +390,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//python:defs.bzl", "python_grpc_library")
+   load("@rules_proto_grpc_python//:defs.bzl", "python_grpc_library")
    
    python_grpc_library(
        name = "thing_python_grpc",
@@ -473,7 +473,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//python:defs.bzl", "python_grpclib_library")
+   load("@rules_proto_grpc_python//:defs.bzl", "python_grpclib_library")
    
    python_grpclib_library(
        name = "thing_python_grpc",

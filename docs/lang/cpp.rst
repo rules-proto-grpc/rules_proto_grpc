@@ -344,7 +344,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_library")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_grpc_library")
    
    cpp_grpc_library(
        name = "thing_cpp_grpc",
