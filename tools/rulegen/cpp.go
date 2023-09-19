@@ -144,7 +144,6 @@ func makeCpp() *Language {
 		Name:  "cpp",
 		DisplayName: "C++",
 		Notes: mustTemplate("Rules for generating C++ protobuf and gRPC ``.cc`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``cc_library``"),
-		Flags: commonLangFlags,
 		Aliases: map[string]string{
 			"cc_proto_compile": "cpp_proto_compile",
 			"cc_grpc_compile": "cpp_grpc_compile",

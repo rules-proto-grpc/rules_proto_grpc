@@ -22,9 +22,6 @@ type Language struct {
 	// Additional nodes about the language
 	Notes *template.Template
 
-	// Bazel build flags required / suggested
-	Flags []*Flag
-
 	// Additional CI-specific env vars in the form "K=V"
 	PresubmitEnvVars map[string]string
 
@@ -63,9 +60,6 @@ type Rule struct {
 
 	// Not expected to be functional
 	Experimental bool
-
-	// Bazel build flags required / suggested
-	Flags []*Flag
 
 	// Additional CI-specific env vars in the form "K=V"
 	PresubmitEnvVars map[string]string

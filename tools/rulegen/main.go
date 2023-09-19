@@ -158,7 +158,6 @@ func mustWriteLanguageExamples(dir string, lang *Language) {
 		mustWriteLanguageExampleStaticFiles(exampleDir, lang, rule)
 		mustWriteLanguageExampleModule(exampleDir, lang, rule)
 		mustWriteLanguageExampleBuildFile(exampleDir, lang, rule)
-		mustWriteLanguageExampleBazelrcFile(exampleDir, lang, rule)
 	}
 }
 
@@ -194,40 +193,6 @@ func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
 	out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "BUILD.bazel"))
-}
-
-func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule) {
-	out := &LineWriter{}
-	for _, f := range lang.Flags {
-		if f.Description != "" {
-			out.w("# %s", f.Description)
-		} else {
-			out.w("#")
-		}
-		out.w("%s --%s=%s", f.Category, f.Name, f.Value)
-		out.ln()
-	}
-	for _, f := range rule.Flags {
-		if f.Description != "" {
-			out.w("# %s", f.Description)
-		} else {
-			out.w("#")
-		}
-		out.w("%s --%s=%s", f.Category, f.Name, f.Value)
-		out.ln()
-	}
-
-	// Only write a .bazelrc if it's not empty
-	if len(out.lines) > 0 {
-		out.MustWrite(filepath.Join(dir, ".bazelrc"))
-	} else {
-		if fileExists(filepath.Join(dir, ".bazelrc")) {
-			e := os.Remove(filepath.Join(dir, ".bazelrc"))
-			if e != nil {
-				log.Fatal(e)
-			}
-		}
-	}
 }
 
 func mustWriteLanguageDefs(dir string, lang *Language) {
@@ -329,27 +294,6 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
 
-		if len(rule.Flags) > 0 {
-			out.w("Flags")
-			out.w("*****")
-			out.ln()
-
-			out.w(".. list-table:: Flags for %s", rule.Name)
-			out.w("   :header-rows: 1")
-			out.ln()
-			out.w("   * - Category")
-			out.w("     - Flag")
-			out.w("     - Value")
-			out.w("     - Description")
-			for _, f := range rule.Flags {
-				out.w("   * - %s", f.Category)
-				out.w("     - %s", f.Name)
-				out.w("     - %s", f.Value)
-				out.w("     - %s", f.Description)
-			}
-			out.ln()
-		}
-
 		out.w("Attributes")
 		out.w("**********")
 		out.ln()
@@ -443,24 +387,6 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("    platform: %s", ciPlatform)
 		// out.w("    environment:")
 		// out.w(`      CC: clang`)
-		out.w("    build_flags:")
-		if ciPlatform == "windows" {
-			out.w(`    - "--cxxopt=/std:c++17"`)
-			out.w(`    - "--host_cxxopt=/std:c++17"`)
-		} else {
-			out.w(`    - "--cxxopt=-std=c++17"`)
-			out.w(`    - "--host_cxxopt=-std=c++17"`)
-		}
-		for _, flag := range extraPlatformFlags[ciPlatform] {
-			out.w(`    - "%s"`, flag)
-		}
-		out.w("    build_targets:")
-		for _, lang := range languages {
-			// Skip experimental or excluded
-			if doTestOnPlatform(lang, nil, ciPlatform) {
-				out.w(`    - "//%s/..."`, lang.Dir)
-			}
-		}
 		out.w("    test_flags:")
 		out.w(`    - "--test_output=errors"`)
 		if ciPlatform == "windows" {
