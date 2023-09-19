@@ -129,7 +129,6 @@ func action(c *cli.Context) error {
 
 	mustWriteExamplesMakefile(dir, languages)
 	mustWriteTestWorkspacesMakefile(dir)
-	mustWriteHttpArchiveTestWorkspace(dir, ref, sha256)
 
 	return nil
 }
@@ -146,7 +145,7 @@ func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out.ln()
 	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
-	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name+".bzl"))
+	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name + ".bzl"))
 }
 
 func mustWriteLanguageExamples(dir string, lang *Language) {
@@ -633,32 +632,6 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "test_workspaces", "Makefile.mk"))
-}
-
-func mustWriteHttpArchiveTestWorkspace(dir, ref, sha256 string) {
-	out := &LineWriter{}
-	out.w(`load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "rules_proto_grpc",
-    sha256 = "%s",
-    strip_prefix = "rules_proto_grpc-%s",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/%s/rules_proto_grpc-%s.tar.gz"],
-)
-
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
-
-rules_proto_grpc_toolchains()
-
-rules_proto_grpc_repos()
-
-load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-
-rules_proto_dependencies()
-
-rules_proto_toolchains()
-`, sha256, ref, ref, ref)
-	out.MustWrite(filepath.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
 }
 
 func findTestWorkspaceNames(dir string) []string {
