@@ -31,10 +31,7 @@ local_path_override(
 # Python
 # This is required to prevent rules_python complaining about missing default toolchain
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
-python.toolchain(
-    is_default = True,
-    python_version = "3.11",
-)
+python.toolchain(python_version = "3.11")
 
 # Rulegen deps
 rulegen_go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps", dev_dependency = True)

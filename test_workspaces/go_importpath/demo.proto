@@ -1,7 +1,0 @@
-syntax = "proto3";
-
-option go_package = "test_proto_path/root";
-
-message demo {
-    bool field = 1;
-}
