@@ -140,7 +140,6 @@ var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*A
 
 func makeCpp() *Language {
 	return &Language{
-		Dir:   "cpp",
 		Name:  "cpp",
 		DisplayName: "C++",
 		Notes: mustTemplate("Rules for generating C++ protobuf and gRPC ``.cc`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``cc_library``"),

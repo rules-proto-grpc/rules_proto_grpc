@@ -147,12 +147,12 @@ func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out.ln()
 	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
-	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name + ".bzl"))
+	out.MustWrite(filepath.Join(dir, lang.Name, rule.Name + ".bzl"))
 }
 
 func mustWriteLanguageExamples(dir string, lang *Language) {
 	for _, rule := range lang.Rules {
-		exampleDir := filepath.Join(dir, "example", lang.Dir, rule.Name)
+		exampleDir := filepath.Join(dir, "example", lang.Name, rule.Name)
 		err := os.MkdirAll(exampleDir, os.ModePerm)
 		if err != nil {
 			log.Fatalf("FAILED to create %s: %v", exampleDir, err)
@@ -171,7 +171,7 @@ func mustWriteLanguageExampleStaticFiles(dir string, lang *Language, rule *Rule)
 
 func mustWriteLanguageExampleModule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
-	depth := strings.Split(lang.Dir, "/")
+	depth := strings.Split(lang.Name, "/")
 	// +2 as we are in the example/{rule} subdirectory
 	rootPath := strings.Repeat("../", len(depth) + 2)
 
@@ -184,7 +184,7 @@ local_path_override(
 local_path_override(
     module_name = "rules_proto_grpc_%s",
     path = "%s%s",
-)`, lang.Name, rootPath, lang.Name, rootPath, lang.Dir)
+)`, lang.Name, rootPath, lang.Name, rootPath, lang.Name)
 
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "MODULE.bazel"))
@@ -233,7 +233,7 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 
 		out.ln()
 	}
-	out.MustWrite(filepath.Join(dir, lang.Dir, "defs.bzl"))
+	out.MustWrite(filepath.Join(dir, lang.Name, "defs.bzl"))
 }
 
 func mustWriteLanguageReadme(dir string, lang *Language) {
@@ -284,7 +284,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("*******")
 		out.ln()
 
-		out.w("Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/%s/%s>`__", lang.Dir, rule.Name)
+		out.w("Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/%s/%s>`__", lang.Name, rule.Name)
 		out.ln()
 
 		out.w("``BUILD.bazel``")
@@ -326,7 +326,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Dir)
+				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Name)
 			}
 			out.ln()
 		}
@@ -350,7 +350,7 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 		for _, rule := range lang.Rules {
 			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.com/en/latest/lang/%s.html)", lang.DisplayName, lang.Name)
 			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.com/en/latest/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
-			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
+			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Name, rule.Name)
 			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
 		}
 	}
@@ -508,11 +508,11 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 		var langNames []string
 
 		// Calculate depth of lang dir
-		langDepth := len(slashRegex.FindAllStringIndex(lang.Dir, -1))
+		langDepth := len(slashRegex.FindAllStringIndex(lang.Name, -1))
 
 		// Create rules for each example
 		for _, rule := range lang.Rules {
-			exampleDir := path.Join(dir, "example", lang.Dir, rule.Name)
+			exampleDir := path.Join(dir, "example", lang.Name, rule.Name)
 
 			var name = fmt.Sprintf("%s_%s_example", lang.Name, rule.Name)
 			allNames = append(allNames, name)
@@ -578,9 +578,9 @@ func mustWriteBazelignore(dir string, languages []*Language) {
 	// Write per-language ignores
 	//
 	for _, lang := range languages {
-		out.w(lang.Dir)
+		out.w(lang.Name)
 		for _, rule := range lang.Rules {
-			out.w("examples/%s/%s", lang.Dir, rule.Name)
+			out.w("examples/%s/%s", lang.Name, rule.Name)
 		}
 		out.ln()
 	}

@@ -6,10 +6,6 @@ import (
 
 // Language represents one directory in this repo
 type Language struct {
-	// Directory in the repo where this language is rooted.  Typically this is
-	// the same as the name
-	Dir string
-
 	// Name of the language
 	Name string
 
