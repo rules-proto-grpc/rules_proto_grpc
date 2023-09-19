@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/examples/proto";
+
+package examples.proto;
+
+import "examples/proto/place.proto";
+
+message Person {
+    // The person's name
+    string name = 1;
+
+    // The person's place
+    examples.proto.Place place = 3;
+}

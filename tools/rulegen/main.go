@@ -152,7 +152,7 @@ func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 
 func mustWriteLanguageExamples(dir string, lang *Language) {
 	for _, rule := range lang.Rules {
-		exampleDir := filepath.Join(dir, "example", lang.Name, rule.Name)
+		exampleDir := filepath.Join(dir, "examples", lang.Name, rule.Name)
 		err := os.MkdirAll(exampleDir, os.ModePerm)
 		if err != nil {
 			log.Fatalf("FAILED to create %s: %v", exampleDir, err)
@@ -172,7 +172,7 @@ func mustWriteLanguageExampleStaticFiles(dir string, lang *Language, rule *Rule)
 func mustWriteLanguageExampleModule(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
 	depth := strings.Split(lang.Name, "/")
-	// +2 as we are in the example/{rule} subdirectory
+	// +2 as we are in the examples/{rule} subdirectory
 	rootPath := strings.Repeat("../", len(depth) + 2)
 
 	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
@@ -284,7 +284,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("*******")
 		out.ln()
 
-		out.w("Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/%s/%s>`__", lang.Name, rule.Name)
+		out.w("Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/%s/%s>`__", lang.Name, rule.Name)
 		out.ln()
 
 		out.w("``BUILD.bazel``")
@@ -350,7 +350,7 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 		for _, rule := range lang.Rules {
 			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.com/en/latest/lang/%s.html)", lang.DisplayName, lang.Name)
 			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.com/en/latest/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
-			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Name, rule.Name)
+			exampleLink := fmt.Sprintf("[example](/examples/%s/%s)", lang.Name, rule.Name)
 			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
 		}
 	}
@@ -404,8 +404,8 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("    test_targets:")
 		for _, clientLang := range languages {
 			for _, serverLang := range languages {
-				if doTestOnPlatform(clientLang, nil, ciPlatform) && doTestOnPlatform(serverLang, nil, ciPlatform) && stringInSlice(fmt.Sprintf("//example/routeguide:%s_%s", clientLang.Name, serverLang.Name), availableTestLabels) {
-					out.w(`    - "//example/routeguide:%s_%s"`, clientLang.Name, serverLang.Name)
+				if doTestOnPlatform(clientLang, nil, ciPlatform) && doTestOnPlatform(serverLang, nil, ciPlatform) && stringInSlice(fmt.Sprintf("//examples/routeguide:%s_%s", clientLang.Name, serverLang.Name), availableTestLabels) {
+					out.w(`    - "//examples/routeguide:%s_%s"`, clientLang.Name, serverLang.Name)
 				}
 			}
 		}
@@ -512,7 +512,7 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 
 		// Create rules for each example
 		for _, rule := range lang.Rules {
-			exampleDir := path.Join(dir, "example", lang.Name, rule.Name)
+			exampleDir := path.Join(dir, "examples", lang.Name, rule.Name)
 
 			var name = fmt.Sprintf("%s_%s_example", lang.Name, rule.Name)
 			allNames = append(allNames, name)
@@ -541,7 +541,7 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 	out.w("all_examples: %s", strings.Join(allNames, " "))
 
 	out.ln()
-	out.MustWrite(filepath.Join(dir, "example", "Makefile.mk"))
+	out.MustWrite(filepath.Join(dir, "examples", "Makefile.mk"))
 }
 
 func mustWriteTestWorkspacesMakefile(dir string) {

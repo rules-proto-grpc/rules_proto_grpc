@@ -22,7 +22,7 @@ jobs:
       - name: Test rulegen diff
         run: |
           export CC=clang
-          "${GITHUB_WORKSPACE}/bin/bazel" query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt
+          "${GITHUB_WORKSPACE}/bin/bazel" query '//examples/routeguide/... - attr(tags, manual, //examples/routeguide/...)' > available_tests.txt
           "${GITHUB_WORKSPACE}/bin/bazel" run --run_under="cd $PWD && " //tools/rulegen -- --ref=`git describe --abbrev=0 --tags`
           rm available_tests.txt
           git checkout -- README.md docs/index.rst

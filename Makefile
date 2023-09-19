@@ -1,7 +1,7 @@
 # Run the rulegen system
 .PHONY: rulegen
 rulegen:
-	bazel query '//example/routeguide/... - attr(tags, manual, //example/routeguide/...)' > available_tests.txt; \
+	bazel query '//examples/routeguide/... - attr(tags, manual, //examples/routeguide/...)' > available_tests.txt; \
 	bazel run --run_under="cd $$PWD && " //tools/rulegen -- --ref=$$(git describe --abbrev=0 --tags); \
 	rm available_tests.txt;
 
@@ -67,7 +67,7 @@ all_updates: rust_crates_vendor yarn_upgrade ruby_bundle_upgrade pip_compile csh
 
 
 # Pull in auto-generated examples makefile
-include example/Makefile.mk
+include examples/Makefile.mk
 
 # Pull in auto-generated test workspaces makefile
 include test_workspaces/Makefile.mk

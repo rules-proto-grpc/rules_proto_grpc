@@ -11,9 +11,9 @@ Other languages will have a similar high-level layout, but you should check the 
 pages too.
 
 The full example workspaces for C++ can be found
-`here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp>`__, along with
+`here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp>`__, along with
 the demo proto files
-`here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/proto>`__. Example
+`here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/proto>`__. Example
 workspaces for all other languages can also be found in
 `that same directory <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example>`__.
 
@@ -107,10 +107,10 @@ We can now build the ``cpp_thing_proto`` target:
 
 .. code-block:: bash
 
-   $ bazel build //example/proto:cpp_thing_proto
-   Target //example/proto:cpp_thing_proto up-to-date:
-     bazel-genfiles/example/proto/cpp_thing_proto/example/proto/thing.pb.h
-     bazel-genfiles/example/proto/cpp_thing_proto/example/proto/thing.pb.cc
+   $ bazel build //examples/proto:cpp_thing_proto
+   Target //examples/proto:cpp_thing_proto up-to-date:
+     bazel-genfiles/examples/proto/cpp_thing_proto/examples/proto/thing.pb.h
+     bazel-genfiles/examples/proto/cpp_thing_proto/examples/proto/thing.pb.cc
 
 You should now see generated ``.cc`` and ``.h`` files in your bazel-bin output tree.
 
@@ -137,17 +137,17 @@ Now we can build again:
 
 .. code-block:: bash
 
-   $ bazel build //example/proto:cpp_thing_proto
-   Target //example/proto:cpp_thing_proto up-to-date:
-     bazel-bin/example/proto/libcpp_thing_proto.a
-     bazel-bin/example/proto/libcpp_thing_proto.so
-     bazel-genfiles/example/proto/cpp_thing_proto/example/proto/thing.pb.h
-     bazel-genfiles/example/proto/cpp_thing_proto/example/proto/thing.pb.cc
+   $ bazel build //examples/proto:cpp_thing_proto
+   Target //examples/proto:cpp_thing_proto up-to-date:
+     bazel-bin/examples/proto/libcpp_thing_proto.a
+     bazel-bin/examples/proto/libcpp_thing_proto.so
+     bazel-genfiles/examples/proto/cpp_thing_proto/examples/proto/thing.pb.h
+     bazel-genfiles/examples/proto/cpp_thing_proto/examples/proto/thing.pb.cc
 
 This time, we also have ``.a`` and ``.so`` files built. We can now use
-``//example/proto:cpp_thing_proto`` as a dependency of any other ``cc_library`` or ``cc_binary``
+``//examples/proto:cpp_thing_proto`` as a dependency of any other ``cc_library`` or ``cc_binary``
 target as per normal.
 
 .. note:: The ``cpp_proto_library`` target implicitly calls ``cpp_proto_compile``, and we can access
    that rule's by adding ``_pb`` at the end of the target name, like
-   ``bazel build //example/proto:cpp_thing_proto_pb``
+   ``bazel build //examples/proto:cpp_thing_proto_pb``

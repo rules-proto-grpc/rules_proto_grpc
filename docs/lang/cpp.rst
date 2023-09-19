@@ -33,7 +33,7 @@ Generates C++ protobuf ``.h`` & ``.cc`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_proto_compile>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp/cpp_proto_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -44,17 +44,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    cpp_proto_compile(
        name = "person_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["//examples/proto:person_proto"],
    )
    
    cpp_proto_compile(
        name = "place_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["//examples/proto:place_proto"],
    )
    
    cpp_proto_compile(
        name = "thing_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
 
 Attributes
@@ -120,7 +120,7 @@ Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_grpc_compile>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp/cpp_grpc_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -131,12 +131,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    cpp_grpc_compile(
        name = "thing_cpp_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
    
    cpp_grpc_compile(
        name = "greeter_cpp_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["//examples/proto:greeter_grpc"],
    )
 
 Attributes
@@ -203,7 +203,7 @@ Generates a C++ protobuf library using ``cc_library``, with dependencies linked
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_proto_library>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp/cpp_proto_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -214,19 +214,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    cpp_proto_library(
        name = "person_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["//examples/proto:person_proto"],
        deps = ["place_cpp_proto"],
    )
    
    cpp_proto_library(
        name = "place_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["//examples/proto:place_proto"],
        deps = ["thing_cpp_proto"],
    )
    
    cpp_proto_library(
        name = "thing_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
 
 Attributes
@@ -337,7 +337,7 @@ Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencie
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_grpc_library>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp/cpp_grpc_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -348,12 +348,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    cpp_grpc_library(
        name = "thing_cpp_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
    
    cpp_grpc_library(
        name = "greeter_cpp_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["//examples/proto:greeter_grpc"],
        deps = ["thing_cpp_grpc"],
    )
 

@@ -8,10 +8,10 @@ tasks:
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
     test_targets:
-    - "//example/routeguide:cpp_cpp"
-    - "//example/routeguide:cpp_python"
-    - "//example/routeguide:python_cpp"
-    - "//example/routeguide:python_python"
+    - "//examples/routeguide:cpp_cpp"
+    - "//examples/routeguide:cpp_python"
+    - "//examples/routeguide:python_cpp"
+    - "//examples/routeguide:python_python"
 
   main_windows:
     name: build & test all
@@ -21,10 +21,10 @@ tasks:
     - "--cxxopt=/std:c++17"
     - "--host_cxxopt=/std:c++17"
     test_targets:
-    - "//example/routeguide:cpp_cpp"
-    - "//example/routeguide:cpp_python"
-    - "//example/routeguide:python_cpp"
-    - "//example/routeguide:python_python"
+    - "//examples/routeguide:cpp_cpp"
+    - "//examples/routeguide:cpp_python"
+    - "//examples/routeguide:python_cpp"
+    - "//examples/routeguide:python_python"
 
   main_macos:
     name: build & test all
@@ -34,10 +34,10 @@ tasks:
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
     test_targets:
-    - "//example/routeguide:cpp_cpp"
-    - "//example/routeguide:cpp_python"
-    - "//example/routeguide:python_cpp"
-    - "//example/routeguide:python_python"
+    - "//examples/routeguide:cpp_cpp"
+    - "//examples/routeguide:cpp_python"
+    - "//examples/routeguide:python_cpp"
+    - "//examples/routeguide:python_python"
 
   cpp_ubuntu2204_examples:
     name: cpp examples

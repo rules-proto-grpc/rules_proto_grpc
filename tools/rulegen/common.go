@@ -110,17 +110,17 @@ var protoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["//examples/proto:person_proto"],
 )
 
 {{ .Rule.Name }}(
     name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    protos = ["//examples/proto:place_proto"],
 )
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["//examples/proto:thing_proto"],
 )`)
 
 
@@ -128,12 +128,12 @@ var grpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["//examples/proto:thing_proto"],
 )
 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["//examples/proto:greeter_grpc"],
 )`)
 
 
@@ -141,19 +141,19 @@ var protoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["//examples/proto:person_proto"],
     deps = ["place_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
 )
 
 {{ .Rule.Name }}(
     name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    protos = ["//examples/proto:place_proto"],
     deps = ["thing_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
 )
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["//examples/proto:thing_proto"],
 )`)
 
 
@@ -161,11 +161,11 @@ var grpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["//examples/proto:thing_proto"],
 )
 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["//examples/proto:greeter_grpc"],
     deps = ["thing_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
 )`)

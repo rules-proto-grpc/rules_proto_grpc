@@ -41,7 +41,7 @@ Generates Python protobuf ``.py`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_proto_compile>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/python/python_proto_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -52,17 +52,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_proto_compile(
        name = "person_python_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["//examples/proto:person_proto"],
    )
    
    python_proto_compile(
        name = "place_python_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["//examples/proto:place_proto"],
    )
    
    python_proto_compile(
        name = "thing_python_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
 
 Attributes
@@ -128,7 +128,7 @@ Generates Python protobuf and gRPC ``.py`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_grpc_compile>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/python/python_grpc_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -139,12 +139,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_grpc_compile(
        name = "thing_python_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
    
    python_grpc_compile(
        name = "greeter_python_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["//examples/proto:greeter_grpc"],
    )
 
 Attributes
@@ -211,7 +211,7 @@ Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_grpclib_compile>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/python/python_grpclib_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -222,12 +222,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_grpclib_compile(
        name = "thing_python_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
    
    python_grpclib_compile(
        name = "greeter_python_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["//examples/proto:greeter_grpc"],
    )
 
 Attributes
@@ -294,7 +294,7 @@ Generates a Python protobuf library using ``py_library`` from ``rules_python``
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_proto_library>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/python/python_proto_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -305,19 +305,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_proto_library(
        name = "person_python_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["//examples/proto:person_proto"],
        deps = ["place_python_proto"],
    )
    
    python_proto_library(
        name = "place_python_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["//examples/proto:place_proto"],
        deps = ["thing_python_proto"],
    )
    
    python_proto_library(
        name = "thing_python_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
 
 Attributes
@@ -383,7 +383,7 @@ Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_p
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_grpc_library>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/python/python_grpc_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -394,12 +394,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_grpc_library(
        name = "thing_python_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
    
    python_grpc_library(
        name = "greeter_python_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["//examples/proto:greeter_grpc"],
        deps = ["thing_python_grpc"],
    )
 
@@ -466,7 +466,7 @@ Generates a Python protobuf and grpclib library using ``py_library`` from ``rule
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/python/python_grpclib_library>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/python/python_grpclib_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
@@ -477,12 +477,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_grpclib_library(
        name = "thing_python_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["//examples/proto:thing_proto"],
    )
    
    python_grpclib_library(
        name = "greeter_python_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["//examples/proto:greeter_grpc"],
        deps = ["thing_python_grpc"],
    )
 
