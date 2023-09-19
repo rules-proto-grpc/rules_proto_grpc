@@ -11,8 +11,40 @@ bazel_dep(name = "protobuf", version = "21.7")
 bazel_dep(name = "rules_cc", version = "0.0.8")
 bazel_dep(name = "rules_go", version = "0.41.0")
 bazel_dep(name = "rules_proto", version = "5.3.0-21.7")
+bazel_dep(name = "rules_python", version = "0.25.0")
 
 register_toolchains("@rules_proto_grpc//protobuf:protoc_toolchain")
+
+# Python
+PYTHON_VERSIONS = [
+    "3.8",
+    "3.9",
+    "3.10",
+    "3.11",
+]
+
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+
+[
+    python.toolchain(
+        is_default = python_version == PYTHON_VERSIONS[-1],
+        python_version = python_version,
+    )
+    for python_version in PYTHON_VERSIONS
+]
+
+pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
+
+[
+    pip.parse(
+        hub_name = "pip_deps",
+        python_version = python_version,
+        requirements_lock = "//python:requirements.txt",
+    )
+    for python_version in PYTHON_VERSIONS
+]
+
+use_repo(pip, "pip_deps")
 
 # Dev dependencies
 bazel_dep(name = "buildifier_prebuilt", version = "6.3.3", dev_dependency = True)

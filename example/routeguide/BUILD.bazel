@@ -13,9 +13,11 @@ routeguide_test_matrix(
     name = "routeguide_matrix",
     clients = [
         "//cpp/example/routeguide:client",
+        "//python/example/routeguide:client",
     ],
     servers = [
         "//cpp/example/routeguide:server",
+        "//python/example/routeguide:server",
     ],
     skip = [
         "csharp_rust",  # Broken

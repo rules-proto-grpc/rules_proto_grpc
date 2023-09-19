@@ -101,6 +101,7 @@ func action(c *cli.Context) error {
 
 	languages := []*Language{
 		makeCpp(),
+		makePython(),
 	}
 
 	for _, lang := range languages {
