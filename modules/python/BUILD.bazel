@@ -1,5 +1,5 @@
-load("@rules_python//python/pip_install:requirements.bzl", "compile_pip_requirements")
 load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+load("@rules_python//python/pip_install:requirements.bzl", "compile_pip_requirements")
 
 compile_pip_requirements(
     name = "requirements",

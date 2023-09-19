@@ -1,7 +1,7 @@
 package main
 
-var pythonProtoLibraryRuleTemplate = mustTemplate(`load("@rules_python//python:defs.bzl", "py_library")
-load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+var pythonProtoLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -25,8 +25,8 @@ def {{ .Rule.Name }}(name, **kwargs):
     )`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("@pip_deps//:requirements.bzl", "requirement")
-load("@rules_python//python:defs.bzl", "py_library")
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -52,8 +52,8 @@ def {{ .Rule.Name }}(name, **kwargs):
     )`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("@pip_deps//:requirements.bzl", "requirement")
-load("@rules_python//python:defs.bzl", "py_library")
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):

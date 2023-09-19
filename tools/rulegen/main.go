@@ -177,10 +177,12 @@ func mustWriteLanguageExampleModule(dir string, lang *Language, rule *Rule) {
 
 	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
 bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")
+
 local_path_override(
     module_name = "rules_proto_grpc",
     path = "%smodules/core",
 )
+
 local_path_override(
     module_name = "rules_proto_grpc_%s",
     path = "%smodules/%s",
