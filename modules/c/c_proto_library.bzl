@@ -34,7 +34,9 @@ def c_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
-        deps = kwargs.get("deps", ["@upb//:upb"]),
+        deps = kwargs.get("deps", [
+            Label("@upb//:upb"),
+        ]),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         alwayslink = kwargs.get("alwayslink"),

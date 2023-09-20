@@ -29,7 +29,9 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
-        deps = kwargs.get("deps", ["@upb//:upb"]),
+        deps = kwargs.get("deps", [
+            Label("@upb//:upb"),
+        ]),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         alwayslink = kwargs.get("alwayslink"),
@@ -43,20 +45,6 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
         strip_include_prefix = kwargs.get("strip_include_prefix"),
         {{ .Common.LibraryArgsForwardingSnippet }}
     )`)
-
-// For C, we need to manually generate the files for any.proto
-var cProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
-
-{{ .Rule.Name }}(
-    name = "proto_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
-    protos = [
-        "@protobuf//:any_proto",
-        "@rules_proto_grpc//example/proto:person_proto",
-        "@rules_proto_grpc//example/proto:place_proto",
-        "@rules_proto_grpc//example/proto:thing_proto",
-    ],
-)`)
 
 func makeC() *Language {
 	return &Language{
@@ -78,7 +66,7 @@ func makeC() *Language {
 				Name:             "c_proto_library",
 				Kind:             "proto",
 				Implementation:   cProtoLibraryRuleTemplate,
-				BuildExample:     cProtoLibraryExampleTemplate,
+				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a C protobuf library using ``cc_library``, with dependencies linked",
 				Attrs:            cppLibraryRuleAttrs,
 				Experimental:     true,
