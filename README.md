@@ -51,6 +51,8 @@ Full documentation for the current and previous versions [can be found here](htt
 
 | Language | Rule | Description
 | ---: | :--- | :--- |
+| [C](https://rules-proto-grpc.com/en/latest/lang/c.html) | [c_proto_compile](https://rules-proto-grpc.com/en/latest/lang/c.html#c-proto-compile) | Generates C protobuf ``.h`` & ``.c`` files ([example](/examples/c/c_proto_compile)) |
+| [C](https://rules-proto-grpc.com/en/latest/lang/c.html) | [c_proto_library](https://rules-proto-grpc.com/en/latest/lang/c.html#c-proto-library) | Generates a C protobuf library using ``cc_library``, with dependencies linked ([example](/examples/c/c_proto_library)) |
 | [C++](https://rules-proto-grpc.com/en/latest/lang/cpp.html) | [cpp_proto_compile](https://rules-proto-grpc.com/en/latest/lang/cpp.html#cpp-proto-compile) | Generates C++ protobuf ``.h`` & ``.cc`` files ([example](/examples/cpp/cpp_proto_compile)) |
 | [C++](https://rules-proto-grpc.com/en/latest/lang/cpp.html) | [cpp_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/cpp.html#cpp-grpc-compile) | Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files ([example](/examples/cpp/cpp_grpc_compile)) |
 | [C++](https://rules-proto-grpc.com/en/latest/lang/cpp.html) | [cpp_proto_library](https://rules-proto-grpc.com/en/latest/lang/cpp.html#cpp-proto-library) | Generates a C++ protobuf library using ``cc_library``, with dependencies linked ([example](/examples/cpp/cpp_proto_library)) |

@@ -1,0 +1,16 @@
+load("@rules_proto_grpc_c//:defs.bzl", "c_proto_compile")
+
+c_proto_compile(
+    name = "person_c_proto",
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
+)
+
+c_proto_compile(
+    name = "place_c_proto",
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
+)
+
+c_proto_compile(
+    name = "thing_c_proto",
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
+)

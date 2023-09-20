@@ -1,6 +1,9 @@
 modules
 test_workspaces
 
+examples/c/c_proto_compile
+examples/c/c_proto_library
+
 examples/cpp/cpp_proto_compile
 examples/cpp/cpp_grpc_compile
 examples/cpp/cpp_proto_library
