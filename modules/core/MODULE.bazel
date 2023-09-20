@@ -5,7 +5,7 @@ module(
 )
 
 bazel_dep(name = "protobuf", version = "21.7")
-bazel_dep(name = "rules_cc", version = "0.0.8")
+bazel_dep(name = "rules_cc", version = "0.0.8")  # For fixer
 bazel_dep(name = "rules_proto", version = "5.3.0-21.7")
 
 register_toolchains("//protoc:protoc_toolchain")
