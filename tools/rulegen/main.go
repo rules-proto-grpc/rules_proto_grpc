@@ -38,6 +38,11 @@ func main() {
 			Value: ".",
 		},
 		&cli.StringFlag{
+			Name:  "module_template",
+			Usage: "Template for the main MODULE.bazel",
+			Value: "tools/rulegen/MODULE.bazel.template",
+		},
+		&cli.StringFlag{
 			Name:  "readme_header_template",
 			Usage: "Template for the main readme header",
 			Value: "tools/rulegen/README.header.md",
@@ -59,7 +64,7 @@ func main() {
 		},
 		&cli.StringFlag{
 			Name:  "sha256",
-			Usage: "Sha256 value to use for main readme and index.rst",
+			Usage: "SHA256 value to use for main readme and index.rst",
 			Value: "{ARCHIVE_TAR_GZ_SHA256}",
 		},
 		&cli.StringFlag{
@@ -111,6 +116,9 @@ func action(c *cli.Context) error {
 		mustWriteLanguageExamples(dir, lang)
 	}
 
+	mustWriteModuleBazel(dir, c.String("module_template"), languages)
+	mustWriteBazelignore(dir, languages)
+
 	mustWriteReadme(dir, c.String("readme_header_template"), c.String("readme_footer_template"), struct {
 		Ref, Sha256 string
 	}{
@@ -129,8 +137,6 @@ func action(c *cli.Context) error {
 
 	mustWriteExamplesMakefile(dir, languages)
 	mustWriteTestWorkspacesMakefile(dir)
-
-	mustWriteBazelignore(dir, languages)
 
 	return nil
 }
@@ -340,6 +346,48 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 	}
 
 	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name + ".rst"))
+}
+
+func mustWriteModuleBazel(dir, template string, languages []*Language) {
+	out := &LineWriter{}
+	out.tpl(template, struct{}{})
+
+	for _, lang := range languages {
+		out.w("# %s", lang.DisplayName)
+		out.w(`bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")
+local_path_override(
+    module_name = "rules_proto_grpc_%s",
+    path = "modules/%s",
+)`, lang.Name, lang.Name, lang.Name)
+		out.ln()
+
+		if (len(lang.ModuleExtraLines) > 0) {
+			out.w(lang.ModuleExtraLines)
+			out.ln()
+		}
+	}
+
+	out.MustWrite(filepath.Join(dir, "MODULE.bazel"))
+}
+
+func mustWriteBazelignore(dir string, languages []*Language) {
+	// Write constant header
+	out := &LineWriter{}
+	out.w("modules")
+	out.w("test_workspaces")
+	out.ln()
+
+	//
+	// Write example ignores
+	//
+	for _, lang := range languages {
+		for _, rule := range lang.Rules {
+			out.w("examples/%s/%s", lang.Name, rule.Name)
+		}
+		out.ln()
+	}
+
+	out.MustWrite(filepath.Join(dir, ".bazelignore"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
@@ -572,26 +620,6 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "test_workspaces", "Makefile.mk"))
-}
-
-func mustWriteBazelignore(dir string, languages []*Language) {
-	// Write constant header
-	out := &LineWriter{}
-	out.w("modules")
-	out.w("test_workspaces")
-	out.ln()
-
-	//
-	// Write example ignores
-	//
-	for _, lang := range languages {
-		for _, rule := range lang.Rules {
-			out.w("examples/%s/%s", lang.Name, rule.Name)
-		}
-		out.ln()
-	}
-
-	out.MustWrite(filepath.Join(dir, ".bazelignore"))
 }
 
 func findTestWorkspaceNames(dir string) []string {
