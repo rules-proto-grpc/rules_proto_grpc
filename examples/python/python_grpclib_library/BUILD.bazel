@@ -2,11 +2,11 @@ load("@rules_proto_grpc_python//:defs.bzl", "python_grpclib_library")
 
 python_grpclib_library(
     name = "thing_python_grpc",
-    protos = ["//examples/proto:thing_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )
 
 python_grpclib_library(
     name = "greeter_python_grpc",
-    protos = ["//examples/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
     deps = ["thing_python_grpc"],
 )

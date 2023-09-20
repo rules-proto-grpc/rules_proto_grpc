@@ -2,17 +2,17 @@ load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_library")
 
 cpp_proto_library(
     name = "person_cpp_proto",
-    protos = ["//examples/proto:person_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
     deps = ["place_cpp_proto"],
 )
 
 cpp_proto_library(
     name = "place_cpp_proto",
-    protos = ["//examples/proto:place_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
     deps = ["thing_cpp_proto"],
 )
 
 cpp_proto_library(
     name = "thing_cpp_proto",
-    protos = ["//examples/proto:thing_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )

@@ -50,17 +50,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_proto_compile(
        name = "person_python_proto",
-       protos = ["//examples/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    python_proto_compile(
        name = "place_python_proto",
-       protos = ["//examples/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    python_proto_compile(
        name = "thing_python_proto",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -137,12 +137,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_grpc_compile(
        name = "thing_python_grpc",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    python_grpc_compile(
        name = "greeter_python_grpc",
-       protos = ["//examples/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
    )
 
 Attributes
@@ -220,12 +220,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_grpclib_compile(
        name = "thing_python_grpc",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    python_grpclib_compile(
        name = "greeter_python_grpc",
-       protos = ["//examples/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
    )
 
 Attributes
@@ -303,19 +303,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_proto_library(
        name = "person_python_proto",
-       protos = ["//examples/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
        deps = ["place_python_proto"],
    )
    
    python_proto_library(
        name = "place_python_proto",
-       protos = ["//examples/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
        deps = ["thing_python_proto"],
    )
    
    python_proto_library(
        name = "thing_python_proto",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -392,12 +392,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_grpc_library(
        name = "thing_python_grpc",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    python_grpc_library(
        name = "greeter_python_grpc",
-       protos = ["//examples/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
        deps = ["thing_python_grpc"],
    )
 
@@ -475,12 +475,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    python_grpclib_library(
        name = "thing_python_grpc",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    python_grpclib_library(
        name = "greeter_python_grpc",
-       protos = ["//examples/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
        deps = ["thing_python_grpc"],
    )
 

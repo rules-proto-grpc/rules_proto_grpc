@@ -182,6 +182,7 @@ func mustWriteLanguageExampleModule(dir string, lang *Language, rule *Rule) {
 	rootPath := strings.Repeat("../", len(depth) + 2)
 
 	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0")
 bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")
 
 local_path_override(
@@ -190,9 +191,14 @@ local_path_override(
 )
 
 local_path_override(
+    module_name = "rules_proto_grpc_example_protos",
+    path = "%smodules/example_protos",
+)
+
+local_path_override(
     module_name = "rules_proto_grpc_%s",
     path = "%smodules/%s",
-)`, lang.Name, rootPath, lang.Name, rootPath, lang.Name)
+)`, lang.Name, rootPath, rootPath, lang.Name, rootPath, lang.Name)
 
 	if (len(lang.ModuleExtraLines) > 0) {
 		out.ln()

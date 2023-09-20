@@ -44,17 +44,17 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    cpp_proto_compile(
        name = "person_cpp_proto",
-       protos = ["//examples/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    cpp_proto_compile(
        name = "place_cpp_proto",
-       protos = ["//examples/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    cpp_proto_compile(
        name = "thing_cpp_proto",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -131,12 +131,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    cpp_grpc_compile(
        name = "thing_cpp_grpc",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    cpp_grpc_compile(
        name = "greeter_cpp_grpc",
-       protos = ["//examples/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
    )
 
 Attributes
@@ -214,19 +214,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    cpp_proto_library(
        name = "person_cpp_proto",
-       protos = ["//examples/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
        deps = ["place_cpp_proto"],
    )
    
    cpp_proto_library(
        name = "place_cpp_proto",
-       protos = ["//examples/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
        deps = ["thing_cpp_proto"],
    )
    
    cpp_proto_library(
        name = "thing_cpp_proto",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -348,12 +348,12 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    cpp_grpc_library(
        name = "thing_cpp_grpc",
-       protos = ["//examples/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    cpp_grpc_library(
        name = "greeter_cpp_grpc",
-       protos = ["//examples/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
        deps = ["thing_cpp_grpc"],
    )
 
