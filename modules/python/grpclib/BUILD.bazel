@@ -9,7 +9,7 @@ py_binary(
     main = "plugin.py",
     python_version = "PY3",
     srcs_version = "PY3",
-    visibility = ["//python:__subpackages__"],
+    visibility = ["//:__subpackages__"],
     deps = [
         "@protobuf//:protobuf_python",
         requirement("grpclib"),
