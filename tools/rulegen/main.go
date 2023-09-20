@@ -14,8 +14,8 @@ import (
 	"github.com/urfave/cli"
 )
 
-var defaultPlatforms = []string{"linux", "windows", "macos"}
-var ciPlatforms = []string{"ubuntu2204", "windows", "macos"}
+// var ciPlatforms = []string{"ubuntu2204", "windows", "macos"}  // Windows disabled due to bad grpc version
+var ciPlatforms = []string{"ubuntu2204", "macos"}
 var ciPlatformsMap = map[string][]string{
 	"linux":   []string{"ubuntu2204"},
 	"windows": []string{"windows"},
