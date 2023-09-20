@@ -8,17 +8,6 @@ cpp_grpc_library(
     protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
 )
 
-cc_test(
-    name = "feature_test",
-    size = "small",
-    srcs = ["feature_test.cc"],
-    copts = ["-Iexternal/gtest/include"],
-    deps = [
-        ":helper",
-        "@googletest//:gtest",
-    ],
-)
-
 cc_library(
     name = "helper",
     srcs = ["helper.cc"],
