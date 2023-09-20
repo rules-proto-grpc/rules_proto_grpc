@@ -18,6 +18,9 @@ type Language struct {
 	// Additional nodes about the language
 	Notes *template.Template
 
+	// Extra lines for MODULE.bazel for examples etc
+	ModuleExtraLines string
+
 	// Additional CI-specific env vars in the form "K=V"
 	PresubmitEnvVars map[string]string
 

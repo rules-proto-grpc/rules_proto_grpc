@@ -10,3 +10,8 @@ local_path_override(
     module_name = "rules_proto_grpc_python",
     path = "../../../modules/python",
 )
+
+bazel_dep(name = "rules_python", version = "0.25.0")
+
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(python_version = "3.11")

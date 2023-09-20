@@ -188,6 +188,11 @@ local_path_override(
     path = "%smodules/%s",
 )`, lang.Name, rootPath, lang.Name, rootPath, lang.Name)
 
+	if (len(lang.ModuleExtraLines) > 0) {
+		out.ln()
+		out.w(lang.ModuleExtraLines)
+	}
+
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "MODULE.bazel"))
 }
