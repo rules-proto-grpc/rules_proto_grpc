@@ -133,7 +133,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
        name = "proto_c_proto",
        importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
        protos = [
-           "@com_google_protobuf//:any_proto",
+           "@protobuf//:any_proto",
            "@rules_proto_grpc//example/proto:person_proto",
            "@rules_proto_grpc//example/proto:place_proto",
            "@rules_proto_grpc//example/proto:thing_proto",
