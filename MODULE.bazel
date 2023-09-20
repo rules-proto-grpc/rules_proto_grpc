@@ -20,6 +20,12 @@ local_path_override(
     path = "modules/core",
 )
 
+bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0")
+local_path_override(
+    module_name = "rules_proto_grpc_example_protos",
+    path = "modules/example_protos",
+)
+
 # C++
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0")
 local_path_override(

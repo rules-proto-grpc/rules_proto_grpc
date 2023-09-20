@@ -3,7 +3,7 @@ load("@rules_python//python:defs.bzl", "py_binary", "py_library")
 
 python_grpc_library(
     name = "routeguide",
-    protos = ["//examples/proto:routeguide_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
 )
 
 py_library(
@@ -21,7 +21,7 @@ py_binary(
     srcs = [
         "client.py",
     ],
-    data = ["//examples/proto:routeguide_features"],
+    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
     imports = ["."],
     python_version = "PY3",
     visibility = ["//examples/routeguide:__pkg__"],
@@ -36,7 +36,7 @@ py_binary(
     srcs = [
         "server.py",
     ],
-    data = ["//examples/proto:routeguide_features"],
+    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
     imports = ["."],
     python_version = "PY3",
     visibility = ["//examples/routeguide:__pkg__"],

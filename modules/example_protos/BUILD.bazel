@@ -3,6 +3,7 @@ load("@rules_proto//proto:defs.bzl", "proto_library")
 proto_library(
     name = "person_proto",
     srcs = ["person.proto"],
+    import_prefix = "examples/proto",
     visibility = ["//visibility:public"],
     deps = [":place_proto"],
 )
@@ -10,6 +11,7 @@ proto_library(
 proto_library(
     name = "place_proto",
     srcs = ["place.proto"],
+    import_prefix = "examples/proto",
     visibility = ["//visibility:public"],
     deps = [":thing_proto"],
 )
@@ -17,6 +19,7 @@ proto_library(
 proto_library(
     name = "thing_proto",
     srcs = ["thing.proto"],
+    import_prefix = "examples/proto",
     visibility = ["//visibility:public"],
     deps = [
         "@protobuf//:any_proto",
@@ -26,6 +29,7 @@ proto_library(
 proto_library(
     name = "routeguide_proto",
     srcs = ["routeguide.proto"],
+    import_prefix = "examples/proto",
     visibility = ["//visibility:public"],
 )
 
@@ -40,6 +44,7 @@ proto_library(
     srcs = [
         "greeter.proto",
     ],
+    import_prefix = "examples/proto",
     visibility = ["//visibility:public"],
     deps = [
         ":thing_proto",  # Non well-known

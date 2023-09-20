@@ -73,7 +73,7 @@ routeguide_test = rule(
     test = True,
 )
 
-def routeguide_test_matrix(name = "", clients = [], servers = [], database = "//examples/proto:routeguide_features", tagmap = {}, skip = []):
+def routeguide_test_matrix(name = "", clients = [], servers = [], database = "@rules_proto_grpc_example_protos//:routeguide_features", tagmap = {}, skip = []):
     """
     Build a matrix of tests that checks every client against every server.
 
