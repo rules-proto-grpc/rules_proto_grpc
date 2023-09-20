@@ -29,9 +29,9 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
-        deps = kwargs.get("deps", [
+        deps = [
             Label("@upb//:upb"),
-        ]),
+        ] + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         alwayslink = kwargs.get("alwayslink"),

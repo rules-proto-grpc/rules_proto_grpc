@@ -22,10 +22,10 @@ def python_grpclib_library(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = kwargs.get("deps", [
+        deps = [
             Label("@protobuf//:protobuf_python"),
             Label(requirement("grpclib")),
-        ]),
+        ] + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         **{

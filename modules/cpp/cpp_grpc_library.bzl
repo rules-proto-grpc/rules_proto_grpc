@@ -34,11 +34,11 @@ def cpp_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
-        deps = kwargs.get("deps", [
+        deps = [
             Label("@protobuf//:protobuf"),
             Label("@grpc//:grpc++"),
             # Label("@grpc//:grpc++_reflection"),  # TODO: See https://github.com/bazelbuild/bazel-central-registry/issues/841
-        ]),
+        ] + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb] if kwargs.get("output_mode", "PREFIXED") == "PREFIXED" else ["."],
         alwayslink = kwargs.get("alwayslink"),
