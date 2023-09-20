@@ -33,6 +33,8 @@ local_path_override(
     path = "modules/c",
 )
 
+bazel_dep(name = "protobuf", version = "21.7")
+
 # C++
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0")
 local_path_override(

@@ -130,20 +130,13 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc_c//:defs.bzl", "c_proto_library")
    
    c_proto_library(
-       name = "person_c_proto",
-       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
-       deps = ["place_c_proto"],
-   )
-   
-   c_proto_library(
-       name = "place_c_proto",
-       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
-       deps = ["thing_c_proto"],
-   )
-   
-   c_proto_library(
-       name = "thing_c_proto",
-       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
+       name = "proto_c_proto",
+       protos = [
+           "@protobuf//:any_proto",
+           "@rules_proto_grpc_example_protos//:person_proto",
+           "@rules_proto_grpc_example_protos//:place_proto",
+           "@rules_proto_grpc_example_protos//:thing_proto",
+       ],
    )
 
 Attributes
