@@ -34,9 +34,7 @@ def c_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
-        deps = [
-            Label("@upb//:upb"),
-        ] + kwargs.get("deps", []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         alwayslink = kwargs.get("alwayslink"),
@@ -54,3 +52,7 @@ def c_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
             if k in bazel_build_rule_common_attrs
         }  # Forward Bazel common args
     )
+
+PROTO_DEPS = [
+    Label("@upb//:upb"),
+]

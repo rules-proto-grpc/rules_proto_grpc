@@ -16,13 +16,15 @@ def {{ .Rule.Name }}(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = [
-            Label("@protobuf//:protobuf_python"),
-        ] + kwargs.get("deps", []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         {{ .Common.LibraryArgsForwardingSnippet }}
-    )`)
+    )
+
+PROTO_DEPS = [
+    Label("@protobuf//:protobuf_python"),
+]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("@pip_deps//:requirements.bzl", "requirement")
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
@@ -41,15 +43,17 @@ def {{ .Rule.Name }}(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = [
-            Label("@protobuf//:protobuf_python"),
-            Label(requirement("grpcio")),
-            # Label("@grpc//src/python/grpcio/grpc:grpcio"),  # TODO: restore once grpc in BCR works with python
-        ] + kwargs.get("deps", []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         {{ .Common.LibraryArgsForwardingSnippet }}
-    )`)
+    )
+
+GRPC_DEPS = [
+    Label("@protobuf//:protobuf_python"),
+    Label(requirement("grpcio")),
+    # Label("@grpc//src/python/grpcio/grpc:grpcio"),  # TODO: restore once grpc in BCR works with python
+]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("@pip_deps//:requirements.bzl", "requirement")
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
@@ -68,14 +72,16 @@ def {{ .Rule.Name }}(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = [
-            Label("@protobuf//:protobuf_python"),
-            Label(requirement("grpclib")),
-        ] + kwargs.get("deps", []),
+        deps = GRPCLIB_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         {{ .Common.LibraryArgsForwardingSnippet }}
-    )`)
+    )
+
+GRPCLIB_DEPS = [
+    Label("@protobuf//:protobuf_python"),
+    Label(requirement("grpclib")),
+]`)
 
 var pythonModuleExtraLines = `bazel_dep(name = "rules_python", version = "0.25.0")
 

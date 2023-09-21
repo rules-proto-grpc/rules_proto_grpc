@@ -29,9 +29,7 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
-        deps = [
-            Label("@upb//:upb"),
-        ] + kwargs.get("deps", []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         alwayslink = kwargs.get("alwayslink"),
@@ -44,7 +42,11 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
         nocopts = kwargs.get("nocopts"),
         strip_include_prefix = kwargs.get("strip_include_prefix"),
         {{ .Common.LibraryArgsForwardingSnippet }}
-    )`)
+    )
+
+PROTO_DEPS = [
+    Label("@upb//:upb"),
+]`)
 
 // For C, we need to manually generate the files for any.proto
 var cProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")

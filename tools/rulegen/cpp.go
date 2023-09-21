@@ -31,9 +31,7 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
-        deps = [
-            Label("@protobuf//:protobuf"),
-        ] + kwargs.get("deps", []),
+        deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb] if kwargs.get("output_mode", "PREFIXED") == "PREFIXED" else ["."],
         alwayslink = kwargs.get("alwayslink"),
@@ -46,18 +44,18 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         nocopts = kwargs.get("nocopts"),
         strip_include_prefix = kwargs.get("strip_include_prefix"),
         {{ .Common.LibraryArgsForwardingSnippet }}
-    )`)
+    )
+
+PROTO_DEPS = [
+    Label("@protobuf//:protobuf"),
+]`)
 
 var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     cc_library(
         name = name,
         srcs = [name_pb + "_srcs"],
-        deps = [
-            Label("@protobuf//:protobuf"),
-            Label("@grpc//:grpc++"),
-            # Label("@grpc//:grpc++_reflection"),  # TODO: See https://github.com/bazelbuild/bazel-central-registry/issues/841
-        ] + kwargs.get("deps", []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb] if kwargs.get("output_mode", "PREFIXED") == "PREFIXED" else ["."],
         alwayslink = kwargs.get("alwayslink"),
@@ -70,7 +68,13 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         nocopts = kwargs.get("nocopts"),
         strip_include_prefix = kwargs.get("strip_include_prefix"),
         {{ .Common.LibraryArgsForwardingSnippet }}
-    )`)
+    )
+
+GRPC_DEPS = [
+    Label("@protobuf//:protobuf"),
+    Label("@grpc//:grpc++"),
+    # Label("@grpc//:grpc++_reflection"),  # TODO: See https://github.com/bazelbuild/bazel-central-registry/issues/841
+]`)
 
 var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{

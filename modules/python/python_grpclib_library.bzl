@@ -22,10 +22,7 @@ def python_grpclib_library(name, **kwargs):
     py_library(
         name = name,
         srcs = [name_pb],
-        deps = [
-            Label("@protobuf//:protobuf_python"),
-            Label(requirement("grpclib")),
-        ] + kwargs.get("deps", []),
+        deps = GRPCLIB_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
         **{
@@ -34,3 +31,8 @@ def python_grpclib_library(name, **kwargs):
             if k in bazel_build_rule_common_attrs
         }  # Forward Bazel common args
     )
+
+GRPCLIB_DEPS = [
+    Label("@protobuf//:protobuf_python"),
+    Label(requirement("grpclib")),
+]
