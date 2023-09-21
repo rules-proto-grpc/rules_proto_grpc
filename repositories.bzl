@@ -176,7 +176,7 @@ VERSIONS = {
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
         "ref": "v0.33.0",
-        "sha256": "1e246edb247c76ddf698ddc58fec7d3a9f908131b356133e6dccf91194d47aee",
+        "sha256": "984cae72075c83d689fc4f6f5405f713d4ecaee69510717394e1b775ffa269ad",
     },
 
     # grpc-gateway
