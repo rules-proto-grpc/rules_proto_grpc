@@ -59,7 +59,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    go_rules_dependencies()
    
    go_register_toolchains(
-       version = "1.21.0",
+       version = "1.21.1",
    )
    
    load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
@@ -173,7 +173,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    go_rules_dependencies()
    
    go_register_toolchains(
-       version = "1.21.0",
+       version = "1.21.1",
    )
    
    load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
@@ -285,7 +285,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    go_rules_dependencies()
    
    go_register_toolchains(
-       version = "1.21.0",
+       version = "1.21.1",
    )
    
    load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
@@ -396,7 +396,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    go_rules_dependencies()
    
    go_register_toolchains(
-       version = "1.21.0",
+       version = "1.21.1",
    )
    
    load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
@@ -510,7 +510,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    go_rules_dependencies()
    
    go_register_toolchains(
-       version = "1.21.0",
+       version = "1.21.1",
    )
    
    load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
@@ -625,7 +625,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    go_rules_dependencies()
    
    go_register_toolchains(
-       version = "1.21.0",
+       version = "1.21.1",
    )
    
    load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
