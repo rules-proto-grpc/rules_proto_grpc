@@ -60,9 +60,11 @@ crates_vendor(
         ),
         "tokio": crate.spec(
             version = "1.24.2",
+            features = ["full"],
         ),
         "tokio-stream": crate.spec(
             version = "0.1.11",
+            features = ["full"],
         ),
         "async-stream": crate.spec(
             version = "0.3.3",
