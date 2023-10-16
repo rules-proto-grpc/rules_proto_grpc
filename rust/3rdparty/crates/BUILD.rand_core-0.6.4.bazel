@@ -44,6 +44,6 @@ rust_library(
     ],
     version = "0.6.4",
     deps = [
-        "@rules_proto_grpc_rust__getrandom-0.2.9//:getrandom",
+        "@rules_proto_grpc_rust__getrandom-0.2.10//:getrandom",
     ],
 )

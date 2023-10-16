@@ -47,6 +47,6 @@ rust_library(
     ],
     version = "0.11.9",
     deps = [
-        "@rules_proto_grpc_rust__bytes-1.4.0//:bytes",
+        "@rules_proto_grpc_rust__bytes-1.5.0//:bytes",
     ],
 )

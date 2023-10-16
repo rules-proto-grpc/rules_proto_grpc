@@ -48,7 +48,7 @@ rust_library(
         "@rules_proto_grpc_rust__prost-build-0.11.9//:prost_build",
         "@rules_proto_grpc_rust__prost-types-0.11.9//:prost_types",
         "@rules_proto_grpc_rust__protoc-gen-prost-0.2.1//:protoc_gen_prost",
-        "@rules_proto_grpc_rust__regex-1.8.4//:regex",
+        "@rules_proto_grpc_rust__regex-1.10.1//:regex",
     ],
 )
 
@@ -83,6 +83,6 @@ rust_binary(
         "@rules_proto_grpc_rust__prost-build-0.11.9//:prost_build",
         "@rules_proto_grpc_rust__prost-types-0.11.9//:prost_types",
         "@rules_proto_grpc_rust__protoc-gen-prost-0.2.1//:protoc_gen_prost",
-        "@rules_proto_grpc_rust__regex-1.8.4//:regex",
+        "@rules_proto_grpc_rust__regex-1.10.1//:regex",
     ],
 )

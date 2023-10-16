@@ -40,6 +40,6 @@ rust_library(
     version = "0.5.1",
     deps = [
         "@rules_proto_grpc_rust__base64-0.13.1//:base64",
-        "@rules_proto_grpc_rust__serde-1.0.163//:serde",
+        "@rules_proto_grpc_rust__serde-1.0.189//:serde",
     ],
 )

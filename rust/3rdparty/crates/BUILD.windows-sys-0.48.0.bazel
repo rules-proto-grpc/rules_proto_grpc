@@ -35,10 +35,10 @@ rust_library(
         "Win32_Networking",
         "Win32_Networking_WinSock",
         "Win32_Security",
-        "Win32_Security_Authorization",
         "Win32_Storage",
         "Win32_Storage_FileSystem",
         "Win32_System",
+        "Win32_System_Console",
         "Win32_System_Diagnostics",
         "Win32_System_Diagnostics_Debug",
         "Win32_System_IO",
@@ -46,6 +46,8 @@ rust_library(
         "Win32_System_SystemServices",
         "Win32_System_Threading",
         "Win32_System_WindowsProgramming",
+        "Win32_UI",
+        "Win32_UI_Shell",
         "default",
     ],
     crate_root = "src/lib.rs",
@@ -60,6 +62,6 @@ rust_library(
     ],
     version = "0.48.0",
     deps = [
-        "@rules_proto_grpc_rust__windows-targets-0.48.0//:windows_targets",
+        "@rules_proto_grpc_rust__windows-targets-0.48.5//:windows_targets",
     ],
 )

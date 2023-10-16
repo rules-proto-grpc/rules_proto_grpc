@@ -46,9 +46,9 @@ rust_library(
     version = "0.8.4",
     deps = [
         "@rules_proto_grpc_rust__prettyplease-0.1.25//:prettyplease",
-        "@rules_proto_grpc_rust__proc-macro2-1.0.59//:proc_macro2",
+        "@rules_proto_grpc_rust__proc-macro2-1.0.69//:proc_macro2",
         "@rules_proto_grpc_rust__prost-build-0.11.9//:prost_build",
-        "@rules_proto_grpc_rust__quote-1.0.28//:quote",
+        "@rules_proto_grpc_rust__quote-1.0.33//:quote",
         "@rules_proto_grpc_rust__syn-1.0.109//:syn",
     ],
 )

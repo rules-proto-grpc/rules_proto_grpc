@@ -29,7 +29,14 @@ rust_library(
     ),
     crate_features = [
         "default",
+        "fs",
+        "full",
+        "io-util",
+        "net",
+        "signal",
+        "sync",
         "time",
+        "tokio-util",
     ],
     crate_root = "src/lib.rs",
     edition = "2021",
@@ -44,7 +51,8 @@ rust_library(
     version = "0.1.14",
     deps = [
         "@rules_proto_grpc_rust__futures-core-0.3.28//:futures_core",
-        "@rules_proto_grpc_rust__pin-project-lite-0.2.9//:pin_project_lite",
-        "@rules_proto_grpc_rust__tokio-1.28.2//:tokio",
+        "@rules_proto_grpc_rust__pin-project-lite-0.2.13//:pin_project_lite",
+        "@rules_proto_grpc_rust__tokio-1.33.0//:tokio",
+        "@rules_proto_grpc_rust__tokio-util-0.7.9//:tokio_util",
     ],
 )

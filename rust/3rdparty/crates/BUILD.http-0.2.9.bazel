@@ -39,8 +39,8 @@ rust_library(
     ],
     version = "0.2.9",
     deps = [
-        "@rules_proto_grpc_rust__bytes-1.4.0//:bytes",
+        "@rules_proto_grpc_rust__bytes-1.5.0//:bytes",
         "@rules_proto_grpc_rust__fnv-1.0.7//:fnv",
-        "@rules_proto_grpc_rust__itoa-1.0.6//:itoa",
+        "@rules_proto_grpc_rust__itoa-1.0.9//:itoa",
     ],
 )

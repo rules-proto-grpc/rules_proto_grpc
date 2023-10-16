@@ -31,7 +31,7 @@ rust_library(
     crate_root = "src/lib.rs",
     edition = "2021",
     proc_macro_deps = [
-        "@rules_proto_grpc_rust__async-trait-0.1.68//:async_trait",
+        "@rules_proto_grpc_rust__async-trait-0.1.74//:async_trait",
     ],
     rustc_flags = ["--cap-lints=allow"],
     tags = [
@@ -44,7 +44,7 @@ rust_library(
     version = "0.3.4",
     deps = [
         "@rules_proto_grpc_rust__axum-core-0.3.4//:build_script_build",
-        "@rules_proto_grpc_rust__bytes-1.4.0//:bytes",
+        "@rules_proto_grpc_rust__bytes-1.5.0//:bytes",
         "@rules_proto_grpc_rust__futures-util-0.3.28//:futures_util",
         "@rules_proto_grpc_rust__http-0.2.9//:http",
         "@rules_proto_grpc_rust__http-body-0.4.5//:http_body",
@@ -71,7 +71,7 @@ cargo_build_script(
     ),
     edition = "2021",
     proc_macro_deps = [
-        "@rules_proto_grpc_rust__rustversion-1.0.12//:rustversion",
+        "@rules_proto_grpc_rust__rustversion-1.0.14//:rustversion",
     ],
     rustc_flags = [
         "--cap-lints=allow",

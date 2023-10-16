@@ -39,10 +39,10 @@ rust_proc_macro(
     ],
     version = "0.11.9",
     deps = [
-        "@rules_proto_grpc_rust__anyhow-1.0.71//:anyhow",
+        "@rules_proto_grpc_rust__anyhow-1.0.75//:anyhow",
         "@rules_proto_grpc_rust__itertools-0.10.5//:itertools",
-        "@rules_proto_grpc_rust__proc-macro2-1.0.59//:proc_macro2",
-        "@rules_proto_grpc_rust__quote-1.0.28//:quote",
+        "@rules_proto_grpc_rust__proc-macro2-1.0.69//:proc_macro2",
+        "@rules_proto_grpc_rust__quote-1.0.33//:quote",
         "@rules_proto_grpc_rust__syn-1.0.109//:syn",
     ],
 )
