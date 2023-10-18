@@ -13,8 +13,11 @@ load(
     "rules_proto_grpc_repos",
 )
 
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
 def swift_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
+    protobuf_deps()
     build_bazel_rules_swift(**kwargs)
     com_github_grpc_grpc_swift(**kwargs)
     com_github_apple_swift_log(**kwargs)

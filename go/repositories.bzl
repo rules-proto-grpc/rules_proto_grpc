@@ -7,8 +7,11 @@ load(
 )
 load("@bazel_gazelle//:deps.bzl", "go_repository")
 
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
 def go_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
+    protobuf_deps()
 
     go_repository(
         name = "org_golang_google_protobuf",

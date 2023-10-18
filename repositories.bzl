@@ -475,6 +475,7 @@ def rules_proto_grpc_repos(**kwargs):
     com_github_grpc_grpc(**kwargs)
     external_zlib(**kwargs)
 
+
 def rules_proto(**kwargs):
     _generic_dependency("rules_proto", **kwargs)
 
