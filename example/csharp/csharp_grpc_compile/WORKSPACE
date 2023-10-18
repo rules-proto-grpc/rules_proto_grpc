@@ -20,6 +20,11 @@ load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos
 rules_proto_grpc_csharp_repos()
 
 load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
+protobuf_deps()
+
 load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
 
 grpc_deps()

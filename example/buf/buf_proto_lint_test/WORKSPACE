@@ -18,3 +18,7 @@ rules_proto_toolchains()
 load("@rules_proto_grpc//buf:repositories.bzl", rules_proto_grpc_buf_repos = "buf_repos")
 
 rules_proto_grpc_buf_repos()
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
+protobuf_deps()
