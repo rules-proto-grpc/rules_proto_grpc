@@ -30,7 +30,7 @@ VERSIONS = {
         "org": "grpc",
         "repo": "grpc",
         "ref": "v{}".format(GRPC_VERSION),
-        "sha256": "79e3ff93f7fa3c8433e2165f2550fa14889fce147c15d9828531cbfc7ad11e01",
+        "sha256": "9c3c0a0ad986ee4fc0a9b58fd71255010068df7d1437c425b525d68c30c85ac7",
     },
     "zlib": {
         "type": "http",
