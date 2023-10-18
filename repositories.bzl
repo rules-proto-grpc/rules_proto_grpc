@@ -7,7 +7,7 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 MINIMUM_BAZEL_VERSION = "5.3.0"
 ENABLE_VERSION_NAGS = False
 PROTOBUF_VERSION = "21.10"  # When updating, also update protobuf-javascript, JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
-GRPC_VERSION = "1.54.1"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
+GRPC_VERSION = "1.55.1"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
 BUF_VERSION = "v1.9.0"
 VERSIONS = {
     # Core
