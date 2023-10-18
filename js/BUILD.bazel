@@ -49,6 +49,19 @@ proto_plugin(
     visibility = ["//visibility:public"],
 )
 
+# Use an alias to resolve platform transitions and do the select based on the execution platform.
+# Otherwise, if we put the select in the tool, then it selects based on the target platform instead.
+# This is because there is a platform transition on the tool (from target to execution platform).  
+alias(
+    name = "grpc_web_plugin",
+    actual = select({
+        "@bazel_tools//src/conditions:darwin_arm64": "@grpc_web_plugin_darwin_arm64//file",
+        "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_web_plugin_darwin_x86_64//file",
+        "@bazel_tools//src/conditions:linux_x86_64": "@grpc_web_plugin_linux//file",
+        "@bazel_tools//src/conditions:windows": "@grpc_web_plugin_windows//file",
+    }),
+)
+
 # grpc-web
 proto_plugin(
     name = "grpc_web_js_plugin",
@@ -61,11 +74,6 @@ proto_plugin(
         "{protopath}_grpc_web_pb.js",
         "{protopath}_grpc_web_pb.d.ts",
     ],
-    tool = select({
-        "@bazel_tools//src/conditions:darwin_arm64": "@grpc_web_plugin_darwin_arm64//file",
-        "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_web_plugin_darwin_x86_64//file",
-        "@bazel_tools//src/conditions:linux_x86_64": "@grpc_web_plugin_linux//file",
-        "@bazel_tools//src/conditions:windows": "@grpc_web_plugin_windows//file",
-    }),
+    tool = ":grpc_web_plugin",
     visibility = ["//visibility:public"],
 )

@@ -1,5 +1,17 @@
 load("//:defs.bzl", "proto_plugin")
 
+# Use an alias to resolve platform transitions and do the select based on the execution platform.
+# Otherwise, if we put the select in the tool, then it selects based on the target platform instead. 
+alias(
+    name = "proto_gen_doc",
+    actual = select({
+        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
+    }),
+)
+
 proto_plugin(
     name = "docbook_plugin",
     out = "{name}.xml",
@@ -11,12 +23,7 @@ proto_plugin(
         "QUIRK_OUT_PASS_ROOT",
         "QUIRK_DIRECT_MODE",
     ],
-    tool = select({
-        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
-    }),
+    tool = ":proto_gen_doc",
     visibility = ["//visibility:public"],
 )
 
@@ -31,12 +38,8 @@ proto_plugin(
         "QUIRK_OUT_PASS_ROOT",
         "QUIRK_DIRECT_MODE",
     ],
-    tool = select({
-        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
-    }),
+    tool = ":proto_gen_doc",
+
     visibility = ["//visibility:public"],
 )
 
@@ -51,12 +54,8 @@ proto_plugin(
         "QUIRK_OUT_PASS_ROOT",
         "QUIRK_DIRECT_MODE",
     ],
-    tool = select({
-        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
-    }),
+    tool = ":proto_gen_doc",
+
     visibility = ["//visibility:public"],
 )
 
@@ -71,12 +70,8 @@ proto_plugin(
         "QUIRK_OUT_PASS_ROOT",
         "QUIRK_DIRECT_MODE",
     ],
-    tool = select({
-        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
-    }),
+    tool = ":proto_gen_doc",
+
     visibility = ["//visibility:public"],
 )
 
@@ -88,11 +83,7 @@ proto_plugin(
         "QUIRK_DIRECT_MODE",
     ],
     separate_options_flag = True,
-    tool = select({
-        "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_darwin_arm64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_darwin_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_windows_x86_64//:protoc-gen-doc.exe",
-    }),
+    tool = ":proto_gen_doc",
+
     visibility = ["//visibility:public"],
 )
