@@ -6,7 +6,7 @@ load("//internal:common.bzl", "check_bazel_minimum_version")
 # Versions
 MINIMUM_BAZEL_VERSION = "5.3.0"
 ENABLE_VERSION_NAGS = False
-PROTOBUF_VERSION = "21.10"  # When updating, also update protobuf-javascript, JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
+PROTOBUF_VERSION = "24.0"  # When updating, also update protobuf-javascript, JS requirements, JS rulegen in js.go, Ruby requirements and C#/F# requirements
 GRPC_VERSION = "1.58.0"  # When updating, also update grpc hash, grpc-java hash, Go repositories.bzl, Ruby requirements and C#/F# requirements
 BUF_VERSION = "v1.9.0"
 VERSIONS = {
@@ -23,7 +23,7 @@ VERSIONS = {
         "org": "protocolbuffers",
         "repo": "protobuf",
         "ref": "v{}".format(PROTOBUF_VERSION),
-        "sha256": "f3f9ce6dc288f2f939bdc9d277ebdfbc8dbcd51741071f93da70e0e62919f57f",
+        "sha256": "850357336189c470e429e9bdffca92229d8cd5b7f84aa2f3b4c5fdb80ce8351b",
     },
     "com_github_grpc_grpc": {
         "type": "github",
