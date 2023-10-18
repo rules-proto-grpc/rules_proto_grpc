@@ -20,6 +20,11 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
+protobuf_deps()
+
 #
 # Android
 #
