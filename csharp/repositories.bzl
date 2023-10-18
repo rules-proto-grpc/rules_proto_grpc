@@ -2,10 +2,10 @@
 
 load(
     "//:repositories.bzl",
-    "rules_dotnet",
+    "io_bazel_rules_dotnet",
     "rules_proto_grpc_repos",
 )
 
 def csharp_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
-    rules_dotnet(**kwargs)
+    io_bazel_rules_dotnet(**kwargs)
