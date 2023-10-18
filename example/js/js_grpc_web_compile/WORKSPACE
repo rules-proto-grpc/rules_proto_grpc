@@ -30,7 +30,3 @@ yarn_install(
     package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json which should contain the dependencies required
     yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )
-
-load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
-
-protobuf_deps()

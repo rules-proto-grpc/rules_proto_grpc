@@ -10,9 +10,11 @@ load(
     "grpc_web_plugin_windows",
     "rules_proto_grpc_repos",
 )
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
 def js_repos(**kwargs):  # buildifier: disable=function-docstring
     rules_proto_grpc_repos(**kwargs)
+    protobuf_deps()
     build_bazel_rules_nodejs(**kwargs)
     com_google_protobuf_javascript(**kwargs)
     grpc_web_plugin_darwin_arm64(**kwargs)

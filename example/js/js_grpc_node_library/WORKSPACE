@@ -3,16 +3,11 @@ local_repository(
     path = "../../../",
 )
 
-
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
 
 rules_proto_grpc_toolchains()
 
 rules_proto_grpc_repos()
-
-load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
-
-protobuf_deps()
 
 load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
 
@@ -35,4 +30,3 @@ yarn_install(
     package_json = "@rules_proto_grpc//js:requirements/package.json",  # This should be changed to your local package.json which should contain the dependencies required
     yarn_lock = "@rules_proto_grpc//js:requirements/yarn.lock",
 )
-
