@@ -23,7 +23,7 @@ VERSIONS = {
         "org": "protocolbuffers",
         "repo": "protobuf",
         "ref": "v{}".format(PROTOBUF_VERSION),
-        "sha256": "3a5f47ad3aa10192c5577ff086b24b9739a36937c34ceab6db912a16a3ef7f8e",
+        "sha256": "4e176116949be52b0408dfd24f8925d1eb674a781ae242a75296b17a1c721395",
     },
     "com_github_grpc_grpc": {
         "type": "github",
