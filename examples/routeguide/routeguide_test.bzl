@@ -1,7 +1,7 @@
 """Definition of the routeguide test and matrix rules."""
 
 def _get_lang_name(label):
-    return label.partition("//examples/")[2].rpartition("/")[0].replace("/", "_")
+    return label.partition("//examples/")[2].partition("/")[0]
 
 def _routeguide_test_impl(ctx):
     # Build test execution script

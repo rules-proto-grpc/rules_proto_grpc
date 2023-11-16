@@ -41,6 +41,13 @@ local_path_override(
     path = "modules/cpp",
 )
 
+# Go
+bazel_dep(name = "rules_proto_grpc_go", version = "0.0.0")
+local_path_override(
+    module_name = "rules_proto_grpc_go",
+    path = "modules/go",
+)
+
 # Python
 bazel_dep(name = "rules_proto_grpc_python", version = "0.0.0")
 local_path_override(

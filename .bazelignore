@@ -9,6 +9,11 @@ examples/cpp/cpp_grpc_compile
 examples/cpp/cpp_proto_library
 examples/cpp/cpp_grpc_library
 
+examples/go/go_proto_compile
+examples/go/go_grpc_compile
+examples/go/go_proto_library
+examples/go/go_grpc_library
+
 examples/python/python_proto_compile
 examples/python/python_grpc_compile
 examples/python/python_grpclib_compile

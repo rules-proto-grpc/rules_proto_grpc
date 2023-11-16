@@ -13,10 +13,12 @@ routeguide_test_matrix(
     name = "routeguide_matrix",
     clients = [
         "//examples/cpp/routeguide:client",
+        "//examples/go/routeguide/client:client",
         "//examples/python/routeguide:client",
     ],
     servers = [
         "//examples/cpp/routeguide:server",
+        "//examples/go/routeguide/server:server",
         "//examples/python/routeguide:server",
     ],
     skip = [

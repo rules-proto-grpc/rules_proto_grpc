@@ -208,4 +208,5 @@ Supported Languages and Tools
    :hidden:
 
    lang/cpp
+   lang/go
    lang/python
