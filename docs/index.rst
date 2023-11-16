@@ -207,5 +207,7 @@ Supported Languages and Tools
    :caption: Rules
    :hidden:
 
+   lang/c
    lang/cpp
+   lang/go
    lang/python
