@@ -142,6 +142,7 @@ tasks:
      - make test_workspace_common_cpp_library
      - make test_workspace_exclusions
      - make test_workspace_generated_proto
+     - make test_workspace_go_importpath
      - make test_workspace_import_prefix
      - make test_workspace_nested_output_directory
      - make test_workspace_python3_grpc
@@ -163,6 +164,7 @@ tasks:
      - make test_workspace_common_cpp_library
      - make test_workspace_exclusions
      - make test_workspace_generated_proto
+     - make test_workspace_go_importpath
      - make test_workspace_import_prefix
      - make test_workspace_nested_output_directory
      - make test_workspace_python3_grpc
