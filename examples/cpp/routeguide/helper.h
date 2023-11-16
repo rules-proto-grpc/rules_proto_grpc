@@ -25,7 +25,7 @@
 namespace routeguide {
 class Feature;
 
-std::string GetDbFileContent(int argc, char** argv);
+std::string GetDbFileContent();
 
 std::string GetServerPort();
 

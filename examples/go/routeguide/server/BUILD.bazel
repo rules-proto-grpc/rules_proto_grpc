@@ -1,5 +1,5 @@
 load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
-load("@rules_proto_grpc_go//:defs.bzl", "go_grpc_library")
+load("@rules_proto_grpc_go//:defs.bzl", "GRPC_DEPS", "go_grpc_library")
 
 go_grpc_library(
     name = "routeguide",
@@ -14,12 +14,7 @@ go_library(
     visibility = ["//visibility:private"],
     deps = [
         ":routeguide",
-        "@com_github_golang_protobuf//proto:go_default_library",
-        "@org_golang_google_grpc//:go_default_library",
-        "@org_golang_google_grpc//codes:go_default_library",
-        "@org_golang_google_grpc//credentials:go_default_library",
-        "@org_golang_google_grpc//testdata:go_default_library",
-    ],
+    ] + GRPC_DEPS,
 )
 
 go_binary(

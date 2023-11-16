@@ -27,7 +27,7 @@
 
 namespace routeguide {
 
-std::string GetDbFileContent(int argc, char** argv) {
+std::string GetDbFileContent() {
   std::string db_path("routeguide_features.json");
   if (std::getenv("DATABASE_FILE")) {
     db_path = std::getenv("DATABASE_FILE");

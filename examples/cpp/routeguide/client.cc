@@ -224,8 +224,7 @@ int main(int argc, char** argv) {
 
   std::cout << "Server Address: " << server_address << std::endl;
 
-  // Expect only arg: --db_path=path/to/route_guide_db.json.
-  std::string db = routeguide::GetDbFileContent(argc, argv);
+  std::string db = routeguide::GetDbFileContent();
 
   std::cout << "Starting server..." << std::endl;
 

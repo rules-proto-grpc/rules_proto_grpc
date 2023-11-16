@@ -75,8 +75,26 @@ def {{ .Rule.Name }}(name, **kwargs):
 
 GRPC_DEPS = [
     Label("@org_golang_google_grpc//:go_default_library"),
+    Label("@org_golang_google_grpc//backoff:go_default_library"),
+    Label("@org_golang_google_grpc//balancer:go_default_library"),
+    Label("@org_golang_google_grpc//balancer/base:go_default_library"),
+    Label("@org_golang_google_grpc//balancer/roundrobin:go_default_library"),
+    Label("@org_golang_google_grpc//channelz:go_default_library"),
     Label("@org_golang_google_grpc//codes:go_default_library"),
+    Label("@org_golang_google_grpc//connectivity:go_default_library"),
+    Label("@org_golang_google_grpc//credentials:go_default_library"),
+    Label("@org_golang_google_grpc//credentials/insecure:go_default_library"),
+    Label("@org_golang_google_grpc//encoding:go_default_library"),
+    Label("@org_golang_google_grpc//encoding/proto:go_default_library"),
+    Label("@org_golang_google_grpc//grpclog:go_default_library"),
+    Label("@org_golang_google_grpc//keepalive:go_default_library"),
+    Label("@org_golang_google_grpc//metadata:go_default_library"),
+    Label("@org_golang_google_grpc//peer:go_default_library"),
+    Label("@org_golang_google_grpc//resolver:go_default_library"),
+    Label("@org_golang_google_grpc//serviceconfig:go_default_library"),
+    Label("@org_golang_google_grpc//stats:go_default_library"),
     Label("@org_golang_google_grpc//status:go_default_library"),
+    Label("@org_golang_google_grpc//tap:go_default_library"),
 ] + PROTO_DEPS`)
 
 // For go, produce one library for all protos, since they are all in the same package
@@ -118,6 +136,10 @@ func makeGo() *Language {
 		Name:        "go",
 		DisplayName: "Go",
 		Notes:       mustTemplate("Rules for generating Go protobuf and gRPC ``.go`` files and libraries using `golang/protobuf <https://github.com/golang/protobuf>`_. Libraries are created with ``go_library`` from `rules_go <https://github.com/bazelbuild/rules_go>`_"),
+		ExtraDefs: map[string]string{
+			"GRPC_DEPS": ":go_grpc_library.bzl",
+			"PROTO_DEPS": ":go_proto_library.bzl",
+		},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "go_proto_compile",

@@ -30,6 +30,9 @@ type Language struct {
 
 	// Extra aliases to add to defs.bzl. Stored as alias name -> real name
 	Aliases map[string]string
+
+	// Extra loads to add to defs.bzl. Stored as name -> source file name
+	ExtraDefs map[string]string
 }
 
 type Rule struct {

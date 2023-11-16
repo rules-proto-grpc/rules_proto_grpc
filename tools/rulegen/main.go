@@ -231,6 +231,9 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 	for _, ruleName := range ruleNames {
 		out.w(`load(":%s.bzl", _%s = "%s")`, ruleName, ruleName, ruleName)
 	}
+	for def, path := range lang.ExtraDefs {
+		out.w(`load("%s", _%s = "%s")  # buildifier: disable=same-origin-load # buildifier: disable=out-of-order-load`, path, def, def)
+	}
 	out.ln()
 
 	out.w("# Export %s rules", lang.Name)
@@ -250,6 +253,16 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 
 		for _, alias := range aliases {
 			out.w(`%s = _%s`, alias, lang.Aliases[alias])
+		}
+
+		out.ln()
+	}
+
+	if len(lang.ExtraDefs) > 0 {
+		out.w(`# Extra defs`)
+
+		for def, _ := range lang.ExtraDefs {
+			out.w(`%s = _%s`, def, def)
 		}
 
 		out.ln()
