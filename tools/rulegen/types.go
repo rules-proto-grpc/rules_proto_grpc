@@ -15,8 +15,11 @@ type Language struct {
 	// List of rules
 	Rules []*Rule
 
-	// Additional nodes about the language
+	// Additional notes about the language
 	Notes *template.Template
+
+	// Languages that this language depend on
+	DependsOn []string
 
 	// Extra lines for MODULE.bazel for examples etc
 	ModuleExtraLines string

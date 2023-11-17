@@ -166,7 +166,7 @@ func mustWriteLanguageExamples(dir string, lang *Language) {
 			log.Fatalf("FAILED to create %s: %v", exampleDir, err)
 		}
 		mustWriteLanguageExampleStaticFiles(exampleDir, lang, rule)
-		mustWriteLanguageExampleModule(exampleDir, lang, rule)
+		mustWriteLanguageExampleModuleBazelFile(exampleDir, lang, rule)
 		mustWriteLanguageExampleBuildFile(exampleDir, lang, rule)
 	}
 }
@@ -177,15 +177,27 @@ func mustWriteLanguageExampleStaticFiles(dir string, lang *Language, rule *Rule)
 	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
 }
 
-func mustWriteLanguageExampleModule(dir string, lang *Language, rule *Rule) {
+func mustWriteLanguageExampleModuleBazelFile(dir string, lang *Language, rule *Rule) {
 	out := &LineWriter{}
 	depth := strings.Split(lang.Name, "/")
 	// +2 as we are in the examples/{rule} subdirectory
 	rootPath := strings.Repeat("../", len(depth) + 2)
 
+	extraDeps := ""
+	extraLocalOverrides := ""
+	for _, dep := range lang.DependsOn {
+		extraDeps += fmt.Sprintf("\nbazel_dep(name = \"rules_proto_grpc_%s\", version = \"0.0.0\")", dep)
+		extraLocalOverrides += fmt.Sprintf(`
+
+local_path_override(
+	module_name = "rules_proto_grpc_%s",
+	path = "%smodules/%s",
+)`, dep, rootPath, dep)
+	}
+
 	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
 bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0")
-bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")%s
 
 local_path_override(
     module_name = "rules_proto_grpc",
@@ -200,7 +212,7 @@ local_path_override(
 local_path_override(
     module_name = "rules_proto_grpc_%s",
     path = "%smodules/%s",
-)`, lang.Name, rootPath, rootPath, lang.Name, rootPath, lang.Name)
+)%s`, lang.Name, extraDeps, rootPath, rootPath, lang.Name, rootPath, lang.Name, extraLocalOverrides)
 
 	if (len(lang.ModuleExtraLines) > 0) {
 		out.ln()
