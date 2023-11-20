@@ -1,6 +1,6 @@
 module(
     name = "rules_proto_grpc_example_protos",
-    version = "0.0.0",
+    version = "0.0.0.rpg.version.placeholder",
     compatibility_level = 1,
 )
 

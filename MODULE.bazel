@@ -13,20 +13,20 @@ rulegen_go_deps.module(
 use_repo(rulegen_go_deps, "com_github_urfave_cli")
 
 # Local overrides
-bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc",
     path = "modules/core",
 )
 
-bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_example_protos",
     path = "modules/example_protos",
 )
 
 # C
-bazel_dep(name = "rules_proto_grpc_c", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_c", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_c",
     path = "modules/c",
@@ -35,28 +35,28 @@ local_path_override(
 bazel_dep(name = "protobuf", version = "21.7")
 
 # C++
-bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_cpp",
     path = "modules/cpp",
 )
 
 # Go
-bazel_dep(name = "rules_proto_grpc_go", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_go", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_go",
     path = "modules/go",
 )
 
 # grpc-gateway
-bazel_dep(name = "rules_proto_grpc_grpc_gateway", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_grpc_gateway", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_grpc_gateway",
     path = "modules/grpc_gateway",
 )
 
 # Python
-bazel_dep(name = "rules_proto_grpc_python", version = "0.0.0")
+bazel_dep(name = "rules_proto_grpc_python", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_python",
     path = "modules/python",

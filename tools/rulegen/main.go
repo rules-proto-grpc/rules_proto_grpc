@@ -187,7 +187,7 @@ func mustWriteLanguageExampleModuleBazelFile(dir string, lang *Language, rule *R
 	extraDeps := ""
 	extraLocalOverrides := ""
 	for _, dep := range lang.DependsOn {
-		extraDeps += fmt.Sprintf("\nbazel_dep(name = \"rules_proto_grpc_%s\", version = \"0.0.0\")", dep)
+		extraDeps += fmt.Sprintf("\nbazel_dep(name = \"rules_proto_grpc_%s\", version = \"0.0.0.rpg.version.placeholder\")", dep)
 		extraLocalOverrides += fmt.Sprintf(`
 
 local_path_override(
@@ -196,9 +196,9 @@ local_path_override(
 )`, dep, rootPath, dep)
 	}
 
-	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0")
-bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0")
-bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")%s
+	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
+bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0.rpg.version.placeholder")
+bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0.rpg.version.placeholder")%s
 
 local_path_override(
     module_name = "rules_proto_grpc",
@@ -388,7 +388,7 @@ func mustWriteModuleBazel(dir, template string, languages []*Language) {
 
 	for _, lang := range languages {
 		out.w("# %s", lang.DisplayName)
-		out.w(`bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0")
+		out.w(`bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_%s",
     path = "modules/%s",
