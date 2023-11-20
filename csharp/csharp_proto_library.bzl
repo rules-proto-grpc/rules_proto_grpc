@@ -2,7 +2,7 @@
 
 load("//csharp:csharp_proto_compile.bzl", "csharp_proto_compile")
 load("//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("@rules_dotnet//dotnet:defs.bzl", "csharp_library")
+load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "csharp_library")
 
 def csharp_proto_library(name, **kwargs):
     # Compile protos
