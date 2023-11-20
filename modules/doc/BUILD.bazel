@@ -14,8 +14,10 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_plugins_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_plugins_darwin_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:linux_aarch64": "@protoc_gen_doc_plugins_linux_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_plugins_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_arm64": "@protoc_gen_doc_plugins_windows_arm64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_x86_64": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )
@@ -34,8 +36,10 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_plugins_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_plugins_darwin_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:linux_aarch64": "@protoc_gen_doc_plugins_linux_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_plugins_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_arm64": "@protoc_gen_doc_plugins_windows_arm64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_x86_64": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )
@@ -54,8 +58,10 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_plugins_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_plugins_darwin_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:linux_aarch64": "@protoc_gen_doc_plugins_linux_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_plugins_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_arm64": "@protoc_gen_doc_plugins_windows_arm64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_x86_64": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )
@@ -74,8 +80,10 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_plugins_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_plugins_darwin_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:linux_aarch64": "@protoc_gen_doc_plugins_linux_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_plugins_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_arm64": "@protoc_gen_doc_plugins_windows_arm64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_x86_64": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )
@@ -91,8 +99,10 @@ proto_plugin(
     tool = select({
         "@bazel_tools//src/conditions:darwin_arm64": "@protoc_gen_doc_plugins_darwin_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:darwin_x86_64": "@protoc_gen_doc_plugins_darwin_x86_64//:protoc-gen-doc",
+        "@bazel_tools//src/conditions:linux_aarch64": "@protoc_gen_doc_plugins_linux_arm64//:protoc-gen-doc",
         "@bazel_tools//src/conditions:linux_x86_64": "@protoc_gen_doc_plugins_linux_x86_64//:protoc-gen-doc",
-        "@bazel_tools//src/conditions:windows": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_arm64": "@protoc_gen_doc_plugins_windows_arm64//:protoc-gen-doc.exe",
+        "@bazel_tools//src/conditions:windows_x86_64": "@protoc_gen_doc_plugins_windows_x86_64//:protoc-gen-doc.exe",
     }),
     visibility = ["//visibility:public"],
 )

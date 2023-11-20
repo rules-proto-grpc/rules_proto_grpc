@@ -3,8 +3,8 @@
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
+    "proto_compile",
     "proto_compile_attrs",
-	"proto_compile",
 )
 
 # Create compile rule

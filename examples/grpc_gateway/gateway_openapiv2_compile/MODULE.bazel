@@ -19,6 +19,6 @@ local_path_override(
 )
 
 local_path_override(
-	module_name = "rules_proto_grpc_go",
-	path = "../../../modules/go",
+    module_name = "rules_proto_grpc_go",
+    path = "../../../modules/go",
 )

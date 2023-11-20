@@ -14,8 +14,9 @@ proto_plugin(
     # tool = select({
     #     "@bazel_tools//src/conditions:darwin_arm64": "@grpc_gateway_plugin_darwin_arm64//file",
     #     "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_gateway_plugin_darwin_x86_64//file",
+    #     "@bazel_tools//src/conditions:linux_aarch64": "@grpc_gateway_plugin_linux_arm64//file",
     #     "@bazel_tools//src/conditions:linux_x86_64": "@grpc_gateway_plugin_linux_x86_64//file",
-    #     "@bazel_tools//src/conditions:windows": "@grpc_gateway_plugin_windows_x86_64//file",
+    #     "@bazel_tools//src/conditions:windows_x86_64": "@grpc_gateway_plugin_windows_x86_64//file",
     # }),
     visibility = ["//visibility:public"],
 )
@@ -34,8 +35,9 @@ proto_plugin(
     # tool = select({
     #     "@bazel_tools//src/conditions:darwin_arm64": "@openapiv2_plugin_darwin_arm64//file",
     #     "@bazel_tools//src/conditions:darwin_x86_64": "@openapiv2_plugin_darwin_x86_64//file",
+    #     "@bazel_tools//src/conditions:linux_aarch64": "@openapiv2_plugin_linux_x86_64//file",
     #     "@bazel_tools//src/conditions:linux_x86_64": "@openapiv2_plugin_linux_x86_64//file",
-    #     "@bazel_tools//src/conditions:windows": "@openapiv2_plugin_windows_x86_64//file",
+    #     "@bazel_tools//src/conditions:windows_x86_64": "@openapiv2_plugin_windows_x86_64//file",
     # }),
     visibility = ["//visibility:public"],
 )

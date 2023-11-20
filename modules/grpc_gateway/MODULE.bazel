@@ -11,12 +11,11 @@ bazel_dep(name = "rules_proto_grpc_go", version = "0.0.0.rpg.version.placeholder
 
 go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
 go_deps.from_file(go_mod = "//:go.mod")
-
 use_repo(
     go_deps,
     "com_github_grpc_ecosystem_grpc_gateway_v2",
-    "org_golang_google_genproto_googleapis_api",
     "in_gopkg_yaml_v3",
+    "org_golang_google_genproto_googleapis_api",
 )
 
 # download_plugins = use_extension("//:module_extensions.bzl", "download_plugins")
