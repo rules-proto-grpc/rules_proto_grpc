@@ -168,15 +168,15 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_go",
-        "ref": "v0.39.1",
-        "sha256": "473a064d502e89d11c497a59f9717d1846e01515a3210bd169f22323161c076e",
+        "ref": "v0.41.0",
+        "sha256": "12c67b212c865b884a180bd02e573c7a58c60bc2a7fb095475e24dccd9ee28f8",
     },
     "bazel_gazelle": {
         "type": "github",
         "org": "bazelbuild",
         "repo": "bazel-gazelle",
-        "ref": "v0.24.0",  # 0.25.0+ has issues with "No dependencies were provided": https://github.com/bazelbuild/bazel-gazelle/issues/1217
-        "sha256": "fc4c319b9e32ea44be8a5e1a46746d93e8b6a8b104baf7cb6a344a0a08386fed",
+        "ref": "v0.33.0",
+        "sha256": "984cae72075c83d689fc4f6f5405f713d4ecaee69510717394e1b775ffa269ad",
     },
 
     # grpc-gateway
@@ -184,8 +184,8 @@ VERSIONS = {
         "type": "github",
         "org": "grpc-ecosystem",
         "repo": "grpc-gateway",
-        "ref": "v2.14.0",
-        "sha256": "6bca5c2a0eddc0cd042ad8352c581c2135d0b0ab8a610f1045e9b17de9afb318",
+        "ref": "v2.18.0",
+        "sha256": "e159860d972e6044607f001026e06a571b158d717a161632e83ed41211dcd97f",
     },
 
     # Java
