@@ -210,4 +210,5 @@ Supported Languages and Tools
    lang/c
    lang/cpp
    lang/go
+   lang/grpc_gateway
    lang/python

@@ -14,6 +14,10 @@ examples/go/go_grpc_compile
 examples/go/go_proto_library
 examples/go/go_grpc_library
 
+examples/grpc_gateway/gateway_grpc_compile
+examples/grpc_gateway/gateway_openapiv2_compile
+examples/grpc_gateway/gateway_grpc_library
+
 examples/python/python_proto_compile
 examples/python/python_grpc_compile
 examples/python/python_grpclib_compile

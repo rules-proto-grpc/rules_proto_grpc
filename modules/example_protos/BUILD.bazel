@@ -1,6 +1,14 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 
 proto_library(
+    name = "api_proto",
+    srcs = ["api.proto"],
+    import_prefix = "examples/proto",
+    visibility = ["//visibility:public"],
+    deps = [":place_proto"],
+)
+
+proto_library(
     name = "person_proto",
     srcs = ["person.proto"],
     import_prefix = "examples/proto",
