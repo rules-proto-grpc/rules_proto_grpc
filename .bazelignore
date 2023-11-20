@@ -9,6 +9,12 @@ examples/cpp/cpp_grpc_compile
 examples/cpp/cpp_proto_library
 examples/cpp/cpp_grpc_library
 
+examples/doc/doc_docbook_compile
+examples/doc/doc_html_compile
+examples/doc/doc_json_compile
+examples/doc/doc_markdown_compile
+examples/doc/doc_template_compile
+
 examples/go/go_proto_compile
 examples/go/go_grpc_compile
 examples/go/go_proto_library

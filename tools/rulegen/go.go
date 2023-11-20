@@ -47,8 +47,8 @@ PROTO_DEPS = [
 
 var goGrpcLibraryRuleTemplate = mustTemplate(`load("@rules_go//go:def.bzl", "go_library")
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("//:{{ .Rule.Base}}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
-load("//:{{ .Rule.Base}}_proto_library.bzl", "PROTO_DEPS")
+load("//:{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
+load("//:{{ .Rule.Base }}_proto_library.bzl", "PROTO_DEPS")
 
 def {{ .Rule.Name }}(name, **kwargs):
     # Compile protos

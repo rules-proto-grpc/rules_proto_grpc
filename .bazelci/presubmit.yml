@@ -80,6 +80,32 @@ tasks:
      - make cpp_cpp_proto_library_example
      - make cpp_cpp_grpc_library_example
 
+  doc_ubuntu2204_examples:
+    name: doc examples
+    platform: ubuntu2204
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+     - set -x
+     - make doc_doc_docbook_compile_example
+     - make doc_doc_html_compile_example
+     - make doc_doc_json_compile_example
+     - make doc_doc_markdown_compile_example
+     - make doc_doc_template_compile_example
+
+  doc_macos_examples:
+    name: doc examples
+    platform: macos
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+     - set -x
+     - make doc_doc_docbook_compile_example
+     - make doc_doc_html_compile_example
+     - make doc_doc_json_compile_example
+     - make doc_doc_markdown_compile_example
+     - make doc_doc_template_compile_example
+
   go_ubuntu2204_examples:
     name: go examples
     platform: ubuntu2204

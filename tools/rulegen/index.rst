@@ -209,6 +209,7 @@ Supported Languages and Tools
 
    lang/c
    lang/cpp
+   lang/doc
    lang/go
    lang/grpc_gateway
    lang/python
