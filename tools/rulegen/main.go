@@ -192,8 +192,8 @@ func mustWriteLanguageExampleModuleBazelFile(dir string, lang *Language, rule *R
 		extraLocalOverrides += fmt.Sprintf(`
 
 local_path_override(
-	module_name = "rules_proto_grpc_%s",
-	path = "%smodules/%s",
+    module_name = "rules_proto_grpc_%s",
+    path = "%smodules/%s",
 )`, dep, rootPath, dep)
 	}
 
