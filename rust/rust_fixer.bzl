@@ -7,7 +7,7 @@ def _rust_proto_crate_root(ctx):
     lib_rs = ctx.actions.declare_file("%s_lib.rs" % name)
     ctx.actions.write(
         lib_rs,
-        'include!("%s/mod.rs");' % name,
+        '#![allow(clippy::all)]\ninclude!("%s/mod.rs");' % name,
         False,
     )
     return [DefaultInfo(
