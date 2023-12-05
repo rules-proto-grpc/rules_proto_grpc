@@ -16,7 +16,7 @@ def _download_plugins(module_ctx):
             name = "protoc_gen_doc_plugins_{}".format(platform.replace("-", "_")),
             sha256 = hash,
             url = "https://github.com/pseudomuto/protoc-gen-doc/releases/download/v1.5.1/protoc-gen-doc_1.5.1_{}.tar.gz".format(
-                platform.replace("x86_64", "arm64"),
+                platform.replace("x86_64", "amd64"),
             ),
             build_file_content = """exports_files(glob(["protoc-gen-doc*"]))""",
         )
