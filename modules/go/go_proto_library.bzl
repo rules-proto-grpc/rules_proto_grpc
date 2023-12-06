@@ -33,6 +33,7 @@ def go_proto_library(name, **kwargs):
 
 PROTO_DEPS = [
     Label("@org_golang_google_protobuf//proto:go_default_library"),
+    Label("@org_golang_google_protobuf//encoding/protojson:go_default_library"),
     Label("@org_golang_google_protobuf//reflect/protoreflect:go_default_library"),
     Label("@org_golang_google_protobuf//runtime/protoimpl:go_default_library"),
 
