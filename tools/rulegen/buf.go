@@ -41,11 +41,11 @@ var bufBreakingExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.
     name = "{{ .Lang.Name }}_{{ .Rule.Kind }}_lint",
     against_input = "@rules_proto_grpc_example_protos//:buf_image.json",
     protos = [
+        "@rules_proto_grpc_example_protos//:greeter_grpc",
         "@rules_proto_grpc_example_protos//:person_proto",
         "@rules_proto_grpc_example_protos//:place_proto",
         "@rules_proto_grpc_example_protos//:routeguide_proto",
         "@rules_proto_grpc_example_protos//:thing_proto",
-        "@rules_proto_grpc_example_protos//:greeter_grpc",
     ],
 )`)
 
