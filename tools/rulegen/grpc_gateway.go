@@ -54,6 +54,9 @@ func makeGrpcGateway() *Language {
 		Name:        "grpc_gateway",
 		DisplayName: "grpc-gateway",
 		DependsOn: []string{"go"},
+		ExtraDefs: map[string]string{
+			"GATEWAY_DEPS": ":gateway_grpc_library.bzl",
+		},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "gateway_grpc_compile",
