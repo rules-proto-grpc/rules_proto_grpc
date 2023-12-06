@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/test_workspaces/go_fixer";
+import "no_service.proto";
+
+service Demo {
+    rpc Demo (demo) returns (demo) {};
+}
