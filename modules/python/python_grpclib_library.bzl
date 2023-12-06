@@ -1,6 +1,6 @@
 """Generated definition of python_grpclib_library."""
 
-load("@pip_deps//:requirements.bzl", "requirement")
+load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_grpclib_compile.bzl", "python_grpclib_compile")

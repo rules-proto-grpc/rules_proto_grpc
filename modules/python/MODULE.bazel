@@ -30,11 +30,11 @@ pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
 
 [
     pip.parse(
-        hub_name = "pip_deps",
+        hub_name = "rules_proto_grpc_python_pip_deps",
         python_version = python_version,
         requirements_lock = "//:requirements.txt",
     )
     for python_version in PYTHON_VERSIONS
 ]
 
-use_repo(pip, "pip_deps")
+use_repo(pip, "rules_proto_grpc_python_pip_deps")

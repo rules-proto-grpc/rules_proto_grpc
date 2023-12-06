@@ -1,4 +1,4 @@
-load("@pip_deps//:requirements.bzl", "requirement")
+load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 
 # Create py binary for grpclib plugin
 # Use subpar to bundle plugin for external execution
