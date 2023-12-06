@@ -238,6 +238,12 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 	out.w("\"\"\"%s protobuf and grpc rules.\"\"\"", lang.Name)
 	out.ln()
 
+	extraDefs := make([]string, 0, len(lang.ExtraDefs))
+	for def := range lang.ExtraDefs {
+		extraDefs = append(extraDefs, def)
+	}
+	sort.Strings(extraDefs)
+
 	ruleNames := make([]string, 0, len(lang.Rules))
 	for _, rule := range lang.Rules {
 		ruleNames = append(ruleNames, rule.Name)
@@ -246,8 +252,8 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 	for _, ruleName := range ruleNames {
 		out.w(`load(":%s.bzl", _%s = "%s")`, ruleName, ruleName, ruleName)
 	}
-	for def, path := range lang.ExtraDefs {
-		out.w(`load("%s", _%s = "%s")  # buildifier: disable=same-origin-load # buildifier: disable=out-of-order-load`, path, def, def)
+	for _, def := range extraDefs {
+		out.w(`load("%s", _%s = "%s")  # buildifier: disable=same-origin-load # buildifier: disable=out-of-order-load`, lang.ExtraDefs[def], def, def)
 	}
 	out.ln()
 
@@ -276,7 +282,7 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 	if len(lang.ExtraDefs) > 0 {
 		out.w(`# Extra defs`)
 
-		for def, _ := range lang.ExtraDefs {
+		for _, def := range extraDefs {
 			out.w(`%s = _%s`, def, def)
 		}
 
