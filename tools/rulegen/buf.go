@@ -45,6 +45,7 @@ var bufBreakingExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.
         "@rules_proto_grpc_example_protos//:place_proto",
         "@rules_proto_grpc_example_protos//:routeguide_proto",
         "@rules_proto_grpc_example_protos//:thing_proto",
+        "@rules_proto_grpc_example_protos//:greeter_grpc",
     ],
 )`)
 

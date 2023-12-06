@@ -52,6 +52,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
            "@rules_proto_grpc_example_protos//:place_proto",
            "@rules_proto_grpc_example_protos//:routeguide_proto",
            "@rules_proto_grpc_example_protos//:thing_proto",
+           "@rules_proto_grpc_example_protos//:greeter_grpc",
        ],
    )
 
