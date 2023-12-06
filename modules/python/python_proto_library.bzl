@@ -32,5 +32,5 @@ def python_proto_library(name, **kwargs):
     )
 
 PROTO_DEPS = [
-    Label("@protobuf//:protobuf_python"),
+    Label(requirement("protobuf")),
 ]

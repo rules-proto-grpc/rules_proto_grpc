@@ -33,7 +33,6 @@ def python_grpc_library(name, **kwargs):
     )
 
 GRPC_DEPS = [
-    Label("@protobuf//:protobuf_python"),
     Label(requirement("grpcio")),
-    # Label("@grpc//src/python/grpcio/grpc:grpcio"),  # TODO: restore once grpc in BCR works with python
+    Label(requirement("protobuf")),
 ]

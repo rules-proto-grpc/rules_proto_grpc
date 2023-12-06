@@ -23,7 +23,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     )
 
 PROTO_DEPS = [
-    Label("@protobuf//:protobuf_python"),
+    Label(requirement("protobuf")),
 ]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
@@ -50,9 +50,8 @@ def {{ .Rule.Name }}(name, **kwargs):
     )
 
 GRPC_DEPS = [
-    Label("@protobuf//:protobuf_python"),
     Label(requirement("grpcio")),
-    # Label("@grpc//src/python/grpcio/grpc:grpcio"),  # TODO: restore once grpc in BCR works with python
+    Label(requirement("protobuf")),
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
