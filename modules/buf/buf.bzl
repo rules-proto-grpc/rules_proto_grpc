@@ -1,7 +1,7 @@
 """Common rule implemenation for applying Buf plugins."""
 
-load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load("@bazel_skylib//lib:shell.bzl", "shell")
+load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load("@rules_proto_grpc//internal:common.bzl", "descriptor_proto_path")
 load("@rules_proto_grpc//internal:protoc.bzl", "build_protoc_args")
 load("@rules_proto_grpc//internal:providers.bzl", "ProtoPluginInfo")
