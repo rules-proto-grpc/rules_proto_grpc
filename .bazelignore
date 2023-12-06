@@ -1,6 +1,9 @@
 modules
 test_workspaces
 
+examples/buf/buf_proto_breaking_test
+examples/buf/buf_proto_lint_test
+
 examples/c/c_proto_compile
 examples/c/c_proto_library
 

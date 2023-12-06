@@ -36,6 +36,26 @@ tasks:
     - "//examples/routeguide:python_go"
     - "//examples/routeguide:python_python"
 
+  buf_ubuntu2204_examples:
+    name: buf examples
+    platform: ubuntu2204
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+     - set -x
+     - make buf_buf_proto_breaking_test_example
+     - make buf_buf_proto_lint_test_example
+
+  buf_macos_examples:
+    name: buf examples
+    platform: macos
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+     - set -x
+     - make buf_buf_proto_breaking_test_example
+     - make buf_buf_proto_lint_test_example
+
   c_ubuntu2204_examples:
     name: c examples
     platform: ubuntu2204

@@ -1,5 +1,7 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 
+exports_files(["buf_image.json"])
+
 proto_library(
     name = "api_proto",
     srcs = ["api.proto"],

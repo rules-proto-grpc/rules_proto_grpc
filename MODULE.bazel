@@ -25,6 +25,13 @@ local_path_override(
     path = "modules/example_protos",
 )
 
+# Buf
+bazel_dep(name = "rules_proto_grpc_buf", version = "0.0.0.rpg.version.placeholder")
+local_path_override(
+    module_name = "rules_proto_grpc_buf",
+    path = "modules/buf",
+)
+
 # C
 bazel_dep(name = "rules_proto_grpc_c", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
