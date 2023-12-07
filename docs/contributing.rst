@@ -18,23 +18,21 @@ requests. Pull requests should be targeted at the master branch and will run aga
 Code Layout
 -----------
 
-Each language ``{lang}`` has a top-level subdirectory that contains:
+Each language ``{lang}`` has files in a number of locations:
 
 1. ``docs/{lang}.rst``: Generated documentation for the language rules
 
-2. ``{lang}/repositories.bzl``: Macro functions that declare repository rule dependencies for that
-   language
+2. ``modules/{lang}/MODULE.bazel``: Rule dependencies for the language
 
-3. ``{lang}/{rule}.bzl``: Rule implementations of the form ``{lang}_{kind}_{type}``, where ``kind``
+3. ``modules/{lang}/{rule}.bzl``: Rule implementations of the form ``{lang}_{kind}_{type}``, where ``kind``
    is one of ``proto|grpc`` and ``type`` is one of ``compile|library``
 
-4. ``{lang}/BUILD.bazel``: ``proto_plugin()`` declarations for the available plugins for the
+4. ``modules/{lang}/BUILD.bazel``: ``proto_plugin()`` declarations for the available plugins for the
    language
 
-5. ``examples/{lang}/{rule}/``: Generated ``WORKSPACE`` and ``BUILD.bazel`` demonstrating standalone
-   usage of the rules
+5. ``examples/{lang}/{rule}/``: Generated workspace demonstrating standalone usage of the rule
 
-6. ``examples/{lang}/routeguide/``: Example routeguide example implementation, if possible
+6. ``examples/{lang}/routeguide/``: Example routeguide example implementation, if available
 
 
 Rule Generation
