@@ -113,12 +113,30 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
     # Convert options dict to label keys
     plugin_labels = [plugin.label for plugin in plugins]
-    per_plugin_options = {
-        # Dict of plugin label to options string list
-        Label(plugin_label): opts
-        for plugin_label, opts in options.items()
-        if plugin_label != "*"
-    }
+    per_plugin_options = {}
+    for plugin_label_str, opts in options.items():
+        if plugin_label_str == "*":
+            continue
+
+        plugin_label = Label(plugin_label_str)
+        if plugin_label not in plugin_labels:
+            # Attempt to match a canonical label with the label string provided. This is very much a
+            # hack that is likely to break, but there is no attr.label_list_dict and we need to
+            # accept "*" anyway. This turns a plugin label like
+            # @@rules_proto_grpc_grpc_gateway~override//:plugin into
+            # @rules_proto_grpc_grpc_gateway//:plugin
+            for possible_plugin_label in plugin_labels:
+                if (
+                    (str(possible_plugin_label).partition("//"))[0].partition("~")[0].replace("@@", "@")
+                    + "//"
+                    + str(possible_plugin_label).partition("//")[2]
+                ) == plugin_label_str:
+                    plugin_label = possible_plugin_label
+
+        if plugin_label not in plugin_labels:
+            fail("The options attr on target {} contains a plugin label {} for a plugin that does not exist on this rule. The available plugins are {} ".format(ctx.label, plugin_label, plugin_labels))
+
+        per_plugin_options[Label(plugin_label)] = opts
 
     # Only allow '*' by itself
     all_plugin_options = []  # Options applied to all plugins, from the '*' key
@@ -126,11 +144,6 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         if len(options) > 1:
             fail("The options attr on target {} cannot contain '*' and other labels. Use either '*' or labels".format(ctx.label))
         all_plugin_options = options["*"]
-
-    # Check all labels match a plugin in use
-    for plugin_label in per_plugin_options:
-        if plugin_label not in plugin_labels:
-            fail("The options attr on target {} contains a plugin label {} for a plugin that does not exist on this rule. The available plugins are {} ".format(ctx.label, plugin_label, plugin_labels))
 
     ###
     ### Setup plugins
