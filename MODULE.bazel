@@ -69,6 +69,13 @@ local_path_override(
     path = "modules/grpc_gateway",
 )
 
+# Objective-C
+bazel_dep(name = "rules_proto_grpc_objc", version = "0.0.0.rpg.version.placeholder")
+local_path_override(
+    module_name = "rules_proto_grpc_objc",
+    path = "modules/objc",
+)
+
 # Python
 bazel_dep(name = "rules_proto_grpc_python", version = "0.0.0.rpg.version.placeholder")
 local_path_override(

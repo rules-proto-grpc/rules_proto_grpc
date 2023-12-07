@@ -111,6 +111,7 @@ func action(c *cli.Context) error {
 		makeDoc(),
 		makeGo(),
 		makeGrpcGateway(),
+		makeObjc(),
 		makePython(),
 	}
 

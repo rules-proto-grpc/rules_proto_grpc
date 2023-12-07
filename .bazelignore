@@ -27,6 +27,11 @@ examples/grpc_gateway/gateway_grpc_compile
 examples/grpc_gateway/gateway_openapiv2_compile
 examples/grpc_gateway/gateway_grpc_library
 
+examples/objc/objc_proto_compile
+examples/objc/objc_grpc_compile
+examples/objc/objc_proto_library
+examples/objc/objc_grpc_library
+
 examples/python/python_proto_compile
 examples/python/python_grpc_compile
 examples/python/python_grpclib_compile
