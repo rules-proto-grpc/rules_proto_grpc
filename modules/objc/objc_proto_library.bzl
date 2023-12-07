@@ -1,7 +1,7 @@
 """Generated definition of objc_proto_library."""
 
-load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("@rules_cc//cc:defs.bzl", "objc_library")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("//:objc_proto_compile.bzl", "objc_proto_compile")
 
 def objc_proto_library(name, **kwargs):  # buildifier: disable=function-docstring

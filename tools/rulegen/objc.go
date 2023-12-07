@@ -1,7 +1,7 @@
 package main
 
-var objcLibraryRuleTemplateString = `load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
-load("@rules_cc//cc:defs.bzl", "objc_library")
+var objcLibraryRuleTemplateString = `load("@rules_cc//cc:defs.bzl", "objc_library")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
