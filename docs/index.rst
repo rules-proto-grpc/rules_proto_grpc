@@ -20,10 +20,6 @@ targets
    :alt: Buildkite Status
    :target: https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc
 
-.. image:: https://github.com/rules-proto-grpc/rules_proto_grpc/workflows/CI/badge.svg
-   :alt: GitHub Actions Status
-   :target: https://github.com/rules-proto-grpc/rules_proto_grpc/actions
-
 .. image:: https://img.shields.io/badge/bazelbuild-%23proto-38a3a5?logo=slack
    :alt: Slack Channel
    :target: https://bazelbuild.slack.com/archives/CKU1D04RM
