@@ -1,9 +1,9 @@
 :author: rules_proto_grpc
-:description: rules_proto_grpc Bazel rules for grpc-gateway
-:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, grpc-gateway
+:description: rules_proto_grpc Bazel rules for gRPC-Gateway
+:keywords: Bazel, Protobuf, gRPC, Protocol Buffers, Rules, Build, Starlark, gRPC-Gateway
 
 
-grpc-gateway
+gRPC-Gateway
 ============
 
 .. list-table:: Rules

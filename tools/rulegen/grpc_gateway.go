@@ -52,7 +52,7 @@ var grpcGatewayLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{
 func makeGrpcGateway() *Language {
 	return &Language{
 		Name:        "grpc_gateway",
-		DisplayName: "grpc-gateway",
+		DisplayName: "gRPC-Gateway",
 		DependsOn: []string{"go"},
 		ExtraDefs: map[string]string{
 			"GATEWAY_DEPS": ":gateway_grpc_library.bzl",
