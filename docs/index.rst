@@ -115,57 +115,21 @@ Supported Languages and Tools
    * - Language
      - Protobuf
      - gRPC
-   * - Android
-     - ✔
-     - ✔
    * - C
      - ✔
      - ✖
    * - C++
      - ✔
      - ✔
-   * - C#
-     - ✔
-     - ✔
    * - D
      - ✔
      - ✖
-   * - F#
-     - ✔
-     - ✔
    * - Go
-     - ✔
-     - ✔
-   * - Java
-     - ✔
-     - ✔
-   * - JavaScript
-     - ✔
-     - ✔
-   * - Objective-C
-     - ✔
-     - ✔
-   * - PHP
      - ✔
      - ✔
    * - Python
      - ✔
      - ✔
-   * - Ruby
-     - ✔
-     - ✔
-   * - Rust
-     - ✔
-     - ✔
-   * - Scala
-     - ✔
-     - ✔
-   * - Swift
-     - ✔
-     - ✔
-   * - TypeScript
-     - ✖
-     - ✖
 
 .. list-table:: Supported Tools
    :widths: 20 5 50
