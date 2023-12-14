@@ -36,6 +36,13 @@ if branch != 'master':
     print('Current branch is not master')
     sys.exit(2)
 
+existing_tags = subprocess.run(
+    ['git', 'tag', '--list'], check=True, capture_output=True
+).stdout.strip().decode().split('\n')
+if VERSION in existing_tags:
+    print('Version conflicts with an existing tag')
+    sys.exit(3)
+
 
 # Work under a temp directory
 with tempfile.TemporaryDirectory() as tmp_dir:
