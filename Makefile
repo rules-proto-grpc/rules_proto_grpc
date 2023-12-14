@@ -2,7 +2,7 @@
 .PHONY: rulegen
 rulegen:
 	bazel query '//examples/routeguide/... - attr(tags, manual, //examples/routeguide/...)' > available_tests.txt; \
-	bazel run --run_under="cd $$PWD && " //tools/rulegen -- --ref=$$(git describe --abbrev=0 --tags); \
+	bazel run --run_under="cd $$PWD && " //tools/rulegen; \
 	rm available_tests.txt;
 
 

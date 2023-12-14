@@ -88,9 +88,9 @@ notified of new releases, you can use GitHub's 'Watch Releases Only' on the repo
 
    http_archive(
        name = "rules_proto_grpc",
-       sha256 = "2a0860a336ae836b54671cbbe0710eec17c64ef70c4c5a88ccfd47ea6e3739bd",
-       strip_prefix = "rules_proto_grpc-4.6.0",
-       urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/4.6.0/rules_proto_grpc-4.6.0.tar.gz"],
+       sha256 = "{{ .Sha256 }}",
+       strip_prefix = "rules_proto_grpc-{{ .Ref }}",
+       urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/{{ .Ref }}/rules_proto_grpc-{{ .Ref }}.tar.gz"],
    )
 
    load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")

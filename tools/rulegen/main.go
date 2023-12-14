@@ -53,26 +53,6 @@ func main() {
 			Value: "tools/rulegen/README.footer.md",
 		},
 		&cli.StringFlag{
-			Name:  "index_template",
-			Usage: "Template for the index.rst file",
-			Value: "tools/rulegen/index.rst",
-		},
-		&cli.StringFlag{
-			Name:  "ref",
-			Usage: "Version ref to use for main readme and index.rst",
-			Value: "{GIT_COMMIT_ID}",
-		},
-		&cli.StringFlag{
-			Name:  "sha256",
-			Usage: "SHA256 value to use for main readme and index.rst",
-			Value: "{ARCHIVE_TAR_GZ_SHA256}",
-		},
-		&cli.StringFlag{
-			Name:  "github_url",
-			Usage: "URL for github download",
-			Value: "https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/{ref}/rules_proto_grpc-{ref}.tar.gz",
-		},
-		&cli.StringFlag{
 			Name:  "available_tests",
 			Usage: "File containing the list of available routeguide tests",
 			Value: "available_tests.txt",
@@ -93,15 +73,6 @@ func action(c *cli.Context) error {
 	dir := c.String("dir")
 	if dir == "" {
 		return fmt.Errorf("--dir required")
-	}
-
-	ref := c.String("ref")
-	sha256 := c.String("sha256")
-	githubURL := c.String("github_url")
-
-	// Autodetermine sha256 if we have a real commit and templated sha256 value
-	if ref != "{GIT_COMMIT_ID}" && sha256 == "{ARCHIVE_TAR_GZ_SHA256}" {
-		sha256 = mustGetSha256(strings.ReplaceAll(githubURL, "{ref}", ref))
 	}
 
 	languages := []*Language{
@@ -125,19 +96,7 @@ func action(c *cli.Context) error {
 	mustWriteModuleBazel(dir, c.String("module_template"), languages)
 	mustWriteBazelignore(dir, languages)
 
-	mustWriteReadme(dir, c.String("readme_header_template"), c.String("readme_footer_template"), struct {
-		Ref, Sha256 string
-	}{
-		Ref:    ref,
-		Sha256: sha256,
-	}, languages)
-
-	mustWriteIndexRst(dir, c.String("index_template"), struct {
-		Ref, Sha256 string
-	}{
-		Ref:    ref,
-		Sha256: sha256,
-	})
+	mustWriteReadme(dir, c.String("readme_header_template"), c.String("readme_footer_template"), languages)
 
 	mustWriteBazelCIPresubmitYml(dir, languages, c.String("available_tests"))
 
@@ -433,10 +392,10 @@ func mustWriteBazelignore(dir string, languages []*Language) {
 	out.MustWrite(filepath.Join(dir, ".bazelignore"))
 }
 
-func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
+func mustWriteReadme(dir, header, footer string, languages []*Language) {
 	out := &LineWriter{}
 
-	out.tpl(header, data)
+	out.tpl(header, struct{}{})
 	out.ln()
 
 	out.w("## Rules")
@@ -454,15 +413,9 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 	}
 	out.ln()
 
-	out.tpl(footer, data)
+	out.tpl(footer, struct{}{})
 
 	out.MustWrite(filepath.Join(dir, "README.md"))
-}
-
-func mustWriteIndexRst(dir, template string, data interface{}) {
-	out := &LineWriter{}
-	out.tpl(template, data)
-	out.MustWrite(filepath.Join(dir, "docs", "index.rst"))
 }
 
 func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTestsPath string) {
