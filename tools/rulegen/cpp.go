@@ -34,16 +34,21 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb] if kwargs.get("output_mode", "PREFIXED") == "PREFIXED" else ["."],
-        alwayslink = kwargs.get("alwayslink"),
-        copts = kwargs.get("copts"),
-        defines = kwargs.get("defines"),
-        include_prefix = kwargs.get("include_prefix"),
-        linkopts = kwargs.get("linkopts"),
-        linkstatic = kwargs.get("linkstatic"),
-        local_defines = kwargs.get("local_defines"),
-        nocopts = kwargs.get("nocopts"),
-        strip_include_prefix = kwargs.get("strip_include_prefix"),
-        {{ .Common.LibraryArgsForwardingSnippet }}
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in bazel_build_rule_common_attrs + [
+                "alwayslink",
+                "copts",
+                "defines",
+                "include_prefix",
+                "linkopts",
+                "linkstatic",
+                "local_defines",
+                "nocopts",
+                "strip_include_prefix",
+            ]
+        },
     )
 
 PROTO_DEPS = [
@@ -58,16 +63,21 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         deps = GRPC_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb] if kwargs.get("output_mode", "PREFIXED") == "PREFIXED" else ["."],
-        alwayslink = kwargs.get("alwayslink"),
-        copts = kwargs.get("copts"),
-        defines = kwargs.get("defines"),
-        include_prefix = kwargs.get("include_prefix"),
-        linkopts = kwargs.get("linkopts"),
-        linkstatic = kwargs.get("linkstatic"),
-        local_defines = kwargs.get("local_defines"),
-        nocopts = kwargs.get("nocopts"),
-        strip_include_prefix = kwargs.get("strip_include_prefix"),
-        {{ .Common.LibraryArgsForwardingSnippet }}
+		**{
+            k: v
+            for (k, v) in kwargs.items()
+            if k in bazel_build_rule_common_attrs + [
+                "alwayslink",
+                "copts",
+                "defines",
+                "include_prefix",
+                "linkopts",
+                "linkstatic",
+                "local_defines",
+                "nocopts",
+                "strip_include_prefix",
+            ]
+        },
     )
 
 GRPC_DEPS = [
