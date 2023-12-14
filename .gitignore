@@ -13,3 +13,4 @@ js/requirements/yarn-error.log
 .vscode
 
 /docs/build
+/dist

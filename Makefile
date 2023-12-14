@@ -6,6 +6,12 @@ rulegen:
 	rm available_tests.txt;
 
 
+# Publish a release
+.PHONY: release
+release:
+	./tools/make_release.py
+
+
 # Build docs locally
 .PHONY: docs
 docs:
