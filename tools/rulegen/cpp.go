@@ -63,7 +63,7 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         deps = GRPC_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb] if kwargs.get("output_mode", "PREFIXED") == "PREFIXED" else ["."],
-		**{
+        **{
             k: v
             for (k, v) in kwargs.items()
             if k in bazel_build_rule_common_attrs + [
