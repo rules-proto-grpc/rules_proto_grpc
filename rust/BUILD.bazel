@@ -51,7 +51,6 @@ proto_plugin(
     ],
     options = [
         "no_include",
-        "preserve_proto_field_names",
         "extern_path=.google.protobuf=::pbjson_types",
     ],
     output_directory = True,
