@@ -37,20 +37,21 @@ def objc_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
         deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
-        alwayslink = kwargs.get("alwayslink"),
-        copts = kwargs.get("copts"),
-        defines = kwargs.get("defines"),
-        include_prefix = kwargs.get("include_prefix"),
-        linkopts = kwargs.get("linkopts"),
-        linkstatic = kwargs.get("linkstatic"),
-        local_defines = kwargs.get("local_defines"),
-        nocopts = kwargs.get("nocopts"),
-        strip_include_prefix = kwargs.get("strip_include_prefix"),
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in bazel_build_rule_common_attrs
-        }  # Forward Bazel common args
+            if k in bazel_build_rule_common_attrs + [
+                "alwayslink",
+                "copts",
+                "defines",
+                "include_prefix",
+                "linkopts",
+                "linkstatic",
+                "local_defines",
+                "nocopts",
+                "strip_include_prefix",
+            ]
+        },
     )
 
 PROTO_DEPS = [
