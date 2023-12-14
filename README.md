@@ -12,8 +12,9 @@
 </div>
 
 > [!IMPORTANT]
-> You are looking at the `next` branch, which contains highly experimental bzlmod support. It is not
-> recommended that you use this version of these rules at present
+> The `master` branch now contains the bzlmod specific update of the rules that'll be released in
+> version 5.0.0. If you need to see the WORKSPACE specific rules used in version 4.x.x, please see
+> the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy).
 
 ## Announcements 📣
 
