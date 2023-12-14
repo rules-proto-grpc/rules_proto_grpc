@@ -51,7 +51,7 @@ def objc_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
                 "nocopts",
                 "strip_include_prefix",
             ]
-        },
+        }
     )
 
 PROTO_DEPS = [

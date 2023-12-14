@@ -46,7 +46,7 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
                 "nocopts",
                 "strip_include_prefix",
             ]
-        },
+        }
     )
 
 PROTO_DEPS = [

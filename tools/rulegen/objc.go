@@ -48,7 +48,7 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
                 "nocopts",
                 "strip_include_prefix",
             ]
-        },
+        }
     )
 
 PROTO_DEPS = [
@@ -76,7 +76,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
                 "nocopts",
                 "strip_include_prefix",
             ]
-        },
+        }
     )
 
 GRPC_DEPS = [

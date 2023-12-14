@@ -127,9 +127,9 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             # @rules_proto_grpc_grpc_gateway//:plugin
             for possible_plugin_label in plugin_labels:
                 if (
-                    (str(possible_plugin_label).partition("//"))[0].partition("~")[0].replace("@@", "@")
-                    + "//"
-                    + str(possible_plugin_label).partition("//")[2]
+                    (str(possible_plugin_label).partition("//"))[0].partition("~")[0].replace("@@", "@") +
+                    "//" +
+                    str(possible_plugin_label).partition("//")[2]
                 ) == plugin_label_str:
                     plugin_label = possible_plugin_label
 
