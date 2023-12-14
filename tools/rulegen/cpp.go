@@ -37,7 +37,7 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in [
+            if k in bazel_build_rule_common_attrs + [
                 "alwayslink",
                 "copts",
                 "defines",
@@ -49,7 +49,6 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
                 "strip_include_prefix",
             ]
         },
-        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -67,7 +66,7 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in [
+            if k in bazel_build_rule_common_attrs + [
                 "alwayslink",
                 "copts",
                 "defines",
@@ -79,7 +78,6 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
                 "strip_include_prefix",
             ]
         },
-        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [

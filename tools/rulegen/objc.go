@@ -37,7 +37,7 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in [
+            if k in bazel_build_rule_common_attrs + [
                 "alwayslink",
                 "copts",
                 "defines",
@@ -49,7 +49,6 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
                 "strip_include_prefix",
             ]
         },
-        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
@@ -66,7 +65,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in [
+            if k in bazel_build_rule_common_attrs + [
                 "alwayslink",
                 "copts",
                 "defines",
@@ -78,7 +77,6 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
                 "strip_include_prefix",
             ]
         },
-        {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [

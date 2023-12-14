@@ -39,7 +39,7 @@ def objc_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in [
+            if k in bazel_build_rule_common_attrs + [
                 "alwayslink",
                 "copts",
                 "defines",
@@ -51,11 +51,6 @@ def objc_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
                 "strip_include_prefix",
             ]
         },
-        **{
-            k: v
-            for (k, v) in kwargs.items()
-            if k in bazel_build_rule_common_attrs
-        }  # Forward Bazel common args
     )
 
 GRPC_DEPS = [
