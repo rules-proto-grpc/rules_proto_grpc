@@ -6,8 +6,28 @@
 Changelog
 =========
 
+4.6.0
+-----
+
+General
+*******
+
+- Fixed incompatibility with Bazel 7 for the C, C++ and Objective-C rules.
+  `#298 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/298>`__
+
+Rust
+****
+
+- **Breaking change**: The ``preserve_proto_field_names`` option is no longer set on the Serde
+  plugin by default, as it cannot then be disabled. If you need this option, set if manually with
+  the ``options`` attr.
+  `#297 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/297>`__
+- Disabled Clippy lints in generated code.
+  `#296 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/296>`__
+
+
 4.5.0
--------
+-----
 
 General
 *******
