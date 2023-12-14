@@ -50,7 +50,7 @@ def objc_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
                 "nocopts",
                 "strip_include_prefix",
             ]
-        },
+        }
     )
 
 GRPC_DEPS = [

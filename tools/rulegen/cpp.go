@@ -48,7 +48,7 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
                 "nocopts",
                 "strip_include_prefix",
             ]
-        },
+        }
     )
 
 PROTO_DEPS = [
@@ -77,7 +77,7 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
                 "nocopts",
                 "strip_include_prefix",
             ]
-        },
+        }
     )
 
 GRPC_DEPS = [
