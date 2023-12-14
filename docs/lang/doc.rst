@@ -35,37 +35,28 @@ Generates DocBook ``.xml`` documentation file
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_docbook_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
-   
-   rules_proto_grpc_doc_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/doc/doc_docbook_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//doc:defs.bzl", "doc_docbook_compile")
+   load("@rules_proto_grpc_doc//:defs.bzl", "doc_docbook_compile")
    
    doc_docbook_compile(
        name = "person_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    doc_docbook_compile(
        name = "place_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    doc_docbook_compile(
        name = "thing_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -119,7 +110,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//doc:docbook_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:docbook_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
 
 .. _doc_html_compile:
 
@@ -131,37 +122,28 @@ Generates ``.html`` documentation file
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_html_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
-   
-   rules_proto_grpc_doc_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/doc/doc_html_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//doc:defs.bzl", "doc_html_compile")
+   load("@rules_proto_grpc_doc//:defs.bzl", "doc_html_compile")
    
    doc_html_compile(
        name = "person_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    doc_html_compile(
        name = "place_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    doc_html_compile(
        name = "thing_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -215,7 +197,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//doc:html_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:html_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
 
 .. _doc_json_compile:
 
@@ -227,37 +209,28 @@ Generates ``.json`` documentation file
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_json_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
-   
-   rules_proto_grpc_doc_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/doc/doc_json_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//doc:defs.bzl", "doc_json_compile")
+   load("@rules_proto_grpc_doc//:defs.bzl", "doc_json_compile")
    
    doc_json_compile(
        name = "person_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    doc_json_compile(
        name = "place_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    doc_json_compile(
        name = "thing_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -311,7 +284,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//doc:json_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:json_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
 
 .. _doc_markdown_compile:
 
@@ -323,37 +296,28 @@ Generates Markdown ``.md`` documentation file
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_markdown_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
-   
-   rules_proto_grpc_doc_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/doc/doc_markdown_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//doc:defs.bzl", "doc_markdown_compile")
+   load("@rules_proto_grpc_doc//:defs.bzl", "doc_markdown_compile")
    
    doc_markdown_compile(
        name = "person_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    doc_markdown_compile(
        name = "place_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    doc_markdown_compile(
        name = "thing_doc_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -407,7 +371,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//doc:markdown_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:markdown_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
 
 .. _doc_template_compile:
 
@@ -421,30 +385,21 @@ Generates documentation file using Go template file
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/doc/doc_template_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//doc:repositories.bzl", rules_proto_grpc_doc_repos = "doc_repos")
-   
-   rules_proto_grpc_doc_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/doc/doc_template_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//doc:defs.bzl", "doc_template_compile")
+   load("@rules_proto_grpc_doc//:defs.bzl", "doc_template_compile")
    
    doc_template_compile(
        name = "greeter_doc_proto.txt",
        output_mode = "NO_PREFIX",
        protos = [
-           "@rules_proto_grpc//example/proto:greeter_grpc",
-           "@rules_proto_grpc//example/proto:thing_proto",
+           "@rules_proto_grpc_example_protos//:greeter_grpc",
+           "@rules_proto_grpc_example_protos//:thing_proto",
        ],
        template = "template.txt",
    )
@@ -505,4 +460,4 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//doc:template_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:template_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__

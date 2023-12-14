@@ -1,8 +1,8 @@
 package main
 
-var cppLibraryRuleTemplateString = `load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
-load("@rules_cc//cc:defs.bzl", "cc_library")
+var cppLibraryRuleTemplateString = `load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
+load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
@@ -52,7 +52,7 @@ var cppProtoLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     )
 
 PROTO_DEPS = [
-    "@com_google_protobuf//:protobuf",
+    Label("@protobuf//:protobuf"),
 ]`)
 
 var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
@@ -81,9 +81,9 @@ var cppGrpcLibraryRuleTemplate = mustTemplate(cppLibraryRuleTemplateString + `
     )
 
 GRPC_DEPS = [
-    "@com_google_protobuf//:protobuf",
-    "@com_github_grpc_grpc//:grpc++",
-    "@com_github_grpc_grpc//:grpc++_reflection",
+    Label("@protobuf//:protobuf"),
+    Label("@grpc//:grpc++"),
+    # Label("@grpc//:grpc++_reflection"),  # TODO: See https://github.com/bazelbuild/bazel-central-registry/issues/841
 ]`)
 
 var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
@@ -154,11 +154,9 @@ var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*A
 
 func makeCpp() *Language {
 	return &Language{
-		Dir:   "cpp",
 		Name:  "cpp",
 		DisplayName: "C++",
 		Notes: mustTemplate("Rules for generating C++ protobuf and gRPC ``.cc`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``cc_library``"),
-		Flags: commonLangFlags,
 		Aliases: map[string]string{
 			"cc_proto_compile": "cpp_proto_compile",
 			"cc_grpc_compile": "cpp_grpc_compile",
@@ -170,8 +168,7 @@ func makeCpp() *Language {
 				Name:             "cpp_proto_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//cpp:cpp_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				Plugins:          []string{"//:proto_plugin"},
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates C++ protobuf ``.h`` & ``.cc`` files",
 				Attrs:            compileRuleAttrs,
@@ -180,8 +177,7 @@ func makeCpp() *Language {
 				Name:             "cpp_grpc_compile",
 				Kind:             "grpc",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//cpp:cpp_plugin", "//cpp:grpc_cpp_plugin"},
-				WorkspaceExample: grpcWorkspaceTemplate,
+				Plugins:          []string{"//:proto_plugin", "//:grpc_plugin"},
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files",
 				Attrs:            compileRuleAttrs,
@@ -190,7 +186,6 @@ func makeCpp() *Language {
 				Name:             "cpp_proto_library",
 				Kind:             "proto",
 				Implementation:   cppProtoLibraryRuleTemplate,
-				WorkspaceExample: protoWorkspaceTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a C++ protobuf library using ``cc_library``, with dependencies linked",
 				Attrs:            cppLibraryRuleAttrs,
@@ -199,7 +194,6 @@ func makeCpp() *Language {
 				Name:             "cpp_grpc_library",
 				Kind:             "grpc",
 				Implementation:   cppGrpcLibraryRuleTemplate,
-				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencies linked",
 				Attrs:            cppLibraryRuleAttrs,

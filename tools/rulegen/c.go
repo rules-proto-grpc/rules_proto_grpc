@@ -1,8 +1,8 @@
 package main
 
-var cProtoLibraryRuleTemplate = mustTemplate(`load("//{{ .Lang.Dir }}:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
-load("//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
-load("@rules_cc//cc:defs.bzl", "cc_library")
+var cProtoLibraryRuleTemplate = mustTemplate(`load("@rules_cc//cc:defs.bzl", "cc_library")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
+load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
@@ -50,37 +50,36 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     )
 
 PROTO_DEPS = [
-    "@upb//:upb",
+    Label("@upb//:upb"),
 ]`)
 
 // For C, we need to manually generate the files for any.proto
-var cProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var cProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "proto_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
     protos = [
-        "@com_google_protobuf//:any_proto",
-        "@rules_proto_grpc//example/proto:person_proto",
-        "@rules_proto_grpc//example/proto:place_proto",
-        "@rules_proto_grpc//example/proto:thing_proto",
+        "@protobuf//:any_proto",
+        "@rules_proto_grpc_example_protos//:person_proto",
+        "@rules_proto_grpc_example_protos//:place_proto",
+        "@rules_proto_grpc_example_protos//:thing_proto",
     ],
 )`)
 
+var cModuleExtraLines = `bazel_dep(name = "protobuf", version = "21.7")`
+
 func makeC() *Language {
 	return &Language{
-		Dir:   "c",
 		Name:  "c",
 		DisplayName: "C",
 		Notes: mustTemplate("Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <https://github.com/protocolbuffers/upb>`_. Libraries are created with the Bazel native ``cc_library``"),
-		Flags: commonLangFlags,
+		ModuleExtraLines: cModuleExtraLines,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "c_proto_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//c:upb_plugin"},
-				WorkspaceExample: grpcWorkspaceTemplate,
+				Plugins:          []string{"//:proto_plugin"},
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates C protobuf ``.h`` & ``.c`` files",
 				Attrs:            compileRuleAttrs,
@@ -90,7 +89,6 @@ func makeC() *Language {
 				Name:             "c_proto_library",
 				Kind:             "proto",
 				Implementation:   cProtoLibraryRuleTemplate,
-				WorkspaceExample: grpcWorkspaceTemplate,
 				BuildExample:     cProtoLibraryExampleTemplate,
 				Doc:              "Generates a C protobuf library using ``cc_library``, with dependencies linked",
 				Attrs:            cppLibraryRuleAttrs,

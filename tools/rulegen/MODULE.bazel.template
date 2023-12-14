@@ -1,0 +1,26 @@
+bazel_dep(name = "buildifier_prebuilt", version = "6.3.3")
+bazel_dep(name = "gazelle", version = "0.34.0")
+bazel_dep(name = "rules_go", version = "0.42.0")
+bazel_dep(name = "rules_proto", version = "5.3.0-21.7")
+
+# Rulegen deps
+rulegen_go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
+rulegen_go_deps.module(
+    path = "github.com/urfave/cli",
+    sum = "h1:wYSSj06510qPIzGSua9ZqsncMmWE3Zr55KBERygyrxE=",
+    version = "v1.21.0",
+)
+use_repo(rulegen_go_deps, "com_github_urfave_cli")
+
+# Local overrides
+bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
+local_path_override(
+    module_name = "rules_proto_grpc",
+    path = "modules/core",
+)
+
+bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0.rpg.version.placeholder")
+local_path_override(
+    module_name = "rules_proto_grpc_example_protos",
+    path = "modules/example_protos",
+)

@@ -35,32 +35,24 @@ Checks .proto files for breaking changes
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/buf/buf_proto_breaking_test>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//buf:repositories.bzl", rules_proto_grpc_buf_repos = "buf_repos")
-   
-   rules_proto_grpc_buf_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/buf/buf_proto_breaking_test>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//buf:defs.bzl", "buf_proto_breaking_test")
+   load("@rules_proto_grpc_buf//:defs.bzl", "buf_proto_breaking_test")
    
    buf_proto_breaking_test(
        name = "buf_proto_lint",
-       against_input = "@rules_proto_grpc//buf/example:image.json",
+       against_input = "@rules_proto_grpc_example_protos//:buf_image.json",
        protos = [
-           "@rules_proto_grpc//example/proto:person_proto",
-           "@rules_proto_grpc//example/proto:place_proto",
-           "@rules_proto_grpc//example/proto:routeguide_proto",
-           "@rules_proto_grpc//example/proto:thing_proto",
+           "@rules_proto_grpc_example_protos//:greeter_grpc",
+           "@rules_proto_grpc_example_protos//:person_proto",
+           "@rules_proto_grpc_example_protos//:place_proto",
+           "@rules_proto_grpc_example_protos//:routeguide_proto",
+           "@rules_proto_grpc_example_protos//:thing_proto",
        ],
    )
 
@@ -105,7 +97,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//buf:breaking_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
+- `@rules_proto_grpc_buf//:breaking_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
 
 .. _buf_proto_lint_test:
 
@@ -119,28 +111,19 @@ Lints .proto files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/buf/buf_proto_lint_test>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//buf:repositories.bzl", rules_proto_grpc_buf_repos = "buf_repos")
-   
-   rules_proto_grpc_buf_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/buf/buf_proto_lint_test>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//buf:defs.bzl", "buf_proto_lint_test")
+   load("@rules_proto_grpc_buf//:defs.bzl", "buf_proto_lint_test")
    
    buf_proto_lint_test(
        name = "person_buf_proto_lint",
        except_rules = ["PACKAGE_VERSION_SUFFIX"],
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
        use_rules = [
            "DEFAULT",
            "COMMENTS",
@@ -150,7 +133,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    buf_proto_lint_test(
        name = "place_buf_proto_lint",
        except_rules = ["PACKAGE_VERSION_SUFFIX"],
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
        use_rules = [
            "DEFAULT",
            "COMMENTS",
@@ -160,7 +143,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    buf_proto_lint_test(
        name = "thing_buf_proto_lint",
        except_rules = ["PACKAGE_VERSION_SUFFIX"],
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
        use_rules = [
            "DEFAULT",
            "COMMENTS",
@@ -177,7 +160,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
            "PACKAGE_DIRECTORY_MATCH",
            "RPC_REQUEST_RESPONSE_UNIQUE",
        ],
-       protos = ["@rules_proto_grpc//example/proto:routeguide_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
        use_rules = [
            "DEFAULT",
            "COMMENTS",
@@ -240,4 +223,4 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//buf:lint_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
+- `@rules_proto_grpc_buf//:lint_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__

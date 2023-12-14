@@ -1,0 +1,3 @@
+grpcio==1.49.1  # TODO: remove once pulling grpc from BCR @grpc works
+grpclib==0.4.5
+protobuf==4.21.7

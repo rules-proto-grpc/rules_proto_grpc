@@ -15,11 +15,11 @@ mixed_grpc_compile = rule(
         _plugins = attr.label_list(
             providers = [ProtoPluginInfo],
             default = [
-                Label("@rules_proto_grpc//python:python_plugin"),
-                Label("@rules_proto_grpc//php:grpc_php_plugin"),
+                Label("@rules_proto_grpc_cpp//:proto_plugin"),  # TODO: this needs replacing back with plugin that uses output_directory, like PHP
+                Label("@rules_proto_grpc_python//:grpc_plugin"),
             ],
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("@rules_proto_grpc//protobuf:toolchain_type"))],
+    toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
 )

@@ -2,7 +2,7 @@ package main
 
 var bufRuleTemplate = mustTemplate(`load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
-    "//:defs.bzl",
+    "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
 )
 load(
@@ -32,28 +32,29 @@ load(
         ),
     ),
     test = True,
-    toolchains = [str(Label("//protobuf:toolchain_type"))],
+    toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
 )`)
 
-var bufBreakingExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var bufBreakingExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "{{ .Lang.Name }}_{{ .Rule.Kind }}_lint",
-    against_input = "@rules_proto_grpc//buf/example:image.json",
+    against_input = "@rules_proto_grpc_example_protos//:buf_image.json",
     protos = [
-        "@rules_proto_grpc//example/proto:person_proto",
-        "@rules_proto_grpc//example/proto:place_proto",
-        "@rules_proto_grpc//example/proto:routeguide_proto",
-        "@rules_proto_grpc//example/proto:thing_proto",
+        "@rules_proto_grpc_example_protos//:greeter_grpc",
+        "@rules_proto_grpc_example_protos//:person_proto",
+        "@rules_proto_grpc_example_protos//:place_proto",
+        "@rules_proto_grpc_example_protos//:routeguide_proto",
+        "@rules_proto_grpc_example_protos//:thing_proto",
     ],
 )`)
 
-var bufLintExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var bufLintExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}_lint",
     except_rules = ["PACKAGE_VERSION_SUFFIX"],
-    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
     use_rules = [
         "DEFAULT",
         "COMMENTS",
@@ -63,7 +64,7 @@ var bufLintExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir
 {{ .Rule.Name }}(
     name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}_lint",
     except_rules = ["PACKAGE_VERSION_SUFFIX"],
-    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
     use_rules = [
         "DEFAULT",
         "COMMENTS",
@@ -73,7 +74,7 @@ var bufLintExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}_lint",
     except_rules = ["PACKAGE_VERSION_SUFFIX"],
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
     use_rules = [
         "DEFAULT",
         "COMMENTS",
@@ -90,7 +91,7 @@ var bufLintExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir
         "PACKAGE_DIRECTORY_MATCH",
         "RPC_REQUEST_RESPONSE_UNIQUE",
     ],
-    protos = ["@rules_proto_grpc//example/proto:routeguide_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
     use_rules = [
         "DEFAULT",
         "COMMENTS",
@@ -99,7 +100,6 @@ var bufLintExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir
 
 func makeBuf() *Language {
 	return &Language{
-		Dir:   "buf",
 		Name:  "buf",
 		DisplayName: "Buf",
 		Notes: mustTemplate("Rules for linting and detecting breaking changes in .proto files with `Buf <https://buf.build>`_." + `
@@ -107,15 +107,13 @@ func makeBuf() *Language {
 Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.
 
 Only Linux and Darwin (MacOS) is currently supported by Buf.`),
-		Flags: commonLangFlags,
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "buf_proto_breaking_test",
 				Kind:             "proto",
 				Implementation:   bufRuleTemplate,
-				Plugins:          []string{"//buf:breaking_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				Plugins:          []string{"//:breaking_plugin"},
 				BuildExample:     bufBreakingExampleTemplate,
 				Doc:              "Checks .proto files for breaking changes",
 				Attrs:            []*Attr{
@@ -162,8 +160,7 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 				Name:             "buf_proto_lint_test",
 				Kind:             "proto",
 				Implementation:   bufRuleTemplate,
-				Plugins:          []string{"//buf:lint_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				Plugins:          []string{"//:lint_plugin"},
 				BuildExample:     bufLintExampleTemplate,
 				Doc:              "Lints .proto files",
 				Attrs:            []*Attr{

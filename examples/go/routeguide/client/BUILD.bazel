@@ -1,0 +1,35 @@
+load("@rules_go//go:def.bzl", "go_binary", "go_library", "go_test")
+load("@rules_proto_grpc_go//:defs.bzl", "GRPC_DEPS", "go_grpc_library")
+
+go_grpc_library(
+    name = "routeguide",
+    importpath = "google.golang.org/grpc/examples/route_guide/routeguide",
+    protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "go_default_library",
+    srcs = ["main.go"],
+    importpath = "google.golang.org/grpc/examples/route_guide/client",
+    visibility = ["//visibility:private"],
+    deps = [
+        ":routeguide",
+    ] + GRPC_DEPS,
+)
+
+go_binary(
+    name = "client",
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "go_default_test",
+    size = "small",
+    srcs = [
+        "main_test.go",
+    ],
+    embed = [":go_default_library"],
+    visibility = ["//visibility:public"],
+)

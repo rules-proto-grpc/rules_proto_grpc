@@ -69,7 +69,7 @@ var libraryRuleAttrs = append(append([]*Attr(nil), compileRuleAttrs...), []*Attr
 
 
 var compileRuleTemplate = mustTemplate(`load(
-    "//:defs.bzl",
+    "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
     "proto_compile_attrs",
     "proto_compile_impl",
@@ -88,7 +88,7 @@ var compileRuleTemplate = mustTemplate(`load(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("//protobuf:toolchain_type"))],
+    toolchains = ["@rules_proto_grpc//protoc:toolchain_type"],
 )`)
 
 // When editing, note that Go and gateway do not use this snippet and have their own local version
@@ -106,84 +106,66 @@ var libraryArgsForwardingSnippet = `**{
         }  # Forward Bazel common args`
 
 
-var protoWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
-
-rules_proto_grpc_{{ .Lang.Name }}_repos()`)
-
-
-var grpcWorkspaceTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:repositories.bzl", rules_proto_grpc_{{ .Lang.Name }}_repos = "{{ .Lang.Name }}_repos")
-
-rules_proto_grpc_{{ .Lang.Name }}_repos()
-
-load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-
-grpc_deps()
-
-load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-
-grpc_extra_deps()`)
-
-
-var protoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var protoCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
 )
 
 {{ .Rule.Name }}(
     name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
 )
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )`)
 
 
-var grpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var grpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )
 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
 )`)
 
 
-var protoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var protoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:person_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
     deps = ["place_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
 )
 
 {{ .Rule.Name }}(
     name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:place_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
     deps = ["thing_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
 )
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )`)
 
 
-var grpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var grpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )
 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}",
-    protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+    protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
     deps = ["thing_{{ .Lang.Name }}_{{ .Rule.Kind }}"],
 )`)

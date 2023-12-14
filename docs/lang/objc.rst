@@ -33,37 +33,28 @@ Generates Objective-C protobuf ``.m`` & ``.h`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/objc/objc_proto_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
-   
-   rules_proto_grpc_objc_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/objc/objc_proto_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_compile")
+   load("@rules_proto_grpc_objc//:defs.bzl", "objc_proto_compile")
    
    objc_proto_compile(
        name = "person_objc_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    objc_proto_compile(
        name = "place_objc_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    objc_proto_compile(
        name = "thing_objc_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -117,7 +108,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//objc:objc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
+- `@rules_proto_grpc_objc//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
 
 .. _objc_grpc_compile:
 
@@ -129,40 +120,23 @@ Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/objc/objc_grpc_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
-   
-   rules_proto_grpc_objc_repos()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-   
-   grpc_deps()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-   
-   grpc_extra_deps()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/objc/objc_grpc_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//objc:defs.bzl", "objc_grpc_compile")
+   load("@rules_proto_grpc_objc//:defs.bzl", "objc_grpc_compile")
    
    objc_grpc_compile(
        name = "thing_objc_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    objc_grpc_compile(
        name = "greeter_objc_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
    )
 
 Attributes
@@ -216,8 +190,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//objc:objc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
-- `@rules_proto_grpc//objc:grpc_objc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
+- `@rules_proto_grpc_objc//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
+- `@rules_proto_grpc_objc//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
 
 .. _objc_proto_library:
 
@@ -229,39 +203,30 @@ Generates an Objective-C protobuf library using ``objc_library``
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/objc/objc_proto_library>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
-   
-   rules_proto_grpc_objc_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/objc/objc_proto_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//objc:defs.bzl", "objc_proto_library")
+   load("@rules_proto_grpc_objc//:defs.bzl", "objc_proto_library")
    
    objc_proto_library(
        name = "person_objc_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
        deps = ["place_objc_proto"],
    )
    
    objc_proto_library(
        name = "place_objc_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
        deps = ["thing_objc_proto"],
    )
    
    objc_proto_library(
        name = "thing_objc_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -374,40 +339,23 @@ Generates an Objective-C protobuf and gRPC library using ``objc_library``
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/objc/objc_grpc_library>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//objc:repositories.bzl", rules_proto_grpc_objc_repos = "objc_repos")
-   
-   rules_proto_grpc_objc_repos()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-   
-   grpc_deps()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-   
-   grpc_extra_deps()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/objc/objc_grpc_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//objc:defs.bzl", "objc_grpc_library")
+   load("@rules_proto_grpc_objc//:defs.bzl", "objc_grpc_library")
    
    objc_grpc_library(
        name = "thing_objc_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    objc_grpc_library(
        name = "greeter_objc_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
        deps = ["thing_objc_grpc"],
    )
 

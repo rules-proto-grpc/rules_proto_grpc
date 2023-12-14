@@ -6,27 +6,23 @@ import (
 
 // Language represents one directory in this repo
 type Language struct {
-	// Directory in the repo where this language is rooted.  Typically this is
-	// the same as the name
-	Dir string
-
 	// Name of the language
 	Name string
 
 	// The display name of the language
 	DisplayName string
 
-	// Workspace usage
-	WorkspaceExample string
-
 	// List of rules
 	Rules []*Rule
 
-	// Additional nodes about the language
+	// Additional notes about the language
 	Notes *template.Template
 
-	// Bazel build flags required / suggested
-	Flags []*Flag
+	// Languages that this language depend on
+	DependsOn []string
+
+	// Extra lines for MODULE.bazel for examples etc
+	ModuleExtraLines string
 
 	// Additional CI-specific env vars in the form "K=V"
 	PresubmitEnvVars map[string]string
@@ -37,6 +33,9 @@ type Language struct {
 
 	// Extra aliases to add to defs.bzl. Stored as alias name -> real name
 	Aliases map[string]string
+
+	// Extra loads to add to defs.bzl. Stored as name -> source file name
+	ExtraDefs map[string]string
 }
 
 type Rule struct {
@@ -52,9 +51,6 @@ type Rule struct {
 	// Description
 	Doc string
 
-	// Temmplate for workspace
-	WorkspaceExample *template.Template
-
 	// Template for build file
 	BuildExample *template.Template
 
@@ -69,9 +65,6 @@ type Rule struct {
 
 	// Not expected to be functional
 	Experimental bool
-
-	// Bazel build flags required / suggested
-	Flags []*Flag
 
 	// Additional CI-specific env vars in the form "K=V"
 	PresubmitEnvVars map[string]string

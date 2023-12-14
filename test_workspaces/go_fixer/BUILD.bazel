@@ -1,7 +1,7 @@
+load("@rules_go//go:def.bzl", "go_test")
 load("@rules_proto//proto:defs.bzl", "proto_library")
-load("@rules_proto_grpc//go:defs.bzl", "go_grpc_library")
-load("@rules_proto_grpc//grpc-gateway:defs.bzl", "gateway_grpc_library")
-load("@io_bazel_rules_go//go:def.bzl", "go_test")
+load("@rules_proto_grpc_go//:defs.bzl", "go_grpc_library")
+load("@rules_proto_grpc_grpc_gateway//:defs.bzl", "gateway_grpc_library")
 
 package(default_visibility = ["//visibility:private"])
 
@@ -14,23 +14,20 @@ proto_library(
         "no_service.proto",
         "service.proto",
     ],
-    deps = [
-        "@go_googleapis//google/api:annotations_proto",
-    ],
 )
 
 go_grpc_library(
     name = "go_lib",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/test_workspaces/go_fixer",
     protos = ["proto_lib"],
-    deps = [
-        "@go_googleapis//google/api:annotations_go_proto",
-    ],
 )
 
 gateway_grpc_library(
     name = "grpc_gateway_lib",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/test_workspaces/go_fixer",
+    options = {
+        "@rules_proto_grpc_grpc_gateway//:plugin": ["generate_unbound_methods=true"],
+    },
     protos = ["proto_lib"],
 )
 

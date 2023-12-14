@@ -1,0 +1,41 @@
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+load("@rules_python//python/pip_install:requirements.bzl", "compile_pip_requirements")
+
+compile_pip_requirements(
+    name = "requirements",
+    extra_args = [
+        "--generate-hashes",
+    ],
+    requirements_in = "requirements.in",
+    requirements_txt = "requirements.txt",
+    tags = [
+        "manual",
+    ],
+)
+
+proto_plugin(
+    name = "proto_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    outputs = ["{protopath|python}_pb2.py"],
+    protoc_plugin_name = "python",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    outputs = ["{protopath|python}_pb2_grpc.py"],
+    tool = "@grpc//src/compiler:grpc_python_plugin",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpclib_plugin",
+    outputs = ["{protopath}_grpc.py"],
+    tool = "//grpclib:plugin",
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,30 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_grpc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+cpp_grpc_library(
+    name = "routeguide",
+    protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
+)
+
+cc_library(
+    name = "helper",
+    srcs = ["helper.cc"],
+    hdrs = ["helper.h"],
+    deps = [":routeguide"],
+)
+
+cc_binary(
+    name = "client",
+    srcs = ["client.cc"],
+    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
+    deps = [":helper"],
+)
+
+cc_binary(
+    name = "server",
+    srcs = ["server.cc"],
+    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
+    deps = [":helper"],
+)

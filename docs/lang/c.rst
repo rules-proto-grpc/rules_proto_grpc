@@ -31,45 +31,28 @@ Generates C protobuf ``.h`` & ``.c`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/c/c_proto_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//c:repositories.bzl", rules_proto_grpc_c_repos = "c_repos")
-   
-   rules_proto_grpc_c_repos()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-   
-   grpc_deps()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-   
-   grpc_extra_deps()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/c/c_proto_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//c:defs.bzl", "c_proto_compile")
+   load("@rules_proto_grpc_c//:defs.bzl", "c_proto_compile")
    
    c_proto_compile(
        name = "person_c_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    c_proto_compile(
        name = "place_c_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    c_proto_compile(
        name = "thing_c_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -123,7 +106,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//c:upb_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/c/BUILD.bazel>`__
+- `@rules_proto_grpc_c//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/c/BUILD.bazel>`__
 
 .. _c_proto_library:
 
@@ -137,40 +120,22 @@ Generates a C protobuf library using ``cc_library``, with dependencies linked
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/c/c_proto_library>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//c:repositories.bzl", rules_proto_grpc_c_repos = "c_repos")
-   
-   rules_proto_grpc_c_repos()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-   
-   grpc_deps()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-   
-   grpc_extra_deps()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/c/c_proto_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//c:defs.bzl", "c_proto_library")
+   load("@rules_proto_grpc_c//:defs.bzl", "c_proto_library")
    
    c_proto_library(
        name = "proto_c_proto",
-       importpath = "github.com/rules-proto-grpc/rules_proto_grpc/example/proto",
        protos = [
-           "@com_google_protobuf//:any_proto",
-           "@rules_proto_grpc//example/proto:person_proto",
-           "@rules_proto_grpc//example/proto:place_proto",
-           "@rules_proto_grpc//example/proto:thing_proto",
+           "@protobuf//:any_proto",
+           "@rules_proto_grpc_example_protos//:person_proto",
+           "@rules_proto_grpc_example_protos//:place_proto",
+           "@rules_proto_grpc_example_protos//:thing_proto",
        ],
    )
 

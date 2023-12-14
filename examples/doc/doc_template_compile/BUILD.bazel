@@ -1,0 +1,11 @@
+load("@rules_proto_grpc_doc//:defs.bzl", "doc_template_compile")
+
+doc_template_compile(
+    name = "greeter_doc_proto.txt",
+    output_mode = "NO_PREFIX",
+    protos = [
+        "@rules_proto_grpc_example_protos//:greeter_grpc",
+        "@rules_proto_grpc_example_protos//:thing_proto",
+    ],
+    template = "template.txt",
+)

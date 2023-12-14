@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package examples.proto;
+
+option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/examples/proto";
+
+service CustomerService {
+    rpc GetCustomer(GetCustomerRequest) returns (GetCustomerResponse) {}
+}
+
+message Customer {
+    string id = 1;
+    string name = 2;
+}
+
+message GetCustomerRequest {
+    string id = 1;
+}
+
+message GetCustomerResponse {
+    Customer customer = 1;
+}

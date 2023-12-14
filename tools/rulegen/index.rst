@@ -20,10 +20,6 @@ targets
    :alt: Buildkite Status
    :target: https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc
 
-.. image:: https://github.com/rules-proto-grpc/rules_proto_grpc/workflows/CI/badge.svg
-   :alt: GitHub Actions Status
-   :target: https://github.com/rules-proto-grpc/rules_proto_grpc/actions
-
 .. image:: https://img.shields.io/badge/bazelbuild-%23proto-38a3a5?logo=slack
    :alt: Slack Channel
    :target: https://bazelbuild.slack.com/archives/CKU1D04RM
@@ -115,57 +111,24 @@ Supported Languages and Tools
    * - Language
      - Protobuf
      - gRPC
-   * - Android
-     - ✔
-     - ✔
    * - C
      - ✔
      - ✖
    * - C++
      - ✔
      - ✔
-   * - C#
-     - ✔
-     - ✔
    * - D
      - ✔
      - ✖
-   * - F#
-     - ✔
-     - ✔
    * - Go
-     - ✔
-     - ✔
-   * - Java
-     - ✔
-     - ✔
-   * - JavaScript
      - ✔
      - ✔
    * - Objective-C
      - ✔
      - ✔
-   * - PHP
-     - ✔
-     - ✔
    * - Python
      - ✔
      - ✔
-   * - Ruby
-     - ✔
-     - ✔
-   * - Rust
-     - ✔
-     - ✔
-   * - Scala
-     - ✔
-     - ✔
-   * - Swift
-     - ✔
-     - ✔
-   * - TypeScript
-     - ✖
-     - ✖
 
 .. list-table:: Supported Tools
    :widths: 20 5 50
@@ -190,9 +153,7 @@ Supported Languages and Tools
 
    Overview <self>
    example
-   overriding_deps
    custom_plugins
-   transitivity
    contributing
    changelog
 
@@ -209,22 +170,10 @@ Supported Languages and Tools
    :caption: Rules
    :hidden:
 
-   lang/android
-   lang/buf
    lang/c
    lang/cpp
-   lang/csharp
-   lang/d
    lang/doc
-   lang/fsharp
    lang/go
-   lang/grpc-gateway
-   lang/java
-   lang/js
+   lang/grpc_gateway
    lang/objc
-   lang/php
    lang/python
-   lang/ruby
-   lang/rust
-   lang/scala
-   lang/swift

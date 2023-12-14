@@ -1,11 +1,11 @@
 package main
 
 var docCustomRuleTemplateString = mustTemplate(`load(
-    "//:defs.bzl",
+    "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
+    "proto_compile",
     "proto_compile_attrs",
 )
-load("//internal:compile.bzl", "proto_compile")
 
 # Create compile rule
 def {{ .Rule.Name }}_impl(ctx):  # buildifier: disable=function-docstring
@@ -44,17 +44,17 @@ def {{ .Rule.Name }}_impl(ctx):  # buildifier: disable=function-docstring
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("//protobuf:toolchain_type"))],
+    toolchains = ["@rules_proto_grpc//protoc:toolchain_type"],
 )`)
 
-var docCustomExampleTemplate = mustTemplate(`load("@rules_proto_grpc//{{ .Lang.Dir }}:defs.bzl", "{{ .Rule.Name }}")
+var docCustomExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
 {{ .Rule.Name }}(
     name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}.txt",
     output_mode = "NO_PREFIX",
     protos = [
-        "@rules_proto_grpc//example/proto:greeter_grpc",
-        "@rules_proto_grpc//example/proto:thing_proto",
+        "@rules_proto_grpc_example_protos//:greeter_grpc",
+        "@rules_proto_grpc_example_protos//:thing_proto",
     ],
     template = "template.txt",
 )`)
@@ -71,18 +71,15 @@ var docTemplateRuleAttrs = append(append([]*Attr(nil), compileRuleAttrs...), []*
 
 func makeDoc() *Language {
 	return &Language{
-		Dir:   "doc",
 		Name:  "doc",
 		DisplayName: "Documentation",
 		Notes: mustTemplate("Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with `protoc-gen-doc <https://github.com/pseudomuto/protoc-gen-doc>`_"),
-		Flags: commonLangFlags,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "doc_docbook_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//doc:docbook_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				Plugins:          []string{"//:docbook_plugin"},
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates DocBook ``.xml`` documentation file",
 				Attrs:            compileRuleAttrs,
@@ -91,8 +88,7 @@ func makeDoc() *Language {
 				Name:             "doc_html_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//doc:html_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				Plugins:          []string{"//:html_plugin"},
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates ``.html`` documentation file",
 				Attrs:            compileRuleAttrs,
@@ -101,8 +97,7 @@ func makeDoc() *Language {
 				Name:             "doc_json_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//doc:json_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				Plugins:          []string{"//:json_plugin"},
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates ``.json`` documentation file",
 				Attrs:            compileRuleAttrs,
@@ -111,8 +106,7 @@ func makeDoc() *Language {
 				Name:             "doc_markdown_compile",
 				Kind:             "proto",
 				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//doc:markdown_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				Plugins:          []string{"//:markdown_plugin"},
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates Markdown ``.md`` documentation file",
 				Attrs:            compileRuleAttrs,
@@ -121,8 +115,7 @@ func makeDoc() *Language {
 				Name:             "doc_template_compile",
 				Kind:             "proto",
 				Implementation:   docCustomRuleTemplateString,
-				Plugins:          []string{"//doc:template_plugin"},
-				WorkspaceExample: protoWorkspaceTemplate,
+				Plugins:          []string{"//:template_plugin"},
 				BuildExample:     docCustomExampleTemplate,
 				Doc:              "Generates documentation file using Go template file",
 				Attrs:            docTemplateRuleAttrs,

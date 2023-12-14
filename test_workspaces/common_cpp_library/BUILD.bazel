@@ -1,6 +1,6 @@
-load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_cc//cc:defs.bzl", "cc_test")
-load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_library")
 
 package(default_visibility = ["//visibility:private"])
 
@@ -10,7 +10,7 @@ package(default_visibility = ["//visibility:private"])
 proto_library(
     name = "proto_common",
     srcs = ["common.proto"],
-    deps = ["@com_google_protobuf//:descriptor_proto"],
+    deps = ["@protobuf//:descriptor_proto"],
 )
 
 proto_library(

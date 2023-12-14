@@ -33,37 +33,28 @@ Generates C++ protobuf ``.h`` & ``.cc`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_proto_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
-   
-   rules_proto_grpc_cpp_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp/cpp_proto_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_compile")
    
    cpp_proto_compile(
        name = "person_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
    )
    
    cpp_proto_compile(
        name = "place_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
    )
    
    cpp_proto_compile(
        name = "thing_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -117,7 +108,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//cpp:cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
 
 .. _cpp_grpc_compile:
 
@@ -129,40 +120,23 @@ Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_grpc_compile>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
-   
-   rules_proto_grpc_cpp_repos()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-   
-   grpc_deps()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-   
-   grpc_extra_deps()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp/cpp_grpc_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_compile")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_grpc_compile")
    
    cpp_grpc_compile(
        name = "thing_cpp_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    cpp_grpc_compile(
        name = "greeter_cpp_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
    )
 
 Attributes
@@ -216,8 +190,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc//cpp:cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
-- `@rules_proto_grpc//cpp:grpc_cpp_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
 
 .. _cpp_proto_library:
 
@@ -229,39 +203,30 @@ Generates a C++ protobuf library using ``cc_library``, with dependencies linked
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_proto_library>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
-   
-   rules_proto_grpc_cpp_repos()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp/cpp_proto_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_library")
    
    cpp_proto_library(
        name = "person_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:person_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:person_proto"],
        deps = ["place_cpp_proto"],
    )
    
    cpp_proto_library(
        name = "place_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:place_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:place_proto"],
        deps = ["thing_cpp_proto"],
    )
    
    cpp_proto_library(
        name = "thing_cpp_proto",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
 Attributes
@@ -372,40 +337,23 @@ Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencie
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/cpp/cpp_grpc_library>`__
-
-``WORKSPACE``
-^^^^^^^^^^^^^
-
-.. code-block:: python
-
-   load("@rules_proto_grpc//cpp:repositories.bzl", rules_proto_grpc_cpp_repos = "cpp_repos")
-   
-   rules_proto_grpc_cpp_repos()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
-   
-   grpc_deps()
-   
-   load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
-   
-   grpc_extra_deps()
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp/cpp_grpc_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_grpc_library")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_grpc_library")
    
    cpp_grpc_library(
        name = "thing_cpp_grpc",
-       protos = ["@rules_proto_grpc//example/proto:thing_proto"],
+       protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    cpp_grpc_library(
        name = "greeter_cpp_grpc",
-       protos = ["@rules_proto_grpc//example/proto:greeter_grpc"],
+       protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
        deps = ["thing_cpp_grpc"],
    )
 

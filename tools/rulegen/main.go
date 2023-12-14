@@ -14,8 +14,8 @@ import (
 	"github.com/urfave/cli"
 )
 
-var defaultPlatforms = []string{"linux", "windows", "macos"}
-var ciPlatforms = []string{"ubuntu2204", "windows", "macos"}
+// var ciPlatforms = []string{"ubuntu2204", "windows", "macos"}  // Windows disabled due to bad grpc version
+var ciPlatforms = []string{"ubuntu2204", "macos"}
 var ciPlatformsMap = map[string][]string{
 	"linux":   []string{"ubuntu2204"},
 	"windows": []string{"windows"},
@@ -49,6 +49,11 @@ func main() {
 			Value: ".",
 		},
 		&cli.StringFlag{
+			Name:  "module_template",
+			Usage: "Template for the main MODULE.bazel",
+			Value: "tools/rulegen/MODULE.bazel.template",
+		},
+		&cli.StringFlag{
 			Name:  "readme_header_template",
 			Usage: "Template for the main readme header",
 			Value: "tools/rulegen/README.header.md",
@@ -70,7 +75,7 @@ func main() {
 		},
 		&cli.StringFlag{
 			Name:  "sha256",
-			Usage: "Sha256 value to use for main readme and index.rst",
+			Usage: "SHA256 value to use for main readme and index.rst",
 			Value: "{ARCHIVE_TAR_GZ_SHA256}",
 		},
 		&cli.StringFlag{
@@ -111,25 +116,14 @@ func action(c *cli.Context) error {
 	}
 
 	languages := []*Language{
-		makeAndroid(),
 		makeBuf(),
 		makeC(),
 		makeCpp(),
-		makeCsharp(),
-		makeD(),
 		makeDoc(),
-		makeFsharp(),
 		makeGo(),
 		makeGrpcGateway(),
-		makeJava(),
-		makeJavaScript(),
 		makeObjc(),
-		makePhp(),
 		makePython(),
-		makeRuby(),
-		makeRust(),
-		makeScala(),
-		makeSwift(),
 	}
 
 	for _, lang := range languages {
@@ -138,6 +132,9 @@ func action(c *cli.Context) error {
 		mustWriteLanguageRules(dir, lang)
 		mustWriteLanguageExamples(dir, lang)
 	}
+
+	mustWriteModuleBazel(dir, c.String("module_template"), languages)
+	mustWriteBazelignore(dir, languages)
 
 	mustWriteReadme(dir, c.String("readme_header_template"), c.String("readme_footer_template"), struct {
 		Ref, Sha256 string
@@ -157,7 +154,6 @@ func action(c *cli.Context) error {
 
 	mustWriteExamplesMakefile(dir, languages)
 	mustWriteTestWorkspacesMakefile(dir)
-	mustWriteHttpArchiveTestWorkspace(dir, ref, sha256)
 
 	return nil
 }
@@ -174,49 +170,72 @@ func mustWriteLanguageRule(dir string, lang *Language, rule *Rule) {
 	out.ln()
 	out.t(rule.Implementation, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
 	out.ln()
-	out.MustWrite(filepath.Join(dir, lang.Dir, rule.Name+".bzl"))
+	out.MustWrite(filepath.Join(dir, "modules", lang.Name, rule.Name + ".bzl"))
 }
 
 func mustWriteLanguageExamples(dir string, lang *Language) {
 	for _, rule := range lang.Rules {
-		exampleDir := filepath.Join(dir, "example", lang.Dir, rule.Name)
+		exampleDir := filepath.Join(dir, "examples", lang.Name, rule.Name)
 		err := os.MkdirAll(exampleDir, os.ModePerm)
 		if err != nil {
 			log.Fatalf("FAILED to create %s: %v", exampleDir, err)
 		}
-		mustWriteLanguageExampleWorkspace(exampleDir, lang, rule)
+		mustWriteLanguageExampleStaticFiles(exampleDir, lang, rule)
+		mustWriteLanguageExampleModuleBazelFile(exampleDir, lang, rule)
 		mustWriteLanguageExampleBuildFile(exampleDir, lang, rule)
-		mustWriteLanguageExampleBazelrcFile(exampleDir, lang, rule)
 	}
 }
 
-func mustWriteLanguageExampleWorkspace(dir string, lang *Language, rule *Rule) {
+func mustWriteLanguageExampleStaticFiles(dir string, lang *Language, rule *Rule) {
+	// Write empty WORKSPACE file to indicate Bazel workspace root
 	out := &LineWriter{}
-	depth := strings.Split(lang.Dir, "/")
-	// +2 as we are in the example/{rule} subdirectory
-	relpath := strings.Repeat("../", len(depth)+2)
+	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
+}
 
-	out.w(`local_repository(
-    name = "rules_proto_grpc",
-    path = "%s",
+func mustWriteLanguageExampleModuleBazelFile(dir string, lang *Language, rule *Rule) {
+	out := &LineWriter{}
+	depth := strings.Split(lang.Name, "/")
+	// +2 as we are in the examples/{rule} subdirectory
+	rootPath := strings.Repeat("../", len(depth) + 2)
+
+	extraDeps := ""
+	extraLocalOverrides := ""
+	for _, dep := range lang.DependsOn {
+		extraDeps += fmt.Sprintf("\nbazel_dep(name = \"rules_proto_grpc_%s\", version = \"0.0.0.rpg.version.placeholder\")", dep)
+		extraLocalOverrides += fmt.Sprintf(`
+
+local_path_override(
+    module_name = "rules_proto_grpc_%s",
+    path = "%smodules/%s",
+)`, dep, rootPath, dep)
+	}
+
+	out.w(`bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
+bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0.rpg.version.placeholder")
+bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0.rpg.version.placeholder")%s
+
+local_path_override(
+    module_name = "rules_proto_grpc",
+    path = "%smodules/core",
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
+local_path_override(
+    module_name = "rules_proto_grpc_example_protos",
+    path = "%smodules/example_protos",
+)
 
-rules_proto_grpc_toolchains()
+local_path_override(
+    module_name = "rules_proto_grpc_%s",
+    path = "%smodules/%s",
+)%s`, lang.Name, extraDeps, rootPath, rootPath, lang.Name, rootPath, lang.Name, extraLocalOverrides)
 
-rules_proto_grpc_repos()
-
-load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-
-rules_proto_dependencies()
-
-rules_proto_toolchains()`, relpath)
+	if (len(lang.ModuleExtraLines) > 0) {
+		out.ln()
+		out.w(lang.ModuleExtraLines)
+	}
 
 	out.ln()
-	out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "")
-	out.ln()
-	out.MustWrite(filepath.Join(dir, "WORKSPACE"))
+	out.MustWrite(filepath.Join(dir, "MODULE.bazel"))
 }
 
 func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
@@ -226,47 +245,27 @@ func mustWriteLanguageExampleBuildFile(dir string, lang *Language, rule *Rule) {
 	out.MustWrite(filepath.Join(dir, "BUILD.bazel"))
 }
 
-func mustWriteLanguageExampleBazelrcFile(dir string, lang *Language, rule *Rule) {
-	out := &LineWriter{}
-	for _, f := range lang.Flags {
-		if f.Description != "" {
-			out.w("# %s", f.Description)
-		} else {
-			out.w("#")
-		}
-		out.w("%s --%s=%s", f.Category, f.Name, f.Value)
-		out.ln()
-	}
-	for _, f := range rule.Flags {
-		if f.Description != "" {
-			out.w("# %s", f.Description)
-		} else {
-			out.w("#")
-		}
-		out.w("%s --%s=%s", f.Category, f.Name, f.Value)
-		out.ln()
-	}
-
-	// Only write a .bazelrc if it's not empty
-	if len(out.lines) > 0 {
-		out.MustWrite(filepath.Join(dir, ".bazelrc"))
-	} else {
-		if fileExists(filepath.Join(dir, ".bazelrc")) {
-			e := os.Remove(filepath.Join(dir, ".bazelrc"))
-			if e != nil {
-				log.Fatal(e)
-			}
-		}
-	}
-}
-
 func mustWriteLanguageDefs(dir string, lang *Language) {
 	out := &LineWriter{}
 	out.w("\"\"\"%s protobuf and grpc rules.\"\"\"", lang.Name)
 	out.ln()
 
+	extraDefs := make([]string, 0, len(lang.ExtraDefs))
+	for def := range lang.ExtraDefs {
+		extraDefs = append(extraDefs, def)
+	}
+	sort.Strings(extraDefs)
+
+	ruleNames := make([]string, 0, len(lang.Rules))
 	for _, rule := range lang.Rules {
-		out.w(`load(":%s.bzl", _%s = "%s")`, rule.Name, rule.Name, rule.Name)
+		ruleNames = append(ruleNames, rule.Name)
+	}
+	sort.Strings(ruleNames)
+	for _, ruleName := range ruleNames {
+		out.w(`load(":%s.bzl", _%s = "%s")`, ruleName, ruleName, ruleName)
+	}
+	for _, def := range extraDefs {
+		out.w(`load("%s", _%s = "%s")  # buildifier: disable=same-origin-load # buildifier: disable=out-of-order-load`, lang.ExtraDefs[def], def, def)
 	}
 	out.ln()
 
@@ -291,7 +290,17 @@ func mustWriteLanguageDefs(dir string, lang *Language) {
 
 		out.ln()
 	}
-	out.MustWrite(filepath.Join(dir, lang.Dir, "defs.bzl"))
+
+	if len(lang.ExtraDefs) > 0 {
+		out.w(`# Extra defs`)
+
+		for _, def := range extraDefs {
+			out.w(`%s = _%s`, def, def)
+		}
+
+		out.ln()
+	}
+	out.MustWrite(filepath.Join(dir, "modules", lang.Name, "defs.bzl"))
 }
 
 func mustWriteLanguageReadme(dir string, lang *Language) {
@@ -342,16 +351,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.w("*******")
 		out.ln()
 
-		out.w("Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example/%s/%s>`__", lang.Dir, rule.Name)
-		out.ln()
-
-		out.w("``WORKSPACE``")
-		out.w("^^^^^^^^^^^^^")
-		out.ln()
-
-		out.w(".. code-block:: python") // Treat starlark as python, as pygments needs this
-		out.ln()
-		out.t(rule.WorkspaceExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
+		out.w("Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/%s/%s>`__", lang.Name, rule.Name)
 		out.ln()
 
 		out.w("``BUILD.bazel``")
@@ -362,27 +362,6 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 		out.ln()
 		out.t(rule.BuildExample, &RuleTemplatingData{lang, rule, commonTemplatingFields}, "   ")
 		out.ln()
-
-		if len(rule.Flags) > 0 {
-			out.w("Flags")
-			out.w("*****")
-			out.ln()
-
-			out.w(".. list-table:: Flags for %s", rule.Name)
-			out.w("   :header-rows: 1")
-			out.ln()
-			out.w("   * - Category")
-			out.w("     - Flag")
-			out.w("     - Value")
-			out.w("     - Description")
-			for _, f := range rule.Flags {
-				out.w("   * - %s", f.Category)
-				out.w("     - %s", f.Name)
-				out.w("     - %s", f.Value)
-				out.w("     - %s", f.Description)
-			}
-			out.ln()
-		}
 
 		out.w("Attributes")
 		out.w("**********")
@@ -414,13 +393,55 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- `@rules_proto_grpc%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", plugin, lang.Dir)
+				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Name)
 			}
 			out.ln()
 		}
 	}
 
-	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name+".rst"))
+	out.MustWrite(filepath.Join(dir, "docs", "lang", lang.Name + ".rst"))
+}
+
+func mustWriteModuleBazel(dir, template string, languages []*Language) {
+	out := &LineWriter{}
+	out.tpl(template, struct{}{})
+
+	for _, lang := range languages {
+		out.w("# %s", lang.DisplayName)
+		out.w(`bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0.rpg.version.placeholder")
+local_path_override(
+    module_name = "rules_proto_grpc_%s",
+    path = "modules/%s",
+)`, lang.Name, lang.Name, lang.Name)
+		out.ln()
+
+		if (len(lang.ModuleExtraLines) > 0) {
+			out.w(lang.ModuleExtraLines)
+			out.ln()
+		}
+	}
+
+	out.MustWrite(filepath.Join(dir, "MODULE.bazel"))
+}
+
+func mustWriteBazelignore(dir string, languages []*Language) {
+	// Write constant header
+	out := &LineWriter{}
+	out.w("modules")
+	out.w("test_workspaces")
+	out.ln()
+
+	//
+	// Write example ignores
+	//
+	for _, lang := range languages {
+		for _, rule := range lang.Rules {
+			out.w("examples/%s/%s", lang.Name, rule.Name)
+		}
+		out.ln()
+	}
+
+	out.MustWrite(filepath.Join(dir, ".bazelignore"))
 }
 
 func mustWriteReadme(dir, header, footer string, data interface{}, languages []*Language) {
@@ -438,7 +459,7 @@ func mustWriteReadme(dir, header, footer string, data interface{}, languages []*
 		for _, rule := range lang.Rules {
 			dirLink := fmt.Sprintf("[%s](https://rules-proto-grpc.com/en/latest/lang/%s.html)", lang.DisplayName, lang.Name)
 			ruleLink := fmt.Sprintf("[%s](https://rules-proto-grpc.com/en/latest/lang/%s.html#%s)", rule.Name, lang.Name, strings.ReplaceAll(rule.Name, "_", "-"))
-			exampleLink := fmt.Sprintf("[example](/example/%s/%s)", lang.Dir, rule.Name)
+			exampleLink := fmt.Sprintf("[example](/examples/%s/%s)", lang.Name, rule.Name)
 			out.w("| %s | %s | %s (%s) |", dirLink, ruleLink, rule.Doc, exampleLink)
 		}
 	}
@@ -472,40 +493,28 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	// Write tasks for main code
 	//
 	for _, ciPlatform := range ciPlatforms {
-		// Skip windows, due to issues with 'undeclared inclusion'
-		if ciPlatform == "windows" {
-			continue
-		}
 		out.w("  main_%s:", ciPlatform)
 		out.w("    name: build & test all")
 		out.w("    platform: %s", ciPlatform)
-		out.w("    environment:")
-		out.w(`      CC: clang`)
-		out.w("    build_flags:")
-		for _, flag := range dotnetPlatformFlags[ciPlatform] {
-			out.w(`    - "%s"`, flag)
-		}
-		out.w(`    - "--cxxopt=-std=c++17"`)
-		out.w(`    - "--host_cxxopt=-std=c++17"`)
-		out.w("    build_targets:")
-		for _, lang := range languages {
-			// Skip experimental or excluded
-			if doTestOnPlatform(lang, nil, ciPlatform) {
-				out.w(`    - "//%s/..."`, lang.Dir)
-			}
-		}
+		// out.w("    environment:")
+		// out.w(`      CC: clang`)
 		out.w("    test_flags:")
 		out.w(`    - "--test_output=errors"`)
-		for _, flag := range dotnetPlatformFlags[ciPlatform] {
+		if ciPlatform == "windows" {
+			out.w(`    - "--cxxopt=/std:c++17"`)
+			out.w(`    - "--host_cxxopt=/std:c++17"`)
+		} else {
+			out.w(`    - "--cxxopt=-std=c++17"`)
+			out.w(`    - "--host_cxxopt=-std=c++17"`)
+		}
+		for _, flag := range extraPlatformFlags[ciPlatform] {
 			out.w(`    - "%s"`, flag)
 		}
-		out.w(`    - "--cxxopt=-std=c++17"`)
-		out.w(`    - "--host_cxxopt=-std=c++17"`)
 		out.w("    test_targets:")
 		for _, clientLang := range languages {
 			for _, serverLang := range languages {
-				if doTestOnPlatform(clientLang, nil, ciPlatform) && doTestOnPlatform(serverLang, nil, ciPlatform) && stringInSlice(fmt.Sprintf("//example/routeguide:%s_%s", clientLang.Name, serverLang.Name), availableTestLabels) {
-					out.w(`    - "//example/routeguide:%s_%s"`, clientLang.Name, serverLang.Name)
+				if doTestOnPlatform(clientLang, nil, ciPlatform) && doTestOnPlatform(serverLang, nil, ciPlatform) && stringInSlice(fmt.Sprintf("//examples/routeguide:%s_%s", clientLang.Name, serverLang.Name), availableTestLabels) {
+					out.w(`    - "//examples/routeguide:%s_%s"`, clientLang.Name, serverLang.Name)
 				}
 			}
 		}
@@ -517,11 +526,6 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	//
 	for _, lang := range languages {
 		for _, ciPlatform := range ciPlatforms {
-			// Skip windows, due to missing make
-			if ciPlatform == "windows" {
-				continue
-			}
-
 			// Check platform has at least one example to run
 			platformHasCommand := false
 			for _, rule := range lang.Rules {
@@ -538,16 +542,19 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			out.w("  %s_%s_examples:", lang.Name, ciPlatform)
 			out.w("    name: %s examples", lang.Name)
 			out.w("    platform: %s", ciPlatform)
+			out.w("    environment:")
+			if ciPlatform == "windows" {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"`)
+			} else {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+			}
 			if ciPlatform == "windows" {
 				out.w("    batch_commands:")
 			} else {
 				out.w("    shell_commands:")
 				out.w("     - set -x")
-				out.w("     - export CC=clang")
-				if lang.Name == "csharp" || lang.Name == "fsharp" {
-					for _, flag := range dotnetPlatformFlags[ciPlatform] {
-						out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
-					}
+				for _, flag := range extraPlatformFlags[ciPlatform] {
+					out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
 				}
 			}
 
@@ -571,27 +578,23 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	// Write tasks for test workspaces
 	//
 	for _, ciPlatform := range ciPlatforms {
-		// Skip windows, due to missing make
-		if ciPlatform == "windows" {
-			continue
-		}
-
 		out.w("  %s_test_workspaces:", ciPlatform)
 		out.w("    name: test workspaces")
 		out.w("    platform: %s", ciPlatform)
+		out.w("    environment:")
+		if ciPlatform == "windows" {
+			out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"`)
+		} else {
+			out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+		}
 		if ciPlatform == "windows" {
 			out.w("    batch_commands:")
 		} else {
 			out.w("    shell_commands:")
 			out.w("     - set -x")
-			out.w("     - export CC=clang")
 		}
 
 		for _, testWorkspace := range findTestWorkspaceNames(dir) {
-			if ciPlatform == "windows" && (testWorkspace == "python3_grpc" || testWorkspace == "python_deps") {
-				continue // Don't run python grpc test workspaces on windows
-			}
-
 			if ciPlatform == "windows" {
 				out.w("     - make.exe test_workspace_%s", testWorkspace)
 			} else {
@@ -614,11 +617,11 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 		var langNames []string
 
 		// Calculate depth of lang dir
-		langDepth := len(slashRegex.FindAllStringIndex(lang.Dir, -1))
+		langDepth := len(slashRegex.FindAllStringIndex(lang.Name, -1))
 
 		// Create rules for each example
 		for _, rule := range lang.Rules {
-			exampleDir := path.Join(dir, "example", lang.Dir, rule.Name)
+			exampleDir := path.Join(dir, "examples", lang.Name, rule.Name)
 
 			var name = fmt.Sprintf("%s_%s_example", lang.Name, rule.Name)
 			allNames = append(allNames, name)
@@ -628,9 +631,9 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			out.w("	cd %s; \\", exampleDir)
 
 			if rule.IsTest {
-				out.w("	bazel --batch test --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch test --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			} else {
-				out.w("	bazel --batch build --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
 			}
 			out.ln()
 		}
@@ -647,7 +650,7 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 	out.w("all_examples: %s", strings.Join(allNames, " "))
 
 	out.ln()
-	out.MustWrite(filepath.Join(dir, "example", "Makefile.mk"))
+	out.MustWrite(filepath.Join(dir, "examples", "Makefile.mk"))
 }
 
 func mustWriteTestWorkspacesMakefile(dir string) {
@@ -661,7 +664,7 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 		out.w(".PHONY: %s", name)
 		out.w("%s:", name)
 		out.w("	cd %s; \\", path.Join(dir, "test_workspaces", testWorkspace))
-		out.w("	bazel --batch test --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
+		out.w("	bazel --batch test --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...")
 		out.ln()
 	}
 
@@ -671,32 +674,6 @@ func mustWriteTestWorkspacesMakefile(dir string) {
 
 	out.ln()
 	out.MustWrite(filepath.Join(dir, "test_workspaces", "Makefile.mk"))
-}
-
-func mustWriteHttpArchiveTestWorkspace(dir, ref, sha256 string) {
-	out := &LineWriter{}
-	out.w(`load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "rules_proto_grpc",
-    sha256 = "%s",
-    strip_prefix = "rules_proto_grpc-%s",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/%s/rules_proto_grpc-%s.tar.gz"],
-)
-
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_repos", "rules_proto_grpc_toolchains")
-
-rules_proto_grpc_toolchains()
-
-rules_proto_grpc_repos()
-
-load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-
-rules_proto_dependencies()
-
-rules_proto_toolchains()
-`, sha256, ref, ref, ref)
-	out.MustWrite(filepath.Join(dir, "test_workspaces", "readme_http_archive", "WORKSPACE"))
 }
 
 func findTestWorkspaceNames(dir string) []string {

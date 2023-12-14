@@ -70,7 +70,7 @@ short, the basic idea is:
                doc = "List of protoc plugins to apply",
            ),
        ),
-       toolchains = [str(Label("@rules_proto_grpc//protobuf:toolchain_type"))],
+       toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
    )
 
 
