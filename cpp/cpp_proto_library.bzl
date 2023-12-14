@@ -51,7 +51,7 @@ def cpp_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
                 "nocopts",
                 "strip_include_prefix",
             ]
-        }  # Forward Bazel common args
+        },
     )
 
 PROTO_DEPS = [
