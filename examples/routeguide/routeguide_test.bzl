@@ -132,6 +132,7 @@ def routeguide_test_matrix(
                 name = name,
                 size = "small",
                 srcs = [name + ".sh"],
+                data = [client, server, database],
             )
 
             port += 1
