@@ -23,6 +23,7 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
+    - "--enable_runfiles"
     - "--cxxopt=/std:c++17"
     - "--host_cxxopt=/std:c++17"
     test_targets:

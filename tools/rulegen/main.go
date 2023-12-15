@@ -442,6 +442,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("    test_flags:")
 		out.w(`    - "--test_output=errors"`)
 		if ciPlatform == "windows" {
+			out.w(`    - "--enable_runfiles"`)
 			out.w(`    - "--cxxopt=/std:c++17"`)
 			out.w(`    - "--host_cxxopt=/std:c++17"`)
 		} else {
