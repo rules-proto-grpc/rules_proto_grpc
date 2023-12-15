@@ -22,11 +22,7 @@ jobs:
       - name: Test rulegen diff
         run: |
           set -e
-          export CC=clang
-          "${GITHUB_WORKSPACE}/bin/bazel" query '//examples/routeguide/... - attr(tags, manual, //examples/routeguide/...)' > available_tests.txt
-          "${GITHUB_WORKSPACE}/bin/bazel" run --run_under="cd $PWD && " //tools/rulegen
-          rm available_tests.txt
-          git checkout -- README.md docs/index.rst
+          make rulegen
           make buildifier
           git diff
           git diff-files --quiet
