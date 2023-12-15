@@ -7,7 +7,6 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"regexp"
 	"sort"
 	"strings"
 
@@ -506,7 +505,10 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 				}
 
 				if ciPlatform == "windows" {
-					out.w("     - make.exe %s_%s_example", lang.Name, rule.Name)
+					out.w(
+						"     - cd %s && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...",
+						path.Join(dir, "examples", lang.Name, rule.Name),
+					)
 				} else {
 					out.w("     - make %s_%s_example", lang.Name, rule.Name)
 				}
@@ -552,14 +554,10 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 
 func mustWriteExamplesMakefile(dir string, languages []*Language) {
 	out := &LineWriter{}
-	slashRegex := regexp.MustCompile("/")
 
 	var allNames []string
 	for _, lang := range languages {
 		var langNames []string
-
-		// Calculate depth of lang dir
-		langDepth := len(slashRegex.FindAllStringIndex(lang.Name, -1))
 
 		// Create rules for each example
 		for _, rule := range lang.Rules {
@@ -573,9 +571,9 @@ func mustWriteExamplesMakefile(dir string, languages []*Language) {
 			out.w("	cd %s; \\", exampleDir)
 
 			if rule.IsTest {
-				out.w("	bazel --batch test --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch test --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //...")
 			} else {
-				out.w("	bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=%s../../bazel-disk-cache //...", strings.Repeat("../", langDepth))
+				out.w("	bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...")
 			}
 			out.ln()
 		}
