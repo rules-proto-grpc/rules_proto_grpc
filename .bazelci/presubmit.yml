@@ -64,6 +64,21 @@ tasks:
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
 
+  buf_windows_examples:
+    name: Buf
+    platform: windows
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+    batch_commands:
+     - echo buf_proto_breaking_test
+     - cd examples/buf/buf_proto_breaking_test
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures -test_output=errors --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo buf_proto_lint_test
+     - cd examples/buf/buf_proto_lint_test
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures -test_output=errors --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+
   buf_macos_examples:
     name: Buf
     platform: macos

@@ -107,7 +107,6 @@ func makeBuf() *Language {
 Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.
 
 Only Linux and Darwin (MacOS) is currently supported by Buf.`),
-		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "buf_proto_breaking_test",

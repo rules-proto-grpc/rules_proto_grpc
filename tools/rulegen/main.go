@@ -507,9 +507,11 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 				if ciPlatform == "windows" {
 					out.w("     - echo %s", rule.Name)
 					out.w("     - cd %s", path.Join(dir, "examples", lang.Name, rule.Name))
-					out.w(
-						"     - bazel --batch build %%BAZEL_EXTRA_FLAGS%% --verbose_failures --disk_cache=../../bazel-disk-cache //...",
-					)
+					if rule.IsTest {
+						out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --verbose_failures -test_output=errors --disk_cache=../../bazel-disk-cache //...")
+					} else {
+						out.w("     - bazel --batch build %%BAZEL_EXTRA_FLAGS%% --verbose_failures --disk_cache=../../bazel-disk-cache //...")
+					}
 					out.w("     - cd ../../..")
 				} else {
 					out.w("     - make %s_%s_example", lang.Name, rule.Name)
