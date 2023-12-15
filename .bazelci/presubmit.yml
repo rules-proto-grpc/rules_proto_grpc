@@ -90,8 +90,14 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
     batch_commands:
-     - cd examples/c/c_proto_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/c/c_proto_library && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - echo c_proto_compile
+     - cd examples/c/c_proto_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo c_proto_library
+     - cd examples/c/c_proto_library
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
 
   c_macos_examples:
     name: C
@@ -121,10 +127,22 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
     batch_commands:
-     - cd examples/cpp/cpp_proto_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/cpp/cpp_grpc_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/cpp/cpp_proto_library && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/cpp/cpp_grpc_library && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - echo cpp_proto_compile
+     - cd examples/cpp/cpp_proto_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo cpp_grpc_compile
+     - cd examples/cpp/cpp_grpc_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo cpp_proto_library
+     - cd examples/cpp/cpp_proto_library
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo cpp_grpc_library
+     - cd examples/cpp/cpp_grpc_library
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
 
   cpp_macos_examples:
     name: C++
@@ -157,11 +175,26 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
     batch_commands:
-     - cd examples/doc/doc_docbook_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/doc/doc_html_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/doc/doc_json_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/doc/doc_markdown_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/doc/doc_template_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - echo doc_docbook_compile
+     - cd examples/doc/doc_docbook_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo doc_html_compile
+     - cd examples/doc/doc_html_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo doc_json_compile
+     - cd examples/doc/doc_json_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo doc_markdown_compile
+     - cd examples/doc/doc_markdown_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo doc_template_compile
+     - cd examples/doc/doc_template_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
 
   doc_macos_examples:
     name: Documentation
@@ -194,10 +227,22 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
     batch_commands:
-     - cd examples/go/go_proto_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/go/go_grpc_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/go/go_proto_library && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/go/go_grpc_library && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - echo go_proto_compile
+     - cd examples/go/go_proto_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo go_grpc_compile
+     - cd examples/go/go_grpc_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo go_proto_library
+     - cd examples/go/go_proto_library
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo go_grpc_library
+     - cd examples/go/go_grpc_library
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
 
   go_macos_examples:
     name: Go
@@ -228,7 +273,10 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
     batch_commands:
-     - cd examples/grpc_gateway/gateway_grpc_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - echo gateway_grpc_compile
+     - cd examples/grpc_gateway/gateway_grpc_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
 
   grpc_gateway_macos_examples:
     name: gRPC-Gateway
@@ -273,9 +321,18 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
     batch_commands:
-     - cd examples/python/python_proto_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/python/python_grpc_compile && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-     - cd examples/python/python_proto_library && bazel --batch build --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - echo python_proto_compile
+     - cd examples/python/python_proto_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo python_grpc_compile
+     - cd examples/python/python_grpc_compile
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
+     - echo python_proto_library
+     - cd examples/python/python_proto_library
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //...
+     - cd ../../..
 
   python_macos_examples:
     name: Python
