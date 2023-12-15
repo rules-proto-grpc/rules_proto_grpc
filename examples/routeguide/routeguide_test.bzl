@@ -13,6 +13,9 @@ export DATABASE_FILE={database_file}
 export SERVER_PORT={server_port}
 export RUST_BACKTRACE=1 # Print rust stack traces
 
+stat {server}
+stat {client}
+
 # Start server and wait
 {server} &
 sleep 2
