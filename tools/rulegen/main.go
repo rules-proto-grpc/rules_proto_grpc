@@ -482,7 +482,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 
 			// Write task
 			out.w("  %s_%s_examples:", lang.Name, ciPlatform)
-			out.w("    name: %s Examples", lang.DisplayName)
+			out.w("    name: %s", lang.DisplayName)
 			out.w("    platform: %s", ciPlatform)
 			out.w("    environment:")
 			if ciPlatform == "windows" {

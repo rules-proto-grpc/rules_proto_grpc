@@ -37,7 +37,7 @@ tasks:
     - "//examples/routeguide:python_python"
 
   buf_ubuntu2204_examples:
-    name: Buf Examples
+    name: Buf
     platform: ubuntu2204
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -47,7 +47,7 @@ tasks:
      - make buf_buf_proto_lint_test_example
 
   buf_macos_examples:
-    name: Buf Examples
+    name: Buf
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -57,7 +57,7 @@ tasks:
      - make buf_buf_proto_lint_test_example
 
   c_ubuntu2204_examples:
-    name: C Examples
+    name: C
     platform: ubuntu2204
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -67,7 +67,7 @@ tasks:
      - make c_c_proto_library_example
 
   c_macos_examples:
-    name: C Examples
+    name: C
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -77,7 +77,7 @@ tasks:
      - make c_c_proto_library_example
 
   cpp_ubuntu2204_examples:
-    name: C++ Examples
+    name: C++
     platform: ubuntu2204
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -89,7 +89,7 @@ tasks:
      - make cpp_cpp_grpc_library_example
 
   cpp_macos_examples:
-    name: C++ Examples
+    name: C++
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -101,7 +101,7 @@ tasks:
      - make cpp_cpp_grpc_library_example
 
   doc_ubuntu2204_examples:
-    name: Documentation Examples
+    name: Documentation
     platform: ubuntu2204
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -114,7 +114,7 @@ tasks:
      - make doc_doc_template_compile_example
 
   doc_macos_examples:
-    name: Documentation Examples
+    name: Documentation
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -127,7 +127,7 @@ tasks:
      - make doc_doc_template_compile_example
 
   go_ubuntu2204_examples:
-    name: Go Examples
+    name: Go
     platform: ubuntu2204
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -139,7 +139,7 @@ tasks:
      - make go_go_grpc_library_example
 
   go_macos_examples:
-    name: Go Examples
+    name: Go
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -151,7 +151,7 @@ tasks:
      - make go_go_grpc_library_example
 
   grpc_gateway_ubuntu2204_examples:
-    name: gRPC-Gateway Examples
+    name: gRPC-Gateway
     platform: ubuntu2204
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -162,7 +162,7 @@ tasks:
      - make grpc_gateway_gateway_grpc_library_example
 
   grpc_gateway_macos_examples:
-    name: gRPC-Gateway Examples
+    name: gRPC-Gateway
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -173,7 +173,7 @@ tasks:
      - make grpc_gateway_gateway_grpc_library_example
 
   objc_macos_examples:
-    name: Objective-C Examples
+    name: Objective-C
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -185,7 +185,7 @@ tasks:
      - make objc_objc_grpc_library_example
 
   python_ubuntu2204_examples:
-    name: Python Examples
+    name: Python
     platform: ubuntu2204
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
@@ -199,7 +199,7 @@ tasks:
      - make python_python_grpclib_library_example
 
   python_macos_examples:
-    name: Python Examples
+    name: Python
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
