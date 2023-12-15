@@ -175,9 +175,13 @@ tasks:
     subprocess.run(['git', 'add', '--all'], cwd=bcr_dir, check=True)
     subprocess.run([
         'git', 'commit',
-        '--author', f'{MAINTAINER_NAME} <{MAINTAINER_EMAIL}>',
         '--message', f'Add {CORE_MODULE_NAME} {VERSION}',
-    ], cwd=bcr_dir, check=True)
+    ], cwd=bcr_dir, check=True, env={
+        'GIT_AUTHOR_NAME': MAINTAINER_NAME,
+        'GIT_AUTHOR_EMAIL': MAINTAINER_EMAIL,
+        'GIT_COMMITTER_NAME': MAINTAINER_NAME,
+        'GIT_COMMITTER_EMAIL': MAINTAINER_EMAIL,
+    })
 
     # Push BCR branch
     subprocess.run([
