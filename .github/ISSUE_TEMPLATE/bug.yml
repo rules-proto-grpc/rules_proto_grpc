@@ -56,7 +56,7 @@ body:
   - type: textarea
     id: demo_workspace
     attributes:
-      label: WORKSPACE Content
+      label: MODULE.bazel or WORKSPACE Content
       description: Please paste a demo WORKSPACE file if you have one.
       render: Starlark
   - type: textarea
