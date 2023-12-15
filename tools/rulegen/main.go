@@ -489,14 +489,10 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			} else {
 				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
 			}
-			if ciPlatform == "windows" {
-				out.w("    batch_commands:")
-			} else {
-				out.w("    shell_commands:")
-				out.w("     - set -x")
-				for _, flag := range extraPlatformFlags[ciPlatform] {
-					out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
-				}
+			out.w("    shell_commands:")
+			out.w("     - set -x")
+			for _, flag := range extraPlatformFlags[ciPlatform] {
+				out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
 			}
 
 			for _, rule := range lang.Rules {
@@ -531,12 +527,8 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		} else {
 			out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
 		}
-		if ciPlatform == "windows" {
-			out.w("    batch_commands:")
-		} else {
-			out.w("    shell_commands:")
-			out.w("     - set -x")
-		}
+		out.w("    shell_commands:")
+		out.w("     - set -x")
 
 		for _, testWorkspace := range findTestWorkspaceNames(dir) {
 			if ciPlatform == "windows" {
