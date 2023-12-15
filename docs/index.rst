@@ -117,9 +117,6 @@ Supported Languages and Tools
    * - C++
      - ✔
      - ✔
-   * - D
-     - ✔
-     - ✖
    * - Go
      - ✔
      - ✔

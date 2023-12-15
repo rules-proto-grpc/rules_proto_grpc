@@ -7,15 +7,15 @@
     <a href="https://bazel.build">Bazel</a> rules for building <a href="https://developers.google.com/protocol-buffers">Protobuf</a> and <a href="https://grpc.io/">gRPC</a> code and libraries from <a href="https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library">proto_library</a> targets<br><br>
     <a href="https://github.com/rules-proto-grpc/rules_proto_grpc/releases"><img src="https://img.shields.io/github/v/tag/rules-proto-grpc/rules_proto_grpc?label=release&sort=semver&color=38a3a5"></a>
     <a href="https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc"><img src="https://badge.buildkite.com/a0c88e60f21c85a8bb53a8c73175aebd64f50a0d4bacbdb038.svg?branch=master"></a>
-    <a href="https://github.com/rules-proto-grpc/rules_proto_grpc/actions"><img src="https://github.com/rules-proto-grpc/rules_proto_grpc/workflows/CI/badge.svg"></a>
+    <a href="https://github.com/rules-proto-grpc/rules_proto_grpc/actions"><img src="https://github.com/rules-proto-grpc/rules_proto_grpc/actions/workflows/check-diff.yml/badge.svg"></a>
     <a href="https://bazelbuild.slack.com/archives/CKU1D04RM"><img src="https://img.shields.io/badge/bazelbuild-%23proto-38a3a5?logo=slack"></a>
 </div>
 
 > [!IMPORTANT]
-> The `master` branch now contains the bzlmod specific update of the rules that'll be released in
+> The `master` branch now contains the Bzlmod specific update of the rules that'll be released in
 > version 5.0.0. If you need to see the WORKSPACE specific rules used in version 4.x.x, please see
 > the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy). For
-> tracking the status of language support with the bzlmod rules, please see
+> tracking the status of language support with the Bzlmod rules, please see
 > [#299](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299)
 
 ## Announcements 📣
@@ -24,8 +24,8 @@
 
 [Version 4.6.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.6.0),
 which contains a few bug fixes for Bazel 7 support. **Note that this is likely to be the last
-WORKSPACE supporting release of rules_proto_grpc**, as new bzlmod supporting rules are introduced
-in the next major release
+WORKSPACE supporting release of rules_proto_grpc**, as new Bzlmod supporting rules are introduced
+in the next major version
 
 #### 2023/09/12 - Version 4.5.0
 
