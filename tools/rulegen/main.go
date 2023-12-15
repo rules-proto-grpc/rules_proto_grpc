@@ -436,7 +436,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	//
 	for _, ciPlatform := range ciPlatforms {
 		out.w("  main_%s:", ciPlatform)
-		out.w("    name: build & test all")
+		out.w("    name: Build & Test All")
 		out.w("    platform: %s", ciPlatform)
 		// out.w("    environment:")
 		// out.w(`      CC: clang`)
@@ -482,7 +482,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 
 			// Write task
 			out.w("  %s_%s_examples:", lang.Name, ciPlatform)
-			out.w("    name: %s examples", lang.Name)
+			out.w("    name: %s Examples", lang.DisplayName)
 			out.w("    platform: %s", ciPlatform)
 			out.w("    environment:")
 			if ciPlatform == "windows" {
@@ -521,7 +521,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	//
 	for _, ciPlatform := range ciPlatforms {
 		out.w("  %s_test_workspaces:", ciPlatform)
-		out.w("    name: test workspaces")
+		out.w("    name: Test Workspaces")
 		out.w("    platform: %s", ciPlatform)
 		out.w("    environment:")
 		if ciPlatform == "windows" {
