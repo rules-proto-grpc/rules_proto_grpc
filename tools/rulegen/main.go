@@ -508,7 +508,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 					out.w("     - echo %s", rule.Name)
 					out.w("     - cd %s", path.Join(dir, "examples", lang.Name, rule.Name))
 					if rule.IsTest {
-						out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --verbose_failures -test_output=errors --disk_cache=../../bazel-disk-cache //...")
+						out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //...")
 					} else {
 						out.w("     - bazel --batch build %%BAZEL_EXTRA_FLAGS%% --verbose_failures --disk_cache=../../bazel-disk-cache //...")
 					}
@@ -544,7 +544,10 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 
 		for _, testWorkspace := range findTestWorkspaceNames(dir) {
 			if ciPlatform == "windows" {
-				out.w("     - make.exe test_workspace_%s", testWorkspace)
+				out.w("     - echo %s", testWorkspace)
+				out.w("     - cd %s", path.Join(dir, "test_workspaces", testWorkspace))
+				out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //...")
+				out.w("     - cd ../..")
 			} else {
 				out.w("     - make test_workspace_%s", testWorkspace)
 			}
