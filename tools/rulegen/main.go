@@ -508,9 +508,9 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 					out.w("     - echo %s", rule.Name)
 					out.w("     - cd %s", path.Join(dir, "examples", lang.Name, rule.Name))
 					if rule.IsTest {
-						out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1")
+						out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1")
 					} else {
-						out.w("     - bazel --batch build %%BAZEL_EXTRA_FLAGS%% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1")
+						out.w("     - bazel --batch build %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1")
 					}
 					out.w("     - cd ../../..")
 				} else {
@@ -546,7 +546,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			if ciPlatform == "windows" {
 				out.w("     - echo %s", testWorkspace)
 				out.w("     - cd %s", path.Join(dir, "test_workspaces", testWorkspace))
-				out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1")
+				out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1")
 				out.w("     - cd ../..")
 			} else {
 				out.w("     - make test_workspace_%s", testWorkspace)

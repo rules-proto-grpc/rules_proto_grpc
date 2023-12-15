@@ -13,9 +13,6 @@ export DATABASE_FILE={database_file}
 export SERVER_PORT={server_port}
 export RUST_BACKTRACE=1 # Print rust stack traces
 
-stat {server}
-stat {client}
-
 # Start server and wait
 {server} &
 sleep 2
@@ -28,10 +25,7 @@ trap kill_server EXIT
 
 # Run client
 {client}
-
-# Print completion for log
-echo '---- DONE ----'
-    """.format(
+""".format(
         client = ctx.executable.client.short_path,
         server = ctx.executable.server.short_path,
         database_file = ctx.file.database.short_path,
@@ -132,7 +126,6 @@ def routeguide_test_matrix(
                 name = name,
                 size = "small",
                 srcs = [name + ".sh"],
-                data = [client, server, database],
             )
 
             port += 1

@@ -72,11 +72,11 @@ tasks:
     batch_commands:
      - echo buf_proto_breaking_test
      - cd examples/buf/buf_proto_breaking_test
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo buf_proto_lint_test
      - cd examples/buf/buf_proto_lint_test
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
 
   buf_macos_examples:
@@ -107,11 +107,11 @@ tasks:
     batch_commands:
      - echo c_proto_compile
      - cd examples/c/c_proto_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo c_proto_library
      - cd examples/c/c_proto_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
 
   c_macos_examples:
@@ -144,19 +144,19 @@ tasks:
     batch_commands:
      - echo cpp_proto_compile
      - cd examples/cpp/cpp_proto_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo cpp_grpc_compile
      - cd examples/cpp/cpp_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo cpp_proto_library
      - cd examples/cpp/cpp_proto_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo cpp_grpc_library
      - cd examples/cpp/cpp_grpc_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
 
   cpp_macos_examples:
@@ -192,23 +192,23 @@ tasks:
     batch_commands:
      - echo doc_docbook_compile
      - cd examples/doc/doc_docbook_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo doc_html_compile
      - cd examples/doc/doc_html_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo doc_json_compile
      - cd examples/doc/doc_json_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo doc_markdown_compile
      - cd examples/doc/doc_markdown_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo doc_template_compile
      - cd examples/doc/doc_template_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
 
   doc_macos_examples:
@@ -244,19 +244,19 @@ tasks:
     batch_commands:
      - echo go_proto_compile
      - cd examples/go/go_proto_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo go_grpc_compile
      - cd examples/go/go_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo go_proto_library
      - cd examples/go/go_proto_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo go_grpc_library
      - cd examples/go/go_grpc_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
 
   go_macos_examples:
@@ -290,7 +290,7 @@ tasks:
     batch_commands:
      - echo gateway_grpc_compile
      - cd examples/grpc_gateway/gateway_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
 
   grpc_gateway_macos_examples:
@@ -338,15 +338,15 @@ tasks:
     batch_commands:
      - echo python_proto_compile
      - cd examples/python/python_proto_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo python_grpc_compile
      - cd examples/python/python_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
      - echo python_proto_library
      - cd examples/python/python_proto_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
      - cd ../../..
 
   python_macos_examples:
@@ -393,67 +393,67 @@ tasks:
     batch_commands:
      - echo absolute_strip_import_prefix
      - cd test_workspaces/absolute_strip_import_prefix
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo combined_strip_and_add_prefix
      - cd test_workspaces/combined_strip_and_add_prefix
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo common_cpp_library
      - cd test_workspaces/common_cpp_library
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo exclusions
      - cd test_workspaces/exclusions
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo generated_proto
      - cd test_workspaces/generated_proto
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo go_fixer
      - cd test_workspaces/go_fixer
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo go_importpath
      - cd test_workspaces/go_importpath
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo import_prefix
      - cd test_workspaces/import_prefix
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo nested_output_directory
      - cd test_workspaces/nested_output_directory
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo objc_capitalisation
      - cd test_workspaces/objc_capitalisation
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo python3_grpc
      - cd test_workspaces/python3_grpc
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo python_dashes
      - cd test_workspaces/python_dashes
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo python_deps
      - cd test_workspaces/python_deps
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo relative_strip_import_prefix
      - cd test_workspaces/relative_strip_import_prefix
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo shared_proto
      - cd test_workspaces/shared_proto
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
      - echo special_characters
      - cd test_workspaces/special_characters
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
 
   macos_test_workspaces:
