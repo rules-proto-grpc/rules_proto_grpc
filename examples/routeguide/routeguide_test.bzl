@@ -3,9 +3,10 @@
 def _get_lang_name(label):
     return label.partition("//examples/")[2].partition("/")[0]
 
-def _routeguide_test_impl(ctx):
+def _routeguide_test_script_impl(ctx):
     # Build test execution script
-    ctx.actions.write(ctx.outputs.executable, """set -x # Print commands
+    script_file = ctx.actions.declare_file(ctx.attr.name)
+    ctx.actions.write(script_file, """set -x # Print commands
 set -e # Fail on error
 
 export DATABASE_FILE={database_file}
@@ -36,17 +37,18 @@ echo '---- DONE ----'
 
     # Build runfiles and default provider
     runfiles = ctx.runfiles(
-        files = [ctx.executable.client, ctx.executable.server, ctx.file.database],
+        files = [script_file, ctx.executable.client, ctx.executable.server, ctx.file.database],
     )
     runfiles = runfiles.merge(ctx.attr.client[DefaultInfo].default_runfiles)
     runfiles = runfiles.merge(ctx.attr.server[DefaultInfo].default_runfiles)
 
     return [DefaultInfo(
+        files = depset([script_file]),
         runfiles = runfiles,
     )]
 
-routeguide_test = rule(
-    implementation = _routeguide_test_impl,
+routeguide_test_script = rule(
+    implementation = _routeguide_test_script_impl,
     attrs = {
         "client": attr.label(
             doc = "Client binary",
@@ -70,10 +72,15 @@ routeguide_test = rule(
             default = 50051,
         ),
     },
-    test = True,
 )
 
-def routeguide_test_matrix(name = "", clients = [], servers = [], database = "@rules_proto_grpc_example_protos//:routeguide_features", tagmap = {}, skip = []):
+def routeguide_test_matrix(
+        name = "",
+        clients = [],
+        servers = [],
+        database = "@rules_proto_grpc_example_protos//:routeguide_features",
+        tagmap = {},
+        skip = []):
     """
     Build a matrix of tests that checks every client against every server.
 
@@ -107,15 +114,21 @@ def routeguide_test_matrix(name = "", clients = [], servers = [], database = "@r
             if tagmap.get(name):
                 tags.extend(tagmap.get(name))
 
-            # Setup test with next available port number
-            routeguide_test(
-                name = name,
+            # Write test script with next available port number
+            routeguide_test_script(
+                name = name + ".sh",
                 client = client,
                 server = server,
                 database = database,
                 port = port,
                 tags = tags,
+            )
+
+            # Create sh_test
+            native.sh_test(
+                name = name,
                 size = "small",
+                srcs = [name + ".sh"],
             )
 
             port += 1
