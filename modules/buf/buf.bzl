@@ -6,7 +6,7 @@ load("@rules_proto_grpc//internal:common.bzl", "descriptor_proto_path")
 load("@rules_proto_grpc//internal:protoc.bzl", "build_protoc_args")
 load("@rules_proto_grpc//internal:providers.bzl", "ProtoPluginInfo")
 
-def buf_apply_impl(ctx, options):
+def buf_test_script_impl(ctx, options):
     """
     Common implementation function for buf rules.
 
@@ -25,7 +25,7 @@ def buf_apply_impl(ctx, options):
     protoc = protoc_toolchain_info.protoc_executable
 
     # Create test script header
-    script_file = ctx.actions.declare_file(ctx.label.name + ".sh")
+    script_file = ctx.actions.declare_file(ctx.label.name)
     content = """#!/usr/bin/env bash
 set -uo pipefail
 
@@ -78,8 +78,8 @@ set -uo pipefail
         ),
     ]
 
-def buf_proto_breaking_test_impl(ctx):
-    return buf_apply_impl(ctx, [json.encode({
+def buf_proto_breaking_test_script_impl(ctx):
+    return buf_test_script_impl(ctx, [json.encode({
         "against_input": ctx.file.against_input.short_path,
         "limit_to_input_files": True,
         "input_config": {
@@ -91,8 +91,8 @@ def buf_proto_breaking_test_impl(ctx):
         },
     })])
 
-def buf_proto_lint_test_impl(ctx):
-    return buf_apply_impl(ctx, [json.encode({
+def buf_proto_lint_test_script_impl(ctx):
+    return buf_test_script_impl(ctx, [json.encode({
         "input_config": {
             "version": "v1",
             "lint": {

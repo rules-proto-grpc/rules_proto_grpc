@@ -7,11 +7,11 @@ load(
 )
 load(
     ":buf.bzl",
-    "buf_proto_lint_test_impl",
+    "buf_proto_lint_test_script_impl",
 )
 
-buf_proto_lint_test = rule(
-    implementation = buf_proto_lint_test_impl,
+buf_proto_lint_test_script = rule(
+    implementation = buf_proto_lint_test_script_impl,
     attrs = dict(
         protos = attr.label_list(
             providers = [ProtoInfo],
@@ -64,6 +64,16 @@ buf_proto_lint_test = rule(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    test = True,
     toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
 )
+
+def buf_proto_lint_test(name, **kwargs):
+    buf_proto_lint_test_script(
+        name = name + ".sh",
+        **kwargs
+    )
+
+    native.sh_test(
+        name = name,
+        srcs = [name + ".sh"],
+    )

@@ -7,11 +7,11 @@ load(
 )
 load(
     ":buf.bzl",
-    "{{ .Rule.Name }}_impl",
+    "{{ .Rule.Name }}_script_impl",
 )
 
-{{ .Rule.Name }} = rule(
-    implementation = {{ .Rule.Name }}_impl,
+{{ .Rule.Name }}_script = rule(
+    implementation = {{ .Rule.Name }}_script_impl,
     attrs = dict({{ range .Rule.Attrs }}
         {{ .Name }} = attr.{{ .Type }}(
             {{ if .Providers }}providers = [{{ range .Providers }}{{ . }}{{ end }}],
@@ -31,9 +31,19 @@ load(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    test = True,
     toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
-)`)
+)
+
+def {{ .Rule.Name }}(name, **kwargs):
+    {{ .Rule.Name }}_script(
+        name = name + ".sh",
+        **kwargs
+    )
+
+    native.sh_test(
+        name = name,
+        srcs = [name + ".sh"],
+    )`)
 
 var bufBreakingExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 
