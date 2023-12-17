@@ -15,7 +15,7 @@ export RUST_BACKTRACE=1 # Print rust stack traces
 
 # Start server and wait
 {server} &
-sleep 2
+sleep {delay}
 
 # Setup trap to kill server
 function kill_server {{
@@ -30,6 +30,12 @@ trap kill_server EXIT
         server = ctx.executable.server.short_path,
         database_file = ctx.file.database.short_path,
         server_port = ctx.attr.port,
+        delay = (
+            # On windows, Python needs unzipping which takes longer.
+            # If server is Python, allow more time to prevent port
+            # not being open in time for client startup
+            10 if "python" in ctx.executable.server.short_path else 2
+        ),
     ), is_executable = True)
 
     # Build runfiles and default provider

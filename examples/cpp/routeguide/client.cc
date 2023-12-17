@@ -220,7 +220,7 @@ class RouteGuideClient {
 };
 
 int main(int argc, char** argv) {
-  std::string server_address = "127.0.0.1:" + routeguide::GetServerPort();
+  std::string server_address = "localhost:" + routeguide::GetServerPort();
 
   std::cout << "Server Address: " << server_address << std::endl;
 
