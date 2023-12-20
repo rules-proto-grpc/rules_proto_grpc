@@ -167,6 +167,7 @@ Supported Languages and Tools
    :caption: Rules
    :hidden:
 
+   lang/buf
    lang/c
    lang/cpp
    lang/doc
