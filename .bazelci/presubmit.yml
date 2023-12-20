@@ -445,6 +445,10 @@ tasks:
      - cd test_workspaces/python_deps
      - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
      - cd ../..
+     - echo python_dots
+     - cd test_workspaces/python_dots
+     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+     - cd ../..
      - echo relative_strip_import_prefix
      - cd test_workspaces/relative_strip_import_prefix
      - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
