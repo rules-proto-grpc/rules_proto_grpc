@@ -20,7 +20,7 @@ MAINTAINER_EMAIL = 'adam@rules-proto-grpc.com'
 MAINTAINER_NAME = 'Adam Liddell'
 MAINTAINER_GITHUB = 'aaliddell'
 SOURCE_REPO = 'rules-proto-grpc/rules_proto_grpc'
-VERSION = '5.0.0-alpha1'
+VERSION = input('Version number: ').strip()
 VERSION_PLACEHOLDER = '0.0.0.rpg.version.placeholder'
 
 
