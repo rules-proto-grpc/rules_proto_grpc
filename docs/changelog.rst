@@ -101,7 +101,7 @@ Go
 grpc-gateway
 ************
 
--  **WORKSPACE update needed**: Renamed ``grpc-gateway`` repository name from
+- **WORKSPACE update needed**: Renamed ``grpc-gateway`` repository name from
   ``grpc_ecosystem_grpc_gateway`` to ``com_github_grpc_ecosystem_grpc_gateway_v2``, to match the
   naming used by Gazelle. You may need to update your WORKSPACE file to use the new name
 
