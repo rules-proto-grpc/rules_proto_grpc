@@ -382,6 +382,7 @@ tasks:
      - make test_workspace_python3_grpc
      - make test_workspace_python_dashes
      - make test_workspace_python_deps
+     - make test_workspace_python_dots
      - make test_workspace_relative_strip_import_prefix
      - make test_workspace_shared_proto
      - make test_workspace_special_characters
@@ -477,6 +478,7 @@ tasks:
      - make test_workspace_python3_grpc
      - make test_workspace_python_dashes
      - make test_workspace_python_deps
+     - make test_workspace_python_dots
      - make test_workspace_relative_strip_import_prefix
      - make test_workspace_shared_proto
      - make test_workspace_special_characters

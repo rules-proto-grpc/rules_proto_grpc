@@ -58,6 +58,11 @@ test_workspace_python_dashes:
 	cd test_workspaces/python_dashes; \
 	bazel --batch test ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...
 
+.PHONY: test_workspace_python_dots
+test_workspace_python_dots:
+	cd test_workspaces/python_dots; \
+	bazel --batch test --enable_bzlmod ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../bazel-disk-cache --test_output=errors //...
+
 .PHONY: test_workspace_python_deps
 test_workspace_python_deps:
 	cd test_workspaces/python_deps; \

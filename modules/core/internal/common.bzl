@@ -106,6 +106,9 @@ def python_path(s):
     Python import paths cannot contain dashes, so these are replaced by underscores.
     See https://github.com/protocolbuffers/protobuf/blob/master/src/google/protobuf/compiler/python/python_generator.cc#L89-L95
 
+    The dots in the file path are replaced by slashes:
+    https://github.com/protocolbuffers/protobuf/blob/v21.7/src/google/protobuf/compiler/python/helpers.cc#L95
+
     Args:
         s (string): The input string to be converted.
 
@@ -113,7 +116,7 @@ def python_path(s):
         (string): The converted string.
 
     """
-    return s.replace("-", "_")
+    return s.replace("-", "_").replace(".", "/")
 
 def php_path(s):
     """
