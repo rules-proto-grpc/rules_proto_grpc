@@ -17,7 +17,6 @@ proto_library(
 python_grpc_library(
     name = "py_lib",
     protos = ["proto_lib"],
-    verbose = 3,
 )
 
 py_test(
