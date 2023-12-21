@@ -37,7 +37,6 @@ def rust_tonic_grpc_library(name, **kwargs):  # buildifier: disable=function-doc
     rust_proto_crate_root(
         name = name_root,
         crate_dir = name_fixed,
-        mod_file = kwargs.get("mod_file"),
     )
 
     # Create rust_tonic library
