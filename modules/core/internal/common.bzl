@@ -239,8 +239,8 @@ def get_output_filename(src_file, pattern, proto_info):
         filename = pattern.replace("{basename|python}", python_path(basename))
     elif "{protopath|python}" in pattern:
         filename = pattern.replace("{protopath|python}", python_path(protopath))
-    elif "{grpcpath|python}" in pattern:
-        filename = pattern.replace("{grpcpath|python}", python_grpc_path(protopath))
+    elif "{protopath|python_grpc}" in pattern:
+        filename = pattern.replace("{protopath|python_grpc}", python_grpc_path(protopath))
     elif "{basename|php}" in pattern:
         filename = pattern.replace("{basename|php}", php_path(basename))
     elif "{protopath|php}" in pattern:
