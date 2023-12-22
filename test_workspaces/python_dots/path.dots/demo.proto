@@ -3,3 +3,6 @@ syntax = "proto3";
 message demo {
     bool field = 1;
 }
+
+service DemoService {
+}
