@@ -10,6 +10,7 @@ import tarfile
 import tempfile
 import shutil
 import sys
+import urllib.parse
 
 # Config
 BCR_REPO = 'bazelbuild/bazel-central-registry'
@@ -18,7 +19,7 @@ CORE_MODULE_NAME = 'rules_proto_grpc'
 HOMEPAGE = 'https://rules-proto-grpc.com'
 MAINTAINER_EMAIL = 'adam@rules-proto-grpc.com'
 MAINTAINER_NAME = 'Adam Liddell'
-MAINTAINER_GITHUB = 'aaliddell'
+MAINTAINER_GH_USER = 'aaliddell'
 SOURCE_REPO = 'rules-proto-grpc/rules_proto_grpc'
 VERSION = input('Version number: ').strip()
 VERSION_PLACEHOLDER = '0.0.0.rpg.version.placeholder'
@@ -130,7 +131,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
             'homepage': HOMEPAGE,
             'maintainers': [{
                 'email': MAINTAINER_EMAIL,
-                'github': MAINTAINER_GITHUB,
+                'github': MAINTAINER_GH_USER,
                 'name': MAINTAINER_NAME,
             }],
             'repository': [
@@ -171,10 +172,11 @@ tasks:
 """)
 
     # Stage and commit
+    commit_title = f'{CORE_MODULE_NAME}@{VERSION}'
     subprocess.run(['git', 'add', '--all'], cwd=bcr_dir, check=True)
     subprocess.run([
         'git', 'commit',
-        '--message', f'Add {CORE_MODULE_NAME} {VERSION}',
+        '--message', commit_title,
     ], cwd=bcr_dir, check=True, env={
         'GIT_AUTHOR_NAME': MAINTAINER_NAME,
         'GIT_AUTHOR_EMAIL': MAINTAINER_EMAIL,
@@ -188,12 +190,14 @@ tasks:
         f'{bcr_branch_name}:{bcr_branch_name}',
     ], cwd=bcr_dir, check=True)
 
+pr_body = f'''Release: https://github.com/{SOURCE_REPO}/releases/tag/{VERSION}
+'''
 print(f"""
 Next steps:
 - Tag the release with: git tag {VERSION}
 - Push tag to GH: git push --tags
-- Create a release at https://github.com/{SOURCE_REPO}/releases/new using tag {VERSION}
+- Create a release at https://github.com/{SOURCE_REPO}/releases/new?tag={urllib.parse.quote_plus(VERSION)}&title={urllib.parse.quote_plus(VERSION)}
 - Attach the files in {dist_dir.absolute()} to the release
-- Create a PR on BCR at https://github.com/{BCR_REPO}/compare/main...{BCR_STAGING_REPO.replace('/', ':')}:{bcr_branch_name}?expand=1
+- Create a PR on BCR at https://github.com/{BCR_REPO}/compare/main...{BCR_STAGING_REPO.replace('/', ':')}:{bcr_branch_name}?quick_pull=1&title={urllib.parse.quote_plus(commit_title)}&body={urllib.parse.quote_plus(pr_body)}
 
 """)
