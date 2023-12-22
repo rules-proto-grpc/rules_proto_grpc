@@ -158,7 +158,6 @@ with tempfile.TemporaryDirectory() as tmp_dir:
 
         (bcr_mod_version_dir / 'presubmit.yml').write_text(f"""matrix:
   platform:
-  - centos7
   - debian10
   - ubuntu2004
   - macos
