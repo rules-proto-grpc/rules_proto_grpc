@@ -10,7 +10,10 @@ Protobuf and gRPC rules for `Bazel <https://bazel.build>`_
 `Protobuf <https://developers.google.com/protocol-buffers>`_ and `gRPC <https://grpc.io>`_ code and
 libraries from
 `proto_library <https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library>`_
-targets
+targets.
+
+If you or your company find these rules useful, please consider `supporting the time spent
+building and maintaining these rules <https://github.com/sponsors/aaliddell>`_ ☕
 
 .. image:: https://img.shields.io/github/v/tag/rules-proto-grpc/rules_proto_grpc?label=release&sort=semver&color=38a3a5
    :alt: Latest Release
