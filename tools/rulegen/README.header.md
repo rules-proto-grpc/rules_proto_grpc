@@ -15,8 +15,8 @@
 </div>
 
 > [!IMPORTANT]
-> The `master` branch now contains the Bzlmod specific update of the rules that'll be released in
-> version 5.0.0. If you need to see the WORKSPACE specific rules used in version 4.x.x, please see
+> The `master` branch now contains the Bzlmod-only update of the rules that'll be released in
+> version 5.0.0. If you need to see the WORKSPACE based rules used in version 4.x.x, please see
 > the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy). For
 > tracking the status of language support with the Bzlmod rules, please see
 > [#299](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299)
