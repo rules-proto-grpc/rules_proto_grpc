@@ -7,6 +7,7 @@ load(
 )
 load(
     ":buf.bzl",
+    "TEST_ATTRS",
     "{{ .Rule.Name }}_script_impl",
 )
 
@@ -37,12 +38,13 @@ load(
 def {{ .Rule.Name }}(name, **kwargs):
     {{ .Rule.Name }}_script(
         name = name + ".sh",
-        **kwargs
+        **{k: v for k, v in kwargs.items() if k not in TEST_ATTRS}
     )
 
     native.sh_test(
         name = name,
         srcs = [name + ".sh"],
+        **{k: v for k, v in kwargs.items() if k in TEST_ATTRS}
     )`)
 
 var bufBreakingExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
