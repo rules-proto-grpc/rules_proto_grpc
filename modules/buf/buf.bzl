@@ -6,6 +6,18 @@ load("@rules_proto_grpc//internal:common.bzl", "descriptor_proto_path")
 load("@rules_proto_grpc//internal:protoc.bzl", "build_protoc_args")
 load("@rules_proto_grpc//internal:providers.bzl", "ProtoPluginInfo")
 
+TEST_ATTRS = [
+    # From https://bazel.build/reference/be/common-definitions#common-attributes-tests
+    "args",
+    "env",
+    "env_inherit",
+    "size",
+    "timeout",
+    "flaky",
+    "shard_count",
+    "local",
+]
+
 def buf_test_script_impl(ctx, options):
     """
     Common implementation function for buf rules.

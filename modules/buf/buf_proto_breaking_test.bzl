@@ -7,6 +7,7 @@ load(
 )
 load(
     ":buf.bzl",
+    "TEST_ATTRS",
     "buf_proto_breaking_test_script_impl",
 )
 
@@ -56,10 +57,11 @@ buf_proto_breaking_test_script = rule(
 def buf_proto_breaking_test(name, **kwargs):
     buf_proto_breaking_test_script(
         name = name + ".sh",
-        **kwargs
+        **{k: v for k, v in kwargs if k not in TEST_ATTRS}
     )
 
     native.sh_test(
         name = name,
         srcs = [name + ".sh"],
+        **{k: v for k, v in kwargs if k in TEST_ATTRS}
     )
