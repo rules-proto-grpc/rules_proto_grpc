@@ -17,6 +17,7 @@ doc_markdown_compile = rule(
             default = [
                 Label("//:markdown_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

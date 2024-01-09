@@ -17,6 +17,7 @@ doc_json_compile = rule(
             default = [
                 Label("//:json_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

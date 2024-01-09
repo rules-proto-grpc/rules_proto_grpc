@@ -18,6 +18,7 @@ cpp_grpc_compile = rule(
                 Label("//:proto_plugin"),
                 Label("//:grpc_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

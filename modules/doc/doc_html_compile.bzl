@@ -17,6 +17,7 @@ doc_html_compile = rule(
             default = [
                 Label("//:html_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

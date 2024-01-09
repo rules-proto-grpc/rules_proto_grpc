@@ -17,6 +17,7 @@ doc_docbook_compile = rule(
             default = [
                 Label("//:docbook_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

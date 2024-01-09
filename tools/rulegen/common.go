@@ -85,6 +85,7 @@ var compileRuleTemplate = mustTemplate(`load(
             default = [{{ range .Rule.Plugins }}
                 Label("{{ . }}"),{{ end }}
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

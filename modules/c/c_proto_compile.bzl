@@ -17,6 +17,7 @@ c_proto_compile = rule(
             default = [
                 Label("//:proto_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

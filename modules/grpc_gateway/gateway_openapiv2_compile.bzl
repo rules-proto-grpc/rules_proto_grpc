@@ -17,6 +17,7 @@ gateway_openapiv2_compile = rule(
             default = [
                 Label("//:openapiv2_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

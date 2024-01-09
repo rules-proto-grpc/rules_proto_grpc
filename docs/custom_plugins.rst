@@ -67,6 +67,7 @@ short, the basic idea is:
                default = [
                    Label("//<LABEL OF YOUR PLUGIN>"),
                ],
+               cfg = "exec",
                doc = "List of protoc plugins to apply",
            ),
        ),

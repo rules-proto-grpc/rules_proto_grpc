@@ -19,6 +19,7 @@ gateway_grpc_compile = rule(
                 Label("@rules_proto_grpc_go//:grpc_plugin"),
                 Label("@rules_proto_grpc_go//:proto_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),
