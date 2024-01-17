@@ -19,12 +19,18 @@ def python_proto_library(name, **kwargs):
     )
 
     # Create python library
+    output_mode = kwargs.get("output_mode", "PREFIXED")
+    if output_mode == "PREFIXED":
+        imports = [name_pb]
+    else:
+        imports = ["."]
+
     py_library(
         name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
-        imports = [name_pb],
+        imports = imports,
         **{
             k: v
             for (k, v) in kwargs.items()

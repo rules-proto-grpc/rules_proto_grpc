@@ -474,6 +474,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         for file in premerge_files:
             # Strip pre-merge root from file path
             path = strip_path_prefix(file.path, premerge_root)
+            if ctx.attr.output_mode == "NO_PREFIX_FLAT":
+                path = file.basename
 
             # Prepend prefix path if given
             if prefix_path:
@@ -484,8 +486,6 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             # In NO_PREFIX or NO_PREFIX_FLAT mode, we output directly to the package root
             if ctx.attr.output_mode == "PREFIXED":
                 path = ctx.label.name + "/" + path
-            elif ctx.attr.output_mode == "NO_PREFIX_FLAT":
-                path = file.basename
 
             # Copy file to output
             output_files.append(copy_file(

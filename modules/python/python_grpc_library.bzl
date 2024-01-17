@@ -18,13 +18,25 @@ def python_grpc_library(name, **kwargs):
         }  # Forward args
     )
 
+    # for other code to import generated code with prefix_path if that exists
+    output_mode = kwargs.get("output_mode", "PREFIXED")
+    if output_mode == "PREFIXED":
+        imports = [name_pb]
+    else:
+        imports = ["."]
+
+    # for pb2_grpc.py to import pb2.py
+    prefix_path = kwargs.get("prefix_path", None)
+    if prefix_path:
+        imports.append(imports[0] + "/" + prefix_path)
+
     # Create python library
     py_library(
         name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
-        imports = [name_pb],
+        imports = imports,
         **{
             k: v
             for (k, v) in kwargs.items()
