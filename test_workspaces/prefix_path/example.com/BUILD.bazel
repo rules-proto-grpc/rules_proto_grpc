@@ -13,9 +13,9 @@ proto_library(
 
 python_grpc_library(
     name = "py_lib",
-    protos = [":proto_lib"],
-    prefix_path = "demo",
     output_mode = "NO_PREFIX_FLAT",
+    prefix_path = "demo",
+    protos = [":proto_lib"],
     python_version = "PY3",
 )
 

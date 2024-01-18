@@ -18,13 +18,14 @@ def python_proto_library(name, **kwargs):
         }  # Forward args
     )
 
-    # Create python library
+	# for other code to import generated code with prefix_path if it's given
     output_mode = kwargs.get("output_mode", "PREFIXED")
     if output_mode == "PREFIXED":
         imports = [name_pb]
     else:
         imports = ["."]
 
+    # Create python library
     py_library(
         name = name,
         srcs = [name_pb],

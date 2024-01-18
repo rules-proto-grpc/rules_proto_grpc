@@ -18,7 +18,7 @@ def python_grpc_library(name, **kwargs):
         }  # Forward args
     )
 
-    # for other code to import generated code with prefix_path if that exists
+    # for other code to import generated code with prefix_path if it's given
     output_mode = kwargs.get("output_mode", "PREFIXED")
     if output_mode == "PREFIXED":
         imports = [name_pb]

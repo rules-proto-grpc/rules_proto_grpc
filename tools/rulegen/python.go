@@ -13,13 +13,20 @@ def {{ .Rule.Name }}(name, **kwargs):
         {{ .Common.CompileArgsForwardingSnippet }}
     )
 
+	# for other code to import generated code with prefix_path if it's given
+    output_mode = kwargs.get("output_mode", "PREFIXED")
+    if output_mode == "PREFIXED":
+        imports = [name_pb]
+    else:
+        imports = ["."]
+
     # Create {{ .Lang.Name }} library
     py_library(
         name = name,
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
-        imports = [name_pb],
+        imports = imports,
         {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
@@ -40,13 +47,25 @@ def {{ .Rule.Name }}(name, **kwargs):
         {{ .Common.CompileArgsForwardingSnippet }}
     )
 
+    # for other code to import generated code with prefix_path if it's given
+    output_mode = kwargs.get("output_mode", "PREFIXED")
+    if output_mode == "PREFIXED":
+        imports = [name_pb]
+    else:
+        imports = ["."]
+
+    # for pb2_grpc.py to import pb2.py
+    prefix_path = kwargs.get("prefix_path", None)
+    if prefix_path:
+        imports.append(imports[0] + "/" + prefix_path)
+
     # Create {{ .Lang.Name }} library
     py_library(
         name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
-        imports = [name_pb],
+        imports = imports,
         {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
