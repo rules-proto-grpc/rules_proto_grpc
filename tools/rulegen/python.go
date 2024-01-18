@@ -6,6 +6,15 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):
+    '''
+    python_proto_library generates Python code from proto and creates a py_library for them.
+
+    Args:
+        name: the name of the target.
+        **kwargs: common Bazel attributes will be passed to both python_proto_compile and py_library;
+        python_proto_compile attributes will be passed to python_proto_compile only.
+    '''
+
     # Compile protos
     name_pb = name + "_pb"
     python_proto_compile(
@@ -13,7 +22,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         {{ .Common.CompileArgsForwardingSnippet }}
     )
 
-	# for other code to import generated code with prefix_path if it's given
+    # for other code to import generated code with prefix_path if it's given
     output_mode = kwargs.get("output_mode", "PREFIXED")
     if output_mode == "PREFIXED":
         imports = [name_pb]
@@ -40,6 +49,15 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):
+    '''
+    python_grpc_library generates Python code from proto and gRPC, and creates a py_library for them.
+
+    Args:
+        name: the name of the target.
+        **kwargs: common Bazel attributes will be passed to both python_grpc_compile and py_library;
+        python_grpc_compile attributes will be passed to python_grpc_compile only.
+    '''
+
     # Compile protos
     name_pb = name + "_pb"
     python_grpc_compile(
