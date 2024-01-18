@@ -6,14 +6,14 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_proto_compile.bzl", "python_proto_compile")
 
 def python_proto_library(name, **kwargs):
-    '''
+    """
     python_proto_library generates Python code from proto and creates a py_library for them.
 
     Args:
         name: the name of the target.
         **kwargs: common Bazel attributes will be passed to both python_proto_compile and py_library;
         python_proto_compile attributes will be passed to python_proto_compile only.
-    '''
+    """
 
     # Compile protos
     name_pb = name + "_pb"

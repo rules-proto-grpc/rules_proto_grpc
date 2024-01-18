@@ -6,14 +6,14 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_grpc_compile.bzl", "python_grpc_compile")
 
 def python_grpc_library(name, **kwargs):
-    '''
+    """
     python_grpc_library generates Python code from proto and gRPC, and creates a py_library for them.
 
     Args:
         name: the name of the target.
         **kwargs: common Bazel attributes will be passed to both python_grpc_compile and py_library;
         python_grpc_compile attributes will be passed to python_grpc_compile only.
-    '''
+    """
 
     # Compile protos
     name_pb = name + "_pb"
