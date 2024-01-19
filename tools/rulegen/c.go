@@ -66,7 +66,7 @@ var cProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lan
     ],
 )`)
 
-var cModuleExtraLines = `bazel_dep(name = "protobuf", version = "21.7")`
+var cModuleExtraLines = `bazel_dep(name = "protobuf", version = "23.1")`
 
 func makeC() *Language {
 	return &Language{

@@ -17,4 +17,4 @@ local_path_override(
     path = "../../../modules/c",
 )
 
-bazel_dep(name = "protobuf", version = "21.7")
+bazel_dep(name = "protobuf", version = "23.1")
