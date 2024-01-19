@@ -83,7 +83,7 @@ GRPCLIB_DEPS = [
     Label(requirement("grpclib")),
 ]`)
 
-var pythonModuleExtraLines = `bazel_dep(name = "rules_python", version = "0.27.1")
+var pythonModuleExtraLines = `bazel_dep(name = "rules_python", version = "0.28.0")
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(python_version = "3.11")`
