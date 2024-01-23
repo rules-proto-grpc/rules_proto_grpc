@@ -2,6 +2,7 @@ __pycache__
 /venv
 
 bazel-*
+MODULE.bazel.lock
 
 node_modules
 .idea
