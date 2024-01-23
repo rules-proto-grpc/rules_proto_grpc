@@ -1,4 +1,4 @@
-bazel_dep(name = "protobuf", version = "21.7")
+bazel_dep(name = "protobuf", version = "23.1")
 bazel_dep(name = "rules_cc", version = "0.0.8")
 bazel_dep(name = "rules_proto", version = "6.0.0-rc1")
 bazel_dep(name = "rules_proto_grpc_objc", version = "0.0.0.rpg.version.placeholder")
