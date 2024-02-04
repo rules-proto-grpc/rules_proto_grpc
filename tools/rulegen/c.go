@@ -51,6 +51,7 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
 
 PROTO_DEPS = [
     Label("@upb//:upb"),
+    Label("@upb//:message_accessors"),
 ]`)
 
 // For C, we need to manually generate the files for any.proto
