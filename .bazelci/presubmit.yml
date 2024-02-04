@@ -5,6 +5,8 @@ tasks:
     platform: ubuntu2204
     test_flags:
     - "--test_output=errors"
+    - "--incompatible_strict_action_env"
+    - "--incompatible_sandbox_hermetic_tmp"
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
     test_targets:
@@ -23,6 +25,8 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
+    - "--incompatible_strict_action_env"
+    - "--incompatible_sandbox_hermetic_tmp"
     - "--enable_runfiles"
     - "--cxxopt=/std:c++17"
     - "--host_cxxopt=/std:c++17"
@@ -42,6 +46,8 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
+    - "--incompatible_strict_action_env"
+    - "--incompatible_sandbox_hermetic_tmp"
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
     test_targets:
