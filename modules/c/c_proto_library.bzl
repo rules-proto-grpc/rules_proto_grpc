@@ -56,4 +56,5 @@ def c_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
 
 PROTO_DEPS = [
     Label("@upb//:upb"),
+    Label("@upb//:message_accessors"),
 ]
