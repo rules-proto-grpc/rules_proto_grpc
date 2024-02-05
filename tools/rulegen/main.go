@@ -24,7 +24,14 @@ var extraPlatformFlags = map[string][]string{
 	"ubuntu2204": []string{},
 	"windows": []string{},
 	"macos": []string{
-		"--copt=-isystem/usr/local/include",  // To fix clash between OpenSSL and BoringSSL
+		// Fix clash between OpenSSL and BoringSSL on recent MacOS versions, by marking
+		// /usr/local/include as a system include search dir. This prevents redefinition errors when
+		// BoringSSL files end up including OpenSSL headers due to matching include prefix. This arg
+		// moves the OpenSSL headers (and anything in that search dir) lower in priority vs local
+		// files comong from -iquote etc. This only appears to be a problem on the Bazel MacOS CI
+		// machines on BuildKite, as a local MacOS build does not require this workaround. Perhaps
+		// the CI machines have Homebrew installed etc.
+		"--copt=-isystem/usr/local/include",
 	},
 }
 
