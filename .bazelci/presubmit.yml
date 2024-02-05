@@ -307,6 +307,7 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--copt=-isystem/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make grpc_gateway_gateway_grpc_compile_example
      - make grpc_gateway_gateway_openapiv2_compile_example
      - make grpc_gateway_gateway_grpc_library_example
