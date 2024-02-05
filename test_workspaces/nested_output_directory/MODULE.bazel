@@ -2,7 +2,7 @@ bazel_dep(name = "rules_proto", version = "6.0.0-rc2")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_proto_grpc_python", version = "0.0.0.rpg.version.placeholder")
-bazel_dep(name = "rules_python", version = "0.27.1")
+bazel_dep(name = "rules_python", version = "0.29.0")
 
 local_path_override(
     module_name = "rules_proto_grpc",
