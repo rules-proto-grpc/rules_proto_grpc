@@ -5,8 +5,6 @@ tasks:
     platform: ubuntu2204
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_strict_action_env"
-    - "--incompatible_sandbox_hermetic_tmp"
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
     test_targets:
@@ -25,8 +23,6 @@ tasks:
     platform: windows
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_strict_action_env"
-    - "--incompatible_sandbox_hermetic_tmp"
     - "--enable_runfiles"
     - "--cxxopt=/std:c++17"
     - "--host_cxxopt=/std:c++17"
@@ -46,10 +42,9 @@ tasks:
     platform: macos
     test_flags:
     - "--test_output=errors"
-    - "--incompatible_strict_action_env"
-    - "--incompatible_sandbox_hermetic_tmp"
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
+    - "--copt=-isystem/usr/local/include"
     test_targets:
     - "//examples/routeguide:cpp_cpp"
     - "//examples/routeguide:cpp_go"
@@ -93,6 +88,7 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--copt=-isystem/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
 
@@ -128,6 +124,7 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--copt=-isystem/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
 
@@ -173,6 +170,7 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--copt=-isystem/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make cpp_cpp_proto_compile_example
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
@@ -225,6 +223,7 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--copt=-isystem/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make doc_doc_docbook_compile_example
      - make doc_doc_html_compile_example
      - make doc_doc_json_compile_example
@@ -273,6 +272,7 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--copt=-isystem/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make go_go_proto_compile_example
      - make go_go_grpc_compile_example
      - make go_go_proto_library_example
@@ -318,6 +318,7 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--copt=-isystem/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make objc_objc_proto_compile_example
      - make objc_objc_grpc_compile_example
      - make objc_objc_proto_library_example
@@ -363,6 +364,7 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
+     - export BAZEL_EXTRA_FLAGS="--copt=-isystem/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make python_python_proto_compile_example
      - make python_python_grpc_compile_example
      - make python_python_proto_library_example

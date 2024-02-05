@@ -23,7 +23,9 @@ var ciPlatformsMap = map[string][]string{
 var extraPlatformFlags = map[string][]string{
 	"ubuntu2204": []string{},
 	"windows": []string{},
-	"macos": []string{},
+	"macos": []string{
+		"--copt=-isystem/usr/local/include",  // To fix clash between OpenSSL and BoringSSL
+	},
 }
 
 func main() {
