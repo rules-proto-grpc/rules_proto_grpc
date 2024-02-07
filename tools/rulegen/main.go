@@ -153,6 +153,11 @@ func mustWriteLanguageExampleModuleBazelFile(dir string, lang *Language, rule *R
 	// +2 as we are in the examples/{rule} subdirectory
 	rootPath := strings.Repeat("../", len(depth) + 2)
 
+	if (len(lang.ModulePrefixLines) > 0) {
+		out.ln()
+		out.w(lang.ModulePrefixLines)
+	}
+
 	extraDeps := ""
 	extraLocalOverrides := ""
 	for _, dep := range lang.DependsOn {
@@ -184,9 +189,9 @@ local_path_override(
     path = "%smodules/%s",
 )%s`, lang.Name, extraDeps, rootPath, rootPath, lang.Name, rootPath, lang.Name, extraLocalOverrides)
 
-	if (len(lang.ModuleExtraLines) > 0) {
+	if (len(lang.ModuleSuffixLines) > 0) {
 		out.ln()
-		out.w(lang.ModuleExtraLines)
+		out.w(lang.ModuleSuffixLines)
 	}
 
 	out.ln()
@@ -363,6 +368,11 @@ func mustWriteModuleBazel(dir, template string, languages []*Language) {
 
 	for _, lang := range languages {
 		out.w("# %s", lang.DisplayName)
+		if (len(lang.ModulePrefixLines) > 0) {
+			out.w(lang.ModulePrefixLines)
+			out.ln()
+		}
+
 		out.w(`bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_%s",
@@ -370,8 +380,8 @@ local_path_override(
 )`, lang.Name, lang.Name, lang.Name)
 		out.ln()
 
-		if (len(lang.ModuleExtraLines) > 0) {
-			out.w(lang.ModuleExtraLines)
+		if (len(lang.ModuleSuffixLines) > 0) {
+			out.w(lang.ModuleSuffixLines)
 			out.ln()
 		}
 	}

@@ -84,12 +84,15 @@ GRPC_DEPS = [
     Label("@grpc//src/objective-c:proto_objc_rpc"),
 ]`)
 
+var objcModulePrefixLines = `bazel_dep(name = "apple_support", version = "1.11.1")` // Need apple_support loaded as early as possible for toolchain
+
 func makeObjc() *Language {
 	return &Language{
 		Name:  "objc",
 		DisplayName: "Objective-C",
 		Notes: mustTemplate("Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``objc_library``"),
 		SkipTestPlatforms: []string{"linux", "windows"},
+		ModulePrefixLines: objcModulePrefixLines,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "objc_proto_compile",
