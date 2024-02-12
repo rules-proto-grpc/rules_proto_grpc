@@ -159,14 +159,18 @@ with tempfile.TemporaryDirectory() as tmp_dir:
 
         (bcr_mod_version_dir / 'presubmit.yml').write_text(f"""matrix:
   platform:
-  - debian10
-  - ubuntu2004
-  - macos
-  - windows
+    - debian10
+    - ubuntu2004
+    - macos
+    - windows
+  bazel:
+    - 6.x
+    - 7.x
 tasks:
   verify_targets:
     name: Verify build targets
     platform: ${{{{ platform }}}}
+    bazel: ${{{{ bazel }}}}
     build_targets:
     - '@{module_name}//...'
 """)
