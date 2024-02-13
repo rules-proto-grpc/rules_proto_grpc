@@ -44,7 +44,6 @@ tasks:
     - "--test_output=errors"
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
-    - "--copt=--system-header-prefix=/usr/local/include"
     test_targets:
     - "//examples/routeguide:cpp_cpp"
     - "//examples/routeguide:cpp_go"
@@ -88,7 +87,6 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
-     - export BAZEL_EXTRA_FLAGS="--copt=--system-header-prefix=/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
 
@@ -124,7 +122,6 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
-     - export BAZEL_EXTRA_FLAGS="--copt=--system-header-prefix=/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make c_c_proto_compile_example
      - make c_c_proto_library_example
 
@@ -170,7 +167,6 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
-     - export BAZEL_EXTRA_FLAGS="--copt=--system-header-prefix=/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make cpp_cpp_proto_compile_example
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
@@ -223,7 +219,6 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
-     - export BAZEL_EXTRA_FLAGS="--copt=--system-header-prefix=/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make doc_doc_docbook_compile_example
      - make doc_doc_html_compile_example
      - make doc_doc_json_compile_example
@@ -272,7 +267,6 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
-     - export BAZEL_EXTRA_FLAGS="--copt=--system-header-prefix=/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make go_go_proto_compile_example
      - make go_go_grpc_compile_example
      - make go_go_proto_library_example
@@ -307,7 +301,6 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
-     - export BAZEL_EXTRA_FLAGS="--copt=--system-header-prefix=/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make grpc_gateway_gateway_grpc_compile_example
      - make grpc_gateway_gateway_openapiv2_compile_example
      - make grpc_gateway_gateway_grpc_library_example
@@ -319,7 +312,6 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
-     - export BAZEL_EXTRA_FLAGS="--copt=--system-header-prefix=/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make objc_objc_proto_compile_example
      - make objc_objc_grpc_compile_example
      - make objc_objc_proto_library_example
@@ -364,7 +356,6 @@ tasks:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
-     - export BAZEL_EXTRA_FLAGS="--copt=--system-header-prefix=/usr/local/include $BAZEL_EXTRA_FLAGS"
      - make python_python_proto_compile_example
      - make python_python_grpc_compile_example
      - make python_python_proto_library_example
