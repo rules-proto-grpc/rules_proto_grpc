@@ -70,7 +70,7 @@ local_path_override(
 )
 
 # Objective-C
-bazel_dep(name = "apple_support", version = "1.11.1")
+# bazel_dep(name = "apple_support", version = "1.11.1")
 
 bazel_dep(name = "rules_proto_grpc_objc", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
