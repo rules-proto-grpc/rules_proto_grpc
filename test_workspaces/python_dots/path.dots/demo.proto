@@ -5,4 +5,5 @@ message demo {
 }
 
 service DemoService {
+    rpc Demo (demo) returns (demo);
 }
