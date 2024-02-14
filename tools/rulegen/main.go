@@ -368,10 +368,10 @@ func mustWriteModuleBazel(dir, template string, languages []*Language) {
 
 	for _, lang := range languages {
 		out.w("# %s", lang.DisplayName)
-		if (len(lang.ModulePrefixLines) > 0) {
-			out.w(lang.ModulePrefixLines)
-			out.ln()
-		}
+		// if (len(lang.ModulePrefixLines) > 0) {
+		// 	out.w(lang.ModulePrefixLines)
+		// 	out.ln()
+		// }
 
 		out.w(`bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
