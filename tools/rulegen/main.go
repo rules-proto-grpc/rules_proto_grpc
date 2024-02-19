@@ -155,7 +155,6 @@ func mustWriteLanguageExampleModuleBazelFile(dir string, lang *Language, rule *R
 	rootPath := strings.Repeat("../", len(depth) + 2)
 
 	if (len(lang.ModulePrefixLines) > 0) {
-		out.ln()
 		out.w(lang.ModulePrefixLines)
 	}
 

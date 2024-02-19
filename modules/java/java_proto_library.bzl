@@ -1,8 +1,8 @@
 """Generated definition of java_proto_library."""
 
-load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
-load("//:java_proto_compile.bzl", "java_proto_compile")
 load("@rules_java//java:defs.bzl", "java_library")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("//:java_proto_compile.bzl", "java_proto_compile")
 
 def java_proto_library(name, **kwargs):
     # Compile protos
