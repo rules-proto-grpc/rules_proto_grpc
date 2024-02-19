@@ -119,7 +119,6 @@ var rustTonicGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateStrin
     rust_proto_crate_root(
         name = name_root,
         crate_dir = name_fixed,
-        mod_file = kwargs.get("mod_file"),
     )
 
     # Create {{ .Rule.Base }} library
