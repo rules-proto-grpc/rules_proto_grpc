@@ -27,6 +27,11 @@ examples/grpc_gateway/gateway_grpc_compile
 examples/grpc_gateway/gateway_openapiv2_compile
 examples/grpc_gateway/gateway_grpc_library
 
+examples/java/java_proto_compile
+examples/java/java_grpc_compile
+examples/java/java_proto_library
+examples/java/java_grpc_library
+
 examples/objc/objc_proto_compile
 examples/objc/objc_grpc_compile
 examples/objc/objc_proto_library

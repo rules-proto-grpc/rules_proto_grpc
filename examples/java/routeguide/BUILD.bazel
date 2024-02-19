@@ -1,0 +1,36 @@
+load("@rules_java//java:defs.bzl", "java_binary")
+load("@rules_proto_grpc_java//:defs.bzl", "java_grpc_library")
+
+java_grpc_library(
+    name = "routeguide",
+    protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
+)
+
+java_binary(
+    name = "client",
+    srcs = [
+        "io/grpc/examples/routeguide/RouteGuideClient.java",
+        "io/grpc/examples/routeguide/RouteGuideServer.java",
+        "io/grpc/examples/routeguide/RouteGuideUtil.java",
+    ],
+    main_class = "io.grpc.examples.routeguide.RouteGuideClient",
+    resources = ["route_guide_db.json"],
+    visibility = ["//examples/routeguide:__pkg__"],
+    deps = [
+        ":routeguide",
+    ],
+)
+
+java_binary(
+    name = "server",
+    srcs = [
+        "io/grpc/examples/routeguide/RouteGuideServer.java",
+        "io/grpc/examples/routeguide/RouteGuideUtil.java",
+    ],
+    main_class = "io.grpc.examples.routeguide.RouteGuideServer",
+    resources = ["route_guide_db.json"],
+    visibility = ["//examples/routeguide:__pkg__"],
+    deps = [
+        ":routeguide",
+    ],
+)

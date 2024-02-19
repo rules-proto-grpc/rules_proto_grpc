@@ -1,0 +1,21 @@
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+
+proto_plugin(
+    name = "proto_plugin",
+    out = "{name}.jar",
+    protoc_plugin_name = "java",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_plugin",
+    out = "{name}_grpc.jar",
+    tool = select({
+        "@bazel_tools//src/conditions:darwin_arm64": "@grpc_java_plugin_darwin_arm64//file",
+        "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_java_plugin_darwin_x86_64//file",
+        "@bazel_tools//src/conditions:linux_aarch64": "@grpc_java_plugin_linux_arm64//file",
+        "@bazel_tools//src/conditions:linux_x86_64": "@grpc_java_plugin_linux_x86_64//file",
+        "@bazel_tools//src/conditions:windows_x64": "@grpc_java_plugin_windows_x86_64//file",
+    }),
+    visibility = ["//visibility:public"],
+)

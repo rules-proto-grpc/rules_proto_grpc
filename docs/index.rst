@@ -123,6 +123,9 @@ Supported Languages and Tools
    * - Go
      - ✔
      - ✔
+   * - Java
+     - ✔
+     - ✔
    * - Objective-C
      - ✔
      - ✔
@@ -176,5 +179,6 @@ Supported Languages and Tools
    lang/doc
    lang/go
    lang/grpc_gateway
+   lang/java
    lang/objc
    lang/python
