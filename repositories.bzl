@@ -46,8 +46,8 @@ VERSIONS = {
         "type": "github",
         "org": "bazelbuild",
         "repo": "rules_python",
-        "ref": "0.15.0",
-        "sha256": "fda23c37fbacf7579f94d5e8f342d3a831140e9471b770782e83846117dd6596",
+        "ref": "0.25.0",
+        "sha256": "5868e73107a8e85d8f323806e60cad7283f34b32163ea6ff1020cf27abef6036",
     },
     "bazel_skylib": {
         "type": "github",
