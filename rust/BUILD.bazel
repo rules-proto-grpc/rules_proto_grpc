@@ -12,7 +12,8 @@ proto_plugin(
     ],
     output_directory = True,
     separate_options_flag = True,
-    tool = "@rules_proto_grpc//rust/3rdparty/crates:protoc-gen-prost-0.2.1__protoc-gen-prost",
+    # tool = "@rules_proto_grpc//rust/3rdparty/crates:protoc-gen-prost-0.2.1__protoc-gen-prost",
+    tool = "@rules_proto_grpc//rust/3rdparty/crates:protoc-gen-prost__protoc-gen-prost",
     visibility = ["//visibility:public"],
 )
 

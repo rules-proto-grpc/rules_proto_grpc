@@ -13,6 +13,11 @@ load("//internal:providers.bzl", "ProtoCompileInfo", "ProtoPluginInfo")
 load("//internal:protoc.bzl", "build_protoc_args")
 
 proto_compile_attrs = {
+    "plugins": attr.label_list(
+        mandatory = False,
+        providers = [ProtoPluginInfo],
+        doc = "List of protoc plugins to apply",
+    ),
     "protos": attr.label_list(
         mandatory = True,
         providers = [ProtoInfo],
@@ -84,7 +89,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
     # Load attrs
     proto_infos = [dep[ProtoInfo] for dep in ctx.attr.protos]
-    plugins = [plugin[ProtoPluginInfo] for plugin in ctx.attr._plugins]
+    plugins = [plugin[ProtoPluginInfo] for plugin in ctx.attr._plugins] + [plugin[ProtoPluginInfo] for plugin in ctx.attr.plugins]
     verbose = ctx.attr.verbose
 
     # Load toolchain and tools
