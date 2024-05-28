@@ -48,6 +48,9 @@ proto_compile_attrs = {
     ),
 }
 
+def _is_windows(ctx):
+    return ctx.configuration.host_path_separator == ";"
+
 def proto_compile_impl(ctx):
     """
     Common implementation function for lang_*_compile rules.
@@ -335,7 +338,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
         # $@ is replaced with args list and is quote wrapped to support paths with special chars
         mnemonic = "ProtoCompile"
-        command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + ' "$@"'
+        command = ('mkdir -p "{}" && '.format(premerge_root)) + protoc.path + ' "$@"'
         cmd_inputs += extra_protoc_files
         tools = [protoc] + ([plugin.tool_executable] if plugin.tool_executable else [])
 
@@ -375,21 +378,39 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         }
 
         # Run protoc (https://bazel.build/rules/lib/actions#run_shell)
-        ctx.actions.run_shell(
-            mnemonic = mnemonic,
-            command = command,
-            arguments = [args],
-            inputs = cmd_inputs,
-            tools = tools,
-            outputs = plugin_protoc_outputs,
-            env = plugin_env,
-            use_default_shell_env = plugin.use_built_in_shell_environment,
-            input_manifests = cmd_input_manifests,
-            progress_message = "Compiling protoc outputs for {} plugin on target {}".format(
-                plugin.name,
-                ctx.label,
-            ),
-        )
+        if _is_windows(ctx):
+            command = command.replace(' "$@"', "").replace("/", "\\").replace("-p ", "").replace("&&", "&")
+            ctx.actions.run(
+                mnemonic = mnemonic,
+                executable = "cmd.exe",
+                arguments = ["/C", command, args],
+                inputs = cmd_inputs,
+                tools = tools,
+                outputs = plugin_protoc_outputs,
+                env = plugin_env,
+                use_default_shell_env = plugin.use_built_in_shell_environment,
+                input_manifests = cmd_input_manifests,
+                progress_message = "Compiling protoc outputs for {} plugin on target {}".format(
+                    plugin.name,
+                    ctx.label,
+                ),
+            )
+        else:
+            ctx.actions.run_shell(
+                mnemonic = mnemonic,
+                command = command,
+                arguments = [args],
+                inputs = cmd_inputs,
+                tools = tools,
+                outputs = plugin_protoc_outputs,
+                env = plugin_env,
+                use_default_shell_env = plugin.use_built_in_shell_environment,
+                input_manifests = cmd_input_manifests,
+                progress_message = "Compiling protoc outputs for {} plugin on target {}".format(
+                    plugin.name,
+                    ctx.label,
+                ),
+            )
 
     # Build final output defaults for merged locations
     output_root = get_package_root(ctx) + "/" + ctx.label.name
