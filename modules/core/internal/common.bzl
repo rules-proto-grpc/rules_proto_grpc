@@ -264,6 +264,9 @@ def get_output_filename(src_file, pattern, proto_info):
 
     return filename
 
+def _is_windows(ctx):
+    return ctx.configuration.host_path_separator == ";"
+
 def copy_file(ctx, src_file, dest_path, sibling = None):
     """
     Copy a file to a new path destination
@@ -279,13 +282,24 @@ def copy_file(ctx, src_file, dest_path, sibling = None):
 
     """
     dest_file = ctx.actions.declare_file(dest_path, sibling = sibling)
-    ctx.actions.run_shell(
-        mnemonic = "CopyFile",
-        inputs = [src_file],
-        outputs = [dest_file],
-        command = "cp '{}' '{}'".format(src_file.path, dest_file.path),
-        progress_message = "copying file {} to {}".format(src_file.path, dest_file.path),
-    )
+    if _is_windows(ctx):
+        ctx.actions.run(
+            mnemonic = "CopyFile",
+            inputs = [src_file],
+            outputs = [dest_file],
+            executable = "cmd.exe",
+            arguments = ["/C", "copy", src_file.path.replace("/", "\\"), dest_file.path.replace("/", "\\")],
+            progress_message = "copying file {} to {}".format(src_file.path, dest_file.path),
+            use_default_shell_env = True,
+        )
+    else:
+        ctx.actions.run_shell(
+            mnemonic = "CopyFile",
+            inputs = [src_file],
+            outputs = [dest_file],
+            command = "cp '{}' '{}'".format(src_file.path, dest_file.path),
+            progress_message = "copying file {} to {}".format(src_file.path, dest_file.path),
+        )
     return dest_file
 
 def descriptor_proto_path(proto, proto_info):
