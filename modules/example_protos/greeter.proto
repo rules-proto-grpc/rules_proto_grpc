@@ -23,7 +23,7 @@ option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/examples/proto
 package greeter;
 
 import "google/protobuf/any.proto";
-import "examples/proto-dash/thing.proto";
+import "examples/proto/thing.proto";
 
 
 // The greeting service definition.

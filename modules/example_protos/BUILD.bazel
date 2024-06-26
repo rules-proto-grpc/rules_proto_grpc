@@ -29,7 +29,7 @@ proto_library(
 proto_library(
     name = "thing_proto",
     srcs = ["thing.proto"],
-    import_prefix = "examples/proto-dash",
+    import_prefix = "examples/proto",
     visibility = ["//visibility:public"],
     deps = [
         "@protobuf//:any_proto",
