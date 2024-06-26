@@ -35,7 +35,7 @@ proto_plugin(
 
 proto_plugin(
     name = "grpclib_plugin",
-    outputs = ["{protopath}_grpc.py"],
+    outputs = ["{protopath|python}_grpc.py"],
     tool = "//grpclib:plugin",
     visibility = ["//visibility:public"],
 )
