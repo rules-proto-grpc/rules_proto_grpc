@@ -4,7 +4,7 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "apple_support", version = "1.11.1")
+bazel_dep(name = "apple_support", version = "1.15.1")
 bazel_dep(name = "grpc", version = "1.63.1")
 bazel_dep(name = "protobuf", version = "27.2")
 bazel_dep(name = "rules_cc", version = "0.0.9")
