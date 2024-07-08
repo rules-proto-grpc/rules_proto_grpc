@@ -14,7 +14,7 @@ PYTHON_VERSIONS = [
     "3.9",
     "3.10",
     "3.11",
-    # "3.12",  # Not yet working
+    "3.12",
 ]
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
