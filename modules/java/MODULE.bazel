@@ -20,15 +20,6 @@ use_repo(
 )
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
-maven.artifact(
-    # See https://github.com/bazelbuild/rules_jvm_external/issues/966#issuecomment-1763172512
-    artifact = "grpc-core",
-    exclusions = [
-        "io.grpc:grpc-util",
-    ],
-    group = "io.grpc",
-    version = "1.65.0",
-)
 maven.install(
     name = "rules_proto_grpc_java_maven",  # Deconflict
     artifacts = [
