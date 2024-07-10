@@ -24,9 +24,10 @@ routeguide_test_matrix(
         "//examples/python/routeguide:server",
     ],
     skip = [
-        "csharp_rust",  # Broken
-        "fsharp_rust",  # Broken
-        "fsharp_js",  # Broken
+        #"csharp_rust",  # Broken
+        #"fsharp_rust",  # Broken
+        #"fsharp_js",  # Broken
+        "java",  # grpc-java MODULE.bazel broken
     ],
     tagmap = {
         # Apply per-lang tags

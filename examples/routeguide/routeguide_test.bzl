@@ -105,7 +105,7 @@ def routeguide_test_matrix(
         for client in clients:
             client_name = _get_lang_name(client)
             name = "%s_%s" % (client_name, server_name)
-            if name in skip:
+            if server_name in skip or client_name in skip or name in skip:
                 continue
 
             # Extract tags for client and server
