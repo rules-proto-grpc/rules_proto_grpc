@@ -30,7 +30,7 @@ maven.artifact(
     version = "1.65.0",
 )
 maven.install(
-    # TODO: Should a distinct 'name' attr be used here to deconflict?
+    name = "rules_proto_grpc_java_maven",  # Deconflict
     artifacts = [
         "com.google.protobuf:protobuf-java:4.27.2",
         "com.google.protobuf:protobuf-java-util:4.27.2",
@@ -42,4 +42,4 @@ maven.install(
     ],
     strict_visibility = True,
 )
-use_repo(maven, "maven")
+use_repo(maven, "rules_proto_grpc_java_maven")

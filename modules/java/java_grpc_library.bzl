@@ -23,7 +23,7 @@ def java_grpc_library(name, **kwargs):
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         runtime_deps = [
-            Label("@maven//:io_grpc_grpc_netty"),
+            Label("@rules_proto_grpc_java_maven//:io_grpc_grpc_netty"),
         ],
         exports = GRPC_DEPS + kwargs.get("exports", []),
         **{
@@ -34,11 +34,11 @@ def java_grpc_library(name, **kwargs):
     )
 
 GRPC_DEPS = [
-    Label("@maven//:com_google_guava_guava"),
-    Label("@maven//:com_google_protobuf_protobuf_java"),
-    Label("@maven//:com_google_protobuf_protobuf_java_util"),
-    Label("@maven//:io_grpc_grpc_api"),
-    Label("@maven//:io_grpc_grpc_protobuf"),
-    Label("@maven//:io_grpc_grpc_stub"),
-    Label("@maven//:javax_annotation_javax_annotation_api"),
+    Label("@rules_proto_grpc_java_maven//:com_google_guava_guava"),
+    Label("@rules_proto_grpc_java_maven//:com_google_protobuf_protobuf_java"),
+    Label("@rules_proto_grpc_java_maven//:com_google_protobuf_protobuf_java_util"),
+    Label("@rules_proto_grpc_java_maven//:io_grpc_grpc_api"),
+    Label("@rules_proto_grpc_java_maven//:io_grpc_grpc_protobuf"),
+    Label("@rules_proto_grpc_java_maven//:io_grpc_grpc_stub"),
+    Label("@rules_proto_grpc_java_maven//:javax_annotation_javax_annotation_api"),
 ]
