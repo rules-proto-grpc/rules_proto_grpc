@@ -79,8 +79,8 @@ def {{ .Rule.Name }}(name, **kwargs):
     )
 
 GRPCLIB_DEPS = [
-    Label("@protobuf//:protobuf_python"),
     Label(requirement("grpclib")),
+    Label(requirement("protobuf")),
 ]`)
 
 var pythonModuleSuffixLines = `bazel_dep(name = "rules_python", version = "0.33.2")

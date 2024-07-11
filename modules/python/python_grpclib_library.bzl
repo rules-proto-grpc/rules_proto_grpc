@@ -33,6 +33,6 @@ def python_grpclib_library(name, **kwargs):
     )
 
 GRPCLIB_DEPS = [
-    Label("@protobuf//:protobuf_python"),
     Label(requirement("grpclib")),
+    Label(requirement("protobuf")),
 ]
