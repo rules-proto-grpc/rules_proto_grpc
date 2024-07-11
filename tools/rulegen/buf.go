@@ -1,9 +1,10 @@
 package main
 
-var bufRuleTemplate = mustTemplate(`load("@rules_proto//proto:defs.bzl", "ProtoInfo", "proto_compile_toolchains")
+var bufRuleTemplate = mustTemplate(`load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
+    "proto_compile_toolchains",
 )
 load(
     ":buf.bzl",

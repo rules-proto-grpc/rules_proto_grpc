@@ -1,9 +1,10 @@
 """Generated definition of buf_proto_lint_test."""
 
-load("@rules_proto//proto:defs.bzl", "ProtoInfo", "proto_compile_toolchains")
+load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
+    "proto_compile_toolchains",
 )
 load(
     ":buf.bzl",
