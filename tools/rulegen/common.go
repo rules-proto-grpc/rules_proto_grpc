@@ -73,6 +73,7 @@ var compileRuleTemplate = mustTemplate(`load(
     "ProtoPluginInfo",
     "proto_compile_attrs",
     "proto_compile_impl",
+    "proto_compile_toolchains",
 )
 
 # Create compile rule
@@ -89,7 +90,7 @@ var compileRuleTemplate = mustTemplate(`load(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = ["@rules_proto_grpc//protoc:toolchain_type"],
+    toolchains = proto_compile_toolchains,
 )`)
 
 // When editing, note that Go and gateway do not use this snippet and have their own local version

@@ -1,6 +1,6 @@
 """Generated definition of buf_proto_lint_test."""
 
-load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+load("@rules_proto//proto:defs.bzl", "ProtoInfo", "proto_compile_toolchains")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
@@ -65,7 +65,7 @@ buf_proto_lint_test_script = rule(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
+    toolchains = proto_compile_toolchains,
 )
 
 def buf_proto_lint_test(name, **kwargs):

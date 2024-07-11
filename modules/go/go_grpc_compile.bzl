@@ -5,6 +5,7 @@ load(
     "ProtoPluginInfo",
     "proto_compile_attrs",
     "proto_compile_impl",
+    "proto_compile_toolchains",
 )
 
 # Create compile rule
@@ -22,5 +23,5 @@ go_grpc_compile = rule(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = ["@rules_proto_grpc//protoc:toolchain_type"],
+    toolchains = proto_compile_toolchains,
 )

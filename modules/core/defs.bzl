@@ -13,9 +13,10 @@ ProtoCompileInfo = _ProtoCompileInfo
 # Export plugin rule
 proto_plugin = _proto_plugin
 
-# Export compile rule implementation and attrs
+# Export compile rule implementation, attrs and toolchains
 proto_compile_attrs = _proto_compile_attrs
 proto_compile_impl = _proto_compile_impl
+proto_compile_toolchains = [str(Label("@rules_proto//proto:toolchain_type"))]
 
 # Export compilation function, which can be wrapped by external rules that need more
 # pre-configuration than proto_compile_impl alone allows. e.g third party versions of
