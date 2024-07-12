@@ -39,13 +39,23 @@ local_path_override(
     path = "modules/c",
 )
 
-bazel_dep(name = "protobuf", version = "27.2")
+bazel_dep(name = "protobuf", version = "27.1")
 
 # C++
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_cpp",
     path = "modules/cpp",
+)
+
+bazel_dep(name = "toolchains_protoc", version = "0.3.1")
+
+# Prevent version skew by matching protoc version to protobuf version
+# C++ is the only lang that has no cross-version runtime guarantee
+protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
+protoc.toolchain(
+    google_protobuf = "com_google_protobuf",
+    version = "v27.1",
 )
 
 # Documentation
