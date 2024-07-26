@@ -31,6 +31,7 @@ var extraPlatformFlags = map[string][]string{
 		// files coming from -iquote etc. This only appears to be a problem on the Bazel MacOS CI
 		// machines on BuildKite, as a local MacOS build does not require this workaround. Perhaps
 		// the CI machines have Homebrew installed etc.
+		// FIXED since BuildKite machines were reinstalled as VMs ~June 2024
 		//"--copt=-isystem/usr/local/include",
 	},
 }
