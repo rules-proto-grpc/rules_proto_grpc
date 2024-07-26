@@ -27,7 +27,7 @@ routeguide_test_matrix(
         #"csharp_rust",  # Broken
         #"fsharp_rust",  # Broken
         #"fsharp_js",  # Broken
-        "java",  # grpc-java MODULE.bazel broken: https://github.com/grpc/grpc-java/issues/11275
+        #"java",  # grpc-java MODULE.bazel broken: https://github.com/grpc/grpc-java/issues/11275
     ],
     tagmap = {
         # Apply per-lang tags
