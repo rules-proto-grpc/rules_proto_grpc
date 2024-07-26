@@ -13,7 +13,11 @@ import (
 	"github.com/urfave/cli"
 )
 
-var ciPlatforms = []string{"ubuntu2204", "windows", "macos"}
+var ciPlatforms = []string{
+	"ubuntu2204",
+	// "windows",  # TODO: Blocked by https://github.com/bazelbuild/bazel/issues/18683
+	"macos",
+}
 var ciPlatformsMap = map[string][]string{
 	"linux":   []string{"ubuntu2204"},
 	"windows": []string{"windows"},
