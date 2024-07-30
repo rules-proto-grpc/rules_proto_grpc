@@ -1,4 +1,5 @@
 ---
+bazel: 6.5.0
 tasks:
   main_ubuntu2204:
     name: build & test all
