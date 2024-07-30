@@ -106,6 +106,7 @@ tasks:
   main_macos:
     name: build & test all
     platform: macos
+    xcode_version: "15.4"
     environment:
       CC: clang
     build_flags:
@@ -513,6 +514,7 @@ tasks:
   python_macos_examples:
     name: python examples
     platform: macos
+    xcode_version: "15.4"
     shell_commands:
      - set -x
      - export CC=clang
