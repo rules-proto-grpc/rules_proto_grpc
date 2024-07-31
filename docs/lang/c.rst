@@ -6,7 +6,7 @@
 C
 =
 
-Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <https://github.com/protocolbuffers/upb>`_. Libraries are created with the Bazel native ``cc_library``
+Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <https://github.com/protocolbuffers/protobuf/tree/main/upb>`_. Libraries are created with the Bazel native ``cc_library``
 
 .. list-table:: Rules
    :widths: 1 2
@@ -18,6 +18,16 @@ Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <
      - Generates C protobuf ``.h`` & ``.c`` files
    * - `c_proto_library`_
      - Generates a C protobuf library using ``cc_library``, with dependencies linked
+
+Installation
+------------
+
+The C module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_c", version = "<version number here>")
+   bazel_dep(name = "protobuf", version = "27.1")
 
 .. _c_proto_compile:
 
@@ -106,7 +116,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_c//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/c/BUILD.bazel>`__
+- `@rules_proto_grpc_c//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/c/BUILD.bazel>`__
 
 .. _c_proto_library:
 

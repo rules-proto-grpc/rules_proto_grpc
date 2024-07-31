@@ -33,8 +33,8 @@ def buf_test_script_impl(ctx, options):
     """
 
     # Load toolchain
-    protoc_toolchain_info = ctx.toolchains[str(Label("@rules_proto_grpc//protoc:toolchain_type"))]
-    protoc = protoc_toolchain_info.protoc_executable
+    protoc_toolchain_info = ctx.toolchains[str(Label("@rules_proto//proto:toolchain_type"))]
+    protoc = protoc_toolchain_info.proto.proto_compiler.executable
 
     # Create test script header
     script_file = ctx.actions.declare_file(ctx.label.name)

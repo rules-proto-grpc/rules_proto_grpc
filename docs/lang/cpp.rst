@@ -23,6 +23,25 @@ Rules for generating C++ protobuf and gRPC ``.cc`` & ``.h`` files and libraries 
    * - `cpp_grpc_library`_
      - Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencies linked
 
+Installation
+------------
+
+The C++ module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_cpp", version = "<version number here>")
+   bazel_dep(name = "toolchains_protoc", version = "0.3.1")
+   
+   # Prevent version skew by matching protoc version to protobuf version, as C++ is the only lang that
+   # has no cross-version runtime guarantee:
+   # https://protobuf.dev/support/cross-version-runtime-guarantee/#cpp
+   protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
+   protoc.toolchain(
+       google_protobuf = "com_google_protobuf",
+       version = "v27.1",
+   )
+
 .. _cpp_proto_compile:
 
 cpp_proto_compile
@@ -108,7 +127,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_cpp//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/cpp/BUILD.bazel>`__
 
 .. _cpp_grpc_compile:
 
@@ -190,8 +209,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_cpp//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
-- `@rules_proto_grpc_cpp//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/cpp/BUILD.bazel>`__
+- `@rules_proto_grpc_cpp//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/cpp/BUILD.bazel>`__
 
 .. _cpp_proto_library:
 

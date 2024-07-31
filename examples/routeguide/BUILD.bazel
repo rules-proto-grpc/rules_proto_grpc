@@ -14,17 +14,20 @@ routeguide_test_matrix(
     clients = [
         "//examples/cpp/routeguide:client",
         "//examples/go/routeguide/client:client",
+        "//examples/java/routeguide:client",
         "//examples/python/routeguide:client",
     ],
     servers = [
         "//examples/cpp/routeguide:server",
         "//examples/go/routeguide/server:server",
+        "//examples/java/routeguide:server",
         "//examples/python/routeguide:server",
     ],
     skip = [
-        "csharp_rust",  # Broken
-        "fsharp_rust",  # Broken
-        "fsharp_js",  # Broken
+        #"csharp_rust",  # Broken
+        #"fsharp_rust",  # Broken
+        #"fsharp_js",  # Broken
+        "java",  # grpc-java MODULE.bazel broken: https://github.com/grpc/grpc-java/issues/11275
     ],
     tagmap = {
         # Apply per-lang tags

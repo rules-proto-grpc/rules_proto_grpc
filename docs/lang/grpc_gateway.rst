@@ -19,6 +19,15 @@ gRPC-Gateway
    * - `gateway_grpc_library`_
      - Generates gRPC-Gateway library files
 
+Installation
+------------
+
+The gRPC-Gateway module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_grpc_gateway", version = "<version number here>")
+
 .. _gateway_grpc_compile:
 
 gateway_grpc_compile
@@ -94,9 +103,9 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_grpc_gateway//:plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/grpc_gateway/BUILD.bazel>`__
-- `@rules_proto_grpc_grpc_gateway@rules_proto_grpc_go//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/grpc_gateway/BUILD.bazel>`__
-- `@rules_proto_grpc_grpc_gateway@rules_proto_grpc_go//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/grpc_gateway/BUILD.bazel>`__
+- `@rules_proto_grpc_grpc_gateway//:plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/grpc_gateway/BUILD.bazel>`__
+- `@rules_proto_grpc_grpc_gateway@rules_proto_grpc_go//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/grpc_gateway/BUILD.bazel>`__
+- `@rules_proto_grpc_grpc_gateway@rules_proto_grpc_go//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/grpc_gateway/BUILD.bazel>`__
 
 .. _gateway_openapiv2_compile:
 
@@ -173,7 +182,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_grpc_gateway//:openapiv2_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/grpc_gateway/BUILD.bazel>`__
+- `@rules_proto_grpc_grpc_gateway//:openapiv2_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/grpc_gateway/BUILD.bazel>`__
 
 .. _gateway_grpc_library:
 

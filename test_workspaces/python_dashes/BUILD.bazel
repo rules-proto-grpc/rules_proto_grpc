@@ -1,5 +1,5 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
-load("@rules_proto_grpc_python//:defs.bzl", "python_proto_library")
+load("@rules_proto_grpc_python//:defs.bzl", "python_grpc_library", "python_grpclib_library", "python_proto_library")
 load("@rules_python//python:defs.bzl", "py_test")
 
 package(default_visibility = ["//visibility:private"])
@@ -16,6 +16,16 @@ proto_library(
 
 python_proto_library(
     name = "py_lib",
+    protos = ["proto_lib"],
+)
+
+python_grpc_library(
+    name = "py_grpc_lib",
+    protos = ["proto_lib"],
+)
+
+python_grpclib_library(
+    name = "py_grpclib_lib",
     protos = ["proto_lib"],
 )
 

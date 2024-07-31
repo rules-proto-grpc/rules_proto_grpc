@@ -11,7 +11,7 @@ py_binary(
     srcs_version = "PY3",
     visibility = ["//:__subpackages__"],
     deps = [
-        "@protobuf//:protobuf_python",
         requirement("grpclib"),
+        requirement("protobuf"),
     ],
 )

@@ -50,8 +50,7 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
     )
 
 PROTO_DEPS = [
-    Label("@upb//:upb"),
-    Label("@upb//:message_accessors"),
+    Label("@protobuf//upb:base"),
 ]`)
 
 // For C, we need to manually generate the files for any.proto
@@ -67,14 +66,14 @@ var cProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lan
     ],
 )`)
 
-var cModuleExtraLines = `bazel_dep(name = "protobuf", version = "23.1")`
+var cModuleSuffixLines = `bazel_dep(name = "protobuf", version = "27.1")`
 
 func makeC() *Language {
 	return &Language{
 		Name:  "c",
 		DisplayName: "C",
-		Notes: mustTemplate("Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <https://github.com/protocolbuffers/upb>`_. Libraries are created with the Bazel native ``cc_library``"),
-		ModuleExtraLines: cModuleExtraLines,
+		Notes: mustTemplate("Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <https://github.com/protocolbuffers/protobuf/tree/main/upb>`_. Libraries are created with the Bazel native ``cc_library``"),
+		ModuleSuffixLines: cModuleSuffixLines,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "c_proto_compile",

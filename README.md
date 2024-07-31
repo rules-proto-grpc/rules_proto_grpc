@@ -15,13 +15,30 @@
 </div>
 
 > [!IMPORTANT]
-> The `master` branch now contains the Bzlmod-only update of the rules that'll be released in
+> The `master` branch now contains the Bzlmod-only update of the rules released in
 > version 5.0.0. If you need to see the WORKSPACE based rules used in version 4.x.x, please see
-> the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy). For
-> tracking the status of language support with the Bzlmod rules, please see
-> [#299](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299)
+> the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy)
 
 ## Announcements 📣
+
+#### 2024/07/31 - Version 5.0.0
+
+[Version 5.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.0.0),
+which rewrites the rules to support Bzlmod only. Moving to Bzlmod provides a huge improvement in the
+stability and maintainability of these rules, as third-party transitive dependency management has
+been handed off to Bazel and new versions of gRPC and Protobuf should hopefully be able to be
+supported more rapidly.
+
+At present not all languages supported by the 4.x.x
+are supported by this release, with support for the remaining languages being tracked
+[here](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299). For these unsupported
+languages - or for WORKSPACE repos - it is recommended you continue using the 4.x.x releases.
+
+The way you use these rules is largely unchanged, but unfortunately the paths used for load of the
+rules will have changed due to the splitting into language-specific modules. Please see
+[the docs](https://rules-proto-grpc.com/en/latest/) for details of how to migrate your usage to
+these new rules, in particular the
+[release notes](https://rules-proto-grpc.com/en/latest/changelog.html).
 
 #### 2023/12/14 - Version 4.6.0
 
@@ -73,6 +90,10 @@ Full documentation for the current and previous versions [can be found here](htt
 | [gRPC-Gateway](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html) | [gateway_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html#gateway-grpc-compile) | Generates gRPC-Gateway ``.go`` files ([example](/examples/grpc_gateway/gateway_grpc_compile)) |
 | [gRPC-Gateway](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html) | [gateway_openapiv2_compile](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html#gateway-openapiv2-compile) | Generates gRPC-Gateway OpenAPI v2 ``.json`` files ([example](/examples/grpc_gateway/gateway_openapiv2_compile)) |
 | [gRPC-Gateway](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html) | [gateway_grpc_library](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html#gateway-grpc-library) | Generates gRPC-Gateway library files ([example](/examples/grpc_gateway/gateway_grpc_library)) |
+| [Java](https://rules-proto-grpc.com/en/latest/lang/java.html) | [java_proto_compile](https://rules-proto-grpc.com/en/latest/lang/java.html#java-proto-compile) | Generates a Java protobuf srcjar file ([example](/examples/java/java_proto_compile)) |
+| [Java](https://rules-proto-grpc.com/en/latest/lang/java.html) | [java_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/java.html#java-grpc-compile) | Generates a Java protobuf and gRPC srcjar file ([example](/examples/java/java_grpc_compile)) |
+| [Java](https://rules-proto-grpc.com/en/latest/lang/java.html) | [java_proto_library](https://rules-proto-grpc.com/en/latest/lang/java.html#java-proto-library) | Generates a Java protobuf library using ``java_library`` ([example](/examples/java/java_proto_library)) |
+| [Java](https://rules-proto-grpc.com/en/latest/lang/java.html) | [java_grpc_library](https://rules-proto-grpc.com/en/latest/lang/java.html#java-grpc-library) | Generates a Java protobuf and gRPC library using ``java_library`` ([example](/examples/java/java_grpc_library)) |
 | [Objective-C](https://rules-proto-grpc.com/en/latest/lang/objc.html) | [objc_proto_compile](https://rules-proto-grpc.com/en/latest/lang/objc.html#objc-proto-compile) | Generates Objective-C protobuf ``.m`` & ``.h`` files ([example](/examples/objc/objc_proto_compile)) |
 | [Objective-C](https://rules-proto-grpc.com/en/latest/lang/objc.html) | [objc_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/objc.html#objc-grpc-compile) | Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files ([example](/examples/objc/objc_grpc_compile)) |
 | [Objective-C](https://rules-proto-grpc.com/en/latest/lang/objc.html) | [objc_proto_library](https://rules-proto-grpc.com/en/latest/lang/objc.html#objc-proto-library) | Generates an Objective-C protobuf library using ``objc_library`` ([example](/examples/objc/objc_proto_library)) |

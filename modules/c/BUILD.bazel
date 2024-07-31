@@ -6,6 +6,6 @@ proto_plugin(
         "{protopath}.upb.h",
         "{protopath}.upb.c",
     ],
-    tool = "@upb//upbc:protoc-gen-upb",
+    tool = "@protobuf//upb_generator:protoc-gen-upb",
     visibility = ["//visibility:public"],
 )

@@ -4,6 +4,7 @@ var bufRuleTemplate = mustTemplate(`load("@rules_proto//proto:defs.bzl", "ProtoI
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
+    "proto_compile_toolchains",
 )
 load(
     ":buf.bzl",
@@ -32,7 +33,7 @@ load(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
+    toolchains = proto_compile_toolchains,
 )
 
 def {{ .Rule.Name }}(name, **kwargs):

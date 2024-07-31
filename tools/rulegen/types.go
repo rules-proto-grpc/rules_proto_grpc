@@ -22,7 +22,8 @@ type Language struct {
 	DependsOn []string
 
 	// Extra lines for MODULE.bazel for examples etc
-	ModuleExtraLines string
+	ModulePrefixLines string
+	ModuleSuffixLines string
 
 	// Additional CI-specific env vars in the form "K=V"
 	PresubmitEnvVars map[string]string

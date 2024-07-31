@@ -6,6 +6,53 @@
 Changelog
 =========
 
+5.0.0
+-----
+
+The 5.0.0 release introduces support for `Bzlmod <https://bazel.build/external/overview>`__ and
+drops support for WORKSPACE. This has required a large restructure of the repo, with the code being
+split into multiple modules. A 'core' module provides common types and compilation support, whilst
+per-language modules provide the integration with each language's specific third-party modules and
+tools. Moving to Bzlmod provides a huge improvement in the stability and maintainability of these
+rules, as third-party transitive dependency management has been handed off to Bazel and new versions
+of gRPC and Protobuf should hopefully be able to be supported more rapidly.
+
+At present, a limited number of languages have been migrated from the 4.x.x releases, with support
+for the remaining languages being tracked
+`here <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299>`__. For these unsupported
+languages - or for WORKSPACE repos - it is recommended you continue using the 4.x.x releases.
+
+The way you use these rules is largely unchanged, but unfortunately the paths used for ``load`` of
+the rules will have changed due to the splitting into language-specific modules. For example, the
+following load:
+
+.. code-block:: python
+
+   load("@rules_proto_grpc//go:defs.bzl", "go_proto_library")
+
+Will become:
+
+.. code-block:: python
+
+   load("@rules_proto_grpc_go//:defs.bzl", "go_proto_library")
+
+Details on the new rule loads can, as always, be found on each language's page in the documentation.
+Examples for each language are also provided in the repo's
+`examples <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples>`__ directory.
+
+Some key other changes include:
+
+- The versions of gRPC and Protobuf are updated to the latest available in
+  `Bazel Central Registry <https://github.com/bazelbuild/bazel-central-registry>`__
+- Python now pulls gRPC and Protobuf from pip wheels
+- Buf rules now work on Windows (requires the ``--enable_runfiles`` flag to be set)
+
+Should you have any issues
+with the new release, please open a new
+`issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`__ or
+`discussion <https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new>`__.
+
+
 4.6.0
 -----
 

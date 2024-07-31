@@ -152,11 +152,23 @@ var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*A
 	},
 }...)
 
+var cppModuleSuffixLines = `bazel_dep(name = "toolchains_protoc", version = "0.3.1")
+
+# Prevent version skew by matching protoc version to protobuf version, as C++ is the only lang that
+# has no cross-version runtime guarantee:
+# https://protobuf.dev/support/cross-version-runtime-guarantee/#cpp
+protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
+protoc.toolchain(
+    google_protobuf = "com_google_protobuf",
+    version = "v27.1",
+)`
+
 func makeCpp() *Language {
 	return &Language{
 		Name:  "cpp",
 		DisplayName: "C++",
 		Notes: mustTemplate("Rules for generating C++ protobuf and gRPC ``.cc`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``cc_library``"),
+		ModuleSuffixLines: cppModuleSuffixLines,
 		Aliases: map[string]string{
 			"cc_proto_compile": "cpp_proto_compile",
 			"cc_grpc_compile": "cpp_grpc_compile",

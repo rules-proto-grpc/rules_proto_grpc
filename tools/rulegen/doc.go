@@ -5,6 +5,7 @@ var docCustomRuleTemplateString = mustTemplate(`load(
     "ProtoPluginInfo",
     "proto_compile",
     "proto_compile_attrs",
+    "proto_compile_toolchains",
 )
 
 # Create compile rule
@@ -44,7 +45,7 @@ def {{ .Rule.Name }}_impl(ctx):  # buildifier: disable=function-docstring
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = ["@rules_proto_grpc//protoc:toolchain_type"],
+    toolchains = proto_compile_toolchains,
 )`)
 
 var docCustomExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")

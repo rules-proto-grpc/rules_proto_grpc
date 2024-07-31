@@ -13,7 +13,11 @@ import (
 	"github.com/urfave/cli"
 )
 
-var ciPlatforms = []string{"ubuntu2204", "windows", "macos"}
+var ciPlatforms = []string{
+	"ubuntu2204",
+	// "windows",  # TODO: Blocked by https://github.com/bazelbuild/bazel/issues/18683
+	"macos",
+}
 var ciPlatformsMap = map[string][]string{
 	"linux":   []string{"ubuntu2204"},
 	"windows": []string{"windows"},
@@ -28,10 +32,11 @@ var extraPlatformFlags = map[string][]string{
 		// /usr/local/include as a system include search dir. This prevents redefinition errors when
 		// BoringSSL files end up including OpenSSL headers due to matching include prefix. This arg
 		// moves the OpenSSL headers (and anything in that search dir) lower in priority vs local
-		// files comong from -iquote etc. This only appears to be a problem on the Bazel MacOS CI
+		// files coming from -iquote etc. This only appears to be a problem on the Bazel MacOS CI
 		// machines on BuildKite, as a local MacOS build does not require this workaround. Perhaps
 		// the CI machines have Homebrew installed etc.
-		"--copt=-isystem/usr/local/include",
+		// FIXED since BuildKite machines were reinstalled as VMs ~June 2024
+		//"--copt=-isystem/usr/local/include",
 	},
 }
 
@@ -89,6 +94,7 @@ func action(c *cli.Context) error {
 		makeDoc(),
 		makeGo(),
 		makeGrpcGateway(),
+		makeJava(),
 		makeObjc(),
 		makePython(),
 	}
@@ -153,6 +159,10 @@ func mustWriteLanguageExampleModuleBazelFile(dir string, lang *Language, rule *R
 	// +2 as we are in the examples/{rule} subdirectory
 	rootPath := strings.Repeat("../", len(depth) + 2)
 
+	if (len(lang.ModulePrefixLines) > 0) {
+		out.w(lang.ModulePrefixLines)
+	}
+
 	extraDeps := ""
 	extraLocalOverrides := ""
 	for _, dep := range lang.DependsOn {
@@ -184,9 +194,9 @@ local_path_override(
     path = "%smodules/%s",
 )%s`, lang.Name, extraDeps, rootPath, rootPath, lang.Name, rootPath, lang.Name, extraLocalOverrides)
 
-	if (len(lang.ModuleExtraLines) > 0) {
+	if (len(lang.ModuleSuffixLines) > 0) {
 		out.ln()
-		out.w(lang.ModuleExtraLines)
+		out.w(lang.ModuleSuffixLines)
 	}
 
 	out.ln()
@@ -288,6 +298,22 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 	}
 	out.ln()
 
+	out.w("Installation")
+	out.w("%s", strings.Repeat("-", len("Installation")))
+	out.ln()
+	out.w("The %s module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:", lang.DisplayName)
+	out.ln()
+
+	out.w(".. code-block:: python")
+	out.ln()
+	out.w(`   bazel_dep(name = "rules_proto_grpc_%s", version = "<version number here>")`, lang.Name)
+	if (len(lang.ModuleSuffixLines) > 0) {
+		for _, line := range strings.Split(lang.ModuleSuffixLines, "\n") {
+			out.w("   %s", line)
+		}
+	}
+	out.ln()
+
 	for _, rule := range lang.Rules {
 		out.w(".. _%s:", rule.Name)
 		out.ln()
@@ -348,7 +374,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Name)
+				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Name)
 			}
 			out.ln()
 		}
@@ -363,6 +389,11 @@ func mustWriteModuleBazel(dir, template string, languages []*Language) {
 
 	for _, lang := range languages {
 		out.w("# %s", lang.DisplayName)
+		// if (len(lang.ModulePrefixLines) > 0) {
+		// 	out.w(lang.ModulePrefixLines)
+		// 	out.ln()
+		// }
+
 		out.w(`bazel_dep(name = "rules_proto_grpc_%s", version = "0.0.0.rpg.version.placeholder")
 local_path_override(
     module_name = "rules_proto_grpc_%s",
@@ -370,8 +401,8 @@ local_path_override(
 )`, lang.Name, lang.Name, lang.Name)
 		out.ln()
 
-		if (len(lang.ModuleExtraLines) > 0) {
-			out.w(lang.ModuleExtraLines)
+		if (len(lang.ModuleSuffixLines) > 0) {
+			out.w(lang.ModuleSuffixLines)
 			out.ln()
 		}
 	}

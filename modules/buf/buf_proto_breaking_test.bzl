@@ -4,6 +4,7 @@ load("@rules_proto//proto:defs.bzl", "ProtoInfo")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
+    "proto_compile_toolchains",
 )
 load(
     ":buf.bzl",
@@ -51,7 +52,7 @@ buf_proto_breaking_test_script = rule(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
+    toolchains = proto_compile_toolchains,
 )
 
 def buf_proto_breaking_test(name, **kwargs):

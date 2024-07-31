@@ -7,18 +7,18 @@ def _download_plugins(module_ctx):
 
     # Gateway plugin
     for platform, hash in [
-        ("darwin-arm64", "20955b51d70d2b1b087a3f5b1ea4a02205223114439b1854cc3f8bdae6663032"),
-        ("darwin-x86_64", "5904c499067213c52906f5b19ec3d339317d678b3a570e7f70076be293bd148c"),
-        ("linux-arm64", "069ec97a3d82522539979a68e9289a836c4564f7056de1e6e28c92c04ad5fbc4"),
-        ("linux-x86_64", "2b1965cc8f0460426396237535744385442e318a59a9aac7ac7dcc02cf064676"),
-        ("windows-arm64", "7be5fd9a84cf189ae1af81c9ca6449565ae6eb609d533ec4d1281dd1941b9ab4"),
-        ("windows-x86_64", "37cc477a07f84aaaecef1953b662cb6fa3b862e98d7265583bff58deeca1343e"),
+        ("darwin-arm64", "8fdc478fddc691771bcaeb2db2d5d8a7b02abd66eff37b5b585047f244d13a81"),
+        ("darwin-x86_64", "448b136143017da93ad6ed0ad6aad40a76bfcd47a443362516c31eaf1fd7bcdb"),
+        ("linux-arm64", "05a34c88c48f25c0bfccc5548cd522188f6a09ae839dc442eaefd18a83420b4b"),
+        ("linux-x86_64", "9435a60c0ad0f9d535cc28998087e43ebf54fb87f491408752ddec3e89a3fdf3"),
+        ("windows-arm64", "e79caf845fe8cb4ad534281ba32c1b607ef64e50f94bb278d7d9514541efad2b"),
+        ("windows-x86_64", "25cfbcfc9c555145e373a85cc0dfc5eaef6c9df49c556e82f526fac51070f6d6"),
     ]:
         http_file(
             name = "grpc_gateway_plugin_{}".format(platform.replace("-", "_")),
             executable = True,
             sha256 = hash,
-            url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v2.19.0/protoc-gen-grpc-gateway-v2.19.0-{}{}".format(
+            url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v2.21.0/protoc-gen-grpc-gateway-v2.21.0-{}{}".format(
                 platform,
                 ".exe" if "windows" in platform else "",
             ),
@@ -26,18 +26,18 @@ def _download_plugins(module_ctx):
 
     # Openapi plugin
     for platform, hash in [
-        ("darwin-arm64", "0266146f5679edd2049ead78b4d6f8d58ff37be108b5452d28cc5e96d2a061c2"),
-        ("darwin-x86_64", "46840e8062c11ea7d01ad8f3c5ad1e74dae3aba681f4e0f6c5756c6e322cccff"),
-        ("linux-arm64", "99d03c4cc5efaf0fab38aa560e8bdb21d711f0f77c7c28a9ad864dbd63756b8d"),
-        ("linux-x86_64", "41ea2f88eff81c3234675f596693353740b93ce80530f135af7702e0f6207ff8"),
-        ("windows-arm64", "0709de83f8416f3ab3101eda3bedec2d5c153e33e1b69de6234291247c427b8a"),
-        ("windows-x86_64", "3c4ec7b15f08814df8972adee6181e6cf6d0de810b40201d45aa2896c58dd000"),
+        ("darwin-arm64", "ff82e0513c99fcef2ddfc4432092bcb8fb770086bedb166811fd4c60f1b4f950"),
+        ("darwin-x86_64", "4903651de013d031c33976730b2f91f82dbe116ed91af7dcc718656809ff8a9a"),
+        ("linux-arm64", "92ca757d3be792b0164b07606d6b69ccd3f0f6d765c6c38c01503c72ae51dfbc"),
+        ("linux-x86_64", "d17ed6eb57ba2df1fef60a60c2bbce1bd47a05152ce54666cb9333d5c35792b2"),
+        ("windows-arm64", "d456387c82d37322408b2c53f0d587659e90ff7645fa62d83571d913135dc08a"),
+        ("windows-x86_64", "1d2c9687cd90a58872a664691e07f4d99fb1625de6b92a60bdb5058614248fcb"),
     ]:
         http_file(
             name = "openapiv2_plugin_{}".format(platform.replace("-", "_")),
             executable = True,
             sha256 = hash,
-            url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v2.19.0/protoc-gen-openapiv2-v2.19.0-{}{}".format(
+            url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v2.21.0/protoc-gen-openapiv2-v2.21.0-{}{}".format(
                 platform,
                 ".exe" if "windows" in platform else "",
             ),
