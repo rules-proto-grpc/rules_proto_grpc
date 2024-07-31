@@ -1,4 +1,5 @@
 import datetime
+import os
 
 # -- Project information -----------------------------------------------------
 
@@ -46,6 +47,9 @@ html_title = 'Protobuf and gRPC rules for Bazel - rules_proto_grpc'
 # Logo and favicon
 html_logo = '_static/logo.svg'
 html_favicon = '_static/logo.png'
+
+# Define the canonical URL if you are using a custom domain on Read the Docs
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
 
 # Extra vars to provide to templating
 html_context = {
