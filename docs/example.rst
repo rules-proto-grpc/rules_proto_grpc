@@ -13,16 +13,20 @@ pages too.
 The full example workspaces for C++ can be found
 `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/cpp>`__, along with
 the demo proto files
-`here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/proto>`__. Example
-workspaces for all other languages can also be found in
-`that same directory <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/example>`__.
+`here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/modules/example_protos>`__.
+Example workspaces for all other languages are
+`also available <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples>`__.
 
 
-**Step 1**: Load rules_proto_grpc
-------------------------------------
+**Step 1**: Load the module for C++
+-----------------------------------
 
-First, follow :ref:`the instructions <sec_installation>` to load the rules_proto_grpc rules in your
-``WORKSPACE`` file.
+First, include the C++ specific rules_proto_grpc module in your ``MODULE.bazel`` file:
+
+.. code-block:: python
+
+   # MODULE.bazel
+   bazel_dep(name = "rules_proto_grpc_cpp", version = "<version number here>")
 
 
 **Step 2**: Write a ``.proto`` file
@@ -34,6 +38,7 @@ we've called the file ``thing.proto``.
 
 .. code-block:: proto
 
+   // thing.proto
    syntax = "proto3";
 
    package example;
@@ -55,6 +60,7 @@ target:
 
 .. code-block:: python
 
+   # BUILD.bazel
    proto_library(
        name = "thing_proto",
        srcs = ["thing.proto"],
@@ -78,7 +84,7 @@ into the C++ specific ``.h`` and ``.cc`` files.
 .. code-block:: python
 
    # BUILD.bazel
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_compile")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_compile")
 
    cpp_proto_compile(
        name = "cpp_thing_proto",
@@ -86,36 +92,22 @@ into the C++ specific ``.h`` and ``.cc`` files.
    )
 
 
-**Step 5**: Load the ``WORKSPACE`` macro
-----------------------------------------
-
-But wait, before we can build this, we need to load the dependencies necessary for this rule in our
-``WORKSPACE`` (see :ref:`cpp_proto_compile`):
-
-.. code-block:: python
-
-   # WORKSPACE
-   load("@rules_proto_grpc//cpp:repositories.bzl", "cpp_repos")
-
-   cpp_repos()
-
-
-**Step 6**: Build it!
+**Step 5**: Build it!
 ---------------------
 
 We can now build the ``cpp_thing_proto`` target:
 
 .. code-block:: bash
 
-   $ bazel build //examples/proto:cpp_thing_proto
-   Target //examples/proto:cpp_thing_proto up-to-date:
-     bazel-genfiles/examples/proto/cpp_thing_proto/examples/proto/thing.pb.h
-     bazel-genfiles/examples/proto/cpp_thing_proto/examples/proto/thing.pb.cc
+   $ bazel build //:cpp_thing_proto
+   Target //:cpp_thing_proto up-to-date:
+     bazel-genfiles/cpp_thing_proto/thing.pb.h
+     bazel-genfiles/cpp_thing_proto/thing.pb.cc
 
 You should now see generated ``.cc`` and ``.h`` files in your bazel-bin output tree.
 
 
-**Step 7**: Create a library
+**Step 6**: Create a library
 ----------------------------
 
 If we were only interested in the generated files, the ``cpp_grpc_compile`` rule would be fine.
@@ -126,7 +118,7 @@ dependencies linked. To do that, let's change the  rule from ``cpp_proto_compile
 .. code-block:: python
 
    # BUILD.bazel
-   load("@rules_proto_grpc//cpp:defs.bzl", "cpp_proto_library")
+   load("@rules_proto_grpc_cpp//:defs.bzl", "cpp_proto_library")
 
    cpp_proto_library(
        name = "cpp_thing_proto",
@@ -137,17 +129,17 @@ Now we can build again:
 
 .. code-block:: bash
 
-   $ bazel build //examples/proto:cpp_thing_proto
-   Target //examples/proto:cpp_thing_proto up-to-date:
-     bazel-bin/examples/proto/libcpp_thing_proto.a
-     bazel-bin/examples/proto/libcpp_thing_proto.so
-     bazel-genfiles/examples/proto/cpp_thing_proto/examples/proto/thing.pb.h
-     bazel-genfiles/examples/proto/cpp_thing_proto/examples/proto/thing.pb.cc
+   $ bazel build //:cpp_thing_proto
+   Target //:cpp_thing_proto up-to-date:
+     bazel-bin/libcpp_thing_proto.a
+     bazel-bin/libcpp_thing_proto.so
+     bazel-genfiles/cpp_thing_proto/thing.pb.h
+     bazel-genfiles/cpp_thing_proto/thing.pb.cc
 
 This time, we also have ``.a`` and ``.so`` files built. We can now use
-``//examples/proto:cpp_thing_proto`` as a dependency of any other ``cc_library`` or ``cc_binary``
+``//:cpp_thing_proto`` as a dependency of any other ``cc_library`` or ``cc_binary``
 target as per normal.
 
 .. note:: The ``cpp_proto_library`` target implicitly calls ``cpp_proto_compile``, and we can access
    that rule's by adding ``_pb`` at the end of the target name, like
-   ``bazel build //examples/proto:cpp_thing_proto_pb``
+   ``bazel build //:cpp_thing_proto_pb``
