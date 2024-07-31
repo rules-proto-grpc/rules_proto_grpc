@@ -22,7 +22,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         {{ .Common.CompileArgsForwardingSnippet }}
     )
 
-    # for other code to import generated code with prefix_path if it's given
+    # For other code to import generated code with prefix_path if it's given
     output_mode = kwargs.get("output_mode", "PREFIXED")
     if output_mode == "PREFIXED":
         imports = [name_pb]
@@ -65,7 +65,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         {{ .Common.CompileArgsForwardingSnippet }}
     )
 
-    # for other code to import generated code with prefix_path if it's given
+    # For other code to import generated code with prefix_path if it's given
     output_mode = kwargs.get("output_mode", "PREFIXED")
     if output_mode == "PREFIXED":
         imports = [name_pb]
