@@ -15,4 +15,3 @@ js/requirements/yarn-error.log
 
 /docs/build
 /dist
-MODULE.bazel.lock
