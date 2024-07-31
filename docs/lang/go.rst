@@ -23,6 +23,15 @@ Rules for generating Go protobuf and gRPC ``.go`` files and libraries using `gol
    * - `go_grpc_library`_
      - Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go``
 
+Installation
+------------
+
+The Go module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_go", version = "<version number here>")
+
 .. _go_proto_compile:
 
 go_proto_compile
@@ -108,7 +117,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_go//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/go/BUILD.bazel>`__
+- `@rules_proto_grpc_go//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/go/BUILD.bazel>`__
 
 .. _go_grpc_compile:
 
@@ -190,8 +199,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_go//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/go/BUILD.bazel>`__
-- `@rules_proto_grpc_go//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/go/BUILD.bazel>`__
+- `@rules_proto_grpc_go//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/go/BUILD.bazel>`__
+- `@rules_proto_grpc_go//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/go/BUILD.bazel>`__
 
 .. _go_proto_library:
 

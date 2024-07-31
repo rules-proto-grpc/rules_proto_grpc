@@ -23,6 +23,15 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.
    * - `buf_proto_lint_test`_
      - Lints .proto files
 
+Installation
+------------
+
+The Buf module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_buf", version = "<version number here>")
+
 .. _buf_proto_breaking_test:
 
 buf_proto_breaking_test
@@ -97,7 +106,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_buf//:breaking_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
+- `@rules_proto_grpc_buf//:breaking_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/buf/BUILD.bazel>`__
 
 .. _buf_proto_lint_test:
 
@@ -223,4 +232,4 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_buf//:lint_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
+- `@rules_proto_grpc_buf//:lint_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/buf/BUILD.bazel>`__

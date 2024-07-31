@@ -298,6 +298,22 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 	}
 	out.ln()
 
+	out.w("Installation")
+	out.w("%s", strings.Repeat("-", len("Installation")))
+	out.ln()
+	out.w("The %s module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:", lang.DisplayName)
+	out.ln()
+
+	out.w(".. code-block:: python")
+	out.ln()
+	out.w(`   bazel_dep(name = "rules_proto_grpc_%s", version = "<version number here>")`, lang.Name)
+	if (len(lang.ModuleSuffixLines) > 0) {
+		for _, line := range strings.Split(lang.ModuleSuffixLines, "\n") {
+			out.w("   %s", line)
+		}
+	}
+	out.ln()
+
 	for _, rule := range lang.Rules {
 		out.w(".. _%s:", rule.Name)
 		out.ln()
@@ -358,7 +374,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Name)
+				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Name)
 			}
 			out.ln()
 		}

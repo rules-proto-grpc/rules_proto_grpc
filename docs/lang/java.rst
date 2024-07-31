@@ -23,6 +23,15 @@ Rules for generating Java protobuf and gRPC ``.jar`` files and libraries using s
    * - `java_grpc_library`_
      - Generates a Java protobuf and gRPC library using ``java_library``
 
+Installation
+------------
+
+The Java module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_java", version = "<version number here>")
+
 .. _java_proto_compile:
 
 java_proto_compile
@@ -108,7 +117,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_java//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/java/BUILD.bazel>`__
+- `@rules_proto_grpc_java//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/java/BUILD.bazel>`__
 
 .. _java_grpc_compile:
 
@@ -190,8 +199,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_java//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/java/BUILD.bazel>`__
-- `@rules_proto_grpc_java//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/java/BUILD.bazel>`__
+- `@rules_proto_grpc_java//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/java/BUILD.bazel>`__
+- `@rules_proto_grpc_java//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/java/BUILD.bazel>`__
 
 .. _java_proto_library:
 
