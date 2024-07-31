@@ -164,7 +164,6 @@ with tempfile.TemporaryDirectory() as tmp_dir:
     - macos
     - windows
   bazel:
-    - 6.x
     - 7.x
 tasks:
   verify_targets:
