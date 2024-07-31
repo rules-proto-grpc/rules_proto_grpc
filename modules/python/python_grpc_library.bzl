@@ -6,6 +6,15 @@ load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_grpc_compile.bzl", "python_grpc_compile")
 
 def python_grpc_library(name, **kwargs):
+    """
+    python_grpc_library generates Python code from proto and gRPC, and creates a py_library for them.
+
+    Args:
+        name: the name of the target.
+        **kwargs: common Bazel attributes will be passed to both python_grpc_compile and py_library;
+        python_grpc_compile attributes will be passed to python_grpc_compile only.
+    """
+
     # Compile protos
     name_pb = name + "_pb"
     python_grpc_compile(
@@ -18,13 +27,25 @@ def python_grpc_library(name, **kwargs):
         }  # Forward args
     )
 
+    # for other code to import generated code with prefix_path if it's given
+    output_mode = kwargs.get("output_mode", "PREFIXED")
+    if output_mode == "PREFIXED":
+        imports = [name_pb]
+    else:
+        imports = ["."]
+
+    # for pb2_grpc.py to import pb2.py
+    prefix_path = kwargs.get("prefix_path", None)
+    if prefix_path:
+        imports.append(imports[0] + "/" + prefix_path)
+
     # Create python library
     py_library(
         name = name,
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
-        imports = [name_pb],
+        imports = imports,
         **{
             k: v
             for (k, v) in kwargs.items()
