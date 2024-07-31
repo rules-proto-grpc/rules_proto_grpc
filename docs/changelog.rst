@@ -20,7 +20,7 @@ of gRPC and Protobuf should hopefully be able to be supported more rapidly.
 At present, a limited number of languages have been migrated from the 4.x.x releases, with support
 for the remaining languages being tracked
 `here <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299>`__. For these unsupported
-langauges - or for WORKSPACE repos - it is recommended you continue using the 4.x.x releases.
+languages - or for WORKSPACE repos - it is recommended you continue using the 4.x.x releases.
 
 The way you use these rules is largely unchanged, but unfortunately the paths used for ``load`` of
 the rules will have changed due to the splitting into language-specific modules. For example, the
