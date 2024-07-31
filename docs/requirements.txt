@@ -1,4 +1,4 @@
 furo==2024.7.18
-Sphinx==7.4.7
+Sphinx==8.0.2
 sphinx-notfound-page==1.0.4
 sphinx-sitemap==2.6.0
