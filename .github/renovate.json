@@ -8,14 +8,12 @@
   ],
   "packageRules": [
     {
-      "description": "Don't attempt to update modules created in this repo",
       "matchCurrentValue": "0.0.0.rpg.version.placeholder",
-      "matchDatasources": ["bazel"],
-      "matchPackageNames": ["rules_proto_grpc", "/^rules_proto_grpc_[a-z]+$/"],
       "enabled": false
     }
   ],
   "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
+  "prFooter": "View the [repository job log](https://developer.mend.io/{{platform}}/{{repository}})",
   "prHeader": "",
   "rebaseWhen": "conflicted"
 }
