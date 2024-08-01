@@ -13,6 +13,7 @@
       "enabled": false
     }
   ],
+  "postUpdateOptions": ["gomodTidy"],
   "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
   "prFooter": "View the [repository job log](https://developer.mend.io/{{platform}}/{{repository}})",
   "prHeader": "",
