@@ -9,7 +9,7 @@
   "packageRules": [
     {
       "description": "Don't attempt to update modules created in this repo",
-      "matchManagers": ["bazel-module"],
+      "matchDatasources": ["bazel"],
       "matchPackageNames": ["rules_proto_grpc", "/^rules_proto_grpc_[a-z]+$/"],
       "enabled": false
     }
