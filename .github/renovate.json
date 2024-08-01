@@ -15,6 +15,7 @@
       "enabled": false
     }
   ],
+  "postUpdateOptions": ["gomodTidy"],
   "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
   "prHeader": "",
   "rebaseWhen": "conflicted"
