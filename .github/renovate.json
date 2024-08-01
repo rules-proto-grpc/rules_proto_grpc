@@ -9,6 +9,11 @@
   "bazel-module": {
     "fileMatch": ["(^|/)MODULE\\.bazel$", "(^|/)MODULE\\.bazel.template$"]
   },
+  "pip_requirements": {
+    "fileMatch": [
+      "(^|/)[\\w-]*requirements([-.]\\w+)?\\.(txt|pip|in)$"
+    ]
+  },
   "packageRules": [
     {
       "description": "Do not update modules published in this repo",
