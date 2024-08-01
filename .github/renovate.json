@@ -8,9 +8,20 @@
   ],
   "packageRules": [
     {
+      "description": "Do not update modules published in this repo",
       "matchCurrentValue": "0.0.0.rpg.version.placeholder",
       "matchDatasources": ["bazel"],
       "enabled": false
+    },
+    {
+      "description": "Group all grpc updates into one update",
+      "matchPackageNames": ["grpc", "grpcio"],
+      "groupName": "grpc"
+    },
+    {
+      "description": "Group all protobuf updates into one update",
+      "matchPackageNames": ["protobuf"],
+      "groupName": "protobuf"
     }
   ],
   "postUpdateOptions": ["gomodTidy"],
