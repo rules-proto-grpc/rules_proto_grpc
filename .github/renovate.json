@@ -1,6 +1,20 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
-    "config:recommended"
-  ]
+    "config:best-practices",
+    ":automergeDisabled",
+    ":disableDependencyDashboard",
+    ":semanticCommitsDisabled"
+  ],
+  "packageRules": [
+    {
+      "description": "Don't attempt to update modules created in this repo",
+      "matchManagers": ["bazel-module"],
+      "matchPackageNames": ["rules_proto_grpc", "rules_proto_grpc_*"],
+      "enabled": false
+    }
+  ],
+  "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
+  "prHeader": "",
+  "rebaseWhen": "conflicted"
 }
