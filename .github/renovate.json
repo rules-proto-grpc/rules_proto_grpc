@@ -9,6 +9,7 @@
   "packageRules": [
     {
       "matchCurrentValue": "0.0.0.rpg.version.placeholder",
+      "matchDatasources": ["bazel"],
       "enabled": false
     }
   ],
