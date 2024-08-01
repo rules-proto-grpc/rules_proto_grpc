@@ -6,6 +6,9 @@
     ":disableDependencyDashboard",
     ":semanticCommitsDisabled"
   ],
+  "bazel-module": {
+    "fileMatch": ["(^|/)MODULE\\.bazel$", "(^|/)MODULE\\.bazel.template$"]
+  },
   "packageRules": [
     {
       "description": "Do not update modules published in this repo",
