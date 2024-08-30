@@ -17,6 +17,7 @@ python_proto_compile = rule(
             providers = [ProtoPluginInfo],
             default = [
                 Label("//:proto_plugin"),
+                Label("//:pyi_proto_plugin"),
             ],
             cfg = "exec",
             doc = "List of protoc plugins to apply",
