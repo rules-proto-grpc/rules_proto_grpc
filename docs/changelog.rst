@@ -6,6 +6,13 @@
 Changelog
 =========
 
+5.0.1
+-----
+
+Fixed gRPC-Gateway OpenAPI plugin on Linux ARM64
+`#360 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/360>`__
+
+
 5.0.0
 -----
 
