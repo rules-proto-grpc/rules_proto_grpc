@@ -4,7 +4,7 @@
 #
 #    bazel run //:requirements.update
 #
-grpcio==1.65.4 \
+grpcio==1.67.0 \
     --hash=sha256:075f3903bc1749ace93f2b0664f72964ee5f2da5c15d4b47e0ab68e4f442c257 \
     --hash=sha256:0a0720299bdb2cc7306737295d56e41ce8827d5669d4a3cd870af832e3b17c4d \
     --hash=sha256:0cef8c919a3359847c357cb4314e50ed1f0cca070f828ee8f878d362fd744d52 \
