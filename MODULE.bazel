@@ -39,7 +39,7 @@ local_path_override(
     path = "modules/c",
 )
 
-bazel_dep(name = "protobuf", version = "27.1")
+bazel_dep(name = "protobuf", version = "28.2")
 
 # C++
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0.rpg.version.placeholder")
