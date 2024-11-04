@@ -34,6 +34,10 @@ proto_compile_attrs = {
         allow_files = True,
         doc = "List of labels that provide extra files to be available during protoc execution",
     ),
+    "extra_plugins": attr.label_list(
+        cfg = "exec",
+        doc = "List of extra protoc plugins to use during compilation",
+    ),
     "output_mode": attr.string(
         default = "PREFIXED",
         values = ["PREFIXED", "NO_PREFIX", "NO_PREFIX_FLAT"],
@@ -91,7 +95,11 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
     # Load attrs
     proto_infos = [dep[ProtoInfo] for dep in ctx.attr.protos]
-    plugins = [plugin[ProtoPluginInfo] for plugin in ctx.attr._plugins]
+    plugins = [
+        plugin[ProtoPluginInfo] for plugin in ctx.attr._plugins
+    ] + [
+        plugin[ProtoPluginInfo] for plugin in ctx.attr.extra_plugins
+    ]
     verbose = ctx.attr.verbose
 
     # Load toolchain and tools
