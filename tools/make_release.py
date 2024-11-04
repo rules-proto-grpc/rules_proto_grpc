@@ -29,7 +29,7 @@ VERSION_PLACEHOLDER = '0.0.0.rpg.version.placeholder'
 if not re.fullmatch(r"^([a-zA-Z0-9.]+)(?:-([a-zA-Z0-9.-]+))?(?:\+[a-zA-Z0-9.-]+)?$", VERSION):
     print('Version is not valid')
     sys.exit(1)
-    
+
 branch = subprocess.run(
     ['git', 'rev-parse', '--abbrev-ref', 'HEAD'], check=True, capture_output=True
 ).stdout.strip().decode()
@@ -162,7 +162,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
     - debian10
     - ubuntu2004
     - macos
-    - windows
+    #- windows  # Blocked by https://github.com/bazelbuild/bazel/issues/18683
   bazel:
     - 7.x
 tasks:
