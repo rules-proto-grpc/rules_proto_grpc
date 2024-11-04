@@ -52,7 +52,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "pyi_proto_plugin",
+    name = "pyi_plugin",
     exclusions = [
         "google/protobuf",
     ],
