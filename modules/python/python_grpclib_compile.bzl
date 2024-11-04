@@ -18,6 +18,7 @@ python_grpclib_compile = rule(
             default = [
                 Label("//:proto_plugin"),
                 Label("//:grpclib_plugin"),
+                Label("//:pyi_proto_plugin"),
             ],
             cfg = "exec",
             doc = "List of protoc plugins to apply",
