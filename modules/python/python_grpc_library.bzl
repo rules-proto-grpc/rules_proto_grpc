@@ -5,7 +5,7 @@ load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_grpc_compile.bzl", "python_grpc_compile")
 
-def python_grpc_library(name, generate_pyi=False, **kwargs):
+def python_grpc_library(name, generate_pyi = False, **kwargs):
     """
     python_grpc_library generates Python code from proto and gRPC, and creates a py_library for them.
 

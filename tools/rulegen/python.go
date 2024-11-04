@@ -5,7 +5,7 @@ load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
-def {{ .Rule.Name }}(name, generate_pyi=False, **kwargs):
+def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
     """
     python_proto_library generates Python code from proto and creates a py_library for them.
 
@@ -50,7 +50,7 @@ load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
-def {{ .Rule.Name }}(name, generate_pyi=False, **kwargs):
+def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
     """
     python_grpc_library generates Python code from proto and gRPC, and creates a py_library for them.
 
@@ -101,7 +101,7 @@ load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 
-def {{ .Rule.Name }}(name, generate_pyi=False, **kwargs):
+def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
     # Compile protos
     name_pb = name + "_pb"
     python_grpclib_compile(

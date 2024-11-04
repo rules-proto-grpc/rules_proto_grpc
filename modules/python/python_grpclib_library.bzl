@@ -5,7 +5,7 @@ load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_grpclib_compile.bzl", "python_grpclib_compile")
 
-def python_grpclib_library(name, generate_pyi=False, **kwargs):
+def python_grpclib_library(name, generate_pyi = False, **kwargs):
     # Compile protos
     name_pb = name + "_pb"
     python_grpclib_compile(

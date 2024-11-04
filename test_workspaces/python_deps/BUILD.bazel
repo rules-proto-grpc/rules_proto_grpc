@@ -13,8 +13,8 @@ proto_library(
 
 python_grpc_library(
     name = "py_lib",
-    protos = ["proto_lib"],
     generate_pyi = True,
+    protos = ["proto_lib"],
 )
 
 py_test(

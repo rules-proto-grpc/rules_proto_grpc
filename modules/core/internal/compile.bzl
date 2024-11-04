@@ -96,9 +96,11 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     # Load attrs
     proto_infos = [dep[ProtoInfo] for dep in ctx.attr.protos]
     plugins = [
-        plugin[ProtoPluginInfo] for plugin in ctx.attr._plugins
+        plugin[ProtoPluginInfo]
+        for plugin in ctx.attr._plugins
     ] + [
-        plugin[ProtoPluginInfo] for plugin in ctx.attr.extra_plugins
+        plugin[ProtoPluginInfo]
+        for plugin in ctx.attr.extra_plugins
     ]
     verbose = ctx.attr.verbose
 
