@@ -37,7 +37,7 @@
     },
     {
       "description": "Group all protobuf updates into one update and ensure manual updates made",
-      "matchPackageNames": ["protobuf"],
+      "matchPackageNames": ["protobuf", "toolchains_protoc"],
       "groupName": "protobuf",
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Java Maven deps and Go deps)"
