@@ -50,3 +50,13 @@ proto_plugin(
     tool = "//:grpclib_plugin_bin",
     visibility = ["//visibility:public"],
 )
+
+proto_plugin(
+    name = "pyi_proto_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    outputs = ["{protopath|python}_pb2.pyi"],
+    protoc_plugin_name = "pyi",
+    visibility = ["//visibility:public"],
+)
