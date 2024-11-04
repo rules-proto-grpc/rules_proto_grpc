@@ -162,7 +162,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
     - debian10
     - ubuntu2004
     - macos
-    - windows
+    #- windows  # Blocked by https://github.com/bazelbuild/bazel/issues/18683
   bazel:
     - 7.x
 tasks:
