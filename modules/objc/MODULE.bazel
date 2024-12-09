@@ -6,6 +6,6 @@ module(
 
 bazel_dep(name = "apple_support", version = "1.17.1")
 bazel_dep(name = "grpc", version = "1.65.0")
-bazel_dep(name = "protobuf", version = "27.1")
+bazel_dep(name = "protobuf", version = "27.5")
 bazel_dep(name = "rules_cc", version = "0.0.13")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
