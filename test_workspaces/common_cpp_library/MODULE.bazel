@@ -1,6 +1,6 @@
 bazel_dep(name = "protobuf", version = "27.1")
 bazel_dep(name = "rules_cc", version = "0.0.13")
-bazel_dep(name = "rules_proto", version = "6.0.2")
+bazel_dep(name = "rules_proto", version = "7.1.0")
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0.rpg.version.placeholder")
 
 local_path_override(
