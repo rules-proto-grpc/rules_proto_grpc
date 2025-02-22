@@ -7,4 +7,4 @@ module(
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "rules_cc", version = "0.0.13")  # For fixer
 bazel_dep(name = "rules_proto", version = "6.0.2")
-bazel_dep(name = "toolchains_protoc", version = "0.3.1")
+bazel_dep(name = "toolchains_protoc", version = "0.3.7")

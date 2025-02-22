@@ -6,7 +6,7 @@ proto_plugin(
         "google/protobuf",
     ],
     outputs = ["{basename|pascal}.cs"],
-    protoc_plugin_name = "chsarp",
+    protoc_plugin_name = "csharp",
     visibility = ["//visibility:public"],
 )
 

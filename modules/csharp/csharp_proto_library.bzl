@@ -2,8 +2,11 @@
 
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("//:csharp_proto_compile.bzl", "csharp_proto_compile")
+load("//:common.bzl", "csharp_library_attrs")
 load("@rules_dotnet//dotnet:defs.bzl", "csharp_library")
 
+
+passthrough_attrs = bazel_build_rule_common_attrs + csharp_library_attrs
 
 def csharp_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Compile protos
@@ -26,7 +29,7 @@ def csharp_proto_library(name, **kwargs):  # buildifier: disable=function-docstr
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in bazel_build_rule_common_attrs
+            if k in passthrough_attrs
         }  # Forward Bazel common args
     )
 
