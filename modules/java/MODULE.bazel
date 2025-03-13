@@ -4,7 +4,7 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "rules_java", version = "8.3.2")
+bazel_dep(name = "rules_java", version = "8.11.0")
 bazel_dep(name = "rules_jvm_external", version = "6.5")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 
