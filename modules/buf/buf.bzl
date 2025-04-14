@@ -68,7 +68,6 @@ set -uo pipefail
             ".",
             short_paths = True,
             extra_options = options,
-            resolve_tools = False,
         )
         all_inputs += cmd_inputs
 
