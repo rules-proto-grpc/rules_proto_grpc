@@ -7,43 +7,60 @@
     ":semanticCommitsDisabled"
   ],
   "bazel-module": {
-    "fileMatch": ["(^|/)MODULE\\.bazel$", "(^|/)MODULE\\.bazel.template$"]
+    "managerFilePatterns": [
+      "/(^|/)MODULE\\.bazel$/",
+      "/(^|/)MODULE\\.bazel.template$/"
+    ]
   },
   "pip_requirements": {
-    "fileMatch": [
-      "(^|/)[\\w-]*requirements([-.]\\w+)?\\.(txt|pip|in)$"
+    "managerFilePatterns": [
+      "/(^|/)[\\w-]*requirements([-.]\\w+)?\\.(txt|pip|in)$/"
     ]
   },
   "packageRules": [
     {
       "description": "Do not update modules published in this repo",
       "matchCurrentValue": "0.0.0.rpg.version.placeholder",
-      "matchDatasources": ["bazel"],
+      "matchDatasources": [
+        "bazel"
+      ],
       "enabled": false
     },
     {
       "description": "Group all grpc updates into one update and ensure manual updates made",
-      "matchPackageNames": ["grpc", "grpcio"],
+      "matchPackageNames": [
+        "grpc",
+        "grpcio"
+      ],
       "groupName": "grpc",
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Java Maven deps and Go deps)"
     },
     {
       "description": "Ensure gRPC Gateway protoc plugins are updated in sync with Go deps",
-      "matchPackageNames": ["github.com/grpc-ecosystem/grpc-gateway/v2"],
-      "matchDatasources": ["go"],
+      "matchPackageNames": [
+        "github.com/grpc-ecosystem/grpc-gateway/v2"
+      ],
+      "matchDatasources": [
+        "go"
+      ],
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as the protoc plugins in modules/grpc-gateway/module_extensions.bzl need manual updating"
     },
     {
       "description": "Group all protobuf updates into one update and ensure manual updates made",
-      "matchPackageNames": ["protobuf", "toolchains_protoc"],
+      "matchPackageNames": [
+        "protobuf",
+        "toolchains_protoc"
+      ],
       "groupName": "protobuf",
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Java Maven deps and Go deps)"
     }
   ],
-  "postUpdateOptions": ["gomodTidy"],
+  "postUpdateOptions": [
+    "gomodTidy"
+  ],
   "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
   "prFooter": "View the [repository job log](https://developer.mend.io/{{platform}}/{{repository}})",
   "prHeader": "",
