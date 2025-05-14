@@ -30,7 +30,7 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
     # Create {{ .Lang.Name }} library
     objc_library(
         name = name,
-        srcs = [name_pb + "_srcs"],
+        non_arc_srcs = [name_pb + "_srcs"],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
@@ -59,7 +59,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     objc_library(
         name = name,
-        srcs = [name_pb],
+        non_arc_srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         includes = [name_pb],
         **{

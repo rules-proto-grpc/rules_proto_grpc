@@ -4,9 +4,9 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "grpc", version = "1.65.0")
+bazel_dep(name = "grpc", version = "1.71.0")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
-bazel_dep(name = "rules_python", version = "0.37.2")
+bazel_dep(name = "rules_python", version = "1.4.1")
 
 PYTHON_VERSIONS = [
     "3.8",
