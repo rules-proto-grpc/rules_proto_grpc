@@ -14,7 +14,7 @@ def build_protoc_args(
         extra_options = [],
         extra_protoc_args = [],
         short_paths = False,
-        resolve_tools = True):
+        resolve_tools = None):
     """
     Build the args for a protoc invocation.
 
@@ -38,17 +38,15 @@ def build_protoc_args(
 
     """
 
+    if resolve_tools != None:
+        print("WARNING: build_protoc_args: Ignored legacy resolve_tools argument set to {}".format(resolve_tools))
+
     # Specify path getter
     get_path = _short_path if short_paths else _path
 
     # Build inputs and manifests list
     inputs = []
     input_manifests = []
-
-    if plugin.tool and resolve_tools:
-        plugin_runfiles, plugin_input_manifests = ctx.resolve_tools(tools = [plugin.tool])
-        inputs += plugin_runfiles.to_list()
-        input_manifests += plugin_input_manifests
 
     inputs += plugin.data
 
