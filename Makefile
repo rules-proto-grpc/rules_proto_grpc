@@ -27,7 +27,7 @@ buildifier:
 # Run pip-compile to upgrade python dependencies
 .PHONY: pip_compile
 pip_compile:
-	cd modules/python && echo '' > requirements.txt && bazel run --enable_bzlmod //:requirements.update
+	cd modules/python && echo '' > requirements.txt && bazel run //:requirements.update
 
 
 # Pull in auto-generated examples makefile
