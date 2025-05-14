@@ -39,7 +39,7 @@ The C++ module can be installed by adding the following lines to your MODULE.baz
    protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
    protoc.toolchain(
        google_protobuf = "com_google_protobuf",
-       version = "v27.1",
+       version = "v30.2",
    )
 
 .. _cpp_proto_compile:
