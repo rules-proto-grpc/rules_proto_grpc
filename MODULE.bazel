@@ -41,7 +41,7 @@ local_path_override(
     path = "modules/c",
 )
 
-bazel_dep(name = "protobuf", version = "27.1")
+bazel_dep(name = "protobuf", version = "30.2")
 
 # C++
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0.rpg.version.placeholder")
@@ -58,7 +58,7 @@ bazel_dep(name = "toolchains_protoc", version = "0.4.1")
 protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
 protoc.toolchain(
     google_protobuf = "com_google_protobuf",
-    version = "v27.1",
+    version = "v30.2",
 )
 
 # Documentation

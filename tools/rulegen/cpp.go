@@ -160,7 +160,7 @@ var cppModuleSuffixLines = `bazel_dep(name = "toolchains_protoc", version = "0.4
 protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
 protoc.toolchain(
     google_protobuf = "com_google_protobuf",
-    version = "v27.1",
+    version = "v30.2",
 )`
 
 func makeCpp() *Language {
