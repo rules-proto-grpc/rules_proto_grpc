@@ -13,8 +13,7 @@ def build_protoc_args(
         out_arg,
         extra_options = [],
         extra_protoc_args = [],
-        short_paths = False,
-        resolve_tools = None):
+        short_paths = False):
     """
     Build the args for a protoc invocation.
 
@@ -29,7 +28,6 @@ def build_protoc_args(
         extra_protoc_args: An optional list of extra args to add to the command.
         short_paths: Whether to use the .short_path instead of .path when creating paths. The short_path is used when
             making a test/executable and referencing the runfiles.
-        resolve_tools: Whether to resolve and add the tools to returned inputs.
 
     Returns:
         - The list of args.
@@ -37,9 +35,6 @@ def build_protoc_args(
         - The input manifests required for the command.
 
     """
-
-    if resolve_tools != None:
-        print("WARNING: build_protoc_args: Ignored legacy resolve_tools argument set to {}".format(resolve_tools))
 
     # Specify path getter
     get_path = _short_path if short_paths else _path
