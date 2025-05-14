@@ -27,7 +27,7 @@ The C module can be installed by adding the following lines to your MODULE.bazel
 .. code-block:: python
 
    bazel_dep(name = "rules_proto_grpc_c", version = "<version number here>")
-   bazel_dep(name = "protobuf", version = "27.1")
+   bazel_dep(name = "protobuf", version = "30.2")
 
 .. _c_proto_compile:
 
