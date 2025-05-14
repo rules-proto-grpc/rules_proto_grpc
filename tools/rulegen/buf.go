@@ -6,6 +6,7 @@ load(
     "ProtoPluginInfo",
     "proto_compile_toolchains",
 )
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 load(
     ":buf.bzl",
     "TEST_ATTRS",
@@ -42,7 +43,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         **{k: v for k, v in kwargs.items() if k not in TEST_ATTRS}
     )
 
-    native.sh_test(
+    sh_test(
         name = name,
         srcs = [name + ".sh"],
         **{k: v for k, v in kwargs.items() if k in TEST_ATTRS}
