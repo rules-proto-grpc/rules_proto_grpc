@@ -22,12 +22,12 @@ maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     name = "rules_proto_grpc_java_maven",  # Deconflict
     artifacts = [
-        "com.google.protobuf:protobuf-java:4.27.2",
-        "com.google.protobuf:protobuf-java-util:4.27.2",
-        "io.grpc:grpc-api:1.65.0",
-        "io.grpc:grpc-netty:1.65.0",
-        "io.grpc:grpc-protobuf:1.65.0",
-        "io.grpc:grpc-stub:1.65.0",
+        "com.google.protobuf:protobuf-java:4.30.2",
+        "com.google.protobuf:protobuf-java-util:4.30.2",
+        "io.grpc:grpc-api:1.72.0",
+        "io.grpc:grpc-netty:1.72.0",
+        "io.grpc:grpc-protobuf:1.72.0",
+        "io.grpc:grpc-stub:1.72.0",
         "javax.annotation:javax.annotation-api:1.3.2",
     ],
     strict_visibility = True,
