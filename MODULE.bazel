@@ -1,9 +1,9 @@
 bazel_dep(name = "buildifier_prebuilt", version = "8.0.3")
 bazel_dep(name = "gazelle", version = "0.43.0")
+bazel_dep(name = "protobuf", version = "30.2")
 bazel_dep(name = "rules_cc", version = "0.1.1")
 bazel_dep(name = "rules_go", version = "0.54.0")
 bazel_dep(name = "rules_java", version = "8.11.0")
-bazel_dep(name = "rules_proto", version = "7.1.0")
 bazel_dep(name = "rules_shell", version = "0.4.1")
 
 # Rulegen deps
@@ -34,15 +34,6 @@ local_path_override(
     module_name = "rules_proto_grpc_buf",
     path = "modules/buf",
 )
-
-# C
-bazel_dep(name = "rules_proto_grpc_c", version = "0.0.0.rpg.version.placeholder")
-local_path_override(
-    module_name = "rules_proto_grpc_c",
-    path = "modules/c",
-)
-
-bazel_dep(name = "protobuf", version = "30.2")
 
 # C++
 bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0.rpg.version.placeholder")
