@@ -92,7 +92,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -174,7 +174,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -264,7 +264,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -392,7 +392,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false

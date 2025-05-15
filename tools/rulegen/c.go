@@ -66,14 +66,11 @@ var cProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lan
     ],
 )`)
 
-var cModuleSuffixLines = `bazel_dep(name = "protobuf", version = "30.2")`
-
 func makeC() *Language {
 	return &Language{
 		Name:  "c",
 		DisplayName: "C",
 		Notes: mustTemplate("Rules for generating C protobuf ``.c`` & ``.h`` files and libraries using `upb <https://github.com/protocolbuffers/protobuf/tree/main/upb>`_. Libraries are created with the Bazel native ``cc_library``"),
-		ModuleSuffixLines: cModuleSuffixLines,
 		Rules: []*Rule{
 			&Rule{
 				Name:             "c_proto_compile",

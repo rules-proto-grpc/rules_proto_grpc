@@ -1,6 +1,6 @@
 """Generated definition of buf_proto_breaking_test."""
 
-load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
@@ -20,7 +20,7 @@ buf_proto_breaking_test_script = rule(
             providers = [ProtoInfo],
             default = [],
             mandatory = True,
-            doc = "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
+            doc = "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)",
         ),
         against_input = attr.label(
             allow_single_file = [".bin", ".json"],

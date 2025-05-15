@@ -1,4 +1,4 @@
-load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@protobuf//bazel/common:proto_library.bzl", "proto_library")
 
 exports_files(["buf_image.json"])
 

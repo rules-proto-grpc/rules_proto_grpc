@@ -49,7 +49,7 @@ short, the basic idea is:
 
 .. code-block:: python
 
-   load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+   load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
    load(
        "@rules_proto_grpc//:defs.bzl",
        "ProtoPluginInfo",
