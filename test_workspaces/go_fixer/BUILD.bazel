@@ -1,4 +1,4 @@
-load("@protobuf//bazel/common:proto_library.bzl", "proto_library")
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
 load("@rules_go//go:def.bzl", "go_test")
 load("@rules_proto_grpc_go//:defs.bzl", "go_grpc_library")
 load("@rules_proto_grpc_grpc_gateway//:defs.bzl", "gateway_grpc_library")
