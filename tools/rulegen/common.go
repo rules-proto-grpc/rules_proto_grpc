@@ -8,7 +8,7 @@ var compileRuleAttrs = []*Attr{
     &Attr{
 		Name:      "protos",
 		Type:      "label_list",
-		Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
+		Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)",
 		Mandatory: true,
 		Providers: []string{"ProtoInfo"},
 	},

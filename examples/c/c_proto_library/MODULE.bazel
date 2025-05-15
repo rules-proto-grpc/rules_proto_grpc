@@ -16,5 +16,3 @@ local_path_override(
     module_name = "rules_proto_grpc_c",
     path = "../../../modules/c",
 )
-
-bazel_dep(name = "protobuf", version = "30.2")

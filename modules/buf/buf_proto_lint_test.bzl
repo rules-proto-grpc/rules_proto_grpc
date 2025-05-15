@@ -1,6 +1,6 @@
 """Generated definition of buf_proto_lint_test."""
 
-load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
@@ -19,7 +19,7 @@ buf_proto_lint_test_script = rule(
         protos = attr.label_list(
             providers = [ProtoInfo],
             mandatory = True,
-            doc = "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
+            doc = "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)",
         ),
         use_rules = attr.string_list(
             default = ["DEFAULT"],
