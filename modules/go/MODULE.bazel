@@ -11,23 +11,23 @@ bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
 go_deps.module(
     path = "google.golang.org/protobuf",
-    sum = "h1:6xV6lTsCfpGD21XK49h7MhtcApnLqkfYgPcdHftf6hg=",
-    version = "v1.34.2",
+    sum = "h1:mjIs9gYtt56AzC4ZaffQuh88TZurBGhIJMBZGSxNerQ=",
+    version = "v1.36.0",
 )
 go_deps.module(
     path = "google.golang.org/grpc",
-    sum = "h1:bs/cUb4lp1G5iImFFd3u5ixQzweKizoZJAwBNLR42lc=",
-    version = "v1.65.0",
+    sum = "h1:HR03wO6eyZ7lknl75XlxABNVLLFc2PAb6mHlYh756mA=",
+    version = "v1.72.1",
 )
 go_deps.module(
     path = "google.golang.org/grpc/cmd/protoc-gen-go-grpc",
-    sum = "h1:9SxA29VM43MF5Z9dQu694wmY5t8E/Gxr7s+RSxiIDmc=",
-    version = "v1.4.0",
+    sum = "h1:F29+wU6Ee6qgu9TddPgooOdaqsxTMunOoj8KA5yuS5A=",
+    version = "v1.5.1",
 )
 go_deps.module(
     path = "google.golang.org/genproto/googleapis/rpc",
-    sum = "h1:04+jVzTs2XBnOZcPsLnmrTGqltqJbZQ1Ey26hjYdQQ0=",
-    version = "v0.0.0-20240708141625-4ad9e859172b",
+    sum = "h1:IkAfh6J/yllPtpYFU0zZN1hUPYdT0ogkBT/9hMxHjvg=",
+    version = "v0.0.0-20250512202823-5a2f75b736a9",
 )
 use_repo(
     go_deps,
