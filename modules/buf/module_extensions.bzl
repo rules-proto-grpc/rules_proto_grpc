@@ -8,7 +8,7 @@ def _download_plugins(module_ctx):
     # Breaking plugin
     for platform, hash in [
         ("darwin-arm64", "55db6cb7bbc11674691f6bbdb1fd5722a9ad6d2d4b4d250264f021b222a165e6"),
-        ("darwin-x86_64", "0483d562c7ddaf99cab3136c12006ccd211b47d5a169a8c2457438afa6d03fc21a9c82c26ce9b7e12867ff325e8c0a44920870f94b2511bafc11930b5e0d5950"),
+        ("darwin-x86_64", "cab3136c12006ccd211b47d5a169a8c2457438afa6d03fc21a9c82c26ce9b7e1"),
         ("linux-arm64", "84a028f2544e66817ce31c695077c2b71c18204a4e5747d6edb0852b7889ba35"),
         ("linux-x86_64", "1629346e6b113b2ea50d5567e5b94f5b661024da965fc05623956b6ce7dd01b8"),
         ("windows-arm64", "22721a0036cdeee30fe7ab01e8e9a9b584ff61b5c354adc0afede9428f667060"),
