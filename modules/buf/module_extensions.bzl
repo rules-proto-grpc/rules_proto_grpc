@@ -19,7 +19,7 @@ def _download_plugins(module_ctx):
             executable = True,
             sha256 = hash,
             url = "https://github.com/bufbuild/buf/releases/download/v1.54.0/protoc-gen-buf-breaking-{}{}".format(
-                platform.title(),
+                ("linux-aarch64" if platform == "linux-arm64" else platform).title(),
                 ".exe" if "windows" in platform else "",
             ),
         )
@@ -38,7 +38,7 @@ def _download_plugins(module_ctx):
             executable = True,
             sha256 = hash,
             url = "https://github.com/bufbuild/buf/releases/download/v1.54.0/protoc-gen-buf-lint-{}{}".format(
-                platform.title(),
+                ("linux-aarch64" if platform == "linux-arm64" else platform).title(),
                 ".exe" if "windows" in platform else "",
             ),
         )
