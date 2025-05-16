@@ -20,7 +20,7 @@ proto_plugin(
         "google/api",
         "google/protobuf",
     ],
-    outputs = ["{protopath}.swagger.json"],
+    output_directory = True,  # https://github.com/rules-proto-grpc/rules_proto_grpc/issues/382
     quirks = [
         "QUIRK_DIRECT_MODE",
     ],
