@@ -11,6 +11,7 @@ import tempfile
 import shutil
 import sys
 import urllib.parse
+import urllib.request
 
 # Config
 BCR_REPO = 'bazelbuild/bazel-central-registry'
@@ -23,6 +24,13 @@ MAINTAINER_GH_USER = 'aaliddell'
 SOURCE_REPO = 'rules-proto-grpc/rules_proto_grpc'
 VERSION = input('Version number: ').strip()
 VERSION_PLACEHOLDER = '0.0.0.rpg.version.placeholder'
+
+
+# Find GitHub user ID
+print('Finding GitHub user ID')
+MAINTAINER_GH_USER_ID = int(json.loads(
+    urllib.request.urlopen(f'https://api.github.com/users/{MAINTAINER_GH_USER}').read()
+)['id'])
 
 
 # Sanity check
@@ -133,6 +141,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
                 'email': MAINTAINER_EMAIL,
                 'github': MAINTAINER_GH_USER,
                 'name': MAINTAINER_NAME,
+                'github_user_id': MAINTAINER_GH_USER_ID,
             }],
             'repository': [
                 f'github:{SOURCE_REPO}',
