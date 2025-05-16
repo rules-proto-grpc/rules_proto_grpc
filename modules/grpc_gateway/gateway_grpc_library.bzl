@@ -35,5 +35,4 @@ def gateway_grpc_library(name, **kwargs):
 GATEWAY_DEPS = [
     Label("@grpc_ecosystem_grpc_gateway//runtime"),
     Label("@grpc_ecosystem_grpc_gateway//utilities"),
-    # Label("@go_googleapis//google/api:annotations_go_proto"),  # https://github.com/bazelbuild/bazel-central-registry/issues/1113
 ]
