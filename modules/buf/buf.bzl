@@ -52,7 +52,7 @@ set -uo pipefail
     all_inputs = [ctx.file.against_input] if hasattr(ctx.file, "against_input") else []
     for plugin in plugins:
         # Get plugin
-        plugin_executables.append(plugin.tool_executable)
+        plugin_executables.append(plugin.tool_provider.files_to_run.executable)
 
         # Get proto paths
         proto_paths = []  # The paths passed to protoc
