@@ -165,6 +165,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
     #- windows  # Blocked by https://github.com/bazelbuild/bazel/issues/18683
   bazel:
     - 7.x
+    - 8.x
 tasks:
   verify_targets:
     name: Verify build targets
