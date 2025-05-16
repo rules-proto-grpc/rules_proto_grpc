@@ -159,8 +159,8 @@ with tempfile.TemporaryDirectory() as tmp_dir:
 
         (bcr_mod_version_dir / 'presubmit.yml').write_text(f"""matrix:
   platform:
-    - debian10
-    - ubuntu2004
+    - debian11
+    - ubuntu2204
     - macos
     #- windows  # Blocked by https://github.com/bazelbuild/bazel/issues/18683
   bazel:
