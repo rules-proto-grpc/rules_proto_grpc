@@ -61,7 +61,7 @@ set -uo pipefail
                 proto_paths.append(descriptor_proto_path(proto, proto_info))
 
         # Build command
-        args_list, cmd_inputs, _ = build_protoc_args(
+        args_list, cmd_inputs = build_protoc_args(
             ctx,
             plugin,
             proto_infos,

@@ -11,7 +11,7 @@ ProtoPluginInfo = provider(
         "out": "Output filename generated on a per-plugin basis; to be used in the value for --NAME-out=OUT",
         "output_directory": "Flag that indicates that the plugin should just output a directory. Used for plugins that have no direct mapping from source file name to output name. Cannot be used in conjunction with outputs or out",
         "tool": "The plugin binary. If absent, it is assumed the plugin is built-in to protoc itself and plugin_name will be used if available, otherwise the plugin name",
-        "tool_executable": "The plugin binary executable",
+        "tool_provider": "The plugin DefaultInfo, if available. Encapsulates the executable and its runfiles",
         "use_built_in_shell_environment": "Whether the tool should use the built in shell environment or not",
         "env": "Sets the dictionary of environment variables to use when invoking protoc. Must be None if use_built_in_shell_environment is true.",
         "protoc_plugin_name": "The name used for the plugin binary on the protoc command line. Useful for targeting built-in plugins. Uses plugin name when not set",

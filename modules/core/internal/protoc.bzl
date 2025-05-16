@@ -32,17 +32,14 @@ def build_protoc_args(
     Returns:
         - The list of args.
         - The inputs required for the command.
-        - The input manifests required for the command.
 
     """
 
     # Specify path getter
     get_path = _short_path if short_paths else _path
 
-    # Build inputs and manifests list
+    # Build inputs list
     inputs = []
-    input_manifests = []
-
     inputs += plugin.data
 
     # Get plugin name
@@ -68,14 +65,14 @@ def build_protoc_args(
     )))
 
     # Add --plugin if not a built-in plugin
-    if plugin.tool_executable:
+    if plugin.tool_provider:
         # If Windows, mangle the path. It's done a bit awkwardly with
         # `host_path_seprator` as there is no simple way to figure out what's
         # the current OS.
         if ctx.configuration.host_path_separator == ";":
-            plugin_tool_path = get_path(plugin.tool_executable).replace("/", "\\")
+            plugin_tool_path = get_path(plugin.tool_provider.files_to_run.executable).replace("/", "\\")
         else:
-            plugin_tool_path = get_path(plugin.tool_executable)
+            plugin_tool_path = get_path(plugin.tool_provider.files_to_run.executable)
 
         args_list.append("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
 
@@ -98,4 +95,4 @@ def build_protoc_args(
     if plugin.extra_protoc_args:
         args_list.extend(plugin.extra_protoc_args)
 
-    return args_list, inputs, input_manifests
+    return args_list, inputs

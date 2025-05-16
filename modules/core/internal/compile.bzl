@@ -312,7 +312,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             plugin_protoc_outputs = plugin_outputs
 
         # Build argument list for protoc execution
-        args_list, cmd_inputs, cmd_input_manifests = build_protoc_args(
+        args_list, cmd_inputs = build_protoc_args(
             ctx,
             plugin,
             proto_infos,
@@ -347,7 +347,10 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         mnemonic = "ProtoCompile"
         command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + ' "$@"'
         cmd_inputs += extra_protoc_files
-        tools = [protoc] + ([plugin.tool_executable] if plugin.tool_executable else [])
+
+        # Get tool executable via tool provider, rather than via ctx.executable
+        # See https://github.com/bazelbuild/bazel/issues/22249
+        tools = [protoc] + ([plugin.tool_provider.files_to_run] if plugin.tool_provider else [])
 
         # Amend command with debug options
         if verbose > 0:
@@ -363,8 +366,6 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             command = "env && " + command
             for f in cmd_inputs:
                 print("INPUT:", f.path)  # buildifier: disable=print
-            for f in cmd_input_manifests:
-                print("INPUT MANIFESTS:", f.path)  # buildifier: disable=print
             for f in protos:
                 print("TARGET PROTO:", f.path)  # buildifier: disable=print
             for f in tools:
@@ -396,7 +397,6 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             outputs = plugin_protoc_outputs,
             env = plugin_env,
             use_default_shell_env = plugin.use_built_in_shell_environment,
-            input_manifests = cmd_input_manifests,
             progress_message = "Compiling protoc outputs for {} plugin on target {}".format(
                 plugin.name,
                 ctx.label,
