@@ -25,7 +25,7 @@
 
 [Version 5.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.1.0),
 which updates underlying dependency versions and fixes a few key bugs. Note that C language support
-has also been dropped, as the uPB API used was considered unstable and the plugin is no longer
+has also been dropped, as the μpb API used was considered unstable and the plugin is no longer
 available outside of the `protobuf` workspace.
 
 #### 2024/07/31 - Version 5.0.0

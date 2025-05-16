@@ -6,6 +6,50 @@
 Changelog
 =========
 
+5.1.0
+-----
+
+Changes
+*******
+
+- Added support for Bazel 8 and dropped Bazel 6 support
+- Replaced deprecated ``rules_proto`` with ``protobuf``
+- Added support for providing extra plugins to rules at runtime using the ``extra_plugins`` attribute
+- Fixed version skew between grpc-gateway protoc plugin and runtime
+- Added optional generation of ``.pyi`` files for Python
+- Switched Objective-C sources to use ``non_arc_srcs``
+- Dropped C language support, as the μpb API is considered unstable and the C plugin is no longer
+  publicly visible from the ``protobuf`` workspace
+- Removed usage of ``ctx.resolve_tools`` that is deprecated
+- Added Python 3.13 to supported list
+- Replaced custom grpclib plugin with ``py_console_script_binary``
+
+
+Version Updates
+***************
+
+- Updated Bazel ``apple_support`` to 1.22.0
+- Updated Bazel ``buildifier_prebuilt`` to 8.0.3
+- Updated Bazel ``gazelle`` to 0.43.0
+- Updated Bazel ``grpc`` to 1.72.0
+- Updated Bazel ``protobuf`` to 30.2
+- Updated Bazel ``rules_cc`` to 0.1.1
+- Updated Bazel ``rules_go`` to 0.54.0
+- Updated Bazel ``rules_java`` to 8.11.0
+- Updated Bazel ``rules_python`` to 1.4.1
+- Updated Bazel ``rules_shell`` to 0.4.1
+- Updated Bazel ``toolchains_protoc`` to 0.4.1
+- Updated Buf to 1.54.0
+- Updated Go ``google.golang.org/protobuf`` to v1.36.0
+- Updated Go ``google.golang.org/grpc`` to v1.72.1
+- Updated ``grpc-gateway`` to 2.26.3
+- Updated Java ``com.google.protobuf:protobuf-java`` to 4.30.2
+- Updated Java ``io.grpc:grpc-api`` to 1.72.0
+- Updated Python ``grpcio`` to 1.71.0
+- Updated Python ``grpclib`` to 0.4.8
+- Updated Python ``protobuf`` to 6.30.2
+
+
 5.0.1
 -----
 
