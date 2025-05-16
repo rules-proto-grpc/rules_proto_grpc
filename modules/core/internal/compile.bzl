@@ -363,6 +363,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             command = "env && " + command
             for f in cmd_inputs:
                 print("INPUT:", f.path)  # buildifier: disable=print
+            for f in cmd_input_manifests:
+                print("INPUT MANIFESTS:", f.path)  # buildifier: disable=print
             for f in protos:
                 print("TARGET PROTO:", f.path)  # buildifier: disable=print
             for f in tools:
