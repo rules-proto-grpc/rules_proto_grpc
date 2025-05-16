@@ -21,6 +21,13 @@
 
 ## Announcements 📣
 
+#### 2025/05/16 - Version 5.1.0
+
+[Version 5.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.1.0),
+which updates underlying dependency versions and fixes a few key bugs. Note that C language support
+has also been dropped, as the uPB API used was considered unstable and the plugin is no longer
+available outside of the `protobuf` workspace.
+
 #### 2024/07/31 - Version 5.0.0
 
 [Version 5.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.0.0),
@@ -39,20 +46,6 @@ rules will have changed due to the splitting into language-specific modules. Ple
 [the docs](https://rules-proto-grpc.com/en/latest/) for details of how to migrate your usage to
 these new rules, in particular the
 [release notes](https://rules-proto-grpc.com/en/latest/changelog.html).
-
-#### 2023/12/14 - Version 4.6.0
-
-[Version 4.6.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.6.0),
-which contains a few bug fixes for Bazel 7 support. **Note that this is likely to be the last
-WORKSPACE supporting release of rules_proto_grpc**, as new Bzlmod supporting rules are introduced
-in the next major version
-
-#### 2023/09/12 - Version 4.5.0
-
-[Version 4.5.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.5.0),
-which contains a number of version updates, bug fixes and usability improvements over 4.4.0.
-Additionally, the Rust rules contain a major change of underlying gRPC and Protobuf library; the
-rules now use Tonic and Prost respectively
 
 
 ## Usage
