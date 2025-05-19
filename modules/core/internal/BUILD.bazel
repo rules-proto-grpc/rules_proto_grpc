@@ -12,6 +12,7 @@ bzl_library(
     ],
     visibility = ["//:__subpackages__"],
     deps = [
-        "@protobuf//bazel/common:proto_info.bzl",
+        "@protobuf//bazel:proto_library_bzl",
+        "@protobuf//bazel/common:proto_info_bzl",
     ],
 )
