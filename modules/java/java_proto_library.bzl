@@ -31,5 +31,5 @@ def java_proto_library(name, **kwargs):
     )
 
 PROTO_DEPS = [
-    Label("@rules_proto_grpc_java_maven//:com_google_protobuf_protobuf_java"),
+    Label("@protobuf//java/core"),
 ]
