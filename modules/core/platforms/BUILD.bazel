@@ -1,0 +1,63 @@
+# This is required because the @platforms repo does not contain the product of os and cpu and we
+# need to select protoc plugins based on these two together. See Buf or doc module BUILD files for
+# example
+#
+# See https://github.com/bazelbuild/platforms/issues/36
+# and https://github.com/bazelbuild/bazel/issues/8622
+# and https://cs.opensource.google/bazel/bazel/+/master:src/conditions/BUILD
+
+load("@bazel_skylib//lib:selects.bzl", "selects")
+
+selects.config_setting_group(
+    name = "darwin_arm64",
+    match_all = [
+        "@platforms//os:macos",
+        "@platforms//cpu:arm64",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
+    name = "darwin_x86_64",
+    match_all = [
+        "@platforms//os:macos",
+        "@platforms//cpu:x86_64",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
+    name = "linux_aarch64",
+    match_all = [
+        "@platforms//os:linux",
+        "@platforms//cpu:aarch64",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
+    name = "linux_x86_64",
+    match_all = [
+        "@platforms//os:linux",
+        "@platforms//cpu:x86_64",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
+    name = "windows_arm64",
+    match_all = [
+        "@platforms//os:windows",
+        "@platforms//cpu:arm64",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+selects.config_setting_group(
+    name = "windows_x86_64",
+    match_all = [
+        "@platforms//os:windows",
+        "@platforms//cpu:x86_64",
+    ],
+    visibility = ["//visibility:public"],
+)
