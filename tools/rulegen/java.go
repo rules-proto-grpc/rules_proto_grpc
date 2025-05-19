@@ -24,7 +24,7 @@ var javaProtoLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + 
     )
 
 PROTO_DEPS = [
-    Label("@protobuf//java/core"),
+    Label("@rules_proto_grpc_java_maven//:com_google_protobuf_protobuf_java"),
 ]`)
 
 var javaGrpcLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
@@ -34,18 +34,20 @@ var javaGrpcLibraryRuleTemplate = mustTemplate(javaLibraryRuleTemplateString + `
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         runtime_deps = [
-            Label("@grpc-java//netty"),
+            Label("@rules_proto_grpc_java_maven//:io_grpc_grpc_netty"),
         ],
         exports = GRPC_DEPS + kwargs.get("exports", []),
         {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [
-    Label("@protobuf//java/core"),
-    Label("@protobuf//java/util"),
-    Label("@grpc-java//api"),
-    Label("@grpc-java//protobuf"),
-    Label("@grpc-java//stub"),
+    Label("@rules_proto_grpc_java_maven//:com_google_guava_guava"),
+    Label("@rules_proto_grpc_java_maven//:com_google_protobuf_protobuf_java"),
+    Label("@rules_proto_grpc_java_maven//:com_google_protobuf_protobuf_java_util"),
+    Label("@rules_proto_grpc_java_maven//:io_grpc_grpc_api"),
+    Label("@rules_proto_grpc_java_maven//:io_grpc_grpc_protobuf"),
+    Label("@rules_proto_grpc_java_maven//:io_grpc_grpc_stub"),
+    Label("@rules_proto_grpc_java_maven//:javax_annotation_javax_annotation_api"),
 ]`)
 
 var javaLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
