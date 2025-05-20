@@ -15,7 +15,7 @@ import (
 
 var ciPlatforms = []string{
 	"ubuntu2204",
-	"ubuntu2004_arm64",
+	// "ubuntu2004_arm64",  // Absl fails to build due to processor selection
 	"windows",
 	"windows_arm64",
 	"macos",
