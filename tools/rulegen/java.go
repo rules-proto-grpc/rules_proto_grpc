@@ -85,7 +85,6 @@ func makeJava() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates a Java protobuf and gRPC srcjar file",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"none"},  // grpc plugin not needed here
 			},
 			&Rule{
 				Name:             "java_proto_library",
@@ -94,6 +93,7 @@ func makeJava() *Language {
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Java protobuf library using ``java_library``",
 				Attrs:            javaLibraryRuleAttrs,
+				SkipTestPlatforms: []string{"none"},  // grpc plugin not needed here
 			},
 			&Rule{
 				Name:             "java_grpc_library",
