@@ -24,7 +24,8 @@ proto_plugin(
 java_binary(
     name = "scala_pb_plugin_bin",
     main_class = "scalapb.ScalaPbCodeGenerator",
-    runtime_deps = select({  # Can't use select_for_scala_version as it doesn't use Label()
+    runtime_deps = select({
+        # Can't use select_for_scala_version as it doesn't use Label()
         "@rules_scala_config//:scala_version_{}".format(scala_version.replace(".", "_")): [
             "@rules_proto_grpc_scala_maven_{0}//:com_thesamet_scalapb_compilerplugin_{0}".format(
                 "3" if scala_version.startswith("3") else scala_version.replace(".", "_").rpartition("_")[0],
