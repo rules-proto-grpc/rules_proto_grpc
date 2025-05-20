@@ -2,6 +2,7 @@
 
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_scala//scala:scala.bzl", "scala_library")
+load("@rules_scala_config//:config.bzl", "SCALA_VERSIONS")
 load("//:scala_proto_compile.bzl", "scala_proto_compile")
 
 def scala_proto_library(name, **kwargs):  # buildifier: disable=function-docstring
@@ -31,11 +32,16 @@ def scala_proto_library(name, **kwargs):  # buildifier: disable=function-docstri
     )
 
 PROTO_DEPS = [
-    Label("@rules_proto_grpc_scala_maven//:com_google_protobuf_protobuf_java"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_2_12"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_2_12"),
-    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_2_13"),
-    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_2_13"),
-    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_3"),
-    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_3"),
-]
+    Label("@rules_proto_grpc_scala_maven_common//:com_google_protobuf_protobuf_java"),
+] + select({
+    Label("@rules_scala_config//:scala_version_{}".format(scala_version.replace(".", "_"))): [
+        Label("@rules_proto_grpc_scala_maven_{0}//:{1}_{0}".format(
+            scala_version.replace(".", "_").rpartition("_")[0],
+            package,
+        )) for package in [
+            "com_thesamet_scalapb_lenses",
+            "com_thesamet_scalapb_scalapb_runtime",
+        ]
+    ]
+    for scala_version in SCALA_VERSIONS
+})

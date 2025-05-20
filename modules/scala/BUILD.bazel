@@ -1,5 +1,6 @@
 load("@rules_java//java:defs.bzl", "java_binary")
 load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+load("@rules_scala_config//:config.bzl", "SCALA_VERSIONS")
 
 proto_plugin(
     name = "proto_plugin",
@@ -23,7 +24,12 @@ proto_plugin(
 java_binary(
     name = "scala_pb_plugin_bin",
     main_class = "scalapb.ScalaPbCodeGenerator",
-    runtime_deps = [
-        "@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_compilerplugin_2_12",
-    ],
+    runtime_deps = select({
+        "@rules_scala_config//:scala_version_{}".format(scala_version.replace(".", "_")): [
+            "@rules_proto_grpc_scala_maven_{0}//:com_thesamet_scalapb_compilerplugin_{0}".format(
+                scala_version.replace(".", "_").rpartition("_")[0],
+            ),
+        ]
+        for scala_version in SCALA_VERSIONS
+    }),
 )
