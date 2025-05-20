@@ -37,10 +37,10 @@ GRPC_DEPS = [
     Label("@rules_proto_grpc_scala_maven_common//:io_grpc_grpc_protobuf"),
     Label("@rules_proto_grpc_scala_maven_common//:io_grpc_grpc_stub"),
     Label("@rules_proto_grpc_scala_maven_common//:com_google_protobuf_protobuf_java"),
-] + select({
+] + select({  # Can't use select_for_scala_version as it doesn't use Label()
     Label("@rules_scala_config//:scala_version_{}".format(scala_version.replace(".", "_"))): [
         Label("@rules_proto_grpc_scala_maven_{0}//:{1}_{0}".format(
-            scala_version.replace(".", "_").rpartition("_")[0],
+            "3" if scala_version.startswith("3") else scala_version.replace(".", "_").rpartition("_")[0],
             package,
         ))
         for package in [
