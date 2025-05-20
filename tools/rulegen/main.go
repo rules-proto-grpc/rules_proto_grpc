@@ -15,12 +15,13 @@ import (
 
 var ciPlatforms = []string{
 	"ubuntu2204",
+	"ubuntu2004_arm64",
 	// "windows",  # TODO: Blocked by https://github.com/bazelbuild/bazel/issues/18683
 	"macos",
 	"macos_arm64",
 }
 var ciPlatformsMap = map[string][]string{
-	"linux":   []string{"ubuntu2204"},
+	"linux":   []string{"ubuntu2204", "ubuntu2004_arm64"},
 	"windows": []string{"windows"},
 	"macos":   []string{"macos", "macos_arm64"},
 }
