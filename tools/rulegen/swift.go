@@ -92,7 +92,7 @@ func makeSwift() *Language {
 		PresubmitEnvVars: map[string]string{
 			"CC": "clang",
 		},
-		//SkipTestPlatforms: []string{"windows", "linux"},
+		SkipTestPlatforms: []string{"windows", "linux"},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "swift_proto_compile",

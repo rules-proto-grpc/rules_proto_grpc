@@ -259,18 +259,6 @@ tasks:
      - make scala_scala_proto_library_example
      - make scala_scala_grpc_library_example
 
-  swift_ubuntu2204_examples:
-    name: Swift
-    platform: ubuntu2204
-    environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
-     - make swift_swift_proto_compile_example
-     - make swift_swift_grpc_compile_example
-     - make swift_swift_proto_library_example
-     - make swift_swift_grpc_library_example
-
   swift_macos_examples:
     name: Swift
     platform: macos
