@@ -40,3 +40,8 @@ examples/python/python_grpclib_compile
 examples/python/python_proto_library
 examples/python/python_grpc_library
 examples/python/python_grpclib_library
+
+examples/scala/scala_proto_compile
+examples/scala/scala_grpc_compile
+examples/scala/scala_proto_library
+examples/scala/scala_grpc_library

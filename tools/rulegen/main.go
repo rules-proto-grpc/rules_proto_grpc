@@ -96,6 +96,7 @@ func action(c *cli.Context) error {
 		makeJava(),
 		makeObjc(),
 		makePython(),
+		makeScala(),
 	}
 
 	for _, lang := range languages {

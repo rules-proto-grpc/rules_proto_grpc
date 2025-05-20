@@ -17,6 +17,9 @@ tasks:
     - "//examples/routeguide:python_cpp"
     - "//examples/routeguide:python_go"
     - "//examples/routeguide:python_python"
+    - "//examples/routeguide:scala_cpp"
+    - "//examples/routeguide:scala_go"
+    - "//examples/routeguide:scala_python"
 
   main_macos:
     name: Build & Test All
@@ -35,6 +38,9 @@ tasks:
     - "//examples/routeguide:python_cpp"
     - "//examples/routeguide:python_go"
     - "//examples/routeguide:python_python"
+    - "//examples/routeguide:scala_cpp"
+    - "//examples/routeguide:scala_go"
+    - "//examples/routeguide:scala_python"
 
   buf_ubuntu2204_examples:
     name: Buf
@@ -212,6 +218,30 @@ tasks:
      - make python_python_grpc_compile_example
      - make python_python_proto_library_example
      - make python_python_grpc_library_example
+
+  scala_ubuntu2204_examples:
+    name: Scala
+    platform: ubuntu2204
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+     - set -x
+     - make scala_scala_proto_compile_example
+     - make scala_scala_grpc_compile_example
+     - make scala_scala_proto_library_example
+     - make scala_scala_grpc_library_example
+
+  scala_macos_examples:
+    name: Scala
+    platform: macos
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+     - set -x
+     - make scala_scala_proto_compile_example
+     - make scala_scala_grpc_compile_example
+     - make scala_scala_proto_library_example
+     - make scala_scala_grpc_library_example
 
   ubuntu2204_test_workspaces:
     name: Test Workspaces

@@ -1,0 +1,22 @@
+load("@rules_proto_grpc_scala//:defs.bzl", "scala_grpc_library")
+load("@rules_scala//scala:scala.bzl", "scala_binary")
+
+scala_grpc_library(
+    name = "routeguide",
+    protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
+)
+
+scala_binary(
+    name = "client",
+    srcs = [
+        "example/AtomicRef.scala",
+        "example/RouteGuideClient.scala",
+        "example/RouteGuidePersistence.scala",
+        "example/RouteGuideService.scala",
+    ],
+    main_class = "example.RouteGuideClient",
+    visibility = ["//examples/routeguide:__pkg__"],
+    deps = [
+        ":routeguide",
+    ],
+)

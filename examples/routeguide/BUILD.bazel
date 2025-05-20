@@ -16,12 +16,14 @@ routeguide_test_matrix(
         "//examples/go/routeguide/client:client",
         "//examples/java/routeguide:client",
         "//examples/python/routeguide:client",
+        "//examples/scala/routeguide:client",
     ],
     servers = [
         "//examples/cpp/routeguide:server",
         "//examples/go/routeguide/server:server",
         "//examples/java/routeguide:server",
         "//examples/python/routeguide:server",
+        # "//examples/scala/routeguide:server",  # Doesn't exist yet
     ],
     skip = [
         #"csharp_rust",  # Broken
