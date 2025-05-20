@@ -107,3 +107,10 @@ local_path_override(
     module_name = "rules_proto_grpc_scala",
     path = "modules/scala",
 )
+
+# Swift
+bazel_dep(name = "rules_proto_grpc_swift", version = "0.0.0.rpg.version.placeholder")
+local_path_override(
+    module_name = "rules_proto_grpc_swift",
+    path = "modules/swift",
+)

@@ -97,6 +97,7 @@ func action(c *cli.Context) error {
 		makeObjc(),
 		makePython(),
 		makeScala(),
+		makeSwift(),
 	}
 
 	for _, lang := range languages {
