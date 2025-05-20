@@ -31,7 +31,8 @@ PROTO_DEPS = [
         Label("@rules_proto_grpc_scala_maven_{0}//:{1}_{0}".format(
             scala_version.replace(".", "_").rpartition("_")[0],
             package,
-        )) for package in [
+        ))
+        for package in [
             "com_thesamet_scalapb_lenses",
             "com_thesamet_scalapb_scalapb_runtime",
         ]
@@ -60,7 +61,8 @@ GRPC_DEPS = [
         Label("@rules_proto_grpc_scala_maven_{0}//:{1}_{0}".format(
             scala_version.replace(".", "_").rpartition("_")[0],
             package,
-        )) for package in [
+        ))
+        for package in [
             "com_thesamet_scalapb_lenses",
             "com_thesamet_scalapb_scalapb_runtime",
             "com_thesamet_scalapb_scalapb_runtime_grpc",
