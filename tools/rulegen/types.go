@@ -67,9 +67,6 @@ type Rule struct {
 	// Not expected to be functional
 	Experimental bool
 
-	// Additional CI-specific env vars in the form "K=V"
-	PresubmitEnvVars map[string]string
-
 	// Platforms for which to skip testing this rule, overrides language level
 	// The special value 'all' will skip app platforms
 	SkipTestPlatforms []string

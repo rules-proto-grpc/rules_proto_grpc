@@ -824,6 +824,7 @@ tasks:
     platform: macos
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      CC: clang
     shell_commands:
      - set -x
      - make swift_swift_proto_compile_example
@@ -836,6 +837,7 @@ tasks:
     platform: macos_arm64
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      CC: clang
     shell_commands:
      - set -x
      - make swift_swift_proto_compile_example

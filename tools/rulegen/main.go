@@ -546,6 +546,10 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
 				}
 			}
+			for k, v := range lang.PresubmitEnvVars {
+				out.w("      %s: %s", k, v)
+			}
+
 			if strings.HasPrefix(ciPlatform, "windows") {
 				out.w("    batch_commands:")
 			} else {
