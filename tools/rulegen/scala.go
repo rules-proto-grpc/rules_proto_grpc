@@ -27,10 +27,10 @@ PROTO_DEPS = [
     Label("@rules_proto_grpc_scala_maven//:com_google_protobuf_protobuf_java"),
     Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_2_12"),
     Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_2_12"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_2_13"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_2_13"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_3"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_3"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_2_13"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_2_13"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_3"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_3"),
 ]`)
 
 var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString + `
@@ -52,12 +52,12 @@ GRPC_DEPS = [
     Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_2_12"),
     Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_2_12"),
     Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_grpc_2_12"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_2_13"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_2_13"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_grpc_2_13"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_3"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_3"),
-    Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_grpc_3"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_2_13"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_2_13"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_grpc_2_13"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_lenses_3"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_3"),
+    #Label("@rules_proto_grpc_scala_maven//:com_thesamet_scalapb_scalapb_runtime_grpc_3"),
 ]`)
 
 func makeScala() *Language {
