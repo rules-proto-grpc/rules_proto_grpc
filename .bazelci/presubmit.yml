@@ -37,6 +37,7 @@ tasks:
     - "--enable_runfiles"
     - "--cxxopt=/std:c++17"
     - "--host_cxxopt=/std:c++17"
+    - "--define=protobuf_allow_msvc=true"
     test_targets:
     - "//examples/routeguide:cpp_cpp"
     - "//examples/routeguide:cpp_go"
@@ -66,6 +67,7 @@ tasks:
     - "--test_output=errors"
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
+    - "--define=protobuf_allow_msvc=true"
     test_targets:
     - "//examples/routeguide:cpp_cpp"
     - "//examples/routeguide:cpp_go"
@@ -152,7 +154,7 @@ tasks:
     name: Buf
     platform: windows
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
      - echo buf_proto_breaking_test
      - cd examples/buf/buf_proto_breaking_test
@@ -167,9 +169,8 @@ tasks:
     name: Buf
     platform: windows_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
+    batch_commands:
      - make buf_buf_proto_breaking_test_example
      - make buf_buf_proto_lint_test_example
 
@@ -209,7 +210,7 @@ tasks:
     name: C++
     platform: windows
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
      - echo cpp_proto_compile
      - cd examples/cpp/cpp_proto_compile
@@ -232,9 +233,8 @@ tasks:
     name: C++
     platform: windows_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
+    batch_commands:
      - make cpp_cpp_proto_compile_example
      - make cpp_cpp_grpc_compile_example
      - make cpp_cpp_proto_library_example
@@ -281,7 +281,7 @@ tasks:
     name: Documentation
     platform: windows
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
      - echo doc_docbook_compile
      - cd examples/doc/doc_docbook_compile
@@ -308,9 +308,8 @@ tasks:
     name: Documentation
     platform: windows_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
+    batch_commands:
      - make doc_doc_docbook_compile_example
      - make doc_doc_html_compile_example
      - make doc_doc_json_compile_example
@@ -359,7 +358,7 @@ tasks:
     name: Go
     platform: windows
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
      - echo go_proto_compile
      - cd examples/go/go_proto_compile
@@ -382,9 +381,8 @@ tasks:
     name: Go
     platform: windows_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
+    batch_commands:
      - make go_go_proto_compile_example
      - make go_go_grpc_compile_example
      - make go_go_proto_library_example
@@ -429,7 +427,7 @@ tasks:
     name: gRPC-Gateway
     platform: windows
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
      - echo gateway_grpc_compile
      - cd examples/grpc_gateway/gateway_grpc_compile
@@ -440,9 +438,8 @@ tasks:
     name: gRPC-Gateway
     platform: windows_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
+    batch_commands:
      - make grpc_gateway_gateway_grpc_compile_example
 
   grpc_gateway_macos_examples:
@@ -483,7 +480,7 @@ tasks:
     name: Java
     platform: windows
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
      - echo java_proto_compile
      - cd examples/java/java_proto_compile
@@ -506,9 +503,8 @@ tasks:
     name: Java
     platform: windows_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
+    batch_commands:
      - make java_java_proto_compile_example
      - make java_java_grpc_compile_example
      - make java_java_proto_library_example
@@ -576,7 +572,7 @@ tasks:
     name: Python
     platform: windows
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
      - echo python_proto_compile
      - cd examples/python/python_proto_compile
@@ -595,9 +591,8 @@ tasks:
     name: Python
     platform: windows_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
+    batch_commands:
      - make python_python_proto_compile_example
      - make python_python_grpc_compile_example
      - make python_python_proto_library_example
