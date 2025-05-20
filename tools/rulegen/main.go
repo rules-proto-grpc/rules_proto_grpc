@@ -489,7 +489,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		// out.w(`      CC: clang`)
 		out.w("    test_flags:")
 		out.w(`    - "--test_output=errors"`)
-		if ciPlatform == "windows" {
+		if strings.HasPrefix(ciPlatform, "windows") {
 			out.w(`    - "--enable_runfiles"`)  // Needed for sh_test to work correctly
 			out.w(`    - "--cxxopt=/std:c++17"`)
 			out.w(`    - "--host_cxxopt=/std:c++17"`)
@@ -558,19 +558,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 					continue
 				}
 
-				if ciPlatform == "windows" {
-					// Windows has no make, so execute commands manually
-					out.w("     - echo %s", rule.Name)
-					out.w("     - cd %s", path.Join(dir, "examples", lang.Name, rule.Name))
-					if rule.IsTest {
-						out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1")
-					} else {
-						out.w("     - bazel --batch build %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1")
-					}
-					out.w("     - cd ../../..")
-				} else {
-					out.w("     - make %s_%s_example", lang.Name, rule.Name)
-				}
+				out.w("     - make %s_%s_example", lang.Name, rule.Name) 
 			}
 
 			out.ln()
@@ -585,12 +573,20 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("    name: Test Workspaces")
 		out.w("    platform: %s", ciPlatform)
 		out.w("    environment:")
-		if ciPlatform == "windows" {
-			out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"`)
+		if strings.HasPrefix(ciPlatform, "windows") {
+			if len(extraPlatformFlags[ciPlatform]) > 0 {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+			} else {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17`)
+			}
 		} else {
-			out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+			if len(extraPlatformFlags[ciPlatform]) > 0 {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+			} else {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+			}
 		}
-		if ciPlatform == "windows" {
+		if strings.HasPrefix(ciPlatform, "windows") {
 			out.w("    batch_commands:")
 		} else {
 			out.w("    shell_commands:")
@@ -598,15 +594,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		}
 
 		for _, testWorkspace := range findTestWorkspaceNames(dir) {
-			if ciPlatform == "windows" {
-				// Windows has no make, so execute commands manually
-				out.w("     - echo %s", testWorkspace)
-				out.w("     - cd %s", path.Join(dir, "test_workspaces", testWorkspace))
-				out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1")
-				out.w("     - cd ../..")
-			} else {
-				out.w("     - make test_workspace_%s", testWorkspace)
-			}
+			out.w("     - make test_workspace_%s", testWorkspace)
 		}
 
 		out.ln()

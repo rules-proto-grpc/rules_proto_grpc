@@ -65,8 +65,9 @@ tasks:
     platform: windows_arm64
     test_flags:
     - "--test_output=errors"
-    - "--cxxopt=-std=c++17"
-    - "--host_cxxopt=-std=c++17"
+    - "--enable_runfiles"
+    - "--cxxopt=/std:c++17"
+    - "--host_cxxopt=/std:c++17"
     - "--define=protobuf_allow_msvc=true"
     test_targets:
     - "//examples/routeguide:cpp_cpp"
@@ -156,14 +157,8 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
-     - echo buf_proto_breaking_test
-     - cd examples/buf/buf_proto_breaking_test
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo buf_proto_lint_test
-     - cd examples/buf/buf_proto_lint_test
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
+     - make buf_buf_proto_breaking_test_example
+     - make buf_buf_proto_lint_test_example
 
   buf_windows_arm64_examples:
     name: Buf
@@ -212,22 +207,10 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
-     - echo cpp_proto_compile
-     - cd examples/cpp/cpp_proto_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo cpp_grpc_compile
-     - cd examples/cpp/cpp_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo cpp_proto_library
-     - cd examples/cpp/cpp_proto_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo cpp_grpc_library
-     - cd examples/cpp/cpp_grpc_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
+     - make cpp_cpp_proto_compile_example
+     - make cpp_cpp_grpc_compile_example
+     - make cpp_cpp_proto_library_example
+     - make cpp_cpp_grpc_library_example
 
   cpp_windows_arm64_examples:
     name: C++
@@ -283,26 +266,11 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
-     - echo doc_docbook_compile
-     - cd examples/doc/doc_docbook_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo doc_html_compile
-     - cd examples/doc/doc_html_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo doc_json_compile
-     - cd examples/doc/doc_json_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo doc_markdown_compile
-     - cd examples/doc/doc_markdown_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo doc_template_compile
-     - cd examples/doc/doc_template_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
+     - make doc_doc_docbook_compile_example
+     - make doc_doc_html_compile_example
+     - make doc_doc_json_compile_example
+     - make doc_doc_markdown_compile_example
+     - make doc_doc_template_compile_example
 
   doc_windows_arm64_examples:
     name: Documentation
@@ -360,22 +328,10 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
-     - echo go_proto_compile
-     - cd examples/go/go_proto_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo go_grpc_compile
-     - cd examples/go/go_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo go_proto_library
-     - cd examples/go/go_proto_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo go_grpc_library
-     - cd examples/go/go_grpc_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
+     - make go_go_proto_compile_example
+     - make go_go_grpc_compile_example
+     - make go_go_proto_library_example
+     - make go_go_grpc_library_example
 
   go_windows_arm64_examples:
     name: Go
@@ -429,10 +385,7 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
-     - echo gateway_grpc_compile
-     - cd examples/grpc_gateway/gateway_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
+     - make grpc_gateway_gateway_grpc_compile_example
 
   grpc_gateway_windows_arm64_examples:
     name: gRPC-Gateway
@@ -482,22 +435,10 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
-     - echo java_proto_compile
-     - cd examples/java/java_proto_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo java_grpc_compile
-     - cd examples/java/java_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo java_proto_library
-     - cd examples/java/java_proto_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo java_grpc_library
-     - cd examples/java/java_grpc_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
+     - make java_java_proto_compile_example
+     - make java_java_grpc_compile_example
+     - make java_java_proto_library_example
+     - make java_java_grpc_library_example
 
   java_windows_arm64_examples:
     name: Java
@@ -574,18 +515,9 @@ tasks:
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
-     - echo python_proto_compile
-     - cd examples/python/python_proto_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo python_grpc_compile
-     - cd examples/python/python_grpc_compile
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
-     - echo python_proto_library
-     - cd examples/python/python_proto_library
-     - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-     - cd ../../..
+     - make python_python_proto_compile_example
+     - make python_python_grpc_compile_example
+     - make python_python_proto_library_example
 
   python_windows_arm64_examples:
     name: Python
@@ -711,88 +643,33 @@ tasks:
     name: Test Workspaces
     platform: windows
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
     batch_commands:
-     - echo absolute_strip_import_prefix
-     - cd test_workspaces/absolute_strip_import_prefix
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo combined_strip_and_add_prefix
-     - cd test_workspaces/combined_strip_and_add_prefix
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo common_cpp_library
-     - cd test_workspaces/common_cpp_library
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo exclusions
-     - cd test_workspaces/exclusions
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo generated_proto
-     - cd test_workspaces/generated_proto
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo go_fixer
-     - cd test_workspaces/go_fixer
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo go_importpath
-     - cd test_workspaces/go_importpath
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo import_prefix
-     - cd test_workspaces/import_prefix
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo nested_output_directory
-     - cd test_workspaces/nested_output_directory
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo objc_capitalisation
-     - cd test_workspaces/objc_capitalisation
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo prefix_path
-     - cd test_workspaces/prefix_path
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo python3_grpc
-     - cd test_workspaces/python3_grpc
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo python_dashes
-     - cd test_workspaces/python_dashes
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo python_deps
-     - cd test_workspaces/python_deps
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo python_dots
-     - cd test_workspaces/python_dots
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo relative_strip_import_prefix
-     - cd test_workspaces/relative_strip_import_prefix
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo shared_proto
-     - cd test_workspaces/shared_proto
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
-     - echo special_characters
-     - cd test_workspaces/special_characters
-     - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
-     - cd ../..
+     - make test_workspace_absolute_strip_import_prefix
+     - make test_workspace_combined_strip_and_add_prefix
+     - make test_workspace_common_cpp_library
+     - make test_workspace_exclusions
+     - make test_workspace_generated_proto
+     - make test_workspace_go_fixer
+     - make test_workspace_go_importpath
+     - make test_workspace_import_prefix
+     - make test_workspace_nested_output_directory
+     - make test_workspace_objc_capitalisation
+     - make test_workspace_prefix_path
+     - make test_workspace_python3_grpc
+     - make test_workspace_python_dashes
+     - make test_workspace_python_deps
+     - make test_workspace_python_dots
+     - make test_workspace_relative_strip_import_prefix
+     - make test_workspace_shared_proto
+     - make test_workspace_special_characters
 
   windows_arm64_test_workspaces:
     name: Test Workspaces
     platform: windows_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-     - set -x
+      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
+    batch_commands:
      - make test_workspace_absolute_strip_import_prefix
      - make test_workspace_combined_strip_and_add_prefix
      - make test_workspace_common_cpp_library
