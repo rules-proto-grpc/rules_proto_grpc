@@ -74,7 +74,6 @@ func makeGrpcGateway() *Language {
 				BuildExample:      grpcGatewayCompileExampleTemplate,
 				Doc:               "Generates gRPC-Gateway OpenAPI v2 ``.json`` files",
 				Attrs:             compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows"}, // gRPC go lib rules fail on windows due to bad path
 			},
 			&Rule{
 				Name:              "gateway_grpc_library",
@@ -83,7 +82,6 @@ func makeGrpcGateway() *Language {
 				BuildExample:      grpcGatewayLibraryExampleTemplate,
 				Doc:               "Generates gRPC-Gateway library files",
 				Attrs:             goLibraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows"}, // gRPC go lib rules fail on windows due to bad path
 			},
 		},
 	}
