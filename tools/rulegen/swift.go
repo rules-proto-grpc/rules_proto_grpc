@@ -74,6 +74,8 @@ var swiftGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .
     ],
 )`)
 
+var swiftModulePrefixLines = `bazel_dep(name = "apple_support", version = "1.22.0")`
+
 var swiftLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{
 		Name:      "module_name",
@@ -89,6 +91,7 @@ func makeSwift() *Language {
 		Name: "swift",
 		DisplayName: "Swift",
 		Notes: mustTemplate("Rules for generating Swift protobuf and gRPC ``.swift`` files and libraries using `Swift Protobuf <https://github.com/apple/swift-protobuf>`_ and `Swift gRPC <https://github.com/grpc/grpc-swift>`_"),
+		ModulePrefixLines: swiftModulePrefixLines,
 		PresubmitEnvVars: map[string]string{
 			"CC": "clang",
 		},
