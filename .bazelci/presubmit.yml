@@ -94,7 +94,6 @@ tasks:
   main_macos:
     name: Build & Test All
     platform: macos
-    xcode_version: '15.4'
     test_flags:
     - "--test_output=errors"
     - "--cxxopt=-std=c++17"
@@ -124,7 +123,6 @@ tasks:
   main_macos_arm64:
     name: Build & Test All
     platform: macos_arm64
-    xcode_version: '15.4'
     test_flags:
     - "--test_output=errors"
     - "--cxxopt=-std=c++17"
@@ -186,7 +184,6 @@ tasks:
   buf_macos_examples:
     name: Buf
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -197,7 +194,6 @@ tasks:
   buf_macos_arm64_examples:
     name: Buf
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -266,7 +262,6 @@ tasks:
   cpp_macos_examples:
     name: C++
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -279,7 +274,6 @@ tasks:
   cpp_macos_arm64_examples:
     name: C++
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -359,7 +353,6 @@ tasks:
   doc_macos_examples:
     name: Documentation
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -373,7 +366,6 @@ tasks:
   doc_macos_arm64_examples:
     name: Documentation
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -445,7 +437,6 @@ tasks:
   go_macos_examples:
     name: Go
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -458,7 +449,6 @@ tasks:
   go_macos_arm64_examples:
     name: Go
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -520,7 +510,6 @@ tasks:
   grpc_gateway_macos_examples:
     name: gRPC-Gateway
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -532,7 +521,6 @@ tasks:
   grpc_gateway_macos_arm64_examples:
     name: gRPC-Gateway
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -602,7 +590,6 @@ tasks:
   java_macos_examples:
     name: Java
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -615,7 +602,6 @@ tasks:
   java_macos_arm64_examples:
     name: Java
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -626,7 +612,6 @@ tasks:
   objc_macos_examples:
     name: Objective-C
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -639,7 +624,6 @@ tasks:
   objc_macos_arm64_examples:
     name: Objective-C
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -728,7 +712,6 @@ tasks:
   python_macos_examples:
     name: Python
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -743,7 +726,6 @@ tasks:
   python_macos_arm64_examples:
     name: Python
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -816,7 +798,6 @@ tasks:
   scala_macos_examples:
     name: Scala
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -829,7 +810,6 @@ tasks:
   scala_macos_arm64_examples:
     name: Scala
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -842,7 +822,6 @@ tasks:
   swift_macos_examples:
     name: Swift
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
       CC: clang
@@ -856,7 +835,6 @@ tasks:
   swift_macos_arm64_examples:
     name: Swift
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
       CC: clang
@@ -1054,7 +1032,6 @@ tasks:
   macos_test_workspaces:
     name: Test Workspaces
     platform: macos
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
@@ -1081,7 +1058,6 @@ tasks:
   macos_arm64_test_workspaces:
     name: Test Workspaces
     platform: macos_arm64
-    xcode_version: '15.4'
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
