@@ -14,6 +14,9 @@ swift_deps.from_package(
     declare_swift_package = False,  # Disable the `swift_package` repository
     resolved = "//:Package.resolved",
     swift = "//:Package.swift",
+    env = {
+        "GRPC_SWIFT_PROTOBUF_NO_VERSION": "1",  # https://github.com/cgrindel/rules_swift_package_manager/issues/1643
+    },
 )
 use_repo(
     swift_deps,
