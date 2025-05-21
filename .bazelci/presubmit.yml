@@ -98,9 +98,6 @@ tasks:
     - "--test_output=errors"
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
-    - "--apple_crosstool_top=@local_config_apple_cc//:toolchain"
-    - "--crosstool_top=@local_config_apple_cc//:toolchain"
-    - "--host_crosstool_top=@local_config_apple_cc//:toolchain"
     test_targets:
     - "//examples/routeguide:cpp_cpp"
     - "//examples/routeguide:cpp_go"
@@ -130,9 +127,6 @@ tasks:
     - "--test_output=errors"
     - "--cxxopt=-std=c++17"
     - "--host_cxxopt=-std=c++17"
-    - "--apple_crosstool_top=@local_config_apple_cc//:toolchain"
-    - "--crosstool_top=@local_config_apple_cc//:toolchain"
-    - "--host_crosstool_top=@local_config_apple_cc//:toolchain"
     test_targets:
     - "//examples/routeguide:cpp_cpp"
     - "//examples/routeguide:cpp_go"
@@ -191,7 +185,7 @@ tasks:
     name: Buf
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make buf_buf_proto_breaking_test_example
@@ -201,7 +195,7 @@ tasks:
     name: Buf
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make buf_buf_proto_breaking_test_example
@@ -269,7 +263,7 @@ tasks:
     name: C++
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make cpp_cpp_proto_compile_example
@@ -281,7 +275,7 @@ tasks:
     name: C++
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make cpp_cpp_proto_compile_example
@@ -360,7 +354,7 @@ tasks:
     name: Documentation
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make doc_doc_docbook_compile_example
@@ -373,7 +367,7 @@ tasks:
     name: Documentation
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make doc_doc_docbook_compile_example
@@ -444,7 +438,7 @@ tasks:
     name: Go
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make go_go_proto_compile_example
@@ -456,7 +450,7 @@ tasks:
     name: Go
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make go_go_proto_compile_example
@@ -517,7 +511,7 @@ tasks:
     name: gRPC-Gateway
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make grpc_gateway_gateway_grpc_compile_example
@@ -528,7 +522,7 @@ tasks:
     name: gRPC-Gateway
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make grpc_gateway_gateway_grpc_compile_example
@@ -597,7 +591,7 @@ tasks:
     name: Java
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make java_java_proto_compile_example
@@ -609,7 +603,7 @@ tasks:
     name: Java
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make java_java_proto_compile_example
@@ -619,7 +613,7 @@ tasks:
     name: Objective-C
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make objc_objc_proto_compile_example
@@ -631,7 +625,7 @@ tasks:
     name: Objective-C
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make objc_objc_proto_compile_example
@@ -719,7 +713,7 @@ tasks:
     name: Python
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make python_python_proto_compile_example
@@ -733,7 +727,7 @@ tasks:
     name: Python
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make python_python_proto_compile_example
@@ -805,7 +799,7 @@ tasks:
     name: Scala
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make scala_scala_proto_compile_example
@@ -817,7 +811,7 @@ tasks:
     name: Scala
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make scala_scala_proto_compile_example
@@ -829,7 +823,7 @@ tasks:
     name: Swift
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
       CC: clang
     shell_commands:
      - set -x
@@ -842,7 +836,7 @@ tasks:
     name: Swift
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
       CC: clang
     shell_commands:
      - set -x
@@ -1039,7 +1033,7 @@ tasks:
     name: Test Workspaces
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make test_workspace_absolute_strip_import_prefix
@@ -1065,7 +1059,7 @@ tasks:
     name: Test Workspaces
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --apple_crosstool_top=@local_config_apple_cc//:toolchain --crosstool_top=@local_config_apple_cc//:toolchain --host_crosstool_top=@local_config_apple_cc//:toolchain"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
      - set -x
      - make test_workspace_absolute_strip_import_prefix

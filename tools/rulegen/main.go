@@ -36,14 +36,15 @@ var extraPlatformFlags = map[string][]string{
 		"--define=protobuf_allow_msvc=true",  // https://github.com/protocolbuffers/protobuf/issues/20085
 	},
 	"macos": []string{
-		"--apple_crosstool_top=@local_config_apple_cc//:toolchain",
-		"--crosstool_top=@local_config_apple_cc//:toolchain",
-		"--host_crosstool_top=@local_config_apple_cc//:toolchain",
-	},
-	"macos_arm64": []string{
-		"--apple_crosstool_top=@local_config_apple_cc//:toolchain",
-		"--crosstool_top=@local_config_apple_cc//:toolchain",
-		"--host_crosstool_top=@local_config_apple_cc//:toolchain",
+		// Fix clash between OpenSSL and BoringSSL on recent MacOS versions, by marking
+		// /usr/local/include as a system include search dir. This prevents redefinition errors when
+		// BoringSSL files end up including OpenSSL headers due to matching include prefix. This arg
+		// moves the OpenSSL headers (and anything in that search dir) lower in priority vs local
+		// files coming from -iquote etc. This only appears to be a problem on the Bazel MacOS CI
+		// machines on BuildKite, as a local MacOS build does not require this workaround. Perhaps
+		// the CI machines have Homebrew installed etc.
+		// FIXED since BuildKite machines were reinstalled as VMs ~June 2024
+		//"--copt=-isystem/usr/local/include",
 	},
 }
 
