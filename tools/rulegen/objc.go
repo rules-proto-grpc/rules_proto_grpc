@@ -91,7 +91,7 @@ func makeObjc() *Language {
 		Name:  "objc",
 		DisplayName: "Objective-C",
 		Notes: mustTemplate("Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``objc_library``"),
-		SkipTestPlatforms: []string{"linux", "windows"},
+		SkipTestPlatforms: []string{"linux", "windows", "macos"},  // Linux and Windows have no Obj-C and Mac crashes Bazel
 		ModulePrefixLines: objcModulePrefixLines,
 		Rules: []*Rule{
 			&Rule{
