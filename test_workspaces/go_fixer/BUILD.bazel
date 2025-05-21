@@ -26,7 +26,7 @@ gateway_grpc_library(
     name = "grpc_gateway_lib",
     importpath = "github.com/rules-proto-grpc/rules_proto_grpc/test_workspaces/go_fixer",
     options = {
-        str(package_relative_label("@rules_proto_grpc_grpc_gateway//:plugin")): ["generate_unbound_methods=true"],
+        "@rules_proto_grpc_grpc_gateway//:plugin": ["generate_unbound_methods=true"],
     },
     protos = ["proto_lib"],
 )

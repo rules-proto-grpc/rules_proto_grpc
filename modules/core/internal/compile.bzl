@@ -135,9 +135,11 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             # accept "*" anyway. This turns a plugin label like
             # @@rules_proto_grpc_grpc_gateway~override//:plugin into
             # @rules_proto_grpc_grpc_gateway//:plugin
+            # Note that pre Bazel 8 a ~ is used and post Bazel 8 a + is used, see
+            # https://github.com/bazelbuild/bazel/issues/23127
             for possible_plugin_label in plugin_labels:
                 if (
-                    (str(possible_plugin_label).partition("//"))[0].partition("~")[0].replace("@@", "@") +
+                    (str(possible_plugin_label).partition("//"))[0].partition("~")[0].partition("+")[0].replace("@@", "@") +
                     "//" +
                     str(possible_plugin_label).partition("//")[2]
                 ) == plugin_label_str:
