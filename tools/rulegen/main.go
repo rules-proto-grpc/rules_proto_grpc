@@ -485,6 +485,9 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("  main_%s:", ciPlatform)
 		out.w("    name: Build & Test All")
 		out.w("    platform: %s", ciPlatform)
+		if strings.HasPrefix(ciPlatform, "macos") {
+			out.w("    xcode_version: '15.4'")
+		}
 		// out.w("    environment:")
 		// out.w(`      CC: clang`)
 		out.w("    test_flags:")
@@ -532,6 +535,9 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			out.w("  %s_%s_examples:", lang.Name, ciPlatform)
 			out.w("    name: %s", lang.DisplayName)
 			out.w("    platform: %s", ciPlatform)
+			if strings.HasPrefix(ciPlatform, "macos") {
+				out.w("    xcode_version: '15.4'")
+			}
 			out.w("    environment:")
 			if strings.HasPrefix(ciPlatform, "windows") {
 				if len(extraPlatformFlags[ciPlatform]) > 0 {
@@ -588,6 +594,9 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("  %s_test_workspaces:", ciPlatform)
 		out.w("    name: Test Workspaces")
 		out.w("    platform: %s", ciPlatform)
+		if strings.HasPrefix(ciPlatform, "macos") {
+			out.w("    xcode_version: '15.4'")
+		}
 		out.w("    environment:")
 		if strings.HasPrefix(ciPlatform, "windows") {
 			if len(extraPlatformFlags[ciPlatform]) > 0 {
