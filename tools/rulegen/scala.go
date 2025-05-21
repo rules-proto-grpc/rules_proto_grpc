@@ -78,7 +78,6 @@ func makeScala() *Language {
 		Name:  "scala",
 		DisplayName: "Scala",
 		Notes: mustTemplate("Rules for generating Scala protobuf and gRPC ``.jar`` files and libraries using `ScalaPB <https://github.com/scalapb/ScalaPB>`_. Libraries are created with ``scala_library`` from `rules_scala <https://github.com/bazelbuild/rules_scala>`_"),
-		SkipTestPlatforms: []string{},
 		Rules: []*Rule{
 			&Rule{
 				Name:             "scala_proto_compile",
@@ -88,7 +87,6 @@ func makeScala() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates a Scala protobuf ``.jar`` file",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "scala_grpc_compile",
@@ -98,7 +96,6 @@ func makeScala() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Scala protobuf and gRPC ``.jar`` file",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "scala_proto_library",
@@ -107,7 +104,6 @@ func makeScala() *Language {
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Scala protobuf library using ``scala_library`` from ``rules_scala``",
 				Attrs:            javaLibraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "scala_grpc_library",
@@ -116,7 +112,6 @@ func makeScala() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala``",
 				Attrs:            javaLibraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows"},
 			},
 		},
 	}

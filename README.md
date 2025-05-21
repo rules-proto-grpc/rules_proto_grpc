@@ -99,6 +99,10 @@ Full documentation for the current and previous versions [can be found here](htt
 | [Scala](https://rules-proto-grpc.com/en/latest/lang/scala.html) | [scala_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/scala.html#scala-grpc-compile) | Generates Scala protobuf and gRPC ``.jar`` file ([example](/examples/scala/scala_grpc_compile)) |
 | [Scala](https://rules-proto-grpc.com/en/latest/lang/scala.html) | [scala_proto_library](https://rules-proto-grpc.com/en/latest/lang/scala.html#scala-proto-library) | Generates a Scala protobuf library using ``scala_library`` from ``rules_scala`` ([example](/examples/scala/scala_proto_library)) |
 | [Scala](https://rules-proto-grpc.com/en/latest/lang/scala.html) | [scala_grpc_library](https://rules-proto-grpc.com/en/latest/lang/scala.html#scala-grpc-library) | Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala`` ([example](/examples/scala/scala_grpc_library)) |
+| [Swift](https://rules-proto-grpc.com/en/latest/lang/swift.html) | [swift_proto_compile](https://rules-proto-grpc.com/en/latest/lang/swift.html#swift-proto-compile) | Generates Swift protobuf ``.swift`` files ([example](/examples/swift/swift_proto_compile)) |
+| [Swift](https://rules-proto-grpc.com/en/latest/lang/swift.html) | [swift_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/swift.html#swift-grpc-compile) | Generates Swift protobuf and gRPC ``.swift`` files ([example](/examples/swift/swift_grpc_compile)) |
+| [Swift](https://rules-proto-grpc.com/en/latest/lang/swift.html) | [swift_proto_library](https://rules-proto-grpc.com/en/latest/lang/swift.html#swift-proto-library) | Generates a Swift protobuf library using ``swift_library`` from ``rules_swift`` ([example](/examples/swift/swift_proto_library)) |
+| [Swift](https://rules-proto-grpc.com/en/latest/lang/swift.html) | [swift_grpc_library](https://rules-proto-grpc.com/en/latest/lang/swift.html#swift-grpc-library) | Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift`` ([example](/examples/swift/swift_grpc_library)) |
 
 ## License
 

@@ -45,3 +45,8 @@ examples/scala/scala_proto_compile
 examples/scala/scala_grpc_compile
 examples/scala/scala_proto_library
 examples/scala/scala_grpc_library
+
+examples/swift/swift_proto_compile
+examples/swift/swift_grpc_compile
+examples/swift/swift_proto_library
+examples/swift/swift_grpc_library

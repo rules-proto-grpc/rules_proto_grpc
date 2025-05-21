@@ -124,7 +124,6 @@ func makeObjc() *Language {
 				Name:             "objc_grpc_library",
 				Kind:             "grpc",
 				Implementation:   objcGrpcLibraryRuleTemplate,
-				SkipTestPlatforms: []string{"all"}, // Current gRPC in BCR is broken due to missing rules_apple
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates an Objective-C protobuf and gRPC library using ``objc_library``",
 				Attrs:            cppLibraryRuleAttrs,

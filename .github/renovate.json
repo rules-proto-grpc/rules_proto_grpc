@@ -17,6 +17,13 @@
       "/(^|/)[\\w-]*requirements([-.]\\w+)?\\.(txt|pip|in)$/"
     ]
   },
+  "swift": {
+    "managerFilePatterns": [
+      "/(^|/)Package\\.swift/"
+    ],
+    "versioning": "swift",
+    "pinDigests": false
+  },
   "packageRules": [
     {
       "description": "Do not update modules published in this repo",

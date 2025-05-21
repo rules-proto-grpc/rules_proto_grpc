@@ -116,6 +116,9 @@ Supported Languages and Tools
    * - Scala
      - ✔
      - ✔
+   * - Swift
+     - ✔
+     - ✔
 
 .. list-table:: Supported Tools
    :widths: 20 5 50
@@ -167,3 +170,4 @@ Supported Languages and Tools
    lang/objc
    lang/python
    lang/scala
+   lang/swift
