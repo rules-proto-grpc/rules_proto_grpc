@@ -12,11 +12,11 @@ bazel_dep(name = "rules_swift_package_manager", version = "1.0.0-rc3")
 swift_deps = use_extension("@rules_swift_package_manager//:extensions.bzl", "swift_deps")
 swift_deps.from_package(
     declare_swift_package = False,  # Disable the `swift_package` repository
-    resolved = "//:Package.resolved",
-    swift = "//:Package.swift",
     env = {
         "GRPC_SWIFT_PROTOBUF_NO_VERSION": "1",  # https://github.com/cgrindel/rules_swift_package_manager/issues/1643
     },
+    resolved = "//:Package.resolved",
+    swift = "//:Package.swift",
 )
 use_repo(
     swift_deps,
