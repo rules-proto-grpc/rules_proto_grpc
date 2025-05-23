@@ -14,7 +14,8 @@ Changes
 
 - Added support for Bazel 8 and dropped Bazel 6 support
 - Replaced deprecated ``rules_proto`` with ``protobuf``
-- Added support for providing extra plugins to rules at runtime using the ``extra_plugins`` attribute
+- Added support for providing extra plugins to rules at runtime using the ``extra_plugins``
+  attribute
 - Fixed version skew between grpc-gateway protoc plugin and runtime
 - Added optional generation of ``.pyi`` files for Python
 - Switched Objective-C sources to use ``non_arc_srcs``
