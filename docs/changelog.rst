@@ -6,6 +6,37 @@
 Changelog
 =========
 
+5.2.0
+-----
+
+Changes
+*******
+
+- Restored Scala language support
+- Restored Swift langauge support
+- Fixed usage of ``options`` attr on Bazel 8, where the Label canonicalisation has changed
+- Fixed loading of Buf protoc lint plugin
+- Fixed loading of Buf protoc breaking plugin on linux/arm64
+- Switched gRPC-Gateway to be loaded directly from Bazel bzlmod dependency rather than via
+  Go/Gazelle
+- The ``gateway_openapiv2_compile()`` rule now uses a directory as output, to allow creating a
+  combined output file. `#382 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/382>`__
+- Fixed ``bzl_library`` referencing incorrect dependency in ``@protobuf``
+- Switched from ``@bazel_tool//platforms`` to ``@platforms``
+- The Python dependencies for Protobuf and gRPC are now loaded from the ``@protobuf`` and ``@grpc``
+  bzlmod workspaces respectively, rather than from PyPI wheels. This is necessary to prevent version
+  skew between the protoc version and the runtime version, but unfortunately may result in longer
+  uncached build times
+- Added CI testing on MacOS (x64 and arm)
+
+
+Version Updates
+***************
+
+- Updated Bazel ``rules_go`` to 0.54.1
+- Updated Bazel ``rules_java`` to 8.11.0
+
+
 5.1.0
 -----
 
