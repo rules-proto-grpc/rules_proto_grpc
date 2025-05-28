@@ -6,7 +6,7 @@ let package = Package(
     name: "rules_proto_grpc",
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf", from: "1.29.0"),
-        .package(url: "https://github.com/grpc/grpc-swift", from: "2.2.1"),
+        .package(url: "https://github.com/grpc/grpc-swift", from: "2.2.2"),
         .package(url: "https://github.com/grpc/grpc-swift-protobuf", from: "1.3.0"),
     ]
 )
