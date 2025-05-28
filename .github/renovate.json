@@ -22,7 +22,7 @@
       "/(^|/)Package\\.swift/"
     ],
     "versioning": "swift",
-    "pinDigests": false
+    "pinDigests": true
   },
   "packageRules": [
     {
