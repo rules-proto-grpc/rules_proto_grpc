@@ -5,7 +5,7 @@ module(
 )
 
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
-bazel_dep(name = "protobuf", version = "30.2")
+bazel_dep(name = "protobuf", version = "31.1")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_shell", version = "0.4.1")
 
