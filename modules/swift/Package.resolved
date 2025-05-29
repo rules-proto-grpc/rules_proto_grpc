@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/grpc/grpc-swift",
       "state" : {
-        "revision" : "369172abf87d3c83ce4c66e1a23c95dfe021a4c6",
-        "version" : "2.2.1"
+        "revision" : "36e1ad1d861a111f191c71363cc97531c4f61838",
+        "version" : "2.2.2"
       }
     },
     {
@@ -32,8 +32,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-protobuf",
       "state" : {
-        "revision" : "d72aed98f8253ec1aa9ea1141e28150f408cf17f",
-        "version" : "1.29.0"
+        "revision" : "102a647b573f60f73afdce5613a51d71349fe507",
+        "version" : "1.30.0"
       }
     }
   ],
