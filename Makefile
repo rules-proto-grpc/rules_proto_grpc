@@ -30,6 +30,12 @@ pip_compile:
 	cd modules/python && echo '' > requirements.txt && bazel run //:requirements.update
 
 
+# Run swift resolve to update Package.resolved from Package.swift
+.PHONY: swift_resolve
+swift_resolve:
+	cd modules/swift && swift package resolve
+
+
 # Pull in auto-generated examples makefile
 include examples/Makefile.mk
 
