@@ -70,7 +70,7 @@
         "swift"
       ],
       "draftPR": true,
-      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as Renovate will not update Package.resolved. See https://github.com/renovatebot/renovate/issues/6924"
+      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as Renovate will not update Package.resolved. See renovatebot/renovate#6924"
     }
   ],
   "postUpdateOptions": [
