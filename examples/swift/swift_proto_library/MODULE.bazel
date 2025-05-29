@@ -3,12 +3,6 @@ bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_proto_grpc_example_protos", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_proto_grpc_swift", version = "0.0.0.rpg.version.placeholder")
 
-git_override(
-    module_name = "rules_swift_package_manager",
-    remote = "https://github.com/cgrindel/rules_swift_package_manager.git",
-    branch = "main",
-)
-
 local_path_override(
     module_name = "rules_proto_grpc",
     path = "../../../modules/core",
