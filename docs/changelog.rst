@@ -34,7 +34,7 @@ Version Updates
 ***************
 
 - Updated Bazel ``protobuf`` to 31.1
-- Updated Bazel ``rules_go`` to 0.54.1
+- Updated Bazel ``rules_go`` to 0.55.0
 - Updated Bazel ``rules_java`` to 8.11.0
 - Updated Bazel ``toolchains_protoc`` to 0.4.2
 - Updated Java ``com.google.protobuf:protobuf-java`` to 4.31.1
