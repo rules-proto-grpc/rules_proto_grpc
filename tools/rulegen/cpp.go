@@ -152,7 +152,7 @@ var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*A
 	},
 }...)
 
-var cppModuleSuffixLines = `bazel_dep(name = "toolchains_protoc", version = "0.4.1")
+var cppModuleSuffixLines = `bazel_dep(name = "toolchains_protoc", version = "0.4.2")
 
 # Prevent version skew by matching protoc version to protobuf version, as C++ is the only lang that
 # has no cross-version runtime guarantee:
@@ -160,7 +160,7 @@ var cppModuleSuffixLines = `bazel_dep(name = "toolchains_protoc", version = "0.4
 protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
 protoc.toolchain(
     google_protobuf = "com_google_protobuf",
-    version = "v30.2",
+    version = "v31.1",
 )`
 
 func makeCpp() *Language {
