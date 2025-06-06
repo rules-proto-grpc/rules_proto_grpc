@@ -21,6 +21,14 @@
 
 ## Announcements 📣
 
+#### 2025/06/06 - Version 5.2.0
+
+[Version 5.2.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.2.0),
+which adds support for Scala and Swift languages, updates dependency versions and fixes more bugs. Note
+that using Swift support requires that you use an unreleased version of `rules_swift_package_manager` at
+present.
+
+
 #### 2025/05/16 - Version 5.1.0
 
 [Version 5.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.1.0),
