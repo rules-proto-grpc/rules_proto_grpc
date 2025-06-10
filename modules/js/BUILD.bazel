@@ -1,5 +1,7 @@
 load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
 load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+load("@rules_proto_grpc_js_npm//:grpc-tools/package_json.bzl", grpc_tools = "bin")
+load("@rules_proto_grpc_js_npm//:ts-protoc-gen/package_json.bzl", ts_protoc_gen = "bin")
 
 npm_link_all_packages(name = "node_modules")
 
@@ -17,12 +19,16 @@ proto_plugin(
     visibility = ["//visibility:public"],
 )
 
+ts_protoc_gen.protoc_gen_ts_binary(name = "protoc_gen_ts_binary")
+
 proto_plugin(
     name = "ts_plugin",
     outputs = ["{protopath}_pb.d.ts"],
-    tool = ":node_modules/ts-protoc-gen/bin/protoc-gen-ts",
+    tool = ":protoc_gen_ts_binary",
     visibility = ["//visibility:public"],
 )
+
+grpc_tools.grpc_tools_node_protoc_plugin_binary(name = "grpc_tools_node_protoc_plugin_binary")
 
 proto_plugin(
     name = "grpc_node_plugin",
@@ -34,7 +40,7 @@ proto_plugin(
         "grpc_js",
     ],
     outputs = ["{protopath}_grpc_pb.js"],
-    tool = ":node_modules/grpc-tools/bin/protoc_plugin.js",
+    tool = ":grpc_tools_node_protoc_plugin_binary",
     visibility = ["//visibility:public"],
 )
 
@@ -46,7 +52,7 @@ proto_plugin(
         "mode=grpc-js",
     ],
     outputs = ["{protopath}_grpc_pb.d.ts"],
-    tool = ":node_modules/ts-protoc-gen/bin/protoc-gen-ts",
+    tool = ":protoc_gen_ts_binary",
     visibility = ["//visibility:public"],
 )
 
