@@ -1,0 +1,16 @@
+load("@rules_proto_grpc_js//:defs.bzl", "js_proto_compile")
+
+js_proto_compile(
+    name = "person_js_proto",
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
+)
+
+js_proto_compile(
+    name = "place_js_proto",
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
+)
+
+js_proto_compile(
+    name = "thing_js_proto",
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
+)
