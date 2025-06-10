@@ -1,0 +1,39 @@
+module(
+    name = "rules_proto_grpc_js",
+    version = "0.0.0.rpg.version.placeholder",
+    compatibility_level = 1,
+)
+
+bazel_dep(name = "aspect_rules_js", version = "2.3.7")
+bazel_dep(name = "rules_nodejs", version = "6.3.0")
+bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
+# TODO: Remove after manual testing
+local_path_override(module_name = "rules_proto_grpc", path = "../core")
+
+# Transitive dependencies for protobuf_javascript at commit eb785a9363664a402b6336dfe96aad27fb33ffa8
+# See module_extensions.bzl for more details
+# TODO: Remove after protobuf_javascript onboards to BCR
+bazel_dep(name = "abseil-cpp", version = "20250127.0")
+bazel_dep(name = "protobuf", version = "30.1", repo_name = "com_google_protobuf")
+
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+npm.npm_translate_lock(
+    name = "rules_proto_grpc_js_npm",
+    pnpm_lock = "//:pnpm-lock.yaml",
+    verify_node_modules_ignored = "//:.bazelignore",
+)
+use_repo(npm, "rules_proto_grpc_js_npm")
+# pnpm = use_extension("@aspect_rules_js//npm:extensions.bzl", "pnpm")
+# use_repo(pnpm, "pnpm")
+download_plugins = use_extension("//:module_extensions.bzl", "download_plugins")
+use_repo(
+    download_plugins,
+    "protoc_gen_grpc_web_plugin_darwin_aarch64",
+    "protoc_gen_grpc_web_plugin_darwin_x86_64",
+    "protoc_gen_grpc_web_plugin_linux_aarch64",
+    "protoc_gen_grpc_web_plugin_linux_x86_64",
+    "protoc_gen_grpc_web_plugin_windows_aarch64",
+    "protoc_gen_grpc_web_plugin_windows_x86_64",
+    "protobuf_javascript",
+)
+

@@ -1,0 +1,73 @@
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
+
+proto_plugin(
+    name = "js_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    options = [
+        "import_style=commonjs",
+        "binary",
+    ],
+    outputs = ["{protopath}_pb.js"],
+    tool = "@protobuf_javascript//generator:protoc-gen-js",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "ts_plugin",
+    outputs = ["{protopath}_pb.d.ts"],
+    tool = ":node_modules/ts-protoc-gen/bin/protoc-gen-ts",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_node_plugin",
+    empty_template = "empty.template",
+    exclusions = [
+        "google/protobuf",
+    ],
+    options = [
+        "grpc_js",
+    ],
+    outputs = ["{protopath}_grpc_pb.js"],
+    tool = ":node_modules/grpc-tools/bin/protoc_plugin.js",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_node_ts_plugin",
+    empty_template = "empty.template",
+    options = [
+        "service=grpc-node",
+        "mode=grpc-js",
+    ],
+    outputs = ["{protopath}_grpc_pb.d.ts"],
+    tool = ":node_modules/ts-protoc-gen/bin/protoc-gen-ts",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_web_js_plugin",
+    empty_template = "empty.template",
+    options = [
+        "import_style=commonjs+dts",
+        "mode=grpcweb",
+    ],
+    outputs = [
+        "{protopath}_grpc_web_pb.js",
+        "{protopath}_grpc_web_pb.d.ts",
+    ],
+    tool = select({
+        "@rules_proto_grpc//platforms:darwin_arm64": "@protoc_gen_grpc_web_plugin_darwin_aarch64//file",
+        "@rules_proto_grpc//platforms:darwin_x86_64": "@protoc_gen_grpc_web_plugin_darwin_x86_64//file",
+        "@rules_proto_grpc//platforms:linux_aarch64": "@protoc_gen_grpc_web_plugin_linux_aarch64//file",
+        "@rules_proto_grpc//platforms:linux_x86_64": "@protoc_gen_grpc_web_plugin_linux_x86_64//file",
+        "@rules_proto_grpc//platforms:windows_arm64": "@protoc_gen_grpc_web_plugin_windows_aarch64//file",
+        "@rules_proto_grpc//platforms:windows_x86_64": "@protoc_gen_grpc_web_plugin_windows_x86_64//file",
+    }),
+    visibility = ["//visibility:public"],
+)
