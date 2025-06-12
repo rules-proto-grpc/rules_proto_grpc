@@ -7,7 +7,7 @@ module(
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "protobuf", version = "31.1")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
-bazel_dep(name = "rules_shell", version = "0.4.1")
+bazel_dep(name = "rules_shell", version = "0.5.0")
 
 download_plugins = use_extension("//:module_extensions.bzl", "download_plugins")
 use_repo(
