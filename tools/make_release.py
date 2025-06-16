@@ -174,13 +174,17 @@ with tempfile.TemporaryDirectory() as tmp_dir:
   bazel:
     - 7.x
     - 8.x
+
 tasks:
   verify_targets:
     name: Verify build targets
     platform: ${{{{ platform }}}}
     bazel: ${{{{ bazel }}}}
+    build_flags:
+      - "--cxxopt=-std=c++17"
+      - "--host_cxxopt=-std=c++17"
     build_targets:
-    - '@{module_name}//...'
+      - "@{module_name}//..."
 """)
 
     # Stage and commit
