@@ -5,6 +5,7 @@ tasks:
     platform: ubuntu2204
     test_flags:
       - "--test_output=errors"
+      - "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1"
       - "--cxxopt=-std=c++17"
       - "--host_cxxopt=-std=c++17"
     test_targets:
@@ -34,6 +35,7 @@ tasks:
     platform: macos
     test_flags:
       - "--test_output=errors"
+      - "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1"
       - "--cxxopt=-std=c++17"
       - "--host_cxxopt=-std=c++17"
     test_targets:
@@ -63,6 +65,7 @@ tasks:
     platform: macos_arm64
     test_flags:
       - "--test_output=errors"
+      - "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1"
       - "--cxxopt=-std=c++17"
       - "--host_cxxopt=-std=c++17"
     test_targets:
@@ -83,7 +86,7 @@ tasks:
     name: Buf
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make buf_buf_proto_breaking_test_example
@@ -93,7 +96,7 @@ tasks:
     name: Buf
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make buf_buf_proto_breaking_test_example
@@ -103,7 +106,7 @@ tasks:
     name: Buf
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make buf_buf_proto_breaking_test_example
@@ -113,7 +116,7 @@ tasks:
     name: C++
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make cpp_cpp_proto_compile_example
@@ -125,7 +128,7 @@ tasks:
     name: C++
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make cpp_cpp_proto_compile_example
@@ -137,7 +140,7 @@ tasks:
     name: C++
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make cpp_cpp_proto_compile_example
@@ -149,7 +152,7 @@ tasks:
     name: Documentation
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make doc_doc_docbook_compile_example
@@ -162,7 +165,7 @@ tasks:
     name: Documentation
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make doc_doc_docbook_compile_example
@@ -175,7 +178,7 @@ tasks:
     name: Documentation
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make doc_doc_docbook_compile_example
@@ -188,7 +191,7 @@ tasks:
     name: Go
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make go_go_proto_compile_example
@@ -200,7 +203,7 @@ tasks:
     name: Go
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make go_go_proto_compile_example
@@ -212,7 +215,7 @@ tasks:
     name: Go
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make go_go_proto_compile_example
@@ -224,7 +227,7 @@ tasks:
     name: gRPC-Gateway
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make grpc_gateway_gateway_grpc_compile_example
@@ -235,7 +238,7 @@ tasks:
     name: gRPC-Gateway
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make grpc_gateway_gateway_grpc_compile_example
@@ -246,7 +249,7 @@ tasks:
     name: gRPC-Gateway
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make grpc_gateway_gateway_grpc_compile_example
@@ -257,7 +260,7 @@ tasks:
     name: Java
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make java_java_proto_compile_example
@@ -269,7 +272,7 @@ tasks:
     name: Java
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make java_java_proto_compile_example
@@ -281,7 +284,7 @@ tasks:
     name: Java
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make java_java_proto_compile_example
@@ -291,7 +294,7 @@ tasks:
     name: Python
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make python_python_proto_compile_example
@@ -305,7 +308,7 @@ tasks:
     name: Python
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make python_python_proto_compile_example
@@ -319,7 +322,7 @@ tasks:
     name: Python
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make python_python_proto_compile_example
@@ -333,7 +336,7 @@ tasks:
     name: Scala
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make scala_scala_proto_compile_example
@@ -345,7 +348,7 @@ tasks:
     name: Scala
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make scala_scala_proto_compile_example
@@ -357,7 +360,7 @@ tasks:
     name: Scala
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make scala_scala_proto_compile_example
@@ -369,7 +372,7 @@ tasks:
     name: Swift
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
       CC: clang
     shell_commands:
       - set -x
@@ -382,7 +385,7 @@ tasks:
     name: Swift
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
       CC: clang
     shell_commands:
       - set -x
@@ -395,7 +398,7 @@ tasks:
     name: Test Workspaces
     platform: ubuntu2204
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make test_workspace_absolute_strip_import_prefix
@@ -421,7 +424,7 @@ tasks:
     name: Test Workspaces
     platform: macos
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make test_workspace_absolute_strip_import_prefix
@@ -447,7 +450,7 @@ tasks:
     name: Test Workspaces
     platform: macos_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
       - set -x
       - make test_workspace_absolute_strip_import_prefix
