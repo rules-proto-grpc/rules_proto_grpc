@@ -4,8 +4,8 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "gazelle", version = "0.43.0")
-bazel_dep(name = "rules_go", version = "0.55.0")
+bazel_dep(name = "gazelle", version = "0.44.0")
+bazel_dep(name = "rules_go", version = "0.55.1")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 
 go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")

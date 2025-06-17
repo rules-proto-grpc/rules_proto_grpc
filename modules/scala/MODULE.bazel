@@ -21,6 +21,7 @@ maven.install(
     strict_visibility = True,
 )
 use_repo(maven, "rules_proto_grpc_scala_maven_common")
+
 maven.install(
     name = "rules_proto_grpc_scala_maven_2_12",  # Deconflict
     artifacts = [
@@ -31,6 +32,7 @@ maven.install(
     strict_visibility = True,
 )
 use_repo(maven, "rules_proto_grpc_scala_maven_2_12")
+
 maven.install(
     name = "rules_proto_grpc_scala_maven_2_13",  # Deconflict
     artifacts = [
@@ -41,6 +43,7 @@ maven.install(
     strict_visibility = True,
 )
 use_repo(maven, "rules_proto_grpc_scala_maven_2_13")
+
 maven.install(
     name = "rules_proto_grpc_scala_maven_3",  # Deconflict
     artifacts = [
