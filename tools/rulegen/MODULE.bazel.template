@@ -5,7 +5,7 @@ bazel_dep(name = "rules_cc", version = "0.1.2")
 bazel_dep(name = "rules_go", version = "0.55.0")
 bazel_dep(name = "rules_java", version = "8.12.0")
 bazel_dep(name = "rules_scala", version = "7.0.0")
-bazel_dep(name = "rules_shell", version = "0.4.1")
+bazel_dep(name = "rules_shell", version = "0.5.0")
 
 # Rulegen deps
 rulegen_go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
