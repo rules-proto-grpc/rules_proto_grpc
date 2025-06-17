@@ -489,7 +489,6 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		// out.w(`      CC: clang`)
 		out.w("    test_flags:")
 		out.w(`      - "--test_output=errors"`)
-		out.w(`      - "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1"`)  // Don't create 'local' cpp toolchain
 		if strings.HasPrefix(ciPlatform, "windows") {
 			out.w(`      - "--enable_runfiles"`)  // Needed for sh_test to work correctly
 			out.w(`      - "--cxxopt=/std:c++17"`)
@@ -536,15 +535,15 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			out.w("    environment:")
 			if strings.HasPrefix(ciPlatform, "windows") {
 				if len(extraPlatformFlags[ciPlatform]) > 0 {
-					out.w(`      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=/std:c++17 --host_cxxopt=/std:c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
 				} else {
-					out.w(`      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=/std:c++17 --host_cxxopt=/std:c++17`)
+					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17`)
 				}
 			} else {
 				if len(extraPlatformFlags[ciPlatform]) > 0 {
-					out.w(`      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
 				} else {
-					out.w(`      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
 				}
 			}
 			for k, v := range lang.PresubmitEnvVars {
@@ -592,15 +591,15 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		out.w("    environment:")
 		if strings.HasPrefix(ciPlatform, "windows") {
 			if len(extraPlatformFlags[ciPlatform]) > 0 {
-				out.w(`      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=/std:c++17 --host_cxxopt=/std:c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
 			} else {
-				out.w(`      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=/std:c++17 --host_cxxopt=/std:c++17`)
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17`)
 			}
 		} else {
 			if len(extraPlatformFlags[ciPlatform]) > 0 {
-				out.w(`      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
 			} else {
-				out.w(`      BAZEL_EXTRA_FLAGS: "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1 --cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
 			}
 		}
 		if strings.HasPrefix(ciPlatform, "windows") {
