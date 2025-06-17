@@ -21,6 +21,7 @@ js_grpc_node_compile = rule(
                 Label("//:grpc_node_plugin"),
                 Label("//:grpc_node_ts_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

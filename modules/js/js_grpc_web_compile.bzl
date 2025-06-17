@@ -20,6 +20,7 @@ js_grpc_web_compile = rule(
                 Label("//:proto_ts_plugin"),
                 Label("//:grpc_web_js_plugin"),
             ],
+            cfg = "exec",
             doc = "List of protoc plugins to apply",
         ),
     ),

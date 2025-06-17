@@ -82,6 +82,13 @@ local_path_override(
     path = "modules/java",
 )
 
+# JavaScript
+bazel_dep(name = "rules_proto_grpc_js", version = "0.0.0.rpg.version.placeholder")
+local_path_override(
+    module_name = "rules_proto_grpc_js",
+    path = "modules/js",
+)
+
 # Objective-C
 bazel_dep(name = "rules_proto_grpc_objc", version = "0.0.0.rpg.version.placeholder")
 local_path_override(

@@ -17,20 +17,19 @@ def js_grpc_web_library(name, **kwargs):
         }  # Forward args
     )
 
-    # Resolve deps
-    deps = [
-        "@rules_proto_grpc_js//:node_modules/google-protobuf",
-        "@rules_proto_grpc_js//:node_modules/grpc-web",
-    ]
-
     # Create js library
     js_library(
         name = name,
         srcs = [name_pb],
-        deps = deps + kwargs.get("deps", []),
+        deps = GRPC_DEPS + kwargs.get("deps", []),
         **{
             k: v
             for (k, v) in kwargs.items()
             if k in bazel_build_rule_common_attrs
         }  # Forward Bazel common args
     )
+
+GRPC_DEPS = [
+    Label("@rules_proto_grpc_js//:node_modules/google-protobuf"),
+    Label("@rules_proto_grpc_js//:node_modules/grpc-web"),
+]
