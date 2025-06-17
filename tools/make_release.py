@@ -183,7 +183,6 @@ tasks:
     build_flags:
       - "--cxxopt=-std=c++17"
       - "--host_cxxopt=-std=c++17"
-      - "--repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1"  # Don't create 'local' cpp toolchain
     build_targets:
       - "@{module_name}//..."
 """)
