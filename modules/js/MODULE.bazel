@@ -5,7 +5,6 @@ module(
 )
 
 bazel_dep(name = "aspect_rules_js", version = "2.3.7")
-bazel_dep(name = "rules_nodejs", version = "6.3.0")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 
 # Transitive dependencies for protobuf_javascript at commit eb785a9363664a402b6336dfe96aad27fb33ffa8
