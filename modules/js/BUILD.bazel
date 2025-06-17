@@ -6,7 +6,7 @@ load("@rules_proto_grpc_js_npm//:ts-protoc-gen/package_json.bzl", ts_protoc_gen 
 npm_link_all_packages(name = "node_modules")
 
 proto_plugin(
-    name = "js_plugin",
+    name = "proto_plugin",
     exclusions = [
         "google/protobuf",
     ],
@@ -22,7 +22,7 @@ proto_plugin(
 ts_protoc_gen.protoc_gen_ts_binary(name = "protoc_gen_ts_binary")
 
 proto_plugin(
-    name = "ts_plugin",
+    name = "proto_ts_plugin",
     outputs = ["{protopath}_pb.d.ts"],
     tool = ":protoc_gen_ts_binary",
     visibility = ["//visibility:public"],

@@ -16,8 +16,8 @@ js_proto_compile = rule(
         _plugins = attr.label_list(
             providers = [ProtoPluginInfo],
             default = [
-                Label("//:js_plugin"),
-                Label("//:ts_plugin"),
+                Label("//:proto_plugin"),
+                Label("//:proto_ts_plugin"),
             ],
             cfg = "exec",
             doc = "List of protoc plugins to apply",

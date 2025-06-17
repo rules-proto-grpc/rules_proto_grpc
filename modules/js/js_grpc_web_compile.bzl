@@ -16,8 +16,8 @@ js_grpc_web_compile = rule(
         _plugins = attr.label_list(
             providers = [ProtoPluginInfo],
             default = [
-                Label("//:js_plugin"),
-                Label("//:ts_plugin"),
+                Label("//:proto_plugin"),
+                Label("//:proto_ts_plugin"),
                 Label("//:grpc_web_js_plugin"),
             ],
             doc = "List of protoc plugins to apply",

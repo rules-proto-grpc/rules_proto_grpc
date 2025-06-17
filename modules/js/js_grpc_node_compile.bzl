@@ -16,8 +16,8 @@ js_grpc_node_compile = rule(
         _plugins = attr.label_list(
             providers = [ProtoPluginInfo],
             default = [
-                Label("//:js_plugin"),
-                Label("//:ts_plugin"),
+                Label("//:proto_plugin"),
+                Label("//:proto_ts_plugin"),
                 Label("//:grpc_node_plugin"),
                 Label("//:grpc_node_ts_plugin"),
             ],
