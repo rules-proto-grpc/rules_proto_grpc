@@ -22,7 +22,7 @@ def _download_plugins(module_ctx):
 
     git_repository(
         name = "protobuf_javascript",
-        commit = "eb785a9363664a402b6336dfe96aad27fb33ffa8",
+        commit = "f418f587e0588481a3557eeddc5646c3566fbbe3",
         remote = "https://github.com/protocolbuffers/protobuf-javascript.git",
     )
 
