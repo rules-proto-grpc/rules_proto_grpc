@@ -19,7 +19,6 @@ go_library(
 
 go_binary(
     name = "server",
-    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
     embed = [":go_default_library"],
     visibility = ["//visibility:public"],
 )
