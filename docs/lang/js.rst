@@ -6,7 +6,7 @@
 JavaScript
 ==========
 
-Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.d.ts`` files using standard Protocol Buffers and gRPC.
+Rules for generating JavaScript protobuf, gRPC-js and gRPC-Web ``.js`` and ``.d.ts`` files using standard Protocol Buffers and gRPC.
 
 .. list-table:: Rules
    :widths: 1 2
@@ -16,14 +16,14 @@ Rules for generating JavaScript protobuf, gRPC-node and gRPC-Web ``.js`` and ``.
      - Description
    * - `js_proto_compile`_
      - Generates JavaScript protobuf ``.js`` and ``.d.ts`` files
-   * - `js_grpc_node_compile`_
-     - Generates JavaScript protobuf and gRPC-node ``.js`` and ``.d.ts`` files
+   * - `js_grpc_compile`_
+     - Generates JavaScript protobuf and gRPC-js ``.js`` and ``.d.ts`` files
    * - `js_grpc_web_compile`_
      - Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files
    * - `js_proto_library`_
      - Generates a JavaScript protobuf library using ``js_library`` from ``aspect_rules_js``
-   * - `js_grpc_node_library`_
-     - Generates a Node.js protobuf + gRPC-node library using ``js_library`` from ``aspect_rules_js``
+   * - `js_grpc_library`_
+     - Generates a Node.js protobuf + gRPC-js library using ``js_library`` from ``aspect_rules_js``
    * - `js_grpc_web_library`_
      - Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``aspect_rules_js``
 
@@ -124,31 +124,31 @@ Plugins
 - `@rules_proto_grpc_js//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/js/BUILD.bazel>`__
 - `@rules_proto_grpc_js//:proto_ts_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/js/BUILD.bazel>`__
 
-.. _js_grpc_node_compile:
+.. _js_grpc_compile:
 
-js_grpc_node_compile
---------------------
+js_grpc_compile
+---------------
 
-Generates JavaScript protobuf and gRPC-node ``.js`` and ``.d.ts`` files
+Generates JavaScript protobuf and gRPC-js ``.js`` and ``.d.ts`` files
 
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/js/js_grpc_node_compile>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/js/js_grpc_compile>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_node_compile")
+   load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_compile")
    
-   js_grpc_node_compile(
+   js_grpc_compile(
        name = "thing_js_grpc",
        protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
-   js_grpc_node_compile(
+   js_grpc_compile(
        name = "greeter_js_grpc",
        protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
    )
@@ -156,7 +156,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 Attributes
 **********
 
-.. list-table:: Attributes for js_grpc_node_compile
+.. list-table:: Attributes for js_grpc_compile
    :widths: 1 1 1 1 4
    :header-rows: 1
 
@@ -206,8 +206,8 @@ Plugins
 
 - `@rules_proto_grpc_js//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/js/BUILD.bazel>`__
 - `@rules_proto_grpc_js//:proto_ts_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/js/BUILD.bazel>`__
-- `@rules_proto_grpc_js//:grpc_node_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/js/BUILD.bazel>`__
-- `@rules_proto_grpc_js//:grpc_node_ts_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/js/BUILD.bazel>`__
+- `@rules_proto_grpc_js//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/js/BUILD.bazel>`__
+- `@rules_proto_grpc_js//:grpc_ts_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/js/BUILD.bazel>`__
 
 .. _js_grpc_web_compile:
 
@@ -397,31 +397,31 @@ Attributes
      - ``False``
      - Use the legacy <name>_pb path segment from the generated library require path.
 
-.. _js_grpc_node_library:
+.. _js_grpc_library:
 
-js_grpc_node_library
---------------------
+js_grpc_library
+---------------
 
-Generates a Node.js protobuf + gRPC-node library using ``js_library`` from ``aspect_rules_js``
+Generates a Node.js protobuf + gRPC-js library using ``js_library`` from ``aspect_rules_js``
 
 Example
 *******
 
-Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/js/js_grpc_node_library>`__
+Full example project can be found `here <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples/js/js_grpc_library>`__
 
 ``BUILD.bazel``
 ^^^^^^^^^^^^^^^
 
 .. code-block:: python
 
-   load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_node_library")
+   load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_library")
    
-   js_grpc_node_library(
+   js_grpc_library(
        name = "thing_js_grpc",
        protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
-   js_grpc_node_library(
+   js_grpc_library(
        name = "greeter_js_grpc",
        protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
        deps = ["thing_js_grpc"],
@@ -430,7 +430,7 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 Attributes
 **********
 
-.. list-table:: Attributes for js_grpc_node_library
+.. list-table:: Attributes for js_grpc_library
    :widths: 1 1 1 1 4
    :header-rows: 1
 

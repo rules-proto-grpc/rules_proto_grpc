@@ -1,0 +1,27 @@
+load("@aspect_rules_js//js:defs.bzl", "js_binary")
+load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_library")
+
+js_grpc_library(
+    name = "routeguide",
+    protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
+)
+
+js_binary(
+    name = "client",
+    data = [
+        "client.js",
+        ":routeguide",
+    ],
+    entry_point = "client.js",
+    visibility = ["//examples/routeguide:__pkg__"],
+)
+
+js_binary(
+    name = "server",
+    data = [
+        "server.js",
+        ":routeguide",
+    ],
+    entry_point = "server.js",
+    visibility = ["//examples/routeguide:__pkg__"],
+)

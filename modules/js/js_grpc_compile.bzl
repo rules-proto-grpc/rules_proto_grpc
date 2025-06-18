@@ -1,4 +1,4 @@
-"""Generated definition of js_grpc_node_compile."""
+"""Generated definition of js_grpc_compile."""
 
 load(
     "@rules_proto_grpc//:defs.bzl",
@@ -9,7 +9,7 @@ load(
 )
 
 # Create compile rule
-js_grpc_node_compile = rule(
+js_grpc_compile = rule(
     implementation = proto_compile_impl,
     attrs = dict(
         proto_compile_attrs,
@@ -18,8 +18,8 @@ js_grpc_node_compile = rule(
             default = [
                 Label("//:proto_plugin"),
                 Label("//:proto_ts_plugin"),
-                Label("//:grpc_node_plugin"),
-                Label("//:grpc_node_ts_plugin"),
+                Label("//:grpc_plugin"),
+                Label("//:grpc_ts_plugin"),
             ],
             cfg = "exec",
             doc = "List of protoc plugins to apply",

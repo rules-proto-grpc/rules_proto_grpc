@@ -31,7 +31,7 @@ proto_plugin(
 grpc_tools.grpc_tools_node_protoc_plugin_binary(name = "grpc_tools_node_protoc_plugin_binary")
 
 proto_plugin(
-    name = "grpc_node_plugin",
+    name = "grpc_plugin",
     empty_template = "empty.template",
     exclusions = [
         "google/protobuf",
@@ -45,7 +45,7 @@ proto_plugin(
 )
 
 proto_plugin(
-    name = "grpc_node_ts_plugin",
+    name = "grpc_ts_plugin",
     empty_template = "empty.template",
     options = [
         "service=grpc-node",

@@ -1,11 +1,12 @@
-load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_node_compile")
+load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_library")
 
-js_grpc_node_compile(
+js_grpc_library(
     name = "thing_js_grpc",
     protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )
 
-js_grpc_node_compile(
+js_grpc_library(
     name = "greeter_js_grpc",
     protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
+    deps = ["thing_js_grpc"],
 )
