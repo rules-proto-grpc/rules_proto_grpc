@@ -18,13 +18,11 @@ cc_library(
 cc_binary(
     name = "client",
     srcs = ["client.cc"],
-    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
     deps = [":helper"],
 )
 
 cc_binary(
     name = "server",
     srcs = ["server.cc"],
-    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
     deps = [":helper"],
 )

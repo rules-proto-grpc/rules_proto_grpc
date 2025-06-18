@@ -21,7 +21,6 @@ py_binary(
     srcs = [
         "client.py",
     ],
-    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
     imports = ["."],
     python_version = "PY3",
     visibility = ["//examples/routeguide:__pkg__"],
@@ -36,7 +35,6 @@ py_binary(
     srcs = [
         "server.py",
     ],
-    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
     imports = ["."],
     python_version = "PY3",
     visibility = ["//examples/routeguide:__pkg__"],
