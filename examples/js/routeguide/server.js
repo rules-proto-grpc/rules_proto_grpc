@@ -1,8 +1,13 @@
+const fs = require('fs');
+
 const grpc = require('@grpc/grpc-js');
 
-const messages = require('routeguide_package/example/proto/routeguide_pb.js')
-const services = require('routeguide_package/example/proto/routeguide_grpc_pb.js')
-const featureDb = require('rules_proto_grpc/example/proto/routeguide_features.json');
+const messages = require('./routeguide_pb/examples/proto/routeguide_pb.js');
+const services = require('./routeguide_pb/examples/proto/routeguide_grpc_pb.js');
+
+var featureDb = JSON.parse(fs.readFileSync(
+    process.env.DATABASE_FILE ?? 'modules/example_protos/routeguide_features.json', 'utf8'
+));
 
 const COORD_FACTOR = 1e7;
 let feature_list = [];

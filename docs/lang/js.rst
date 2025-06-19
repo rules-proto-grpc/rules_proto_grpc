@@ -320,7 +320,6 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    
    npm_link_all_packages(name = "node_modules")
    
-   
    js_proto_library(
        name = "person_js_proto",
        protos = ["@rules_proto_grpc_example_protos//:person_proto"],

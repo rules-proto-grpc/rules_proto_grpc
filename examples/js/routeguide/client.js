@@ -1,31 +1,34 @@
+const fs = require('fs');
 const util = require('util');
 const grpc = require('@grpc/grpc-js');
 
-const messages = require('routeguide/routeguide_pb/example/proto/routeguide_pb.js')
-const services = require('routeguide/routeguide_pb/example/proto/routeguide_grpc_pb.js')
+const messages = require('./routeguide_pb/examples/proto/routeguide_pb.js');
+const services = require('./routeguide_pb/examples/proto/routeguide_grpc_pb.js');
 
 // This is included as data in the client, so we can load this database as a constant.
-const featureList = require('rules_proto_grpc/example/proto/routeguide_features.json');
+var featureList = JSON.parse(fs.readFileSync(
+    process.env.DATABASE_FILE ?? 'modules/example_protos/routeguide_features.json', 'utf8'
+));
 console.log(`Loaded ${featureList.length} from feature database`);
 const COORD_FACTOR = 1e7;
 
 
 function newPoint(latitude, longitude) {
-    const point = new messages.Point()
+    const point = new messages.Point();
     point.setLatitude(latitude);
     point.setLongitude(longitude);
     return point;
 }
 
 function newRectangle(lo, hi) {
-    const rect = new messages.Rectangle()
+    const rect = new messages.Rectangle();
     rect.setLo(lo);
     rect.setHi(hi);
     return rect;
 }
 
 function newNote(point, message) {
-    const note = new messages.RouteNote()
+    const note = new messages.RouteNote();
     note.setLocation(point);
     note.setMessage(message);
     return note;
