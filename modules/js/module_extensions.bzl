@@ -18,7 +18,7 @@ def _download_plugins(module_ctx):
             name = "protoc_gen_protobuf_javascript_plugin_{}".format(platform.replace("-", "_")),
             sha256 = hash,
             url = "https://github.com/protocolbuffers/protobuf-javascript/releases/download/v3.21.4/protobuf-javascript-3.21.4-{}.zip".format(
-                platform.replace("windows", "win64").replace("arm64", "aarch_64"),
+                platform.replace("windows", "win64").replace("darwin", "osx").replace("arm64", "aarch_64"),
             ),
             build_file_content = """exports_files(glob(["**/*"]))""",
             strip_prefix = "protobuf-javascript-3.21.4-win64" if platform == "windows-x86_64" else "",
