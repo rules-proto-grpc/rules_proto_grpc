@@ -1,10 +1,33 @@
 """Module extensions for this language module."""
 
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
 
 def _download_plugins(module_ctx):
     """Download plugins."""
+
+    # grpc-js plugin
+    # Required as loading from NPM does not correctly download binaries on MacOS arm64, as the
+    # binaries are downloaded not by NPM but by node-pre-gyp. The download paths it would use are
+    # found from https://github.com/grpc/grpc-node/blob/master/packages/grpc-tools/package.json
+    for platform, hash in [
+        ("darwin-arm64", "0c0b26bc58a82fe0e2700a6f90ad2ceacfce529358dc1f333751bf3c8d42432c"),
+        ("darwin-x86_64", "fe64071b169436304b6e5c2c61bb4b1e91d9b51193d9480a3ef95f4274a6ee11"),
+        ("linux-arm64", "779eed77095d42635c40c3a392f5b6cea11018d48aafd810d5465d8cc496a7f7"),
+        ("linux-x86_64", "3a4748a36c8ff7b5e87ff2a6207bef456c459db1b6c1aead0a7216b495a476aa"),
+        # ("windows-arm64.exe", ""),  # Not available
+        ("windows-x86_64.exe", "4363b9d11c3af89c9356d195bfdcc6aa5b7093035365dedf021edd39f7d4f9cc"),
+    ]:
+        http_archive(
+            name = "protoc_gen_grpc_tools_plugin_{}".format(platform.replace("-", "_").replace(".exe", "")),
+            sha256 = hash,
+            url = "https://node-precompiled-binaries.grpc.io/grpc-tools/v1.13.0/{}.tar.gz".format(
+                platform.replace("windows", "win32").replace("x86_64", "x64"),
+            ),
+            build_file_content = """exports_files(glob(["bin/*"]))""",
+        )
+
+    # grpc-web plugin
     for platform, hash in [
         ("darwin-arm64", "a12b759629b943ebac5528f58fac5039d9aa2fb7abb9e9684d1b481b35afbfc6"),
         ("darwin-x86_64", "1fa3ef92194d06c03448a5cba82759e9773e43d8b188866a1f1d4fc23bb1ecb7"),
@@ -17,11 +40,12 @@ def _download_plugins(module_ctx):
             name = "protoc_gen_grpc_web_plugin_{}".format(platform.replace("-", "_").replace(".exe", "")),
             sha256 = hash,
             url = "https://github.com/grpc/grpc-web/releases/download/1.5.0/protoc-gen-grpc-web-1.5.0-{}".format(
-                platform.replace("arm64", "aarch_64")
+                platform.replace("arm64", "aarch_64"),
             ),
             executable = True,
         )
 
+    # protobuf-javascript
     git_repository(
         name = "protobuf_javascript",
         commit = "eb785a9363664a402b6336dfe96aad27fb33ffa8",
