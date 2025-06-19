@@ -14,7 +14,14 @@ proto_plugin(
         "binary",
     ],
     outputs = ["{protopath}_pb.js"],
-    tool = "@protobuf_javascript//generator:protoc-gen-js",
+    tool = select({
+        "@rules_proto_grpc//platforms:darwin_arm64": "@protoc_gen_protobuf_javascript_plugin_darwin_arm64//:bin/protoc-gen-js",
+        "@rules_proto_grpc//platforms:darwin_x86_64": "@protoc_gen_protobuf_javascript_plugin_darwin_x86_64//:bin/protoc-gen-js",
+        "@rules_proto_grpc//platforms:linux_aarch64": "@protoc_gen_protobuf_javascript_plugin_linux_arm64//:bin/protoc-gen-js",
+        "@rules_proto_grpc//platforms:linux_x86_64": "@protoc_gen_protobuf_javascript_plugin_linux_x86_64//:bin/protoc-gen-js",
+        # "@rules_proto_grpc//platforms:windows_arm64": "@protoc_gen_protobuf_javascript_plugin_windows_arm64//:bin/protoc-gen-js.exe",
+        "@rules_proto_grpc//platforms:windows_x86_64": "@protoc_gen_protobuf_javascript_plugin_windows_x86_64//:bin/protoc-gen-js.exe",
+    }),
     visibility = ["//visibility:public"],
 )
 
@@ -42,7 +49,7 @@ proto_plugin(
         "@rules_proto_grpc//platforms:darwin_x86_64": "@protoc_gen_grpc_tools_plugin_darwin_x86_64//:x64/grpc_node_plugin",  # Note different folder
         "@rules_proto_grpc//platforms:linux_aarch64": "@protoc_gen_grpc_tools_plugin_linux_arm64//:bin/grpc_node_plugin",
         "@rules_proto_grpc//platforms:linux_x86_64": "@protoc_gen_grpc_tools_plugin_linux_x86_64//:bin/grpc_node_plugin",
-        "@rules_proto_grpc//platforms:windows_arm64": "@protoc_gen_grpc_tools_plugin_windows_arm64//:bin/grpc_node_plugin.exe",
+        # "@rules_proto_grpc//platforms:windows_arm64": "@protoc_gen_grpc_tools_plugin_windows_arm64//:bin/grpc_node_plugin.exe",
         "@rules_proto_grpc//platforms:windows_x86_64": "@protoc_gen_grpc_tools_plugin_windows_x86_64//:bin/grpc_node_plugin.exe",
     }),
     visibility = ["//visibility:public"],
