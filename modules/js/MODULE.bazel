@@ -28,10 +28,10 @@ download_plugins = use_extension("//:module_extensions.bzl", "download_plugins")
 use_repo(
     download_plugins,
     "protobuf_javascript",
-    "protoc_gen_grpc_web_plugin_darwin_aarch64",
+    "protoc_gen_grpc_web_plugin_darwin_arm64",
     "protoc_gen_grpc_web_plugin_darwin_x86_64",
-    "protoc_gen_grpc_web_plugin_linux_aarch64",
+    "protoc_gen_grpc_web_plugin_linux_arm64",
     "protoc_gen_grpc_web_plugin_linux_x86_64",
-    "protoc_gen_grpc_web_plugin_windows_aarch64",
+    "protoc_gen_grpc_web_plugin_windows_arm64",
     "protoc_gen_grpc_web_plugin_windows_x86_64",
 )
