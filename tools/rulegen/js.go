@@ -103,6 +103,7 @@ func makeJs() *Language {
 		Name:  "js",
 		DisplayName: "JavaScript",
 		Notes: mustTemplate("Rules for generating JavaScript protobuf, gRPC-js and gRPC-Web ``.js`` and ``.d.ts`` files using standard Protocol Buffers and gRPC."),
+		SkipTestPlatforms: []string{"macos_arm64"},  // https://github.com/grpc/grpc-node/issues/2378
 		Rules: []*Rule{
 			&Rule{
 				Name:             "js_proto_compile",

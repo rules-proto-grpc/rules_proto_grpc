@@ -11,7 +11,7 @@ def _download_plugins(module_ctx):
     # binaries are downloaded not by NPM but by node-pre-gyp. The download paths it would use are
     # found from https://github.com/grpc/grpc-node/blob/master/packages/grpc-tools/package.json
     for platform, hash in [
-        ("darwin-arm64", "0c0b26bc58a82fe0e2700a6f90ad2ceacfce529358dc1f333751bf3c8d42432c"),
+        # ("darwin-arm64", "0c0b26bc58a82fe0e2700a6f90ad2ceacfce529358dc1f333751bf3c8d42432c"),  # https://github.com/grpc/grpc-node/issues/2378
         ("darwin-x86_64", "fe64071b169436304b6e5c2c61bb4b1e91d9b51193d9480a3ef95f4274a6ee11"),
         ("linux-arm64", "779eed77095d42635c40c3a392f5b6cea11018d48aafd810d5465d8cc496a7f7"),
         ("linux-x86_64", "3a4748a36c8ff7b5e87ff2a6207bef456c459db1b6c1aead0a7216b495a476aa"),

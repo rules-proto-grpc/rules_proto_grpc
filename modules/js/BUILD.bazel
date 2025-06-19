@@ -38,7 +38,7 @@ proto_plugin(
     ],
     outputs = ["{protopath}_grpc_pb.js"],
     tool = select({
-        "@rules_proto_grpc//platforms:darwin_arm64": "@protoc_gen_grpc_tools_plugin_darwin_arm64//:arm64/grpc_node_plugin",  # Note different folder
+        # "@rules_proto_grpc//platforms:darwin_arm64": "@protoc_gen_grpc_tools_plugin_darwin_arm64//:arm64/grpc_node_plugin",  # https://github.com/grpc/grpc-node/issues/2378  # Note different folder
         "@rules_proto_grpc//platforms:darwin_x86_64": "@protoc_gen_grpc_tools_plugin_darwin_x86_64//:x64/grpc_node_plugin",  # Note different folder
         "@rules_proto_grpc//platforms:linux_aarch64": "@protoc_gen_grpc_tools_plugin_linux_arm64//:bin/grpc_node_plugin",
         "@rules_proto_grpc//platforms:linux_x86_64": "@protoc_gen_grpc_tools_plugin_linux_x86_64//:bin/grpc_node_plugin",

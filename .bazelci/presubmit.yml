@@ -88,23 +88,15 @@ tasks:
     test_targets:
       - "//examples/routeguide:cpp_cpp"
       - "//examples/routeguide:cpp_go"
-      - "//examples/routeguide:cpp_js"
       - "//examples/routeguide:cpp_python"
       - "//examples/routeguide:go_cpp"
       - "//examples/routeguide:go_go"
-      - "//examples/routeguide:go_js"
       - "//examples/routeguide:go_python"
-      - "//examples/routeguide:js_cpp"
-      - "//examples/routeguide:js_go"
-      - "//examples/routeguide:js_js"
-      - "//examples/routeguide:js_python"
       - "//examples/routeguide:python_cpp"
       - "//examples/routeguide:python_go"
-      - "//examples/routeguide:python_js"
       - "//examples/routeguide:python_python"
       - "//examples/routeguide:scala_cpp"
       - "//examples/routeguide:scala_go"
-      - "//examples/routeguide:scala_js"
       - "//examples/routeguide:scala_python"
 
   buf_ubuntu2204_examples:
@@ -332,20 +324,6 @@ tasks:
   js_macos_examples:
     name: JavaScript
     platform: macos
-    environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-      - set -x
-      - make js_js_proto_compile_example
-      - make js_js_grpc_compile_example
-      - make js_js_grpc_web_compile_example
-      - make js_js_proto_library_example
-      - make js_js_grpc_library_example
-      - make js_js_grpc_web_library_example
-
-  js_macos_arm64_examples:
-    name: JavaScript
-    platform: macos_arm64
     environment:
       BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
     shell_commands:
