@@ -24,7 +24,7 @@ def _download_plugins(module_ctx):
             url = "https://node-precompiled-binaries.grpc.io/grpc-tools/v1.13.0/{}.tar.gz".format(
                 platform.replace("windows", "win32").replace("x86_64", "x64"),
             ),
-            build_file_content = """exports_files(glob(["bin/*"]))""",
+            build_file_content = """exports_files(glob(["**/*"]))""",
         )
 
     # grpc-web plugin
