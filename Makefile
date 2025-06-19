@@ -24,6 +24,12 @@ buildifier:
 	bazel run //tools:buildifier
 
 
+# Run pnpm to upgrade JS dependencies
+.PHONY: js_resolve
+js_resolve:
+	cd modules/js && bazel run -- @pnpm --dir $$PWD install --lockfile-only
+
+
 # Run pip-compile to upgrade python dependencies
 .PHONY: pip_compile
 pip_compile:
