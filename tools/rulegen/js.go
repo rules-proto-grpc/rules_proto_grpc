@@ -75,9 +75,9 @@ GRPC_DEPS = [
 ]`)
 
 var jsProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
-load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+load("@rules_proto_grpc_js_npm//:defs.bzl", rules_proto_grpc_js_npm_link_all_packages = "npm_link_all_packages")
 
-npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
+rules_proto_grpc_js_npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
@@ -97,9 +97,9 @@ npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
 )`)
 
 var jsGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
-load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+load("@rules_proto_grpc_js_npm//:defs.bzl", rules_proto_grpc_js_npm_link_all_packages = "npm_link_all_packages")
 
-npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
+rules_proto_grpc_js_npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
