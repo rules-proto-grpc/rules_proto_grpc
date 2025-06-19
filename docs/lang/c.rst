@@ -27,7 +27,6 @@ The C module can be installed by adding the following lines to your MODULE.bazel
 .. code-block:: python
 
    bazel_dep(name = "rules_proto_grpc_c", version = "<version number here>")
-   bazel_dep(name = "protobuf", version = "27.1")
 
 .. _c_proto_compile:
 
@@ -81,7 +80,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -165,7 +164,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false

@@ -1,11 +1,12 @@
 package main
 
-var bufRuleTemplate = mustTemplate(`load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+var bufRuleTemplate = mustTemplate(`load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
     "proto_compile_toolchains",
 )
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 load(
     ":buf.bzl",
     "TEST_ATTRS",
@@ -42,7 +43,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         **{k: v for k, v in kwargs.items() if k not in TEST_ATTRS}
     )
 
-    native.sh_test(
+    sh_test(
         name = name,
         srcs = [name + ".sh"],
         **{k: v for k, v in kwargs.items() if k in TEST_ATTRS}
@@ -133,7 +134,7 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 						Name:      "protos",
 						Type:      "label_list",
 						Default:   "[]",
-						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
+						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)",
 						Mandatory: true,
 						Providers: []string{"ProtoInfo"},
 					},
@@ -179,7 +180,7 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 					&Attr{
 						Name:      "protos",
 						Type:      "label_list",
-						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
+						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)",
 						Mandatory: true,
 						Providers: []string{"ProtoInfo"},
 					},

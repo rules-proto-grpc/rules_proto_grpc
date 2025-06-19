@@ -10,14 +10,7 @@ proto_plugin(
     options = ["paths=source_relative"],
     outputs = ["{protopath}.pb.gw.go"],
     separate_options_flag = True,
-    tool = select({
-        "@bazel_tools//src/conditions:darwin_arm64": "@grpc_gateway_plugin_darwin_arm64//file",
-        "@bazel_tools//src/conditions:darwin_x86_64": "@grpc_gateway_plugin_darwin_x86_64//file",
-        "@bazel_tools//src/conditions:linux_aarch64": "@grpc_gateway_plugin_linux_arm64//file",
-        "@bazel_tools//src/conditions:linux_x86_64": "@grpc_gateway_plugin_linux_x86_64//file",
-        "@bazel_tools//src/conditions:windows_arm64": "@grpc_gateway_plugin_windows_arm64//file",
-        "@bazel_tools//src/conditions:windows_x64": "@grpc_gateway_plugin_windows_x86_64//file",
-    }),
+    tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-grpc-gateway",
     visibility = ["//visibility:public"],
 )
 
@@ -27,18 +20,11 @@ proto_plugin(
         "google/api",
         "google/protobuf",
     ],
-    outputs = ["{protopath}.swagger.json"],
+    output_directory = True,  # https://github.com/rules-proto-grpc/rules_proto_grpc/issues/382
     quirks = [
         "QUIRK_DIRECT_MODE",
     ],
     separate_options_flag = True,
-    tool = select({
-        "@bazel_tools//src/conditions:darwin_arm64": "@openapiv2_plugin_darwin_arm64//file",
-        "@bazel_tools//src/conditions:darwin_x86_64": "@openapiv2_plugin_darwin_x86_64//file",
-        "@bazel_tools//src/conditions:linux_aarch64": "@openapiv2_plugin_linux_arm64//file",
-        "@bazel_tools//src/conditions:linux_x86_64": "@openapiv2_plugin_linux_x86_64//file",
-        "@bazel_tools//src/conditions:windows_arm64": "@openapiv2_plugin_windows_arm64//file",
-        "@bazel_tools//src/conditions:windows_x64": "@openapiv2_plugin_windows_x86_64//file",
-    }),
+    tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2",
     visibility = ["//visibility:public"],
 )

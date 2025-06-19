@@ -8,7 +8,7 @@ def _proto_plugin_impl(ctx):
             name = ctx.attr.name,
             label = ctx.label,
             tool = ctx.attr.tool,
-            tool_executable = ctx.executable.tool,
+            tool_provider = ctx.attr.tool[DefaultInfo] if ctx.attr.tool else None,
             protoc_plugin_name = ctx.attr.protoc_plugin_name,
             options = ctx.attr.options,
             outputs = ctx.attr.outputs,

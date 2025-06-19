@@ -33,7 +33,7 @@ def objc_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
     # Create objc library
     objc_library(
         name = name,
-        srcs = [name_pb],
+        non_arc_srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         includes = [name_pb],
         **{

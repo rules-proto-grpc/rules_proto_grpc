@@ -24,10 +24,22 @@ buildifier:
 	bazel run //tools:buildifier
 
 
+# Run pnpm to upgrade JS dependencies
+.PHONY: js_resolve
+js_resolve:
+	cd modules/js && bazel run -- @pnpm --dir $$PWD install --lockfile-only
+
+
 # Run pip-compile to upgrade python dependencies
 .PHONY: pip_compile
 pip_compile:
-	cd modules/python && echo '' > requirements.txt && bazel run --enable_bzlmod //:requirements.update
+	cd modules/python && echo '' > requirements.txt && bazel run //:requirements.update
+
+
+# Run swift resolve to update Package.resolved from Package.swift
+.PHONY: swift_resolve
+swift_resolve:
+	cd modules/swift && swift package resolve
 
 
 # Pull in auto-generated examples makefile

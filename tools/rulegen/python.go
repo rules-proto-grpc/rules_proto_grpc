@@ -1,7 +1,6 @@
 package main
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
@@ -42,11 +41,10 @@ def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
     )
 
 PROTO_DEPS = [
-    Label(requirement("protobuf")),
+    Label("@protobuf//:protobuf_python"),
 ]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
@@ -92,8 +90,8 @@ def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
     )
 
 GRPC_DEPS = [
-    Label(requirement("grpcio")),
-    Label(requirement("protobuf")),
+    Label("@grpc//src/python/grpcio/grpc:grpcio"),
+    Label("@protobuf//:protobuf_python"),
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
@@ -122,10 +120,10 @@ def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
 
 GRPCLIB_DEPS = [
     Label(requirement("grpclib")),
-    Label(requirement("protobuf")),
+    Label("@protobuf//:protobuf_python"),
 ]`)
 
-var pythonModuleSuffixLines = `bazel_dep(name = "rules_python", version = "0.37.2")
+var pythonModuleSuffixLines = `bazel_dep(name = "rules_python", version = "1.4.1")
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(python_version = "3.11")`
@@ -171,7 +169,6 @@ func makePython() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows", "macos"},
 			},
 			&Rule{
 				Name:             "python_proto_library",
@@ -188,7 +185,6 @@ func makePython() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_python``",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "python_grpclib_library",
@@ -197,7 +193,6 @@ func makePython() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf and grpclib library using ``py_library`` from ``rules_python`` (supports Python 3 only)",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows", "macos"},
 			},
 		},
 	}

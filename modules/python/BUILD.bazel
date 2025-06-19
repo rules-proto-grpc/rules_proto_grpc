@@ -40,7 +40,7 @@ py_console_script_binary(
     pkg = requirement("grpclib"),
     script = "protoc-gen-grpclib_python",
     deps = [
-        requirement("protobuf"),
+        "@protobuf//:protobuf_python",
     ],
 )
 

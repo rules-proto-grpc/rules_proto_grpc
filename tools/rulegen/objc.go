@@ -30,7 +30,7 @@ var objcProtoLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + 
     # Create {{ .Lang.Name }} library
     objc_library(
         name = name,
-        srcs = [name_pb + "_srcs"],
+        non_arc_srcs = [name_pb + "_srcs"],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
@@ -59,7 +59,7 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     objc_library(
         name = name,
-        srcs = [name_pb],
+        non_arc_srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         includes = [name_pb],
         **{
@@ -84,14 +84,14 @@ GRPC_DEPS = [
     Label("@grpc//src/objective-c:proto_objc_rpc"),
 ]`)
 
-var objcModulePrefixLines = `bazel_dep(name = "apple_support", version = "1.15.1")` // Need apple_support loaded as early as possible for toolchain
+var objcModulePrefixLines = `bazel_dep(name = "apple_support", version = "1.22.0")` // Need apple_support loaded as early as possible for toolchain
 
 func makeObjc() *Language {
 	return &Language{
 		Name:  "objc",
 		DisplayName: "Objective-C",
 		Notes: mustTemplate("Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``objc_library``"),
-		SkipTestPlatforms: []string{"linux", "windows"},
+		SkipTestPlatforms: []string{"linux", "windows", "macos"},  // Linux and Windows have no Obj-C and Mac crashes Bazel
 		ModulePrefixLines: objcModulePrefixLines,
 		Rules: []*Rule{
 			&Rule{
@@ -124,7 +124,6 @@ func makeObjc() *Language {
 				Name:             "objc_grpc_library",
 				Kind:             "grpc",
 				Implementation:   objcGrpcLibraryRuleTemplate,
-				SkipTestPlatforms: []string{"all"}, // Current gRPC in BCR is broken due to missing rules_apple
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates an Objective-C protobuf and gRPC library using ``objc_library``",
 				Attrs:            cppLibraryRuleAttrs,

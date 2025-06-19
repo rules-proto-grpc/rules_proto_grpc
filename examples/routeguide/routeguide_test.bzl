@@ -1,5 +1,7 @@
 """Definition of the routeguide test and matrix rules."""
 
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
 def _get_lang_name(label):
     return label.partition("//examples/")[2].partition("/")[0]
 
@@ -128,7 +130,7 @@ def routeguide_test_matrix(
             )
 
             # Create sh_test
-            native.sh_test(
+            sh_test(
                 name = name,
                 size = "small",
                 srcs = [name + ".sh"],

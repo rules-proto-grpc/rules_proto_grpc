@@ -1,7 +1,7 @@
 """Common rule implemenation for applying Buf plugins."""
 
 load("@bazel_skylib//lib:shell.bzl", "shell")
-load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load("@rules_proto_grpc//internal:common.bzl", "descriptor_proto_path")
 load("@rules_proto_grpc//internal:protoc.bzl", "build_protoc_args")
 load("@rules_proto_grpc//internal:providers.bzl", "ProtoPluginInfo")
@@ -33,7 +33,7 @@ def buf_test_script_impl(ctx, options):
     """
 
     # Load toolchain
-    protoc_toolchain_info = ctx.toolchains[str(Label("@rules_proto//proto:toolchain_type"))]
+    protoc_toolchain_info = ctx.toolchains[str(Label("@protobuf//bazel/private:proto_toolchain_type"))]
     protoc = protoc_toolchain_info.proto.proto_compiler.executable
 
     # Create test script header
@@ -52,7 +52,7 @@ set -uo pipefail
     all_inputs = [ctx.file.against_input] if hasattr(ctx.file, "against_input") else []
     for plugin in plugins:
         # Get plugin
-        plugin_executables.append(plugin.tool_executable)
+        plugin_executables.append(plugin.tool_provider.files_to_run.executable)
 
         # Get proto paths
         proto_paths = []  # The paths passed to protoc
@@ -61,14 +61,13 @@ set -uo pipefail
                 proto_paths.append(descriptor_proto_path(proto, proto_info))
 
         # Build command
-        args_list, cmd_inputs, _ = build_protoc_args(
+        args_list, cmd_inputs = build_protoc_args(
             ctx,
             plugin,
             proto_infos,
             ".",
             short_paths = True,
             extra_options = options,
-            resolve_tools = False,
         )
         all_inputs += cmd_inputs
 

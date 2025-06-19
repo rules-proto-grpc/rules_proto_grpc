@@ -107,10 +107,19 @@ Supported Languages and Tools
    * - Java
      - ✔
      - ✔
+   * - JavaScript
+     - ✔
+     - ✔
    * - Objective-C
      - ✔
      - ✔
    * - Python
+     - ✔
+     - ✔
+   * - Scala
+     - ✔
+     - ✔
+   * - Swift
      - ✔
      - ✔
 
@@ -161,5 +170,8 @@ Supported Languages and Tools
    lang/go
    lang/grpc_gateway
    lang/java
+   lang/js
    lang/objc
    lang/python
+   lang/scala
+   lang/swift

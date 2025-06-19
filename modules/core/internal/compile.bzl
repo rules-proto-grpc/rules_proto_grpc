@@ -1,6 +1,6 @@
 """Compilation rules definition for rules_proto_grpc."""
 
-load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load(
     "//internal:common.bzl",
     "copy_file",
@@ -16,7 +16,7 @@ proto_compile_attrs = {
     "protos": attr.label_list(
         mandatory = True,
         providers = [ProtoInfo],
-        doc = "List of labels that provide the ProtoInfo provider (such as proto_library from rules_proto)",
+        doc = "List of labels that provide the ProtoInfo provider (such as proto_library from @protobuf)",
     ),
     "options": attr.string_list_dict(
         doc = "Extra options to pass to plugins, as a dict of plugin label -> list of strings. The key * can be used exclusively to apply to all plugins",
@@ -105,7 +105,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     verbose = ctx.attr.verbose
 
     # Load toolchain and tools
-    protoc_toolchain_info = ctx.toolchains[str(Label("@rules_proto//proto:toolchain_type"))]
+    protoc_toolchain_info = ctx.toolchains[str(Label("@protobuf//bazel/private:proto_toolchain_type"))]
     protoc = protoc_toolchain_info.proto.proto_compiler.executable
     fixer = ctx.executable._fixer
 
@@ -135,9 +135,11 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             # accept "*" anyway. This turns a plugin label like
             # @@rules_proto_grpc_grpc_gateway~override//:plugin into
             # @rules_proto_grpc_grpc_gateway//:plugin
+            # Note that pre Bazel 8 a ~ is used and post Bazel 8 a + is used, see
+            # https://github.com/bazelbuild/bazel/issues/23127
             for possible_plugin_label in plugin_labels:
                 if (
-                    (str(possible_plugin_label).partition("//"))[0].partition("~")[0].replace("@@", "@") +
+                    (str(possible_plugin_label).partition("//"))[0].partition("~")[0].partition("+")[0].replace("@@", "@") +
                     "//" +
                     str(possible_plugin_label).partition("//")[2]
                 ) == plugin_label_str:
@@ -312,7 +314,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             plugin_protoc_outputs = plugin_outputs
 
         # Build argument list for protoc execution
-        args_list, cmd_inputs, cmd_input_manifests = build_protoc_args(
+        args_list, cmd_inputs = build_protoc_args(
             ctx,
             plugin,
             proto_infos,
@@ -347,7 +349,10 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         mnemonic = "ProtoCompile"
         command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + ' "$@"'
         cmd_inputs += extra_protoc_files
-        tools = [protoc] + ([plugin.tool_executable] if plugin.tool_executable else [])
+
+        # Get tool executable via tool provider, rather than via ctx.executable
+        # See https://github.com/bazelbuild/bazel/issues/22249
+        tools = [protoc] + ([plugin.tool_provider.files_to_run] if plugin.tool_provider else [])
 
         # Amend command with debug options
         if verbose > 0:
@@ -384,6 +389,19 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             for k, v in plugin.env.items()
         }
 
+        # Make compatible with aspect_rules_js js_binary rule and fix the following error:
+        # ATAL: aspect_rules_js[js_binary]: BAZEL_BINDIR must be set in environment to the makevar
+        # $(BINDIR) in js_binary build actions (which run in the execroot) so that build actions can
+        # change directories to always run out of the root of the Bazel output tree. See
+        # https://docs.bazel.build/versions/main/be/make-variables.html#predefined_variables. This
+        # is automatically set by 'js_run_binary'
+        # (https://github.com/aspect-build/rules_js/blob/main/docs/js_run_binary.md) which is the
+        # recommended rule to use for using a js_binary as the tool of a build action. If this is
+        # not a build action you can set the BAZEL_BINDIR to '.' instead to supress this error. For
+        # more context on this design decision, please read the aspect_rules_js README
+        # https://github.com/aspect-build/rules_js/tree/dbb5af0d2a9a2bb50e4cf4a96dbc582b27567155#running-nodejs-programs.
+        plugin_env["BAZEL_BINDIR"] = ctx.bin_dir.path
+
         # Run protoc (https://bazel.build/rules/lib/actions#run_shell)
         ctx.actions.run_shell(
             mnemonic = mnemonic,
@@ -394,7 +412,6 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             outputs = plugin_protoc_outputs,
             env = plugin_env,
             use_default_shell_env = plugin.use_built_in_shell_environment,
-            input_manifests = cmd_input_manifests,
             progress_message = "Compiling protoc outputs for {} plugin on target {}".format(
                 plugin.name,
                 ctx.label,

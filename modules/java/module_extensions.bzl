@@ -5,17 +5,17 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
 def _download_plugins(module_ctx):
     """Download plugins."""
     for platform, hash in [
-        ("darwin-arm64", "dcee3d7720a92f247dbefc17288db878ad9981293db293c86a1afb6074935c53"),
-        ("darwin-x86_64", "dcee3d7720a92f247dbefc17288db878ad9981293db293c86a1afb6074935c53"),
-        ("linux-arm64", "308435e80ba288b0804b3e448b9ad97500b545f801297eb7ea142db8fe81fb9c"),
-        ("linux-x86_64", "a9f9a7987be4a37c69a85e5e8885394356fd2f1a47f843c6461da4fc99f407b3"),
-        ("windows-x86_64", "9d6659af976eb5ff664eb853bba25bcdf988500040227711bd87146c55241779"),
+        ("darwin-arm64", "24febbebd503a564b0b257e51514f6c871ea1feb44a48b593b078616f7b0a2b5"),
+        ("darwin-x86_64", "24febbebd503a564b0b257e51514f6c871ea1feb44a48b593b078616f7b0a2b5"),
+        ("linux-arm64", "40e1bc64dea38a1af5a4e40e3adbf0019957719f1e2a966024d4deac90986eab"),
+        ("linux-x86_64", "94e2eeea024541be8d0d47396ff4bbedc98903309b32aaf54fa93355d1016838"),
+        ("windows-x86_64", "d4741560c90932a3443b234dee9e52351c368a27c37766c34cdc95cab8d2b043"),
     ]:
         http_file(
             name = "grpc_java_plugin_{}".format(platform.replace("-", "_")),
             executable = True,
             sha256 = hash,
-            url = "https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.65.0/protoc-gen-grpc-java-1.65.0-{}.exe".format(
+            url = "https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.72.0/protoc-gen-grpc-java-1.72.0-{}.exe".format(
                 platform.replace("darwin", "osx").replace("arm64", "aarch_64"),
             ),
         )

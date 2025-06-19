@@ -1,11 +1,12 @@
 """Generated definition of buf_proto_breaking_test."""
 
-load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
     "proto_compile_toolchains",
 )
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 load(
     ":buf.bzl",
     "TEST_ATTRS",
@@ -19,7 +20,7 @@ buf_proto_breaking_test_script = rule(
             providers = [ProtoInfo],
             default = [],
             mandatory = True,
-            doc = "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
+            doc = "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)",
         ),
         against_input = attr.label(
             allow_single_file = [".bin", ".json"],
@@ -61,7 +62,7 @@ def buf_proto_breaking_test(name, **kwargs):
         **{k: v for k, v in kwargs.items() if k not in TEST_ATTRS}
     )
 
-    native.sh_test(
+    sh_test(
         name = name,
         srcs = [name + ".sh"],
         **{k: v for k, v in kwargs.items() if k in TEST_ATTRS}

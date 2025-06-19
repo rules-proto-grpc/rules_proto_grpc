@@ -29,9 +29,8 @@ def {{ .Rule.Name }}(name, **kwargs):
     )
 
 GATEWAY_DEPS = [
-    Label("@com_github_grpc_ecosystem_grpc_gateway_v2//runtime:go_default_library"),
-    Label("@com_github_grpc_ecosystem_grpc_gateway_v2//utilities:go_default_library"),
-    # Label("@go_googleapis//google/api:annotations_go_proto"),  # https://github.com/bazelbuild/bazel-central-registry/issues/1113
+    Label("@grpc_ecosystem_grpc_gateway//runtime"),
+    Label("@grpc_ecosystem_grpc_gateway//utilities"),
 ]`)
 
 var grpcGatewayCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
@@ -75,7 +74,6 @@ func makeGrpcGateway() *Language {
 				BuildExample:      grpcGatewayCompileExampleTemplate,
 				Doc:               "Generates gRPC-Gateway OpenAPI v2 ``.json`` files",
 				Attrs:             compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows"}, // gRPC go lib rules fail on windows due to bad path
 			},
 			&Rule{
 				Name:              "gateway_grpc_library",
@@ -84,7 +82,6 @@ func makeGrpcGateway() *Language {
 				BuildExample:      grpcGatewayLibraryExampleTemplate,
 				Doc:               "Generates gRPC-Gateway library files",
 				Attrs:             goLibraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows"}, // gRPC go lib rules fail on windows due to bad path
 			},
 		},
 	}

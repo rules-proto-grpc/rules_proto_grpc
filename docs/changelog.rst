@@ -6,6 +6,123 @@
 Changelog
 =========
 
+5.3.0
+-----
+
+Changes
+*******
+
+- Restored JavaScript language support, thanks to @Lev1ty
+
+
+Version Updates
+***************
+
+None
+
+
+5.2.1
+-----
+
+Changes
+*******
+
+No major changes, only version updates
+
+
+Version Updates
+***************
+
+- Updated Bazel ``buildifier_prebuilt`` to 8.2.0.2
+- Updated Bazel ``gazelle`` to 0.44.0
+- Updated Bazel ``rules_cc`` to 0.1.2
+- Updated Bazel ``rules_go`` to 0.55.1
+- Updated Bazel ``rules_shell`` to 0.5.0
+- Updated Bazel ``rules_swift`` to 3.0.2
+- Updated Bazel ``rules_swift_package_manager`` to 1.0.0
+- Updated Swift ``grpc/grpc-swift`` to 2.2.3
+- Updated Swift ``grpc/grpc-swift-protobuf`` to 1.3.1
+
+
+5.2.0
+-----
+
+Changes
+*******
+
+- Restored Scala language support
+- Restored Swift langauge support
+- Fixed usage of ``options`` attr on Bazel 8, where the Label canonicalisation has changed
+- Fixed loading of Buf protoc lint plugin
+- Fixed loading of Buf protoc breaking plugin on linux/arm64
+- Switched gRPC-Gateway to be loaded directly from Bazel bzlmod dependency rather than via
+  Go/Gazelle
+- The ``gateway_openapiv2_compile()`` rule now uses a directory as output, to allow creating a
+  combined output file. `#382 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/382>`__
+- Fixed ``bzl_library`` referencing incorrect dependency in ``@protobuf``
+- Switched from ``@bazel_tool//platforms`` to ``@platforms``
+- The Python dependencies for Protobuf and gRPC are now loaded from the ``@protobuf`` and ``@grpc``
+  bzlmod workspaces respectively, rather than from PyPI wheels. This is necessary to prevent version
+  skew between the protoc version and the runtime version, but unfortunately may result in longer
+  uncached build times
+- Added CI testing on MacOS (x64 and arm)
+
+
+Version Updates
+***************
+
+- Updated Bazel ``protobuf`` to 31.1
+- Updated Bazel ``rules_go`` to 0.55.0
+- Updated Bazel ``rules_java`` to 8.11.0
+- Updated Bazel ``toolchains_protoc`` to 0.4.2
+- Updated Java ``com.google.protobuf:protobuf-java`` to 4.31.1
+
+
+5.1.0
+-----
+
+Changes
+*******
+
+- Added support for Bazel 8 and dropped Bazel 6 support
+- Replaced deprecated ``rules_proto`` with ``protobuf``
+- Added support for providing extra plugins to rules at runtime using the ``extra_plugins``
+  attribute
+- Fixed version skew between grpc-gateway protoc plugin and runtime
+- Added optional generation of ``.pyi`` files for Python
+- Switched Objective-C sources to use ``non_arc_srcs``
+- Dropped C language support, as the μpb API is considered unstable and the C plugin is no longer
+  publicly visible from the ``protobuf`` workspace
+- Removed usage of ``ctx.resolve_tools`` that is deprecated
+- Added Python 3.13 to supported list
+- Replaced custom grpclib plugin with ``py_console_script_binary``
+
+
+Version Updates
+***************
+
+- Updated Bazel ``apple_support`` to 1.22.0
+- Updated Bazel ``buildifier_prebuilt`` to 8.0.3
+- Updated Bazel ``gazelle`` to 0.43.0
+- Updated Bazel ``grpc`` to 1.72.0
+- Updated Bazel ``protobuf`` to 30.2
+- Updated Bazel ``rules_cc`` to 0.1.1
+- Updated Bazel ``rules_go`` to 0.54.0
+- Updated Bazel ``rules_java`` to 8.11.0
+- Updated Bazel ``rules_python`` to 1.4.1
+- Updated Bazel ``rules_shell`` to 0.4.1
+- Updated Bazel ``toolchains_protoc`` to 0.4.1
+- Updated Buf to 1.54.0
+- Updated Go ``google.golang.org/protobuf`` to v1.36.0
+- Updated Go ``google.golang.org/grpc`` to v1.72.1
+- Updated ``grpc-gateway`` to 2.26.3
+- Updated Java ``com.google.protobuf:protobuf-java`` to 4.30.2
+- Updated Java ``io.grpc:grpc-api`` to 1.72.0
+- Updated Python ``grpcio`` to 1.71.0
+- Updated Python ``grpclib`` to 0.4.8
+- Updated Python ``protobuf`` to 6.30.2
+
+
 5.0.1
 -----
 

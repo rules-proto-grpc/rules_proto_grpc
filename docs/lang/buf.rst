@@ -81,7 +81,7 @@ Attributes
      - ``label_list``
      - true
      - ``[]``
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``against_input``
      - ``label``
      - true
@@ -192,7 +192,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``use_rules``
      - ``string_list``
      - false
