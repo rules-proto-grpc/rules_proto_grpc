@@ -2,7 +2,7 @@ load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
 load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
 load("@rules_proto_grpc_js_npm//:ts-protoc-gen/package_json.bzl", ts_protoc_gen = "bin")
 
-npm_link_all_packages(name = "node_modules")
+npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
 
 proto_plugin(
     name = "proto_plugin",

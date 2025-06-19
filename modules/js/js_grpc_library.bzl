@@ -30,6 +30,6 @@ def js_grpc_library(name, **kwargs):
     )
 
 GRPC_DEPS = [
-    "//:node_modules/@grpc/grpc-js",
-    "//:node_modules/google-protobuf",
+    "//:rules_proto_grpc_js_node_modules/@grpc/grpc-js",
+    "//:rules_proto_grpc_js_node_modules/google-protobuf",
 ]

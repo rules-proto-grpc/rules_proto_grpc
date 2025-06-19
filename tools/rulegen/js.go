@@ -21,7 +21,7 @@ def {{ .Rule.Name }}(name, **kwargs):
     )
 
 PROTO_DEPS = [
-    "//:node_modules/google-protobuf",
+    "//:rules_proto_grpc_js_node_modules/google-protobuf",
 ]`)
 
 var jsGrpcLibraryRuleTemplate = mustTemplate(`load("@aspect_rules_js//js:defs.bzl", "js_library")
@@ -45,8 +45,8 @@ def {{ .Rule.Name }}(name, **kwargs):
     )
 
 GRPC_DEPS = [
-    "//:node_modules/@grpc/grpc-js",
-    "//:node_modules/google-protobuf",
+    "//:rules_proto_grpc_js_node_modules/@grpc/grpc-js",
+    "//:rules_proto_grpc_js_node_modules/google-protobuf",
 ]`)
 
 var jsGrpcWebLibraryRuleTemplate = mustTemplate(`load("@aspect_rules_js//js:defs.bzl", "js_library")
@@ -70,14 +70,14 @@ def {{ .Rule.Name }}(name, **kwargs):
     )
 
 GRPC_DEPS = [
-    "//:node_modules/google-protobuf",
-    "//:node_modules/grpc-web",
+    "//:rules_proto_grpc_js_node_modules/google-protobuf",
+    "//:rules_proto_grpc_js_node_modules/grpc-web",
 ]`)
 
 var jsProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
 
-npm_link_all_packages(name = "node_modules")
+npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
 
 {{ .Rule.Name }}(
     name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}",
@@ -96,11 +96,10 @@ npm_link_all_packages(name = "node_modules")
     protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )`)
 
-
 var jsGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
 load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
 
-npm_link_all_packages(name = "node_modules")
+npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
 
 {{ .Rule.Name }}(
     name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}",
@@ -123,62 +122,62 @@ use_repo(npm, "rules_proto_grpc_js_npm")`
 
 func makeJs() *Language {
 	return &Language{
-		Name:  "js",
-		DisplayName: "JavaScript",
-		Notes: mustTemplate("Rules for generating JavaScript protobuf, gRPC-js and gRPC-Web ``.js`` and ``.d.ts`` files using standard Protocol Buffers and gRPC."),
+		Name:              "js",
+		DisplayName:       "JavaScript",
+		Notes:             mustTemplate("Rules for generating JavaScript protobuf, gRPC-js and gRPC-Web ``.js`` and ``.d.ts`` files using standard Protocol Buffers and gRPC."),
 		ModuleSuffixLines: jsModuleSuffixLines,
-		SkipTestPlatforms: []string{"macos_arm64"},  // https://github.com/grpc/grpc-node/issues/2378
+		SkipTestPlatforms: []string{"macos_arm64"}, // https://github.com/grpc/grpc-node/issues/2378
 		Rules: []*Rule{
 			&Rule{
-				Name:             "js_proto_compile",
-				Kind:             "proto",
-				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//:proto_plugin", "//:proto_ts_plugin"},
-				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf ``.js`` and ``.d.ts`` files",
-				Attrs:            compileRuleAttrs,
+				Name:           "js_proto_compile",
+				Kind:           "proto",
+				Implementation: compileRuleTemplate,
+				Plugins:        []string{"//:proto_plugin", "//:proto_ts_plugin"},
+				BuildExample:   protoCompileExampleTemplate,
+				Doc:            "Generates JavaScript protobuf ``.js`` and ``.d.ts`` files",
+				Attrs:          compileRuleAttrs,
 			},
 			&Rule{
-				Name:             "js_grpc_compile",
-				Kind:             "grpc",
-				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//:proto_plugin", "//:proto_ts_plugin", "//:grpc_plugin", "//:grpc_ts_plugin"},
-				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf and gRPC-js ``.js`` and ``.d.ts`` files",
-				Attrs:            compileRuleAttrs,
+				Name:           "js_grpc_compile",
+				Kind:           "grpc",
+				Implementation: compileRuleTemplate,
+				Plugins:        []string{"//:proto_plugin", "//:proto_ts_plugin", "//:grpc_plugin", "//:grpc_ts_plugin"},
+				BuildExample:   grpcCompileExampleTemplate,
+				Doc:            "Generates JavaScript protobuf and gRPC-js ``.js`` and ``.d.ts`` files",
+				Attrs:          compileRuleAttrs,
 			},
 			&Rule{
-				Name:             "js_grpc_web_compile",
-				Kind:             "grpc",
-				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//:proto_plugin", "//:proto_ts_plugin", "//:grpc_web_js_plugin"},
-				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files",
-				Attrs:            compileRuleAttrs,
+				Name:           "js_grpc_web_compile",
+				Kind:           "grpc",
+				Implementation: compileRuleTemplate,
+				Plugins:        []string{"//:proto_plugin", "//:proto_ts_plugin", "//:grpc_web_js_plugin"},
+				BuildExample:   grpcCompileExampleTemplate,
+				Doc:            "Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files",
+				Attrs:          compileRuleAttrs,
 			},
 			&Rule{
-				Name:             "js_proto_library",
-				Kind:             "proto",
-				Implementation:   jsProtoLibraryRuleTemplate,
-				BuildExample:     jsProtoLibraryExampleTemplate,
-				Doc:              "Generates a JavaScript protobuf library using ``js_library`` from ``aspect_rules_js``",
-				Attrs:            compileRuleAttrs,
+				Name:           "js_proto_library",
+				Kind:           "proto",
+				Implementation: jsProtoLibraryRuleTemplate,
+				BuildExample:   jsProtoLibraryExampleTemplate,
+				Doc:            "Generates a JavaScript protobuf library using ``js_library`` from ``aspect_rules_js``",
+				Attrs:          compileRuleAttrs,
 			},
 			&Rule{
-				Name:             "js_grpc_library",
-				Kind:             "grpc",
-				Implementation:   jsGrpcLibraryRuleTemplate,
-				BuildExample:     jsGrpcLibraryExampleTemplate,
-				Doc:              "Generates a Node.js protobuf + gRPC-js library using ``js_library`` from ``aspect_rules_js``",
-				Attrs:            compileRuleAttrs,
+				Name:           "js_grpc_library",
+				Kind:           "grpc",
+				Implementation: jsGrpcLibraryRuleTemplate,
+				BuildExample:   jsGrpcLibraryExampleTemplate,
+				Doc:            "Generates a Node.js protobuf + gRPC-js library using ``js_library`` from ``aspect_rules_js``",
+				Attrs:          compileRuleAttrs,
 			},
 			&Rule{
-				Name:             "js_grpc_web_library",
-				Kind:             "grpc",
-				Implementation:   jsGrpcWebLibraryRuleTemplate,
-				BuildExample:     jsGrpcLibraryExampleTemplate,
-				Doc:              "Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``aspect_rules_js``",
-				Attrs:            compileRuleAttrs,
+				Name:           "js_grpc_web_library",
+				Kind:           "grpc",
+				Implementation: jsGrpcWebLibraryRuleTemplate,
+				BuildExample:   jsGrpcLibraryExampleTemplate,
+				Doc:            "Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``aspect_rules_js``",
+				Attrs:          compileRuleAttrs,
 			},
 		},
 	}

@@ -316,9 +316,9 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 .. code-block:: python
 
    load("@rules_proto_grpc_js//:defs.bzl", "js_proto_library")
-   load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+   load("@rules_proto_grpc_js_npm//:defs.bzl", rules_proto_grpc_js_npm_link_all_packages = "npm_link_all_packages")
    
-   npm_link_all_packages(name = "node_modules")
+   rules_proto_grpc_js_npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
    
    js_proto_library(
        name = "person_js_proto",
@@ -403,9 +403,9 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 .. code-block:: python
 
    load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_library")
-   load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+   load("@rules_proto_grpc_js_npm//:defs.bzl", rules_proto_grpc_js_npm_link_all_packages = "npm_link_all_packages")
    
-   npm_link_all_packages(name = "node_modules")
+   rules_proto_grpc_js_npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
    
    js_grpc_library(
        name = "thing_js_grpc",
@@ -484,9 +484,9 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 .. code-block:: python
 
    load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_web_library")
-   load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+   load("@rules_proto_grpc_js_npm//:defs.bzl", rules_proto_grpc_js_npm_link_all_packages = "npm_link_all_packages")
    
-   npm_link_all_packages(name = "node_modules")
+   rules_proto_grpc_js_npm_link_all_packages(name = "rules_proto_grpc_js_node_modules")
    
    js_grpc_web_library(
        name = "thing_js_grpc",
