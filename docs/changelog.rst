@@ -6,6 +6,29 @@
 Changelog
 =========
 
+5.2.1
+-----
+
+Changes
+*******
+
+No major changes, only version updates
+
+
+Version Updates
+***************
+
+- Updated Bazel ``buildifier_prebuilt`` to 8.2.0.2
+- Updated Bazel ``gazelle`` to 0.44.0
+- Updated Bazel ``rules_cc`` to 0.1.2
+- Updated Bazel ``rules_go`` to 0.55.1
+- Updated Bazel ``rules_shell`` to 0.5.0
+- Updated Bazel ``rules_swift`` to 3.0.2
+- Updated Bazel ``rules_swift_package_manager`` to 1.0.0
+- Updated Swift ``grpc/grpc-swift`` to 2.2.3
+- Updated Swift ``grpc/grpc-swift-protobuf`` to 1.3.1
+
+
 5.2.0
 -----
 
