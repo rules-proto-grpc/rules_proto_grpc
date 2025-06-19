@@ -1,4 +1,3 @@
-bazel_dep(name = "aspect_rules_js", version = "2.3.7")
 bazel_dep(name = "buildifier_prebuilt", version = "8.2.0.2")
 bazel_dep(name = "gazelle", version = "0.44.0")
 bazel_dep(name = "protobuf", version = "31.1")

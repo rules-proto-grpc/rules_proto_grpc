@@ -35,6 +35,11 @@ The JavaScript module can be installed by adding the following lines to your MOD
 .. code-block:: python
 
    bazel_dep(name = "rules_proto_grpc_js", version = "<version number here>")
+   bazel_dep(name = "aspect_rules_js", version = "2.3.7")
+   
+   # Allow npm_link_all_packages of rules_proto_grpc_js_npm from rules_proto_grpc_js
+   npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+   use_repo(npm, "rules_proto_grpc_js_npm")
 
 .. _js_proto_compile:
 
@@ -311,6 +316,10 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 .. code-block:: python
 
    load("@rules_proto_grpc_js//:defs.bzl", "js_proto_library")
+   load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+   
+   npm_link_all_packages(name = "node_modules")
+   
    
    js_proto_library(
        name = "person_js_proto",
@@ -376,26 +385,6 @@ Attributes
      - false
      - ``PREFIXED``
      - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
-   * - ``deps``
-     - ``label_list``
-     - false
-     - ``[]``
-     - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``package_name``
-     - ``string``
-     - false
-     - 
-     - The package name to use for the library. If unprovided, the target name is used.
-   * - ``deps_repo``
-     - ``string``
-     - false
-     - ``@npm``
-     - The repository to load the dependencies from, if you don't use ``@npm``
-   * - ``legacy_path``
-     - ``bool``
-     - false
-     - ``False``
-     - Use the legacy <name>_pb path segment from the generated library require path.
 
 .. _js_grpc_library:
 
@@ -415,6 +404,9 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 .. code-block:: python
 
    load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_library")
+   load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+   
+   npm_link_all_packages(name = "node_modules")
    
    js_grpc_library(
        name = "thing_js_grpc",
@@ -474,26 +466,6 @@ Attributes
      - false
      - ``PREFIXED``
      - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
-   * - ``deps``
-     - ``label_list``
-     - false
-     - ``[]``
-     - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``package_name``
-     - ``string``
-     - false
-     - 
-     - The package name to use for the library. If unprovided, the target name is used.
-   * - ``deps_repo``
-     - ``string``
-     - false
-     - ``@npm``
-     - The repository to load the dependencies from, if you don't use ``@npm``
-   * - ``legacy_path``
-     - ``bool``
-     - false
-     - ``False``
-     - Use the legacy <name>_pb path segment from the generated library require path.
 
 .. _js_grpc_web_library:
 
@@ -513,6 +485,9 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 .. code-block:: python
 
    load("@rules_proto_grpc_js//:defs.bzl", "js_grpc_web_library")
+   load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+   
+   npm_link_all_packages(name = "node_modules")
    
    js_grpc_web_library(
        name = "thing_js_grpc",
@@ -572,23 +547,3 @@ Attributes
      - false
      - ``PREFIXED``
      - The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output directly to the current package. Using NO_PREFIX may lead to conflicting writes
-   * - ``deps``
-     - ``label_list``
-     - false
-     - ``[]``
-     - List of labels to pass as deps attr to underlying lang_library rule
-   * - ``package_name``
-     - ``string``
-     - false
-     - 
-     - The package name to use for the library. If unprovided, the target name is used.
-   * - ``deps_repo``
-     - ``string``
-     - false
-     - ``@npm``
-     - The repository to load the dependencies from, if you don't use ``@npm``
-   * - ``legacy_path``
-     - ``bool``
-     - false
-     - ``False``
-     - Use the legacy <name>_pb path segment from the generated library require path.

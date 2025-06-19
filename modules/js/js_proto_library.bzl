@@ -30,5 +30,5 @@ def js_proto_library(name, **kwargs):
     )
 
 PROTO_DEPS = [
-    Label("@rules_proto_grpc_js//:node_modules/google-protobuf"),
+    "//:node_modules/google-protobuf",
 ]

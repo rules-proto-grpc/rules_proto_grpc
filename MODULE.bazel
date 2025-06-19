@@ -1,4 +1,3 @@
-bazel_dep(name = "aspect_rules_js", version = "2.3.7")
 bazel_dep(name = "buildifier_prebuilt", version = "8.2.0.2")
 bazel_dep(name = "gazelle", version = "0.44.0")
 bazel_dep(name = "protobuf", version = "31.1")
@@ -89,6 +88,12 @@ local_path_override(
     module_name = "rules_proto_grpc_js",
     path = "modules/js",
 )
+
+bazel_dep(name = "aspect_rules_js", version = "2.3.7")
+
+# Allow npm_link_all_packages of rules_proto_grpc_js_npm from rules_proto_grpc_js
+npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
+use_repo(npm, "rules_proto_grpc_js_npm")
 
 # Objective-C
 bazel_dep(name = "rules_proto_grpc_objc", version = "0.0.0.rpg.version.placeholder")
