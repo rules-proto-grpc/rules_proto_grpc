@@ -74,30 +74,6 @@ GRPC_DEPS = [
     Label("@rules_proto_grpc_js//:node_modules/grpc-web"),
 ]`)
 
-var jsLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
-	&Attr{
-		Name:      "package_name",
-		Type:      "string",
-		Default:   "",
-		Doc:       "The package name to use for the library. If unprovided, the target name is used.",
-		Mandatory: false,
-	},
-	&Attr{
-		Name:      "deps_repo",
-		Type:      "string",
-		Default:   "@npm",
-		Doc:       "The repository to load the dependencies from, if you don't use ``@npm``",
-		Mandatory: false,
-	},
-	&Attr{
-		Name:      "legacy_path",
-		Type:      "bool",
-		Default:   "False",
-		Doc:       "Use the legacy <name>_pb path segment from the generated library require path.",
-		Mandatory: false,
-	},
-}...)
-
 func makeJs() *Language {
 	return &Language{
 		Name:  "js",
@@ -138,7 +114,7 @@ func makeJs() *Language {
 				Implementation:   jsProtoLibraryRuleTemplate,
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a JavaScript protobuf library using ``js_library`` from ``aspect_rules_js``",
-				Attrs:            jsLibraryRuleAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "js_grpc_library",
@@ -146,7 +122,7 @@ func makeJs() *Language {
 				Implementation:   jsGrpcLibraryRuleTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Node.js protobuf + gRPC-js library using ``js_library`` from ``aspect_rules_js``",
-				Attrs:            jsLibraryRuleAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 			&Rule{
 				Name:             "js_grpc_web_library",
@@ -154,7 +130,7 @@ func makeJs() *Language {
 				Implementation:   jsGrpcWebLibraryRuleTemplate,
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``aspect_rules_js``",
-				Attrs:            jsLibraryRuleAttrs,
+				Attrs:            compileRuleAttrs,
 			},
 		},
 	}
