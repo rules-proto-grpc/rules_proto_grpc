@@ -389,6 +389,19 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             for k, v in plugin.env.items()
         }
 
+        # Make compatible with aspect_rules_js js_binary rule and fix the following error:
+        # ATAL: aspect_rules_js[js_binary]: BAZEL_BINDIR must be set in environment to the makevar
+        # $(BINDIR) in js_binary build actions (which run in the execroot) so that build actions can
+        # change directories to always run out of the root of the Bazel output tree. See
+        # https://docs.bazel.build/versions/main/be/make-variables.html#predefined_variables. This
+        # is automatically set by 'js_run_binary'
+        # (https://github.com/aspect-build/rules_js/blob/main/docs/js_run_binary.md) which is the
+        # recommended rule to use for using a js_binary as the tool of a build action. If this is
+        # not a build action you can set the BAZEL_BINDIR to '.' instead to supress this error. For
+        # more context on this design decision, please read the aspect_rules_js README
+        # https://github.com/aspect-build/rules_js/tree/dbb5af0d2a9a2bb50e4cf4a96dbc582b27567155#running-nodejs-programs.
+        plugin_env["BAZEL_BINDIR"] = ctx.bin_dir.path
+
         # Run protoc (https://bazel.build/rules/lib/actions#run_shell)
         ctx.actions.run_shell(
             mnemonic = mnemonic,

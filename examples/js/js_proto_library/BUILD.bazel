@@ -1,0 +1,21 @@
+load("@rules_proto_grpc_js//:defs.bzl", "js_proto_library")
+load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+
+npm_link_all_packages(name = "node_modules")
+
+js_proto_library(
+    name = "person_js_proto",
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
+    deps = ["place_js_proto"],
+)
+
+js_proto_library(
+    name = "place_js_proto",
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
+    deps = ["thing_js_proto"],
+)
+
+js_proto_library(
+    name = "thing_js_proto",
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
+)

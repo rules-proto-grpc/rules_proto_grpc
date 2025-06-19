@@ -29,6 +29,13 @@ examples/java/java_grpc_compile
 examples/java/java_proto_library
 examples/java/java_grpc_library
 
+examples/js/js_proto_compile
+examples/js/js_grpc_compile
+examples/js/js_grpc_web_compile
+examples/js/js_proto_library
+examples/js/js_grpc_library
+examples/js/js_grpc_web_library
+
 examples/objc/objc_proto_compile
 examples/objc/objc_grpc_compile
 examples/objc/objc_proto_library
