@@ -21,6 +21,11 @@
 
 ## Announcements 📣
 
+#### 2025/06/19 - Version 5.3.0
+
+[Version 5.3.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.0),
+which adds support for JavaScript.
+
 #### 2025/06/06 - Version 5.2.0
 
 [Version 5.2.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.2.0),

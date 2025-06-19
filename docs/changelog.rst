@@ -6,6 +6,21 @@
 Changelog
 =========
 
+5.3.0
+-----
+
+Changes
+*******
+
+- Restored JavaScript language support, thanks to @Lev1ty
+
+
+Version Updates
+***************
+
+None
+
+
 5.2.1
 -----
 
