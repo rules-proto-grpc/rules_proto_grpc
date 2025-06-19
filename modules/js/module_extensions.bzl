@@ -1,6 +1,5 @@
 """Module extensions for this language module."""
 
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive", "http_file")
 
 def _download_plugins(module_ctx):
@@ -22,7 +21,7 @@ def _download_plugins(module_ctx):
                 platform.replace("windows", "win64").replace("arm64", "aarch_64"),
             ),
             build_file_content = """exports_files(glob(["**/*"]))""",
-            strip_prefix="protobuf-javascript-3.21.4-win64" if platform == "windows-x86_64" else "",
+            strip_prefix = "protobuf-javascript-3.21.4-win64" if platform == "windows-x86_64" else "",
         )
 
     # grpc-js plugin
