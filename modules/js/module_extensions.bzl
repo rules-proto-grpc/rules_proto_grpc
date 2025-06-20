@@ -58,7 +58,7 @@ def _download_plugins(module_ctx):
             name = "protoc_gen_grpc_web_plugin_{}".format(platform.replace("-", "_")),
             sha256 = hash,
             url = "https://github.com/grpc/grpc-web/releases/download/1.5.0/protoc-gen-grpc-web-1.5.0-{}{}".format(
-                platform.replace("arm64", "aarch_64"),
+                platform.replace("arm64", "aarch64"),
                 ".exe" if "windows" in platform else "",
             ),
             executable = True,
