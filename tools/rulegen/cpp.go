@@ -152,7 +152,7 @@ var cppLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*A
 	},
 }...)
 
-var cppModuleSuffixLines = `bazel_dep(name = "toolchains_protoc", version = "0.4.2")
+var cppModuleSuffixLines = `bazel_dep(name = "toolchains_protoc", version = "0.4.3")
 
 # Prevent version skew by matching protoc version to protobuf version, as C++ is the only lang that
 # has no cross-version runtime guarantee:
