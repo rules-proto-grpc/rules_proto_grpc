@@ -6,6 +6,12 @@
     ":disableDependencyDashboard",
     ":semanticCommitsDisabled"
   ],
+  "ignorePaths": [
+    "**/node_modules/**",
+    "**/bower_components/**",
+    "**/vendor/**",
+    "**/__fixtures__/**"
+  ],
   "bazel-module": {
     "managerFilePatterns": [
       "/(^|/)MODULE\\.bazel$/",
