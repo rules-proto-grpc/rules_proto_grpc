@@ -21,27 +21,36 @@
 
 ## Announcements 📣
 
-#### 2025/06/19 - Version 5.3.0
+<details open>
+<summary><b>2025/06/19 - Version 5.3.0</b></summary>
 
 [Version 5.3.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.0),
 which adds support for JavaScript.
 
-#### 2025/06/06 - Version 5.2.0
+</details>
+
+<details>
+<summary><b>2025/06/06 - Version 5.2.0</b></summary>
 
 [Version 5.2.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.2.0),
 which adds support for Scala and Swift languages, updates dependency versions and fixes more bugs. Note
 that using Swift support requires that you use an unreleased version of `rules_swift_package_manager` at
 present.
 
+</details>
 
-#### 2025/05/16 - Version 5.1.0
+<details>
+<summary><b>2025/05/16 - Version 5.1.0</b></summary>
 
 [Version 5.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.1.0),
 which updates underlying dependency versions and fixes a few key bugs. Note that C language support
 has also been dropped, as the μpb API used was considered unstable and the plugin is no longer
 available outside of the `protobuf` workspace.
 
-#### 2024/07/31 - Version 5.0.0
+</details>
+
+<details open>
+<summary><b>2024/07/31 - Version 5.0.0</b></summary>
 
 [Version 5.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.0.0),
 which rewrites the rules to support Bzlmod only. Moving to Bzlmod provides a huge improvement in the
@@ -59,6 +68,8 @@ rules will have changed due to the splitting into language-specific modules. Ple
 [the docs](https://rules-proto-grpc.com/en/latest/) for details of how to migrate your usage to
 these new rules, in particular the
 [release notes](https://rules-proto-grpc.com/en/latest/changelog.html).
+
+</details>
 
 
 ## Usage
