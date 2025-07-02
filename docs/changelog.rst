@@ -6,6 +6,29 @@
 Changelog
 =========
 
+5.3.1
+-----
+
+Changes
+*******
+
+- Fixed download path for grpc-web protoc plugin on any arm64 platform
+
+
+Version Updates
+***************
+
+- Updated Bazel ``bazel_skylib`` to 1.8.0
+- Updated Bazel ``grpc`` to 1.73.1
+- Updated Bazel ``rules_java`` to 8.13.0
+- Updated Bazel ``rules_python`` to 1.5.0
+- Updated Bazel ``rules_swift_package_manager`` to 1.3.0
+- Updated Bazel ``toolchains_protoc`` to 0.4.3
+- Updated Go ``google.golang.org/grpc`` to v1.73.0
+- Updated Go ``google.golang.org/protobuf`` to v1.36.6
+- Updated Java ``io.grpc:grpc-*`` to 1.73.0
+
+
 5.3.0
 -----
 

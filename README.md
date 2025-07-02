@@ -22,6 +22,14 @@
 ## Announcements 📣
 
 <details open>
+<summary><b>2025/07/02 - Version 5.3.1</b></summary>
+
+[Version 5.3.1 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.1),
+which fixes a bug with grpc-web on arm64 platforms and updates dependencies.
+
+</details>
+
+<details>
 <summary><b>2025/06/19 - Version 5.3.0</b></summary>
 
 [Version 5.3.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.0),
