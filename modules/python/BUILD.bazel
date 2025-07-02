@@ -30,7 +30,7 @@ proto_plugin(
     exclusions = [
         "google/protobuf",
     ],
-    outputs = ["{protopath|python_grpc}_pb2_grpc.py"],
+    outputs = ["{protopath|python}_pb2_grpc.py"],
     tool = "@grpc//src/compiler:grpc_python_plugin",
     visibility = ["//visibility:public"],
 )
