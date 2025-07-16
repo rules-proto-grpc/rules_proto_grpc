@@ -35,7 +35,7 @@ The JavaScript module can be installed by adding the following lines to your MOD
 .. code-block:: python
 
    bazel_dep(name = "rules_proto_grpc_js", version = "<version number here>")
-   bazel_dep(name = "aspect_rules_js", version = "2.3.8")
+   bazel_dep(name = "aspect_rules_js", version = "2.4.0")
    
    # Allow npm_link_all_packages of rules_proto_grpc_js_npm from rules_proto_grpc_js
    npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
