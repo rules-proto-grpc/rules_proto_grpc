@@ -7,20 +7,22 @@ module(
 bazel_dep(name = "rules_java", version = "8.13.0")
 bazel_dep(name = "rules_jvm_external", version = "6.8")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
+bazel_dep(name = "rules_proto_grpc_java", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_scala", version = "7.0.0")
 
 maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
-    name = "rules_proto_grpc_scala_maven_common",  # Deconflict
+    name = "maven",
     artifacts = [
-        "io.grpc:grpc-api:1.72.0",
-        "io.grpc:grpc-netty:1.72.0",
-        "io.grpc:grpc-protobuf:1.72.0",
-        "io.grpc:grpc-stub:1.72.0",
+        # These are inherited from rules_proto_grpc_java, only add anything extra here
     ],
     strict_visibility = True,
+    known_contributing_modules = [
+        "rules_proto_grpc_java",
+        "rules_proto_grpc_scala",
+    ],
 )
-use_repo(maven, "rules_proto_grpc_scala_maven_common")
+use_repo(maven, "maven")
 
 maven.install(
     name = "rules_proto_grpc_scala_maven_2_12",  # Deconflict

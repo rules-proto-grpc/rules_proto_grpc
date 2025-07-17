@@ -25,7 +25,7 @@ var scalaProtoLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString 
     )
 
 PROTO_DEPS = [
-    Label("@rules_proto_grpc_scala_maven_common//:com_google_protobuf_protobuf_java"),
+    Label("@maven//:com_google_protobuf_protobuf_java"),
 ] + select({
     # Can't use select_for_scala_version as it doesn't use Label()
     Label("@rules_scala_config//:scala_version_{}".format(scala_version.replace(".", "_"))): [
@@ -52,11 +52,11 @@ var scalaGrpcLibraryRuleTemplate = mustTemplate(scalaLibraryRuleTemplateString +
     )
 
 GRPC_DEPS = [
-    Label("@rules_proto_grpc_scala_maven_common//:io_grpc_grpc_api"),
-    Label("@rules_proto_grpc_scala_maven_common//:io_grpc_grpc_netty"),
-    Label("@rules_proto_grpc_scala_maven_common//:io_grpc_grpc_protobuf"),
-    Label("@rules_proto_grpc_scala_maven_common//:io_grpc_grpc_stub"),
-    Label("@rules_proto_grpc_scala_maven_common//:com_google_protobuf_protobuf_java"),
+    Label("@maven//:io_grpc_grpc_api"),
+    Label("@maven//:io_grpc_grpc_netty"),
+    Label("@maven//:io_grpc_grpc_protobuf"),
+    Label("@maven//:io_grpc_grpc_stub"),
+    Label("@maven//:com_google_protobuf_protobuf_java"),
 ] + select({
     # Can't use select_for_scala_version as it doesn't use Label()
     Label("@rules_scala_config//:scala_version_{}".format(scala_version.replace(".", "_"))): [
@@ -77,6 +77,7 @@ func makeScala() *Language {
 	return &Language{
 		Name:  "scala",
 		DisplayName: "Scala",
+        DependsOn: []string{"java"},
 		Notes: mustTemplate("Rules for generating Scala protobuf and gRPC ``.jar`` files and libraries using `ScalaPB <https://github.com/scalapb/ScalaPB>`_. Libraries are created with ``scala_library`` from `rules_scala <https://github.com/bazelbuild/rules_scala>`_"),
 		Rules: []*Rule{
 			&Rule{

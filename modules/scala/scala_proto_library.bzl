@@ -32,7 +32,7 @@ def scala_proto_library(name, **kwargs):  # buildifier: disable=function-docstri
     )
 
 PROTO_DEPS = [
-    Label("@rules_proto_grpc_scala_maven_common//:com_google_protobuf_protobuf_java"),
+    Label("@maven//:com_google_protobuf_protobuf_java"),
 ] + select({
     # Can't use select_for_scala_version as it doesn't use Label()
     Label("@rules_scala_config//:scala_version_{}".format(scala_version.replace(".", "_"))): [
