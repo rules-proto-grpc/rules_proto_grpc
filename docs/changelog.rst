@@ -6,6 +6,35 @@
 Changelog
 =========
 
+5.4.0
+-----
+
+Changes
+*******
+
+- Switched Maven dependencies for Java and Scala to share the common ``maven`` name for
+  ``maven.install``, rather than use a unique deconflicted name that can cause classpath issues with
+  duplicate dependencies with differing versions. This means that the Protobuf and gRPC dependencies
+  used internally by ``java_proto_library`` etc will be resolved alongside any dependencies from the
+  root module and the versions can be overridden there. Note that the Java protoc plugins are not
+  sourced from Maven and thus care needs to be taken to ensure the runtime version guarantees are
+  met. Scala version specific dependencies are still sourced from separate Maven repositories.
+  See `#449 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/449>`__
+
+
+Version Updates
+***************
+
+- Updated Bazel ``apple_support`` to 1.22.1
+- Updated Bazel ``aspect_rules_js`` to 2.4.0
+- Updated Bazel ``bazel_skylib`` to 1.8.1
+- Updated Bazel ``rules_cc`` to 0.1.3
+- Updated Bazel ``rules_jvm_external`` to 6.8
+- Updated Bazel ``rules_python`` to 1.5.1
+- Updated Bazel ``rules_swift`` to 3.1.1
+- Updated Scala ``com.thesamet.scalapb:*`` to 0.11.19
+
+
 5.3.1
 -----
 
