@@ -22,5 +22,8 @@ java_test(
     srcs = ["Main.java"],
     main_class = "Main",
     test_class = "Main",
-    deps = ["java_lib"],
+    deps = [
+        "java_lib",
+        "@maven//:com_google_protobuf_protobuf_java",
+    ],
 )
