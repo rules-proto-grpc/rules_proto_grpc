@@ -24,6 +24,6 @@ java_test(
     test_class = "Main",
     deps = [
         "java_lib",
-        "@maven//:com_google_protobuf_protobuf_java",
+        "@maven//:com_google_protobuf_protobuf_java",  # Ensure @maven version is loaded
     ],
 )
