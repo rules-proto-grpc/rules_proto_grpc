@@ -1,0 +1,6 @@
+source https://api.nuget.org/v3/index.json
+
+storage: none
+
+nuget Google.Protobuf 3.31.1
+nuget Grpc 2.46.6
