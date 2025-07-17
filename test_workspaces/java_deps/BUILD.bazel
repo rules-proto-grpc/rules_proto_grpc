@@ -1,6 +1,6 @@
 load("@protobuf//bazel:proto_library.bzl", "proto_library")
 load("@rules_java//java:defs.bzl", "java_test")
-load("@rules_proto_grpc_java//:defs.bzl", "java_grpc_library")
+load("@rules_proto_grpc_java//:defs.bzl", "java_proto_library")
 
 package(default_visibility = ["//visibility:private"])
 
@@ -11,7 +11,7 @@ proto_library(
     srcs = ["demo.proto"],
 )
 
-java_grpc_library(
+java_proto_library(
     name = "java_lib",
     generate_pyi = True,
     protos = ["proto_lib"],
