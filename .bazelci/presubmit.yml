@@ -454,6 +454,7 @@ tasks:
       - make test_workspace_go_fixer
       - make test_workspace_go_importpath
       - make test_workspace_import_prefix
+      - make test_workspace_java_deps
       - make test_workspace_nested_output_directory
       - make test_workspace_objc_capitalisation
       - make test_workspace_prefix_path
@@ -480,6 +481,7 @@ tasks:
       - make test_workspace_go_fixer
       - make test_workspace_go_importpath
       - make test_workspace_import_prefix
+      - make test_workspace_java_deps
       - make test_workspace_nested_output_directory
       - make test_workspace_objc_capitalisation
       - make test_workspace_prefix_path
@@ -506,6 +508,7 @@ tasks:
       - make test_workspace_go_fixer
       - make test_workspace_go_importpath
       - make test_workspace_import_prefix
+      - make test_workspace_java_deps
       - make test_workspace_nested_output_directory
       - make test_workspace_objc_capitalisation
       - make test_workspace_prefix_path
