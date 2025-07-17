@@ -1,0 +1,26 @@
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
+load("@rules_java//java:defs.bzl", "java_test")
+load("@rules_proto_grpc_java//:defs.bzl", "java_grpc_library")
+
+package(default_visibility = ["//visibility:private"])
+
+# Test that java dependencies protobuf and grpc are resolved to a single version
+
+proto_library(
+    name = "proto_lib",
+    srcs = ["demo.proto"],
+)
+
+java_grpc_library(
+    name = "java_lib",
+    generate_pyi = True,
+    protos = ["proto_lib"],
+)
+
+java_test(
+    name = "test",
+    srcs = ["Main.java"],
+    main_class = "Main",
+    test_class = "Main",
+    deps = ["java_lib"],
+)

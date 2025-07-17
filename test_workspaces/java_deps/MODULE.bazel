@@ -1,0 +1,37 @@
+bazel_dep(name = "protobuf", version = "31.1")
+bazel_dep(name = "rules_java", version = "8.13.0")
+bazel_dep(name = "rules_jvm_external", version = "6.8")
+bazel_dep(name = "rules_proto_grpc_java", version = "0.0.0.rpg.version.placeholder")
+
+local_path_override(
+    module_name = "rules_proto_grpc",
+    path = "../../modules/core",
+)
+
+local_path_override(
+    module_name = "rules_proto_grpc_java",
+    path = "../../modules/java",
+)
+
+# Load a different version of protobuf into the same 'maven' repo. The versions will be resolved
+# together and this module is given priority in rules_jvm_external, so we should only get a single
+# version on classpath. Note that this version may not be compatible with the protoc plugin version,
+# which is downloaded outside of maven
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    name = "maven",
+    artifacts = [
+        "com.google.protobuf:protobuf-java:4.31.0",
+        "com.google.protobuf:protobuf-java-util:4.31.0",
+        "io.grpc:grpc-api:1.72.0",
+        "io.grpc:grpc-netty:1.72.0",
+        "io.grpc:grpc-protobuf:1.72.0",
+        "io.grpc:grpc-stub:1.72.0",
+    ],
+    known_contributing_modules = [
+        # Supress warning about multiple contributing modules
+        "",
+        "rules_proto_grpc_java",
+    ],
+)
+use_repo(maven, "maven")
