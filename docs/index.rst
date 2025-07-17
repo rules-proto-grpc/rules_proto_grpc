@@ -95,9 +95,6 @@ Supported Languages and Tools
    * - Language
      - Protobuf
      - gRPC
-   * - C
-     - ✔
-     - ✖
    * - C++
      - ✔
      - ✔
@@ -164,7 +161,6 @@ Supported Languages and Tools
    :hidden:
 
    lang/buf
-   lang/c
    lang/cpp
    lang/doc
    lang/go
