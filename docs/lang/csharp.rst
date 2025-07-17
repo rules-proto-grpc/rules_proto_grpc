@@ -19,9 +19,9 @@ Rules for generating C# protobuf and gRPC ``.cs`` files and libraries using stan
    * - `csharp_grpc_compile`_
      - Generates C# protobuf and gRPC ``.cs`` files
    * - `csharp_proto_library`_
-     - Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+     - Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``
    * - `csharp_grpc_library`_
-     - Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+     - Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``
 
 Installation
 ------------
@@ -207,7 +207,7 @@ Plugins
 csharp_proto_library
 --------------------
 
-Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``
 
 Example
 *******
@@ -222,19 +222,19 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc_csharp//:defs.bzl", "csharp_proto_library")
    
    csharp_proto_library(
-       name = "person_csharp_proto.dll",
+       name = "person_csharp_proto",
        protos = ["@rules_proto_grpc_example_protos//:person_proto"],
-       deps = ["place_csharp_proto.dll"],
+       deps = ["place_csharp_proto"],
    )
    
    csharp_proto_library(
-       name = "place_csharp_proto.dll",
+       name = "place_csharp_proto",
        protos = ["@rules_proto_grpc_example_protos//:place_proto"],
-       deps = ["thing_csharp_proto.dll"],
+       deps = ["thing_csharp_proto"],
    )
    
    csharp_proto_library(
-       name = "thing_csharp_proto.dll",
+       name = "thing_csharp_proto",
        protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
 
@@ -296,7 +296,7 @@ Attributes
 csharp_grpc_library
 -------------------
 
-Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``
+Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``
 
 Example
 *******
@@ -311,14 +311,14 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
    load("@rules_proto_grpc_csharp//:defs.bzl", "csharp_grpc_library")
    
    csharp_grpc_library(
-       name = "thing_csharp_grpc.dll",
+       name = "thing_csharp_grpc",
        protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
    )
    
    csharp_grpc_library(
-       name = "greeter_csharp_grpc.dll",
+       name = "greeter_csharp_grpc",
        protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
-       deps = ["thing_csharp_grpc.dll"],
+       deps = ["thing_csharp_grpc"],
    )
 
 Attributes

@@ -46,40 +46,6 @@ GRPC_DEPS = [
     #Label("@core_sdk_stdlib//:libraryset"),
 ]`)
 
-// For C#, library names need .dll
-var csharpProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
-
-{{ .Rule.Name }}(
-    name = "person_{{ .Lang.Name }}_{{ .Rule.Kind }}.dll",
-    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
-    deps = ["place_{{ .Lang.Name }}_{{ .Rule.Kind }}.dll"],
-)
-
-{{ .Rule.Name }}(
-    name = "place_{{ .Lang.Name }}_{{ .Rule.Kind }}.dll",
-    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
-    deps = ["thing_{{ .Lang.Name }}_{{ .Rule.Kind }}.dll"],
-)
-
-{{ .Rule.Name }}(
-    name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}.dll",
-    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
-)`)
-
-
-var csharpGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
-
-{{ .Rule.Name }}(
-    name = "thing_{{ .Lang.Name }}_{{ .Rule.Kind }}.dll",
-    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
-)
-
-{{ .Rule.Name }}(
-    name = "greeter_{{ .Lang.Name }}_{{ .Rule.Kind }}.dll",
-    protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
-    deps = ["thing_{{ .Lang.Name }}_{{ .Rule.Kind }}.dll"],
-)`)
-
 func makeCsharp() *Language {
 	return &Language{
 		Name:  "csharp",
@@ -108,16 +74,16 @@ func makeCsharp() *Language {
 				Name:             "csharp_proto_library",
 				Kind:             "proto",
 				Implementation:   csharpProtoLibraryRuleTemplate,
-				BuildExample:     csharpProtoLibraryExampleTemplate,
-				Doc:              "Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``",
+				BuildExample:     protoLibraryExampleTemplate,
+				Doc:              "Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet``",
 				Attrs:            libraryRuleAttrs,
 			},
 			&Rule{
 				Name:             "csharp_grpc_library",
 				Kind:             "grpc",
 				Implementation:   csharpGrpcLibraryRuleTemplate,
-				BuildExample:     csharpGrpcLibraryExampleTemplate,
-				Doc:              "Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``. Note that the library name must end in ``.dll``",
+				BuildExample:     grpcLibraryExampleTemplate,
+				Doc:              "Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet``",
 				Attrs:            libraryRuleAttrs,
 			},
 		},

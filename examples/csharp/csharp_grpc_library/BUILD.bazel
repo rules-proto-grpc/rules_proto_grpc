@@ -1,12 +1,12 @@
 load("@rules_proto_grpc_csharp//:defs.bzl", "csharp_grpc_library")
 
 csharp_grpc_library(
-    name = "thing_csharp_grpc.dll",
+    name = "thing_csharp_grpc",
     protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
 )
 
 csharp_grpc_library(
-    name = "greeter_csharp_grpc.dll",
+    name = "greeter_csharp_grpc",
     protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
-    deps = ["thing_csharp_grpc.dll"],
+    deps = ["thing_csharp_grpc"],
 )
