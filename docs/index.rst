@@ -101,6 +101,9 @@ Supported Languages and Tools
    * - C++
      - ✔
      - ✔
+   * - C#
+     - ✔
+     - ✔
    * - Go
      - ✔
      - ✔
@@ -166,6 +169,7 @@ Supported Languages and Tools
    lang/buf
    lang/c
    lang/cpp
+   lang/csharp
    lang/doc
    lang/go
    lang/grpc_gateway
