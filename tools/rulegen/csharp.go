@@ -20,7 +20,11 @@ var csharpProtoLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateStrin
         srcs = [name_pb],
         target_frameworks = kwargs.get("target_frameworks", ["net8.0"]),
         deps = PROTO_DEPS + kwargs.get("deps", []),
-        {{ .Common.LibraryArgsForwardingSnippet }}
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k not in proto_compile_attrs.keys()
+        }  # Forward Bazel common args and rules_dotnet args
     )
 
 PROTO_DEPS = [
@@ -34,7 +38,11 @@ var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString
         srcs = [name_pb],
         target_frameworks = kwargs.get("target_frameworks", ["net8.0"]),
         deps = GRPC_DEPS + kwargs.get("deps", []),
-        {{ .Common.LibraryArgsForwardingSnippet }}
+        **{
+            k: v
+            for (k, v) in kwargs.items()
+            if k not in proto_compile_attrs.keys()
+        }  # Forward Bazel common args and rules_dotnet args
     )
 
 GRPC_DEPS = [

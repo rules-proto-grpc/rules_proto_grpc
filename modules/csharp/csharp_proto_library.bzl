@@ -26,8 +26,8 @@ def csharp_proto_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in bazel_build_rule_common_attrs
-        }  # Forward Bazel common args
+            if k not in proto_compile_attrs.keys()
+        }  # Forward Bazel common args and rules_dotnet args
     )
 
 PROTO_DEPS = [
