@@ -466,33 +466,6 @@ tasks:
       - make test_workspace_shared_proto
       - make test_workspace_special_characters
 
-  macos_test_workspaces:
-    name: Test Workspaces
-    platform: macos
-    environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
-    shell_commands:
-      - set -x
-      - make test_workspace_absolute_strip_import_prefix
-      - make test_workspace_combined_strip_and_add_prefix
-      - make test_workspace_common_cpp_library
-      - make test_workspace_exclusions
-      - make test_workspace_generated_proto
-      - make test_workspace_go_fixer
-      - make test_workspace_go_importpath
-      - make test_workspace_import_prefix
-      - make test_workspace_java_deps
-      - make test_workspace_nested_output_directory
-      - make test_workspace_objc_capitalisation
-      - make test_workspace_prefix_path
-      - make test_workspace_python3_grpc
-      - make test_workspace_python_dashes
-      - make test_workspace_python_deps
-      - make test_workspace_python_dots
-      - make test_workspace_relative_strip_import_prefix
-      - make test_workspace_shared_proto
-      - make test_workspace_special_characters
-
   macos_arm64_test_workspaces:
     name: Test Workspaces
     platform: macos_arm64
