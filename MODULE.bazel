@@ -2,6 +2,7 @@ bazel_dep(name = "buildifier_prebuilt", version = "8.2.0.2")
 bazel_dep(name = "gazelle", version = "0.44.0")
 bazel_dep(name = "protobuf", version = "31.1")
 bazel_dep(name = "rules_cc", version = "0.1.4")
+bazel_dep(name = "rules_dotnet", version = "0.19.2")
 bazel_dep(name = "rules_go", version = "0.55.1")
 bazel_dep(name = "rules_java", version = "8.14.0")
 bazel_dep(name = "rules_scala", version = "7.0.0")
@@ -52,6 +53,13 @@ protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
 protoc.toolchain(
     google_protobuf = "com_google_protobuf",
     version = "v31.1",
+)
+
+# C#
+bazel_dep(name = "rules_proto_grpc_csharp", version = "0.0.0.rpg.version.placeholder")
+local_path_override(
+    module_name = "rules_proto_grpc_csharp",
+    path = "modules/csharp",
 )
 
 # Documentation

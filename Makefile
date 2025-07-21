@@ -24,6 +24,15 @@ buildifier:
 	bazel run //tools:buildifier
 
 
+# Update C# paket lock and paket2bazel extension
+.PHONY: csharp_regenerate_packages
+csharp_regenerate_packages:
+	cd modules/csharp/paket && dotnet new tool-manifest || true
+	cd modules/csharp/paket && dotnet tool install paket
+	cd modules/csharp/paket && dotnet paket install
+	bazel run @rules_dotnet//tools/paket2bazel -- --dependencies-file $$(pwd)/modules/csharp/paket/paket.dependencies --output-folder $$(pwd)/modules/csharp/paket
+	rm -r modules/csharp/paket/.config modules/csharp/paket/paket-files
+
 # Run pnpm to upgrade JS dependencies
 .PHONY: js_resolve
 js_resolve:

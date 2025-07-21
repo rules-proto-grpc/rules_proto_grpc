@@ -9,31 +9,43 @@ tasks:
       - "--host_cxxopt=-std=c++17"
     test_targets:
       - "//examples/routeguide:cpp_cpp"
+      - "//examples/routeguide:cpp_csharp"
       - "//examples/routeguide:cpp_go"
       - "//examples/routeguide:cpp_java"
       - "//examples/routeguide:cpp_js"
       - "//examples/routeguide:cpp_python"
+      - "//examples/routeguide:csharp_cpp"
+      - "//examples/routeguide:csharp_csharp"
+      - "//examples/routeguide:csharp_go"
+      - "//examples/routeguide:csharp_java"
+      - "//examples/routeguide:csharp_js"
+      - "//examples/routeguide:csharp_python"
       - "//examples/routeguide:go_cpp"
+      - "//examples/routeguide:go_csharp"
       - "//examples/routeguide:go_go"
       - "//examples/routeguide:go_java"
       - "//examples/routeguide:go_js"
       - "//examples/routeguide:go_python"
       - "//examples/routeguide:java_cpp"
+      - "//examples/routeguide:java_csharp"
       - "//examples/routeguide:java_go"
       - "//examples/routeguide:java_java"
       - "//examples/routeguide:java_js"
       - "//examples/routeguide:java_python"
       - "//examples/routeguide:js_cpp"
+      - "//examples/routeguide:js_csharp"
       - "//examples/routeguide:js_go"
       - "//examples/routeguide:js_java"
       - "//examples/routeguide:js_js"
       - "//examples/routeguide:js_python"
       - "//examples/routeguide:python_cpp"
+      - "//examples/routeguide:python_csharp"
       - "//examples/routeguide:python_go"
       - "//examples/routeguide:python_java"
       - "//examples/routeguide:python_js"
       - "//examples/routeguide:python_python"
       - "//examples/routeguide:scala_cpp"
+      - "//examples/routeguide:scala_csharp"
       - "//examples/routeguide:scala_go"
       - "//examples/routeguide:scala_java"
       - "//examples/routeguide:scala_js"
@@ -48,31 +60,43 @@ tasks:
       - "--host_cxxopt=-std=c++17"
     test_targets:
       - "//examples/routeguide:cpp_cpp"
+      - "//examples/routeguide:cpp_csharp"
       - "//examples/routeguide:cpp_go"
       - "//examples/routeguide:cpp_java"
       - "//examples/routeguide:cpp_js"
       - "//examples/routeguide:cpp_python"
+      - "//examples/routeguide:csharp_cpp"
+      - "//examples/routeguide:csharp_csharp"
+      - "//examples/routeguide:csharp_go"
+      - "//examples/routeguide:csharp_java"
+      - "//examples/routeguide:csharp_js"
+      - "//examples/routeguide:csharp_python"
       - "//examples/routeguide:go_cpp"
+      - "//examples/routeguide:go_csharp"
       - "//examples/routeguide:go_go"
       - "//examples/routeguide:go_java"
       - "//examples/routeguide:go_js"
       - "//examples/routeguide:go_python"
       - "//examples/routeguide:java_cpp"
+      - "//examples/routeguide:java_csharp"
       - "//examples/routeguide:java_go"
       - "//examples/routeguide:java_java"
       - "//examples/routeguide:java_js"
       - "//examples/routeguide:java_python"
       - "//examples/routeguide:js_cpp"
+      - "//examples/routeguide:js_csharp"
       - "//examples/routeguide:js_go"
       - "//examples/routeguide:js_java"
       - "//examples/routeguide:js_js"
       - "//examples/routeguide:js_python"
       - "//examples/routeguide:python_cpp"
+      - "//examples/routeguide:python_csharp"
       - "//examples/routeguide:python_go"
       - "//examples/routeguide:python_java"
       - "//examples/routeguide:python_js"
       - "//examples/routeguide:python_python"
       - "//examples/routeguide:scala_cpp"
+      - "//examples/routeguide:scala_csharp"
       - "//examples/routeguide:scala_go"
       - "//examples/routeguide:scala_java"
       - "//examples/routeguide:scala_js"
@@ -87,15 +111,23 @@ tasks:
       - "--host_cxxopt=-std=c++17"
     test_targets:
       - "//examples/routeguide:cpp_cpp"
+      - "//examples/routeguide:cpp_csharp"
       - "//examples/routeguide:cpp_go"
       - "//examples/routeguide:cpp_python"
+      - "//examples/routeguide:csharp_cpp"
+      - "//examples/routeguide:csharp_csharp"
+      - "//examples/routeguide:csharp_go"
+      - "//examples/routeguide:csharp_python"
       - "//examples/routeguide:go_cpp"
+      - "//examples/routeguide:go_csharp"
       - "//examples/routeguide:go_go"
       - "//examples/routeguide:go_python"
       - "//examples/routeguide:python_cpp"
+      - "//examples/routeguide:python_csharp"
       - "//examples/routeguide:python_go"
       - "//examples/routeguide:python_python"
       - "//examples/routeguide:scala_cpp"
+      - "//examples/routeguide:scala_csharp"
       - "//examples/routeguide:scala_go"
       - "//examples/routeguide:scala_python"
 
@@ -164,6 +196,42 @@ tasks:
       - make cpp_cpp_grpc_compile_example
       - make cpp_cpp_proto_library_example
       - make cpp_cpp_grpc_library_example
+
+  csharp_ubuntu2204_examples:
+    name: C#
+    platform: ubuntu2204
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+      - set -x
+      - make csharp_csharp_proto_compile_example
+      - make csharp_csharp_grpc_compile_example
+      - make csharp_csharp_proto_library_example
+      - make csharp_csharp_grpc_library_example
+
+  csharp_macos_examples:
+    name: C#
+    platform: macos
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+      - set -x
+      - make csharp_csharp_proto_compile_example
+      - make csharp_csharp_grpc_compile_example
+      - make csharp_csharp_proto_library_example
+      - make csharp_csharp_grpc_library_example
+
+  csharp_macos_arm64_examples:
+    name: C#
+    platform: macos_arm64
+    environment:
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"
+    shell_commands:
+      - set -x
+      - make csharp_csharp_proto_compile_example
+      - make csharp_csharp_grpc_compile_example
+      - make csharp_csharp_proto_library_example
+      - make csharp_csharp_grpc_library_example
 
   doc_ubuntu2204_examples:
     name: Documentation

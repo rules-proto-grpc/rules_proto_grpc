@@ -1,0 +1,21 @@
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+
+proto_plugin(
+    name = "proto_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    outputs = ["{basename|pascal}.cs"],
+    protoc_plugin_name = "csharp",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    output_directory = True,
+    tool = "@grpc//src/compiler:grpc_csharp_plugin",
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,18 @@
+load("@rules_proto_grpc_csharp//:defs.bzl", "csharp_proto_library")
+
+csharp_proto_library(
+    name = "person_csharp_proto",
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
+    deps = ["place_csharp_proto"],
+)
+
+csharp_proto_library(
+    name = "place_csharp_proto",
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
+    deps = ["thing_csharp_proto"],
+)
+
+csharp_proto_library(
+    name = "thing_csharp_proto",
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
+)
