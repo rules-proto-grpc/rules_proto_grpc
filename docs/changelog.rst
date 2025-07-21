@@ -6,6 +6,22 @@
 Changelog
 =========
 
+5.5.0
+-----
+
+Changes
+*******
+
+- Restored C# language support
+
+
+Version Updates
+***************
+
+- Updated Bazel ``rules_cc`` to 0.1.4
+- Updated Bazel ``rules_java`` to 8.14.0
+
+
 5.4.0
 -----
 

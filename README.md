@@ -22,6 +22,14 @@
 ## Announcements 📣
 
 <details open>
+<summary><b>2025/07/21 - Version 5.5.0</b></summary>
+
+[Version 5.5.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.5.0),
+which adds support for C#.
+
+</details>
+
+<details>
 <summary><b>2025/07/17 - Version 5.4.0</b></summary>
 
 [Version 5.4.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.4.0),
