@@ -39,11 +39,15 @@ var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString
 
 GRPC_DEPS = [
     Label("@paket.main//google.protobuf"),
-    #Label("@paket.main//grpc.core"),
     Label("@paket.main//grpc.core.api"),
-    #Label("@grpc.net.client//:lib"),
-    #Label("@grpc.aspnetcore//:lib"),
-    #Label("@core_sdk_stdlib//:libraryset"),
+]
+
+GRPC_CLIENT_DEPS = GRPC_DEPS + [
+    Label("@paket.main//grpc.net.client"),
+]
+
+GRPC_SERVER_DEPS = GRPC_DEPS + [
+    Label("@paket.main//grpc.aspnetcore.server"),
 ]`)
 
 func makeCsharp() *Language {

@@ -23,6 +23,7 @@ def csharp_grpc_library(name, **kwargs):
         srcs = [name_pb],
         target_frameworks = kwargs.get("target_frameworks", ["net8.0"]),
         deps = GRPC_DEPS + kwargs.get("deps", []),
+        exports = kwargs.get("exports", []),
         **{
             k: v
             for (k, v) in kwargs.items()
@@ -32,9 +33,13 @@ def csharp_grpc_library(name, **kwargs):
 
 GRPC_DEPS = [
     Label("@paket.main//google.protobuf"),
-    #Label("@paket.main//grpc.core"),
     Label("@paket.main//grpc.core.api"),
-    #Label("@grpc.net.client//:lib"),
-    #Label("@grpc.aspnetcore//:lib"),
-    #Label("@core_sdk_stdlib//:libraryset"),
+]
+
+GRPC_CLIENT_DEPS = GRPC_DEPS + [
+    Label("@paket.main//grpc.net.client"),
+]
+
+GRPC_SERVER_DEPS = GRPC_DEPS + [
+    Label("@paket.main//grpc.aspnetcore.server"),
 ]
