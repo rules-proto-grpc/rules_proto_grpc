@@ -26,7 +26,31 @@ def csharp_grpc_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k not in proto_compile_attrs.keys()
+            if k in bazel_build_rule_common_attrs or [
+                "resources",
+                "out",
+                "additionalfiles",
+                "allow_unsafe_blocks",
+                "analyzer_configs",
+                "compile_data",
+                "compiler_options",
+                "defines",
+                "exports",
+                "generate_documentation_file",
+                "internals_visible_to",
+                "is_analyzer",
+                "is_language_specific_analyzer",
+                "keyfile",
+                "langversion",
+                "nowarn",
+                "nullable",
+                "project_sdk",
+                "run_analyzers",
+                "treat_warnings_as_errors",
+                "warning_level",
+                "warnings_as_errors",
+                "warnings_not_as_errors",
+            ]
         }  # Forward Bazel common args and rules_dotnet args
     )
 
