@@ -13,6 +13,7 @@ routeguide_test_matrix(
     name = "routeguide_matrix",
     clients = [
         "//examples/cpp/routeguide:client",
+        "//examples/csharp/routeguide:client",
         "//examples/go/routeguide/client:client",
         "//examples/java/routeguide:client",
         "//examples/js/routeguide:client",
@@ -21,6 +22,7 @@ routeguide_test_matrix(
     ],
     servers = [
         "//examples/cpp/routeguide:server",
+        "//examples/csharp/routeguide:server",
         "//examples/go/routeguide/server:server",
         "//examples/java/routeguide:server",
         "//examples/js/routeguide:server",
