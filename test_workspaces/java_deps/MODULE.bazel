@@ -1,5 +1,5 @@
 bazel_dep(name = "protobuf", version = "31.1")
-bazel_dep(name = "rules_java", version = "8.13.0")
+bazel_dep(name = "rules_java", version = "8.14.0")
 bazel_dep(name = "rules_jvm_external", version = "6.8")
 bazel_dep(name = "rules_proto_grpc_java", version = "0.0.0.rpg.version.placeholder")
 
