@@ -587,6 +587,11 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	// Write tasks for test workspaces
 	//
 	for _, ciPlatform := range ciPlatforms {
+		if ciPlatform == "macos" {
+			// MacOS workers on Bazel buildkite are _really_ slow and this can take up to an hour
+			continue
+		}
+
 		out.w("  %s_test_workspaces:", ciPlatform)
 		out.w("    name: Test Workspaces")
 		out.w("    platform: %s", ciPlatform)
