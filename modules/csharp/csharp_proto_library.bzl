@@ -26,7 +26,7 @@ def csharp_proto_library(name, **kwargs):
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in bazel_build_rule_common_attrs or [
+            if k in bazel_build_rule_common_attrs or k in [
                 "resources",
                 "out",
                 "additionalfiles",

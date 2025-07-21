@@ -23,7 +23,7 @@ var csharpProtoLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateStrin
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in bazel_build_rule_common_attrs or [
+            if k in bazel_build_rule_common_attrs or k in [
                 "resources",
                 "out",
                 "additionalfiles",
@@ -65,7 +65,7 @@ var csharpGrpcLibraryRuleTemplate = mustTemplate(csharpLibraryRuleTemplateString
         **{
             k: v
             for (k, v) in kwargs.items()
-            if k in bazel_build_rule_common_attrs or [
+            if k in bazel_build_rule_common_attrs or k in [
                 "resources",
                 "out",
                 "additionalfiles",
