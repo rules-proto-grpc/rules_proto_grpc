@@ -16,7 +16,7 @@ go_deps.module(
 )
 go_deps.module(
     path = "google.golang.org/grpc",
-    sum = "h1:VIWSmpI2MegBtTuFt5/JWy2oXxtjJ/e89Z70ImfD2ok=",
+    sum = "c52d02553f2649c28d0279bca17909a3a08de022",
     version = "v1.73.0",
 )
 go_deps.module(
