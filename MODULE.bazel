@@ -12,7 +12,7 @@ bazel_dep(name = "rules_shell", version = "0.5.0")
 rulegen_go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
 rulegen_go_deps.module(
     path = "github.com/urfave/cli",
-    sum = "h1:wYSSj06510qPIzGSua9ZqsncMmWE3Zr55KBERygyrxE=",
+    sum = "e6cf83ec39f6e1158ced1927d4ed14578fda8edb",
     version = "v1.21.0",
 )
 use_repo(rulegen_go_deps, "com_github_urfave_cli")
