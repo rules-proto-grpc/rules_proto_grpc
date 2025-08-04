@@ -42,7 +42,20 @@
         "artifacts\\s*=\\s*\\[[^\\]]*?\\]",
         "\"(?<depName>[^\"]+):(?<currentValue>[^\"]+)\""
       ],
-      "datasourceTemplate": "maven"
+      "datasourceTemplate": "maven",
+      "versioningTemplate": "maven"
+    },
+    {
+      "customType": "regex",
+      "description": "Match Go deps in MODULE.bazel files",
+      "managerFilePatterns": [
+        "/(^|/)MODULE\\.bazel$/"
+      ],
+      "matchStrings": [
+        "go_deps.module\\([^)]+?path\\s*=\\s*\"(?<depName>[^\"]+)\"[^)]+?sum\\s*=\\s*\"(?<currentDigest>[^\"]+)\"[^)]+?version\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "go",
+      "versioningTemplate": "go-mod-directive"
     }
   ],
   "packageRules": [
