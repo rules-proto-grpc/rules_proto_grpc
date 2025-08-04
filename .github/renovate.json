@@ -30,6 +30,19 @@
     "versioning": "swift",
     "pinDigests": true
   },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Match Maven deps in MODULE.bazel files",
+      "managerFilePatterns": [
+        "/(^|/)MODULE\\.bazel$/"
+      ],
+      "matchStrings": [
+        "maven\\.install\\((?:.|\\n)+?artifacts\\s*=\\s*\\[(?:.|\\n)+?\"(?<depName>[^\"]+):(?<currentValue>[^\"]+)\"(?:.|\\n)+?\\)"
+      ],
+      "datasourceTemplate": "maven"
+    }
+  ],
   "packageRules": [
     {
       "description": "Do not update modules published in this repo",
