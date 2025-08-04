@@ -58,11 +58,12 @@
       "description": "Group all grpc updates into one update and ensure manual updates made",
       "matchPackageNames": [
         "grpc",
-        "grpcio"
+        "grpcio",
+        "io.grpc:*"
       ],
       "groupName": "grpc",
       "draftPR": true,
-      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Java Maven deps and Go deps)"
+      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Go deps)"
     },
     {
       "description": "Ensure gRPC Gateway protoc plugins are updated in sync with Go deps",
@@ -79,11 +80,12 @@
       "description": "Group all protobuf updates into one update and ensure manual updates made",
       "matchPackageNames": [
         "protobuf",
+        "com.google.protobuf:*",
         "toolchains_protoc"
       ],
       "groupName": "protobuf",
       "draftPR": true,
-      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Java Maven deps and Go deps)"
+      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Go deps)"
     },
     {
       "description": "Ensure Swift Package.resolved is updated",
