@@ -37,8 +37,10 @@
       "managerFilePatterns": [
         "/(^|/)MODULE\\.bazel$/"
       ],
+      "matchStringsStrategy": "recursive",
       "matchStrings": [
-        "maven\\.install\\((?:.|\\n)+?artifacts\\s*=\\s*\\[(?:[^\\]]*?\"(?<depName>[^\"]+):(?<currentValue>[^\"]+)\")?[^\\]]*?\\]"
+        "artifacts\\s*=\\s*\\[[^\\]]*?\\]",
+        "\"(?<depName>[^\"]+):(?<currentValue>[^\"]+)\""
       ],
       "datasourceTemplate": "maven"
     }
