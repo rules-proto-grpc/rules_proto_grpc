@@ -38,7 +38,7 @@
         "/(^|/)MODULE\\.bazel$/"
       ],
       "matchStrings": [
-        "maven\\.install\\((?:.|\\n)+?artifacts\\s*=\\s*\\[(?:.|\\n)+?\"(?<depName>[^\"]+):(?<currentValue>[^\"]+)\"(?:.|\\n)+?\\)"
+        "maven\\.install\\((?:.|\\n)+?artifacts\\s*=\\s*\\[(?:[^\\]]*?\"(?<depName>[^\"]+):(?<currentValue>[^\"]+)\")?[^\\]]*?\\]"
       ],
       "datasourceTemplate": "maven"
     }
