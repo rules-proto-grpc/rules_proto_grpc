@@ -52,7 +52,7 @@
         "/(^|/)MODULE\\.bazel$/"
       ],
       "matchStrings": [
-        "go_deps.module\\([^)]+?path\\s*=\\s*\"(?<depName>[^\"]+)\"[^)]+?sum\\s*=\\s*\"(?<currentDigest>[^\"]+)\"[^)]+?version\\s*=\\s*\"(?<currentValue>[^\"]+)\""
+        "go_deps.module\\([^)]+?path\\s*=\\s*\"(?<depName>[^\"]+)\"[^)]+?version\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ],
       "datasourceTemplate": "go",
       "versioningTemplate": "go-mod-directive"
