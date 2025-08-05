@@ -21,7 +21,8 @@ def _download_plugins(module_ctx):
             executable = True,
             sha256 = hash,
             url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/{0}/protoc-gen-grpc-gateway-{0}-{1}{2}".format(
-                version, platform,
+                version,
+                platform,
                 ".exe" if "windows" in platform else "",
             ),
         )
@@ -42,7 +43,8 @@ def _download_plugins(module_ctx):
             executable = True,
             sha256 = hash,
             url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/{0}/protoc-gen-openapiv2-{0}-{1}{2}".format(
-                version, platform,
+                version,
+                platform,
                 ".exe" if "windows" in platform else "",
             ),
         )
