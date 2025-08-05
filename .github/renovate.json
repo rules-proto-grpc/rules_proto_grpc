@@ -47,6 +47,19 @@
     },
     {
       "customType": "regex",
+      "description": "Match plugin files in module_extensions.bzl files",
+      "managerFilePatterns": [
+        "/(^|/)module_extensions\\.bzl$/"
+      ],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [
+        "# ?renovate-plugin:\\s+(?<depName>\\S+)\\s+version\\s*=\\s*\"(?<currentValue>[^\"]+)\"[^\\]]+?\\[[^\\]]+?\\]",
+        "\\(\\s*\"[^\"]+?\"\\s*,\\s*\"(?<currentDigest>[^\"]+?)\"\\s*\\)"
+      ],
+      "datasourceTemplate": "github-release-attachments"
+    },
+    {
+      "customType": "regex",
       "description": "Match Go deps in MODULE.bazel files",
       "managerFilePatterns": [
         "/(^|/)MODULE\\.bazel$/"

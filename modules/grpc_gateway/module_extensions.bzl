@@ -6,6 +6,8 @@ def _download_plugins(module_ctx):
     """Download plugins."""
 
     # Gateway plugin
+    # renovate-plugin: grpc-ecosystem/grpc-gateway
+    version = "v2.26.3"
     for platform, hash in [
         ("darwin-arm64", "407fc00c44151a140bce4cd42311ff67b5c8bf2b32eb0c42aae315310eea4a16"),
         ("darwin-x86_64", "5876b7b9c96149f8bd5847f4d91154b8902f9854eedbf1a7c5c1f1ebb10ff0c5"),
@@ -18,13 +20,15 @@ def _download_plugins(module_ctx):
             name = "grpc_gateway_plugin_{}".format(platform.replace("-", "_")),
             executable = True,
             sha256 = hash,
-            url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v2.26.3/protoc-gen-grpc-gateway-v2.26.3-{}{}".format(
-                platform,
+            url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/{0}/protoc-gen-grpc-gateway-{0}-{1}{2}".format(
+                version, platform,
                 ".exe" if "windows" in platform else "",
             ),
         )
 
     # Openapi plugin
+    # renovate-plugin: grpc-ecosystem/grpc-gateway
+    version = "v2.26.3"
     for platform, hash in [
         ("darwin-arm64", "370a77b54e71ad38831332b98747b138bd45f54f01b2c54798f8e4069e0152a8"),
         ("darwin-x86_64", "5c5afb23e819a33c942ad1c888d7913c4d766434e2db1b96a92931e5c2d6dc5a"),
@@ -37,8 +41,8 @@ def _download_plugins(module_ctx):
             name = "openapiv2_plugin_{}".format(platform.replace("-", "_")),
             executable = True,
             sha256 = hash,
-            url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v2.26.3/protoc-gen-openapiv2-v2.26.3-{}{}".format(
-                platform,
+            url = "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/{0}/protoc-gen-openapiv2-{0}-{1}{2}".format(
+                version, platform,
                 ".exe" if "windows" in platform else "",
             ),
         )
