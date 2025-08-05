@@ -98,12 +98,6 @@ tasks:
       - "//examples/routeguide:python_java"
       - "//examples/routeguide:python_js"
       - "//examples/routeguide:python_python"
-      - "//examples/routeguide:scala_cpp"
-      - "//examples/routeguide:scala_csharp"
-      - "//examples/routeguide:scala_go"
-      - "//examples/routeguide:scala_java"
-      - "//examples/routeguide:scala_js"
-      - "//examples/routeguide:scala_python"
 
   main_windows_arm64:
     name: Build & Test All
@@ -151,12 +145,6 @@ tasks:
       - "//examples/routeguide:python_java"
       - "//examples/routeguide:python_js"
       - "//examples/routeguide:python_python"
-      - "//examples/routeguide:scala_cpp"
-      - "//examples/routeguide:scala_csharp"
-      - "//examples/routeguide:scala_go"
-      - "//examples/routeguide:scala_java"
-      - "//examples/routeguide:scala_js"
-      - "//examples/routeguide:scala_python"
 
   main_macos:
     name: Build & Test All
@@ -993,52 +981,6 @@ tasks:
       - make scala_scala_grpc_compile_example
       - make scala_scala_proto_library_example
       - make scala_scala_grpc_library_example
-
-  scala_windows_examples:
-    name: Scala
-    platform: windows
-    environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
-    batch_commands:
-      - echo scala_proto_compile
-      - cd examples/scala/scala_proto_compile
-      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-      - cd ../../..
-      - echo scala_grpc_compile
-      - cd examples/scala/scala_grpc_compile
-      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-      - cd ../../..
-      - echo scala_proto_library
-      - cd examples/scala/scala_proto_library
-      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-      - cd ../../..
-      - echo scala_grpc_library
-      - cd examples/scala/scala_grpc_library
-      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-      - cd ../../..
-
-  scala_windows_arm64_examples:
-    name: Scala
-    platform: windows_arm64
-    environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 --define=protobuf_allow_msvc=true"
-    batch_commands:
-      - echo scala_proto_compile
-      - cd examples/scala/scala_proto_compile
-      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-      - cd ../../..
-      - echo scala_grpc_compile
-      - cd examples/scala/scala_grpc_compile
-      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-      - cd ../../..
-      - echo scala_proto_library
-      - cd examples/scala/scala_proto_library
-      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-      - cd ../../..
-      - echo scala_grpc_library
-      - cd examples/scala/scala_grpc_library
-      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
-      - cd ../../..
 
   scala_macos_examples:
     name: Scala

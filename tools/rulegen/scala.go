@@ -79,7 +79,8 @@ func makeScala() *Language {
 		DisplayName: "Scala",
         DependsOn: []string{"java"},
 		Notes: mustTemplate("Rules for generating Scala protobuf and gRPC ``.jar`` files and libraries using `ScalaPB <https://github.com/scalapb/ScalaPB>`_. Libraries are created with ``scala_library`` from `rules_scala <https://github.com/bazelbuild/rules_scala>`_"),
-		Rules: []*Rule{
+		SkipTestPlatforms: []string{"windows"},  // rules_scala has path length issues on Windows
+        Rules: []*Rule{
 			&Rule{
 				Name:             "scala_proto_compile",
 				Kind:             "proto",
