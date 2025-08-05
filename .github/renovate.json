@@ -53,8 +53,8 @@
       ],
       "matchStringsStrategy": "recursive",
       "matchStrings": [
-        "# ?renovate-plugin:\\s+(?<depName>\\S+)\\s+version\\s*=\\s*\"(?<currentValue>[^\"]+)\"[^\\]]+?\\[[^\\]]+?\\]",
-        "\\(\\s*\"[^\"]+?\"\\s*,\\s*\"(?<currentDigest>[^\"]+?)\"\\s*\\)"
+        "\\[\\s*?# ?renovate-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
+        "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*,\\s*\"(?<currentDigest>[^\"]+?)\"\\s*\\)"
       ],
       "datasourceTemplate": "github-release-attachments"
     },
