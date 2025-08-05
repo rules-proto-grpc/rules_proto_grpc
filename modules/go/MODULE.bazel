@@ -11,7 +11,7 @@ bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
 go_deps.module(
     path = "google.golang.org/protobuf",
-    sum = "h1:z1NpPI8ku2WgiWnf+t9wTPsn6eP1L7ksHUlkfLvd9xY=",
+    sum = "3f79c52e7fe26f88843469913dcc34d0396be330",
     version = "v1.36.6",
 )
 go_deps.module(
