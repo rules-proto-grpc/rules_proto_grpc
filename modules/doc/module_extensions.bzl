@@ -5,7 +5,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 def _download_plugins(module_ctx):
     """Download plugins."""
     for version, platform, hash in [
-        # renovate-plugin: pseudomuto/protoc-gen-doc
+        # renovate-gh-plugin: pseudomuto/protoc-gen-doc
         ("v1.5.1", "darwin_arm64", "6e8c737d9a67a6a873a3f1d37ed8bb2a0a9996f6dcf6701aa1048c7bd798aaf9"),
         ("v1.5.1", "darwin_x86_64", "f429e5a5ddd886bfb68265f2f92c1c6a509780b7adcaf7a8b3be943f28e144ba"),
         ("v1.5.1", "linux_arm64", "172e6a191daced8eb31ebcd90d4523a1affa6d07900a89b548421823dda796fe"),

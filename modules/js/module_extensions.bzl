@@ -7,7 +7,7 @@ def _download_plugins(module_ctx):
 
     # protobuf-javascript plugin
     for version, platform, hash in [
-        # renovate-plugin: protocolbuffers/protobuf-javascript
+        # renovate-gh-plugin: protocolbuffers/protobuf-javascript
         ("v3.21.4", "darwin-arm64", "c8ee4890625f3eb134072ea6111b757cce541897657a50f05c5170558773acea"),
         ("v3.21.4", "darwin-x86_64", "af7665e12f6b76c9dbad9f09c3ec925f2c45b268e344de5356945bb2be098b1e"),
         ("v3.21.4", "linux-arm64", "87eb5158e8a914c47f8fda43bb04575ac2f7c68db5ee4289b3e689acf2843bfd"),
@@ -50,7 +50,7 @@ def _download_plugins(module_ctx):
 
     # grpc-web plugin
     for version, platform, hash in [
-        # renovate-plugin: grpc/grpc-web
+        # renovate-gh-plugin: grpc/grpc-web
         ("1.5.0", "darwin-arm64", "a12b759629b943ebac5528f58fac5039d9aa2fb7abb9e9684d1b481b35afbfc6"),
         ("1.5.0", "darwin-x86_64", "1fa3ef92194d06c03448a5cba82759e9773e43d8b188866a1f1d4fc23bb1ecb7"),
         ("1.5.0", "linux-arm64", "522e958568cdeabdd20ef3c97394fc067ff8e374a728c08b7410bf5de8f57783"),

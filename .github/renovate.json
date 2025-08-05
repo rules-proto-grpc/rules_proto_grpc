@@ -53,7 +53,7 @@
       ],
       "matchStringsStrategy": "recursive",
       "matchStrings": [
-        "\\[\\s*?# ?renovate-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
+        "\\[\\s*?# ?renovate-gh-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
         "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*,\\s*\"(?<currentDigest>[^\"]+?)\"\\s*\\)"
       ],
       "datasourceTemplate": "github-release-attachments"
