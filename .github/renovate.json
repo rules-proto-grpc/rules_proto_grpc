@@ -122,6 +122,14 @@
       "groupName": "grpc-gateway"
     },
     {
+      "description": "Group all grpc-web updates into one update",
+      "matchPackageNames": [
+        "grpc-web",
+        "grpc/grpc-web"
+      ],
+      "groupName": "grpc-web"
+    },
+    {
       "description": "Ensure Swift Package.resolved is updated",
       "matchManagers": [
         "swift"
