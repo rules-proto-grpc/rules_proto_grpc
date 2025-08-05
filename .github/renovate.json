@@ -114,6 +114,14 @@
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Go deps)"
     },
     {
+      "description": "Group all grpc-gateway updates into one update",
+      "matchPackageNames": [
+        "grpc_ecosystem_grpc_gateway",
+        "grpc-ecosystem/grpc-gateway"
+      ],
+      "groupName": "grpc-gateway"
+    },
+    {
       "description": "Ensure Swift Package.resolved is updated",
       "matchManagers": [
         "swift"
