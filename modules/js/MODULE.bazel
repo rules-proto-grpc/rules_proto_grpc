@@ -21,12 +21,6 @@ use_repo(pnpm, "pnpm")
 download_plugins = use_extension("//:module_extensions.bzl", "download_plugins")
 use_repo(
     download_plugins,
-    # "protoc_gen_grpc_tools_plugin_darwin_arm64",  # https://github.com/grpc/grpc-node/issues/2378
-    "protoc_gen_grpc_tools_plugin_darwin_x86_64",
-    "protoc_gen_grpc_tools_plugin_linux_arm64",
-    "protoc_gen_grpc_tools_plugin_linux_x86_64",
-    # "protoc_gen_grpc_tools_plugin_windows_arm64",
-    "protoc_gen_grpc_tools_plugin_windows_x86_64",
     "protoc_gen_grpc_web_plugin_darwin_arm64",
     "protoc_gen_grpc_web_plugin_darwin_x86_64",
     "protoc_gen_grpc_web_plugin_linux_arm64",

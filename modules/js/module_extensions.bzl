@@ -27,27 +27,6 @@ def _download_plugins(module_ctx):
             strip_prefix = "protobuf-javascript-{}-win64".format(version[1:]) if platform == "windows-x86_64" else "",
         )
 
-    # grpc-js plugin
-    # Required as loading from NPM does not correctly download binaries on MacOS arm64, as the
-    # binaries are downloaded not by NPM but by node-pre-gyp. The download paths it would use are
-    # found from https://github.com/grpc/grpc-node/blob/master/packages/grpc-tools/package.json
-    for platform, hash in [
-        # ("darwin-arm64", "0c0b26bc58a82fe0e2700a6f90ad2ceacfce529358dc1f333751bf3c8d42432c"),  # https://github.com/grpc/grpc-node/issues/2378
-        ("darwin-x86_64", "fe64071b169436304b6e5c2c61bb4b1e91d9b51193d9480a3ef95f4274a6ee11"),
-        ("linux-arm64", "779eed77095d42635c40c3a392f5b6cea11018d48aafd810d5465d8cc496a7f7"),
-        ("linux-x86_64", "3a4748a36c8ff7b5e87ff2a6207bef456c459db1b6c1aead0a7216b495a476aa"),
-        # ("windows-arm64", ""),  # Not available
-        ("windows-x86_64", "4363b9d11c3af89c9356d195bfdcc6aa5b7093035365dedf021edd39f7d4f9cc"),
-    ]:
-        http_archive(
-            name = "protoc_gen_grpc_tools_plugin_{}".format(platform.replace("-", "_")),
-            sha256 = hash,
-            url = "https://node-precompiled-binaries.grpc.io/grpc-tools/v1.13.0/{}.tar.gz".format(
-                platform.replace("windows", "win32").replace("x86_64", "x64"),
-            ),
-            build_file_content = """exports_files(glob(["**/*"]))""",
-        )
-
     # grpc-web plugin
     for version, platform, hash in [
         # renovate-gh-plugin: grpc/grpc-web

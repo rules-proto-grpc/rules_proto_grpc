@@ -1,5 +1,6 @@
 load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
-load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")load("@rules_proto_grpc_js_npm//:grpc-tools/package_json.bzl", grpc_tools = "bin")
+load("@rules_proto_grpc_js_npm//:grpc-tools/package_json.bzl", grpc_tools = "bin")
 load("@rules_proto_grpc_js_npm//:ts-protoc-gen/package_json.bzl", ts_protoc_gen = "bin")
 
 npm_link_all_packages(name = "node_modules")
@@ -34,6 +35,8 @@ proto_plugin(
     visibility = ["//visibility:public"],
 )
 
+grpc_tools.grpc_tools_node_protoc_plugin_binary(name = "grpc_tools_node_protoc_plugin_binary")
+
 proto_plugin(
     name = "grpc_plugin",
     empty_template = "empty.template",
@@ -44,14 +47,7 @@ proto_plugin(
         "grpc_js",
     ],
     outputs = ["{protopath}_grpc_pb.js"],
-    tool = select({
-        # "@rules_proto_grpc//platforms:darwin_arm64": "@protoc_gen_grpc_tools_plugin_darwin_arm64//:arm64/grpc_node_plugin",  # https://github.com/grpc/grpc-node/issues/2378  # Note different folder
-        "@rules_proto_grpc//platforms:darwin_x86_64": "@protoc_gen_grpc_tools_plugin_darwin_x86_64//:x64/grpc_node_plugin",  # Note different folder
-        "@rules_proto_grpc//platforms:linux_aarch64": "@protoc_gen_grpc_tools_plugin_linux_arm64//:bin/grpc_node_plugin",
-        "@rules_proto_grpc//platforms:linux_x86_64": "@protoc_gen_grpc_tools_plugin_linux_x86_64//:bin/grpc_node_plugin",
-        # "@rules_proto_grpc//platforms:windows_arm64": "@protoc_gen_grpc_tools_plugin_windows_arm64//:bin/grpc_node_plugin.exe",
-        "@rules_proto_grpc//platforms:windows_x86_64": "@protoc_gen_grpc_tools_plugin_windows_x86_64//:bin/grpc_node_plugin.exe",
-    }),
+    tool = ":grpc_tools_node_protoc_plugin_binary",
     visibility = ["//visibility:public"],
 )
 
