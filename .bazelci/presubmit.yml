@@ -1,5 +1,5 @@
 ---
-bazel: last_green
+bazel: bd44c8671f984f287f4ad9b1039beb2208a7904c  # 8.4.0 branch
 tasks:
   main_ubuntu2204:
     name: Build & Test All
