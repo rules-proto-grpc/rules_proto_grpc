@@ -1,4 +1,5 @@
 ---
+bazel: last_green
 tasks:
   main_ubuntu2204:
     name: Build & Test All
