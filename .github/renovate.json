@@ -27,7 +27,8 @@
     "managerFilePatterns": [
       "/(^|/)MODULE\\.bazel$/",
       "/(^|/)MODULE\\.bazel.template$/",  // Match template file in rulegen
-      "tools/rulegen/*.go"  // Match template strings
+      "tools/rulegen/*.go",  // Match template strings in rulegen
+      "docs/lang/*.rst"  // Match output of template strings in docs
     ]
   },
   "pip_requirements": {
