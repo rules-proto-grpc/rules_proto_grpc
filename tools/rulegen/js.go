@@ -115,7 +115,7 @@ npm_link_all_packages(name = "node_modules")
 
 // See https://github.com/aspect-build/rules_js/discussions/2197. End user must access
 // rules_proto_grpc_js_npm and then npm_link_all_packages in their root BUILD.bazel file as above
-var jsModuleSuffixLines = `bazel_dep(name = "aspect_rules_js", version = "2.4.1")
+var jsModuleSuffixLines = `bazel_dep(name = "aspect_rules_js", version = "2.4.2")
 
 # Allow npm_link_all_packages of rules_proto_grpc_js_npm from rules_proto_grpc_js
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
