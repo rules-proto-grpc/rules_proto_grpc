@@ -16,13 +16,13 @@
   "prFooter": "View the [repository job log](https://developer.mend.io/{{platform}}/{{repository}})",
   "prHeader": "",
   "rebaseWhen": "conflicted",
-
   "ignorePaths": [
     "**/node_modules/**",
     "**/bower_components/**",
     "**/vendor/**",
     "**/__fixtures__/**"
   ],
+
   "bazel-module": {
     "managerFilePatterns": [
       "/(^|/)MODULE\\.bazel$/",
@@ -75,20 +75,6 @@
         "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*,\\s*\"(?<currentDigest>[^\"]+?)\"\\s*\\)"
       ],
       "datasourceTemplate": "github-release-attachments"
-    },
-    {
-      "customType": "regex",
-      "description": "Match Go deps in MODULE.bazel files",
-      "managerFilePatterns": [
-        "/(^|/)MODULE\\.bazel$/"
-      ],
-      "matchStrings": [
-        // Don't use digest here, as it is the commit hash of the version
-        // rather than the h1 sum we need
-        "go_deps.module\\([^)]+?path\\s*=\\s*\"(?<depName>[^\"]+)\"[^)]+?version\\s*=\\s*\"(?<currentValue>[^\"]+)\""
-      ],
-      "datasourceTemplate": "go",
-      "versioningTemplate": "go-mod-directive"
     }
   ],
 
