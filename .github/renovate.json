@@ -157,6 +157,16 @@
       ],
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as the JS plugins need to be updated in sync in modules/js/module_extensions.bzl"
+    },
+    {
+      "description": "Don't make PRs for Go toolchain version updates",
+      "matchManagers": [
+        "go"
+      ],
+      "matchDepTypes": [
+        "toolchain"
+      ],
+      "enabled": false
     }
   ]
 }
