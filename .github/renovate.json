@@ -6,6 +6,17 @@
     ":disableDependencyDashboard",
     ":semanticCommitsDisabled"
   ],
+
+  "prConcurrentLimit": 30, // Increase number of allowed open PRs from 10
+  "prHourlyLimit": 6, // Allow more than default of 2 new PRs per hour
+  "postUpdateOptions": [
+    "gomodTidy"
+  ],
+  "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
+  "prFooter": "View the [repository job log](https://developer.mend.io/{{platform}}/{{repository}})",
+  "prHeader": "",
+  "rebaseWhen": "conflicted",
+
   "ignorePaths": [
     "**/node_modules/**",
     "**/bower_components/**",
@@ -15,7 +26,8 @@
   "bazel-module": {
     "managerFilePatterns": [
       "/(^|/)MODULE\\.bazel$/",
-      "/(^|/)MODULE\\.bazel.template$/"
+      "/(^|/)MODULE\\.bazel.template$/",  // Match template file in rulegen
+      "tools/rulegen/*.go"  // Match template strings
     ]
   },
   "pip_requirements": {
@@ -30,6 +42,7 @@
     "versioning": "swift",
     "pinDigests": true
   },
+
   "customManagers": [
     {
       "customType": "regex",
@@ -39,6 +52,8 @@
       ],
       "matchStringsStrategy": "recursive",
       "matchStrings": [
+        // Find artifacts section, then find each artifact within using the
+        // recursive strategy above
         "artifacts\\s*=\\s*\\[[^\\]]*?\\]",
         "\"(?<depName>[^\"]+):(?<currentValue>[^\"]+)\""
       ],
@@ -53,6 +68,8 @@
       ],
       "matchStringsStrategy": "recursive",
       "matchStrings": [
+        // Find assets hash block by looking for # renovate-gh-plugin: org/repo
+        // then find each plugin within using recursive strategy
         "\\[\\s*?# ?renovate-gh-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
         "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*,\\s*\"(?<currentDigest>[^\"]+?)\"\\s*\\)"
       ],
@@ -65,12 +82,15 @@
         "/(^|/)MODULE\\.bazel$/"
       ],
       "matchStrings": [
+        // Don't use digest here, as it is the commit hash of the version
+        // rather than the h1 sum we need
         "go_deps.module\\([^)]+?path\\s*=\\s*\"(?<depName>[^\"]+)\"[^)]+?version\\s*=\\s*\"(?<currentValue>[^\"]+)\""
       ],
       "datasourceTemplate": "go",
       "versioningTemplate": "go-mod-directive"
     }
   ],
+
   "packageRules": [
     {
       "description": "Do not update modules published in this repo",
@@ -150,12 +170,5 @@
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as the JS plugins need to be updated in sync in modules/js/module_extensions.bzl"
     }
-  ],
-  "postUpdateOptions": [
-    "gomodTidy"
-  ],
-  "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
-  "prFooter": "View the [repository job log](https://developer.mend.io/{{platform}}/{{repository}})",
-  "prHeader": "",
-  "rebaseWhen": "conflicted"
+  ]
 }
