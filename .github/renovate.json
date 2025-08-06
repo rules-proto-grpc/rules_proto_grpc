@@ -161,7 +161,7 @@
     {
       "description": "Don't make PRs for Go toolchain version updates",
       "matchManagers": [
-        "go"
+        "gomod"
       ],
       "matchDepTypes": [
         "toolchain"
