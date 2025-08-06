@@ -75,6 +75,18 @@
         "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*,\\s*\"(?<currentDigest>[^\"]+?)\"\\s*\\)"
       ],
       "datasourceTemplate": "github-release-attachments"
+    },
+    {
+      "customType": "regex",
+      "description": "Match Java protobuf version in java_deps test workspace",
+      "managerFilePatterns": [
+        "test_workspaces/java_deps/Main.java"
+      ],
+      "matchStrings": [
+        "String expectedVersion = \"(?<currentValue>[^\"]+?)\";"
+      ],
+      "datasourceTemplate": "maven",
+      "packageNameTemplate": "com.google.protobuf:protobuf-java"
     }
   ],
 
