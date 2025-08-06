@@ -8,9 +8,9 @@ public class Main {
     // Check resolved version of Protobuf
     String expectedVersion = "4.31.0";
     String[] expectedVersionParts = expectedVersion.split(".");
-    assert RuntimeVersion.MAJOR == expectedVersionParts[0]: "Bad major runtime version: " + RuntimeVersion.MAJOR;
-    assert RuntimeVersion.MINOR == expectedVersionParts[1]: "Bad minor runtime version: " + RuntimeVersion.MINOR;
-    assert RuntimeVersion.PATCH == expectedVersionParts[2]: "Bad patch runtime version: " + RuntimeVersion.PATCH;
+    assert RuntimeVersion.MAJOR == Integer.parseInt(expectedVersionParts[0]): "Bad major runtime version: " + RuntimeVersion.MAJOR;
+    assert RuntimeVersion.MINOR == Integer.parseInt(expectedVersionParts[1]): "Bad minor runtime version: " + RuntimeVersion.MINOR;
+    assert RuntimeVersion.PATCH == Integer.parseInt(expectedVersionParts[2]): "Bad patch runtime version: " + RuntimeVersion.PATCH;
 
     // Check classpath only contains one version of Protobuf, in an incredibly fragile way...
     int protobufCount = 0;
