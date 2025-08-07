@@ -1,8 +1,15 @@
 module github.com/rules-proto-grpc/rule_proto_grpc
 
-go 1.23.0
+go 1.24.5
 
-toolchain go1.23.6
+toolchain go1.24.5
+
+tool (
+	// Prevent go mod tidy from deleting dependencies it thinks are unused
+	google.golang.org/grpc
+	google.golang.org/grpc/cmd/protoc-gen-go-grpc
+	google.golang.org/protobuf
+)
 
 require (
 	google.golang.org/grpc v1.74.2
