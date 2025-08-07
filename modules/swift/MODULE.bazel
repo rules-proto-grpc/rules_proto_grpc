@@ -17,7 +17,7 @@ swift_deps.from_package(
 )
 use_repo(
     swift_deps,
-    "swiftpkg_grpc_swift",
+    "swiftpkg_grpc_swift_2",
     "swiftpkg_grpc_swift_protobuf",
     "swiftpkg_swift_protobuf",
 )

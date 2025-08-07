@@ -48,7 +48,7 @@ def {{ .Rule.Name }}(name, **kwargs):
 
 GRPC_DEPS = [
     Label("@swiftpkg_swift_protobuf//:SwiftProtobuf"),
-    Label("@swiftpkg_grpc_swift//:GRPCCore"),
+    Label("@swiftpkg_grpc_swift_2//:GRPCCore"),
     Label("@swiftpkg_grpc_swift_protobuf//:GRPCProtobuf"),
 ]`)
 
