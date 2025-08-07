@@ -78,6 +78,23 @@
     },
     {
       "customType": "regex",
+      "description": "Match Maven sourced plugin files in module_extensions.bzl files",
+      "managerFilePatterns": [
+        "/(^|/)module_extensions\\.bzl$/"
+      ],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [
+        // Find assets hash block by looking for # renovate-maven-plugin: artifact
+        // then find each plugin within using recursive strategy. The digest is
+        // not matched and therefore not updated, as there is no auto matching
+        // like with github-release-attachments
+        "\\[\\s*?# ?renovate-maven-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
+        "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*,\\s*\"[^\"]+?\"\\s*\\)"
+      ],
+      "datasourceTemplate": "maven"
+    },
+    {
+      "customType": "regex",
       "description": "Match Java protobuf version in java_deps test workspace",
       "managerFilePatterns": [
         "test_workspaces/java_deps/Main.java"
