@@ -27,6 +27,7 @@ examples/go/go_grpc_library
 
 examples/grpc_gateway/gateway_grpc_compile
 examples/grpc_gateway/gateway_openapiv2_compile
+examples/grpc_gateway/gateway_openapiv2_combined_compile
 examples/grpc_gateway/gateway_grpc_library
 
 examples/java/java_proto_compile

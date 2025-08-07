@@ -20,9 +20,29 @@ proto_plugin(
         "google/api",
         "google/protobuf",
     ],
-    output_directory = True,  # https://github.com/rules-proto-grpc/rules_proto_grpc/issues/382
+    outputs = ["{protopath}.swagger.json"],
     quirks = [
         "QUIRK_DIRECT_MODE",
+    ],
+    separate_options_flag = True,
+    tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "openapiv2_combined_plugin",
+    out = "combined.swagger.json",
+    exclusions = [
+        "google/api",
+        "google/protobuf",
+    ],
+    options = [
+        "allow_merge=true",
+        "merge_file_name=combined",
+    ],
+    quirks = [
+        "QUIRK_DIRECT_MODE",
+        "QUIRK_OUT_PASS_ROOT",
     ],
     separate_options_flag = True,
     tool = "@grpc_ecosystem_grpc_gateway//protoc-gen-openapiv2",
