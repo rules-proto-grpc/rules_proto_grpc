@@ -33,7 +33,7 @@ def objc_proto_library(name, **kwargs):  # buildifier: disable=function-docstrin
     # Create objc library
     objc_library(
         name = name,
-        srcs = [name_pb + "_srcs"],
+        non_arc_srcs = [name_pb + "_srcs"],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],

@@ -5,11 +5,12 @@ load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_grpclib_compile.bzl", "python_grpclib_compile")
 
-def python_grpclib_library(name, **kwargs):
+def python_grpclib_library(name, generate_pyi = False, **kwargs):
     # Compile protos
     name_pb = name + "_pb"
     python_grpclib_compile(
         name = name_pb,
+        extra_plugins = [Label("//:pyi_plugin")] if generate_pyi else [],
         **{
             k: v
             for (k, v) in kwargs.items()
@@ -33,6 +34,6 @@ def python_grpclib_library(name, **kwargs):
     )
 
 GRPCLIB_DEPS = [
-    Label("@protobuf//:protobuf_python"),
     Label(requirement("grpclib")),
+    Label("@protobuf//:protobuf_python"),
 ]

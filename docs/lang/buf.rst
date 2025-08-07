@@ -10,8 +10,6 @@ Rules for linting and detecting breaking changes in .proto files with `Buf <http
 
 Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.
 
-Only Linux and Darwin (MacOS) is currently supported by Buf.
-
 .. list-table:: Rules
    :widths: 1 2
    :header-rows: 1
@@ -22,6 +20,15 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.
      - Checks .proto files for breaking changes
    * - `buf_proto_lint_test`_
      - Lints .proto files
+
+Installation
+------------
+
+The Buf module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_buf", version = "<version number here>")
 
 .. _buf_proto_breaking_test:
 
@@ -72,7 +79,7 @@ Attributes
      - ``label_list``
      - true
      - ``[]``
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``against_input``
      - ``label``
      - true
@@ -97,7 +104,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_buf//:breaking_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
+- `@rules_proto_grpc_buf//:breaking_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/buf/BUILD.bazel>`__
 
 .. _buf_proto_lint_test:
 
@@ -183,7 +190,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``use_rules``
      - ``string_list``
      - false
@@ -223,4 +230,4 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_buf//:lint_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/buf/BUILD.bazel>`__
+- `@rules_proto_grpc_buf//:lint_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/buf/BUILD.bazel>`__

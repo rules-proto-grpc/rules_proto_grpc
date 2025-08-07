@@ -1,0 +1,11 @@
+load("@rules_proto_grpc_swift//:defs.bzl", "swift_grpc_compile")
+
+swift_grpc_compile(
+    name = "thing_swift_grpc",
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
+)
+
+swift_grpc_compile(
+    name = "greeter_swift_grpc",
+    protos = ["@rules_proto_grpc_example_protos//:greeter_grpc"],
+)

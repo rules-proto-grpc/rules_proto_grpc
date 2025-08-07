@@ -1,17 +1,23 @@
-__pycache__
-/venv
-
+# Bazel
 bazel-*
 MODULE.bazel.lock
 
+# JS
 node_modules
+
+# Python
+__pycache__
+/venv
+
+# Swift
+.build
+
+# Misc
 .idea
-available_tests.txt
 .ipynb_checkpoints
-csharp/nuget/nuget2config.json
-ruby/.bundle
-js/requirements/yarn-error.log
 .vscode
 
+# Local
+available_tests.txt
 /docs/build
 /dist

@@ -1,0 +1,9 @@
+load("@rules_proto_grpc_swift//:defs.bzl", "swift_grpc_library")
+
+swift_grpc_library(
+    name = "greeter_swift_grpc",
+    protos = [
+        "@rules_proto_grpc_example_protos//:greeter_grpc",
+        "@rules_proto_grpc_example_protos//:thing_proto",
+    ],
+)

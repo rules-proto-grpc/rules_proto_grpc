@@ -49,12 +49,13 @@ short, the basic idea is:
 
 .. code-block:: python
 
-   load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+   load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
    load(
        "@rules_proto_grpc//:defs.bzl",
        "ProtoPluginInfo",
        "proto_compile_attrs",
        "proto_compile_impl",
+       "proto_compile_toolchains",
    )
 
    # Create compile rule
@@ -71,7 +72,7 @@ short, the basic idea is:
                doc = "List of protoc plugins to apply",
            ),
        ),
-       toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
+       toolchains = proto_compile_toolchains,
    )
 
 

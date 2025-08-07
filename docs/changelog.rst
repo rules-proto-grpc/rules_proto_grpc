@@ -6,6 +6,245 @@
 Changelog
 =========
 
+5.5.0
+-----
+
+Changes
+*******
+
+- Restored C# language support
+
+
+Version Updates
+***************
+
+- Updated Bazel ``rules_cc`` to 0.1.4
+- Updated Bazel ``rules_java`` to 8.14.0
+
+
+5.4.0
+-----
+
+Changes
+*******
+
+- Switched Maven dependencies for Java and Scala to share the common ``maven`` name for
+  ``maven.install``, rather than use a unique deconflicted name that can cause classpath issues with
+  duplicate dependencies with differing versions. This means that the Protobuf and gRPC dependencies
+  used internally by ``java_proto_library`` etc will be resolved alongside any dependencies from the
+  root module and the versions can be overridden there. Note that the Java protoc plugins are not
+  sourced from Maven and thus care needs to be taken to ensure the runtime version guarantees are
+  met. Scala version specific dependencies are still sourced from separate Maven repositories.
+  See `#449 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/449>`__
+
+
+Version Updates
+***************
+
+- Updated Bazel ``apple_support`` to 1.22.1
+- Updated Bazel ``aspect_rules_js`` to 2.4.0
+- Updated Bazel ``bazel_skylib`` to 1.8.1
+- Updated Bazel ``rules_cc`` to 0.1.3
+- Updated Bazel ``rules_jvm_external`` to 6.8
+- Updated Bazel ``rules_python`` to 1.5.1
+- Updated Bazel ``rules_swift`` to 3.1.1
+- Updated Scala ``com.thesamet.scalapb:*`` to 0.11.19
+
+
+5.3.1
+-----
+
+Changes
+*******
+
+- Fixed download path for grpc-web protoc plugin on any arm64 platform
+
+
+Version Updates
+***************
+
+- Updated Bazel ``bazel_skylib`` to 1.8.0
+- Updated Bazel ``grpc`` to 1.73.1
+- Updated Bazel ``rules_java`` to 8.13.0
+- Updated Bazel ``rules_python`` to 1.5.0
+- Updated Bazel ``rules_swift_package_manager`` to 1.3.0
+- Updated Bazel ``toolchains_protoc`` to 0.4.3
+- Updated Go ``google.golang.org/grpc`` to v1.73.0
+- Updated Go ``google.golang.org/protobuf`` to v1.36.6
+- Updated Java ``io.grpc:grpc-*`` to 1.73.0
+
+
+5.3.0
+-----
+
+Changes
+*******
+
+- Restored JavaScript language support, thanks to @Lev1ty
+
+
+Version Updates
+***************
+
+None
+
+
+5.2.1
+-----
+
+Changes
+*******
+
+No major changes, only version updates
+
+
+Version Updates
+***************
+
+- Updated Bazel ``buildifier_prebuilt`` to 8.2.0.2
+- Updated Bazel ``gazelle`` to 0.44.0
+- Updated Bazel ``rules_cc`` to 0.1.2
+- Updated Bazel ``rules_go`` to 0.55.1
+- Updated Bazel ``rules_shell`` to 0.5.0
+- Updated Bazel ``rules_swift`` to 3.0.2
+- Updated Bazel ``rules_swift_package_manager`` to 1.0.0
+- Updated Swift ``grpc/grpc-swift`` to 2.2.3
+- Updated Swift ``grpc/grpc-swift-protobuf`` to 1.3.1
+
+
+5.2.0
+-----
+
+Changes
+*******
+
+- Restored Scala language support
+- Restored Swift langauge support
+- Fixed usage of ``options`` attr on Bazel 8, where the Label canonicalisation has changed
+- Fixed loading of Buf protoc lint plugin
+- Fixed loading of Buf protoc breaking plugin on linux/arm64
+- Switched gRPC-Gateway to be loaded directly from Bazel bzlmod dependency rather than via
+  Go/Gazelle
+- The ``gateway_openapiv2_compile()`` rule now uses a directory as output, to allow creating a
+  combined output file. `#382 <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/382>`__
+- Fixed ``bzl_library`` referencing incorrect dependency in ``@protobuf``
+- Switched from ``@bazel_tool//platforms`` to ``@platforms``
+- The Python dependencies for Protobuf and gRPC are now loaded from the ``@protobuf`` and ``@grpc``
+  bzlmod workspaces respectively, rather than from PyPI wheels. This is necessary to prevent version
+  skew between the protoc version and the runtime version, but unfortunately may result in longer
+  uncached build times
+- Added CI testing on MacOS (x64 and arm)
+
+
+Version Updates
+***************
+
+- Updated Bazel ``protobuf`` to 31.1
+- Updated Bazel ``rules_go`` to 0.55.0
+- Updated Bazel ``rules_java`` to 8.11.0
+- Updated Bazel ``toolchains_protoc`` to 0.4.2
+- Updated Java ``com.google.protobuf:protobuf-java`` to 4.31.1
+
+
+5.1.0
+-----
+
+Changes
+*******
+
+- Added support for Bazel 8 and dropped Bazel 6 support
+- Replaced deprecated ``rules_proto`` with ``protobuf``
+- Added support for providing extra plugins to rules at runtime using the ``extra_plugins``
+  attribute
+- Fixed version skew between grpc-gateway protoc plugin and runtime
+- Added optional generation of ``.pyi`` files for Python
+- Switched Objective-C sources to use ``non_arc_srcs``
+- Dropped C language support, as the μpb API is considered unstable and the C plugin is no longer
+  publicly visible from the ``protobuf`` workspace
+- Removed usage of ``ctx.resolve_tools`` that is deprecated
+- Added Python 3.13 to supported list
+- Replaced custom grpclib plugin with ``py_console_script_binary``
+
+
+Version Updates
+***************
+
+- Updated Bazel ``apple_support`` to 1.22.0
+- Updated Bazel ``buildifier_prebuilt`` to 8.0.3
+- Updated Bazel ``gazelle`` to 0.43.0
+- Updated Bazel ``grpc`` to 1.72.0
+- Updated Bazel ``protobuf`` to 30.2
+- Updated Bazel ``rules_cc`` to 0.1.1
+- Updated Bazel ``rules_go`` to 0.54.0
+- Updated Bazel ``rules_java`` to 8.11.0
+- Updated Bazel ``rules_python`` to 1.4.1
+- Updated Bazel ``rules_shell`` to 0.4.1
+- Updated Bazel ``toolchains_protoc`` to 0.4.1
+- Updated Buf to 1.54.0
+- Updated Go ``google.golang.org/protobuf`` to v1.36.0
+- Updated Go ``google.golang.org/grpc`` to v1.72.1
+- Updated ``grpc-gateway`` to 2.26.3
+- Updated Java ``com.google.protobuf:protobuf-java`` to 4.30.2
+- Updated Java ``io.grpc:grpc-api`` to 1.72.0
+- Updated Python ``grpcio`` to 1.71.0
+- Updated Python ``grpclib`` to 0.4.8
+- Updated Python ``protobuf`` to 6.30.2
+
+
+5.0.1
+-----
+
+Fixed gRPC-Gateway OpenAPI plugin on Linux ARM64
+`#360 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/360>`__
+
+
+5.0.0
+-----
+
+The 5.0.0 release introduces support for `Bzlmod <https://bazel.build/external/overview>`__ and
+drops support for WORKSPACE. This has required a large restructure of the repo, with the code being
+split into multiple modules. A 'core' module provides common types and compilation support, whilst
+per-language modules provide the integration with each language's specific third-party modules and
+tools. Moving to Bzlmod provides a huge improvement in the stability and maintainability of these
+rules, as third-party transitive dependency management has been handed off to Bazel and new versions
+of gRPC and Protobuf should hopefully be able to be supported more rapidly.
+
+At present, a limited number of languages have been migrated from the 4.x.x releases, with support
+for the remaining languages being tracked
+`here <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299>`__. For these unsupported
+languages - or for WORKSPACE repos - it is recommended you continue using the 4.x.x releases.
+
+The way you use these rules is largely unchanged, but unfortunately the paths used for ``load`` of
+the rules will have changed due to the splitting into language-specific modules. For example, the
+following load:
+
+.. code-block:: python
+
+   load("@rules_proto_grpc//go:defs.bzl", "go_proto_library")
+
+Will become:
+
+.. code-block:: python
+
+   load("@rules_proto_grpc_go//:defs.bzl", "go_proto_library")
+
+Details on the new rule loads can, as always, be found on each language's page in the documentation.
+Examples for each language are also provided in the repo's
+`examples <https://github.com/rules-proto-grpc/rules_proto_grpc/tree/master/examples>`__ directory.
+
+Some key other changes include:
+
+- The versions of gRPC and Protobuf are updated to the latest available in
+  `Bazel Central Registry <https://github.com/bazelbuild/bazel-central-registry>`__
+- Python now pulls gRPC and Protobuf from pip wheels
+- Buf rules now work on Windows (requires the ``--enable_runfiles`` flag to be set)
+
+Should you have any issues
+with the new release, please open a new
+`issue <https://github.com/rules-proto-grpc/rules_proto_grpc/issues/new>`__ or
+`discussion <https://github.com/rules-proto-grpc/rules_proto_grpc/discussions/new>`__.
+
+
 4.6.0
 -----
 

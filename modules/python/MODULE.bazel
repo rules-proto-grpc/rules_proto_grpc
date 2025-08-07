@@ -4,17 +4,17 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "grpc", version = "1.56.3.bcr.1")
-bazel_dep(name = "protobuf", version = "23.1")
+bazel_dep(name = "grpc", version = "1.74.0")
+bazel_dep(name = "protobuf", version = "31.1")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
-bazel_dep(name = "rules_python", version = "0.31.0")
+bazel_dep(name = "rules_python", version = "1.5.1")
 
 PYTHON_VERSIONS = [
-    "3.8",
     "3.9",
     "3.10",
     "3.11",
-    # "3.12",  # Not yet working
+    "3.12",
+    "3.13",
 ]
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")

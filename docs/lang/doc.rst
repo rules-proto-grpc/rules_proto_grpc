@@ -25,6 +25,15 @@ Rules for generating protobuf Markdown, JSON, HTML or DocBook documentation with
    * - `doc_template_compile`_
      - Generates documentation file using Go template file
 
+Installation
+------------
+
+The Documentation module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_doc", version = "<version number here>")
+
 .. _doc_docbook_compile:
 
 doc_docbook_compile
@@ -75,7 +84,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -110,7 +119,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_doc//:docbook_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:docbook_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/doc/BUILD.bazel>`__
 
 .. _doc_html_compile:
 
@@ -162,7 +171,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -197,7 +206,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_doc//:html_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:html_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/doc/BUILD.bazel>`__
 
 .. _doc_json_compile:
 
@@ -249,7 +258,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -284,7 +293,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_doc//:json_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:json_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/doc/BUILD.bazel>`__
 
 .. _doc_markdown_compile:
 
@@ -336,7 +345,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -371,7 +380,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_doc//:markdown_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:markdown_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/doc/BUILD.bazel>`__
 
 .. _doc_template_compile:
 
@@ -420,7 +429,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -460,4 +469,4 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_doc//:template_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/doc/BUILD.bazel>`__
+- `@rules_proto_grpc_doc//:template_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/doc/BUILD.bazel>`__

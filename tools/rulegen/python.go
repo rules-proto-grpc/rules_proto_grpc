@@ -1,17 +1,34 @@
 package main
 
 var pythonProtoLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
-def {{ .Rule.Name }}(name, **kwargs):
+def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
+    """
+    python_proto_library generates Python code from proto and creates a py_library for them.
+
+    Args:
+        name: the name of the target.
+        generate_pyi: flag to specify whether .pyi files should be created.
+        **kwargs: common Bazel attributes will be passed to both python_proto_compile and py_library;
+        python_proto_compile attributes will be passed to python_proto_compile only.
+    """
+
     # Compile protos
     name_pb = name + "_pb"
     python_proto_compile(
         name = name_pb,
+        extra_plugins = [Label("//:pyi_plugin")] if generate_pyi else [],
         {{ .Common.CompileArgsForwardingSnippet }}
     )
+
+    # For other code to import generated code with prefix_path if it's given
+    output_mode = kwargs.get("output_mode", "PREFIXED")
+    if output_mode == "PREFIXED":
+        imports = [name_pb]
+    else:
+        imports = ["."]
 
     # Create {{ .Lang.Name }} library
     py_library(
@@ -19,26 +36,48 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = PROTO_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
-        imports = [name_pb],
+        imports = imports,
         {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 PROTO_DEPS = [
-    Label(requirement("protobuf")),
+    Label("@protobuf//:protobuf_python"),
 ]`)
 
 var pythonGrpcLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
-load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Lang.Name }}_{{ .Rule.Kind }}_compile")
 
-def {{ .Rule.Name }}(name, **kwargs):
+def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
+    """
+    python_grpc_library generates Python code from proto and gRPC, and creates a py_library for them.
+
+    Args:
+        name: the name of the target.
+        generate_pyi: flag to specify whether .pyi files should be created.
+        **kwargs: common Bazel attributes will be passed to both python_grpc_compile and py_library;
+        python_grpc_compile attributes will be passed to python_grpc_compile only.
+    """
+
     # Compile protos
     name_pb = name + "_pb"
     python_grpc_compile(
         name = name_pb,
+        extra_plugins = [Label("//:pyi_plugin")] if generate_pyi else [],
         {{ .Common.CompileArgsForwardingSnippet }}
     )
+
+    # For other code to import generated code with prefix_path if it's given
+    output_mode = kwargs.get("output_mode", "PREFIXED")
+    if output_mode == "PREFIXED":
+        imports = [name_pb]
+    else:
+        imports = ["."]
+
+    # for pb2_grpc.py to import pb2.py
+    prefix_path = kwargs.get("prefix_path", None)
+    if prefix_path:
+        imports.append(imports[0] + "/" + prefix_path)
 
     # Create {{ .Lang.Name }} library
     py_library(
@@ -46,13 +85,13 @@ def {{ .Rule.Name }}(name, **kwargs):
         srcs = [name_pb],
         deps = GRPC_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
-        imports = [name_pb],
+        imports = imports,
         {{ .Common.LibraryArgsForwardingSnippet }}
     )
 
 GRPC_DEPS = [
-    Label(requirement("grpcio")),
-    Label(requirement("protobuf")),
+    Label("@grpc//src/python/grpcio/grpc:grpcio"),
+    Label("@protobuf//:protobuf_python"),
 ]`)
 
 var pythonGrpclibLibraryRuleTemplate = mustTemplate(`load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
@@ -60,11 +99,12 @@ load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:{{ .Lang.Name }}_grpclib_compile.bzl", "{{ .Lang.Name }}_grpclib_compile")
 
-def {{ .Rule.Name }}(name, **kwargs):
+def {{ .Rule.Name }}(name, generate_pyi = False, **kwargs):
     # Compile protos
     name_pb = name + "_pb"
     python_grpclib_compile(
         name = name_pb,
+        extra_plugins = [Label("//:pyi_plugin")] if generate_pyi else [],
         {{ .Common.CompileArgsForwardingSnippet }}
     )
 
@@ -79,11 +119,11 @@ def {{ .Rule.Name }}(name, **kwargs):
     )
 
 GRPCLIB_DEPS = [
-    Label("@protobuf//:protobuf_python"),
     Label(requirement("grpclib")),
+    Label("@protobuf//:protobuf_python"),
 ]`)
 
-var pythonModuleSuffixLines = `bazel_dep(name = "rules_python", version = "0.31.0")
+var pythonModuleSuffixLines = `bazel_dep(name = "rules_python", version = "1.5.1")
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(python_version = "3.11")`
@@ -129,7 +169,6 @@ func makePython() *Language {
 				BuildExample:     grpcCompileExampleTemplate,
 				Doc:              "Generates Python protobuf and grpclib ``.py`` files (supports Python 3 only)",
 				Attrs:            compileRuleAttrs,
-				SkipTestPlatforms: []string{"windows", "macos"},
 			},
 			&Rule{
 				Name:             "python_proto_library",
@@ -146,7 +185,6 @@ func makePython() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_python``",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows"},
 			},
 			&Rule{
 				Name:             "python_grpclib_library",
@@ -155,7 +193,6 @@ func makePython() *Language {
 				BuildExample:     grpcLibraryExampleTemplate,
 				Doc:              "Generates a Python protobuf and grpclib library using ``py_library`` from ``rules_python`` (supports Python 3 only)",
 				Attrs:            libraryRuleAttrs,
-				SkipTestPlatforms: []string{"windows", "macos"},
 			},
 		},
 	}

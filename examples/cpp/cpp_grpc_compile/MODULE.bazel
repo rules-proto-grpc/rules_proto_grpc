@@ -16,3 +16,14 @@ local_path_override(
     module_name = "rules_proto_grpc_cpp",
     path = "../../../modules/cpp",
 )
+
+bazel_dep(name = "toolchains_protoc", version = "0.4.3")
+
+# Prevent version skew by matching protoc version to protobuf version, as C++ is the only lang that
+# has no cross-version runtime guarantee:
+# https://protobuf.dev/support/cross-version-runtime-guarantee/#cpp
+protoc = use_extension("@toolchains_protoc//protoc:extensions.bzl", "protoc")
+protoc.toolchain(
+    google_protobuf = "com_google_protobuf",
+    version = "v31.1",
+)

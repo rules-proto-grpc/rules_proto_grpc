@@ -1,0 +1,48 @@
+load("@rules_dotnet//dotnet:defs.bzl", "csharp_binary", "csharp_library")
+load("@rules_proto_grpc_csharp//:csharp_grpc_library.bzl", "GRPC_CLIENT_DEPS", "GRPC_SERVER_DEPS")
+load("@rules_proto_grpc_csharp//:defs.bzl", "csharp_grpc_library")
+
+package(default_visibility = ["//visibility:public"])
+
+csharp_grpc_library(
+    name = "routeguide",
+    protos = ["@rules_proto_grpc_example_protos//:routeguide_proto"],
+)
+
+csharp_library(
+    name = "util",
+    srcs = [
+        "RouteGuideUtil.cs",
+    ],
+    target_frameworks = ["net8.0"],
+    deps = [
+        ":routeguide",
+    ],
+)
+
+csharp_binary(
+    name = "client",
+    srcs = [
+        "Client.cs",
+    ],
+    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
+    target_frameworks = ["net8.0"],
+    deps = [
+        ":routeguide",
+        ":util",
+    ] + GRPC_CLIENT_DEPS,
+)
+
+csharp_binary(
+    name = "server",
+    srcs = [
+        "Server.cs",
+    ],
+    data = ["@rules_proto_grpc_example_protos//:routeguide_features"],
+    project_sdk = "web",  # Bring in AspNetCore
+    target_frameworks = ["net8.0"],
+    deps = [
+        ":routeguide",
+        ":util",
+    ] + GRPC_SERVER_DEPS,
+)

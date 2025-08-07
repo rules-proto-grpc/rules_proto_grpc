@@ -1,0 +1,22 @@
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+
+proto_plugin(
+    name = "proto_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    outputs = ["{protopath}.pb.swift"],
+    tool = "@swiftpkg_swift_protobuf//:protoc-gen-swift",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_plugin",
+    empty_template = "empty.template",
+    exclusions = [
+        "google/protobuf",
+    ],
+    outputs = ["{protopath}.grpc.swift"],
+    tool = "@swiftpkg_grpc_swift_protobuf//:protoc-gen-grpc-swift-2",
+    visibility = ["//visibility:public"],
+)

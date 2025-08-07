@@ -1,21 +1,63 @@
-dependencies: ['MODULE.bazel', '**/MODULE.bazel']
-documentation: ['docs/**/*']
-lang-android: ['modules/android/**/*', 'examples/android/**/*', 'tools/rulegen/android.go']
-lang-buf: ['modules/buf/**/*', 'examples/buf/**/*', 'tools/rulegen/buf.go']
-lang-c: ['modules/c/**/*', 'examples/c/**/*', 'tools/rulegen/c.go']
-lang-cpp: ['modules/cpp/**/*', 'examples/cpp/**/*', 'tools/rulegen/cpp.go']
-lang-csharp: ['modules/csharp/**/*', 'examples/csharp/**/*', 'tools/rulegen/csharp.go']
-lang-d: ['modules/d/**/*', 'examples/d/**/*', 'tools/rulegen/d.go']
-lang-doc: ['modules/doc/**/*', 'examples/doc/**/*', 'tools/rulegen/doc.go']
-lang-fsharp: ['modules/fsharp/**/*', 'examples/fsharp/**/*', 'tools/rulegen/fsharp.go']
-lang-go: ['modules/go/**/*', 'examples/go/**/*', 'tools/rulegen/go.go']
-lang-grpc-gateway: ['modules/grpc-gateway/**/*', 'examples/grpc-gateway/**/*', 'tools/rulegen/grpc_gateway.go']
-lang-java: ['modules/java/**/*', 'examples/java/**/*', 'tools/rulegen/java.go']
-lang-js: ['modules/js/**/*', 'examples/js/**/*', 'tools/rulegen/js.go', 'tools/rulegen/grpc-web.go']
-lang-objc: ['modules/objc/**/*', 'examples/objc/**/*', 'tools/rulegen/objc.go']
-lang-php: ['modules/php/**/*', 'examples/php/**/*', 'tools/rulegen/php.go']
-lang-python: ['modules/python/**/*', 'examples/python/**/*', 'tools/rulegen/python.go']
-lang-ruby: ['modules/ruby/**/*', 'examples/ruby/**/*', 'tools/rulegen/ruby.go']
-lang-rust: ['modules/rust/**/*', 'examples/rust/**/*', 'tools/rulegen/rust.go']
-lang-scala: ['modules/scala/**/*', 'examples/scala/**/*', 'tools/rulegen/scala.go']
-lang-swift: ['modules/swift/**/*', 'examples/swift/**/*', 'tools/rulegen/swift.go']
+dependencies:
+  - changed-files:
+    - any-glob-to-any-file: ['MODULE.bazel', '**/MODULE.bazel']
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: ['docs/**/*']
+lang-android:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/android/**/*', 'examples/android/**/*', 'tools/rulegen/android.go']
+lang-buf:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/buf/**/*', 'examples/buf/**/*', 'tools/rulegen/buf.go']
+lang-c:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/c/**/*', 'examples/c/**/*', 'tools/rulegen/c.go']
+lang-cpp:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/cpp/**/*', 'examples/cpp/**/*', 'tools/rulegen/cpp.go']
+lang-csharp:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/csharp/**/*', 'examples/csharp/**/*', 'tools/rulegen/csharp.go']
+lang-d:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/d/**/*', 'examples/d/**/*', 'tools/rulegen/d.go']
+lang-doc:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/doc/**/*', 'examples/doc/**/*', 'tools/rulegen/doc.go']
+lang-fsharp:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/fsharp/**/*', 'examples/fsharp/**/*', 'tools/rulegen/fsharp.go']
+lang-go:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/go/**/*', 'examples/go/**/*', 'tools/rulegen/go.go']
+lang-grpc-gateway:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/grpc_gateway/**/*', 'examples/grpc_gateway/**/*', 'tools/rulegen/grpc_gateway.go']
+lang-java:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/java/**/*', 'examples/java/**/*', 'tools/rulegen/java.go']
+lang-js:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/js/**/*', 'examples/js/**/*', 'tools/rulegen/js.go', 'tools/rulegen/grpc-web.go']
+lang-objc:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/objc/**/*', 'examples/objc/**/*', 'tools/rulegen/objc.go']
+lang-php:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/php/**/*', 'examples/php/**/*', 'tools/rulegen/php.go']
+lang-python:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/python/**/*', 'examples/python/**/*', 'tools/rulegen/python.go']
+lang-ruby:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/ruby/**/*', 'examples/ruby/**/*', 'tools/rulegen/ruby.go']
+lang-rust:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/rust/**/*', 'examples/rust/**/*', 'tools/rulegen/rust.go']
+lang-scala:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/scala/**/*', 'examples/scala/**/*', 'tools/rulegen/scala.go']
+lang-swift:
+  - changed-files:
+    - any-glob-to-any-file: ['modules/swift/**/*', 'examples/swift/**/*', 'tools/rulegen/swift.go']

@@ -15,27 +15,85 @@
 </div>
 
 > [!IMPORTANT]
-> The `master` branch now contains the Bzlmod-only update of the rules that'll be released in
+> The `master` branch now contains the Bzlmod-only update of the rules released in
 > version 5.0.0. If you need to see the WORKSPACE based rules used in version 4.x.x, please see
-> the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy). For
-> tracking the status of language support with the Bzlmod rules, please see
-> [#299](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299)
+> the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy)
 
 ## Announcements 📣
 
-#### 2023/12/14 - Version 4.6.0
+<details open>
+<summary><b>2025/07/21 - Version 5.5.0</b></summary>
 
-[Version 4.6.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.6.0),
-which contains a few bug fixes for Bazel 7 support. **Note that this is likely to be the last
-WORKSPACE supporting release of rules_proto_grpc**, as new Bzlmod supporting rules are introduced
-in the next major version
+[Version 5.5.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.5.0),
+which adds support for C#.
 
-#### 2023/09/12 - Version 4.5.0
+</details>
 
-[Version 4.5.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.5.0),
-which contains a number of version updates, bug fixes and usability improvements over 4.4.0.
-Additionally, the Rust rules contain a major change of underlying gRPC and Protobuf library; the
-rules now use Tonic and Prost respectively
+<details>
+<summary><b>2025/07/17 - Version 5.4.0</b></summary>
+
+[Version 5.4.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.4.0),
+which resolves classpath issues for Java/Scala and updates dependencies.
+
+</details>
+
+<details>
+<summary><b>2025/07/02 - Version 5.3.1</b></summary>
+
+[Version 5.3.1 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.1),
+which fixes a bug with grpc-web on arm64 platforms and updates dependencies.
+
+</details>
+
+<details>
+<summary><b>2025/06/19 - Version 5.3.0</b></summary>
+
+[Version 5.3.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.0),
+which adds support for JavaScript.
+
+</details>
+
+<details>
+<summary><b>2025/06/06 - Version 5.2.0</b></summary>
+
+[Version 5.2.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.2.0),
+which adds support for Scala and Swift languages, updates dependency versions and fixes more bugs. Note
+that using Swift support requires that you use an unreleased version of `rules_swift_package_manager` at
+present.
+
+</details>
+
+<details>
+<summary><b>2025/05/16 - Version 5.1.0</b></summary>
+
+[Version 5.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.1.0),
+which updates underlying dependency versions and fixes a few key bugs. Note that C language support
+has also been dropped, as the μpb API used was considered unstable and the plugin is no longer
+available outside of the `protobuf` workspace.
+
+</details>
+
+<details open>
+<summary><b>2024/07/31 - Version 5.0.0</b></summary>
+
+[Version 5.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.0.0),
+which rewrites the rules to support Bzlmod only. Moving to Bzlmod provides a huge improvement in the
+stability and maintainability of these rules, as third-party transitive dependency management has
+been handed off to Bazel and new versions of gRPC and Protobuf should hopefully be able to be
+supported more rapidly.
+
+At present not all languages supported by the 4.x.x
+are supported by this release, with support for the remaining languages being tracked
+[here](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299). For these unsupported
+languages - or for WORKSPACE repos - it is recommended you continue using the 4.x.x releases.
+
+The way you use these rules is largely unchanged, but unfortunately the paths used for load of the
+rules will have changed due to the splitting into language-specific modules. Please see
+[the docs](https://rules-proto-grpc.com/en/latest/) for details of how to migrate your usage to
+these new rules, in particular the
+[release notes](https://rules-proto-grpc.com/en/latest/changelog.html).
+
+</details>
 
 
 ## Usage
@@ -55,12 +113,14 @@ Full documentation for the current and previous versions [can be found here](htt
 | ---: | :--- | :--- |
 | [Buf](https://rules-proto-grpc.com/en/latest/lang/buf.html) | [buf_proto_breaking_test](https://rules-proto-grpc.com/en/latest/lang/buf.html#buf-proto-breaking-test) | Checks .proto files for breaking changes ([example](/examples/buf/buf_proto_breaking_test)) |
 | [Buf](https://rules-proto-grpc.com/en/latest/lang/buf.html) | [buf_proto_lint_test](https://rules-proto-grpc.com/en/latest/lang/buf.html#buf-proto-lint-test) | Lints .proto files ([example](/examples/buf/buf_proto_lint_test)) |
-| [C](https://rules-proto-grpc.com/en/latest/lang/c.html) | [c_proto_compile](https://rules-proto-grpc.com/en/latest/lang/c.html#c-proto-compile) | Generates C protobuf ``.h`` & ``.c`` files ([example](/examples/c/c_proto_compile)) |
-| [C](https://rules-proto-grpc.com/en/latest/lang/c.html) | [c_proto_library](https://rules-proto-grpc.com/en/latest/lang/c.html#c-proto-library) | Generates a C protobuf library using ``cc_library``, with dependencies linked ([example](/examples/c/c_proto_library)) |
 | [C++](https://rules-proto-grpc.com/en/latest/lang/cpp.html) | [cpp_proto_compile](https://rules-proto-grpc.com/en/latest/lang/cpp.html#cpp-proto-compile) | Generates C++ protobuf ``.h`` & ``.cc`` files ([example](/examples/cpp/cpp_proto_compile)) |
 | [C++](https://rules-proto-grpc.com/en/latest/lang/cpp.html) | [cpp_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/cpp.html#cpp-grpc-compile) | Generates C++ protobuf and gRPC ``.h`` & ``.cc`` files ([example](/examples/cpp/cpp_grpc_compile)) |
 | [C++](https://rules-proto-grpc.com/en/latest/lang/cpp.html) | [cpp_proto_library](https://rules-proto-grpc.com/en/latest/lang/cpp.html#cpp-proto-library) | Generates a C++ protobuf library using ``cc_library``, with dependencies linked ([example](/examples/cpp/cpp_proto_library)) |
 | [C++](https://rules-proto-grpc.com/en/latest/lang/cpp.html) | [cpp_grpc_library](https://rules-proto-grpc.com/en/latest/lang/cpp.html#cpp-grpc-library) | Generates a C++ protobuf and gRPC library using ``cc_library``, with dependencies linked ([example](/examples/cpp/cpp_grpc_library)) |
+| [C#](https://rules-proto-grpc.com/en/latest/lang/csharp.html) | [csharp_proto_compile](https://rules-proto-grpc.com/en/latest/lang/csharp.html#csharp-proto-compile) | Generates C# protobuf ``.cs`` files ([example](/examples/csharp/csharp_proto_compile)) |
+| [C#](https://rules-proto-grpc.com/en/latest/lang/csharp.html) | [csharp_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/csharp.html#csharp-grpc-compile) | Generates C# protobuf and gRPC ``.cs`` files ([example](/examples/csharp/csharp_grpc_compile)) |
+| [C#](https://rules-proto-grpc.com/en/latest/lang/csharp.html) | [csharp_proto_library](https://rules-proto-grpc.com/en/latest/lang/csharp.html#csharp-proto-library) | Generates a C# protobuf library using ``csharp_library`` from ``rules_dotnet`` ([example](/examples/csharp/csharp_proto_library)) |
+| [C#](https://rules-proto-grpc.com/en/latest/lang/csharp.html) | [csharp_grpc_library](https://rules-proto-grpc.com/en/latest/lang/csharp.html#csharp-grpc-library) | Generates a C# protobuf and gRPC library using ``csharp_library`` from ``rules_dotnet`` ([example](/examples/csharp/csharp_grpc_library)) |
 | [Documentation](https://rules-proto-grpc.com/en/latest/lang/doc.html) | [doc_docbook_compile](https://rules-proto-grpc.com/en/latest/lang/doc.html#doc-docbook-compile) | Generates DocBook ``.xml`` documentation file ([example](/examples/doc/doc_docbook_compile)) |
 | [Documentation](https://rules-proto-grpc.com/en/latest/lang/doc.html) | [doc_html_compile](https://rules-proto-grpc.com/en/latest/lang/doc.html#doc-html-compile) | Generates ``.html`` documentation file ([example](/examples/doc/doc_html_compile)) |
 | [Documentation](https://rules-proto-grpc.com/en/latest/lang/doc.html) | [doc_json_compile](https://rules-proto-grpc.com/en/latest/lang/doc.html#doc-json-compile) | Generates ``.json`` documentation file ([example](/examples/doc/doc_json_compile)) |
@@ -72,11 +132,18 @@ Full documentation for the current and previous versions [can be found here](htt
 | [Go](https://rules-proto-grpc.com/en/latest/lang/go.html) | [go_grpc_library](https://rules-proto-grpc.com/en/latest/lang/go.html#go-grpc-library) | Generates a Go protobuf and gRPC library using ``go_library`` from ``rules_go`` ([example](/examples/go/go_grpc_library)) |
 | [gRPC-Gateway](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html) | [gateway_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html#gateway-grpc-compile) | Generates gRPC-Gateway ``.go`` files ([example](/examples/grpc_gateway/gateway_grpc_compile)) |
 | [gRPC-Gateway](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html) | [gateway_openapiv2_compile](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html#gateway-openapiv2-compile) | Generates gRPC-Gateway OpenAPI v2 ``.json`` files ([example](/examples/grpc_gateway/gateway_openapiv2_compile)) |
+| [gRPC-Gateway](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html) | [gateway_openapiv2_combined_compile](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html#gateway-openapiv2-combined-compile) | Generate a combined gRPC-Gateway OpenAPI v2 ``.json`` file ([example](/examples/grpc_gateway/gateway_openapiv2_combined_compile)) |
 | [gRPC-Gateway](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html) | [gateway_grpc_library](https://rules-proto-grpc.com/en/latest/lang/grpc_gateway.html#gateway-grpc-library) | Generates gRPC-Gateway library files ([example](/examples/grpc_gateway/gateway_grpc_library)) |
 | [Java](https://rules-proto-grpc.com/en/latest/lang/java.html) | [java_proto_compile](https://rules-proto-grpc.com/en/latest/lang/java.html#java-proto-compile) | Generates a Java protobuf srcjar file ([example](/examples/java/java_proto_compile)) |
 | [Java](https://rules-proto-grpc.com/en/latest/lang/java.html) | [java_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/java.html#java-grpc-compile) | Generates a Java protobuf and gRPC srcjar file ([example](/examples/java/java_grpc_compile)) |
 | [Java](https://rules-proto-grpc.com/en/latest/lang/java.html) | [java_proto_library](https://rules-proto-grpc.com/en/latest/lang/java.html#java-proto-library) | Generates a Java protobuf library using ``java_library`` ([example](/examples/java/java_proto_library)) |
 | [Java](https://rules-proto-grpc.com/en/latest/lang/java.html) | [java_grpc_library](https://rules-proto-grpc.com/en/latest/lang/java.html#java-grpc-library) | Generates a Java protobuf and gRPC library using ``java_library`` ([example](/examples/java/java_grpc_library)) |
+| [JavaScript](https://rules-proto-grpc.com/en/latest/lang/js.html) | [js_proto_compile](https://rules-proto-grpc.com/en/latest/lang/js.html#js-proto-compile) | Generates JavaScript protobuf ``.js`` and ``.d.ts`` files ([example](/examples/js/js_proto_compile)) |
+| [JavaScript](https://rules-proto-grpc.com/en/latest/lang/js.html) | [js_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/js.html#js-grpc-compile) | Generates JavaScript protobuf and gRPC-js ``.js`` and ``.d.ts`` files ([example](/examples/js/js_grpc_compile)) |
+| [JavaScript](https://rules-proto-grpc.com/en/latest/lang/js.html) | [js_grpc_web_compile](https://rules-proto-grpc.com/en/latest/lang/js.html#js-grpc-web-compile) | Generates JavaScript protobuf and gRPC-Web ``.js`` and ``.d.ts`` files ([example](/examples/js/js_grpc_web_compile)) |
+| [JavaScript](https://rules-proto-grpc.com/en/latest/lang/js.html) | [js_proto_library](https://rules-proto-grpc.com/en/latest/lang/js.html#js-proto-library) | Generates a JavaScript protobuf library using ``js_library`` from ``aspect_rules_js`` ([example](/examples/js/js_proto_library)) |
+| [JavaScript](https://rules-proto-grpc.com/en/latest/lang/js.html) | [js_grpc_library](https://rules-proto-grpc.com/en/latest/lang/js.html#js-grpc-library) | Generates a Node.js protobuf + gRPC-js library using ``js_library`` from ``aspect_rules_js`` ([example](/examples/js/js_grpc_library)) |
+| [JavaScript](https://rules-proto-grpc.com/en/latest/lang/js.html) | [js_grpc_web_library](https://rules-proto-grpc.com/en/latest/lang/js.html#js-grpc-web-library) | Generates a JavaScript protobuf + gRPC-Web library using ``js_library`` from ``aspect_rules_js`` ([example](/examples/js/js_grpc_web_library)) |
 | [Objective-C](https://rules-proto-grpc.com/en/latest/lang/objc.html) | [objc_proto_compile](https://rules-proto-grpc.com/en/latest/lang/objc.html#objc-proto-compile) | Generates Objective-C protobuf ``.m`` & ``.h`` files ([example](/examples/objc/objc_proto_compile)) |
 | [Objective-C](https://rules-proto-grpc.com/en/latest/lang/objc.html) | [objc_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/objc.html#objc-grpc-compile) | Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files ([example](/examples/objc/objc_grpc_compile)) |
 | [Objective-C](https://rules-proto-grpc.com/en/latest/lang/objc.html) | [objc_proto_library](https://rules-proto-grpc.com/en/latest/lang/objc.html#objc-proto-library) | Generates an Objective-C protobuf library using ``objc_library`` ([example](/examples/objc/objc_proto_library)) |
@@ -87,6 +154,14 @@ Full documentation for the current and previous versions [can be found here](htt
 | [Python](https://rules-proto-grpc.com/en/latest/lang/python.html) | [python_proto_library](https://rules-proto-grpc.com/en/latest/lang/python.html#python-proto-library) | Generates a Python protobuf library using ``py_library`` from ``rules_python`` ([example](/examples/python/python_proto_library)) |
 | [Python](https://rules-proto-grpc.com/en/latest/lang/python.html) | [python_grpc_library](https://rules-proto-grpc.com/en/latest/lang/python.html#python-grpc-library) | Generates a Python protobuf and gRPC library using ``py_library`` from ``rules_python`` ([example](/examples/python/python_grpc_library)) |
 | [Python](https://rules-proto-grpc.com/en/latest/lang/python.html) | [python_grpclib_library](https://rules-proto-grpc.com/en/latest/lang/python.html#python-grpclib-library) | Generates a Python protobuf and grpclib library using ``py_library`` from ``rules_python`` (supports Python 3 only) ([example](/examples/python/python_grpclib_library)) |
+| [Scala](https://rules-proto-grpc.com/en/latest/lang/scala.html) | [scala_proto_compile](https://rules-proto-grpc.com/en/latest/lang/scala.html#scala-proto-compile) | Generates a Scala protobuf ``.jar`` file ([example](/examples/scala/scala_proto_compile)) |
+| [Scala](https://rules-proto-grpc.com/en/latest/lang/scala.html) | [scala_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/scala.html#scala-grpc-compile) | Generates Scala protobuf and gRPC ``.jar`` file ([example](/examples/scala/scala_grpc_compile)) |
+| [Scala](https://rules-proto-grpc.com/en/latest/lang/scala.html) | [scala_proto_library](https://rules-proto-grpc.com/en/latest/lang/scala.html#scala-proto-library) | Generates a Scala protobuf library using ``scala_library`` from ``rules_scala`` ([example](/examples/scala/scala_proto_library)) |
+| [Scala](https://rules-proto-grpc.com/en/latest/lang/scala.html) | [scala_grpc_library](https://rules-proto-grpc.com/en/latest/lang/scala.html#scala-grpc-library) | Generates a Scala protobuf and gRPC library using ``scala_library`` from ``rules_scala`` ([example](/examples/scala/scala_grpc_library)) |
+| [Swift](https://rules-proto-grpc.com/en/latest/lang/swift.html) | [swift_proto_compile](https://rules-proto-grpc.com/en/latest/lang/swift.html#swift-proto-compile) | Generates Swift protobuf ``.swift`` files ([example](/examples/swift/swift_proto_compile)) |
+| [Swift](https://rules-proto-grpc.com/en/latest/lang/swift.html) | [swift_grpc_compile](https://rules-proto-grpc.com/en/latest/lang/swift.html#swift-grpc-compile) | Generates Swift protobuf and gRPC ``.swift`` files ([example](/examples/swift/swift_grpc_compile)) |
+| [Swift](https://rules-proto-grpc.com/en/latest/lang/swift.html) | [swift_proto_library](https://rules-proto-grpc.com/en/latest/lang/swift.html#swift-proto-library) | Generates a Swift protobuf library using ``swift_library`` from ``rules_swift`` ([example](/examples/swift/swift_proto_library)) |
+| [Swift](https://rules-proto-grpc.com/en/latest/lang/swift.html) | [swift_grpc_library](https://rules-proto-grpc.com/en/latest/lang/swift.html#swift-grpc-library) | Generates a Swift protobuf and gRPC library using ``swift_library`` from ``rules_swift`` ([example](/examples/swift/swift_grpc_library)) |
 
 ## License
 

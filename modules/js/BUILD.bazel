@@ -1,0 +1,86 @@
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+load("@rules_proto_grpc_js_npm//:defs.bzl", "npm_link_all_packages")
+load("@rules_proto_grpc_js_npm//:grpc-tools/package_json.bzl", grpc_tools = "bin")
+load("@rules_proto_grpc_js_npm//:ts-protoc-gen/package_json.bzl", ts_protoc_gen = "bin")
+
+npm_link_all_packages(name = "node_modules")
+
+proto_plugin(
+    name = "proto_plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    options = [
+        "import_style=commonjs",
+        "binary",
+    ],
+    outputs = ["{protopath}_pb.js"],
+    tool = select({
+        "@rules_proto_grpc//platforms:darwin_arm64": "@protoc_gen_protobuf_javascript_plugin_darwin_arm64//:bin/protoc-gen-js",
+        "@rules_proto_grpc//platforms:darwin_x86_64": "@protoc_gen_protobuf_javascript_plugin_darwin_x86_64//:bin/protoc-gen-js",
+        "@rules_proto_grpc//platforms:linux_aarch64": "@protoc_gen_protobuf_javascript_plugin_linux_arm64//:bin/protoc-gen-js",
+        "@rules_proto_grpc//platforms:linux_x86_64": "@protoc_gen_protobuf_javascript_plugin_linux_x86_64//:bin/protoc-gen-js",
+        # "@rules_proto_grpc//platforms:windows_arm64": "@protoc_gen_protobuf_javascript_plugin_windows_arm64//:bin/protoc-gen-js.exe",
+        "@rules_proto_grpc//platforms:windows_x86_64": "@protoc_gen_protobuf_javascript_plugin_windows_x86_64//:bin/protoc-gen-js.exe",
+    }),
+    visibility = ["//visibility:public"],
+)
+
+ts_protoc_gen.protoc_gen_ts_binary(name = "protoc_gen_ts_binary")
+
+proto_plugin(
+    name = "proto_ts_plugin",
+    outputs = ["{protopath}_pb.d.ts"],
+    tool = ":protoc_gen_ts_binary",
+    visibility = ["//visibility:public"],
+)
+
+grpc_tools.grpc_tools_node_protoc_plugin_binary(name = "grpc_tools_node_protoc_plugin_binary")
+
+proto_plugin(
+    name = "grpc_plugin",
+    empty_template = "empty.template",
+    exclusions = [
+        "google/protobuf",
+    ],
+    options = [
+        "grpc_js",
+    ],
+    outputs = ["{protopath}_grpc_pb.js"],
+    tool = ":grpc_tools_node_protoc_plugin_binary",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_ts_plugin",
+    empty_template = "empty.template",
+    options = [
+        "service=grpc-node",
+        "mode=grpc-js",
+    ],
+    outputs = ["{protopath}_grpc_pb.d.ts"],
+    tool = ":protoc_gen_ts_binary",
+    visibility = ["//visibility:public"],
+)
+
+proto_plugin(
+    name = "grpc_web_js_plugin",
+    empty_template = "empty.template",
+    options = [
+        "import_style=commonjs+dts",
+        "mode=grpcweb",
+    ],
+    outputs = [
+        "{protopath}_grpc_web_pb.js",
+        "{protopath}_grpc_web_pb.d.ts",
+    ],
+    tool = select({
+        "@rules_proto_grpc//platforms:darwin_arm64": "@protoc_gen_grpc_web_plugin_darwin_arm64//file",
+        "@rules_proto_grpc//platforms:darwin_x86_64": "@protoc_gen_grpc_web_plugin_darwin_x86_64//file",
+        "@rules_proto_grpc//platforms:linux_aarch64": "@protoc_gen_grpc_web_plugin_linux_arm64//file",
+        "@rules_proto_grpc//platforms:linux_x86_64": "@protoc_gen_grpc_web_plugin_linux_x86_64//file",
+        "@rules_proto_grpc//platforms:windows_arm64": "@protoc_gen_grpc_web_plugin_windows_arm64//file",
+        "@rules_proto_grpc//platforms:windows_x86_64": "@protoc_gen_grpc_web_plugin_windows_x86_64//file",
+    }),
+    visibility = ["//visibility:public"],
+)

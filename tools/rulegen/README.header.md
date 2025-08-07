@@ -15,27 +15,85 @@
 </div>
 
 > [!IMPORTANT]
-> The `master` branch now contains the Bzlmod-only update of the rules that'll be released in
+> The `master` branch now contains the Bzlmod-only update of the rules released in
 > version 5.0.0. If you need to see the WORKSPACE based rules used in version 4.x.x, please see
-> the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy). For
-> tracking the status of language support with the Bzlmod rules, please see
-> [#299](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299)
+> the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy)
 
 ## Announcements 📣
 
-#### 2023/12/14 - Version 4.6.0
+<details open>
+<summary><b>2025/07/21 - Version 5.5.0</b></summary>
 
-[Version 4.6.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.6.0),
-which contains a few bug fixes for Bazel 7 support. **Note that this is likely to be the last
-WORKSPACE supporting release of rules_proto_grpc**, as new Bzlmod supporting rules are introduced
-in the next major version
+[Version 5.5.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.5.0),
+which adds support for C#.
 
-#### 2023/09/12 - Version 4.5.0
+</details>
 
-[Version 4.5.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/4.5.0),
-which contains a number of version updates, bug fixes and usability improvements over 4.4.0.
-Additionally, the Rust rules contain a major change of underlying gRPC and Protobuf library; the
-rules now use Tonic and Prost respectively
+<details>
+<summary><b>2025/07/17 - Version 5.4.0</b></summary>
+
+[Version 5.4.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.4.0),
+which resolves classpath issues for Java/Scala and updates dependencies.
+
+</details>
+
+<details>
+<summary><b>2025/07/02 - Version 5.3.1</b></summary>
+
+[Version 5.3.1 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.1),
+which fixes a bug with grpc-web on arm64 platforms and updates dependencies.
+
+</details>
+
+<details>
+<summary><b>2025/06/19 - Version 5.3.0</b></summary>
+
+[Version 5.3.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.0),
+which adds support for JavaScript.
+
+</details>
+
+<details>
+<summary><b>2025/06/06 - Version 5.2.0</b></summary>
+
+[Version 5.2.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.2.0),
+which adds support for Scala and Swift languages, updates dependency versions and fixes more bugs. Note
+that using Swift support requires that you use an unreleased version of `rules_swift_package_manager` at
+present.
+
+</details>
+
+<details>
+<summary><b>2025/05/16 - Version 5.1.0</b></summary>
+
+[Version 5.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.1.0),
+which updates underlying dependency versions and fixes a few key bugs. Note that C language support
+has also been dropped, as the μpb API used was considered unstable and the plugin is no longer
+available outside of the `protobuf` workspace.
+
+</details>
+
+<details open>
+<summary><b>2024/07/31 - Version 5.0.0</b></summary>
+
+[Version 5.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.0.0),
+which rewrites the rules to support Bzlmod only. Moving to Bzlmod provides a huge improvement in the
+stability and maintainability of these rules, as third-party transitive dependency management has
+been handed off to Bazel and new versions of gRPC and Protobuf should hopefully be able to be
+supported more rapidly.
+
+At present not all languages supported by the 4.x.x
+are supported by this release, with support for the remaining languages being tracked
+[here](https://github.com/rules-proto-grpc/rules_proto_grpc/issues/299). For these unsupported
+languages - or for WORKSPACE repos - it is recommended you continue using the 4.x.x releases.
+
+The way you use these rules is largely unchanged, but unfortunately the paths used for load of the
+rules will have changed due to the splitting into language-specific modules. Please see
+[the docs](https://rules-proto-grpc.com/en/latest/) for details of how to migrate your usage to
+these new rules, in particular the
+[release notes](https://rules-proto-grpc.com/en/latest/changelog.html).
+
+</details>
 
 
 ## Usage

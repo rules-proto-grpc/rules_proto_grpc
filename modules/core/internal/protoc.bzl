@@ -13,8 +13,7 @@ def build_protoc_args(
         out_arg,
         extra_options = [],
         extra_protoc_args = [],
-        short_paths = False,
-        resolve_tools = True):
+        short_paths = False):
     """
     Build the args for a protoc invocation.
 
@@ -29,27 +28,18 @@ def build_protoc_args(
         extra_protoc_args: An optional list of extra args to add to the command.
         short_paths: Whether to use the .short_path instead of .path when creating paths. The short_path is used when
             making a test/executable and referencing the runfiles.
-        resolve_tools: Whether to resolve and add the tools to returned inputs.
 
     Returns:
         - The list of args.
         - The inputs required for the command.
-        - The input manifests required for the command.
 
     """
 
     # Specify path getter
     get_path = _short_path if short_paths else _path
 
-    # Build inputs and manifests list
+    # Build inputs list
     inputs = []
-    input_manifests = []
-
-    if plugin.tool and resolve_tools:
-        plugin_runfiles, plugin_input_manifests = ctx.resolve_tools(tools = [plugin.tool])
-        inputs += plugin_runfiles.to_list()
-        input_manifests += plugin_input_manifests
-
     inputs += plugin.data
 
     # Get plugin name
@@ -75,14 +65,14 @@ def build_protoc_args(
     )))
 
     # Add --plugin if not a built-in plugin
-    if plugin.tool_executable:
+    if plugin.tool_provider:
         # If Windows, mangle the path. It's done a bit awkwardly with
         # `host_path_seprator` as there is no simple way to figure out what's
         # the current OS.
         if ctx.configuration.host_path_separator == ";":
-            plugin_tool_path = get_path(plugin.tool_executable).replace("/", "\\")
+            plugin_tool_path = get_path(plugin.tool_provider.files_to_run.executable).replace("/", "\\")
         else:
-            plugin_tool_path = get_path(plugin.tool_executable)
+            plugin_tool_path = get_path(plugin.tool_provider.files_to_run.executable)
 
         args_list.append("--plugin=protoc-gen-{}={}".format(plugin_name, plugin_tool_path))
 
@@ -105,4 +95,4 @@ def build_protoc_args(
     if plugin.extra_protoc_args:
         args_list.extend(plugin.extra_protoc_args)
 
-    return args_list, inputs, input_manifests
+    return args_list, inputs

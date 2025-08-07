@@ -1,0 +1,8 @@
+source https://api.nuget.org/v3/index.json
+
+storage: none
+
+nuget Google.Protobuf 3.31.1
+nuget Grpc.AspNetCore 2.71.0
+nuget Grpc.Net.Client 2.71.0
+# nuget Grpc.Tools 2.72.0

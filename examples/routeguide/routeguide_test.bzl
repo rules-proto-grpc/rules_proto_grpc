@@ -1,5 +1,7 @@
 """Definition of the routeguide test and matrix rules."""
 
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
 def _get_lang_name(label):
     return label.partition("//examples/")[2].partition("/")[0]
 
@@ -105,7 +107,7 @@ def routeguide_test_matrix(
         for client in clients:
             client_name = _get_lang_name(client)
             name = "%s_%s" % (client_name, server_name)
-            if name in skip:
+            if server_name in skip or client_name in skip or name in skip:
                 continue
 
             # Extract tags for client and server
@@ -128,7 +130,7 @@ def routeguide_test_matrix(
             )
 
             # Create sh_test
-            native.sh_test(
+            sh_test(
                 name = name,
                 size = "small",
                 srcs = [name + ".sh"],

@@ -29,6 +29,19 @@ Rules for generating Python protobuf and gRPC ``.py`` files and libraries using 
    * - `python_grpclib_library`_
      - Generates a Python protobuf and grpclib library using ``py_library`` from ``rules_python`` (supports Python 3 only)
 
+Installation
+------------
+
+The Python module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_python", version = "<version number here>")
+   bazel_dep(name = "rules_python", version = "1.5.1")
+   
+   python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+   python.toolchain(python_version = "3.11")
+
 .. _python_proto_compile:
 
 python_proto_compile
@@ -79,7 +92,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -114,7 +127,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/python/BUILD.bazel>`__
 
 .. _python_grpc_compile:
 
@@ -161,7 +174,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -196,8 +209,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
-- `@rules_proto_grpc_python//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/python/BUILD.bazel>`__
 
 .. _python_grpclib_compile:
 
@@ -244,7 +257,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -279,8 +292,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
-- `@rules_proto_grpc_python//:grpclib_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/python/BUILD.bazel>`__
+- `@rules_proto_grpc_python//:grpclib_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/python/BUILD.bazel>`__
 
 .. _python_proto_library:
 
@@ -334,7 +347,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -417,7 +430,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -500,7 +513,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false

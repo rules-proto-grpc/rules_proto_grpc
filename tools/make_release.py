@@ -11,6 +11,7 @@ import tempfile
 import shutil
 import sys
 import urllib.parse
+import urllib.request
 
 # Config
 BCR_REPO = 'bazelbuild/bazel-central-registry'
@@ -25,11 +26,18 @@ VERSION = input('Version number: ').strip()
 VERSION_PLACEHOLDER = '0.0.0.rpg.version.placeholder'
 
 
+# Find GitHub user ID
+print('Finding GitHub user ID')
+MAINTAINER_GH_USER_ID = int(json.loads(
+    urllib.request.urlopen(f'https://api.github.com/users/{MAINTAINER_GH_USER}').read()
+)['id'])
+
+
 # Sanity check
 if not re.fullmatch(r"^([a-zA-Z0-9.]+)(?:-([a-zA-Z0-9.-]+))?(?:\+[a-zA-Z0-9.-]+)?$", VERSION):
     print('Version is not valid')
     sys.exit(1)
-    
+
 branch = subprocess.run(
     ['git', 'rev-parse', '--abbrev-ref', 'HEAD'], check=True, capture_output=True
 ).stdout.strip().decode()
@@ -133,6 +141,7 @@ with tempfile.TemporaryDirectory() as tmp_dir:
                 'email': MAINTAINER_EMAIL,
                 'github': MAINTAINER_GH_USER,
                 'name': MAINTAINER_NAME,
+                'github_user_id': MAINTAINER_GH_USER_ID,
             }],
             'repository': [
                 f'github:{SOURCE_REPO}',
@@ -159,20 +168,23 @@ with tempfile.TemporaryDirectory() as tmp_dir:
 
         (bcr_mod_version_dir / 'presubmit.yml').write_text(f"""matrix:
   platform:
-    - debian10
-    - ubuntu2004
+    - ubuntu2204
     - macos
-    - windows
+    #- windows  # Blocked by https://github.com/bazelbuild/bazel/issues/18683
   bazel:
-    - 6.x
     - 7.x
+    - 8.x
+
 tasks:
   verify_targets:
     name: Verify build targets
     platform: ${{{{ platform }}}}
     bazel: ${{{{ bazel }}}}
+    build_flags:
+      - "--cxxopt=-std=c++17"
+      - "--host_cxxopt=-std=c++17"
     build_targets:
-    - '@{module_name}//...'
+      - "@{module_name}//..."
 """)
 
     # Stage and commit

@@ -65,6 +65,7 @@ func makeJava() *Language {
 		Name:             "java",
 		DisplayName:      "Java",
 		Notes: mustTemplate("Rules for generating Java protobuf and gRPC ``.jar`` files and libraries using standard Protocol Buffers and `gRPC-Java <https://github.com/grpc/grpc-java>`_. Libraries are created with the Bazel native ``java_library``"),
+		SkipTestPlatforms: []string{"macos_arm64"},  // grpc plugin fails to download
 		Rules: []*Rule{
 			&Rule{
 				Name:             "java_proto_compile",
@@ -74,6 +75,7 @@ func makeJava() *Language {
 				BuildExample:     protoCompileExampleTemplate,
 				Doc:              "Generates a Java protobuf srcjar file",
 				Attrs:            compileRuleAttrs,
+				SkipTestPlatforms: []string{"none"},  // grpc plugin not needed here
 			},
 			&Rule{
 				Name:             "java_grpc_compile",
@@ -91,6 +93,7 @@ func makeJava() *Language {
 				BuildExample:     protoLibraryExampleTemplate,
 				Doc:              "Generates a Java protobuf library using ``java_library``",
 				Attrs:            javaLibraryRuleAttrs,
+				SkipTestPlatforms: []string{"none"},  // grpc plugin not needed here
 			},
 			&Rule{
 				Name:             "java_grpc_library",

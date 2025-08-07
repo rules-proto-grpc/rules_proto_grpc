@@ -4,13 +4,15 @@ test_workspaces
 examples/buf/buf_proto_breaking_test
 examples/buf/buf_proto_lint_test
 
-examples/c/c_proto_compile
-examples/c/c_proto_library
-
 examples/cpp/cpp_proto_compile
 examples/cpp/cpp_grpc_compile
 examples/cpp/cpp_proto_library
 examples/cpp/cpp_grpc_library
+
+examples/csharp/csharp_proto_compile
+examples/csharp/csharp_grpc_compile
+examples/csharp/csharp_proto_library
+examples/csharp/csharp_grpc_library
 
 examples/doc/doc_docbook_compile
 examples/doc/doc_html_compile
@@ -25,12 +27,20 @@ examples/go/go_grpc_library
 
 examples/grpc_gateway/gateway_grpc_compile
 examples/grpc_gateway/gateway_openapiv2_compile
+examples/grpc_gateway/gateway_openapiv2_combined_compile
 examples/grpc_gateway/gateway_grpc_library
 
 examples/java/java_proto_compile
 examples/java/java_grpc_compile
 examples/java/java_proto_library
 examples/java/java_grpc_library
+
+examples/js/js_proto_compile
+examples/js/js_grpc_compile
+examples/js/js_grpc_web_compile
+examples/js/js_proto_library
+examples/js/js_grpc_library
+examples/js/js_grpc_web_library
 
 examples/objc/objc_proto_compile
 examples/objc/objc_grpc_compile
@@ -43,3 +53,13 @@ examples/python/python_grpclib_compile
 examples/python/python_proto_library
 examples/python/python_grpc_library
 examples/python/python_grpclib_library
+
+examples/scala/scala_proto_compile
+examples/scala/scala_grpc_compile
+examples/scala/scala_proto_library
+examples/scala/scala_grpc_library
+
+examples/swift/swift_proto_compile
+examples/swift/swift_grpc_compile
+examples/swift/swift_proto_library
+examples/swift/swift_grpc_library

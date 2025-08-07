@@ -77,32 +77,13 @@ preferrable in a single-language repo.
 Installation
 ------------
 
-Add ``rules_proto_grpc`` to your ``WORKSPACE`` file as shown below and then look at the language
-specific examples linked in the docs. It is recommended that you use the tagged releases for stable
-rules. Master is intended to be 'ready-to-use', but may be unstable at certain periods. To be
-notified of new releases, you can use GitHub's 'Watch Releases Only' on the repository.
-
-.. note:: You will also need to follow instructions in the language-specific pages for additional
-   workspace dependencies that may be required.
+Support for each language is provided by a separate module, which should be added to your
+``MODULE.bazel`` file. Details for each language's module installation and usage are provided in the
+language specific documentation pages. For example, for Go support, you would add the following line:
 
 .. code-block:: python
 
-   load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-   http_archive(
-       name = "rules_proto_grpc",
-       sha256 = "{{ .Sha256 }}",
-       strip_prefix = "rules_proto_grpc-{{ .Ref }}",
-       urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/releases/download/{{ .Ref }}/rules_proto_grpc-{{ .Ref }}.tar.gz"],
-   )
-
-   load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
-   rules_proto_grpc_toolchains()
-   rules_proto_grpc_repos()
-
-   load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
-   rules_proto_dependencies()
-   rules_proto_toolchains()
+   bazel_dep(name = "rules_proto_grpc_go", version = "<version number here>")
 
 
 Supported Languages and Tools
@@ -114,10 +95,10 @@ Supported Languages and Tools
    * - Language
      - Protobuf
      - gRPC
-   * - C
-     - ✔
-     - ✖
    * - C++
+     - ✔
+     - ✔
+   * - C#
      - ✔
      - ✔
    * - Go
@@ -126,10 +107,19 @@ Supported Languages and Tools
    * - Java
      - ✔
      - ✔
+   * - JavaScript
+     - ✔
+     - ✔
    * - Objective-C
      - ✔
      - ✔
    * - Python
+     - ✔
+     - ✔
+   * - Scala
+     - ✔
+     - ✔
+   * - Swift
      - ✔
      - ✔
 
@@ -174,11 +164,14 @@ Supported Languages and Tools
    :hidden:
 
    lang/buf
-   lang/c
    lang/cpp
+   lang/csharp
    lang/doc
    lang/go
    lang/grpc_gateway
    lang/java
+   lang/js
    lang/objc
    lang/python
+   lang/scala
+   lang/swift

@@ -23,6 +23,15 @@ Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and lib
    * - `objc_grpc_library`_
      - Generates an Objective-C protobuf and gRPC library using ``objc_library``
 
+Installation
+------------
+
+The Objective-C module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:
+
+.. code-block:: python
+
+   bazel_dep(name = "rules_proto_grpc_objc", version = "<version number here>")
+
 .. _objc_proto_compile:
 
 objc_proto_compile
@@ -73,7 +82,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -108,7 +117,7 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_objc//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
+- `@rules_proto_grpc_objc//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/objc/BUILD.bazel>`__
 
 .. _objc_grpc_compile:
 
@@ -155,7 +164,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -190,8 +199,8 @@ Attributes
 Plugins
 *******
 
-- `@rules_proto_grpc_objc//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
-- `@rules_proto_grpc_objc//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/objc/BUILD.bazel>`__
+- `@rules_proto_grpc_objc//:proto_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/objc/BUILD.bazel>`__
+- `@rules_proto_grpc_objc//:grpc_plugin <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/objc/BUILD.bazel>`__
 
 .. _objc_proto_library:
 
@@ -245,7 +254,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false
@@ -375,7 +384,7 @@ Attributes
      - ``label_list``
      - true
      - 
-     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)
+     - List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)
    * - ``options``
      - ``string_list_dict``
      - false

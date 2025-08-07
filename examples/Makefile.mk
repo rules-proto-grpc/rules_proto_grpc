@@ -11,19 +11,6 @@ buf_buf_proto_lint_test_example:
 .PHONY: buf_examples
 buf_examples: buf_buf_proto_breaking_test_example buf_buf_proto_lint_test_example
 
-.PHONY: c_c_proto_compile_example
-c_c_proto_compile_example:
-	cd examples/c/c_proto_compile; \
-	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-
-.PHONY: c_c_proto_library_example
-c_c_proto_library_example:
-	cd examples/c/c_proto_library; \
-	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
-
-.PHONY: c_examples
-c_examples: c_c_proto_compile_example c_c_proto_library_example
-
 .PHONY: cpp_cpp_proto_compile_example
 cpp_cpp_proto_compile_example:
 	cd examples/cpp/cpp_proto_compile; \
@@ -46,6 +33,29 @@ cpp_cpp_grpc_library_example:
 
 .PHONY: cpp_examples
 cpp_examples: cpp_cpp_proto_compile_example cpp_cpp_grpc_compile_example cpp_cpp_proto_library_example cpp_cpp_grpc_library_example
+
+.PHONY: csharp_csharp_proto_compile_example
+csharp_csharp_proto_compile_example:
+	cd examples/csharp/csharp_proto_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: csharp_csharp_grpc_compile_example
+csharp_csharp_grpc_compile_example:
+	cd examples/csharp/csharp_grpc_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: csharp_csharp_proto_library_example
+csharp_csharp_proto_library_example:
+	cd examples/csharp/csharp_proto_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: csharp_csharp_grpc_library_example
+csharp_csharp_grpc_library_example:
+	cd examples/csharp/csharp_grpc_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: csharp_examples
+csharp_examples: csharp_csharp_proto_compile_example csharp_csharp_grpc_compile_example csharp_csharp_proto_library_example csharp_csharp_grpc_library_example
 
 .PHONY: doc_doc_docbook_compile_example
 doc_doc_docbook_compile_example:
@@ -108,13 +118,18 @@ grpc_gateway_gateway_openapiv2_compile_example:
 	cd examples/grpc_gateway/gateway_openapiv2_compile; \
 	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
+.PHONY: grpc_gateway_gateway_openapiv2_combined_compile_example
+grpc_gateway_gateway_openapiv2_combined_compile_example:
+	cd examples/grpc_gateway/gateway_openapiv2_combined_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
 .PHONY: grpc_gateway_gateway_grpc_library_example
 grpc_gateway_gateway_grpc_library_example:
 	cd examples/grpc_gateway/gateway_grpc_library; \
 	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
 
 .PHONY: grpc_gateway_examples
-grpc_gateway_examples: grpc_gateway_gateway_grpc_compile_example grpc_gateway_gateway_openapiv2_compile_example grpc_gateway_gateway_grpc_library_example
+grpc_gateway_examples: grpc_gateway_gateway_grpc_compile_example grpc_gateway_gateway_openapiv2_compile_example grpc_gateway_gateway_openapiv2_combined_compile_example grpc_gateway_gateway_grpc_library_example
 
 .PHONY: java_java_proto_compile_example
 java_java_proto_compile_example:
@@ -138,6 +153,39 @@ java_java_grpc_library_example:
 
 .PHONY: java_examples
 java_examples: java_java_proto_compile_example java_java_grpc_compile_example java_java_proto_library_example java_java_grpc_library_example
+
+.PHONY: js_js_proto_compile_example
+js_js_proto_compile_example:
+	cd examples/js/js_proto_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: js_js_grpc_compile_example
+js_js_grpc_compile_example:
+	cd examples/js/js_grpc_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: js_js_grpc_web_compile_example
+js_js_grpc_web_compile_example:
+	cd examples/js/js_grpc_web_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: js_js_proto_library_example
+js_js_proto_library_example:
+	cd examples/js/js_proto_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: js_js_grpc_library_example
+js_js_grpc_library_example:
+	cd examples/js/js_grpc_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: js_js_grpc_web_library_example
+js_js_grpc_web_library_example:
+	cd examples/js/js_grpc_web_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: js_examples
+js_examples: js_js_proto_compile_example js_js_grpc_compile_example js_js_grpc_web_compile_example js_js_proto_library_example js_js_grpc_library_example js_js_grpc_web_library_example
 
 .PHONY: objc_objc_proto_compile_example
 objc_objc_proto_compile_example:
@@ -195,5 +243,51 @@ python_python_grpclib_library_example:
 .PHONY: python_examples
 python_examples: python_python_proto_compile_example python_python_grpc_compile_example python_python_grpclib_compile_example python_python_proto_library_example python_python_grpc_library_example python_python_grpclib_library_example
 
+.PHONY: scala_scala_proto_compile_example
+scala_scala_proto_compile_example:
+	cd examples/scala/scala_proto_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: scala_scala_grpc_compile_example
+scala_scala_grpc_compile_example:
+	cd examples/scala/scala_grpc_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: scala_scala_proto_library_example
+scala_scala_proto_library_example:
+	cd examples/scala/scala_proto_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: scala_scala_grpc_library_example
+scala_scala_grpc_library_example:
+	cd examples/scala/scala_grpc_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: scala_examples
+scala_examples: scala_scala_proto_compile_example scala_scala_grpc_compile_example scala_scala_proto_library_example scala_scala_grpc_library_example
+
+.PHONY: swift_swift_proto_compile_example
+swift_swift_proto_compile_example:
+	cd examples/swift/swift_proto_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: swift_swift_grpc_compile_example
+swift_swift_grpc_compile_example:
+	cd examples/swift/swift_grpc_compile; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: swift_swift_proto_library_example
+swift_swift_proto_library_example:
+	cd examples/swift/swift_proto_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: swift_swift_grpc_library_example
+swift_swift_grpc_library_example:
+	cd examples/swift/swift_grpc_library; \
+	bazel --batch build ${BAZEL_EXTRA_FLAGS} --verbose_failures --disk_cache=../../bazel-disk-cache //...
+
+.PHONY: swift_examples
+swift_examples: swift_swift_proto_compile_example swift_swift_grpc_compile_example swift_swift_proto_library_example swift_swift_grpc_library_example
+
 .PHONY: all_examples
-all_examples: buf_buf_proto_breaking_test_example buf_buf_proto_lint_test_example c_c_proto_compile_example c_c_proto_library_example cpp_cpp_proto_compile_example cpp_cpp_grpc_compile_example cpp_cpp_proto_library_example cpp_cpp_grpc_library_example doc_doc_docbook_compile_example doc_doc_html_compile_example doc_doc_json_compile_example doc_doc_markdown_compile_example doc_doc_template_compile_example go_go_proto_compile_example go_go_grpc_compile_example go_go_proto_library_example go_go_grpc_library_example grpc_gateway_gateway_grpc_compile_example grpc_gateway_gateway_openapiv2_compile_example grpc_gateway_gateway_grpc_library_example java_java_proto_compile_example java_java_grpc_compile_example java_java_proto_library_example java_java_grpc_library_example objc_objc_proto_compile_example objc_objc_grpc_compile_example objc_objc_proto_library_example objc_objc_grpc_library_example python_python_proto_compile_example python_python_grpc_compile_example python_python_grpclib_compile_example python_python_proto_library_example python_python_grpc_library_example python_python_grpclib_library_example
+all_examples: buf_buf_proto_breaking_test_example buf_buf_proto_lint_test_example cpp_cpp_proto_compile_example cpp_cpp_grpc_compile_example cpp_cpp_proto_library_example cpp_cpp_grpc_library_example csharp_csharp_proto_compile_example csharp_csharp_grpc_compile_example csharp_csharp_proto_library_example csharp_csharp_grpc_library_example doc_doc_docbook_compile_example doc_doc_html_compile_example doc_doc_json_compile_example doc_doc_markdown_compile_example doc_doc_template_compile_example go_go_proto_compile_example go_go_grpc_compile_example go_go_proto_library_example go_go_grpc_library_example grpc_gateway_gateway_grpc_compile_example grpc_gateway_gateway_openapiv2_compile_example grpc_gateway_gateway_openapiv2_combined_compile_example grpc_gateway_gateway_grpc_library_example java_java_proto_compile_example java_java_grpc_compile_example java_java_proto_library_example java_java_grpc_library_example js_js_proto_compile_example js_js_grpc_compile_example js_js_grpc_web_compile_example js_js_proto_library_example js_js_grpc_library_example js_js_grpc_web_library_example objc_objc_proto_compile_example objc_objc_grpc_compile_example objc_objc_proto_library_example objc_objc_grpc_library_example python_python_proto_compile_example python_python_grpc_compile_example python_python_grpclib_compile_example python_python_proto_library_example python_python_grpc_library_example python_python_grpclib_library_example scala_scala_proto_compile_example scala_scala_grpc_compile_example scala_scala_proto_library_example scala_scala_grpc_library_example swift_swift_proto_compile_example swift_swift_grpc_compile_example swift_swift_proto_library_example swift_swift_grpc_library_example

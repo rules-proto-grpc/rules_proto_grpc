@@ -6,39 +6,43 @@ def _download_plugins(module_ctx):
     """Download plugins."""
 
     # Breaking plugin
-    for platform, hash in [
-        ("darwin-arm64", "a5929461e23192ea04e8f97ed514b5ceff48c4a6194f3fc2516f205480c97eec"),
-        ("darwin-x86_64", "9068a57353b125edde2975f958a83765511aa1f112310a6dc931c776b49f06d4"),
-        ("linux-arm64", "85a9c602f87ef320ef8753751b1fb6ca646761e7e5dde1ec91e778e6ad955466"),
-        ("linux-x86_64", "6cb7fc3adf9cd439cb47625d00055bd0e6d3d6a9f2e4208a07547724a2d8f01f"),
-        ("windows-arm64", "25dec21dbc9d611aba63165621672eda0bc0554e88dbdd15d4f03cd5544ccb73"),
-        ("windows-x86_64", "6a3600d531e6cf83278a3103d5423f13342348121bd0c25781ef00d005071bb0"),
+    for version, platform, hash in [
+        # renovate-gh-plugin: bufbuild/buf
+        ("v1.56.0", "darwin-arm64", "6d48f997a910238dfc28ace08ced92d5e775160ca7c07fd225021705b6d2ea8d"),
+        ("v1.56.0", "darwin-x86_64", "b13b3ebe67fb2476d207524e45d80f8a8f08ab15a653cb9175119695d60e651e"),
+        ("v1.56.0", "linux-arm64", "ded17fdd59c2058e06374b6cfc42ba089324edbd1ae05b2aa8a701593313b1d1"),
+        ("v1.56.0", "linux-x86_64", "182bf8a6e197cea3961e740f9e482097d86dfc443150d9451942c55fb3ecc097"),
+        ("v1.56.0", "windows-arm64", "63017979cf9c8835285b944fa2e8ad3f5520e1ddea54efd63ed3d98a0f2c0b10"),
+        ("v1.56.0", "windows-x86_64", "7af7e04b31eb776d52d1e34e05d7d4a0f4ab2537ff003989eb291fa0e9aac955"),
     ]:
         http_file(
             name = "buf_breaking_plugin_{}".format(platform.replace("-", "_")),
             executable = True,
             sha256 = hash,
-            url = "https://github.com/bufbuild/buf/releases/download/v1.28.1/protoc-gen-buf-breaking-{}{}".format(
-                platform.title(),
+            url = "https://github.com/bufbuild/buf/releases/download/{0}/protoc-gen-buf-breaking-{1}{2}".format(
+                version,
+                ("linux-aarch64" if platform == "linux-arm64" else platform).title(),
                 ".exe" if "windows" in platform else "",
             ),
         )
 
     # Lint plugin
-    for platform, hash in [
-        ("darwin-arm64", "d9a431b75f80f77b188ff824e42cadc1ed5d0a85283560012c21ed0a3b9b5a0a"),
-        ("darwin-x86_64", "17b6e2c03ac5a5d2d4a94ef08241d1971a89c465454deeb190948b4cd9862d3a"),
-        ("linux-arm64", "565b3738f9df064aa782998465458d86078f4e68b61138b65d5fbd9a23f1f331"),
-        ("linux-x86_64", "d2d5f59fb847942166bffd1b757181fbe72bfd12f025ff4a094c98ab484ab060"),
-        ("windows-arm64", "cd704651b76c92dc58d40718bad3a2c098429259714c51a93743c43a9aa633c0"),
-        ("windows-x86_64", "e13228611e5ac63f3694aa33cbbf2a4cd7b59a2d6a888db84ea519081105b2ad"),
+    for version, platform, hash in [
+        # renovate-gh-plugin: bufbuild/buf
+        ("v1.56.0", "darwin-arm64", "1ac428989a6853fa54608a7fde96d6737ee91997d5990dde82c6e3e3ce72b867"),
+        ("v1.56.0", "darwin-x86_64", "971e94a89244f360d213c4e5e21ca1475b12178ac6ad4e7aa26db83fc7ad2175"),
+        ("v1.56.0", "linux-arm64", "0f0086518c7577ba113b83259e460e29e68e9e04028be54aa23ee6dd313c180b"),
+        ("v1.56.0", "linux-x86_64", "4ed83c41d53550bb233e896109644a8abc1b6d2238ab45951bb93f625adb618d"),
+        ("v1.56.0", "windows-arm64", "7ab9099b4538bb4627d8b5657448c66ec7970c6baf04b90fcc4b2c9f80d4786f"),
+        ("v1.56.0", "windows-x86_64", "e8c2bccdf398df16c0cf7aaadca61ad42ed61ff6511d1f48bf126884c88f56bd"),
     ]:
         http_file(
             name = "buf_lint_plugin_{}".format(platform.replace("-", "_")),
             executable = True,
             sha256 = hash,
-            url = "https://github.com/bufbuild/buf/releases/download/v1.28.1/protoc-gen-buf-lint-{}{}".format(
-                platform,
+            url = "https://github.com/bufbuild/buf/releases/download/{0}/protoc-gen-buf-lint-{1}{2}".format(
+                version,
+                ("linux-aarch64" if platform == "linux-arm64" else platform).title(),
                 ".exe" if "windows" in platform else "",
             ),
         )

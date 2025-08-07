@@ -1,10 +1,12 @@
 package main
 
-var bufRuleTemplate = mustTemplate(`load("@rules_proto//proto:defs.bzl", "ProtoInfo")
+var bufRuleTemplate = mustTemplate(`load("@protobuf//bazel/common:proto_info.bzl", "ProtoInfo")
 load(
     "@rules_proto_grpc//:defs.bzl",
     "ProtoPluginInfo",
+    "proto_compile_toolchains",
 )
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 load(
     ":buf.bzl",
     "TEST_ATTRS",
@@ -32,7 +34,7 @@ load(
             doc = "List of protoc plugins to apply",
         ),
     ),
-    toolchains = [str(Label("@rules_proto_grpc//protoc:toolchain_type"))],
+    toolchains = proto_compile_toolchains,
 )
 
 def {{ .Rule.Name }}(name, **kwargs):
@@ -41,7 +43,7 @@ def {{ .Rule.Name }}(name, **kwargs):
         **{k: v for k, v in kwargs.items() if k not in TEST_ATTRS}
     )
 
-    native.sh_test(
+    sh_test(
         name = name,
         srcs = [name + ".sh"],
         **{k: v for k, v in kwargs.items() if k in TEST_ATTRS}
@@ -116,9 +118,7 @@ func makeBuf() *Language {
 		DisplayName: "Buf",
 		Notes: mustTemplate("Rules for linting and detecting breaking changes in .proto files with `Buf <https://buf.build>`_." + `
 
-Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.
-
-Only Linux and Darwin (MacOS) is currently supported by Buf.`),
+Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.`),
 		Rules: []*Rule{
 			&Rule{
 				Name:             "buf_proto_breaking_test",
@@ -132,7 +132,7 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 						Name:      "protos",
 						Type:      "label_list",
 						Default:   "[]",
-						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
+						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)",
 						Mandatory: true,
 						Providers: []string{"ProtoInfo"},
 					},
@@ -178,7 +178,7 @@ Only Linux and Darwin (MacOS) is currently supported by Buf.`),
 					&Attr{
 						Name:      "protos",
 						Type:      "label_list",
-						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``rules_proto``)",
+						Doc:       "List of labels that provide the ``ProtoInfo`` provider (such as ``proto_library`` from ``@protobuf``)",
 						Mandatory: true,
 						Providers: []string{"ProtoInfo"},
 					},

@@ -1,0 +1,16 @@
+load("@rules_proto_grpc_swift//:defs.bzl", "swift_proto_compile")
+
+swift_proto_compile(
+    name = "person_swift_proto",
+    protos = ["@rules_proto_grpc_example_protos//:person_proto"],
+)
+
+swift_proto_compile(
+    name = "place_swift_proto",
+    protos = ["@rules_proto_grpc_example_protos//:place_proto"],
+)
+
+swift_proto_compile(
+    name = "thing_swift_proto",
+    protos = ["@rules_proto_grpc_example_protos//:thing_proto"],
+)

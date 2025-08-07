@@ -13,16 +13,28 @@ import (
 	"github.com/urfave/cli"
 )
 
-var ciPlatforms = []string{"ubuntu2204", "windows", "macos"}
+var ciPlatforms = []string{
+	"ubuntu2204",
+	// "ubuntu2004_arm64",  // Absl fails to build due to processor selection
+	// "windows",  // Blocked by https://github.com/bazelbuild/bazel/issues/18683
+	// "windows_arm64",  // Blocked by https://github.com/bazelbuild/bazel/issues/18683
+	"macos",
+	"macos_arm64",
+}
 var ciPlatformsMap = map[string][]string{
-	"linux":   []string{"ubuntu2204"},
-	"windows": []string{"windows"},
-	"macos":   []string{"macos"},
+	"linux":   []string{"ubuntu2204", "ubuntu2004_arm64"},
+	"windows": []string{"windows", "windows_arm64"},
+	"macos":   []string{"macos", "macos_arm64"},
 }
 
 var extraPlatformFlags = map[string][]string{
 	"ubuntu2204": []string{},
-	"windows": []string{},
+	"windows": []string{
+		"--define=protobuf_allow_msvc=true",  // https://github.com/protocolbuffers/protobuf/issues/20085
+	},
+	"windows_arm64": []string{
+		"--define=protobuf_allow_msvc=true",  // https://github.com/protocolbuffers/protobuf/issues/20085
+	},
 	"macos": []string{
 		// Fix clash between OpenSSL and BoringSSL on recent MacOS versions, by marking
 		// /usr/local/include as a system include search dir. This prevents redefinition errors when
@@ -31,7 +43,8 @@ var extraPlatformFlags = map[string][]string{
 		// files coming from -iquote etc. This only appears to be a problem on the Bazel MacOS CI
 		// machines on BuildKite, as a local MacOS build does not require this workaround. Perhaps
 		// the CI machines have Homebrew installed etc.
-		"--copt=-isystem/usr/local/include",
+		// FIXED since BuildKite machines were reinstalled as VMs ~June 2024
+		//"--copt=-isystem/usr/local/include",
 	},
 }
 
@@ -84,14 +97,17 @@ func action(c *cli.Context) error {
 
 	languages := []*Language{
 		makeBuf(),
-		makeC(),
 		makeCpp(),
+		makeCsharp(),
 		makeDoc(),
 		makeGo(),
 		makeGrpcGateway(),
 		makeJava(),
+		makeJs(),
 		makeObjc(),
 		makePython(),
+		makeScala(),
+		makeSwift(),
 	}
 
 	for _, lang := range languages {
@@ -293,6 +309,22 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 	}
 	out.ln()
 
+	out.w("Installation")
+	out.w("%s", strings.Repeat("-", len("Installation")))
+	out.ln()
+	out.w("The %s module can be installed by adding the following lines to your MODULE.bazel file, replacing the version number placeholder with the desired version:", lang.DisplayName)
+	out.ln()
+
+	out.w(".. code-block:: python")
+	out.ln()
+	out.w(`   bazel_dep(name = "rules_proto_grpc_%s", version = "<version number here>")`, lang.Name)
+	if (len(lang.ModuleSuffixLines) > 0) {
+		for _, line := range strings.Split(lang.ModuleSuffixLines, "\n") {
+			out.w("   %s", line)
+		}
+	}
+	out.ln()
+
 	for _, rule := range lang.Rules {
 		out.w(".. _%s:", rule.Name)
 		out.ln()
@@ -353,7 +385,7 @@ func mustWriteLanguageReadme(dir string, lang *Language) {
 			out.w("*******")
 			out.ln()
 			for _, plugin := range rule.Plugins {
-				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Name)
+				out.w("- `@rules_proto_grpc_%s%s <https://github.com/rules-proto-grpc/rules_proto_grpc/blob/master/modules/%s/BUILD.bazel>`__", lang.Name, plugin, lang.Name)
 			}
 			out.ln()
 		}
@@ -458,23 +490,23 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 		// out.w("    environment:")
 		// out.w(`      CC: clang`)
 		out.w("    test_flags:")
-		out.w(`    - "--test_output=errors"`)
-		if ciPlatform == "windows" {
-			out.w(`    - "--enable_runfiles"`)  // Needed for sh_test to work correctly
-			out.w(`    - "--cxxopt=/std:c++17"`)
-			out.w(`    - "--host_cxxopt=/std:c++17"`)
+		out.w(`      - "--test_output=errors"`)
+		if strings.HasPrefix(ciPlatform, "windows") {
+			out.w(`      - "--enable_runfiles"`)  // Needed for sh_test to work correctly
+			out.w(`      - "--cxxopt=/std:c++17"`)
+			out.w(`      - "--host_cxxopt=/std:c++17"`)
 		} else {
-			out.w(`    - "--cxxopt=-std=c++17"`)
-			out.w(`    - "--host_cxxopt=-std=c++17"`)
+			out.w(`      - "--cxxopt=-std=c++17"`)
+			out.w(`      - "--host_cxxopt=-std=c++17"`)
 		}
 		for _, flag := range extraPlatformFlags[ciPlatform] {
-			out.w(`    - "%s"`, flag)
+			out.w(`      - "%s"`, flag)
 		}
 		out.w("    test_targets:")
 		for _, clientLang := range languages {
 			for _, serverLang := range languages {
 				if doTestOnPlatform(clientLang, nil, ciPlatform) && doTestOnPlatform(serverLang, nil, ciPlatform) && stringInSlice(fmt.Sprintf("//examples/routeguide:%s_%s", clientLang.Name, serverLang.Name), availableTestLabels) {
-					out.w(`    - "//examples/routeguide:%s_%s"`, clientLang.Name, serverLang.Name)
+					out.w(`      - "//examples/routeguide:%s_%s"`, clientLang.Name, serverLang.Name)
 				}
 			}
 		}
@@ -503,19 +535,28 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 			out.w("    name: %s", lang.DisplayName)
 			out.w("    platform: %s", ciPlatform)
 			out.w("    environment:")
-			if ciPlatform == "windows" {
-				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"`)
+			if strings.HasPrefix(ciPlatform, "windows") {
+				if len(extraPlatformFlags[ciPlatform]) > 0 {
+					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+				} else {
+					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17`)
+				}
 			} else {
-				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+				if len(extraPlatformFlags[ciPlatform]) > 0 {
+					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+				} else {
+					out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+				}
 			}
-			if ciPlatform == "windows" {
+			for k, v := range lang.PresubmitEnvVars {
+				out.w("      %s: %s", k, v)
+			}
+
+			if strings.HasPrefix(ciPlatform, "windows") {
 				out.w("    batch_commands:")
 			} else {
 				out.w("    shell_commands:")
-				out.w("     - set -x")
-				for _, flag := range extraPlatformFlags[ciPlatform] {
-					out.w(`     - export BAZEL_EXTRA_FLAGS="%s $BAZEL_EXTRA_FLAGS"`, flag)
-				}
+				out.w("      - set -x")
 			}
 
 			for _, rule := range lang.Rules {
@@ -523,18 +564,18 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 					continue
 				}
 
-				if ciPlatform == "windows" {
+				if strings.HasPrefix(ciPlatform, "windows") {
 					// Windows has no make, so execute commands manually
-					out.w("     - echo %s", rule.Name)
-					out.w("     - cd %s", path.Join(dir, "examples", lang.Name, rule.Name))
+					out.w("      - echo %s", rule.Name)
+					out.w("      - cd %s", path.Join(dir, "examples", lang.Name, rule.Name))
 					if rule.IsTest {
-						out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1")
+						out.w("      - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../../bazel-disk-cache //... || exit 1")
 					} else {
-						out.w("     - bazel --batch build %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1")
+						out.w("      - bazel --batch build %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1")
 					}
-					out.w("     - cd ../../..")
+					out.w("      - cd ../../..")
 				} else {
-					out.w("     - make %s_%s_example", lang.Name, rule.Name)
+					out.w("      - make %s_%s_example", lang.Name, rule.Name)
 				}
 			}
 
@@ -546,31 +587,44 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	// Write tasks for test workspaces
 	//
 	for _, ciPlatform := range ciPlatforms {
+		if ciPlatform == "macos" {
+			// MacOS workers on Bazel buildkite are _really_ slow and this can take up to an hour
+			continue
+		}
+
 		out.w("  %s_test_workspaces:", ciPlatform)
 		out.w("    name: Test Workspaces")
 		out.w("    platform: %s", ciPlatform)
 		out.w("    environment:")
-		if ciPlatform == "windows" {
-			out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17"`)
+		if strings.HasPrefix(ciPlatform, "windows") {
+			if len(extraPlatformFlags[ciPlatform]) > 0 {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+			} else {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=/std:c++17 --host_cxxopt=/std:c++17`)
+			}
 		} else {
-			out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+			if len(extraPlatformFlags[ciPlatform]) > 0 {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 %s"`, strings.Join(extraPlatformFlags[ciPlatform], " "))
+			} else {
+				out.w(`      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17"`)
+			}
 		}
-		if ciPlatform == "windows" {
+		if strings.HasPrefix(ciPlatform, "windows") {
 			out.w("    batch_commands:")
 		} else {
 			out.w("    shell_commands:")
-			out.w("     - set -x")
+			out.w("      - set -x")
 		}
 
 		for _, testWorkspace := range findTestWorkspaceNames(dir) {
-			if ciPlatform == "windows" {
+			if strings.HasPrefix(ciPlatform, "windows") {
 				// Windows has no make, so execute commands manually
-				out.w("     - echo %s", testWorkspace)
-				out.w("     - cd %s", path.Join(dir, "test_workspaces", testWorkspace))
-				out.w("     - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1")
-				out.w("     - cd ../..")
+				out.w("      - echo %s", testWorkspace)
+				out.w("      - cd %s", path.Join(dir, "test_workspaces", testWorkspace))
+				out.w("      - bazel --batch test %%BAZEL_EXTRA_FLAGS%% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1")
+				out.w("      - cd ../..")
 			} else {
-				out.w("     - make test_workspace_%s", testWorkspace)
+				out.w("      - make test_workspace_%s", testWorkspace)
 			}
 		}
 
