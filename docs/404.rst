@@ -5,4 +5,4 @@ Page not found
 
 No page was found here :(
 
-.. image:: _static/404.gif
+.. image:: _static/logo.png
