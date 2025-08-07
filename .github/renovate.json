@@ -89,8 +89,9 @@
         // not matched and therefore not updated, as there is no auto matching
         // like with github-release-attachments
         "\\[\\s*?# ?renovate-maven-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
-        "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*,\\s*\"[^\"]+?\"\\s*\\)"
+        "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"(?<platform>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*\\)"
       ],
+      "autoReplaceStringTemplate": "(\"{{{newValue}}}\", \"{{{platform}}}\", \"<insert new hash here>\")",
       "datasourceTemplate": "maven"
     },
     {
