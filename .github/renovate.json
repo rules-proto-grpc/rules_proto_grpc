@@ -155,12 +155,20 @@
       "groupName": "grpc-gateway"
     },
     {
+      "description": "Group all google-protobuf updates into one PR",
+      "matchPackageNames": [
+        "google-protobuf",
+        "protocolbuffers/protobuf-javascript"
+      ],
+      "groupName": "js-google-protobuf"
+    },
+    {
       "description": "Group all grpc-web updates into one PR",
       "matchPackageNames": [
         "grpc-web",
         "grpc/grpc-web"
       ],
-      "groupName": "grpc-web"
+      "groupName": "js-grpc-web"
     },
     {
       "description": "Ensure Swift Package.resolved is updated",
@@ -169,19 +177,6 @@
       ],
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as Renovate will not update Package.resolved. See renovatebot/renovate#6924"
-    },
-    {
-      "description": "Ensure JS plugins are updated",
-      "matchManagers": [
-        "npm"
-      ],
-      "matchPackageNames": [
-        "@grpc/grpc-js",
-        "google-protobuf",
-        "grpc-web"
-      ],
-      "draftPR": true,
-      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as the JS plugins need to be updated in sync in modules/js/module_extensions.bzl"
     },
     {
       "description": "Don't make PRs for Go toolchain version updates",
