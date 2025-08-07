@@ -87,11 +87,12 @@
         // Find assets hash block by looking for # renovate-maven-plugin: artifact
         // then find each plugin within using recursive strategy. The digest is
         // not matched and therefore not updated, as there is no auto matching
-        // like with github-release-attachments
+        // like with github-release-attachments. The depType match is
+        // instead used to capture the platform string
         "\\[\\s*?# ?renovate-maven-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
-        "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"(?<platform>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*\\)"
+        "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"(?<depType>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*\\)"
       ],
-      "autoReplaceStringTemplate": "(\"{{{newValue}}}\", \"{{{platform}}}\", \"<insert new hash here>\")",
+      "autoReplaceStringTemplate": "(\"{{{newValue}}}\", \"{{{depType}}}\", \"<insert new hash here>\")",
       "datasourceTemplate": "maven"
     },
     {
