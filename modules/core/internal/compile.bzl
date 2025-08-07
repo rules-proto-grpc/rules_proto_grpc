@@ -417,7 +417,6 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
                 outputs = plugin_protoc_outputs,
                 env = plugin_env,
                 use_default_shell_env = plugin.use_built_in_shell_environment,
-                input_manifests = cmd_input_manifests,
                 progress_message = "Compiling protoc outputs for {} plugin on target {}".format(
                     plugin.name,
                     ctx.label,
