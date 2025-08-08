@@ -263,7 +263,9 @@ def copy_file(ctx, src_file, dest_path, sibling = None):
         <Generated File> for the copied file
 
     """
-    coreutils = ctx.toolchains["@aspect_bazel_lib//lib:coreutils_toolchain_type"].coreutils_info
+    coreutils_toolchain_label = Label("@aspect_bazel_lib//lib:coreutils_toolchain_type")
+    coreutils = ctx.toolchains[coreutils_toolchain_label].coreutils_info
+
     dest_file = ctx.actions.declare_file(dest_path, sibling = sibling)
     ctx.actions.run(
         executable = coreutils.bin,
@@ -272,7 +274,7 @@ def copy_file(ctx, src_file, dest_path, sibling = None):
         outputs = [dest_file],
         mnemonic = "CopyFile",
         progress_message = "copying file {} to {}".format(src_file.path, dest_file.path),
-        toolchain = "@aspect_bazel_lib//lib:coreutils_toolchain_type",
+        toolchain = coreutils_toolchain_label,
     )
     return dest_file
 
