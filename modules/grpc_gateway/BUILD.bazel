@@ -31,14 +31,14 @@ proto_plugin(
 
 proto_plugin(
     name = "openapiv2_combined_plugin",
-    out = "combined.swagger.json",
+    out = "{name}.swagger.json",
     exclusions = [
         "google/api",
         "google/protobuf",
     ],
     options = [
         "allow_merge=true",
-        "merge_file_name=combined",
+        "merge_file_name={name}",
     ],
     quirks = [
         "QUIRK_DIRECT_MODE",
