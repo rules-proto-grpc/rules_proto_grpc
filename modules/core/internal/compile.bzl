@@ -104,8 +104,9 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     ]
     verbose = ctx.attr.verbose
 
-    # Load toolchain and tools
-    protoc_toolchain_info = ctx.toolchains[str(Label("@protobuf//bazel/private:proto_toolchain_type"))]
+    # Load toolchains and tools
+    protoc_toolchain_label = Label("@protobuf//bazel/private:proto_toolchain_type")
+    protoc_toolchain_info = ctx.toolchains[protoc_toolchain_label]
     protoc = protoc_toolchain_info.proto.proto_compiler.executable
     fixer = ctx.executable._fixer
 
@@ -351,35 +352,16 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         ### Specify protoc action
         ###
 
-        # $@ is replaced with args list and is quote wrapped to support paths with special chars
         mnemonic = "ProtoCompile"
-        command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + ' "$@"'
         cmd_inputs += extra_protoc_files
 
         # Get tool executable via tool provider, rather than via ctx.executable
         # See https://github.com/bazelbuild/bazel/issues/22249
-        tools = [protoc] + ([plugin.tool_provider.files_to_run] if plugin.tool_provider else [])
+        tools = ([plugin.tool_provider.files_to_run] if plugin.tool_provider else [])
 
-        # Amend command with debug options
+        # Print debug info
         if verbose > 0:
             print("{}:".format(mnemonic), protoc.path, args)  # buildifier: disable=print
-
-        if verbose > 1:
-            command += " && echo '\n##### SANDBOX AFTER RUNNING PROTOC' && find . -type f "
-
-        if verbose > 2:
-            command = "echo '\n##### SANDBOX BEFORE RUNNING PROTOC' && find . -type l && " + command
-
-        if verbose > 3:
-            command = "env && " + command
-            for f in cmd_inputs:
-                print("INPUT:", f.path)  # buildifier: disable=print
-            for f in protos:
-                print("TARGET PROTO:", f.path)  # buildifier: disable=print
-            for f in tools:
-                print("TOOL:", f.path)  # buildifier: disable=print
-            for f in plugin_outputs:
-                print("EXPECTED OUTPUT:", f.path)  # buildifier: disable=print
 
         # Check env attr exclusivity
         if plugin.env and plugin.use_built_in_shell_environment:
@@ -408,10 +390,10 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # https://github.com/aspect-build/rules_js/tree/dbb5af0d2a9a2bb50e4cf4a96dbc582b27567155#running-nodejs-programs.
         plugin_env["BAZEL_BINDIR"] = ctx.bin_dir.path
 
-        # Run protoc (https://bazel.build/rules/lib/actions#run_shell)
-        ctx.actions.run_shell(
+        # Run protoc (https://bazel.build/rules/lib/actions#run)
+        ctx.actions.run(
             mnemonic = mnemonic,
-            command = command,
+            executable = protoc,
             arguments = [args],
             inputs = cmd_inputs,
             tools = tools,
@@ -422,6 +404,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
                 plugin.name,
                 ctx.label,
             ),
+            toolchain = protoc_toolchain_label,
         )
 
     # Build final output defaults for merged locations
