@@ -149,7 +149,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
             fail("The options attr on target {} contains a plugin label {} for a plugin that does not exist on this rule. The available plugins are {} ".format(ctx.label, plugin_label, plugin_labels))
 
         per_plugin_options[Label(plugin_label)] = [
-            opt.replace("{name}", ctx.label.name) for opt in opts
+            opt.replace("{name}", ctx.label.name)
+            for opt in opts
         ]
 
     # Only allow '*' by itself
@@ -158,7 +159,8 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         if len(options) > 1:
             fail("The options attr on target {} cannot contain '*' and other labels. Use either '*' or labels".format(ctx.label))
         all_plugin_options = [
-            opt.replace("{name}", ctx.label.name) for opt in options["*"]
+            opt.replace("{name}", ctx.label.name)
+            for opt in options["*"]
         ]
 
     ###
