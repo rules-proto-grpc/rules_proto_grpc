@@ -295,7 +295,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
             # Create output directory for protoc to write into
             fixer_dir = ctx.actions.declare_directory(
-                rel_premerge_root + "/" + "_plugin_fixed_" + plugin_id,
+                rel_premerge_root + "/" + "_plugin_unfixed_" + plugin_id,
             )
             out_arg = fixer_dir.path
             plugin_protoc_outputs = [fixer_dir]
