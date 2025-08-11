@@ -4,6 +4,7 @@ message demo {
     bool field = 1;
 }
 
-service Demo {
-    rpc Demo (demo) returns (demo);
-}
+// Don't enable, as we want to exercise the fixer
+// service Demo {
+//     rpc Demo (demo) returns (demo);
+// }
