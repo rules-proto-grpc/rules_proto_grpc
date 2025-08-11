@@ -17,6 +17,7 @@ mixed_grpc_compile = rule(
             providers = [ProtoPluginInfo],
             default = [
                 Label("@rules_proto_grpc_csharp//:grpc_plugin"),  # Uses output_directory
+                Label("@rules_proto_grpc_js//:grpc_plugin"),  # Uses fixer
                 Label("@rules_proto_grpc_python//:grpc_plugin"),
             ],
             doc = "List of protoc plugins to apply",
