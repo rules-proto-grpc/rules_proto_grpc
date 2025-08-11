@@ -6,6 +6,48 @@
 Changelog
 =========
 
+5.6.0
+-----
+
+Changes
+*******
+
+- Removed all uses of ``ctx.actions.run_shell()`` from the core module, which
+  improves compatibility with Windows and avoids path escaping issues
+- The gRPC-Gateway ``gateway_openapiv2_compile`` rule has been reverted to
+  not use directory output due to issues with selecting single outputs from the
+  directory. A new ``gateway_openapiv2_combined_compile`` rule has been added to
+  create a single output file as ``{name}.swagger.json``
+- Migrated Swift from ``grpc/grpc-swift`` to ``grpc/grpc-swift-2``
+- Switched C# gRPC plugin to use deterministic outputs rather than a tree (dir)
+  artifact output
+- Fixed bug where plugins with same name used on same compilation target could
+  conflict. This was not possible with the builtin plugins in these rules, but
+  could have been hit by users with custom plugins
+
+
+Version Updates
+***************
+
+- Updated Bazel ``aspect_rules_js`` to 2.4.2
+- Updated Bazel ``gazelle`` to 0.45.0
+- Updated Bazel ``grpc`` to 1.74.1
+- Updated Bazel ``rules_cc`` to 0.2.0
+- Updated Bazel ``rules_go`` to 0.56.1
+- Updated Bazel ``rules_java`` to 8.15.1
+- Updated Bazel ``rules_python`` to 1.5.2
+- Updated Bazel ``rules_shell`` to 0.5.1
+- Updated Bazel ``rules_swift`` to 3.1.2
+- Updated Buf to 1.56.0
+- Updated Go ``google.golang.org/grpc`` to v1.74.2
+- Updated Go ``google.golang.org/protobuf`` to v1.36.
+- Updated Java ``com.google.protobuf:*`` to 4.31.1
+- Updated Java ``io.grpc:grpc-*`` to 1.74.0
+- Updated Python ``multidict`` to 6.6.4
+- Updated Swift ``grpc/grpc-swift`` to ``grpc/grpc-swift-2`` 2.1.0
+- Updated Swift ``grpc/grpc-swift-protobuf`` to 2.0.0
+
+
 5.5.0
 -----
 
