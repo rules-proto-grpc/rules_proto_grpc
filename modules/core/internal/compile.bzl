@@ -50,6 +50,13 @@ proto_compile_attrs = {
         executable = True,
         doc = "Label of the fixer target",
     ),
+    "_merger": attr.label(
+        default = "@rules_proto_grpc//tools/merger",
+        cfg = "exec",
+        allow_files = True,
+        executable = True,
+        doc = "Label of the merger target",
+    ),
 }
 
 def proto_compile_impl(ctx):
@@ -108,7 +115,9 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     protoc_toolchain_label = Label("@protobuf//bazel/private:proto_toolchain_type")
     protoc_toolchain_info = ctx.toolchains[protoc_toolchain_label]
     protoc = protoc_toolchain_info.proto.proto_compiler.executable
+
     fixer = ctx.executable._fixer
+    merger = ctx.executable._merger
 
     # The directory where the outputs will be generated, relative to the package.
     # A temporary dir is used here to allow output directories that may need to be merged later
@@ -286,10 +295,10 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # When set, we will direct the plugin outputs to a temporary folder, then use the fixer
         # executable to write to the final targets.
         if plugin.empty_template:
-            # Create path list for fixer
-            fixer_paths_file = ctx.actions.declare_file(rel_premerge_root + "/" + "_plugin_fixer_manifest_" + plugin_id + ".txt")
-            ctx.actions.write(fixer_paths_file, "\n".join([
-                file.path.partition(premerge_root + "/")[2]  # Path of the file relative to the output root
+            # Create paths manifest for fixer
+            fixer_manifest_file = ctx.actions.declare_file(rel_premerge_root + "/" + "_plugin_fixer_manifest_" + plugin_id + ".txt")
+            ctx.actions.write(fixer_manifest_file, "\n".join([
+                strip_path_prefix(file.path, premerge_root)  # Path of the file relative to the output root
                 for file in plugin_outputs
             ]))
 
@@ -302,10 +311,10 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
             # Apply fixer
             ctx.actions.run(
-                inputs = [fixer_paths_file, fixer_dir, plugin.empty_template],
+                inputs = [fixer_manifest_file, fixer_dir, plugin.empty_template],
                 outputs = plugin_outputs,
                 arguments = [
-                    fixer_paths_file.path,
+                    fixer_manifest_file.path,
                     plugin.empty_template.path,
                     fixer_dir.path,
                     premerge_root,
@@ -424,7 +433,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     # Merge outputs
     if premerge_dirs:
         # If we have any output dirs specified, we declare a single output directory and merge all
-        # files in one go. This is necessary to prevent path prefix conflicts
+        # files in one go using the merger tool. This is necessary to prevent path prefix conflicts
         if ctx.attr.output_mode != "PREFIXED":
             fail("Cannot use output_mode = {} when using plugins with directory outputs")
 
@@ -435,56 +444,30 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         new_dir = ctx.actions.declare_directory(dir_name)
         output_dirs = depset(direct = [new_dir])
 
-        # Build copy command for directory outputs
-        # Use cp {}/. rather than {}/* to allow for empty output directories from a plugin (e.g when
-        # no service exists, so no files generated)
-        command_parts = ["cp -rL {} '{}'".format(
-            " ".join(["'" + d.path + "/.'" for d in premerge_dirs]),
-            new_dir.path,
-        )]
+        # Create paths manifest for merger, contaning both output directories and files, with lines
+        # prefixed with 'D' and 'F' respectively
+        merger_manifest_file = ctx.actions.declare_file(rel_premerge_root + "/" + "_plugin_merger_manifest.txt")
+        ctx.actions.write(merger_manifest_file, "\n".join([
+            "D " + strip_path_prefix(d.path, premerge_root)  # Path of the dir relative to the output root
+            for d in premerge_dirs
+        ] + [
+            "F " + strip_path_prefix(file.path, premerge_root)  # Path of the file relative to the output root
+            for file in premerge_files
+        ]))
 
-        # Extend copy command with file outputs
-        command_input_files = premerge_dirs
-        for file in premerge_files:
-            # Strip pre-merge root from file path
-            path = strip_path_prefix(file.path, premerge_root)
-
-            # Prefix path is contained in new_dir.path created above and
-            # used below
-
-            # Add command to copy file to output
-            command_input_files.append(file)
-            command_parts.append("mkdir -p $(dirname '{}')".format(
-                "{}/{}".format(new_dir.path, path),
-            ))
-            command_parts.append("cp '{}' '{}'".format(
-                file.path,
-                "{}/{}".format(new_dir.path, path),
-            ))
-
-        # Add debug options
-        if verbose > 1:
-            command_parts = command_parts + [
-                "echo '\n##### SANDBOX AFTER MERGING DIRECTORIES'",
-                "find . -type l",
-            ]
-        if verbose > 2:
-            command_parts = [
-                "echo '\n##### SANDBOX BEFORE MERGING DIRECTORIES'",
-                "find . -type l",
-            ] + command_parts
-        if verbose > 0:
-            print(
-                "Directory merge command: {}".format(" && ".join(command_parts)),
-            )  # buildifier: disable=print
-
-        # Copy directories and files to shared output directory in one action
-        ctx.actions.run_shell(
-            mnemonic = "CopyDirs",
-            inputs = command_input_files,
+        # Apply merger
+        ctx.actions.run(
+            inputs = [merger_manifest_file] + premerge_dirs + premerge_files,
             outputs = [new_dir],
-            command = " && ".join(command_parts),
-            progress_message = "copying directories and files to {}".format(new_dir.path),
+            arguments = [
+                merger_manifest_file.path,
+                premerge_root,
+                new_dir.path,
+            ],
+            progress_message = "Applying merger on target {}".format(
+                ctx.label,
+            ),
+            executable = merger,
         )
 
     else:
