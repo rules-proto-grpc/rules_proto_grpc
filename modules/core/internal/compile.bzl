@@ -172,6 +172,14 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     # exclusions that cannot be expressed in a single protoc execution for all plugins.
 
     for plugin in plugins:
+        # Create unique plugin ID for paths, as multiple plugins may share the same name
+        # e.g. grpc_plugin
+        plugin_id = "{}_{}_{}".format(
+            plugin.label.repo_name,
+            plugin.label.package.replace("/", "_"),
+            plugin.label.name.replace("/", "_"),
+        )
+
         ###
         ### Check plugin
         ###
@@ -265,7 +273,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # For these plugins, we simply declare the directory.
 
         if plugin.output_directory:
-            out_file = ctx.actions.declare_directory(rel_premerge_root + "/" + "_plugin_" + plugin.name)
+            out_file = ctx.actions.declare_directory(rel_premerge_root + "/" + "_plugin_" + plugin_id)
             plugin_outputs.append(out_file)
             premerge_dirs.append(out_file)
 
@@ -279,7 +287,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # executable to write to the final targets.
         if plugin.empty_template:
             # Create path list for fixer
-            fixer_paths_file = ctx.actions.declare_file(rel_premerge_root + "/" + "_plugin_fixer_manifest_" + plugin.name + ".txt")
+            fixer_paths_file = ctx.actions.declare_file(rel_premerge_root + "/" + "_plugin_fixer_manifest_" + plugin_id + ".txt")
             ctx.actions.write(fixer_paths_file, "\n".join([
                 file.path.partition(premerge_root + "/")[2]  # Path of the file relative to the output root
                 for file in plugin_outputs
@@ -287,7 +295,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
 
             # Create output directory for protoc to write into
             fixer_dir = ctx.actions.declare_directory(
-                rel_premerge_root + "/" + "_plugin_fixed_" + plugin.name,
+                rel_premerge_root + "/" + "_plugin_fixed_" + plugin_id,
             )
             out_arg = fixer_dir.path
             plugin_protoc_outputs = [fixer_dir]
