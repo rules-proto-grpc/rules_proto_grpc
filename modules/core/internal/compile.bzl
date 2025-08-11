@@ -44,11 +44,18 @@ proto_compile_attrs = {
         doc = "The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output files directly to the current package, NO_PREFIX_FLAT will ouput directly to the current package without mirroring the package tree. Using NO_PREFIX may lead to conflicting writes",
     ),
     "_fixer": attr.label(
-        default = "@rules_proto_grpc//fixer",
+        default = "@rules_proto_grpc//tools/fixer",
         cfg = "exec",
         allow_files = True,
         executable = True,
         doc = "Label of the fixer target",
+    ),
+    "_merger": attr.label(
+        default = "@rules_proto_grpc//tools/merger",
+        cfg = "exec",
+        allow_files = True,
+        executable = True,
+        doc = "Label of the merger target",
     ),
 }
 
@@ -104,10 +111,13 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     ]
     verbose = ctx.attr.verbose
 
-    # Load toolchain and tools
-    protoc_toolchain_info = ctx.toolchains[str(Label("@protobuf//bazel/private:proto_toolchain_type"))]
+    # Load toolchains and tools
+    protoc_toolchain_label = Label("@protobuf//bazel/private:proto_toolchain_type")
+    protoc_toolchain_info = ctx.toolchains[protoc_toolchain_label]
     protoc = protoc_toolchain_info.proto.proto_compiler.executable
+
     fixer = ctx.executable._fixer
+    merger = ctx.executable._merger
 
     # The directory where the outputs will be generated, relative to the package.
     # A temporary dir is used here to allow output directories that may need to be merged later
@@ -148,14 +158,20 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         if plugin_label not in plugin_labels:
             fail("The options attr on target {} contains a plugin label {} for a plugin that does not exist on this rule. The available plugins are {} ".format(ctx.label, plugin_label, plugin_labels))
 
-        per_plugin_options[Label(plugin_label)] = opts
+        per_plugin_options[Label(plugin_label)] = [
+            opt.replace("{name}", ctx.label.name)
+            for opt in opts
+        ]
 
     # Only allow '*' by itself
     all_plugin_options = []  # Options applied to all plugins, from the '*' key
     if "*" in options:
         if len(options) > 1:
             fail("The options attr on target {} cannot contain '*' and other labels. Use either '*' or labels".format(ctx.label))
-        all_plugin_options = options["*"]
+        all_plugin_options = [
+            opt.replace("{name}", ctx.label.name)
+            for opt in options["*"]
+        ]
 
     ###
     ### Setup plugins
@@ -165,6 +181,14 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     # exclusions that cannot be expressed in a single protoc execution for all plugins.
 
     for plugin in plugins:
+        # Create unique plugin ID for paths, as multiple plugins may share the same name
+        # e.g. grpc_plugin
+        plugin_id = "{}_{}_{}".format(
+            plugin.label.repo_name,
+            plugin.label.package.replace("/", "_"),
+            plugin.label.name.replace("/", "_"),
+        )
+
         ###
         ### Check plugin
         ###
@@ -258,7 +282,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # For these plugins, we simply declare the directory.
 
         if plugin.output_directory:
-            out_file = ctx.actions.declare_directory(rel_premerge_root + "/" + "_plugin_" + plugin.name)
+            out_file = ctx.actions.declare_directory(rel_premerge_root + "/" + "_plugin_" + plugin_id)
             plugin_outputs.append(out_file)
             premerge_dirs.append(out_file)
 
@@ -271,26 +295,26 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # When set, we will direct the plugin outputs to a temporary folder, then use the fixer
         # executable to write to the final targets.
         if plugin.empty_template:
-            # Create path list for fixer
-            fixer_paths_file = ctx.actions.declare_file(rel_premerge_root + "/" + "_plugin_fixer_manifest_" + plugin.name + ".txt")
-            ctx.actions.write(fixer_paths_file, "\n".join([
-                file.path.partition(premerge_root + "/")[2]  # Path of the file relative to the output root
+            # Create paths manifest for fixer
+            fixer_manifest_file = ctx.actions.declare_file(rel_premerge_root + "/" + "_plugin_fixer_manifest_" + plugin_id + ".txt")
+            ctx.actions.write(fixer_manifest_file, "\n".join([
+                strip_path_prefix(file.path, premerge_root)  # Path of the file relative to the output root
                 for file in plugin_outputs
             ]))
 
             # Create output directory for protoc to write into
             fixer_dir = ctx.actions.declare_directory(
-                rel_premerge_root + "/" + "_plugin_fixed_" + plugin.name,
+                rel_premerge_root + "/" + "_plugin_unfixed_" + plugin_id,
             )
             out_arg = fixer_dir.path
             plugin_protoc_outputs = [fixer_dir]
 
             # Apply fixer
             ctx.actions.run(
-                inputs = [fixer_paths_file, fixer_dir, plugin.empty_template],
+                inputs = [fixer_manifest_file, fixer_dir, plugin.empty_template],
                 outputs = plugin_outputs,
                 arguments = [
-                    fixer_paths_file.path,
+                    fixer_manifest_file.path,
                     plugin.empty_template.path,
                     fixer_dir.path,
                     premerge_root,
@@ -345,35 +369,16 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         ### Specify protoc action
         ###
 
-        # $@ is replaced with args list and is quote wrapped to support paths with special chars
         mnemonic = "ProtoCompile"
-        command = ("mkdir -p '{}' && ".format(premerge_root)) + protoc.path + ' "$@"'
         cmd_inputs += extra_protoc_files
 
         # Get tool executable via tool provider, rather than via ctx.executable
         # See https://github.com/bazelbuild/bazel/issues/22249
-        tools = [protoc] + ([plugin.tool_provider.files_to_run] if plugin.tool_provider else [])
+        tools = ([plugin.tool_provider.files_to_run] if plugin.tool_provider else [])
 
-        # Amend command with debug options
+        # Print debug info
         if verbose > 0:
             print("{}:".format(mnemonic), protoc.path, args)  # buildifier: disable=print
-
-        if verbose > 1:
-            command += " && echo '\n##### SANDBOX AFTER RUNNING PROTOC' && find . -type f "
-
-        if verbose > 2:
-            command = "echo '\n##### SANDBOX BEFORE RUNNING PROTOC' && find . -type l && " + command
-
-        if verbose > 3:
-            command = "env && " + command
-            for f in cmd_inputs:
-                print("INPUT:", f.path)  # buildifier: disable=print
-            for f in protos:
-                print("TARGET PROTO:", f.path)  # buildifier: disable=print
-            for f in tools:
-                print("TOOL:", f.path)  # buildifier: disable=print
-            for f in plugin_outputs:
-                print("EXPECTED OUTPUT:", f.path)  # buildifier: disable=print
 
         # Check env attr exclusivity
         if plugin.env and plugin.use_built_in_shell_environment:
@@ -390,7 +395,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         }
 
         # Make compatible with aspect_rules_js js_binary rule and fix the following error:
-        # ATAL: aspect_rules_js[js_binary]: BAZEL_BINDIR must be set in environment to the makevar
+        # FATAL: aspect_rules_js[js_binary]: BAZEL_BINDIR must be set in environment to the makevar
         # $(BINDIR) in js_binary build actions (which run in the execroot) so that build actions can
         # change directories to always run out of the root of the Bazel output tree. See
         # https://docs.bazel.build/versions/main/be/make-variables.html#predefined_variables. This
@@ -402,10 +407,10 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         # https://github.com/aspect-build/rules_js/tree/dbb5af0d2a9a2bb50e4cf4a96dbc582b27567155#running-nodejs-programs.
         plugin_env["BAZEL_BINDIR"] = ctx.bin_dir.path
 
-        # Run protoc (https://bazel.build/rules/lib/actions#run_shell)
-        ctx.actions.run_shell(
+        # Run protoc (https://bazel.build/rules/lib/actions#run)
+        ctx.actions.run(
             mnemonic = mnemonic,
-            command = command,
+            executable = protoc,
             arguments = [args],
             inputs = cmd_inputs,
             tools = tools,
@@ -416,6 +421,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
                 plugin.name,
                 ctx.label,
             ),
+            toolchain = protoc_toolchain_label,
         )
 
     # Build final output defaults for merged locations
@@ -427,7 +433,7 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
     # Merge outputs
     if premerge_dirs:
         # If we have any output dirs specified, we declare a single output directory and merge all
-        # files in one go. This is necessary to prevent path prefix conflicts
+        # files in one go using the merger tool. This is necessary to prevent path prefix conflicts
         if ctx.attr.output_mode != "PREFIXED":
             fail("Cannot use output_mode = {} when using plugins with directory outputs")
 
@@ -438,59 +444,30 @@ def proto_compile(ctx, options, extra_protoc_args, extra_protoc_files):
         new_dir = ctx.actions.declare_directory(dir_name)
         output_dirs = depset(direct = [new_dir])
 
-        # Build copy command for directory outputs
-        # Use cp {}/. rather than {}/* to allow for empty output directories from a plugin (e.g when
-        # no service exists, so no files generated)
-        command_parts = ["mkdir -p {} && cp -rL {} '{}'".format(
-            # We need to be sure that the dirs exist, see:
-            # https://github.com/bazelbuild/bazel/issues/6393
-            " ".join(["'" + d.path + "'" for d in premerge_dirs]),
-            " ".join(["'" + d.path + "/.'" for d in premerge_dirs]),
-            new_dir.path,
-        )]
+        # Create paths manifest for merger, contaning both output directories and files, with lines
+        # prefixed with 'D' and 'F' respectively
+        merger_manifest_file = ctx.actions.declare_file(rel_premerge_root + "/" + "_plugin_merger_manifest.txt")
+        ctx.actions.write(merger_manifest_file, "\n".join([
+            "D " + strip_path_prefix(d.path, premerge_root)  # Path of the dir relative to the output root
+            for d in premerge_dirs
+        ] + [
+            "F " + strip_path_prefix(file.path, premerge_root)  # Path of the file relative to the output root
+            for file in premerge_files
+        ]))
 
-        # Extend copy command with file outputs
-        command_input_files = premerge_dirs
-        for file in premerge_files:
-            # Strip pre-merge root from file path
-            path = strip_path_prefix(file.path, premerge_root)
-
-            # Prefix path is contained in new_dir.path created above and
-            # used below
-
-            # Add command to copy file to output
-            command_input_files.append(file)
-            command_parts.append("mkdir -p $(dirname '{}')".format(
-                "{}/{}".format(new_dir.path, path),
-            ))
-            command_parts.append("cp '{}' '{}'".format(
-                file.path,
-                "{}/{}".format(new_dir.path, path),
-            ))
-
-        # Add debug options
-        if verbose > 1:
-            command_parts = command_parts + [
-                "echo '\n##### SANDBOX AFTER MERGING DIRECTORIES'",
-                "find . -type l",
-            ]
-        if verbose > 2:
-            command_parts = [
-                "echo '\n##### SANDBOX BEFORE MERGING DIRECTORIES'",
-                "find . -type l",
-            ] + command_parts
-        if verbose > 0:
-            print(
-                "Directory merge command: {}".format(" && ".join(command_parts)),
-            )  # buildifier: disable=print
-
-        # Copy directories and files to shared output directory in one action
-        ctx.actions.run_shell(
-            mnemonic = "CopyDirs",
-            inputs = command_input_files,
+        # Apply merger
+        ctx.actions.run(
+            inputs = [merger_manifest_file] + premerge_dirs + premerge_files,
             outputs = [new_dir],
-            command = " && ".join(command_parts),
-            progress_message = "copying directories and files to {}".format(new_dir.path),
+            arguments = [
+                merger_manifest_file.path,
+                premerge_root,
+                new_dir.path,
+            ],
+            progress_message = "Applying merger on target {}".format(
+                ctx.label,
+            ),
+            executable = merger,
         )
 
     else:

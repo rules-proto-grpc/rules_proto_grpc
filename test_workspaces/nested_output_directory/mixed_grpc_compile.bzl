@@ -16,8 +16,12 @@ mixed_grpc_compile = rule(
         _plugins = attr.label_list(
             providers = [ProtoPluginInfo],
             default = [
-                Label("@rules_proto_grpc_cpp//:proto_plugin"),  # TODO: this needs replacing back with plugin that uses output_directory, like PHP
-                Label("@rules_proto_grpc_python//:grpc_plugin"),
+                Label(":plugin_a"),  # Uses output_directory
+                Label(":plugin_b"),  # Also uses output_directory with same names, will overlap
+                Label(":plugin_c"),  # Also uses output_directory with different names
+                Label("@rules_proto_grpc_csharp//:grpc_plugin"),  # Uses fixer
+                Label("@rules_proto_grpc_js//:grpc_plugin"),  # Uses fixer
+                Label("@rules_proto_grpc_python//:grpc_plugin"),  # Regular plugin, no fixer or dir
             ],
             doc = "List of protoc plugins to apply",
         ),

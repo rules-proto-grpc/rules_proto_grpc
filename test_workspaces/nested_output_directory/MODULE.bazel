@@ -1,8 +1,9 @@
 bazel_dep(name = "protobuf", version = "31.1")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
-bazel_dep(name = "rules_proto_grpc_cpp", version = "0.0.0.rpg.version.placeholder")
+bazel_dep(name = "rules_proto_grpc_csharp", version = "0.0.0.rpg.version.placeholder")
+bazel_dep(name = "rules_proto_grpc_js", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_proto_grpc_python", version = "0.0.0.rpg.version.placeholder")
-bazel_dep(name = "rules_python", version = "1.5.1")
+bazel_dep(name = "rules_python", version = "1.5.2")
 
 local_path_override(
     module_name = "rules_proto_grpc",
@@ -10,8 +11,13 @@ local_path_override(
 )
 
 local_path_override(
-    module_name = "rules_proto_grpc_cpp",
-    path = "../../modules/cpp",
+    module_name = "rules_proto_grpc_csharp",
+    path = "../../modules/csharp",
+)
+
+local_path_override(
+    module_name = "rules_proto_grpc_js",
+    path = "../../modules/js",
 )
 
 local_path_override(

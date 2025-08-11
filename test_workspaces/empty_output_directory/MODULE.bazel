@@ -1,0 +1,12 @@
+bazel_dep(name = "grpc", version = "1.74.1")
+bazel_dep(name = "protobuf", version = "31.1")
+bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
+bazel_dep(name = "rules_python", version = "1.5.2")
+
+local_path_override(
+    module_name = "rules_proto_grpc",
+    path = "../../modules/core",
+)
+
+python = use_extension("@rules_python//python/extensions:python.bzl", "python")
+python.toolchain(python_version = "3.11")

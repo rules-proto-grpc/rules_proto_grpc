@@ -6,16 +6,29 @@
     ":disableDependencyDashboard",
     ":semanticCommitsDisabled"
   ],
+
+  "prConcurrentLimit": 30, // Increase number of allowed open PRs from 10
+  "prHourlyLimit": 6, // Allow more than default of 2 new PRs per hour
+  "postUpdateOptions": [
+    "gomodTidy"
+  ],
+  "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
+  "prFooter": "View the [repository job log](https://developer.mend.io/{{platform}}/{{repository}})",
+  "prHeader": "",
+  "rebaseWhen": "conflicted",
   "ignorePaths": [
     "**/node_modules/**",
     "**/bower_components/**",
     "**/vendor/**",
     "**/__fixtures__/**"
   ],
+
   "bazel-module": {
     "managerFilePatterns": [
       "/(^|/)MODULE\\.bazel$/",
-      "/(^|/)MODULE\\.bazel.template$/"
+      "/(^|/)MODULE\\.bazel.template$/",  // Match template file in rulegen
+      "tools/rulegen/*.go",  // Match template strings in rulegen
+      "docs/lang/*.rst"  // Match output of template strings in docs
     ]
   },
   "pip_requirements": {
@@ -30,6 +43,72 @@
     "versioning": "swift",
     "pinDigests": true
   },
+
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Match Maven deps in MODULE.bazel files",
+      "managerFilePatterns": [
+        "/(^|/)MODULE\\.bazel$/"
+      ],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [
+        // Find artifacts section, then find each artifact within using the
+        // recursive strategy above
+        "artifacts\\s*=\\s*\\[[^\\]]*?\\]",
+        "\"(?<depName>[^\"]+):(?<currentValue>[^\"]+)\""
+      ],
+      "datasourceTemplate": "maven",
+      "versioningTemplate": "maven"
+    },
+    {
+      "customType": "regex",
+      "description": "Match GitHub sourced plugin files in module_extensions.bzl files",
+      "managerFilePatterns": [
+        "/(^|/)module_extensions\\.bzl$/"
+      ],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [
+        // Find assets hash block by looking for # renovate-gh-plugin: org/repo
+        // then find each plugin within using recursive strategy
+        "\\[\\s*?# ?renovate-gh-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
+        "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*,\\s*\"(?<currentDigest>[^\"]+?)\"\\s*\\)"
+      ],
+      "datasourceTemplate": "github-release-attachments"
+    },
+    {
+      "customType": "regex",
+      "description": "Match Maven sourced plugin files in module_extensions.bzl files",
+      "managerFilePatterns": [
+        "/(^|/)module_extensions\\.bzl$/"
+      ],
+      "matchStringsStrategy": "recursive",
+      "matchStrings": [
+        // Find assets hash block by looking for # renovate-maven-plugin: artifact
+        // then find each plugin within using recursive strategy. The digest is
+        // not matched and therefore not updated, as there is no auto matching
+        // like with github-release-attachments. The depType match is
+        // instead used to capture the platform string
+        "\\[\\s*?# ?renovate-maven-plugin:\\s*(?<depName>\\S+)[^\\]]+?\\]",
+        "\\(\\s*\"(?<currentValue>[^\"]+?)\"\\s*,\\s*\"(?<depType>[^\"]+?)\"\\s*,\\s*\"[^\"]+?\"\\s*\\)"
+      ],
+      "autoReplaceStringTemplate": "(\"{{{newValue}}}\", \"{{{depType}}}\", \"<insert new hash here>\")",
+      "datasourceTemplate": "maven"
+    },
+    {
+      "customType": "regex",
+      "description": "Match Java protobuf version in java_deps test workspace",
+      "managerFilePatterns": [
+        "test_workspaces/java_deps/Main.java"
+      ],
+      "matchStrings": [
+        "String expectedVersion = \"(?<currentValue>[^\"]+?)\";"
+      ],
+      "datasourceTemplate": "maven",
+      "packageNameTemplate": "com.google.protobuf:protobuf-java"
+    }
+  ],
+
   "packageRules": [
     {
       "description": "Do not update modules published in this repo",
@@ -40,35 +119,58 @@
       "enabled": false
     },
     {
-      "description": "Group all grpc updates into one update and ensure manual updates made",
+      "description": "Group all non-patch grpc updates into one PR and ensure manual updates made",
       "matchPackageNames": [
         "grpc",
-        "grpcio"
+        "grpcio",
+        "io.grpc:*",
+        "google.golang.org/grpc"
+      ],
+      "matchUpdateTypes": [
+        "major", "minor"
       ],
       "groupName": "grpc",
       "draftPR": true,
-      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Java Maven deps and Go deps)"
+      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. grpc-java protoc plugin)"
     },
     {
-      "description": "Ensure gRPC Gateway protoc plugins are updated in sync with Go deps",
-      "matchPackageNames": [
-        "github.com/grpc-ecosystem/grpc-gateway/v2"
-      ],
-      "matchDatasources": [
-        "go"
-      ],
-      "draftPR": true,
-      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as the protoc plugins in modules/grpc-gateway/module_extensions.bzl need manual updating"
-    },
-    {
-      "description": "Group all protobuf updates into one update and ensure manual updates made",
+      "description": "Group all non-patch protobuf updates into one PR and ensure manual updates made",
       "matchPackageNames": [
         "protobuf",
+        "com.google.protobuf:*",
         "toolchains_protoc"
+      ],
+      "matchUpdateTypes": [
+        "major", "minor"
       ],
       "groupName": "protobuf",
       "draftPR": true,
-      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Java Maven deps and Go deps)"
+      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Go deps)"
+    },
+    {
+      "description": "Group all grpc-gateway updates into one PR",
+      "matchPackageNames": [
+        "grpc_ecosystem_grpc_gateway",
+        "grpc-ecosystem/grpc-gateway",
+        "github.com/grpc-ecosystem/grpc-gateway/v2"
+      ],
+      "groupName": "grpc-gateway"
+    },
+    {
+      "description": "Group all google-protobuf updates into one PR",
+      "matchPackageNames": [
+        "google-protobuf",
+        "protocolbuffers/protobuf-javascript"
+      ],
+      "groupName": "js-google-protobuf"
+    },
+    {
+      "description": "Group all grpc-web updates into one PR",
+      "matchPackageNames": [
+        "grpc-web",
+        "grpc/grpc-web"
+      ],
+      "groupName": "js-grpc-web"
     },
     {
       "description": "Ensure Swift Package.resolved is updated",
@@ -79,24 +181,14 @@
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as Renovate will not update Package.resolved. See renovatebot/renovate#6924"
     },
     {
-      "description": "Ensure JS plugins are updated",
+      "description": "Don't make PRs for Go toolchain version updates",
       "matchManagers": [
-        "npm"
+        "gomod"
       ],
-      "matchPackageNames": [
-        "@grpc/grpc-js",
-        "google-protobuf",
-        "grpc-web"
+      "matchDepTypes": [
+        "toolchain"
       ],
-      "draftPR": true,
-      "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as the JS plugins need to be updated in sync in modules/js/module_extensions.bzl"
+      "enabled": false
     }
-  ],
-  "postUpdateOptions": [
-    "gomodTidy"
-  ],
-  "prBodyTemplate": "{{{header}}}{{{table}}}{{{warnings}}}{{{notes}}}{{{changelogs}}}{{{controls}}}{{{footer}}}",
-  "prFooter": "View the [repository job log](https://developer.mend.io/{{platform}}/{{repository}})",
-  "prHeader": "",
-  "rebaseWhen": "conflicted"
+  ]
 }

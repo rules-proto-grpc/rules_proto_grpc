@@ -33,7 +33,7 @@ lang-go:
     - any-glob-to-any-file: ['modules/go/**/*', 'examples/go/**/*', 'tools/rulegen/go.go']
 lang-grpc-gateway:
   - changed-files:
-    - any-glob-to-any-file: ['modules/grpc-gateway/**/*', 'examples/grpc-gateway/**/*', 'tools/rulegen/grpc_gateway.go']
+    - any-glob-to-any-file: ['modules/grpc_gateway/**/*', 'examples/grpc_gateway/**/*', 'tools/rulegen/grpc_gateway.go']
 lang-java:
   - changed-files:
     - any-glob-to-any-file: ['modules/java/**/*', 'examples/java/**/*', 'tools/rulegen/java.go']

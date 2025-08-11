@@ -33,6 +33,13 @@ csharp_regenerate_packages:
 	bazel run @rules_dotnet//tools/paket2bazel -- --dependencies-file $$(pwd)/modules/csharp/paket/paket.dependencies --output-folder $$(pwd)/modules/csharp/paket
 	rm -r modules/csharp/paket/.config modules/csharp/paket/paket-files
 
+
+# Run Go mod tudy
+.PHONY: go_mod_tidy
+go_mod_tidy:
+	cd modules/go && bazel run @rules_go//go -- mod tidy
+
+
 # Run pnpm to upgrade JS dependencies
 .PHONY: js_resolve
 js_resolve:

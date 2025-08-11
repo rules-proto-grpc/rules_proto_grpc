@@ -76,6 +76,15 @@ func makeGrpcGateway() *Language {
 				Attrs:             compileRuleAttrs,
 			},
 			&Rule{
+				Name:              "gateway_openapiv2_combined_compile",
+				Kind:              "grpc",
+				Implementation:    compileRuleTemplate,
+				Plugins:           []string{"//:openapiv2_combined_plugin"},
+				BuildExample:      grpcGatewayCompileExampleTemplate,
+				Doc:               "Generate a combined gRPC-Gateway OpenAPI v2 ``.json`` file",
+				Attrs:             compileRuleAttrs,
+			},
+			&Rule{
 				Name:              "gateway_grpc_library",
 				Kind:              "grpc",
 				Implementation:    grpcGatewayLibraryRuleTemplate,

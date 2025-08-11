@@ -17,6 +17,6 @@ proto_plugin(
         "google/protobuf",
     ],
     outputs = ["{protopath}.grpc.swift"],
-    tool = "@swiftpkg_grpc_swift_protobuf//:protoc-gen-grpc-swift",
+    tool = "@swiftpkg_grpc_swift_protobuf//:protoc-gen-grpc-swift-2",
     visibility = ["//visibility:public"],
 )

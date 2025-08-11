@@ -16,7 +16,11 @@ proto_plugin = _proto_plugin
 # Export compile rule implementation, attrs and toolchains
 proto_compile_attrs = _proto_compile_attrs
 proto_compile_impl = _proto_compile_impl
-proto_compile_toolchains = [str(Label("@protobuf//bazel/private:proto_toolchain_type"))]
+proto_compile_toolchains = [
+    # Convert to canonical Label strings
+    str(Label("@protobuf//bazel/private:proto_toolchain_type")),
+    str(Label("@aspect_bazel_lib//lib:coreutils_toolchain_type")),  # For copy
+]
 
 # Export compilation function, which can be wrapped by external rules that need more
 # pre-configuration than proto_compile_impl alone allows. e.g third party versions of

@@ -10,8 +10,6 @@ Rules for linting and detecting breaking changes in .proto files with `Buf <http
 
 Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.
 
-Only Linux and Darwin (MacOS) is currently supported by Buf.
-
 .. list-table:: Rules
    :widths: 1 2
    :header-rows: 1

@@ -4,7 +4,7 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "aspect_rules_js", version = "2.4.1")
+bazel_dep(name = "aspect_rules_js", version = "2.4.2")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
@@ -21,12 +21,6 @@ use_repo(pnpm, "pnpm")
 download_plugins = use_extension("//:module_extensions.bzl", "download_plugins")
 use_repo(
     download_plugins,
-    # "protoc_gen_grpc_tools_plugin_darwin_arm64",  # https://github.com/grpc/grpc-node/issues/2378
-    "protoc_gen_grpc_tools_plugin_darwin_x86_64",
-    "protoc_gen_grpc_tools_plugin_linux_arm64",
-    "protoc_gen_grpc_tools_plugin_linux_x86_64",
-    # "protoc_gen_grpc_tools_plugin_windows_arm64",
-    "protoc_gen_grpc_tools_plugin_windows_x86_64",
     "protoc_gen_grpc_web_plugin_darwin_arm64",
     "protoc_gen_grpc_web_plugin_darwin_x86_64",
     "protoc_gen_grpc_web_plugin_linux_arm64",

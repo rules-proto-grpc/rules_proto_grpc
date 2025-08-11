@@ -6,9 +6,11 @@ import com.google.protobuf.RuntimeVersion;
 public class Main {
   public static void main(String[] args) {
     // Check resolved version of Protobuf
-    assert RuntimeVersion.MAJOR == 4: "Bad major runtime version: " + RuntimeVersion.MAJOR;
-    assert RuntimeVersion.MINOR == 31: "Bad minor runtime version: " + RuntimeVersion.MINOR;
-    assert RuntimeVersion.PATCH == 0: "Bad patch runtime version: " + RuntimeVersion.PATCH;
+    String expectedVersion = "4.31.1";
+    String[] expectedVersionParts = expectedVersion.split("\\.");
+    assert RuntimeVersion.MAJOR == Integer.parseInt(expectedVersionParts[0]): "Bad major runtime version: " + RuntimeVersion.MAJOR;
+    assert RuntimeVersion.MINOR == Integer.parseInt(expectedVersionParts[1]): "Bad minor runtime version: " + RuntimeVersion.MINOR;
+    assert RuntimeVersion.PATCH == Integer.parseInt(expectedVersionParts[2]): "Bad patch runtime version: " + RuntimeVersion.PATCH;
 
     // Check classpath only contains one version of Protobuf, in an incredibly fragile way...
     int protobufCount = 0;

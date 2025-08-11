@@ -634,6 +634,7 @@ tasks:
       - set -x
       - make grpc_gateway_gateway_grpc_compile_example
       - make grpc_gateway_gateway_openapiv2_compile_example
+      - make grpc_gateway_gateway_openapiv2_combined_compile_example
       - make grpc_gateway_gateway_grpc_library_example
 
   grpc_gateway_windows_examples:
@@ -648,6 +649,10 @@ tasks:
       - cd ../../..
       - echo gateway_openapiv2_compile
       - cd examples/grpc_gateway/gateway_openapiv2_compile
+      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+      - cd ../../..
+      - echo gateway_openapiv2_combined_compile
+      - cd examples/grpc_gateway/gateway_openapiv2_combined_compile
       - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
       - cd ../../..
       - echo gateway_grpc_library
@@ -669,6 +674,10 @@ tasks:
       - cd examples/grpc_gateway/gateway_openapiv2_compile
       - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
       - cd ../../..
+      - echo gateway_openapiv2_combined_compile
+      - cd examples/grpc_gateway/gateway_openapiv2_combined_compile
+      - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
+      - cd ../../..
       - echo gateway_grpc_library
       - cd examples/grpc_gateway/gateway_grpc_library
       - bazel --batch build %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --disk_cache=../../bazel-disk-cache //... || exit 1
@@ -683,6 +692,7 @@ tasks:
       - set -x
       - make grpc_gateway_gateway_grpc_compile_example
       - make grpc_gateway_gateway_openapiv2_compile_example
+      - make grpc_gateway_gateway_openapiv2_combined_compile_example
       - make grpc_gateway_gateway_grpc_library_example
 
   grpc_gateway_macos_arm64_examples:
@@ -694,6 +704,7 @@ tasks:
       - set -x
       - make grpc_gateway_gateway_grpc_compile_example
       - make grpc_gateway_gateway_openapiv2_compile_example
+      - make grpc_gateway_gateway_openapiv2_combined_compile_example
       - make grpc_gateway_gateway_grpc_library_example
 
   java_ubuntu2204_examples:
@@ -1042,6 +1053,7 @@ tasks:
       - make test_workspace_absolute_strip_import_prefix
       - make test_workspace_combined_strip_and_add_prefix
       - make test_workspace_common_cpp_library
+      - make test_workspace_empty_output_directory
       - make test_workspace_exclusions
       - make test_workspace_generated_proto
       - make test_workspace_go_fixer
@@ -1075,6 +1087,10 @@ tasks:
       - cd ../..
       - echo common_cpp_library
       - cd test_workspaces/common_cpp_library
+      - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+      - cd ../..
+      - echo empty_output_directory
+      - cd test_workspaces/empty_output_directory
       - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
       - cd ../..
       - echo exclusions
@@ -1160,6 +1176,10 @@ tasks:
       - cd test_workspaces/common_cpp_library
       - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
       - cd ../..
+      - echo empty_output_directory
+      - cd test_workspaces/empty_output_directory
+      - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
+      - cd ../..
       - echo exclusions
       - cd test_workspaces/exclusions
       - bazel --batch test %BAZEL_EXTRA_FLAGS% --enable_runfiles --verbose_failures --test_output=errors --disk_cache=../bazel-disk-cache //... || exit 1
@@ -1235,6 +1255,7 @@ tasks:
       - make test_workspace_absolute_strip_import_prefix
       - make test_workspace_combined_strip_and_add_prefix
       - make test_workspace_common_cpp_library
+      - make test_workspace_empty_output_directory
       - make test_workspace_exclusions
       - make test_workspace_generated_proto
       - make test_workspace_go_fixer

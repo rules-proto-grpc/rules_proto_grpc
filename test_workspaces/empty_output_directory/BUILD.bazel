@@ -1,0 +1,38 @@
+load("@protobuf//bazel:proto_library.bzl", "proto_library")
+load("@rules_proto_grpc//:defs.bzl", "proto_plugin")
+load("@rules_python//python:defs.bzl", "py_test")
+load("dir_grpc_compile.bzl", "dir_grpc_compile")
+
+package(default_visibility = ["//visibility:private"])
+
+# Test that plugins that use output_directory behave correctly when no files are written to the
+# output directory. Need to use a special plugin that would normally use fixer but instead use
+# output_directory
+# See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/39
+
+proto_plugin(
+    name = "plugin",
+    exclusions = [
+        "google/protobuf",
+    ],
+    output_directory = True,
+    tool = "@grpc//src/compiler:grpc_objective_c_plugin",
+)
+
+proto_library(
+    name = "proto_lib",
+    srcs = ["no-services.proto"],
+)
+
+dir_grpc_compile(
+    name = "dir_lib",
+    protos = ["proto_lib"],
+)
+
+py_test(
+    name = "test",
+    srcs = ["main.py"],
+    data = ["dir_lib"],
+    legacy_create_init = False,
+    main = "main.py",
+)

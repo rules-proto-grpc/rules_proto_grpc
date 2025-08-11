@@ -118,9 +118,7 @@ func makeBuf() *Language {
 		DisplayName: "Buf",
 		Notes: mustTemplate("Rules for linting and detecting breaking changes in .proto files with `Buf <https://buf.build>`_." + `
 
-Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.
-
-Only Linux and Darwin (MacOS) is currently supported by Buf.`),
+Note that these rules behave differently from the other rules in this repo, since these produce no output and are instead used as tests.`),
 		Rules: []*Rule{
 			&Rule{
 				Name:             "buf_proto_breaking_test",

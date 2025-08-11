@@ -12,10 +12,11 @@ proto_plugin(
 
 proto_plugin(
     name = "grpc_plugin",
+    empty_template = "empty.template",
     exclusions = [
         "google/protobuf",
     ],
-    output_directory = True,
+    outputs = ["{basename|pascal}Grpc.cs"],
     tool = "@grpc//src/compiler:grpc_csharp_plugin",
     visibility = ["//visibility:public"],
 )
