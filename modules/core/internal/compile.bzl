@@ -44,7 +44,7 @@ proto_compile_attrs = {
         doc = "The output mode for the target. PREFIXED (the default) will output to a directory named by the target within the current package root, NO_PREFIX will output files directly to the current package, NO_PREFIX_FLAT will ouput directly to the current package without mirroring the package tree. Using NO_PREFIX may lead to conflicting writes",
     ),
     "_fixer": attr.label(
-        default = "@rules_proto_grpc//fixer",
+        default = "@rules_proto_grpc//tools/fixer",
         cfg = "exec",
         allow_files = True,
         executable = True,
