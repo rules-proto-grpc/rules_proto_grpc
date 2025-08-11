@@ -19,7 +19,7 @@ proto_compile_impl = _proto_compile_impl
 proto_compile_toolchains = [
     # Convert to canonical Label strings
     str(Label("@protobuf//bazel/private:proto_toolchain_type")),
-    str(Label("@aspect_bazel_lib//lib:coreutils_toolchain_type")),
+    str(Label("@aspect_bazel_lib//lib:coreutils_toolchain_type")),  # For copy
 ]
 
 # Export compilation function, which can be wrapped by external rules that need more
