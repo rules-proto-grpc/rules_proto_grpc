@@ -15,7 +15,7 @@ proto_plugin(
     exclusions = [
         "google/protobuf",
     ],
-    output_directory = True,
+    outputs = ["{basename|pascal}Grpc.cs"],
     tool = "@grpc//src/compiler:grpc_csharp_plugin",
     visibility = ["//visibility:public"],
 )
