@@ -4,9 +4,9 @@ import pathlib
 import sys
 
 expected = {
-    'mixed_lib/directory/service_pb2_grpc.py',
-    'mixed_lib/directory/service_grpc_pb.js',
-    'mixed_lib/ServiceGrpc.cs',
+    'mixed_lib/test/directory/service_pb2_grpc.py',
+    'mixed_lib/test/directory/service_grpc_pb.js',
+    'mixed_lib/test/ServiceGrpc.cs',
 }
 
 if os.name == 'nt':
