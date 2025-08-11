@@ -12,6 +12,7 @@ proto_plugin(
 
 proto_plugin(
     name = "grpc_plugin",
+    empty_template = "empty.template",
     exclusions = [
         "google/protobuf",
     ],
