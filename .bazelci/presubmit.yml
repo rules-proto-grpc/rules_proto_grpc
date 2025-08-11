@@ -520,6 +520,7 @@ tasks:
       - make test_workspace_absolute_strip_import_prefix
       - make test_workspace_combined_strip_and_add_prefix
       - make test_workspace_common_cpp_library
+      - make test_workspace_empty_output_directory
       - make test_workspace_exclusions
       - make test_workspace_generated_proto
       - make test_workspace_go_fixer
@@ -547,6 +548,7 @@ tasks:
       - make test_workspace_absolute_strip_import_prefix
       - make test_workspace_combined_strip_and_add_prefix
       - make test_workspace_common_cpp_library
+      - make test_workspace_empty_output_directory
       - make test_workspace_exclusions
       - make test_workspace_generated_proto
       - make test_workspace_go_fixer
