@@ -1,5 +1,6 @@
 name: Other
 description: File a feature request or any other issue
+type: Task
 body:
   - type: textarea
     id: description
