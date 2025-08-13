@@ -1,9 +1,15 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary")
+load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_clippy")
 
-exports_files(["empty.template"])
-
-cc_binary(
+rust_binary(
     name = "fixer",
-    srcs = ["main.cpp"],
+    srcs = ["main.rs"],
     visibility = ["//visibility:public"],
+)
+
+rust_clippy(
+    name = "fixer_clippy",
+    testonly = True,
+    deps = [
+        ":fixer",
+    ],
 )
