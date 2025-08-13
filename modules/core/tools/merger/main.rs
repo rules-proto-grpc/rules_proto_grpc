@@ -4,7 +4,6 @@ use std::io;
 use std::path::Path;
 use std::process;
 
-
 fn main() {
     // Parse args
     let args: Vec<String> = env::args().collect();
@@ -36,29 +35,46 @@ fn main() {
         let path = Path::new(&type_and_path[2..]);
         let source_path = source_dir.join(path);
         if line_type == "D" {
-            copy_dir(&source_path, target_dir)
-                .unwrap_or_else(|err| panic!("Failed to copy directory {:?} to {:?}: {}", source_path, target_dir, err));
+            copy_dir(&source_path, target_dir).unwrap_or_else(|err| {
+                panic!(
+                    "Failed to copy directory {:?} to {:?}: {}",
+                    source_path, target_dir, err
+                )
+            });
         } else if line_type == "F" {
             let target_path = target_dir.join(path);
-            target_path.parent().and_then(|parent| fs::create_dir_all(parent).ok())
+            target_path
+                .parent()
+                .and_then(|parent| fs::create_dir_all(parent).ok())
                 .unwrap_or_else(|| panic!("Failed to create directory {:?}", target_path));
-            fs::copy(&source_path, &target_path)
-                .unwrap_or_else(|err| panic!("Failed to copy file {:?} to {:?}: {}", source_path, target_path, err));
+            fs::copy(&source_path, &target_path).unwrap_or_else(|err| {
+                panic!(
+                    "Failed to copy file {:?} to {:?}: {}",
+                    source_path, target_path, err
+                )
+            });
         } else {
             panic!("Unexpected line type: {}", type_and_path);
         }
     }
 }
 
-fn copy_dir(src: impl AsRef<Path>, dst: impl AsRef<Path>) -> io::Result<()> {
-    fs::create_dir_all(&dst)?;
-    for entry in fs::read_dir(src)? {
+fn copy_dir(src_dir: impl AsRef<Path>, dst_dir: impl AsRef<Path>) -> io::Result<()> {
+    fs::create_dir_all(&dst_dir)?;
+    for entry in fs::read_dir(src_dir)? {
         let entry = entry?;
         let path = entry.path();
+        let dst = dst_dir.as_ref().join(entry.file_name());
         if path.is_dir() {
-            copy_dir(path, dst.as_ref().join(entry.file_name()))?;
+            // Recurse into dir
+            copy_dir(path, dst)?;
         } else {
-            fs::copy(path, dst.as_ref().join(entry.file_name()))?;
+            // Only copy if the destination does not already exist. Two plugins can output files
+            // that will land at the same destination and Bazel will only allow writing to an output
+            // path once before getting a permission denied error for later overwrites
+            if !dst.exists() {
+                fs::copy(path, dst)?;
+            }
         }
     }
     Ok(())
