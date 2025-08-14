@@ -110,6 +110,12 @@ fn main() {
             ),
             None => file_template_vars.insert("parent_directory_name", "".into()),
         };
+        if file_template_vars["go_package"] == "" {
+            file_template_vars.insert(
+                "go_package",
+                file_template_vars["parent_directory_name"].clone(),
+            );
+        }
 
         // Replace template variables
         let mut file_template_str = template_str.clone();
