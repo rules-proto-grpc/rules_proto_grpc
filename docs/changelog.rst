@@ -40,7 +40,7 @@ Version Updates
 - Updated Bazel ``rules_swift`` to 3.1.2
 - Updated Buf to 1.56.0
 - Updated Go ``google.golang.org/grpc`` to v1.74.2
-- Updated Go ``google.golang.org/protobuf`` to v1.36.
+- Updated Go ``google.golang.org/protobuf`` to v1.36.7
 - Updated Java ``com.google.protobuf:*`` to 4.31.1
 - Updated Java ``io.grpc:grpc-*`` to 1.74.0
 - Updated Python ``multidict`` to 6.6.4
