@@ -119,29 +119,23 @@
       "enabled": false
     },
     {
-      "description": "Group all non-patch grpc updates into one PR and ensure manual updates made",
+      "description": "Group all grpc updates into one PR and ensure manual updates made",
       "matchPackageNames": [
         "grpc",
         "grpcio",
         "io.grpc:*",
         "google.golang.org/grpc"
       ],
-      "matchUpdateTypes": [
-        "major", "minor"
-      ],
       "groupName": "grpc",
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. grpc-java protoc plugin)"
     },
     {
-      "description": "Group all non-patch protobuf updates into one PR and ensure manual updates made",
+      "description": "Group all protobuf updates into one PR and ensure manual updates made",
       "matchPackageNames": [
         "protobuf",
         "com.google.protobuf:*",
         "toolchains_protoc"
-      ],
-      "matchUpdateTypes": [
-        "major", "minor"
       ],
       "groupName": "protobuf",
       "draftPR": true,
