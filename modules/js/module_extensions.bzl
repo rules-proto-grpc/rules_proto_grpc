@@ -15,16 +15,22 @@ def _download_plugins(module_ctx):
         # ("v3.21.4", "windows-arm64", ""),
         ("v3.21.4", "windows-x86_64", "d0c701617ff0286462875ba0a6019f29de2ca3fe1740a55d6540558b39e44819"),
     ]:
+        repo_platform = platform.replace("windows-x86_64", "win64").replace("darwin", "osx").replace("arm64", "aarch_64")
         http_archive(
             name = "protoc_gen_protobuf_javascript_plugin_{}".format(platform.replace("-", "_")),
             sha256 = hash,
             url = "https://github.com/protocolbuffers/protobuf-javascript/releases/download/{0}/protobuf-javascript-{1}-{2}.zip".format(
                 version,
                 version[1:],
-                platform.replace("windows-x86_64", "win64").replace("darwin", "osx").replace("arm64", "aarch_64"),
+                repo_platform,
             ),
             build_file_content = """exports_files(glob(["**/*"]))""",
-            strip_prefix = "protobuf-javascript-{}-win64".format(version[1:]) if platform == "windows-x86_64" else "",
+            strip_prefix = (
+                # This repo is inconsistent in how its .zips are structured, as some platforms have
+                # a top level folder and some don't and it's not even consistent between releases...
+                "protobuf-javascript-{}-{}".format(version[1:], repo_platform)
+                if platform in ("darwin-arm64", "darwin-x86_64", "windows-x86_64") else ""
+            ),
         )
 
     # grpc-web plugin
