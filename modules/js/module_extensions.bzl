@@ -28,8 +28,7 @@ def _download_plugins(module_ctx):
             strip_prefix = (
                 # This repo is inconsistent in how its .zips are structured, as some platforms have
                 # a top level folder and some don't and it's not even consistent between releases...
-                "protobuf-javascript-{}-{}".format(version[1:], repo_platform)
-                if platform in ("darwin-arm64", "darwin-x86_64", "windows-x86_64") else ""
+                "protobuf-javascript-{}-{}".format(version[1:], repo_platform) if platform in ("darwin-arm64", "darwin-x86_64", "windows-x86_64") else ""
             ),
         )
 
