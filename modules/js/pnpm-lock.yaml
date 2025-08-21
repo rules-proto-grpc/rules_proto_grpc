@@ -9,8 +9,8 @@ dependencies:
     specifier: 1.13.4
     version: 1.13.4
   google-protobuf:
-    specifier: 3.21.4
-    version: 3.21.4
+    specifier: 4.0.0
+    version: 4.0.0
   grpc-web:
     specifier: 1.5.0
     version: 1.5.0
@@ -276,6 +276,11 @@ packages:
 
   /google-protobuf@3.21.4:
     resolution: {integrity: sha512-MnG7N936zcKTco4Jd2PX2U96Kf9PxygAPKBug+74LHzmHXmceN16MmRcdgZv+DGef/S9YvQAfRsNCn4cjf9yyQ==}
+    dev: true
+
+  /google-protobuf@4.0.0:
+    resolution: {integrity: sha512-b8wmenhUMf2WNL+xIJ/slvD/hEE6V3nRnG86O2bzkBrMweM9gnqZE1dfXlDjibY3aXJXDNbAHepevYyQ7qWKsQ==}
+    dev: false
 
   /grpc-tools@1.13.0:
     resolution: {integrity: sha512-7CbkJ1yWPfX0nHjbYG58BQThNhbICXBZynzCUxCb3LzX5X9B3hQbRY2STiRgIEiLILlK9fgl0z0QVGwPCdXf5g==}
