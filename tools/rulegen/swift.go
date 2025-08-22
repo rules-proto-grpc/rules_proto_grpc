@@ -74,7 +74,7 @@ var swiftGrpcLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .
     ],
 )`)
 
-var swiftModulePrefixLines = `bazel_dep(name = "apple_support", version = "1.22.1")`
+var swiftModulePrefixLines = `bazel_dep(name = "apple_support", version = "1.23.0")`
 
 var swiftLibraryRuleAttrs = append(append([]*Attr(nil), libraryRuleAttrs...), []*Attr{
 	&Attr{
