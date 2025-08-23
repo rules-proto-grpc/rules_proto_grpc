@@ -49,7 +49,7 @@ use_repo(maven, "rules_proto_grpc_scala_maven_2_13")
 maven.install(
     name = "rules_proto_grpc_scala_maven_3",  # Deconflict
     artifacts = [
-        "com.thesamet.scalapb:compilerplugin_3:0.11.19",
+        "com.thesamet.scalapb:compilerplugin_3:0.11.20",
         "com.thesamet.scalapb:scalapb-runtime_3:0.11.19",
         "com.thesamet.scalapb:scalapb-runtime-grpc_3:0.11.19",
     ],
