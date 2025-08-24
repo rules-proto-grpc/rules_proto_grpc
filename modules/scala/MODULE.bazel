@@ -51,7 +51,7 @@ maven.install(
     artifacts = [
         "com.thesamet.scalapb:compilerplugin_3:0.11.19",
         "com.thesamet.scalapb:scalapb-runtime_3:0.11.19",
-        "com.thesamet.scalapb:scalapb-runtime-grpc_3:0.11.19",
+        "com.thesamet.scalapb:scalapb-runtime-grpc_3:0.11.20",
     ],
     strict_visibility = True,
 )
