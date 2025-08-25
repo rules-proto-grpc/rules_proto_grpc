@@ -31,7 +31,7 @@ The C++ module can be installed by adding the following lines to your MODULE.baz
 .. code-block:: python
 
    bazel_dep(name = "rules_proto_grpc_cpp", version = "<version number here>")
-   bazel_dep(name = "toolchains_protoc", version = "0.4.3")
+   bazel_dep(name = "toolchains_protoc", version = "0.5.0")
    
    # Prevent version skew by matching protoc version to protobuf version, as C++ is the only lang that
    # has no cross-version runtime guarantee:
