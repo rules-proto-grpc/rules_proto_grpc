@@ -1,6 +1,6 @@
 bazel_dep(name = "buildifier_prebuilt", version = "8.2.0.2")
 bazel_dep(name = "gazelle", version = "0.45.0")
-bazel_dep(name = "protobuf", version = "31.1")
+bazel_dep(name = "protobuf", version = "32.0")
 bazel_dep(name = "rules_cc", version = "0.2.1")
 bazel_dep(name = "rules_dotnet", version = "0.19.2")
 bazel_dep(name = "rules_go", version = "0.57.0")
@@ -44,7 +44,7 @@ local_path_override(
     path = "modules/cpp",
 )
 
-bazel_dep(name = "toolchains_protoc", version = "0.4.3")
+bazel_dep(name = "toolchains_protoc", version = "0.5.0")
 
 # Prevent version skew by matching protoc version to protobuf version, as C++ is the only lang that
 # has no cross-version runtime guarantee:
@@ -97,7 +97,7 @@ local_path_override(
     path = "modules/js",
 )
 
-bazel_dep(name = "aspect_rules_js", version = "2.4.2")
+bazel_dep(name = "aspect_rules_js", version = "2.5.0")
 
 # Allow npm_link_all_packages of rules_proto_grpc_js_npm from rules_proto_grpc_js
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")

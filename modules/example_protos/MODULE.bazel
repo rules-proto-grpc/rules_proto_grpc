@@ -4,4 +4,4 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "protobuf", version = "31.1")
+bazel_dep(name = "protobuf", version = "32.0")

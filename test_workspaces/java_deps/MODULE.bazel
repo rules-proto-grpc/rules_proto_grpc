@@ -1,4 +1,4 @@
-bazel_dep(name = "protobuf", version = "31.1")
+bazel_dep(name = "protobuf", version = "32.0")
 bazel_dep(name = "rules_java", version = "8.15.1")
 bazel_dep(name = "rules_jvm_external", version = "6.8")
 bazel_dep(name = "rules_proto_grpc_java", version = "0.0.0.rpg.version.placeholder")
@@ -27,6 +27,7 @@ maven.install(
     known_contributing_modules = [
         # Supress warning about multiple contributing modules
         "",
+        "protobuf",
         "rules_proto_grpc_java",
     ],
 )
