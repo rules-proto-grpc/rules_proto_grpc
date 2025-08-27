@@ -1,5 +1,5 @@
 ---
-bazel: d73358090bd4565477114a07f8f0b7bb75e473cc  # 8.4.0 branch
+bazel: 8.4.0rc1
 tasks:
   main_ubuntu2204:
     name: Build & Test All
