@@ -137,6 +137,7 @@
         "com.google.protobuf:*",
         "toolchains_protoc"
       ],
+      "separateMajorMinor": false, // Allow single PR that contains major and minor and patch updates, as protobuf versions aren't aligned
       "groupName": "protobuf",
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Go deps)"
