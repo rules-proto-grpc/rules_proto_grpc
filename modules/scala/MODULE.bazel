@@ -17,6 +17,7 @@ maven.install(
         # These are inherited from rules_proto_grpc_java, only add anything extra here
     ],
     known_contributing_modules = [
+        "protobuf",
         "rules_proto_grpc_java",
         "rules_proto_grpc_scala",
     ],

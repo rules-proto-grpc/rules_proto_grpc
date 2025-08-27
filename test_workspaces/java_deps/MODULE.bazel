@@ -27,6 +27,7 @@ maven.install(
     known_contributing_modules = [
         # Supress warning about multiple contributing modules
         "",
+        "protobuf",
         "rules_proto_grpc_java",
     ],
 )
