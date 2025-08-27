@@ -27,9 +27,9 @@ use_repo(maven, "maven")
 maven.install(
     name = "rules_proto_grpc_scala_maven_2_12",  # Deconflict
     artifacts = [
-        "com.thesamet.scalapb:compilerplugin_2.12:0.11.19",
-        "com.thesamet.scalapb:scalapb-runtime_2.12:0.11.19",
-        "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:0.11.19",
+        "com.thesamet.scalapb:compilerplugin_2.12:0.11.20",
+        "com.thesamet.scalapb:scalapb-runtime_2.12:0.11.20",
+        "com.thesamet.scalapb:scalapb-runtime-grpc_2.12:0.11.20",
     ],
     strict_visibility = True,
 )
@@ -38,9 +38,9 @@ use_repo(maven, "rules_proto_grpc_scala_maven_2_12")
 maven.install(
     name = "rules_proto_grpc_scala_maven_2_13",  # Deconflict
     artifacts = [
-        "com.thesamet.scalapb:compilerplugin_2.13:0.11.19",
-        "com.thesamet.scalapb:scalapb-runtime_2.13:0.11.19",
-        "com.thesamet.scalapb:scalapb-runtime-grpc_2.13:0.11.19",
+        "com.thesamet.scalapb:compilerplugin_2.13:0.11.20",
+        "com.thesamet.scalapb:scalapb-runtime_2.13:0.11.20",
+        "com.thesamet.scalapb:scalapb-runtime-grpc_2.13:0.11.20",
     ],
     strict_visibility = True,
 )
@@ -49,9 +49,9 @@ use_repo(maven, "rules_proto_grpc_scala_maven_2_13")
 maven.install(
     name = "rules_proto_grpc_scala_maven_3",  # Deconflict
     artifacts = [
-        "com.thesamet.scalapb:compilerplugin_3:0.11.19",
-        "com.thesamet.scalapb:scalapb-runtime_3:0.11.19",
-        "com.thesamet.scalapb:scalapb-runtime-grpc_3:0.11.19",
+        "com.thesamet.scalapb:compilerplugin_3:0.11.20",
+        "com.thesamet.scalapb:scalapb-runtime_3:0.11.20",
+        "com.thesamet.scalapb:scalapb-runtime-grpc_3:0.11.20",
     ],
     strict_visibility = True,
 )
