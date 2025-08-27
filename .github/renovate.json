@@ -167,6 +167,16 @@
       "groupName": "js-grpc-web"
     },
     {
+      "description": "Group all ScalaPB updates into one PR",
+      "matchDatasources": [
+        "maven"
+      ],
+      "matchPackageNames": [
+        "com.thesamet.scalapb:*"
+      ],
+      "groupName": "scalapb"
+    },
+    {
       "description": "Ensure Swift Package.resolved is updated",
       "matchManagers": [
         "swift"
