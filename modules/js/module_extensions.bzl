@@ -8,12 +8,12 @@ def _download_plugins(module_ctx):
     # protobuf-javascript plugin
     for version, platform, hash in [
         # renovate-gh-plugin: protocolbuffers/protobuf-javascript
-        ("v3.21.4", "darwin-arm64", "c8ee4890625f3eb134072ea6111b757cce541897657a50f05c5170558773acea"),
-        ("v3.21.4", "darwin-x86_64", "af7665e12f6b76c9dbad9f09c3ec925f2c45b268e344de5356945bb2be098b1e"),
-        ("v3.21.4", "linux-arm64", "87eb5158e8a914c47f8fda43bb04575ac2f7c68db5ee4289b3e689acf2843bfd"),
-        ("v3.21.4", "linux-x86_64", "4966d0dce71a637b3b46de511aefc52c5df449159c6acbd7967ba742944012fd"),
+        ("v4.0.0", "darwin-arm64", "e9c2b968bc22f5ad74fb597edde3cf43a907bb538e5a964faf7710175eb67c52"),
+        ("v4.0.0", "darwin-x86_64", "e2009dcb23ec56b7c16a813afa5456596808611cebc842afdb758feb22e7224c"),
+        ("v4.0.0", "linux-arm64", "9e20bcdfa4307c0d1c686c279893c6ee94535dafaaa246d837df225bfcd67d39"),
+        ("v4.0.0", "linux-x86_64", "24d26a28b95d2dad8bb3588f31c4e2527d906c701f23af6c11d0375d35e44345"),
         # ("v3.21.4", "windows-arm64", ""),
-        ("v3.21.4", "windows-x86_64", "d0c701617ff0286462875ba0a6019f29de2ca3fe1740a55d6540558b39e44819"),
+        ("v4.0.0", "windows-x86_64", "b0f89f7cebd4a39a62b4539d33c77472911f6072c77eff175699dafc41a97811"),
     ]:
         repo_platform = platform.replace("windows-x86_64", "win64").replace("darwin", "osx").replace("arm64", "aarch_64")
         http_archive(
