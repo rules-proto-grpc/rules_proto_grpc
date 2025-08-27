@@ -15,7 +15,7 @@ import (
 
 var ciPlatforms = []string{
 	"ubuntu2204",
-	// "ubuntu2004_arm64",  // Absl fails to build due to processor selection
+	"ubuntu2004_arm64",
 	// "windows",  // Blocked by https://github.com/bazelbuild/bazel/issues/18683
 	// "windows_arm64",  // Blocked by https://github.com/bazelbuild/bazel/issues/18683
 	"macos",
