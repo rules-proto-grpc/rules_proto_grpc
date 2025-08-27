@@ -119,30 +119,25 @@
       "enabled": false
     },
     {
-      "description": "Group all non-patch grpc updates into one PR and ensure manual updates made",
+      "description": "Group all grpc updates into one PR and ensure manual updates made",
       "matchPackageNames": [
         "grpc",
         "grpcio",
         "io.grpc:*",
         "google.golang.org/grpc"
       ],
-      "matchUpdateTypes": [
-        "major", "minor"
-      ],
       "groupName": "grpc",
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. grpc-java protoc plugin)"
     },
     {
-      "description": "Group all non-patch protobuf updates into one PR and ensure manual updates made",
+      "description": "Group all protobuf updates into one PR and ensure manual updates made",
       "matchPackageNames": [
         "protobuf",
         "com.google.protobuf:*",
         "toolchains_protoc"
       ],
-      "matchUpdateTypes": [
-        "major", "minor"
-      ],
+      "separateMajorMinor": false, // Allow single PR that contains major and minor and patch updates, as protobuf versions aren't aligned
       "groupName": "protobuf",
       "draftPR": true,
       "prBodyNotes": "> [!CAUTION]\n> This PR is marked as draft, as some updates cannot be made automatically (e.g. Go deps)"
@@ -171,6 +166,16 @@
         "grpc/grpc-web"
       ],
       "groupName": "js-grpc-web"
+    },
+    {
+      "description": "Group all ScalaPB updates into one PR",
+      "matchDatasources": [
+        "maven"
+      ],
+      "matchPackageNames": [
+        "com.thesamet.scalapb:*"
+      ],
+      "groupName": "scalapb"
     },
     {
       "description": "Ensure Swift Package.resolved is updated",

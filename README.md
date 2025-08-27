@@ -14,14 +14,17 @@
     <a href="https://bazelbuild.slack.com/archives/CKU1D04RM"><img src="https://img.shields.io/badge/bazelbuild-%23proto-38a3a5?logo=slack"></a>
 </div>
 
-> [!IMPORTANT]
-> The `master` branch now contains the Bzlmod-only update of the rules released in
-> version 5.0.0. If you need to see the WORKSPACE based rules used in version 4.x.x, please see
-> the [`legacy` branch](https://github.com/rules-proto-grpc/rules_proto_grpc/tree/legacy)
-
 ## Announcements 📣
 
 <details open>
+<summary><b>2025/08/11 - Version 5.6.0</b></summary>
+
+[Version 5.6.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.6.0),
+which brings a number of compatibility improvements, particularly on Windows platforms.
+
+</details>
+
+<details>
 <summary><b>2025/07/21 - Version 5.5.0</b></summary>
 
 [Version 5.5.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.5.0),
