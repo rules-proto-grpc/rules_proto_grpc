@@ -15,7 +15,7 @@ import (
 
 var ciPlatforms = []string{
 	"ubuntu2204",
-	"ubuntu2004_arm64",
+	// "ubuntu2004_arm64",  // TODO: enable once protobuf hits 32, as this fixes absl version
 	// "windows",  // Blocked by https://github.com/bazelbuild/bazel/issues/18683
 	// "windows_arm64",  // Blocked by https://github.com/bazelbuild/bazel/issues/18683
 	"macos",
@@ -29,11 +29,7 @@ var ciPlatformsMap = map[string][]string{
 
 var extraPlatformFlags = map[string][]string{
 	"ubuntu2204": []string{},
-	"ubuntu2004_arm64": []string{
-		// Required for absl to build correctly and avoid
-		// "Error: selected processor does not support `xpaclri'"
-		"--repo_env=CC=clang",
-	},
+	// TODO: remove
 	"windows": []string{
 		"--define=protobuf_allow_msvc=true",  // https://github.com/protocolbuffers/protobuf/issues/20085
 	},
