@@ -29,6 +29,10 @@ var ciPlatformsMap = map[string][]string{
 
 var extraPlatformFlags = map[string][]string{
 	"ubuntu2204": []string{},
+	"ubuntu2004_arm64": []string{
+		"--copt=-march=native",
+		"--host_copt=-march=native",
+	},
 	"windows": []string{
 		"--define=protobuf_allow_msvc=true",  // https://github.com/protocolbuffers/protobuf/issues/20085
 	},
