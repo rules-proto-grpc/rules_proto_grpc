@@ -30,8 +30,10 @@ var ciPlatformsMap = map[string][]string{
 var extraPlatformFlags = map[string][]string{
 	"ubuntu2204": []string{},
 	"ubuntu2004_arm64": []string{
-		"--copt=-march=native",
-		"--host_copt=-march=native",
+		// Required for absl to build correctly and avoid
+		// "Error: selected processor does not support `xpaclri'"
+		"--copt=-march=native+pauth",
+		"--host_copt=-march=native+pauth",
 	},
 	"windows": []string{
 		"--define=protobuf_allow_msvc=true",  // https://github.com/protocolbuffers/protobuf/issues/20085
