@@ -1,6 +1,20 @@
 dependencies:
   - changed-files:
-    - any-glob-to-any-file: ['MODULE.bazel', '**/MODULE.bazel']
+    - any-glob-to-any-file: [
+        'MODULE.bazel',
+        '**/MODULE.bazel',
+        '**/module_extensions.bzl',
+        '**/paket.dependencies',
+        '**/paket.lock',
+        '**/go.mod',
+        '**/go.sum',
+        '**/package.json',
+        '**/pnpm-lock.yaml',
+        '**/requirements.in',
+        '**/requirements.txt',
+        '**/Package.swift',
+        '**/Package.resolved',
+      ]
 documentation:
   - changed-files:
     - any-glob-to-any-file: ['docs/**/*']
