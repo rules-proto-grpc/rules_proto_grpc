@@ -58,8 +58,7 @@ tasks:
       - "--test_output=errors"
       - "--cxxopt=-std=c++17"
       - "--host_cxxopt=-std=c++17"
-      - "--copt=-march=armv8.3-a+pauth"
-      - "--host_copt=-march=armv8.3-a+pauth"
+      - "--repo_env=CC=clang"
     test_targets:
       - "//examples/routeguide:cpp_cpp"
       - "//examples/routeguide:cpp_csharp"
@@ -198,7 +197,7 @@ tasks:
     name: Buf
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make buf_buf_proto_breaking_test_example
@@ -240,7 +239,7 @@ tasks:
     name: C++
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make cpp_cpp_proto_compile_example
@@ -288,7 +287,7 @@ tasks:
     name: C#
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make csharp_csharp_proto_compile_example
@@ -337,7 +336,7 @@ tasks:
     name: Documentation
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make doc_doc_docbook_compile_example
@@ -388,7 +387,7 @@ tasks:
     name: Go
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make go_go_proto_compile_example
@@ -436,7 +435,7 @@ tasks:
     name: gRPC-Gateway
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make grpc_gateway_gateway_grpc_compile_example
@@ -484,7 +483,7 @@ tasks:
     name: Java
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make java_java_proto_compile_example
@@ -532,7 +531,7 @@ tasks:
     name: JavaScript
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make js_js_proto_compile_example
@@ -574,7 +573,7 @@ tasks:
     name: Python
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make python_python_proto_compile_example
@@ -628,7 +627,7 @@ tasks:
     name: Scala
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make scala_scala_proto_compile_example
@@ -718,7 +717,7 @@ tasks:
     name: Test Workspaces
     platform: ubuntu2004_arm64
     environment:
-      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --copt=-march=armv8.3-a+pauth --host_copt=-march=armv8.3-a+pauth"
+      BAZEL_EXTRA_FLAGS: "--cxxopt=-std=c++17 --host_cxxopt=-std=c++17 --repo_env=CC=clang"
     shell_commands:
       - set -x
       - make test_workspace_absolute_strip_import_prefix

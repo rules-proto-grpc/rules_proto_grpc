@@ -32,8 +32,7 @@ var extraPlatformFlags = map[string][]string{
 	"ubuntu2004_arm64": []string{
 		// Required for absl to build correctly and avoid
 		// "Error: selected processor does not support `xpaclri'"
-		"--copt=-march=armv8.3-a+pauth",
-		"--host_copt=-march=armv8.3-a+pauth",
+		"--repo_env=CC=clang",
 	},
 	"windows": []string{
 		"--define=protobuf_allow_msvc=true",  // https://github.com/protocolbuffers/protobuf/issues/20085
