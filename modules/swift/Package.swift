@@ -7,6 +7,6 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/apple/swift-protobuf", exact: "1.30.0"),
         .package(url: "https://github.com/grpc/grpc-swift-2", exact: "2.1.0"),
-        .package(url: "https://github.com/grpc/grpc-swift-protobuf", exact: "2.0.0"),
+        .package(url: "https://github.com/grpc/grpc-swift-protobuf", exact: "2.1.1"),
     ]
 )
