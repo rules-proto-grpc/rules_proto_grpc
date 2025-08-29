@@ -5,7 +5,7 @@ bazel_dep(name = "rules_cc", version = "0.2.2")
 bazel_dep(name = "rules_dotnet", version = "0.19.2")
 bazel_dep(name = "rules_go", version = "0.57.0")
 bazel_dep(name = "rules_java", version = "8.15.1")
-bazel_dep(name = "rules_scala", version = "7.0.0")
+bazel_dep(name = "rules_scala", version = "7.1.1")
 bazel_dep(name = "rules_shell", version = "0.6.0")
 
 # Rulegen deps
