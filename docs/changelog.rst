@@ -6,6 +6,37 @@
 Changelog
 =========
 
+5.7.0
+-----
+
+Changes
+*******
+
+- Removed unused gRPC-Gateway plugins
+- Rewrote internal file manipulation tools from C++ to Rust, to avoid varying levels of C++ standard
+  support across platforms
+
+Version Updates
+***************
+
+- Updated Bazel ``apple_support`` to 1.23.1
+- Updated Bazel ``aspect_bazel_lib`` to 2.21.1
+- Updated Bazel ``aspect_rules_js`` to 2.5.0
+- Updated Bazel ``protobuf`` to 32.0
+- Updated Bazel ``rules_cc`` to 0.2.2
+- Updated Bazel ``rules_go`` to 0.570
+- Updated Bazel ``rules_python`` to 1.5.4
+- Updated Bazel ``rules_scala`` to 7.1.1
+- Updated Bazel ``rules_shell`` to 0.6.0
+- Updated Bazel ``rules_swift_package_manager`` to 1.4.0
+- Updated Bazel ``toolchains_protoc`` to 0.5.0
+- Updated Buf to 1.57.0
+- Updated Go ``google.golang.org/protobuf`` to v1.36.8
+- Updated JS ``google-protobuf`` to 4.0.0
+- Updated Python ``h2`` to 4.3.0
+- Updated Scala ``com.thesamet.scalapb:*`` to 0.11.20
+
+
 5.6.0
 -----
 

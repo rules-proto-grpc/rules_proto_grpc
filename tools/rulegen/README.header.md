@@ -17,6 +17,15 @@
 ## Announcements 📣
 
 <details open>
+<summary><b>2025/08/29 - Version 5.7.0</b></summary>
+
+[Version 5.7.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.7.0),
+which rewrites two of the internal rules tools in Rust, to avoid varying levels of C++ standard
+support across platforms. A number of dependencies have also been updated.
+
+</details>
+
+<details>
 <summary><b>2025/08/11 - Version 5.6.0</b></summary>
 
 [Version 5.6.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.6.0),
