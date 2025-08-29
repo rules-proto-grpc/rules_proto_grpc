@@ -3,7 +3,6 @@ load("@rules_rust//rust:defs.bzl", "rust_binary", "rust_clippy")
 rust_binary(
     name = "fixer",
     srcs = ["main.rs"],
-    experimental_use_cc_common_link = 1,
     visibility = ["//visibility:public"],
 )
 
