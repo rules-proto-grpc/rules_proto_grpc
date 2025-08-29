@@ -85,7 +85,7 @@ available outside of the `protobuf` workspace.
 
 </details>
 
-<details open>
+<details>
 <summary><b>2024/07/31 - Version 5.0.0</b></summary>
 
 [Version 5.0.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.0.0),
