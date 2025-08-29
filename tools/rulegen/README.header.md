@@ -41,49 +41,7 @@ which adds support for C#.
 
 </details>
 
-<details>
-<summary><b>2025/07/17 - Version 5.4.0</b></summary>
-
-[Version 5.4.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.4.0),
-which resolves classpath issues for Java/Scala and updates dependencies.
-
-</details>
-
-<details>
-<summary><b>2025/07/02 - Version 5.3.1</b></summary>
-
-[Version 5.3.1 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.1),
-which fixes a bug with grpc-web on arm64 platforms and updates dependencies.
-
-</details>
-
-<details>
-<summary><b>2025/06/19 - Version 5.3.0</b></summary>
-
-[Version 5.3.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.3.0),
-which adds support for JavaScript.
-
-</details>
-
-<details>
-<summary><b>2025/06/06 - Version 5.2.0</b></summary>
-
-[Version 5.2.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.2.0),
-which adds support for Scala and Swift languages, updates dependency versions and fixes more bugs. Note
-that using Swift support requires that you use an unreleased version of `rules_swift_package_manager` at
-present.
-
-</details>
-
-<details>
-<summary><b>2025/05/16 - Version 5.1.0</b></summary>
-
-[Version 5.1.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.1.0),
-which updates underlying dependency versions and fixes a few key bugs. Note that C language support
-has also been dropped, as the μpb API used was considered unstable and the plugin is no longer
-available outside of the `protobuf` workspace.
-
-</details>
+...
 
 <details>
 <summary><b>2024/07/31 - Version 5.0.0</b></summary>
