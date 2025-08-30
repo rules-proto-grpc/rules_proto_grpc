@@ -6,6 +6,21 @@
 Changelog
 =========
 
+5.7.1
+-----
+
+Changes
+*******
+
+- Removed ``experimental_use_cc_common_link`` from Rust internal tool targets.
+  `#532 <https://github.com/rules-proto-grpc/rules_proto_grpc/pull/532>`__
+
+Version Updates
+***************
+
+None
+
+
 5.7.0
 -----
 
