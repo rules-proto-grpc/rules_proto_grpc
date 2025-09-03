@@ -12,8 +12,8 @@ dependencies:
     specifier: 4.0.0
     version: 4.0.0
   grpc-web:
-    specifier: 2.0.0
-    version: 2.0.0
+    specifier: 1.5.0
+    version: 1.5.0
 
 devDependencies:
   grpc-tools:
@@ -293,8 +293,8 @@ packages:
       - supports-color
     dev: true
 
-  /grpc-web@2.0.0:
-    resolution: {integrity: sha512-DVt8qfQ+tyV2h4PNfehw/k5h0tOOaCwiWwDFOSCj5TLLEk93q0VTd8TcaibtBFMK/mkOKDKssvYH+prWmclwFg==}
+  /grpc-web@1.5.0:
+    resolution: {integrity: sha512-y1tS3BBIoiVSzKTDF3Hm7E8hV2n7YY7pO0Uo7depfWJqKzWE+SKr0jvHNIJsJJYILQlpYShpi/DRJJMbosgDMQ==}
     dev: false
 
   /has-unicode@2.0.1:
