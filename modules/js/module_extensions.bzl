@@ -35,12 +35,12 @@ def _download_plugins(module_ctx):
     # grpc-web plugin
     for version, platform, hash in [
         # renovate-gh-plugin: grpc/grpc-web
-        ("2.0.0", "darwin-arm64", "1cdf0691abd0c423d417a546766425885df31a4a615b90854fc2504218121b68"),
-        ("2.0.0", "darwin-x86_64", "a1b646fa24d0894d1f3c55319eb06f228501bc2db5d717a23a67ffc3e92ff635"),
-        ("2.0.0", "linux-arm64", "f334361fe97c3530003c01f9c24140c6c5bc5b681051d7b1b25af35015974ddf"),
-        ("2.0.0", "linux-x86_64", "4cccce00b21f33886976c7e331c1e207aae7746485c2c7aea0faaf4737dd8152"),
-        ("2.0.0", "windows-arm64", "f64c29c43b22b30fc7a2066da2c4f067fc7fb700a3d578e056fb09a38ad53a43"),
-        ("2.0.0", "windows-x86_64", "6868c929ef10b39f0163452c9fda3ecfe51517c14eb86fad1f3da19aa70d37be"),
+        ("2.0.1", "darwin-arm64", "09be260940beafba227117d1300e178b901bcedcfca87526aac01dd4bbfc8e21"),
+        ("2.0.1", "darwin-x86_64", "c66f7b0c8335254e558b8746e4299228da90323c2f5457f6745fc6b96b090a0e"),
+        ("2.0.1", "linux-arm64", "8c0b43f3251e501e2d3acbc1d1f9325044eeea3a431313044b4fae383655d2d9"),
+        ("2.0.1", "linux-x86_64", "805375d272bf8384698f78b1f21bde24b0e3ea1fd70ce727470620e39a8b44d4"),
+        ("2.0.1", "windows-arm64", "3145cfeb81d909a82a6efc4875ebb0a6ba1f29a7dc54bcb7676fa1294e37d5e7"),
+        ("2.0.1", "windows-x86_64", "9ca8a59e5f3ec24291ee7d9d4a71f0c45a2b4989cbd9bd411b62c51ec748444d"),
     ]:
         http_file(
             name = "protoc_gen_grpc_web_plugin_{}".format(platform.replace("-", "_")),
