@@ -2,7 +2,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
-    "@grpc/grpc-js": "1.13.4",
+    "@grpc/grpc-js": "1.14.0",
     "google-protobuf": "4.0.0",
     "grpc-web": "2.0.1"
   },
