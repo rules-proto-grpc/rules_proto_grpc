@@ -123,7 +123,7 @@ GRPCLIB_DEPS = [
     Label("@protobuf//:protobuf_python"),
 ]`)
 
-var pythonModuleSuffixLines = `bazel_dep(name = "rules_python", version = "1.6.1")
+var pythonModuleSuffixLines = `bazel_dep(name = "rules_python", version = "1.6.3")
 
 python = use_extension("@rules_python//python/extensions:python.bzl", "python")
 python.toolchain(python_version = "3.11")`
