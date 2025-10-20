@@ -17,7 +17,7 @@ local_path_override(
     path = "../../../modules/js",
 )
 
-bazel_dep(name = "aspect_rules_js", version = "2.6.0")
+bazel_dep(name = "aspect_rules_js", version = "2.6.2")
 
 # Allow npm_link_all_packages of rules_proto_grpc_js_npm from rules_proto_grpc_js
 npm = use_extension("@aspect_rules_js//npm:extensions.bzl", "npm")
