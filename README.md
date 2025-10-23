@@ -17,6 +17,18 @@
 ## Announcements 📣
 
 <details open>
+<summary><b>2025/10/23 - Version 5.8.0</b></summary>
+
+[Version 5.8.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.8.0),
+which only updates a large number of dependencies for these modules. Note that a number of
+dependencies are blocked on being updated to their latest versions at present due to two pending
+issues on upstream repositories. For Protobuf, rules_java and grpc-gateway, there is a conflicting
+issue when multiple repositories specify Maven dependencies with a lock-file on the @maven name. For
+gRPC, no recent versions have been published to the Bazel Central Registry.
+
+</details>
+
+<details>
 <summary><b>2025/08/29 - Version 5.7.0</b></summary>
 
 [Version 5.7.0 has been released](https://github.com/rules-proto-grpc/rules_proto_grpc/releases/tag/5.7.0),
