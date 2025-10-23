@@ -6,6 +6,46 @@
 Changelog
 =========
 
+5.8.0
+-----
+
+Notes
+*****
+
+A number of dependencies are blocked on being updated to their latest versions at present due to two
+pending issues on upstream repositories. For Protobuf, rules_java and grpc-gateway, there is a
+conflicting issue when multiple repositories specify Maven dependencies with a lock-file on the
+``@maven`` name. For gRPC, no recent versions have been published to the Bazel Central Registry.
+
+Changes
+*******
+
+None
+
+Version Updates
+***************
+
+- Updated Bazel ``apple_support`` to 1.24.1
+- Updated Bazel ``aspect_bazel_lib`` to 2.21.2
+- Updated Bazel ``aspect_rules_js`` to 2.7.0
+- Updated Bazel ``bazel_skylib`` to 1.8.2
+- Updated Bazel ``rules_cc`` to 0.2.11
+- Updated Bazel ``rules_dotnet`` to 0.20.5
+- Updated Bazel ``rules_java`` to 8.15.2
+- Updated Bazel ``rules_python`` to 1.6.3
+- Updated Bazel ``rules_rust`` to 0.66.0
+- Updated Bazel ``rules_scala`` to 7.1.3
+- Updated Bazel ``rules_shell`` to 0.6.1
+- Updated Bazel ``rules_swift_package_manager`` to 1.9.0
+- Updated Buf to 1.59.0
+- Updated Go ``google.golang.org/protobuf`` to v1.36.10
+- Updated JS ``@grpc/grpc-js`` to 1.14.0
+- Updated JS ``grpc-web`` to 2.0.2
+- Updated Python ``multidict`` to 6.7.0
+- Updated Swift ``apple/swift-protobuf`` to 1.32.0
+- Updated Swift ``grpc/grpc-swift-protobuf`` to 2.1.1
+
+
 5.7.1
 -----
 
