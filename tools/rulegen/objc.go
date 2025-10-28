@@ -84,7 +84,7 @@ GRPC_DEPS = [
     Label("@grpc//src/objective-c:proto_objc_rpc"),
 ]`)
 
-var objcModulePrefixLines = `bazel_dep(name = "apple_support", version = "1.24.2")` // Need apple_support loaded as early as possible for toolchain
+var objcModulePrefixLines = `bazel_dep(name = "apple_support", version = "1.24.3")` // Need apple_support loaded as early as possible for toolchain
 
 func makeObjc() *Language {
 	return &Language{
