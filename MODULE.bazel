@@ -1,5 +1,5 @@
 bazel_dep(name = "buildifier_prebuilt", version = "8.2.1")
-bazel_dep(name = "gazelle", version = "0.45.0")
+bazel_dep(name = "gazelle", version = "0.47.0")
 bazel_dep(name = "protobuf", version = "31.1")
 bazel_dep(name = "rules_cc", version = "0.2.13")
 bazel_dep(name = "rules_dotnet", version = "0.20.5")
