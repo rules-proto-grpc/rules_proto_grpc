@@ -37,7 +37,7 @@ The Python module can be installed by adding the following lines to your MODULE.
 .. code-block:: python
 
    bazel_dep(name = "rules_proto_grpc_python", version = "<version number here>")
-   bazel_dep(name = "rules_python", version = "1.6.3")
+   bazel_dep(name = "rules_python", version = "1.8.5")
    
    python = use_extension("@rules_python//python/extensions:python.bzl", "python")
    python.toolchain(python_version = "3.11")
