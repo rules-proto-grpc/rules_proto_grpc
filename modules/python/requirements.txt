@@ -4,9 +4,9 @@
 #
 #    bazel run //:requirements.update
 #
-grpclib==0.4.8 \
-    --hash=sha256:a5047733a7acc1c1cee6abf3c841c7c6fab67d2844a45a853b113fa2e6cd2654 \
-    --hash=sha256:d8823763780ef94fed8b2c562f7485cf0bbee15fc7d065a640673667f7719c9a
+grpclib==0.4.9 \
+    --hash=sha256:7762ec1c8ed94dfad597475152dd35cbd11aecaaca2f243e29702435ca24cf0e \
+    --hash=sha256:cc589c330fa81004c6400a52a566407574498cb5b055fa927013361e21466c46
     # via -r requirements.in
 h2==4.3.0 \
     --hash=sha256:6c59efe4323fa18b47a632221a1888bd7fde6249819beda254aeca909f221bf1 \
