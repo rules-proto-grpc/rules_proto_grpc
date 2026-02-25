@@ -5,7 +5,7 @@ module(
 )
 
 bazel_dep(name = "rules_java", version = "8.15.2")
-bazel_dep(name = "rules_jvm_external", version = "6.9")
+bazel_dep(name = "rules_jvm_external", version = "6.10")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_proto_grpc_java", version = "0.0.0.rpg.version.placeholder")
 bazel_dep(name = "rules_scala", version = "7.1.4")
