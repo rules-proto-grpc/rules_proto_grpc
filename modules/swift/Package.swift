@@ -5,7 +5,7 @@ import PackageDescription
 let package = Package(
     name: "rules_proto_grpc",
     dependencies: [
-        .package(url: "https://github.com/apple/swift-protobuf", exact: "1.33.3"),
+        .package(url: "https://github.com/apple/swift-protobuf", exact: "1.35.1"),
         .package(url: "https://github.com/grpc/grpc-swift-2", exact: "2.2.0"),
         .package(url: "https://github.com/grpc/grpc-swift-protobuf", exact: "2.1.1"),
     ]
