@@ -1,4 +1,4 @@
-bazel_dep(name = "protobuf", version = "31.1")
+bazel_dep(name = "protobuf", version = "33.5")
 bazel_dep(name = "rules_java", version = "8.15.2")
 bazel_dep(name = "rules_jvm_external", version = "6.10")
 bazel_dep(name = "rules_proto_grpc_java", version = "0.0.0.rpg.version.placeholder")
@@ -21,8 +21,8 @@ maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
 maven.install(
     name = "maven",
     artifacts = [
-        "com.google.protobuf:protobuf-java:4.31.1",
-        "com.google.protobuf:protobuf-java-util:4.31.1",
+        "com.google.protobuf:protobuf-java:4.34.0",
+        "com.google.protobuf:protobuf-java-util:4.34.0",
     ],
     known_contributing_modules = [
         # Supress warning about multiple contributing modules
