@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@grpc/grpc-js':
-    specifier: 1.14.1
-    version: 1.14.1
+    specifier: 1.14.3
+    version: 1.14.3
   google-protobuf:
     specifier: 4.0.0
     version: 4.0.0
@@ -25,8 +25,8 @@ devDependencies:
 
 packages:
 
-  /@grpc/grpc-js@1.14.1:
-    resolution: {integrity: sha512-sPxgEWtPUR3EnRJCEtbGZG2iX8LQDUls2wUS3o27jg07KqJFMq6YDeWvMo1wfpmy3rqRdS0rivpLwhqQtEyCuQ==}
+  /@grpc/grpc-js@1.14.3:
+    resolution: {integrity: sha512-Iq8QQQ/7X3Sac15oB6p0FmUg/klxQvXLeileoqrTRGJYLV+/9tubbr9ipz0GKHjmXVsgFPo/+W+2cA8eNcR+XA==}
     engines: {node: '>=12.10.0'}
     dependencies:
       '@grpc/proto-loader': 0.8.0
