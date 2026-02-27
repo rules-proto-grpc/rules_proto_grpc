@@ -24,10 +24,10 @@ maven.install(
     artifacts = [
         "com.google.protobuf:protobuf-java:4.31.1",
         "com.google.protobuf:protobuf-java-util:4.31.1",
-        "io.grpc:grpc-api:1.74.0",
-        "io.grpc:grpc-netty:1.74.0",
-        "io.grpc:grpc-protobuf:1.74.0",
-        "io.grpc:grpc-stub:1.74.0",
+        "io.grpc:grpc-api:1.79.0",
+        "io.grpc:grpc-netty:1.79.0",
+        "io.grpc:grpc-protobuf:1.79.0",
+        "io.grpc:grpc-stub:1.79.0",
         "javax.annotation:javax.annotation-api:1.3.2",
     ],
     known_contributing_modules = [
