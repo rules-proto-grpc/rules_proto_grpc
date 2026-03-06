@@ -1,4 +1,5 @@
 ---
+bazel: 8.x
 tasks:
   main_ubuntu2204:
     name: Build & Test All
