@@ -8,12 +8,12 @@ def _download_plugins(module_ctx):
     # Breaking plugin
     for version, platform, hash in [
         # renovate-gh-plugin: bufbuild/buf
-        ("v1.66.0", "darwin-arm64", "c5580f0eb9202644bc29c774ced39dd8e5c96f701c69e9edb109c419be163330"),
-        ("v1.66.0", "darwin-x86_64", "dd580578638ce0036a9581889e9af182ae4bf570155c18e9f3aa52899a4cfb94"),
-        ("v1.66.0", "linux-arm64", "19ac04d38b2cec2cf8d5b13b1317b354987291d63a2f5c63c1d836aa8f910d25"),
-        ("v1.66.0", "linux-x86_64", "feaab9ee6bfb0a74de79c519767d62543b30bff09a16efc95642e8c1e1339990"),
-        ("v1.66.0", "windows-arm64", "6a0feae716523a97be0f3c8423241b0c04cd9077ad5fc48b27e7f0582b4eae40"),
-        ("v1.66.0", "windows-x86_64", "5ef6e79b9802c99927854123df6dc162471ef7694c1b313dcc80bd86356b627e"),
+        ("v1.66.1", "darwin-arm64", "de17788f01f7ec71bf2932ea68950199813df59326a8b30514d05ca5d8d2eae3"),
+        ("v1.66.1", "darwin-x86_64", "2ec584f53b334fe6a189fb147f5b82f414455a92b212f234ff5653635b1da4f6"),
+        ("v1.66.1", "linux-arm64", "649a7076bcd4d1f64c84a60b194c7ee40bd0f870a0717edf25c5fb370bb533ea"),
+        ("v1.66.1", "linux-x86_64", "da84c94d1283384bcfdc0f6e7ccfc46cb0f6b5dcc2830d2e1b544551cf71ba67"),
+        ("v1.66.1", "windows-arm64", "6b3137cc3a3b735cdd34f3c50a081368444262713db480dc572ff3c70d90f498"),
+        ("v1.66.1", "windows-x86_64", "76a2ed7a44a4b3df32c398f19a52e1c28f0e37a94584f67040cc9aba005fd286"),
     ]:
         http_file(
             name = "buf_breaking_plugin_{}".format(platform.replace("-", "_")),
@@ -29,12 +29,12 @@ def _download_plugins(module_ctx):
     # Lint plugin
     for version, platform, hash in [
         # renovate-gh-plugin: bufbuild/buf
-        ("v1.66.0", "darwin-arm64", "30a8ff2cd578d84cedc400fe13e189643d5352f4d7f6002140a80d0e116185a1"),
-        ("v1.66.0", "darwin-x86_64", "16a5fdfe8a18be3485b41ded41b015bb18b0391f48793b446cee8035372cfabb"),
-        ("v1.66.0", "linux-arm64", "7b6878fde2136c822d1e70f01becb5bcd595d83096ca8ca93396a68f81f5876d"),
-        ("v1.66.0", "linux-x86_64", "f19f7288c9afdb6fcb34ec022aa4e347f49dc8ce9cc5a5d166b6251619d45d13"),
-        ("v1.66.0", "windows-arm64", "980d8abbf9c44dfdc64b51cfed36acab8e73237e8bb3773df34721673d25000a"),
-        ("v1.66.0", "windows-x86_64", "22e0ec3e4a53be8e856408a886ac6c0bf19364dff9164e3cb4fdbe22c5ff1da0"),
+        ("v1.66.1", "darwin-arm64", "82b2d05cb1a1e68149194f72bc8c17ab90b3e088e064adaf0d0f329b99c135b9"),
+        ("v1.66.1", "darwin-x86_64", "c9fa06a4250956aeb4a95cab5c0eaa1b5fac02073ff300d3aaa5a54157df4ed1"),
+        ("v1.66.1", "linux-arm64", "4a07237823a8298e74a164124749fd17febb7beb169567bc0472090bd14138de"),
+        ("v1.66.1", "linux-x86_64", "3fef4634c64208e4b2f25220a6ea06aef3f32b7ebe00b79c7489ae2ea63c8d71"),
+        ("v1.66.1", "windows-arm64", "8c317ea6591d13e7ad26a4026c06fbe4908b02fbc12a2f1f241c9a480dfd3699"),
+        ("v1.66.1", "windows-x86_64", "02672bbbdf71c579c499cc733e9cdd8733fb44f995d96911b76adc5b65437391"),
     ]:
         http_file(
             name = "buf_lint_plugin_{}".format(platform.replace("-", "_")),
