@@ -34,6 +34,12 @@ csharp_regenerate_packages:
 	rm -r modules/csharp/paket/.config modules/csharp/paket/paket-files
 
 
+# Run maven repin to update Java dependencies lock file
+.PHONY: java_maven_repin
+java_maven_repin:
+	cd modules/java && REPIN=1 bazel run --override_module=rules_proto_grpc=../core @maven//:pin
+
+
 # Run Go mod tudy
 .PHONY: go_mod_tidy
 go_mod_tidy:
