@@ -107,6 +107,7 @@ func action(c *cli.Context) error {
 		makeJs(),
 		makeObjc(),
 		makePython(),
+		makeRust(),
 		makeScala(),
 		makeSwift(),
 	}
