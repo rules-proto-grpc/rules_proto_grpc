@@ -6,7 +6,7 @@
 Rust
 ====
 
-Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_.
+Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are supported through ``prost_types``. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default.
 
 .. list-table:: Rules
    :widths: 1 2
@@ -262,6 +262,14 @@ Full example project can be found `here <https://github.com/rules-proto-grpc/rul
 .. code-block:: python
 
    load("@rules_proto_grpc_rust//:defs.bzl", "rust_proto_library")
+   
+   rust_proto_library(
+       name = "common_types_rust_proto",
+       declared_proto_packages = ["example.common"],
+       protos = [
+           "@rules_proto_grpc_example_protos//:common_types_proto",
+       ],
+   )
    
    rust_proto_library(
        name = "person_place_rust_proto",

@@ -4,8 +4,8 @@ proto_plugin(
     name = "rust_proto_plugin",
     options = [
         "file_descriptor_set",
-        "extern_path=.google.protobuf=::pbjson_types",
-        "compile_well_known_types",
+        "extern_path=.google.type=::proto_types",
+        "extern_path=.google.rpc=::proto_types",
     ],
     output_directory = True,
     separate_options_flag = True,
@@ -17,8 +17,8 @@ proto_plugin(
     name = "rust_grpc_plugin",
     options = [
         "no_include",
-        "extern_path=.google.protobuf=::pbjson_types",
-        "compile_well_known_types",
+        "extern_path=.google.type=::proto_types",
+        "extern_path=.google.rpc=::proto_types",
     ],
     output_directory = True,
     separate_options_flag = True,
@@ -39,7 +39,8 @@ proto_plugin(
     name = "rust_serde_plugin",
     options = [
         "no_include",
-        "extern_path=.google.protobuf=::pbjson_types",
+        "extern_path=.google.type=::proto_types",
+        "extern_path=.google.rpc=::proto_types",
     ],
     output_directory = True,
     separate_options_flag = True,

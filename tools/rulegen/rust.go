@@ -86,7 +86,7 @@ var rustProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + 
         crate_root = name_root,
         edition = kwargs.get("edition", "2021"),
         srcs = [name_fixed],
-        deps = [crate_label("prost"), crate_label("prost-types")] +
+        deps = [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
                [crate_label("pbjson"), crate_label("pbjson-types")] +
                [crate_label("serde")] +
                kwargs.get("deps", []) +
@@ -105,7 +105,7 @@ var rustGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
         crate_root = name_root,
         edition = kwargs.get("edition", "2021"),
         srcs = [name_fixed],
-        deps = [crate_label("prost"), crate_label("prost-types")] +
+        deps = [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
                [crate_label("pbjson"), crate_label("pbjson-types")] +
                [crate_label("serde")] +
                [crate_label("tonic")] +
@@ -155,6 +155,14 @@ var rustGrpcCompileExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .L
 )`)
 
 var rustProtoLibraryExampleTemplate = mustTemplate(`load("@rules_proto_grpc_{{ .Lang.Name }}//:defs.bzl", "{{ .Rule.Name }}")
+
+{{ .Rule.Name }}(
+    name = "common_types_{{ .Rule.Base }}_{{ .Rule.Kind }}",
+    declared_proto_packages = ["example.common"],
+    protos = [
+        "@rules_proto_grpc_example_protos//:common_types_proto",
+    ],
+)
 
 {{ .Rule.Name }}(
     name = "person_place_{{ .Rule.Base }}_{{ .Rule.Kind }}",
@@ -263,7 +271,7 @@ func makeRust() *Language {
 	return &Language{
 		Name:              "rust",
 		DisplayName:       "Rust",
-		Notes:             mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_."),
+		Notes:             mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are supported through ``prost_types``. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default."),
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{

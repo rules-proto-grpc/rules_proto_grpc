@@ -46,7 +46,7 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
         crate_root = name_root,
         edition = kwargs.get("edition", "2021"),
         srcs = [name_fixed],
-        deps = [crate_label("prost"), crate_label("prost-types")] +
+        deps = [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
                [crate_label("pbjson"), crate_label("pbjson-types")] +
                [crate_label("serde")] +
                [crate_label("tonic")] +
