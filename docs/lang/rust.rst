@@ -6,7 +6,7 @@
 Rust
 ====
 
-Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are supported through ``prost_types``. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default.
+Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are mapped to ``pbjson_types`` so generated serde support compiles. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default.
 
 .. list-table:: Rules
    :widths: 1 2

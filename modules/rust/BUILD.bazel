@@ -4,6 +4,8 @@ proto_plugin(
     name = "rust_proto_plugin",
     options = [
         "file_descriptor_set",
+        "compile_well_known_types",
+        "extern_path=.google.protobuf=::pbjson_types",
         "extern_path=.google.type=::proto_types",
         "extern_path=.google.rpc=::proto_types",
     ],
@@ -17,6 +19,8 @@ proto_plugin(
     name = "rust_grpc_plugin",
     options = [
         "no_include",
+        "compile_well_known_types",
+        "extern_path=.google.protobuf=::pbjson_types",
         "extern_path=.google.type=::proto_types",
         "extern_path=.google.rpc=::proto_types",
     ],
@@ -45,11 +49,5 @@ proto_plugin(
     output_directory = True,
     separate_options_flag = True,
     tool = "@rules_proto_grpc_rust_crates//:protoc-gen-prost-serde__protoc-gen-prost-serde",
-    visibility = ["//visibility:public"],
-)
-
-sh_binary(
-    name = "rust_fixer",
-    srcs = ["rust_fixer.sh"],
     visibility = ["//visibility:public"],
 )

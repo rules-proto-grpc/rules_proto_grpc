@@ -108,7 +108,7 @@ var rustGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
         deps = [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
                [crate_label("pbjson"), crate_label("pbjson-types")] +
                [crate_label("serde")] +
-               [crate_label("tonic")] +
+               [crate_label("tonic"), crate_label("tonic-prost")] +
                kwargs.get("deps", []) +
                proto_deps,
         proc_macro_deps = kwargs.get("proc_macro_deps", []) + [
@@ -271,7 +271,7 @@ func makeRust() *Language {
 	return &Language{
 		Name:              "rust",
 		DisplayName:       "Rust",
-		Notes:             mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are supported through ``prost_types``. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default."),
+		Notes:             mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are mapped to ``pbjson_types`` so generated serde support compiles. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default."),
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{

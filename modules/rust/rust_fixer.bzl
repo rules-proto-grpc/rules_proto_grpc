@@ -19,11 +19,26 @@ def _rust_proto_crate_fixer(ctx):
     in_dir = compilation.output_dirs.to_list()[0]
     out_dir = ctx.actions.declare_directory("%s_fixed" % compilation.label.name)
 
-    ctx.actions.run(
+    ctx.actions.run_shell(
         outputs = [out_dir],
         inputs = [in_dir],
-        executable = ctx.executable._script,
         arguments = [in_dir.path, out_dir.path],
+        command = """
+set -eu
+
+cp -RL "$1"/. "$2"/
+chmod -R +w "$2"
+
+find "$2" -type f ! -name 'mod.rs' ! -name '*.serde.rs' ! -name '*.tonic.rs' | while read -r base; do
+    dir="$(dirname "$base")"
+    module="$(basename "${base%.rs}")"
+    for generated in "$dir/$module".serde.rs "$dir/$module".tonic.rs; do
+        if [ -f "$generated" ]; then
+            printf 'include!("%s");\n' "$(basename "$generated")" >> "$base"
+        fi
+    done
+done
+""",
     )
 
     return [DefaultInfo(
@@ -45,11 +60,6 @@ rust_proto_crate_fixer = rule(
         "compilation": attr.label(
             providers = [ProtoCompileInfo],
             mandatory = True,
-        ),
-        "_script": attr.label(
-            executable = True,
-            cfg = "exec",
-            default = Label("//:rust_fixer"),
         ),
     },
 )

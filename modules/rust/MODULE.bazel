@@ -15,31 +15,15 @@ use_repo(rust, "rust_toolchains")
 register_toolchains("@rust_toolchains//:all")
 
 crate = use_extension("@rules_rust//crate_universe:extensions.bzl", "crate")
-crate.spec(package = "async-stream", version = "0.3.6")
-crate.spec(package = "futures", version = "0.3.31")
-crate.spec(package = "pbjson", version = "0.8.0")
-crate.spec(package = "pbjson-types", version = "0.8.0")
-crate.spec(package = "prost", version = "0.14.1")
-crate.spec(package = "prost-derive", version = "0.14.1")
-crate.spec(package = "prost-types", version = "0.14.1")
-crate.spec(package = "proto-types", features = ["all_common", "rpc", "serde"], version = "0.2.2")
-crate.spec(package = "protoc-gen-prost", version = "0.5.0")
-crate.spec(package = "protoc-gen-prost-crate", version = "0.5.0")
-crate.spec(package = "protoc-gen-prost-serde", version = "0.4.0")
-crate.spec(package = "protoc-gen-tonic", version = "0.5.0")
-crate.spec(package = "rand", version = "0.8.5")
-crate.spec(package = "serde", features = ["derive"], version = "1.0.228")
-crate.spec(package = "serde_json", version = "1.0.145")
-crate.spec(package = "tokio", features = ["macros", "rt", "sync", "time"], version = "1.48.0")
-crate.spec(package = "tokio-stream", version = "0.1.17")
-crate.spec(package = "tonic", version = "0.14.1")
+crate.from_cargo(
+    name = "rules_proto_grpc_rust_crates",
+    cargo_lockfile = "//:Cargo.lock",
+    manifests = ["//:Cargo.toml"],
+)
 
 crate.annotation(crate = "protoc-gen-prost", gen_all_binaries = True)
 crate.annotation(crate = "protoc-gen-prost-crate", gen_all_binaries = True)
 crate.annotation(crate = "protoc-gen-prost-serde", gen_all_binaries = True)
 crate.annotation(crate = "protoc-gen-tonic", gen_all_binaries = True)
 
-crate.from_specs(
-    name = "rules_proto_grpc_rust_crates",
-)
 use_repo(crate, "rules_proto_grpc_rust_crates")

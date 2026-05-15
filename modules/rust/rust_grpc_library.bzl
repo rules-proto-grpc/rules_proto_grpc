@@ -49,7 +49,7 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
         deps = [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
                [crate_label("pbjson"), crate_label("pbjson-types")] +
                [crate_label("serde")] +
-               [crate_label("tonic")] +
+               [crate_label("tonic"), crate_label("tonic-prost")] +
                kwargs.get("deps", []) +
                proto_deps,
         proc_macro_deps = kwargs.get("proc_macro_deps", []) + [
