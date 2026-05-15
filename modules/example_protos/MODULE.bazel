@@ -5,3 +5,4 @@ module(
 )
 
 bazel_dep(name = "protobuf", version = "34.0.bcr.1")
+bazel_dep(name = "googleapis", version = "0.0.0-20260422-20ac242a")

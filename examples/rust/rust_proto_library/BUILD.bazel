@@ -1,0 +1,35 @@
+load("@rules_proto_grpc_rust//:defs.bzl", "rust_proto_library")
+
+rust_proto_library(
+    name = "common_types_rust_proto",
+    declared_proto_packages = ["example.common"],
+    protos = [
+        "@rules_proto_grpc_example_protos//:common_types_proto",
+    ],
+)
+
+rust_proto_library(
+    name = "person_place_rust_proto",
+    declared_proto_packages = ["example.proto"],
+    options = {
+        "@rules_proto_grpc_rust//:rust_proto_plugin": [
+            "type_attribute=.example.proto.Person=#[derive(Eq\\,Hash)]",
+            "type_attribute=.example.proto.Place=#[derive(Eq\\,Hash)]",
+        ],
+    },
+    proto_deps = [
+        ":thing_rust_proto",
+    ],
+    protos = [
+        "@rules_proto_grpc_example_protos//:person_proto",
+        "@rules_proto_grpc_example_protos//:place_proto",
+    ],
+)
+
+rust_proto_library(
+    name = "thing_rust_proto",
+    declared_proto_packages = ["example.proto"],
+    protos = [
+        "@rules_proto_grpc_example_protos//:thing_proto",
+    ],
+)
