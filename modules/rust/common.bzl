@@ -17,11 +17,26 @@ rust_compile_attrs = [
 ]
 
 def crate_label(name):
-    """Convert a crate package name into its generated crate-universe label."""
+    """Converts a crate package name into its generated crate-universe label.
+
+    Args:
+        name: Crate package name as it appears in `Cargo.toml`.
+
+    Returns:
+        A label for the generated crate target.
+    """
     return Label("@rules_proto_grpc_rust_crates//:" + name)
 
 def prepare_rust_proto_deps(proto_deps):
-    """Return compile targets for Rust proto deps passed to Rust library macros."""
+    """Returns compile targets for Rust proto deps passed to Rust libraries.
+
+    Args:
+        proto_deps: Rust proto library or compile labels passed to a library
+            macro.
+
+    Returns:
+        A list of labels pointing at Rust proto compile targets.
+    """
     rust_proto_compiled_targets = []
 
     for dep in proto_deps:
@@ -34,7 +49,19 @@ def prepare_rust_proto_deps(proto_deps):
     return rust_proto_compiled_targets
 
 def rust_proto_compile_impl(ctx):
-    """Implements Rust proto compile rules."""
+    """Implements Rust proto and gRPC compile rules.
+
+    Rust dependencies are crate-scoped, while proto dependencies are
+    package-scoped. This implementation converts `proto_deps` metadata into
+    `extern_path` options for the Rust protobuf plugin so generated code can
+    refer to types from dependent Rust crates.
+
+    Args:
+        ctx: Rule context.
+
+    Returns:
+        The providers returned by `proto_compile` plus `RustProtoInfo`.
+    """
     externs = []
     for dep in ctx.attr.proto_deps:
         if RustProtoInfo not in dep:

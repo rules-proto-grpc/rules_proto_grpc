@@ -8,6 +8,8 @@ Rust
 
 Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are mapped to ``pbjson_types`` so generated serde support compiles. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default.
 
+Rust library rules run a small post-merge fixup before calling ``rust_library``. The core rules execute each protoc plugin in an isolated action and then merge the plugin output trees. The Rust plugins emit sibling files such as ``foo.rs``, ``foo.serde.rs``, and ``foo.tonic.rs``; Rust does not compile those siblings unless the base module explicitly includes them. The fixup copies the merged tree and appends the required ``include!`` statements so generated serde and gRPC code is part of the crate.
+
 .. list-table:: Rules
    :widths: 1 2
    :header-rows: 1

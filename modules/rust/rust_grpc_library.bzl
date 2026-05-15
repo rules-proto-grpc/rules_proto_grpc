@@ -6,7 +6,18 @@ load(":common.bzl", "crate_label", "prepare_rust_proto_deps", "rust_compile_attr
 load(":rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load(":rust_grpc_compile.bzl", "rust_grpc_compile")
 
-def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
+def rust_grpc_library(name, **kwargs):
+    """Generates Rust protobuf/gRPC code and wraps it in a `rust_library`.
+
+    Args:
+        name: Name of the generated `rust_library` target.
+        **kwargs: Common Bazel attributes are forwarded to both generated
+            targets; proto compile attributes are forwarded to
+            `rust_grpc_compile`; Rust-specific attributes such as `crate_name`,
+            `declared_proto_packages`, and `proto_deps` configure crate
+            generation.
+    """
+
     # Compile protos
     name_pb = name + "_pb"
     name_fixed = name_pb + "_fixed"
@@ -28,7 +39,9 @@ def rust_grpc_library(name, **kwargs):  # buildifier: disable=function-docstring
         }  # Forward args
     )
 
-    # Fix up includes emitted by plugins that run in isolated protoc invocations.
+    # Rust plugin fragments are sibling files, not modules. After the isolated
+    # plugin outputs are merged, wire matching serde/gRPC siblings into the base
+    # module files before handing the tree to rust_library.
     rust_proto_crate_fixer(
         name = name_fixed,
         compilation = name_pb,

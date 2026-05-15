@@ -44,7 +44,17 @@ load(":common.bzl", "crate_label", "prepare_rust_proto_deps", "rust_compile_attr
 load(":rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load(":{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 
-def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
+def {{ .Rule.Name }}(name, **kwargs):
+    """Generates Rust {{ .Rule.Kind }} code and wraps it in a `rust_library`.
+
+    Args:
+        name: Name of the generated `rust_library` target.
+        **kwargs: Common Bazel attributes are forwarded to both generated
+            targets; proto compile attributes are forwarded to
+            `{{ .Rule.Base }}_{{ .Rule.Kind }}_compile`; Rust-specific attributes
+            such as `crate_name`, `declared_proto_packages`, and `proto_deps`
+            configure crate generation.
+    """
     # Compile protos
     name_pb = name + "_pb"
     name_fixed = name_pb + "_fixed"
@@ -66,7 +76,9 @@ def {{ .Rule.Name }}(name, **kwargs):  # buildifier: disable=function-docstring
         }  # Forward args
     )
 
-    # Fix up includes emitted by plugins that run in isolated protoc invocations.
+    # Rust plugin fragments are sibling files, not modules. After the isolated
+    # plugin outputs are merged, wire matching serde/gRPC siblings into the base
+    # module files before handing the tree to rust_library.
     rust_proto_crate_fixer(
         name = name_fixed,
         compilation = name_pb,
@@ -271,7 +283,7 @@ func makeRust() *Language {
 	return &Language{
 		Name:              "rust",
 		DisplayName:       "Rust",
-		Notes:             mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are mapped to ``pbjson_types`` so generated serde support compiles. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default."),
+		Notes:             mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are mapped to ``pbjson_types`` so generated serde support compiles. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default.\n\nRust library rules run a small post-merge fixup before calling ``rust_library``. The core rules execute each protoc plugin in an isolated action and then merge the plugin output trees. The Rust plugins emit sibling files such as ``foo.rs``, ``foo.serde.rs``, and ``foo.tonic.rs``; Rust does not compile those siblings unless the base module explicitly includes them. The fixup copies the merged tree and appends the required ``include!`` statements so generated serde and gRPC code is part of the crate."),
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{
