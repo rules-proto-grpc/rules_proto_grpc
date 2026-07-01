@@ -18,6 +18,7 @@ routeguide_test_matrix(
         "//examples/java/routeguide:client",
         "//examples/js/routeguide:client",
         "//examples/python/routeguide:client",
+        "//examples/rust/routeguide:client",
         "//examples/scala/routeguide:client",
     ],
     servers = [
@@ -27,6 +28,7 @@ routeguide_test_matrix(
         "//examples/java/routeguide:server",
         "//examples/js/routeguide:server",
         "//examples/python/routeguide:server",
+        "//examples/rust/routeguide:server",
         # "//examples/scala/routeguide:server",  # Doesn't exist yet
     ],
     skip = [

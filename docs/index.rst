@@ -116,6 +116,9 @@ Supported Languages and Tools
    * - Python
      - ✔
      - ✔
+   * - Rust
+     - ✔
+     - ✔
    * - Scala
      - ✔
      - ✔
@@ -173,5 +176,6 @@ Supported Languages and Tools
    lang/js
    lang/objc
    lang/python
+   lang/rust
    lang/scala
    lang/swift

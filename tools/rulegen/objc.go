@@ -59,8 +59,9 @@ var objcGrpcLibraryRuleTemplate = mustTemplate(objcLibraryRuleTemplateString + `
     # Create {{ .Lang.Name }} library
     objc_library(
         name = name,
-        non_arc_srcs = [name_pb],
+        non_arc_srcs = [name_pb + "_srcs"],
         deps = GRPC_DEPS + kwargs.get("deps", []),
+        hdrs = [name_pb + "_hdrs"],
         includes = [name_pb],
         **{
             k: v
@@ -88,46 +89,46 @@ var objcModulePrefixLines = `bazel_dep(name = "apple_support", version = "2.3.0"
 
 func makeObjc() *Language {
 	return &Language{
-		Name:  "objc",
-		DisplayName: "Objective-C",
-		Notes: mustTemplate("Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``objc_library``"),
-		SkipTestPlatforms: []string{"linux", "windows", "macos"},  // Linux and Windows have no Obj-C and Mac crashes Bazel
+		Name:              "objc",
+		DisplayName:       "Objective-C",
+		Notes:             mustTemplate("Rules for generating Objective-C protobuf and gRPC ``.m`` & ``.h`` files and libraries using standard Protocol Buffers and gRPC. Libraries are created with the Bazel native ``objc_library``"),
+		SkipTestPlatforms: []string{"linux", "windows", "macos"}, // Linux and Windows have no Obj-C and Mac crashes Bazel
 		ModulePrefixLines: objcModulePrefixLines,
 		Rules: []*Rule{
 			&Rule{
-				Name:             "objc_proto_compile",
-				Kind:             "proto",
-				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//:proto_plugin"},
-				BuildExample:     protoCompileExampleTemplate,
-				Doc:              "Generates Objective-C protobuf ``.m`` & ``.h`` files",
-				Attrs:            compileRuleAttrs,
+				Name:           "objc_proto_compile",
+				Kind:           "proto",
+				Implementation: compileRuleTemplate,
+				Plugins:        []string{"//:proto_plugin"},
+				BuildExample:   protoCompileExampleTemplate,
+				Doc:            "Generates Objective-C protobuf ``.m`` & ``.h`` files",
+				Attrs:          compileRuleAttrs,
 			},
 			&Rule{
-				Name:             "objc_grpc_compile",
-				Kind:             "grpc",
-				Implementation:   compileRuleTemplate,
-				Plugins:          []string{"//:proto_plugin", "//:grpc_plugin"},
-				BuildExample:     grpcCompileExampleTemplate,
-				Doc:              "Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files",
-				Attrs:            compileRuleAttrs,
+				Name:           "objc_grpc_compile",
+				Kind:           "grpc",
+				Implementation: compileRuleTemplate,
+				Plugins:        []string{"//:proto_plugin", "//:grpc_plugin"},
+				BuildExample:   grpcCompileExampleTemplate,
+				Doc:            "Generates Objective-C protobuf and gRPC ``.m`` & ``.h`` files",
+				Attrs:          compileRuleAttrs,
 			},
 			&Rule{
-				Name:             "objc_proto_library",
-				Kind:             "proto",
-				Implementation:   objcProtoLibraryRuleTemplate,
-				BuildExample:     protoLibraryExampleTemplate,
-				Doc:              "Generates an Objective-C protobuf library using ``objc_library``",
-				Attrs:            cppLibraryRuleAttrs,
+				Name:           "objc_proto_library",
+				Kind:           "proto",
+				Implementation: objcProtoLibraryRuleTemplate,
+				BuildExample:   protoLibraryExampleTemplate,
+				Doc:            "Generates an Objective-C protobuf library using ``objc_library``",
+				Attrs:          cppLibraryRuleAttrs,
 			},
 			&Rule{
-				Name:             "objc_grpc_library",
-				Kind:             "grpc",
-				Implementation:   objcGrpcLibraryRuleTemplate,
-				BuildExample:     grpcLibraryExampleTemplate,
-				Doc:              "Generates an Objective-C protobuf and gRPC library using ``objc_library``",
-				Attrs:            cppLibraryRuleAttrs,
-				Experimental:     true,
+				Name:           "objc_grpc_library",
+				Kind:           "grpc",
+				Implementation: objcGrpcLibraryRuleTemplate,
+				BuildExample:   grpcLibraryExampleTemplate,
+				Doc:            "Generates an Objective-C protobuf and gRPC library using ``objc_library``",
+				Attrs:          cppLibraryRuleAttrs,
+				Experimental:   true,
 			},
 		},
 	}

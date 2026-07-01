@@ -24,6 +24,12 @@ buildifier:
 	bazel run //tools:buildifier
 
 
+# Run Bazel 9 / protobuf 35 compatibility coverage across example workspaces
+.PHONY: bazel9_protobuf35_compatibility
+bazel9_protobuf35_compatibility:
+	./tools/bazel9_protobuf35_compatibility.sh
+
+
 # Update C# paket lock and paket2bazel extension
 .PHONY: csharp_regenerate_packages
 csharp_regenerate_packages:
