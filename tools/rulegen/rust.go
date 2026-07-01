@@ -45,14 +45,14 @@ load(":rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load(":{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 
 def {{ .Rule.Name }}(name, **kwargs):
-    """Generates Rust {{ .Rule.Kind }} code and wraps it in a `rust_library`.
+    """Generates Rust {{ .Rule.Kind }} code and wraps it in a rust_library.
 
     Args:
-        name: Name of the generated `rust_library` target.
+        name: Name of the generated rust_library target.
         **kwargs: Common Bazel attributes are forwarded to both generated
             targets; proto compile attributes are forwarded to
-            `{{ .Rule.Base }}_{{ .Rule.Kind }}_compile`; Rust-specific attributes
-            such as `crate_name`, `declared_proto_packages`, and `proto_deps`
+            {{ .Rule.Base }}_{{ .Rule.Kind }}_compile; Rust-specific attributes
+            such as crate_name, declared_proto_packages, and proto_deps
             configure crate generation.
     """
     # Compile protos
