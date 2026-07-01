@@ -1,5 +1,35 @@
 ---
 tasks:
+  bazel9_protobuf35_ubuntu2204:
+    name: Bazel 9 / Protobuf 35 Compatibility
+    platform: ubuntu2204
+    shell_commands:
+      - set -x
+      - >
+        tools/bazel9_protobuf35_compatibility.sh
+        buf_examples
+        cpp_examples
+        csharp_examples
+        doc_examples
+        go_examples
+        grpc_gateway_examples
+        java_examples
+        js_examples
+        python_examples
+        rust_examples
+        scala_examples
+        all_test_workspaces
+
+  bazel9_protobuf35_macos_arm64:
+    name: Bazel 9 / Protobuf 35 Compatibility
+    platform: macos_arm64
+    shell_commands:
+      - set -x
+      - >
+        tools/bazel9_protobuf35_compatibility.sh
+        objc_examples
+        swift_examples
+
   main_ubuntu2204:
     name: Build & Test All
     platform: ubuntu2204
