@@ -2,7 +2,7 @@
 
 load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_rust//rust:defs.bzl", "rust_library")
-load(":common.bzl", "crate_label", "prepare_rust_proto_deps", "rust_compile_attrs")
+load(":common.bzl", "crate_label", "prepare_rust_proto_deps", "proto_runtime_label", "rust_compile_attrs")
 load(":rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load(":rust_proto_compile.bzl", "rust_proto_compile")
 
@@ -59,7 +59,8 @@ def rust_proto_library(name, **kwargs):
         crate_root = name_root,
         edition = kwargs.get("edition", "2021"),
         srcs = [name_fixed],
-        deps = [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
+        deps = [proto_runtime_label()] +
+               [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
                [crate_label("pbjson"), crate_label("pbjson-types")] +
                [crate_label("serde")] +
                kwargs.get("deps", []) +

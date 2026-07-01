@@ -1,0 +1,18 @@
+load("@rules_rust//rust:defs.bzl", "rust_library")
+
+package(default_visibility = ["//visibility:public"])
+
+rust_library(
+    name = "proto_runtime",
+    srcs = ["proto_runtime.rs"],
+    crate_name = "proto_runtime",
+    deps = [
+        "@rules_proto_grpc_rust_crates//:pbjson",
+        "@rules_proto_grpc_rust_crates//:pbjson-types",
+        "@rules_proto_grpc_rust_crates//:prost",
+        "@rules_proto_grpc_rust_crates//:prost-types",
+        "@rules_proto_grpc_rust_crates//:proto-types",
+        "@rules_proto_grpc_rust_crates//:serde",
+        "@rules_proto_grpc_rust_crates//:serde_json",
+    ],
+)

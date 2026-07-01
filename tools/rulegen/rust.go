@@ -40,7 +40,7 @@ load(":common.bzl", "RustProtoInfo", "rust_compile_attrs", "rust_proto_compile_i
 
 var rustLibraryRuleTemplateString = `load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
 load("@rules_rust//rust:defs.bzl", "rust_library")
-load(":common.bzl", "crate_label", "prepare_rust_proto_deps", "rust_compile_attrs")
+load(":common.bzl", "crate_label", "prepare_rust_proto_deps", "proto_runtime_label", "rust_compile_attrs")
 load(":rust_fixer.bzl", "rust_proto_crate_fixer", "rust_proto_crate_root")
 load(":{{ .Rule.Base }}_{{ .Rule.Kind }}_compile.bzl", "{{ .Rule.Base }}_{{ .Rule.Kind }}_compile")
 
@@ -98,7 +98,8 @@ var rustProtoLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + 
         crate_root = name_root,
         edition = kwargs.get("edition", "2021"),
         srcs = [name_fixed],
-        deps = [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
+        deps = [proto_runtime_label()] +
+               [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
                [crate_label("pbjson"), crate_label("pbjson-types")] +
                [crate_label("serde")] +
                kwargs.get("deps", []) +
@@ -117,7 +118,8 @@ var rustGrpcLibraryRuleTemplate = mustTemplate(rustLibraryRuleTemplateString + `
         crate_root = name_root,
         edition = kwargs.get("edition", "2021"),
         srcs = [name_fixed],
-        deps = [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
+        deps = [proto_runtime_label()] +
+               [crate_label("prost"), crate_label("prost-types"), crate_label("proto-types")] +
                [crate_label("pbjson"), crate_label("pbjson-types")] +
                [crate_label("serde")] +
                [crate_label("tonic"), crate_label("tonic-prost")] +
@@ -283,7 +285,7 @@ func makeRust() *Language {
 	return &Language{
 		Name:              "rust",
 		DisplayName:       "Rust",
-		Notes:             mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are mapped to ``pbjson_types`` so generated serde support compiles. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default.\n\nRust library rules run a small post-merge fixup before calling ``rust_library``. The core rules execute each protoc plugin in an isolated action and then merge the plugin output trees. The Rust plugins emit sibling files such as ``foo.rs``, ``foo.serde.rs``, and ``foo.tonic.rs``; Rust does not compile those siblings unless the base module explicitly includes them. The fixup copies the merged tree and appends the required ``include!`` statements so generated serde and gRPC code is part of the crate."),
+		Notes:             mustTemplate("Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Libraries are created with ``rust_library`` from `rules_rust <https://github.com/bazelbuild/rules_rust>`_. Protobuf well-known ``google.protobuf`` types are mapped to ``pbjson_types`` so generated serde support compiles. Google common ``google.type`` and ``google.rpc`` types are mapped to ``proto_types`` by default.\n\nRust library rules run a small post-merge fixup before calling ``rust_library``. The core rules execute each protoc plugin in an isolated action and then merge the plugin output trees. The Rust plugins emit sibling files such as ``foo.rs``, ``foo.serde.rs``, and ``foo.tonic.rs``; Rust does not compile those siblings unless the base module explicitly includes them. The fixup copies the merged tree and appends the required ``include!`` statements so generated serde and gRPC code is part of the crate.\n\nDownstream Rust code that needs to call ``prost`` or ``serde_json`` APIs on generated messages should depend on ``@rules_proto_grpc_rust//rust:proto_runtime``. That public target re-exports the exact ``prost``, ``prost-types``, ``pbjson``, ``pbjson-types``, ``proto-types``, ``serde``, and ``serde_json`` crate instances used by generated Rust proto and gRPC libraries, avoiding direct dependencies on the internal ``@rules_proto_grpc_rust_crates`` hub."),
 		SkipTestPlatforms: []string{"windows"},
 		Rules: []*Rule{
 			&Rule{

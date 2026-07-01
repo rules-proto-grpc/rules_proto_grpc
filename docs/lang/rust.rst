@@ -10,6 +10,8 @@ Rules for generating Rust protobuf and gRPC ``.rs`` files and libraries. Librari
 
 Rust library rules run a small post-merge fixup before calling ``rust_library``. The core rules execute each protoc plugin in an isolated action and then merge the plugin output trees. The Rust plugins emit sibling files such as ``foo.rs``, ``foo.serde.rs``, and ``foo.tonic.rs``; Rust does not compile those siblings unless the base module explicitly includes them. The fixup copies the merged tree and appends the required ``include!`` statements so generated serde and gRPC code is part of the crate.
 
+Downstream Rust code that needs to call ``prost`` or ``serde_json`` APIs on generated messages should depend on ``@rules_proto_grpc_rust//rust:proto_runtime``. That public target re-exports the exact ``prost``, ``prost-types``, ``pbjson``, ``pbjson-types``, ``proto-types``, ``serde``, and ``serde_json`` crate instances used by generated Rust proto and gRPC libraries, avoiding direct dependencies on the internal ``@rules_proto_grpc_rust_crates`` hub.
+
 .. list-table:: Rules
    :widths: 1 2
    :header-rows: 1

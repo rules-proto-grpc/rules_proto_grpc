@@ -1,4 +1,5 @@
 load("@rules_proto_grpc_rust//:defs.bzl", "rust_proto_library")
+load("@rules_rust//rust:defs.bzl", "rust_test")
 
 rust_proto_library(
     name = "common_types_rust_proto",
@@ -31,5 +32,14 @@ rust_proto_library(
     declared_proto_packages = ["example.proto"],
     protos = [
         "@rules_proto_grpc_example_protos//:thing_proto",
+    ],
+)
+
+rust_test(
+    name = "proto_runtime_test",
+    srcs = ["proto_runtime_test.rs"],
+    deps = [
+        ":person_place_rust_proto",
+        "@rules_proto_grpc_rust//rust:proto_runtime",
     ],
 )

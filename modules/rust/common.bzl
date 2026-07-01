@@ -27,6 +27,10 @@ def crate_label(name):
     """
     return Label("@rules_proto_grpc_rust_crates//:" + name)
 
+def proto_runtime_label():
+    """Returns the public Rust proto runtime target."""
+    return Label("@rules_proto_grpc_rust//rust:proto_runtime")
+
 def prepare_rust_proto_deps(proto_deps):
     """Returns compile targets for Rust proto deps passed to Rust libraries.
 
