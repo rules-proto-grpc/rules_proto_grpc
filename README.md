@@ -6,13 +6,14 @@
 <div align="center">
     <a href="https://bazel.build">Bazel</a> rules for building <a href="https://developers.google.com/protocol-buffers">Protobuf</a> and <a href="https://grpc.io/">gRPC</a> code and libraries from <a href="https://docs.bazel.build/versions/master/be/protocol-buffer.html#proto_library">proto_library</a> targets
     <br><br>
-    If you or your company find these rules useful, please consider <a href="https://github.com/sponsors/aaliddell">supporting the building and maintenance of these rules</a> :coffee:
-    <br><br>
     <a href="https://github.com/rules-proto-grpc/rules_proto_grpc/releases"><img src="https://img.shields.io/github/v/tag/rules-proto-grpc/rules_proto_grpc?label=release&sort=semver&color=38a3a5"></a>
     <a href="https://buildkite.com/bazel/rules-proto-grpc-rules-proto-grpc"><img src="https://badge.buildkite.com/a0c88e60f21c85a8bb53a8c73175aebd64f50a0d4bacbdb038.svg?branch=master"></a>
     <a href="https://github.com/rules-proto-grpc/rules_proto_grpc/actions"><img src="https://github.com/rules-proto-grpc/rules_proto_grpc/actions/workflows/check-diff.yml/badge.svg"></a>
     <a href="https://bazelbuild.slack.com/archives/CKU1D04RM"><img src="https://img.shields.io/badge/bazelbuild-%23proto-38a3a5?logo=slack"></a>
 </div>
+
+> [!IMPORTANT]
+> I currently do not have the time to maintain this rule set; please use with caution, as some dependencies may be out of date.
 
 ## Announcements 📣
 
