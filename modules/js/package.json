@@ -3,7 +3,7 @@
   "type": "module",
   "dependencies": {
     "@grpc/grpc-js": "1.14.1",
-    "google-protobuf": "4.0.0",
+    "google-protobuf": "4.0.2",
     "grpc-web": "2.0.2"
   },
   "devDependencies": {
