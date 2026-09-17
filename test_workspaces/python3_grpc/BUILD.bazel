@@ -1,6 +1,7 @@
 load("@protobuf//bazel:proto_library.bzl", "proto_library")
 load("@rules_proto_grpc_python//:defs.bzl", "python_grpc_library")
 load("@rules_python//python:defs.bzl", "py_test")
+load(":has_direct_pyi_files_test.bzl", "has_direct_pyi_files_test")
 
 package(default_visibility = ["//visibility:private"])
 
@@ -27,4 +28,18 @@ py_test(
     main = "main.py",
     python_version = "PY3",
     deps = ["py_lib"],
+)
+
+# Regression test for generate_pyi=True
+# This verifies that .pyi files are properly added to PyInfo.direct_pyi_files
+python_grpc_library(
+    name = "py_lib_with_pyi",
+    protos = ["proto_lib"],
+    generate_pyi = True,
+    python_version = "PY3",
+)
+
+has_direct_pyi_files_test(
+    name = "test_pyi_in_pyinfo",
+    target_under_test = ":py_lib_with_pyi",
 )

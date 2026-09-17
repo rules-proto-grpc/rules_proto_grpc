@@ -1,6 +1,6 @@
 """Generated definition of python_proto_library."""
 
-load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_proto_compile.bzl", "python_proto_compile")
 
@@ -28,6 +28,17 @@ def python_proto_library(name, generate_pyi = False, **kwargs):
         }  # Forward args
     )
 
+    # Filter .pyi files when generating pyi to add to pyi_srcs
+    pyi_srcs = []
+    if generate_pyi:
+        name_pyi_files = name_pb + "_pyi_files"
+        filter_files(
+            name = name_pyi_files,
+            target = name_pb,
+            extensions = ["pyi"],
+        )
+        pyi_srcs = [name_pyi_files]
+
     # For other code to import generated code with prefix_path if it's given
     output_mode = kwargs.get("output_mode", "PREFIXED")
     if output_mode == "PREFIXED":
@@ -42,6 +53,7 @@ def python_proto_library(name, generate_pyi = False, **kwargs):
         deps = PROTO_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = imports,
+        pyi_srcs = pyi_srcs,
         **{
             k: v
             for (k, v) in kwargs.items()

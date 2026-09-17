@@ -1,6 +1,6 @@
 """Generated definition of python_grpclib_library."""
 
-load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "proto_compile_attrs")
+load("@rules_proto_grpc//:defs.bzl", "bazel_build_rule_common_attrs", "filter_files", "proto_compile_attrs")
 load("@rules_proto_grpc_python_pip_deps//:requirements.bzl", "requirement")
 load("@rules_python//python:defs.bzl", "py_library")
 load("//:python_grpclib_compile.bzl", "python_grpclib_compile")
@@ -19,6 +19,17 @@ def python_grpclib_library(name, generate_pyi = False, **kwargs):
         }  # Forward args
     )
 
+    # Filter .pyi files when generating pyi to add to pyi_srcs
+    pyi_srcs = []
+    if generate_pyi:
+        name_pyi_files = name_pb + "_pyi_files"
+        filter_files(
+            name = name_pyi_files,
+            target = name_pb,
+            extensions = ["pyi"],
+        )
+        pyi_srcs = [name_pyi_files]
+
     # Create python library
     py_library(
         name = name,
@@ -26,6 +37,7 @@ def python_grpclib_library(name, generate_pyi = False, **kwargs):
         deps = GRPCLIB_DEPS + kwargs.get("deps", []),
         data = kwargs.get("data", []),  # See https://github.com/rules-proto-grpc/rules_proto_grpc/issues/257 for use case
         imports = [name_pb],
+        pyi_srcs = pyi_srcs,
         **{
             k: v
             for (k, v) in kwargs.items()
