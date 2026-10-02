@@ -4,10 +4,10 @@ module(
     compatibility_level = 1,
 )
 
-bazel_dep(name = "grpc", version = "1.78.0")
-bazel_dep(name = "protobuf", version = "34.0.bcr.1")
+bazel_dep(name = "grpc", version = "1.81.1")
+bazel_dep(name = "protobuf", version = "35.1")
 bazel_dep(name = "rules_proto_grpc", version = "0.0.0.rpg.version.placeholder")
-bazel_dep(name = "rules_python", version = "1.9.0")
+bazel_dep(name = "rules_python", version = "2.1.0")
 
 PYTHON_VERSIONS = [
     "3.9",
@@ -39,3 +39,49 @@ pip = use_extension("@rules_python//python/extensions:pip.bzl", "pip")
 ]
 
 use_repo(pip, "rules_proto_grpc_python_pip_deps")
+
+# grpc 1.81.1 still contains Bazel 9-incompatible native C++ rule calls in
+# BUILD/Starlark files. Patch those external declarations at fetch time while
+# keeping the registry module version stable.
+single_version_override(
+    module_name = "grpc",
+    patch_cmds = [
+        """
+python3 <<'GRPC_BAZEL9_PATCH'
+from pathlib import Path
+
+CC_RULES = ("cc_binary", "cc_import", "cc_library", "cc_test", "objc_import", "objc_library")
+PROTO_RULES = ("cc_proto_library",)
+
+for path in list(Path(".").rglob("BUILD")) + list(Path(".").rglob("BUILD.bazel")) + list(Path(".").rglob("*.bzl")):
+    if not path.is_file():
+        continue
+    text = path.read_text()
+    original = text
+    needed_cc = []
+    for rule in CC_RULES:
+        text = text.replace(f"native.{rule}(", f"{rule}(")
+        if f"{rule}(" in text and f'"{rule}"' not in text:
+            needed_cc.append(rule)
+    if needed_cc:
+        load = 'load("@rules_cc//cc:defs.bzl", ' + ", ".join(repr(rule) for rule in needed_cc) + ')'
+        text = load + "\\n" + text
+    if any(f"{rule}(" in text and f'"{rule}"' not in text for rule in PROTO_RULES):
+        text = 'load("@com_google_protobuf//bazel:cc_proto_library.bzl", "cc_proto_library")\\n' + text
+    if text != original:
+        path.write_text(text)
+GRPC_BAZEL9_PATCH
+        """,
+    ],
+    version = "1.81.1",
+)
+
+single_version_override(
+    module_name = "re2",
+    version = "2025-11-05.bcr.1",
+)
+
+single_version_override(
+    module_name = "c-ares",
+    version = "1.34.6",
+)

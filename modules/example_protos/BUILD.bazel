@@ -50,6 +50,18 @@ filegroup(
 )
 
 proto_library(
+    name = "common_types_proto",
+    srcs = ["common_types.proto"],
+    import_prefix = "examples/proto",
+    visibility = ["//visibility:public"],
+    deps = [
+        "@googleapis//google/type:money_proto",
+        "@protobuf//:duration_proto",
+        "@protobuf//:timestamp_proto",
+    ],
+)
+
+proto_library(
     name = "greeter_grpc",
     srcs = [
         "greeter.proto",

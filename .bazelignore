@@ -54,6 +54,11 @@ examples/python/python_proto_library
 examples/python/python_grpc_library
 examples/python/python_grpclib_library
 
+examples/rust/rust_proto_compile
+examples/rust/rust_grpc_compile
+examples/rust/rust_proto_library
+examples/rust/rust_grpc_library
+
 examples/scala/scala_proto_compile
 examples/scala/scala_grpc_compile
 examples/scala/scala_proto_library

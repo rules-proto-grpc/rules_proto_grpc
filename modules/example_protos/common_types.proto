@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "github.com/rules-proto-grpc/rules_proto_grpc/examples/proto";
+
+package example.common;
+
+import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
+import "google/type/money.proto";
+
+message CommonTypes {
+    google.protobuf.Timestamp created_at = 1;
+    google.protobuf.Duration timeout = 2;
+    google.type.Money price = 3;
+}
