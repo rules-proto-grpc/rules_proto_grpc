@@ -20,10 +20,7 @@ fn main() {
     // Load manifest
     let manifest_content = fs::read_to_string(manifest_path)
         .unwrap_or_else(|err| panic!("Cannot read manifest file {:?}: {}", manifest_path, err));
-    let path_list: Vec<PathBuf> = manifest_content
-        .lines()
-        .map(|path| PathBuf::from(path))
-        .collect();
+    let path_list: Vec<PathBuf> = manifest_content.lines().map(PathBuf::from).collect();
 
     // Load template file
     let template_str = fs::read_to_string(template_path)
@@ -44,7 +41,7 @@ fn main() {
         };
 
         // Check file is a go file
-        if !path.extension().is_some_and(|ext| ext == "go") {
+        if path.extension().is_none_or(|ext| ext != "go") {
             continue;
         };
         found_go_files = true;
@@ -70,7 +67,7 @@ fn main() {
         }
     }
 
-    if found_go_files && common_template_vars["go_package"] == "" {
+    if found_go_files && common_template_vars["go_package"].is_empty() {
         eprintln!("Warning: failed to find go package for templating go files, falling back to parent dir name");
     }
 
@@ -110,7 +107,7 @@ fn main() {
             ),
             None => file_template_vars.insert("parent_directory_name", "".into()),
         };
-        if file_template_vars["go_package"] == "" {
+        if file_template_vars["go_package"].is_empty() {
             file_template_vars.insert(
                 "go_package",
                 file_template_vars["parent_directory_name"].clone(),
