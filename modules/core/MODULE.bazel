@@ -1,6 +1,7 @@
 module(
     name = "rules_proto_grpc",
     version = "0.0.0.rpg.version.placeholder",
+    bazel_compatibility = [">=8.5.0"],
     compatibility_level = 1,
 )
 
@@ -8,5 +9,18 @@ bazel_dep(name = "aspect_bazel_lib", version = "2.22.5")
 bazel_dep(name = "bazel_skylib", version = "1.9.0")
 bazel_dep(name = "platforms", version = "1.0.0")
 bazel_dep(name = "protobuf", version = "34.0.bcr.1")
-bazel_dep(name = "rules_rust", version = "0.69.0")
+bazel_dep(name = "rules_rs", version = "0.1.0")
 bazel_dep(name = "toolchains_protoc", version = "0.6.1")
+
+# Clippy is exposed by the rules_rust implementation bundled with rules_rs.
+rules_rust = use_extension("@rules_rs//rs:rules_rust.bzl", "rules_rust")
+use_repo(rules_rust, "rules_rust")
+
+rust = use_extension("@rules_rs//rs/toolchains:module_extension.bzl", "toolchains")
+rust.toolchain(
+    edition = "2021",
+    version = "1.92.0",
+)
+use_repo(rust, "default_rust_toolchains")
+
+register_toolchains("@default_rust_toolchains//...")

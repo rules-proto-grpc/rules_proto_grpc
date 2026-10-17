@@ -479,6 +479,7 @@ func mustWriteBazelCIPresubmitYml(dir string, languages []*Language, availableTe
 	// Write header
 	out := &LineWriter{}
 	out.w("---")
+	out.w(`bazel: "8.5.0"`)
 	out.w("tasks:")
 
 	//
