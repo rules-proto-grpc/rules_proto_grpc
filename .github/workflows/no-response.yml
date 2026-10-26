@@ -8,7 +8,7 @@ jobs:
   mark:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@5f858e3efba33a5ca4407a664cc011ad407f2008 # v10
+      - uses: actions/stale@1e223db275d687790206a7acac4d1a11bd6fe629 # v10
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           only-labels: 'more-info-needed'
