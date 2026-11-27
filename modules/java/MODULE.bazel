@@ -35,6 +35,8 @@ maven.install(
         "rules_proto_grpc_java",
         "rules_proto_grpc_scala",
     ],
+    lock_file = "//:maven_install.json",
     strict_visibility = True,
+    version_conflict_policy = "pinned",
 )
 use_repo(maven, "maven")
